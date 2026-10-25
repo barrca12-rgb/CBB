@@ -10,6 +10,8 @@ sports.core.api.espn.com keeps, per game, the last pregame line from every book 
 
     python -m cbb.lines_hist --start 2013 --end 2026      # writes data/lines/espn_<season>.csv
 
+`consensus()` keeps real sportsbooks only (see NOT_BOOKS), which leaves nothing for 2013.
+
 One row per (game, book): home_spread and total (closing, sportsbook convention: -3 = home favored by 3),
 home_ml/away_ml, and open_home_spread/open_total where ESPN has the opener. Games with no line get one row
 with an empty book so reruns skip them. In-game ("Live Odds") feeds are dropped.
@@ -31,6 +33,10 @@ from . import data
 URL = ("https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/"
        "events/{0}/competitions/{0}/odds?limit=100")
 OUT = os.path.join(os.path.dirname(__file__), "..", "data", "lines")
+# Projection sites and aggregates, not sportsbooks. numberfire stores 0 for a missing line, and teamrankings tracks
+# results more closely than any book (likely updated after the close), so neither is a usable closing line. 2013
+# has only these, so the betting backtest starts in 2014.
+NOT_BOOKS = {"consensus", "numberfire", "teamrankings"}
 COLS = ["game_id", "book", "home_spread", "total", "home_ml", "away_ml", "open_home_spread", "open_total"]
 
 
@@ -95,13 +101,16 @@ def season_lines(season: int, workers: int = 8) -> pd.DataFrame:
 
 def consensus(lines: pd.DataFrame) -> pd.DataFrame:
     """One closing line per game: the median across books (robust to one stale or off-market book)."""
-    l = lines[lines["book"].fillna("") != ""]
-    l = l[l["book"] != "Opening"]
+    l = lines[~lines["book"].fillna("").isin(NOT_BOOKS | {"", "Opening"})].copy()
+    l.loc[l["total"] <= 0, "total"] = np.nan
+    # Drop a book whose spread is far from the others on the same game (side flipped or stale).
+    med = l.groupby("game_id")["home_spread"].transform("median")
+    l.loc[(l["home_spread"] - med).abs() > 5, "home_spread"] = np.nan
     agg = l.groupby("game_id").agg(home_spread=("home_spread", "median"), total=("total", "median"),
                                    open_home_spread=("open_home_spread", "median"),
                                    open_total=("open_total", "median"), books=("book", "nunique"))
     # ESPN's "Opening" pseudo-book (2014-2017) fills in openers where no book has one.
-    op = lines[lines["book"] == "Opening"].set_index("game_id")
+    op = lines[lines["book"] == "Opening"].drop_duplicates("game_id").set_index("game_id")
     agg["open_home_spread"] = agg["open_home_spread"].fillna(op["home_spread"])
     agg["open_total"] = agg["open_total"].fillna(op["total"])
     return agg.reset_index()
