@@ -165,7 +165,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
 </style>
 
 <header class="top"><div class="wrap">
-  <div class="brand">Model Card</div>
+  <a class="brand" href="https://barrca12-rgb.github.io/" style="color:inherit;text-decoration:none">Model Card</a>
   <nav class="tabs" aria-label="Sport"><a id="nfl-link" href="#">NFL</a><a href="./" aria-current="page"><span class="hide-sm">College Basketball</span><span class="show-sm">CBB</span></a></nav>
   <div class="status"><span id="upd-status"></span><button id="upd-btn" type="button">Update</button></div>
 </div></header>
