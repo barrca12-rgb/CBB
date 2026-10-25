@@ -9,8 +9,8 @@ Writes reports/cbb_<date>.html (the bet card), reports/cbb_<date>.csv (every num
 
 Calls, from the 2024-2026 backtest against opening lines (BACKTEST.md):
 
-    spread  edge 3+ points  BET 1u    (57.5% at the opener)     edge 2-3  SMALL 0.5u (54.9% at 2+)
-    total   edge 4+ points  BET 1u    (56.1%)                   edge 3-4  SMALL 0.5u (55.1% at 3+)
+    spread  edge 3+ points  BET 1u    (57.5% at the opener)     edge 2-3  WATCH
+    total   edge 4+ points  BET 1u    (56.1%)                   edge 3-4  WATCH
 
 The edge held against the opener, not the close, so the card is meant to be acted on early: each play shows the
 worst number it's still a play at ("good down to").
@@ -31,9 +31,9 @@ from . import backtest, data, kenpom, odds, players, projection, ratings, report
 REPORTS = os.path.join(os.path.dirname(__file__), "..", "reports")
 SCOREBOARD = ("https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard"
               "?dates={}&groups=50&limit=500")
-SPREAD_CALLS = [(3.0, "BET", 1.0), (2.0, "SMALL", 0.5)]
-TOTAL_CALLS = [(4.0, "BET", 1.0), (3.0, "SMALL", 0.5)]
-WATCH_BELOW = 1.0      # within this many points of a SMALL: WATCH (becomes a play if the line moves)
+SPREAD_CALLS = [(3.0, "BET", 1.0)]
+TOTAL_CALLS = [(4.0, "BET", 1.0)]
+WATCH_BELOW = 1.0      # within this many points of a BET: WATCH (becomes a play if the line moves)
 
 
 def season_of(day: pd.Timestamp) -> int:
@@ -160,7 +160,7 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame) -> pd.DataFrame:
                 side, (row, edge) = ("home", hb) if (hb and (not ab or hb[1] >= ab[1])) else ("away", ab)
                 v, units = _call(edge, SPREAD_CALLS)
                 line = row["home_spread"] if side == "home" else -row["home_spread"]
-                thr = SPREAD_CALLS[0][0] if v == "BET" else SPREAD_CALLS[-1][0]
+                thr = SPREAD_CALLS[0][0]
                 r.update(spread_pick=g["home"] if side == "home" else g["away"], spread_side=side, spread_line=line,
                          spread_book=row["book"], spread_odds=row.get(f"{side}_spread_odds"), spread_edge=edge,
                          spread_link=row.get(f"{side}_spread_link"), spread_verdict=v, spread_units=units,
@@ -169,7 +169,7 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame) -> pd.DataFrame:
             if ob or ub:
                 side, (row, edge) = ("over", ob) if (ob and (not ub or ob[1] >= ub[1])) else ("under", ub)
                 v, units = _call(edge, TOTAL_CALLS)
-                thr = TOTAL_CALLS[0][0] if v == "BET" else TOTAL_CALLS[-1][0]
+                thr = TOTAL_CALLS[0][0]
                 r.update(total_pick=side.title(), total_line=row["total"], total_book=row["book"],
                          total_odds=row.get(f"{side}_odds"), total_edge=edge, total_link=row.get(f"{side}_link"),
                          total_verdict=v, total_units=units, total_good_to=(t - thr) if side == "over" else (t + thr))
@@ -232,9 +232,8 @@ def main():
     with open(days_path, "w") as fh:
         json.dump(days, fh)
     n = lambda col, v: int((card.get(col) == v).sum()) if col in card else 0
-    print(f"{day:%Y-%m-%d}: {len(card)} games, {int((card['n_books'] > 0).sum())} with lines; spreads "
-          f"{n('spread_verdict', 'BET')} BET / {n('spread_verdict', 'SMALL')} SMALL, totals "
-          f"{n('total_verdict', 'BET')} BET / {n('total_verdict', 'SMALL')} SMALL -> {stem}.html")
+    print(f"{day:%Y-%m-%d}: {len(card)} games, {int((card['n_books'] > 0).sum())} with lines; "
+          f"{n('spread_verdict', 'BET')} spread and {n('total_verdict', 'BET')} total plays -> {stem}.html")
 
 
 if __name__ == "__main__":

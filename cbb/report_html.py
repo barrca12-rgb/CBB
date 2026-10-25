@@ -225,7 +225,7 @@ __CSS__
 
   <section aria-labelledby="plays-h">
     <div class="sec-head"><h2 id="plays-h">Model plays</h2><span class="note" id="plays-sum"></span></div>
-    <p class="note">Spreads: BET at 3+ points of edge (57.5% against the opener in 2024-26), SMALL at 2-3. Totals: BET at 4+ (56.1%), SMALL at 3-4. Take each play only at the "good down to" number or better. Break-even at -110 is 52.4%.</p>
+    <p class="note">Spreads: 3+ points of edge (57.5% against the opener in 2024-26). Totals: 4+ points (56.1%). Take each play only at the "good down to" number or better. Break-even at -110 is 52.4%.</p>
     <div class="plays" id="plays"></div>
   </section>
 
@@ -290,11 +290,11 @@ __CSS__
   // Plays: one card per spread or total play
   const P = [];
   D.games.forEach((g) => {
-    if (["BET", "SMALL"].includes(g.spread_verdict)) P.push({g, kind: "spread", v: g.spread_verdict, units: g.spread_units, edge: g.spread_edge,
+    if (g.spread_verdict === "BET") P.push({g, kind: "spread", v: g.spread_verdict, units: g.spread_units, edge: g.spread_edge,
       pick: g.spread_pick + " " + ln(g.spread_line), price: odds(g.spread_odds), book: g.spread_book, link: g.spread_link,
       model: (g.spread_side === "home" ? g.home + " " + ln(-g.model_margin) : g.away + " " + ln(g.model_margin)),
       good: g.spread_pick + " " + ln(g.spread_good_to), open: g.open_home_spread == null ? null : (g.spread_side === "home" ? ln(g.open_home_spread) : ln(-g.open_home_spread))});
-    if (["BET", "SMALL"].includes(g.total_verdict)) P.push({g, kind: "total", v: g.total_verdict, units: g.total_units, edge: g.total_edge,
+    if (g.total_verdict === "BET") P.push({g, kind: "total", v: g.total_verdict, units: g.total_units, edge: g.total_edge,
       pick: g.total_pick + " " + num(g.total_line), price: odds(g.total_odds), book: g.total_book, link: g.total_link,
       model: num(g.model_total), good: g.total_pick + " " + num(g.total_good_to), open: null});
   });
@@ -309,7 +309,7 @@ __CSS__
       '</div></div><div class="pk-stake"><b>' + p.units + 'u</b><span>' + p.v + " · " + p.kind + '</span></div></div><div class="stats">' +
       st.map(([k, v]) => '<div class="stat"><span>' + k + "</span><b" + (k === "Edge" ? ' class="pos"' : "") + ">" + esc(v) + "</b></div>").join("") + "</div>" +
       (p.link ? '<a class="cta" href="' + esc(p.link) + '" target="_blank" rel="noopener">Bet at ' + esc(p.book) + "</a>" : "") + "</article>";
-  }).join("") : '<div class="empty">' + (withLines ? "No plays: every line is within 2 points of the model." : "No lines posted yet. Run Update closer to tip-off; openers usually post the evening before.") + "</div>";
+  }).join("") : '<div class="empty">' + (withLines ? "No plays today: no line is 3+ points (spread) or 4+ points (total) off the model." : "No lines posted yet. Run Update closer to tip-off; openers usually post the evening before.") + "</div>";
 
   // Sortable table helper
   const table = (el, cols, rows) => {
