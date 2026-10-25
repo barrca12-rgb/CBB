@@ -16,7 +16,7 @@ lines. Built the same way as the [NFL model](https://github.com/barrca12-rgb/NFL
 ## Daily card (live)
 
 Published at **https://barrca12-rgb.github.io/CBB/** by the `Update CBB card` workflow
-(`.github/workflows/update.yml`): four runs a day November-April (7:37am, 11:37am, 4:07pm ET, and 8:37pm ET for the
+(`.github/workflows/update.yml`): four runs a day October-April (7:37am, 11:37am, 4:07pm ET, and 8:37pm ET for the
 next day's openers), from the Actions tab, or from the page's **Update now** button.
 
 ```bash

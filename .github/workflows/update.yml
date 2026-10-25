@@ -15,11 +15,11 @@ on:
       - "cbb/**.py"
       - "data/projection.json"
       - ".github/workflows/update.yml"
-  schedule:                 # November-April only (UTC times; ET = UTC-5 in season)
-    - cron: "37 12 * 11,12,1,2,3,4 *"   # 7:37 ET: last night's box scores in, morning lines
-    - cron: "37 16 * 11,12,1,2,3,4 *"   # 11:37 ET: KenPom FanMatch for today is out
-    - cron: "7 21 * 11,12,1,2,3,4 *"    # 4:07 ET: before the evening tips
-    - cron: "37 1 * 11,12,1,2,3,4 *"    # 8:37 ET: tomorrow's openers
+  schedule:                 # October-April only (UTC times; ET = UTC-5 in season)
+    - cron: "37 12 * 10,11,12,1,2,3,4 *"   # 7:37 ET: last night's box scores in, morning lines
+    - cron: "37 16 * 10,11,12,1,2,3,4 *"   # 11:37 ET: KenPom FanMatch for today is out
+    - cron: "7 21 * 10,11,12,1,2,3,4 *"    # 4:07 ET: before the evening tips
+    - cron: "37 1 * 10,11,12,1,2,3,4 *"    # 8:37 ET: tomorrow's openers
 
 permissions:
   contents: write
