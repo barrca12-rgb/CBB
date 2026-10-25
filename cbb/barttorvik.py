@@ -18,6 +18,8 @@ import pandas as pd
 from . import teams
 
 URL = "https://barttorvik.com/timemachine/team_results/{}_team_results.json.gz"
+# Barttorvik refuses some non-browser clients (403 from GitHub's runners with a plain user agent).
+UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
 CACHE = os.path.join(os.path.dirname(__file__), "cache", "barttorvik")
 FIRST_SEASON = 2015
 
@@ -29,14 +31,16 @@ def snapshot(day) -> pd.DataFrame | None:
     if os.path.exists(path):
         t = pd.read_parquet(path)
         return t if len(t) else None
-    req = urllib.request.Request(URL.format(d), headers={"User-Agent": "cbb-model"})
+    req = urllib.request.Request(URL.format(d), headers=UA)
     try:
         with urllib.request.urlopen(req, timeout=60) as r:
             raw = r.read()
     except urllib.error.HTTPError as e:
         if e.code != 404:
-            raise
+            return None          # refused or down: treat as missing (not cached), projection falls back to KenPom
         rows = []
+    except OSError:
+        return None
     else:
         try:
             raw = gzip.decompress(raw)
@@ -85,7 +89,7 @@ def predict(games: pd.DataFrame, live_season: int | None = None) -> pd.DataFrame
 def current(season: int) -> pd.DataFrame | None:
     """Barttorvik's live ratings for `season` (barttorvik.com/<season>_team_results.json), for today's games
     when the time machine has no file yet (e.g. preseason). Not cached."""
-    req = urllib.request.Request(f"https://barttorvik.com/{season}_team_results.json", headers={"User-Agent": "cbb-model"})
+    req = urllib.request.Request(f"https://barttorvik.com/{season}_team_results.json", headers=UA)
     try:
         with urllib.request.urlopen(req, timeout=60) as r:
             rows = json.load(r)
