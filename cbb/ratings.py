@@ -94,6 +94,12 @@ def fit(tg: pd.DataFrame, asof, teams: list[int], prior: pd.DataFrame | None = N
     lam[1] = 20 * wbar  # home edge is well identified; light pull toward the usual value
     beta0 = np.concatenate([[y.mean() if n else league["ppp"], cfg.hca_prior], pr["off"], pr["def"]])
     b = _solve(X, y, w, lam, beta0) if n else beta0
+    # Optional separate targets: offense ratings from ppp_off, defense ratings from ppp_def (e.g. 3-point luck
+    # regressed more on the defensive side, where opponents' 3P% is mostly noise).
+    if n and "ppp_off" in h and "ppp_def" in h:
+        bo = _solve(X, h["ppp_off"].to_numpy(dtype=float), w, lam, beta0)
+        bd = _solve(X, h["ppp_def"].to_numpy(dtype=float), w, lam, beta0)
+        b = np.concatenate([(bo[:2] + bd[:2]) / 2, bo[2:2 + k], bd[2 + k:]])
 
     # Four Factors: same design matrix, shrunk toward average.
     factors = {}
