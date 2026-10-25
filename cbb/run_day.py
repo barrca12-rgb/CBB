@@ -190,12 +190,21 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--date", help="YYYY-MM-DD (default: today, US Eastern)")
     ap.add_argument("--replay", action="store_true", help="past day with ESPN's stored lines instead of live ones")
-    ap.add_argument("--auto", action="store_true", help="after 8pm ET, build tomorrow's card (openers post overnight)")
+    ap.add_argument("--auto", action="store_true", help="after 8pm ET, build tomorrow's card (openers post overnight); "
+                    "on a day without games, the next day that has them")
     a = ap.parse_args()
     day = pd.Timestamp(a.date) if a.date else today_et()
     if a.auto and not a.date and pd.Timestamp.now(tz="America/New_York").hour >= 20:
         day += pd.Timedelta(days=1)
+    if not (os.environ.get("KENPOM_API_KEY") or os.path.isdir(kenpom.CACHE)):
+        raise SystemExit("KENPOM_API_KEY is not set (add it as a repository secret for the scheduled runs).")
     games = slate(day)
+    if a.auto and not a.date:   # off day (or preseason): show the next day with games, up to two weeks out
+        for _ in range(14):
+            if len(games):
+                break
+            day += pd.Timedelta(days=1)
+            games = slate(day)
     if not len(games):
         print(f"No games on {day:%Y-%m-%d}.")
         return
