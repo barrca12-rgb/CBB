@@ -77,6 +77,8 @@ def fit(tg: pd.DataFrame, asof, teams: list[int], prior: pd.DataFrame | None = N
     oi = idx[h["opp_id"]].to_numpy()
     days = (asof - h["date"]).dt.days.to_numpy()
     w = 0.5 ** (days / cfg.half_life) if n else np.zeros(0)
+    if n and "wt_mult" in h:      # optional per-game weight (e.g. blowouts down-weighted)
+        w = w * h["wt_mult"].to_numpy(dtype=float)
     wbar = w.mean() if n else 1.0
     rows = np.arange(n)
 
