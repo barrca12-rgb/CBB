@@ -1,0 +1,111 @@
+"""Adjusted efficiency ratings: opponent- and venue-adjusted, time-decayed ridge regression.
+
+The NFL model's method (model/ratings.py there), in per-possession units. For each team-game:
+
+    points per 100 possessions = b0 + hca * venue + off[team] - def[opp]       (venue: +1 home, -1 away, 0 neutral)
+    pace (possessions per 40)  = p0 + tempo[team] + tempo[opp]
+
+fit by weighted ridge. A game's weight halves every `half_life` days. Instead of shrinking every team toward
+average, the ridge shrinks toward a preseason prior (KenPom's preseason ratings, or last season's ratings pulled
+toward the mean), so in November a team starts where the prior says and moves as games come in.
+
+Ratings are points per 100 possessions above average: off = how much better than average the offense is, def =
+how many points per 100 the defense saves (positive = good), tempo = extra possessions per 40 minutes.
+"""
+from __future__ import annotations
+
+from dataclasses import dataclass
+
+import numpy as np
+import pandas as pd
+
+
+@dataclass
+class RatingConfig:
+    half_life: float = 60.0        # days for a game's weight to halve
+    prior_games: float = 5.0       # strength of the preseason prior, in games
+    pace_prior_games: float = 5.0
+    hca_prior: float = 3.5         # home edge in points per 100 possessions per side (~2.4 pts/game each way)
+
+
+def _solve(X, y, w, lam, beta0):
+    """Weighted ridge toward beta0: min sum w (y - X b)^2 + sum lam (b - beta0)^2."""
+    XtW = X.T * w
+    return np.linalg.solve(XtW @ X + np.diag(lam), XtW @ y + lam * beta0)
+
+
+def fit(tg: pd.DataFrame, asof, teams: list[int], prior: pd.DataFrame | None = None,
+        cfg: RatingConfig | None = None) -> dict:
+    """Ratings using only team-games strictly before `asof` (a date).
+
+    tg: team_games from data.load (one season, or more; older games just get tiny weights).
+    prior: index = team id, columns off, def, tempo (deviations from average). Missing teams get 0.
+    """
+    cfg = cfg or RatingConfig()
+    asof = pd.Timestamp(asof)
+    h = tg[tg["date"] < asof]
+    k = len(teams)
+    idx = pd.Series(np.arange(k), index=teams)
+    pr = (prior if prior is not None else pd.DataFrame(index=teams)).reindex(teams)
+    pr = pr.reindex(columns=["off", "def", "tempo"]).fillna(0.0)
+
+    h = h[h["team_id"].isin(idx.index) & h["opp_id"].isin(idx.index)]
+    n = len(h)
+    ti = idx[h["team_id"]].to_numpy()
+    oi = idx[h["opp_id"]].to_numpy()
+    days = (asof - h["date"]).dt.days.to_numpy()
+    w = 0.5 ** (days / cfg.half_life) if n else np.zeros(0)
+    wbar = w.mean() if n else 1.0
+    rows = np.arange(n)
+
+    # Efficiency: [b0, hca, off..., def...]
+    X = np.zeros((n, 2 + 2 * k))
+    X[:, 0] = 1.0
+    X[:, 1] = h["venue"].to_numpy()
+    X[rows, 2 + ti] = 1.0
+    X[rows, 2 + k + oi] = -1.0
+    y = h["ppp"].to_numpy(dtype=float)
+    lam = np.full(2 + 2 * k, cfg.prior_games * wbar)
+    lam[0] = 1e-6
+    lam[1] = 20 * wbar  # home edge is well identified; light pull toward the usual value
+    beta0 = np.concatenate([[y.mean() if n else 103.0, cfg.hca_prior], pr["off"], pr["def"]])
+    b = _solve(X, y, w, lam, beta0) if n else beta0
+
+    # Pace: [p0, tempo...]; both teams add to the game's pace.
+    P = np.zeros((n, 1 + k))
+    P[:, 0] = 1.0
+    P[rows, 1 + ti] += 1.0
+    P[rows, 1 + oi] += 1.0
+    yp = h["pace"].to_numpy(dtype=float)
+    lamp = np.full(1 + k, cfg.pace_prior_games * wbar)
+    lamp[0] = 1e-6
+    p0 = np.concatenate([[yp.mean() if n else 68.0], pr["tempo"]])
+    bp = _solve(P, yp, w, lamp, p0) if n else p0
+
+    return {
+        "asof": asof, "games": n // 2, "b0": b[0], "hca": b[1], "p0": bp[0],
+        "off": pd.Series(b[2:2 + k], index=teams), "def": pd.Series(b[2 + k:], index=teams),
+        "tempo": pd.Series(bp[1:], index=teams),
+    }
+
+
+def predict(r: dict, home, away, neutral) -> pd.DataFrame:
+    """Expected possessions, points, margin (home - away) and total for each game."""
+    home, away = np.asarray(home), np.asarray(away)
+    v = np.where(np.asarray(neutral, dtype=bool), 0.0, 1.0)
+    poss = r["p0"] + r["tempo"].reindex(home).to_numpy() + r["tempo"].reindex(away).to_numpy()
+    home_ppp = r["b0"] + r["hca"] * v + r["off"].reindex(home).to_numpy() - r["def"].reindex(away).to_numpy()
+    away_ppp = r["b0"] - r["hca"] * v + r["off"].reindex(away).to_numpy() - r["def"].reindex(home).to_numpy()
+    out = pd.DataFrame({"poss": poss, "home_pts": poss * home_ppp / 100, "away_pts": poss * away_ppp / 100})
+    out["margin"] = out["home_pts"] - out["away_pts"]
+    out["total"] = out["home_pts"] + out["away_pts"]
+    return out
+
+
+def table(r: dict) -> pd.DataFrame:
+    t = pd.DataFrame({"off": r["off"], "def": r["def"], "tempo": r["tempo"]})
+    t["net"] = t["off"] + t["def"]                      # points per 100 possessions better than average
+    t["adj_oe"] = r["b0"] + t["off"]
+    t["adj_de"] = r["b0"] - t["def"]
+    t["adj_tempo"] = r["p0"] + t["tempo"]                # possessions vs an average opponent
+    return t.sort_values("net", ascending=False)

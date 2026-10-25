@@ -27,6 +27,6 @@ Team names: 365 teams in `data/teams.csv`, 365 with a KenPom name. Teams in the 
 | Source | Status | What it has |
 |---|---|---|
 | KenPom API (`KENPOM_API_KEY`, `Authorization: Bearer`) | works | `ratings` 2012+, `archive` ratings on any date back to 2012 (no look-ahead in backtests), preseason ratings, `fanmatch` game predictions (seen back to 2014), `teams` with KenPom team ids |
-| SportsGameOdds (`SGO_API_KEY`, `X-Api-Key`) | works, but limited | NCAAB events with lines from 7 books from about the 2023-24 season on; nothing found for earlier seasons. Amateur tier: 10 requests/minute and **2,500 events per month**, shared with the NFL model |
-| ESPN game summaries (`site.api.espn.com`, no key) | reachable | `pickcenter` spreads and totals for older games (2013 and 2018 spot checks); empty for the two 2025 games checked. Full coverage scan still to do |
+| SportsGameOdds (`SGO_API_KEY`, `X-Api-Key`) | works | Live NCAAB lines from 7+ books with betslip links. Lines kept for finished games are the last ones seen, often after tipoff, so not usable as closing lines. Rookie tier: 50 requests/minute, 100,000 events per month, shared with the NFL model |
+| ESPN odds feed (`sports.core.api.espn.com`, no key) | works | Last pregame spread, total and moneyline per book: 2013-2018 about 70% of games (2014-2017 include Pinnacle and an "Opening" line), 2019-2026 about 100% with 8-13 books; opening and closing lines from 2024 on. Nothing for 2012. Downloaded by `python -m cbb.lines_hist` into `data/lines/` |
 | Barttorvik | reachable | not explored yet |
