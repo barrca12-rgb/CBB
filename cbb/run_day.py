@@ -26,7 +26,7 @@ import urllib.request
 import numpy as np
 import pandas as pd
 
-from . import backtest, data, kenpom, odds, players, projection, ratings, report_html, teams
+from . import backtest, data, kenpom, odds, players, projection, ratings, report_html, teams, tracker
 
 REPORTS = os.path.join(os.path.dirname(__file__), "..", "reports")
 SCOREBOARD = ("https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard"
@@ -219,13 +219,26 @@ def main():
             print(f"Live lines unavailable ({e}); card has model numbers only.")
             lines = pd.DataFrame(columns=["book", "home_id", "away_id", "home_spread", "total"])
     card = plays(f, lines)
+    record = None
+    if not a.replay:
+        # grade earlier days, scale stakes by each market's live record, then log today's plays
+        try:
+            tracker.settle()
+        except Exception as e:
+            print(f"Settling bets failed ({e}); continuing.")
+        st = tracker.status()
+        for mk in ("spread", "total"):
+            if f"{mk}_units" in card:
+                card[f"{mk}_units"] = card[f"{mk}_units"] * st[mk]["multiplier"]
+        tracker.log(card, day, {mk: st[mk]["multiplier"] for mk in st})
+        record = {"status": tracker.status(), "recent": tracker.recent()}
     os.makedirs(REPORTS, exist_ok=True)
     stem = os.path.join(REPORTS, f"cbb_{day:%Y-%m-%d}")
     card.drop(columns=["book_lines"]).to_csv(stem + ".csv", index=False)
     names = teams.load().set_index("espn_id")["espn_location"]
     rt = rt.assign(team=names.reindex(rt.index).to_numpy())
     with open(stem + ".html", "w") as fh:
-        fh.write(report_html.build(card, rt, day, season_of(day), replay=a.replay))
+        fh.write(report_html.build(card, rt, day, season_of(day), replay=a.replay, record=record))
     days_path = os.path.join(REPORTS, "days.json")
     days = json.load(open(days_path)) if os.path.exists(days_path) else {"days": []}
     days["days"] = sorted(set(days["days"]) | {f"{day:%Y-%m-%d}"})

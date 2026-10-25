@@ -1,9 +1,10 @@
 """Live NCAAB lines from SportsGameOdds (api.sportsgameodds.com/v2), one row per (book, game), with betslip links.
 
 Needs SGO_API_KEY (sent as X-Api-Key), or a network secret for api.sportsgameodds.com that adds it. Each pull
-overwrites lines/ncaab_<ET date>.csv (so the day's last pull is close to the closing line, for CLV), and the first
-number seen for each game and book is kept in lines/openers.csv: the backtest's edge is against the opener, so the
-card shows how far each line has moved.
+updates two files: lines/openers.csv keeps the first number seen for each game and book (the backtest's edge is
+against the opener, so the card shows how far each line has moved, and first_seen says when books post), and
+lines/closing.csv keeps the last pregame number (started games drop out of the feed, so their row stays as the
+close). The tracker grades closing line value against closing.csv.
 
 Columns: book, sgo_event, start, home_id, away_id (ESPN ids), home_spread (-3 = home favored by 3),
 home_spread_odds, away_spread_odds, total, over_odds, under_odds, home_ml, away_ml, and *_link betslip URLs.
@@ -121,8 +122,14 @@ def pull(api_key: str | None = None) -> pd.DataFrame:
     os.makedirs(LINES, exist_ok=True)
     ts = pd.Timestamp.now(tz="UTC")
     if len(l):
-        day = ts.tz_convert("America/New_York")
-        l.assign(pulled_at=ts.isoformat()).to_csv(os.path.join(LINES, f"ncaab_{day:%Y-%m-%d}.csv"), index=False)
+        cl_path = os.path.join(LINES, "closing.csv")
+        cur = l[["sgo_event", "book", "start", "home_id", "away_id", "home_spread", "home_spread_odds",
+                 "away_spread_odds", "total", "over_odds", "under_odds"]].copy()
+        cur["date"] = pd.to_datetime(cur["start"], utc=True).dt.tz_convert("America/New_York").dt.strftime("%Y-%m-%d")
+        cur["pulled_at"] = ts.isoformat(timespec="seconds")
+        old = pd.read_csv(cl_path) if os.path.exists(cl_path) else cur.iloc[:0]
+        key = lambda d: d["sgo_event"].astype(str) + "|" + d["book"].astype(str)
+        pd.concat([old[~key(old).isin(set(key(cur)))], cur], ignore_index=True).to_csv(cl_path, index=False)
     op_path = os.path.join(LINES, "openers.csv")
     op = pd.read_csv(op_path) if os.path.exists(op_path) else pd.DataFrame(
         columns=["sgo_event", "book", "home_id", "away_id", "open_home_spread", "open_total", "first_seen"])

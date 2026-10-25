@@ -32,14 +32,17 @@ def _clean(v):
     return v if isinstance(v, (int, str, bool)) else str(v)
 
 
-def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, replay: bool = False) -> str:
+def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, replay: bool = False,
+          record: dict | None = None) -> str:
     games = [{k: _clean(v) for k, v in r.items()} for r in card.to_dict("records")]
     t = rt.reset_index(names="espn_id")
     t["rank"] = range(1, len(t) + 1)
     rat = [{k: _clean(v) for k, v in r.items()} for r in
            t[["rank", "team", "net", "adj_oe", "adj_de", "adj_tempo"]].to_dict("records")]
     data = {"date": f"{day:%Y-%m-%d}", "season": season, "replay": replay, "repo": REPO, "nfl": NFL_SITE,
-            "generated_at": pd.Timestamp.now(tz="UTC").isoformat(timespec="seconds"), "games": games, "ratings": rat}
+            "generated_at": pd.Timestamp.now(tz="UTC").isoformat(timespec="seconds"), "games": games, "ratings": rat,
+            "record": {"status": record["status"], "recent": [{k: _clean(v) for k, v in r.items()} for r in record["recent"]]}
+            if record else None}
     payload = json.dumps(data).replace("</", "<\\/")
     title = f"{day:%a %b} {day.day} CBB Card"
     return TEMPLATE.replace("__TITLE__", html.escape(title)).replace("__CSS__", CSS).replace("__DATA__", payload)
@@ -246,6 +249,13 @@ __CSS__
     <div class="slate" id="books"></div>
   </section>
 
+  <section aria-labelledby="rec-h" id="rec-sec" hidden>
+    <div class="sec-head"><h2 id="rec-h">Record</h2><span class="note">Every BET the card has shown, graded automatically at the number it first appeared.</span></div>
+    <p class="note">CLV = points better than the closing line at the same book. Beating the close on average is the early sign the edge is real; win rates need hundreds of bets. Stakes shrink automatically if a market's record slides toward break-even.</p>
+    <div class="tbl"><table id="t-rec"></table></div>
+    <details><summary>Recent bets</summary><div class="tbl"><table id="t-recent"></table></div></details>
+  </section>
+
   <details>
     <summary>Power ratings</summary>
     <p class="note">Points per 100 possessions vs an average team, adjusted for opponent and venue, as of this morning. Net = offense + defense.</p>
@@ -359,6 +369,22 @@ __CSS__
     {h: "Line now", k: "now"}, {h: "Play at", k: "at"}, {h: "Edge now", k: "edge", f: (x) => sgn(x.edge)}], W);
   table($("t-rat"), [{h: "#", k: "rank"}, {h: "Team", k: "team", l: 1}, {h: "Net", k: "net", f: (x) => sgn(x.net)},
     {h: "Off", k: "adj_oe", f: (x) => num(x.adj_oe)}, {h: "Def", k: "adj_de", f: (x) => num(x.adj_de)}, {h: "Tempo", k: "adj_tempo", f: (x) => num(x.adj_tempo)}], D.ratings);
+
+  // Record (tracker.py): per market, plus recent graded bets
+  if (D.record) {
+    $("rec-sec").hidden = false;
+    const pct = (x) => x == null ? "—" : (100 * x).toFixed(1) + "%";
+    const R = Object.entries(D.record.status).map(([mk, s]) => Object.assign({market: mk[0].toUpperCase() + mk.slice(1)}, s));
+    table($("t-rec"), [{h: "Market", k: "market", l: 1}, {h: "Record", k: "w", f: (x) => x.w + "-" + x.l + (x.p ? "-" + x.p : "")},
+      {h: "Win %", k: "win", f: (x) => pct(x.win)}, {h: "Units", k: "units", f: (x) => sgn(x.units, 2), cls: (x) => x.units > 0 ? "pos" : x.units < 0 ? "neg" : ""},
+      {h: "ROI", k: "roi", f: (x) => pct(x.roi)}, {h: "Avg CLV", k: "clv_pts", f: (x) => x.clv_pts == null ? "—" : sgn(x.clv_pts, 2) + " pts"},
+      {h: "Beat close", k: "beat_close", f: (x) => pct(x.beat_close)}, {h: "Stake", k: "multiplier", f: (x) => Math.round(100 * x.multiplier) + "%"},
+      {h: "Open", k: "open"}], R);
+    table($("t-recent"), [{h: "Date", k: "date", l: 1}, {h: "Game", k: "home", l: 1, f: (x) => esc(x.away + " @ " + x.home)},
+      {h: "Bet", k: "pick", l: 1}, {h: "Book", k: "book", l: 1}, {h: "Close", k: "close_line", f: (x) => num(x.close_line)},
+      {h: "CLV", k: "clv_pts", f: (x) => sgn(x.clv_pts)}, {h: "Final", k: "home_score", f: (x) => x.away_score + "–" + x.home_score},
+      {h: "Result", k: "result"}, {h: "Units", k: "profit", f: (x) => sgn(x.profit, 2), cls: (x) => x.profit > 0 ? "pos" : x.profit < 0 ? "neg" : ""}], D.record.recent);
+  }
 
   // Lines at every book: one ticket per game, books as columns (our four first, then any others in the feed)
   const ORDER = ["FanDuel", "DraftKings", "BetMGM", "Caesars"];

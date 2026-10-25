@@ -19,7 +19,8 @@ on:
     - cron: "37 12 * 10,11,12,1,2,3,4 *"   # 7:37 ET: last night's box scores in, morning lines
     - cron: "37 16 * 10,11,12,1,2,3,4 *"   # 11:37 ET: KenPom FanMatch for today is out
     - cron: "7 21 * 10,11,12,1,2,3,4 *"    # 4:07 ET: before the evening tips
-    - cron: "37 1 * 10,11,12,1,2,3,4 *"    # 8:37 ET: tomorrow's openers
+    - cron: "37 1 * 10,11,12,1,2,3,4 *"    # 8:37 ET: tomorrow's first openers
+    - cron: "37 4 * 10,11,12,1,2,3,4 *"    # 11:37 ET: most of tomorrow's openers are up
 
 permissions:
   contents: write
@@ -77,7 +78,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898+github-actions[bot]@users.noreply.github.com"
           mkdir -p reports lines
-          git add -A reports lines
+          mkdir -p bets
+          git add -A reports lines bets
           git diff --cached --quiet || git commit -m "Update CBB card ($(date -u +'%Y-%m-%d %H:%M') UTC)"
           git pull --rebase origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}"
 

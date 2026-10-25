@@ -16,8 +16,8 @@ lines. Built the same way as the [NFL model](https://github.com/barrca12-rgb/NFL
 ## Daily card (live)
 
 Published at **https://barrca12-rgb.github.io/CBB/** by the `Update CBB card` workflow
-(`.github/workflows/update.yml`): four runs a day October-April (7:37am, 11:37am, 4:07pm ET, and 8:37pm ET for the
-next day's openers), from the Actions tab, or from the page's **Update now** button.
+(`.github/workflows/update.yml`): five runs a day October-April (7:37am, 11:37am, 4:07pm ET, and 8:37pm and 11:37pm ET for
+the next day's openers), from the Actions tab, or from the page's **Update now** button.
 
 ```bash
 python -m cbb.run_day                         # today's card with live SportsGameOdds lines
@@ -34,7 +34,12 @@ players), then edges against every book. Calls come from the 2024-2026 backtest 
 | Total | edge 4+ pts | 3-4 | 56.1% at 4+ |
 
 The edge is against openers, not closing lines, so bet early and only at the "good down to" number or better.
-`lines/openers.csv` keeps the first number seen at each book; `lines/ncaab_<date>.csv` the day's latest pull.
+`lines/openers.csv` keeps the first number seen at each book (and when), `lines/closing.csv` the last pregame number.
+
+**Tracker** (`cbb/tracker.py`, like the NFL model's): every run grades earlier bets, logs today's BETs in
+`bets/bets.csv` at the number they first appeared, and shows the record, ROI and closing line value on the card.
+Stakes scale down automatically if a market's live win rate slides toward break-even. Edit `bets/bets.csv` to the
+number you actually got, or set `placed` to `no` for one you skipped.
 
 **One-time setup:** in the CBB repo, Settings -> Secrets and variables -> Actions, add `SGO_API_KEY` and
 `KENPOM_API_KEY`; Settings -> Pages -> Source: "GitHub Actions". For the page's button, paste a fine-grained token
