@@ -209,6 +209,7 @@ __CSS__
   text-decoration: none; color: var(--muted); padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line) }
 .sites a[aria-current="page"] { background: var(--turf); color: var(--on-accent); border-color: var(--turf) }
 .stat.wide { grid-column: 1 / -1 }
+#t-slate td small { color: var(--muted) } #t-slate td small b { font-weight: 600 } .bk-none { color: var(--pass) }
 .replay { background: var(--amber-soft); color: var(--amber); border-radius: 10px; padding: 10px 14px; font-size: 14px }
 </style>
 
@@ -240,13 +241,8 @@ __CSS__
   </section>
 
   <section aria-labelledby="slate-h">
-    <div class="sec-head"><h2 id="slate-h">Full slate</h2><span class="note">Click a column to sort. Spreads are the home team's (-3 = home favored by 3).</span></div>
+    <div class="sec-head"><h2 id="slate-h">Full slate</h2><span class="note">Click a column to sort. Spreads are the home team's (-3 = home favored by 3); each book shows its spread over its total. Green = the book with the best number for the play; tap a number to open that bet.</span></div>
     <div class="tbl"><table id="t-slate"></table></div>
-  </section>
-
-  <section aria-labelledby="books-h">
-    <div class="sec-head"><h2 id="books-h">Lines at every book</h2><span class="note">Best number in each row in green. Tap a price to open that book's betslip.</span></div>
-    <div class="slate" id="books"></div>
   </section>
 
   <section aria-labelledby="rec-h" id="rec-sec" hidden>
@@ -344,21 +340,37 @@ __CSS__
     };
     draw();
   };
+  // Book columns for the slate: our four books
+  const ORDER = ["FanDuel", "DraftKings", "BetMGM", "Caesars"];
+  const BOOKS = ORDER;
+  const bookCell = (g, bk) => {
+    const x = (g.book_lines || []).find((y) => y.book === bk);
+    if (!x) return '<span class="bk-none">—</span>';
+    const link = (url, txt, best) => (best ? "<b class='best-key'>" : "<b>") + (url ? '<a class="bk" href="' + esc(url) + '" target="_blank" rel="noopener">' + txt + "</a>" : txt) + "</b>";
+    const spBest = ["BET", "WATCH"].includes(g.spread_verdict) && g.spread_book === bk && g.spread_line != null && x.home_spread != null &&
+      (g.spread_side === "home" ? x.home_spread : -x.home_spread) === g.spread_line;
+    const toBest = ["BET", "WATCH"].includes(g.total_verdict) && g.total_book === bk && g.total_line != null && x.total === g.total_line;
+    const side = g.spread_side || (g.model_margin >= 0 ? "home" : "away");
+    const ou = g.total_pick ? g.total_pick.toLowerCase() : (g.model_total >= (x.total ?? 0) ? "over" : "under");
+    return link(x[side + "_spread_link"], ln(x.home_spread), spBest) + "<br><small>" +
+      link(x[ou + "_link"], x.total == null ? "—" : num(x.total), toBest) + "</small>";
+  };
   const pill = (v) => v ? '<span class="v ' + v + '">' + v + "</span>" : "";
   const S = D.games.map((g) => Object.assign({}, g, {matchup: matchup(g), tip: tip(g),
     fav_win: Math.max(g.p_home_win, 1 - g.p_home_win), fav: g.p_home_win >= 0.5 ? g.home : g.away}));
+  const play = (x) => {
+    const out = [];
+    if (["BET", "WATCH"].includes(x.spread_verdict)) out.push(pill(x.spread_verdict) + " " + esc(x.spread_pick + " " + ln(x.spread_line)) + " <small>(" + sgn(x.spread_edge) + ")</small>");
+    if (["BET", "WATCH"].includes(x.total_verdict)) out.push(pill(x.total_verdict) + " " + esc(x.total_pick + " " + num(x.total_line)) + " <small>(" + sgn(x.total_edge) + ")</small>");
+    return out.join("<br>") || '<span class="bk-none">—</span>';
+  };
+  S.forEach((x) => { x.play_edge = Math.max(x.spread_verdict === "BET" ? x.spread_edge : -9, x.total_verdict === "BET" ? x.total_edge : -9); });
   table($("t-slate"), [
-    {h: "Tip", k: "start", l: 1, f: (x) => esc(x.tip) + (x.state === "post" ? " · F " + x.away_score + "–" + x.home_score : "")},
-    {h: "Game", k: "matchup", l: 1},
-    {h: "Model score", k: "model_total", l: 1, f: (x) => esc(score(x))},
-    {h: "Model", k: "model_home_spread", f: (x) => ln(x.model_home_spread)},
-    {h: "Line", k: "line_home_spread", f: (x) => ln(x.line_home_spread)},
-    {h: "Spread play", k: "spread_edge", l: 1, f: (x) => x.spread_pick ? pill(x.spread_verdict) + " " + esc(x.spread_pick + " " + ln(x.spread_line)) + " (" + sgn(x.spread_edge) + ")" : "—"},
-    {h: "Model total", k: "model_total", f: (x) => num(x.model_total)},
-    {h: "Line total", k: "line_total", f: (x) => num(x.line_total)},
-    {h: "Total play", k: "total_edge", l: 1, f: (x) => x.total_pick ? pill(x.total_verdict) + " " + esc(x.total_pick + " " + num(x.total_line)) + " (" + sgn(x.total_edge) + ")" : "—"},
-    {h: "Winner", k: "fav_win", l: 1, f: (x) => esc(x.fav) + " " + Math.round(100 * x.fav_win) + "%"},
-    {h: "Books", k: "n_books"},
+    {h: "Tip", k: "start", l: 1, f: (x) => esc(x.tip) + (x.state === "post" ? "<br><small>F " + x.away_score + "–" + x.home_score + "</small>" : "")},
+    {h: "Game", k: "matchup", l: 1, f: (x) => esc(x.matchup) + "<br><small>Model: " + esc(score(x)) + "</small>"},
+    {h: "Play", k: "play_edge", l: 1, f: play},
+    {h: "Model", k: "model_home_spread", f: (x) => "<b>" + ln(x.model_home_spread) + "</b><br><small>" + num(x.model_total) + "</small>"},
+    ...BOOKS.map((bk) => ({h: bk, k: "bk_" + bk, f: (x) => bookCell(x, bk)})),
   ], S);
   const W = [];
   D.games.forEach((g) => {
@@ -385,46 +397,6 @@ __CSS__
       {h: "CLV", k: "clv_pts", f: (x) => sgn(x.clv_pts)}, {h: "Final", k: "home_score", f: (x) => x.away_score + "–" + x.home_score},
       {h: "Result", k: "result"}, {h: "Units", k: "profit", f: (x) => sgn(x.profit, 2), cls: (x) => x.profit > 0 ? "pos" : x.profit < 0 ? "neg" : ""}], D.record.recent);
   }
-
-  // Lines at every book: one ticket per game, books as columns (our four first, then any others in the feed)
-  const ORDER = ["FanDuel", "DraftKings", "BetMGM", "Caesars"];
-  const ABBR = {FanDuel: "FD", DraftKings: "DK", BetMGM: "MGM", Caesars: "CZR", "ESPN BET": "ESPN", Fanatics: "FAN", BetRivers: "BR", "Hard Rock": "HR", bet365: "365"};
-  const cell = (val, price, link, best) => {
-    if (val == null && price == null) return '<td class="none">—</td>';
-    const inner = '<b>' + esc(val ?? "") + '</b><small>' + esc(odds(price)) + "</small>";
-    return '<td' + (best ? ' class="best"' : "") + ">" + (link ? '<a class="t" href="' + esc(link) + '" target="_blank" rel="noopener">' + inner + "</a>" : '<span class="t">' + inner + "</span>") + "</td>";
-  };
-  const better = (a, b, dir) => a == null ? false : b == null ? true : dir * (a - b) > 0;
-  const bestIdx = (L, key, dir, priceKey) => {
-    let bi = -1;
-    L.forEach((x, i) => { if (x[key] == null) return; const b = L[bi];
-      if (bi < 0 || better(x[key], b[key], dir) || (x[key] === b[key] && better(x[priceKey], b[priceKey], 1))) bi = i; });
-    return bi;
-  };
-  const G = D.games.filter((g) => (g.book_lines || []).length).sort((a, b) => String(a.start).localeCompare(String(b.start)));
-  $("books").innerHTML = G.length ? G.map((g) => {
-    const L = [...g.book_lines].sort((a, b) => ((ORDER.indexOf(a.book) + 99) % 99) - ((ORDER.indexOf(b.book) + 99) % 99) || a.book.localeCompare(b.book));
-    const away = L.map((x) => Object.assign({}, x, {away_spread: x.home_spread == null ? null : -x.home_spread}));
-    const rows = [
-      ["Spread", null],
-      [g.away, (i) => cell(ln(away[i].away_spread), L[i].away_spread_odds, L[i].away_spread_link, i === bestIdx(away, "away_spread", 1, "away_spread_odds"))],
-      [g.home, (i) => cell(ln(L[i].home_spread), L[i].home_spread_odds, L[i].home_spread_link, i === bestIdx(L, "home_spread", 1, "home_spread_odds"))],
-      ["Total", null],
-      ["Over", (i) => cell(L[i].total == null ? null : "o" + num(L[i].total), L[i].over_odds, L[i].over_link, i === bestIdx(L, "total", -1, "over_odds"))],
-      ["Under", (i) => cell(L[i].total == null ? null : "u" + num(L[i].total), L[i].under_odds, L[i].under_link, i === bestIdx(L, "total", 1, "under_odds"))],
-      ["Moneyline", null],
-      [g.away, (i) => cell(L[i].away_ml == null ? null : "ML", L[i].away_ml, L[i].away_ml_link, i === bestIdx(L, "away_ml", 1, "away_ml"))],
-      [g.home, (i) => cell(L[i].home_ml == null ? null : "ML", L[i].home_ml, L[i].home_ml_link, i === bestIdx(L, "home_ml", 1, "home_ml"))],
-    ];
-    const play = [g.spread_verdict === "BET" ? g.spread_pick + " " + ln(g.spread_line) : "", g.total_verdict === "BET" ? g.total_pick + " " + num(g.total_line) : ""].filter(Boolean).join(" · ");
-    return '<article class="game' + (play ? " has-play" : "") + '"><div class="g-top"><div class="g-title">' + esc(matchup(g)) + '</div><div class="g-kick">' + esc(tip(g)) + "</div></div>" +
-      '<div class="g-model">Model: <b>' + esc(score(g)) + "</b> · " + esc(g.home) + " " + ln(g.model_home_spread) + " · total " + num(g.model_total) + "</div>" +
-      (play ? '<div class="g-play">Play: ' + esc(play) + "</div>" : "") +
-      '<div class="oddswrap"><table class="odds' + (L.length <= 3 ? " few" : "") + '"><thead><tr><th></th>' +
-      L.map((x) => '<th><span class="full">' + esc(x.book) + '</span><span class="abbr">' + esc(ABBR[x.book] || x.book) + "</span></th>").join("") + "</tr></thead><tbody>" +
-      rows.map(([label, f]) => f ? "<tr><th>" + esc(label) + "</th>" + L.map((_, i) => f(i)).join("") + "</tr>" : '<tr class="cap"><th colspan="' + (L.length + 1) + '">' + label + "</th></tr>").join("") +
-      "</tbody></table></div></article>";
-  }).join("") : '<div class="empty">No lines posted yet.</div>';
 
   // Update bar: starts the "Update CBB card" workflow (same as the NFL page's button; token kept only in this browser)
   const REPO = D.repo, WF = "update.yml", API = "https://api.github.com/repos/" + REPO + "/actions";

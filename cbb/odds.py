@@ -112,7 +112,8 @@ def fetch(api_key: str | None = None, max_events: int = 1500) -> pd.DataFrame:
         rows += per_book.values()
     fetch.unmatched = sorted(unmatched)
     fetch.events = len(events)
-    return pd.DataFrame(rows)
+    base = ["book", "sgo_event", "start", "home_id", "away_id", "home_spread", "total"]
+    return pd.DataFrame(rows).reindex(columns=list(dict.fromkeys(base + [c for r in rows for c in r])))
 
 
 def pull(api_key: str | None = None) -> pd.DataFrame:

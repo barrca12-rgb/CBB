@@ -183,7 +183,11 @@ def replay_lines(day: pd.Timestamp, f: pd.DataFrame) -> pd.DataFrame:
     from . import lines_hist
     path = os.path.join(lines_hist.OUT, f"espn_{season_of(day)}.csv")
     l = pd.read_csv(path)
-    l = l[l["game_id"].isin(f["game_id"]) & ~l["book"].fillna("").isin(lines_hist.NOT_BOOKS | {"", "Opening"})]
+    l = l[l["game_id"].isin(f["game_id"]) & ~l["book"].fillna("").isin(lines_hist.NOT_BOOKS | {"", "Opening"})].copy()
+    # ESPN's names for our books ("Caesars Sportsbook", "DraftKings Sportsbook (NJ)") -> the card's
+    for ours in ("FanDuel", "DraftKings", "BetMGM", "Caesars"):
+        l.loc[l["book"].str.startswith(ours), "book"] = ours
+    l = l.drop_duplicates(["game_id", "book"])
     return l.merge(f[["game_id", "home_id", "away_id"]], on="game_id")
 
 
