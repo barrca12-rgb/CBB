@@ -24,6 +24,22 @@ REPORT = os.path.join(os.path.dirname(__file__), "..", "BACKTEST.md")
 BREAKEVEN = 0.5238  # -110
 
 
+SUMMARY = """## Summary (first, untuned version)
+
+* **No edge yet.** Against closing lines the model's side wins 49-52% at every size of disagreement, in both
+  halves of the data (break-even 52.4%). Totals are the same.
+* **Accuracy:** the model is as good as KenPom (margin miss 8.83 vs 8.85 points) but behind the closing line
+  (8.71). Closing lines in college basketball are hard to beat with ratings alone.
+* **Opening lines** (the NFL model's lesson): the line moves toward the model's side 60-75% of the time, so the model
+  does see something the opener misses. Betting it at the opener won 54.5% at 3+ points in 2014-2017 but only
+  51.4% in 2024-2026 (break-even 52.4%): the recent market corrects faster and the edge isn't there yet.
+* **Data cleaning that mattered:** projection sites in ESPN's feed (numberfire, teamrankings) and openers stored
+  from the wrong team's side both produced fake 70-85% win rates until removed.
+
+Next: tune the model (decay, prior strength, blowout compression, per-team home edge, KenPom/Barttorvik blend)
+and re-run this report. The threshold for betting anything is a result that holds in both halves of the data."""
+
+
 def load(start: int, end: int) -> pd.DataFrame:
     b = pd.read_csv(os.path.join(OUT_DIR, f"backtest_{start}_{end}.csv"), parse_dates=["date"])
     lines = []
@@ -108,7 +124,7 @@ def report(b: pd.DataFrame, start: int, end: int) -> str:
     T = b.dropna(subset=["total"]).copy()
     T["tedge"] = T["pred_total"] - T["total"]
     mid = (start + end + 1) // 2
-    md = [f"# Backtest {start}-{end}", "",
+    md = [f"# Backtest {start}-{end}", "", SUMMARY, "",
           "Walk-forward: each game is predicted with ratings fit only on earlier games that season, starting from "
           "KenPom's preseason ratings. Closing line = median of the books in ESPN's odds feed. KenPom = FanMatch "
           "predicted score. Records are against the closing line at -110 (break-even 52.4%).", "",
@@ -170,7 +186,7 @@ def report(b: pd.DataFrame, start: int, end: int) -> str:
         moved = (M["open_home_spread"] - M["home_spread"])          # + = line moved toward home
         hit = (np.sign(oedge) == np.sign(moved))
         md += ["## Line movement: does the model predict which way the opener moves?", "",
-               f"{len(M):,} games where the line moved (seasons {sorted(M['season'].unique())}). "
+               f"{len(M):,} games where the line moved (seasons {', '.join(map(str, sorted(M['season'].unique())))}). "
                f"The line moved toward the model's side in {hit.mean():.1%}; "
                f"{hit[oedge.abs() >= 3].mean():.1%} when the model disagreed with the opener by 3+.", ""]
         Mo = M.assign(oedge=oedge)

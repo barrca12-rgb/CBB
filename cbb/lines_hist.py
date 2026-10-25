@@ -113,6 +113,11 @@ def consensus(lines: pd.DataFrame) -> pd.DataFrame:
     op = lines[lines["book"] == "Opening"].drop_duplicates("game_id").set_index("game_id")
     agg["open_home_spread"] = agg["open_home_spread"].fillna(op["home_spread"])
     agg["open_total"] = agg["open_total"].fillna(op["total"])
+    # ESPN sometimes stores the opener from the other team's side (Virginia +4.5 open, -6.5 close). An opener closer
+    # to the mirrored close than to the close itself is treated as that error and dropped.
+    o, c = agg["open_home_spread"], agg["home_spread"]
+    flipped = ((o + c).abs() < (o - c).abs()) & (c.abs() >= 2)
+    agg.loc[flipped, "open_home_spread"] = np.nan
     return agg.reset_index()
 
 
