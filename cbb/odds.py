@@ -23,9 +23,8 @@ from . import teams
 
 API = "https://api.sportsgameodds.com/v2/events"
 LINES = os.path.join(os.path.dirname(__file__), "..", "lines")
-BOOKS = {"fanduel": "FanDuel", "draftkings": "DraftKings", "betmgm": "BetMGM", "caesars": "Caesars",
-         "espnbet": "ESPN BET", "fanatics": "Fanatics", "betrivers": "BetRivers", "hardrockbet": "Hard Rock",
-         "bet365": "bet365"}
+# The four books we bet (same as the NFL card); plays and the board use only these.
+BOOKS = {"fanduel": "FanDuel", "draftkings": "DraftKings", "betmgm": "BetMGM", "caesars": "Caesars"}
 ODDS = {"points-home-game-sp-home": ("home_spread", "home_spread_odds", "home_spread_link"),
         "points-away-game-sp-away": (None, "away_spread_odds", "away_spread_link"),
         "points-all-game-ou-over": ("total", "over_odds", "over_link"),

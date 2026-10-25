@@ -187,7 +187,7 @@ def replay_lines(day: pd.Timestamp, f: pd.DataFrame) -> pd.DataFrame:
     # ESPN's names for our books ("Caesars Sportsbook", "DraftKings Sportsbook (NJ)") -> the card's
     for ours in ("FanDuel", "DraftKings", "BetMGM", "Caesars"):
         l.loc[l["book"].str.startswith(ours), "book"] = ours
-    l = l.drop_duplicates(["game_id", "book"])
+    l = l[l["book"].isin(odds.BOOKS.values())].drop_duplicates(["game_id", "book"])
     return l.merge(f[["game_id", "home_id", "away_id"]], on="game_id")
 
 
