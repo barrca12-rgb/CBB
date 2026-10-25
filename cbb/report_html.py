@@ -205,6 +205,7 @@ __CSS__
 .sites { display: flex; gap: 6px } .sites a { font: 700 15px/1 var(--display); letter-spacing: .08em; text-transform: uppercase;
   text-decoration: none; color: var(--muted); padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line) }
 .sites a[aria-current="page"] { background: var(--turf); color: var(--on-accent); border-color: var(--turf) }
+.stat.wide { grid-column: 1 / -1 }
 .replay { background: var(--amber-soft); color: var(--amber); border-radius: 10px; padding: 10px 14px; font-size: 14px }
 </style>
 
@@ -270,6 +271,9 @@ __CSS__
   const day = new Date(D.date + "T12:00:00");
   const tip = (g) => g.start ? new Date(g.start).toLocaleTimeString("en-US", {hour: "numeric", minute: "2-digit", timeZone: "America/New_York"}) + " ET" : "";
   const matchup = (g) => g.away + (g.neutral ? " vs " : " @ ") + g.home;
+  // Model's projected final score, winner first: "Duke 82, North Carolina 74"
+  const score = (g) => { const h = Math.round(g.model_home_pts), a = Math.round(g.model_away_pts);
+    return h >= a ? g.home + " " + h + ", " + g.away + " " + a : g.away + " " + a + ", " + g.home + " " + h; };
 
   $("nfl-link").href = D.nfl;
   $("eyebrow").textContent = "College basketball · " + (D.season - 1) + "–" + String(D.season).slice(2);
@@ -302,12 +306,12 @@ __CSS__
   const units = P.reduce((s, p) => s + p.units, 0);
   $("plays-sum").textContent = P.length ? P.length + " plays · " + units + "u" : "";
   $("plays").innerHTML = P.length ? P.map((p) => {
-    const st = [["Model", p.model], ["Edge", sgn(p.edge) + " pts"], ["Good down to", p.good], ["Book", p.book || "—"]];
+    const st = [["Model score", score(p.g)], ["Model", p.model], ["Edge", sgn(p.edge) + " pts"], ["Good down to", p.good], ["Book", p.book || "—"]];
     if (p.open) st.splice(3, 0, ["Opened", p.open]);
     return '<article class="pk' + (p.v === "SMALL" ? " small" : "") + '"><div class="pk-top"><div><div class="pk-pick">' + esc(p.pick) +
       ' <span class="price">' + esc(p.price) + '</span></div><div class="pk-game">' + esc(matchup(p.g)) + " · " + esc(tip(p.g)) + (p.g.note ? " · " + esc(p.g.note) : "") +
       '</div></div><div class="pk-stake"><b>' + p.units + 'u</b><span>' + p.v + " · " + p.kind + '</span></div></div><div class="stats">' +
-      st.map(([k, v]) => '<div class="stat"><span>' + k + "</span><b" + (k === "Edge" ? ' class="pos"' : "") + ">" + esc(v) + "</b></div>").join("") + "</div>" +
+      st.map(([k, v]) => '<div class="stat' + (k === "Model score" ? " wide" : "") + '"><span>' + k + "</span><b" + (k === "Edge" ? ' class="pos"' : "") + ">" + esc(v) + "</b></div>").join("") + "</div>" +
       (p.link ? '<a class="cta" href="' + esc(p.link) + '" target="_blank" rel="noopener">Bet at ' + esc(p.book) + "</a>" : "") + "</article>";
   }).join("") : '<div class="empty">' + (withLines ? "No plays today: no line is 3+ points (spread) or 4+ points (total) off the model." : "No lines posted yet. Run Update closer to tip-off; openers usually post the evening before.") + "</div>";
 
@@ -331,6 +335,7 @@ __CSS__
   table($("t-slate"), [
     {h: "Tip", k: "start", l: 1, f: (x) => esc(x.tip) + (x.state === "post" ? " · F " + x.away_score + "–" + x.home_score : "")},
     {h: "Game", k: "matchup", l: 1},
+    {h: "Model score", k: "model_total", l: 1, f: (x) => esc(score(x))},
     {h: "Model", k: "model_home_spread", f: (x) => ln(x.model_home_spread)},
     {h: "Line", k: "line_home_spread", f: (x) => ln(x.line_home_spread)},
     {h: "Spread play", k: "spread_edge", l: 1, f: (x) => x.spread_pick ? pill(x.spread_verdict) + " " + esc(x.spread_pick + " " + ln(x.spread_line)) + " (" + sgn(x.spread_edge) + ")" : "—"},

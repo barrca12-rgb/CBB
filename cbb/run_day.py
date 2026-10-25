@@ -145,7 +145,8 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame) -> pd.DataFrame:
         m, t = g["final_margin"], g["final_total"]
         r = {k: g[k] for k in ["game_id", "start", "home", "away", "home_id", "away_id", "neutral", "state",
                                "home_score", "away_score", "note"] if k in g}
-        r.update(model_margin=m, model_total=t, model_home_spread=-m, kp_margin=g.get("kp_margin"),
+        r.update(model_margin=m, model_total=t, model_home_spread=-m,
+                 model_home_pts=(t + m) / 2, model_away_pts=(t - m) / 2, kp_margin=g.get("kp_margin"),
                  raw_margin=g.get("pred_margin"), home_missing=g.get("home_missing"), away_missing=g.get("away_missing"),
                  p_home_win=0.5 * (1 + math.erf(m / 11.0 / math.sqrt(2))), n_books=l["book"].nunique())
         r["book_lines"] = l.drop(columns=[c for c in ("home_id", "away_id", "sgo_event", "start") if c in l]).to_dict("records")
