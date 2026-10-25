@@ -64,3 +64,50 @@ def excess_missing(seasons, games: pd.DataFrame) -> pd.DataFrame:
     typical = a.groupby(["team_id", "season"])["missing"].transform(lambda x: x.shift().expanding().mean())
     a["excess_missing"] = a["missing"] - typical.fillna(0.06)
     return a[["game_id", "team_id", "missing", "excess_missing"]]
+
+
+def roster_features(season: int) -> pd.DataFrame:
+    """Continuity and experience for each team-game, from games before it (like KenPom's, but as of game day).
+
+    continuity  share of the team's minutes so far this season played by players who also played for it last season
+    experience  minutes-weighted average number of earlier seasons each player appeared in D-I box scores (any
+                team). Box scores start in 2013, so experience is capped for seasons before ~2017.
+    Before a team's first game both use its roster from that first game's box score (weighted equally).
+    """
+    import os
+    path = os.path.join(data.CACHE, f"roster_{season}.parquet")
+    if os.path.exists(path):
+        return pd.read_parquet(path)
+    seen: dict = {}            # athlete -> set of earlier seasons
+    last_team: dict = {}       # athlete -> set of team ids last season
+    for s in range(2013, season):
+        q = data.fetch("player_box", s)
+        q = q[pd.to_numeric(q["minutes"], errors="coerce").fillna(0) > 0]
+        for a, t in zip(q["athlete_id"], q["team_id"]):
+            seen.setdefault(a, set()).add(s)
+            if s == season - 1:
+                last_team.setdefault(a, set()).add(t)
+    p = data.fetch("player_box", season)
+    p = p[p["athlete_id"].notna()].copy()
+    p["min"] = pd.to_numeric(p["minutes"], errors="coerce").fillna(0)
+    p["date"] = pd.to_datetime(p["game_date"])
+    p = p[p["min"] > 0].sort_values(["team_id", "date", "game_id"])
+    p["ret"] = [t in last_team.get(a, ()) for a, t in zip(p["athlete_id"], p["team_id"])]
+    p["exp"] = [len(seen.get(a, ())) for a in p["athlete_id"]]
+    out = []
+    for team, tg in p.groupby("team_id", sort=False):
+        mins = ret = exp = 0.0
+        first = None
+        for gid, g in tg.groupby("game_id", sort=False):
+            if first is None:
+                first = (g["ret"].mean(), g["exp"].mean())
+            if mins > 0:
+                out.append((int(gid), int(team), ret / mins, exp / mins))
+            else:
+                out.append((int(gid), int(team), first[0], first[1]))
+            mins += g["min"].sum()
+            ret += (g["min"] * g["ret"]).sum()
+            exp += (g["min"] * g["exp"]).sum()
+    df = pd.DataFrame(out, columns=["game_id", "team_id", "continuity", "experience"])
+    df.to_parquet(path)
+    return df
