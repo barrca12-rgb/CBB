@@ -1,1 +1,1 @@
-2026-10-25 22:10 UTC  events 1  book-game rows 2  unmatched teams: none
+2026-10-25 22:16 UTC  events 1  book-game rows 1  unmatched teams: none
