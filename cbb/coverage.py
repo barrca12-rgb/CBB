@@ -1,4 +1,4 @@
-"""Data check: what the hoopR game data covers, season by season.
+"""Data check: what the hoopR game data and the KenPom / Barttorvik / SportsGameOdds APIs cover, by season.
 
     python -m cbb.coverage                      # 2012-2026, writes DATA.md
     python -m cbb.coverage --start 2015 --end 2020
@@ -6,9 +6,12 @@
 from __future__ import annotations
 
 import argparse
+import datetime as dt
 import os
 
-from . import data, teams
+import pandas as pd
+
+from . import data, kenpom, net, sgo, teams, torvik
 
 OUT = os.path.join(os.path.dirname(__file__), "..", "DATA.md")
 
@@ -55,7 +58,44 @@ def report(start: int, end: int) -> str:
         f"Teams in the {t['season'].max()} games with no entry: {len(unmatched)}"
         + (f" ({', '.join(map(str, unmatched))})" if unmatched else "") + ".",
     ]
-    return "\n".join(lines) + "\n"
+    return "\n".join(lines + [""] + apis(start, g)) + "\n"
+
+
+def sample_day(season: int) -> dt.date:
+    """Second Saturday of February: a full conference-play slate."""
+    d = dt.date(season, 2, 8)
+    return d + dt.timedelta(days=(5 - d.weekday()) % 7)
+
+
+def apis(start: int, games: pd.DataFrame) -> list[str]:
+    seasons = range(start, net.current_season() + 1)
+    lines = [
+        "## APIs",
+        "",
+        "KenPom (`cbb/kenpom.py`) and Barttorvik (`cbb/torvik.py`): teams per season and how many map to an ESPN id "
+        "through `data/teams.csv` + `data/team_aliases.csv`. FanMatch is KenPom's game predictions, checked on one "
+        "sample date per season (the second Saturday of February) against the hoopR games that day. Barttorvik's "
+        f"time machine (daily ratings snapshots) starts {torvik.FIRST_TIME_MACHINE}.",
+        "",
+        "| season | KenPom teams | matched | preseason | Torvik teams | matched | FanMatch date | games | in hoopR |",
+        "|---:|---:|---:|---:|---:|---:|---|---:|---:|",
+    ]
+    for y in seasons:
+        k, p, t = kenpom.ratings(y), kenpom.preseason(y), torvik.team_results(y)
+        day = sample_day(y)
+        fm, n_match = (pd.DataFrame(), 0) if day >= dt.date.today() else (kenpom.fanmatch(day), None)
+        if len(fm):
+            n_match = kenpom.match_games(fm, games[games["season"] == y])["game_id"].notna().sum()
+        lines.append(
+            f"| {y} | {len(k)} | {k['espn_id'].notna().sum()} | {len(p)} | {len(t)} | {t['espn_id'].notna().sum()} | "
+            + (f"{day} | {len(fm)} | {n_match} |" if len(fm) else "- | - | - |"))
+    try:
+        u = sgo.usage()
+        status = f"connected ({u})"
+    except Exception as e:  # noqa: BLE001 - report whatever stopped it
+        status = f"not connected: {e}"
+    lines += ["", f"SportsGameOdds (`cbb/sgo.py`): {status}. Set `SGO_API_KEY` to connect."]
+    return lines
 
 
 def main():

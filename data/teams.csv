@@ -1,366 +1,370 @@
-espn_id,espn_location,espn_name,espn_abbr,conference,kenpom,kenpom_conf,source
-2000,Abilene Christian,Abilene Christian Wildcats,ACU,United Athletic Conference,Abilene Christian,WAC,hoopR
-2005,Air Force,Air Force Falcons,AF,Mountain West Conference,Air Force,MWC,hoopR
-2006,Akron,Akron Zips,AKR,Mid-American Conference,Akron,MAC,hoopR
-333,Alabama,Alabama Crimson Tide,ALA,Southeastern Conference,Alabama,SEC,hoopR
-2010,Alabama A&M,Alabama A&M Bulldogs,AAMU,Southwestern Athletic Conference,Alabama A&M,SWAC,hoopR
-2011,Alabama State,Alabama State Hornets,ALST,Southwestern Athletic Conference,Alabama St.,SWAC,hoopR
-2016,Alcorn State,Alcorn State Braves,ALCN,Southwestern Athletic Conference,Alcorn St.,SWAC,hoopR
-44,American University,American University Eagles,AMER,Patriot League,American,PL,hoopR
-2026,App State,App State Mountaineers,APP,Sun Belt Conference,Appalachian St.,SB,hoopR
-12,Arizona,Arizona Wildcats,ARIZ,Big 12 Conference,Arizona,B12,hoopR
-9,Arizona State,Arizona State Sun Devils,ASU,Big 12 Conference,Arizona St.,B12,hoopR
-8,Arkansas,Arkansas Razorbacks,ARK,Southeastern Conference,Arkansas,SEC,hoopR
-2032,Arkansas State,Arkansas State Red Wolves,ARST,Sun Belt Conference,Arkansas St.,SB,hoopR
-2029,Arkansas-Pine Bluff,Arkansas-Pine Bluff Golden Lions,UAPB,Southwestern Athletic Conference,Arkansas Pine Bluff,SWAC,hoopR
-349,Army,Army Black Knights,ARMY,Patriot League,Army,PL,hoopR
-2,Auburn,Auburn Tigers,AUB,Southeastern Conference,Auburn,SEC,hoopR
-2046,Austin Peay,Austin Peay Governors,APSU,Atlantic Sun Conference,Austin Peay,ASun,hoopR
-252,BYU,BYU Cougars,BYU,Big 12 Conference,BYU,B12,hoopR
-2050,Ball State,Ball State Cardinals,BALL,Mid-American Conference,Ball St.,MAC,hoopR
-239,Baylor,Baylor Bears,BAY,Big 12 Conference,Baylor,B12,hoopR
-91,Bellarmine,Bellarmine Knights,BELL,Atlantic Sun Conference,Bellarmine,ASun,hoopR
-2057,Belmont,Belmont Bruins,BEL,Missouri Valley Conference,Belmont,MVC,hoopR
-2065,Bethune-Cookman,Bethune-Cookman Wildcats,BCU,Southwestern Athletic Conference,Bethune Cookman,SWAC,hoopR
-2066,Binghamton,Binghamton Bearcats,BING,America East Conference,Binghamton,AE,hoopR
-68,Boise State,Boise State Broncos,BOIS,Mountain West Conference,Boise St.,MWC,hoopR
-103,Boston College,Boston College Eagles,BC,Atlantic Coast Conference,Boston College,ACC,hoopR
-104,Boston University,Boston University Terriers,BU,Patriot League,Boston University,PL,hoopR
-189,Bowling Green,Bowling Green Falcons,BGSU,Mid-American Conference,Bowling Green,MAC,hoopR
-71,Bradley,Bradley Braves,BRAD,Missouri Valley Conference,Bradley,MVC,hoopR
-225,Brown,Brown Bears,BRWN,Ivy League,Brown,Ivy,hoopR
-2803,Bryant,Bryant Bulldogs,BRY,America East Conference,Bryant,AE,hoopR
-2083,Bucknell,Bucknell Bison,BUCK,Patriot League,Bucknell,PL,hoopR
-2084,Buffalo,Buffalo Bulls,BUF,Mid-American Conference,Buffalo,MAC,hoopR
-2086,Butler,Butler Bulldogs,BTLR,Big East Conference,Butler,BE,hoopR
-13,Cal Poly,Cal Poly Mustangs,CP,Big West Conference,Cal Poly,BW,hoopR
-2934,Cal State Bakersfield,Cal State Bakersfield Roadrunners,CSUB,Big West Conference,Cal St. Bakersfield,BW,hoopR
-2239,Cal State Fullerton,Cal State Fullerton Titans,CSUF,Big West Conference,Cal St. Fullerton,BW,hoopR
-2463,Cal State Northridge,Cal State Northridge Matadors,CSUN,Big West Conference,CSUN,BW,hoopR
-25,California,California Golden Bears,CAL,Atlantic Coast Conference,California,ACC,hoopR
-2856,California Baptist,California Baptist Lancers,CBU,United Athletic Conference,Cal Baptist,WAC,hoopR
-2097,Campbell,Campbell Fighting Camels,CAM,Coastal Athletic Association,Campbell,CAA,hoopR
-2099,Canisius,Canisius Golden Griffins,CAN,Metro Conference,Canisius,MAAC,hoopR
-2110,Central Arkansas,Central Arkansas Bears,CARK,Atlantic Sun Conference,Central Arkansas,ASun,hoopR
-2115,Central Connecticut,Central Connecticut Blue Devils,CCSU,Northeast Conference,Central Connecticut,NEC,hoopR
-2117,Central Michigan,Central Michigan Chippewas,CMU,Mid-American Conference,Central Michigan,MAC,hoopR
-232,Charleston,Charleston Cougars,COFC,Coastal Athletic Association,Charleston,CAA,hoopR
-2127,Charleston Southern,Charleston Southern Buccaneers,CHSO,Big South Conference,Charleston Southern,BSth,hoopR
-2429,Charlotte,Charlotte 49ers,CLT,American Conference,Charlotte,Amer,hoopR
-236,Chattanooga,Chattanooga Mocs,UTC,Southern Conference,Chattanooga,SC,hoopR
-2130,Chicago State,Chicago State Cougars,CHST,Northeast Conference,Chicago St.,NEC,hoopR
-2132,Cincinnati,Cincinnati Bearcats,CIN,Big 12 Conference,Cincinnati,B12,hoopR
-228,Clemson,Clemson Tigers,CLEM,Atlantic Coast Conference,Clemson,ACC,hoopR
-325,Cleveland State,Cleveland State Vikings,CLE,Horizon League,Cleveland St.,Horz,hoopR
-324,Coastal Carolina,Coastal Carolina Chanticleers,CCU,Sun Belt Conference,Coastal Carolina,SB,hoopR
-2142,Colgate,Colgate Raiders,COLG,Patriot League,Colgate,PL,hoopR
-38,Colorado,Colorado Buffaloes,COLO,Big 12 Conference,Colorado,B12,hoopR
-36,Colorado State,Colorado State Rams,CSU,Mountain West Conference,Colorado St.,MWC,hoopR
-171,Columbia,Columbia Lions,COLU,Ivy League,Columbia,Ivy,hoopR
-2154,Coppin State,Coppin State Eagles,COPP,Mid-Eastern Athletic Conference,Coppin St.,MEAC,hoopR
-172,Cornell,Cornell Big Red,COR,Ivy League,Cornell,Ivy,hoopR
-156,Creighton,Creighton Bluejays,CREI,Big East Conference,Creighton,BE,hoopR
-159,Dartmouth,Dartmouth Big Green,DART,Ivy League,Dartmouth,Ivy,hoopR
-2166,Davidson,Davidson Wildcats,DAV,Atlantic 10 Conference,Davidson,A10,hoopR
-2168,Dayton,Dayton Flyers,DAY,Atlantic 10 Conference,Dayton,A10,hoopR
-305,DePaul,DePaul Blue Demons,DEP,Big East Conference,DePaul,BE,hoopR
-48,Delaware,Delaware Blue Hens,DEL,Conference USA,Delaware,CUSA,hoopR
-2169,Delaware State,Delaware State Hornets,DSU,Mid-Eastern Athletic Conference,Delaware St.,MEAC,hoopR
-2172,Denver,Denver Pioneers,DEN,Summit League,Denver,Sum,hoopR
-2174,Detroit Mercy,Detroit Mercy Titans,DETM,Horizon League,Detroit Mercy,Horz,hoopR
-2181,Drake,Drake Bulldogs,DRKE,Missouri Valley Conference,Drake,MVC,hoopR
-2182,Drexel,Drexel Dragons,DREX,Coastal Athletic Association,Drexel,CAA,hoopR
-150,Duke,Duke Blue Devils,DUKE,Atlantic Coast Conference,Duke,ACC,hoopR
-2184,Duquesne,Duquesne Dukes,DUQ,Atlantic 10 Conference,Duquesne,A10,hoopR
-151,East Carolina,East Carolina Pirates,ECU,American Conference,East Carolina,Amer,hoopR
-2193,East Tennessee State,East Tennessee State Buccaneers,ETSU,Southern Conference,East Tennessee St.,SC,hoopR
-2837,East Texas A&M,East Texas A&M Lions,ETAM,Southland Conference,East Texas A&M,Slnd,hoopR
-2197,Eastern Illinois,Eastern Illinois Panthers,EIU,Ohio Valley Conference,Eastern Illinois,OVC,hoopR
-2198,Eastern Kentucky,Eastern Kentucky Colonels,EKU,Atlantic Sun Conference,Eastern Kentucky,ASun,hoopR
-2199,Eastern Michigan,Eastern Michigan Eagles,EMU,Mid-American Conference,Eastern Michigan,MAC,hoopR
-331,Eastern Washington,Eastern Washington Eagles,EWU,Big Sky Conference,Eastern Washington,BSky,hoopR
-2210,Elon,Elon Phoenix,ELON,Coastal Athletic Association,Elon,CAA,hoopR
-339,Evansville,Evansville Purple Aces,EVAN,Missouri Valley Conference,Evansville,MVC,hoopR
-2217,Fairfield,Fairfield Stags,FAIR,Metro Conference,Fairfield,MAAC,hoopR
-161,Fairleigh Dickinson,Fairleigh Dickinson Knights,FDU,Northeast Conference,Fairleigh Dickinson,NEC,hoopR
-57,Florida,Florida Gators,FLA,Southeastern Conference,Florida,SEC,hoopR
-50,Florida A&M,Florida A&M Rattlers,FAMU,Southwestern Athletic Conference,Florida A&M,SWAC,hoopR
-2226,Florida Atlantic,Florida Atlantic Owls,FAU,American Conference,Florida Atlantic,Amer,hoopR
-526,Florida Gulf Coast,Florida Gulf Coast Eagles,FGCU,Atlantic Sun Conference,Florida Gulf Coast,ASun,hoopR
-2229,Florida International,Florida International Panthers,FIU,Conference USA,FIU,CUSA,hoopR
-52,Florida State,Florida State Seminoles,FSU,Atlantic Coast Conference,Florida St.,ACC,hoopR
-2230,Fordham,Fordham Rams,FOR,Atlantic 10 Conference,Fordham,A10,hoopR
-278,Fresno State,Fresno State Bulldogs,FRES,Mountain West Conference,Fresno St.,MWC,hoopR
-231,Furman,Furman Paladins,FUR,Southern Conference,Furman,SC,hoopR
-2241,Gardner-Webb,Gardner-Webb Runnin' Bulldogs,GWEB,Big South Conference,Gardner Webb,BSth,hoopR
-2244,George Mason,George Mason Patriots,GMU,Atlantic 10 Conference,George Mason,A10,hoopR
-45,George Washington,George Washington Revolutionaries,GW,Atlantic 10 Conference,George Washington,A10,hoopR
-46,Georgetown,Georgetown Hoyas,GTWN,Big East Conference,Georgetown,BE,hoopR
-61,Georgia,Georgia Bulldogs,UGA,Southeastern Conference,Georgia,SEC,hoopR
-290,Georgia Southern,Georgia Southern Eagles,GASO,Sun Belt Conference,Georgia Southern,SB,hoopR
-2247,Georgia State,Georgia State Panthers,GAST,Sun Belt Conference,Georgia St.,SB,hoopR
-59,Georgia Tech,Georgia Tech Yellow Jackets,GT,Atlantic Coast Conference,Georgia Tech,ACC,hoopR
-2250,Gonzaga,Gonzaga Bulldogs,GONZ,West Coast Conference,Gonzaga,WCC,hoopR
-2755,Grambling,Grambling Tigers,GRAM,Southwestern Athletic Conference,Grambling St.,SWAC,hoopR
-2253,Grand Canyon,Grand Canyon Lopes,GCU,Mountain West Conference,Grand Canyon,MWC,hoopR
-2739,Green Bay,Green Bay Phoenix,GB,Horizon League,Green Bay,Horz,hoopR
-2261,Hampton,Hampton Pirates,HAMP,Coastal Athletic Association,Hampton,CAA,hoopR
-108,Harvard,Harvard Crimson,HARV,Ivy League,Harvard,Ivy,hoopR
-62,Hawai'i,Hawai'i Rainbow Warriors,HAW,Big West Conference,Hawaii,BW,hoopR
-2272,High Point,High Point Panthers,HPU,Big South Conference,High Point,BSth,hoopR
-2275,Hofstra,Hofstra Pride,HOF,Coastal Athletic Association,Hofstra,CAA,hoopR
-107,Holy Cross,Holy Cross Crusaders,HC,Patriot League,Holy Cross,PL,hoopR
-248,Houston,Houston Cougars,HOU,Big 12 Conference,Houston,B12,hoopR
-2277,Houston Christian,Houston Christian Huskies,HCU,Southland Conference,Houston Christian,Slnd,hoopR
-47,Howard,Howard Bison,HOW,Mid-Eastern Athletic Conference,Howard,MEAC,hoopR
-85,IU Indianapolis,IU Indianapolis Jaguars,IUIN,Horizon League,IU Indy,Horz,hoopR
-70,Idaho,Idaho Vandals,IDHO,Big Sky Conference,Idaho,BSky,hoopR
-304,Idaho State,Idaho State Bengals,IDST,Big Sky Conference,Idaho St.,BSky,hoopR
-356,Illinois,Illinois Fighting Illini,ILL,Big Ten Conference,Illinois,B10,hoopR
-2287,Illinois State,Illinois State Redbirds,ILST,Missouri Valley Conference,Illinois St.,MVC,hoopR
-2916,Incarnate Word,Incarnate Word Cardinals,UIW,Southland Conference,Incarnate Word,Slnd,hoopR
-84,Indiana,Indiana Hoosiers,IU,Big Ten Conference,Indiana,B10,hoopR
-282,Indiana State,Indiana State Sycamores,INST,Missouri Valley Conference,Indiana St.,MVC,hoopR
-314,Iona,Iona Gaels,IONA,Metro Conference,Iona,MAAC,hoopR
-2294,Iowa,Iowa Hawkeyes,IOWA,Big Ten Conference,Iowa,B10,hoopR
-66,Iowa State,Iowa State Cyclones,ISU,Big 12 Conference,Iowa St.,B12,hoopR
-2296,Jackson State,Jackson State Tigers,JKST,Southwestern Athletic Conference,Jackson St.,SWAC,hoopR
-294,Jacksonville,Jacksonville Dolphins,JAX,Atlantic Sun Conference,Jacksonville,ASun,hoopR
-55,Jacksonville State,Jacksonville State Gamecocks,JXST,Conference USA,Jacksonville St.,CUSA,hoopR
-256,James Madison,James Madison Dukes,JMU,Sun Belt Conference,James Madison,SB,hoopR
-2305,Kansas,Kansas Jayhawks,KU,Big 12 Conference,Kansas,B12,hoopR
-140,Kansas City,Kansas City Roos,KC,Summit League,Kansas City,Sum,hoopR
-2306,Kansas State,Kansas State Wildcats,KSU,Big 12 Conference,Kansas St.,B12,hoopR
-338,Kennesaw State,Kennesaw State Owls,KENN,Conference USA,Kennesaw St.,CUSA,hoopR
-2309,Kent State,Kent State Golden Flashes,KENT,Mid-American Conference,Kent St.,MAC,hoopR
-96,Kentucky,Kentucky Wildcats,UK,Southeastern Conference,Kentucky,SEC,hoopR
-99,LSU,LSU Tigers,LSU,Southeastern Conference,LSU,SEC,hoopR
-2443,LSU New Orleans,LSU New Orleans Privateers,NOLA,Southland Conference,New Orleans,,manual
-2325,La Salle,La Salle Explorers,LAS,Atlantic 10 Conference,La Salle,A10,hoopR
-322,Lafayette,Lafayette Leopards,LAF,Patriot League,Lafayette,PL,hoopR
-2320,Lamar,Lamar Cardinals,LAM,Southland Conference,Lamar,Slnd,hoopR
-2330,Le Moyne,Le Moyne Dolphins,LEM,Northeast Conference,Le Moyne,NEC,hoopR
-2329,Lehigh,Lehigh Mountain Hawks,LEH,Patriot League,Lehigh,PL,hoopR
-2335,Liberty,Liberty Flames,LIB,Conference USA,Liberty,CUSA,hoopR
-2815,Lindenwood,Lindenwood Lions,LIN,Ohio Valley Conference,Lindenwood,OVC,manual
-288,Lipscomb,Lipscomb Bisons,LIP,Atlantic Sun Conference,Lipscomb,ASun,hoopR
-2031,Little Rock,Little Rock Trojans,LR,Ohio Valley Conference,Little Rock,OVC,hoopR
-299,Long Beach State,Long Beach State Beach,LBSU,Big West Conference,Long Beach St.,BW,hoopR
-112358,Long Island University,Long Island University Sharks,LIU,Northeast Conference,LIU,NEC,hoopR
-2344,Longwood,Longwood Lancers,LONG,Big South Conference,Longwood,BSth,hoopR
-309,Louisiana,Louisiana Ragin' Cajuns,UL,Sun Belt Conference,Louisiana,SB,hoopR
-2348,Louisiana Tech,Louisiana Tech Bulldogs,LT,Conference USA,Louisiana Tech,CUSA,hoopR
-97,Louisville,Louisville Cardinals,LOU,Atlantic Coast Conference,Louisville,ACC,hoopR
-2350,Loyola Chicago,Loyola Chicago Ramblers,LUC,Atlantic 10 Conference,Loyola Chicago,A10,hoopR
-2352,Loyola Maryland,Loyola Maryland Greyhounds,L-MD,Patriot League,Loyola MD,PL,hoopR
-2351,Loyola Marymount,Loyola Marymount Lions,LMU,West Coast Conference,Loyola Marymount,WCC,hoopR
-311,Maine,Maine Black Bears,ME,America East Conference,Maine,AE,hoopR
-2363,Manhattan,Manhattan Jaspers,MAN,Metro Conference,Manhattan,MAAC,hoopR
-2368,Marist,Marist Red Foxes,MRST,Metro Conference,Marist,MAAC,hoopR
-269,Marquette,Marquette Golden Eagles,MARQ,Big East Conference,Marquette,BE,hoopR
-276,Marshall,Marshall Thundering Herd,MRSH,Sun Belt Conference,Marshall,SB,hoopR
-120,Maryland,Maryland Terrapins,MD,Big Ten Conference,Maryland,B10,hoopR
-2379,Maryland Eastern Shore,Maryland Eastern Shore Hawks,UMES,Mid-Eastern Athletic Conference,Maryland Eastern Shore,MEAC,hoopR
-113,Massachusetts,Massachusetts Minutemen,MASS,Mid-American Conference,Massachusetts,MAC,hoopR
-2377,McNeese,McNeese Cowboys,MCN,Southland Conference,McNeese,Slnd,hoopR
-235,Memphis,Memphis Tigers,MEM,American Conference,Memphis,Amer,hoopR
-2382,Mercer,Mercer Bears,MER,Southern Conference,Mercer,SC,hoopR
-2385,Mercyhurst,Mercyhurst Lakers,MERC,Northeast Conference,Mercyhurst,NEC,hoopR
-2771,Merrimack,Merrimack Warriors,MRMK,Metro Conference,Merrimack,MAAC,hoopR
-2390,Miami,Miami Hurricanes,MIA,Atlantic Coast Conference,Miami FL,ACC,hoopR
-193,Miami (OH),Miami (OH) RedHawks,M-OH,Mid-American Conference,Miami OH,MAC,hoopR
-130,Michigan,Michigan Wolverines,MICH,Big Ten Conference,Michigan,B10,hoopR
-127,Michigan State,Michigan State Spartans,MSU,Big Ten Conference,Michigan St.,B10,hoopR
-2393,Middle Tennessee,Middle Tennessee Blue Raiders,MTSU,Conference USA,Middle Tennessee,CUSA,hoopR
-270,Milwaukee,Milwaukee Panthers,MILW,Horizon League,Milwaukee,Horz,hoopR
-135,Minnesota,Minnesota Golden Gophers,MINN,Big Ten Conference,Minnesota,B10,hoopR
-344,Mississippi State,Mississippi State Bulldogs,MSST,Southeastern Conference,Mississippi St.,SEC,hoopR
-2400,Mississippi Valley State,Mississippi Valley State Delta Devils,MVSU,Southwestern Athletic Conference,Mississippi Valley St.,SWAC,hoopR
-142,Missouri,Missouri Tigers,MIZ,Southeastern Conference,Missouri,SEC,hoopR
-2623,Missouri State,Missouri State Bears,MOST,Conference USA,Missouri St.,CUSA,hoopR
-2405,Monmouth,Monmouth Hawks,MONM,Coastal Athletic Association,Monmouth,CAA,hoopR
-149,Montana,Montana Grizzlies,MONT,Big Sky Conference,Montana,BSky,hoopR
-147,Montana State,Montana State Bobcats,MTST,Big Sky Conference,Montana St.,BSky,hoopR
-2413,Morehead State,Morehead State Eagles,MORE,Ohio Valley Conference,Morehead St.,OVC,hoopR
-2415,Morgan State,Morgan State Bears,MORG,Mid-Eastern Athletic Conference,Morgan St.,MEAC,hoopR
-116,Mount St. Mary's,Mount St. Mary's Mountaineers,MSM,Metro Conference,Mount St. Mary's,MAAC,hoopR
-93,Murray State,Murray State Racers,MUR,Missouri Valley Conference,Murray St.,MVC,hoopR
-152,NC State,NC State Wolfpack,NCSU,Atlantic Coast Conference,N.C. State,ACC,hoopR
-2885,NJIT,NJIT Highlanders,NJIT,America East Conference,NJIT,AE,hoopR
-2426,Navy,Navy Midshipmen,NAVY,Patriot League,Navy,PL,hoopR
-158,Nebraska,Nebraska Cornhuskers,NEB,Big Ten Conference,Nebraska,B10,hoopR
-2440,Nevada,Nevada Wolf Pack,NEV,Mountain West Conference,Nevada,MWC,hoopR
-160,New Hampshire,New Hampshire Wildcats,UNH,America East Conference,New Hampshire,AE,hoopR
-2441,New Haven,New Haven Chargers,NHVN,Northeast Conference,New Haven,NEC,hoopR
-167,New Mexico,New Mexico Lobos,UNM,Mountain West Conference,New Mexico,MWC,hoopR
-166,New Mexico State,New Mexico State Aggies,NMSU,Conference USA,New Mexico St.,CUSA,hoopR
-315,Niagara,Niagara Purple Eagles,NIA,Metro Conference,Niagara,MAAC,hoopR
-2447,Nicholls,Nicholls Colonels,NICH,Southland Conference,Nicholls,Slnd,hoopR
-2450,Norfolk State,Norfolk State Spartans,NORF,Mid-Eastern Athletic Conference,Norfolk St.,MEAC,hoopR
-2453,North Alabama,North Alabama Lions,UNA,Atlantic Sun Conference,North Alabama,ASun,hoopR
-153,North Carolina,North Carolina Tar Heels,UNC,Atlantic Coast Conference,North Carolina,ACC,hoopR
-2448,North Carolina A&T,North Carolina A&T Aggies,NCAT,Coastal Athletic Association,North Carolina A&T,CAA,hoopR
-2428,North Carolina Central,North Carolina Central Eagles,NCCU,Mid-Eastern Athletic Conference,North Carolina Central,MEAC,hoopR
-155,North Dakota,North Dakota Fighting Hawks,UND,Summit League,North Dakota,Sum,hoopR
-2449,North Dakota State,North Dakota State Bison,NDSU,Summit League,North Dakota St.,Sum,hoopR
-2454,North Florida,North Florida Ospreys,UNF,Atlantic Sun Conference,North Florida,ASun,hoopR
-249,North Texas,North Texas Mean Green,UNT,American Conference,North Texas,Amer,hoopR
-111,Northeastern,Northeastern Huskies,NE,Coastal Athletic Association,Northeastern,CAA,hoopR
-2464,Northern Arizona,Northern Arizona Lumberjacks,NAU,Big Sky Conference,Northern Arizona,BSky,hoopR
-2458,Northern Colorado,Northern Colorado Bears,UNCO,Big Sky Conference,Northern Colorado,BSky,hoopR
-2459,Northern Illinois,Northern Illinois Huskies,NIU,Mid-American Conference,Northern Illinois,MAC,hoopR
-2460,Northern Iowa,Northern Iowa Panthers,UNI,Missouri Valley Conference,Northern Iowa,MVC,hoopR
-94,Northern Kentucky,Northern Kentucky Norse,NKU,Horizon League,Northern Kentucky,Horz,hoopR
-77,Northwestern,Northwestern Wildcats,NU,Big Ten Conference,Northwestern,B10,hoopR
-2466,Northwestern State,Northwestern State Demons,NWST,Southland Conference,Northwestern St.,Slnd,hoopR
-87,Notre Dame,Notre Dame Fighting Irish,ND,Atlantic Coast Conference,Notre Dame,ACC,hoopR
-2473,Oakland,Oakland Golden Grizzlies,OAK,Horizon League,Oakland,Horz,hoopR
-195,Ohio,Ohio Bobcats,OHIO,Mid-American Conference,Ohio,MAC,hoopR
-194,Ohio State,Ohio State Buckeyes,OSU,Big Ten Conference,Ohio St.,B10,hoopR
-201,Oklahoma,Oklahoma Sooners,OU,Southeastern Conference,Oklahoma,SEC,hoopR
-197,Oklahoma State,Oklahoma State Cowboys,OKST,Big 12 Conference,Oklahoma St.,B12,hoopR
-295,Old Dominion,Old Dominion Monarchs,ODU,Sun Belt Conference,Old Dominion,SB,hoopR
-145,Ole Miss,Ole Miss Rebels,MISS,Southeastern Conference,Mississippi,SEC,hoopR
-2437,Omaha,Omaha Mavericks,OMA,Summit League,Nebraska Omaha,Sum,hoopR
-198,Oral Roberts,Oral Roberts Golden Eagles,ORU,Summit League,Oral Roberts,Sum,hoopR
-2483,Oregon,Oregon Ducks,ORE,Big Ten Conference,Oregon,B10,hoopR
-204,Oregon State,Oregon State Beavers,ORST,West Coast Conference,Oregon St.,WCC,hoopR
-279,Pacific,Pacific Tigers,PAC,West Coast Conference,Pacific,WCC,hoopR
-213,Penn State,Penn State Nittany Lions,PSU,Big Ten Conference,Penn St.,B10,hoopR
-219,Pennsylvania,Pennsylvania Quakers,PENN,Ivy League,Penn,Ivy,hoopR
-2492,Pepperdine,Pepperdine Waves,PEPP,West Coast Conference,Pepperdine,WCC,hoopR
-221,Pittsburgh,Pittsburgh Panthers,PITT,Atlantic Coast Conference,Pittsburgh,ACC,hoopR
-2501,Portland,Portland Pilots,PORT,West Coast Conference,Portland,WCC,hoopR
-2502,Portland State,Portland State Vikings,PRST,Big Sky Conference,Portland St.,BSky,hoopR
-2504,Prairie View A&M,Prairie View A&M Panthers,PV,Southwestern Athletic Conference,Prairie View A&M,SWAC,hoopR
-2506,Presbyterian,Presbyterian Blue Hose,PRES,Big South Conference,Presbyterian,BSth,hoopR
-163,Princeton,Princeton Tigers,PRIN,Ivy League,Princeton,Ivy,hoopR
-2507,Providence,Providence Friars,PROV,Big East Conference,Providence,BE,hoopR
-2509,Purdue,Purdue Boilermakers,PUR,Big Ten Conference,Purdue,B10,hoopR
-2870,Purdue Fort Wayne,Purdue Fort Wayne Mastodons,PFW,Horizon League,Purdue Fort Wayne,Horz,hoopR
-2511,Queens University,Queens University Royals,QUC,Atlantic Sun Conference,Queens,ASun,manual
-2514,Quinnipiac,Quinnipiac Bobcats,QUIN,Metro Conference,Quinnipiac,MAAC,hoopR
-2515,Radford,Radford Highlanders,RAD,Big South Conference,Radford,BSth,hoopR
-227,Rhode Island,Rhode Island Rams,URI,Atlantic 10 Conference,Rhode Island,A10,hoopR
-242,Rice,Rice Owls,RICE,American Conference,Rice,Amer,hoopR
-257,Richmond,Richmond Spiders,RICH,Atlantic 10 Conference,Richmond,A10,hoopR
-2520,Rider,Rider Broncs,RID,Metro Conference,Rider,MAAC,hoopR
-2523,Robert Morris,Robert Morris Colonials,RMU,Horizon League,Robert Morris,Horz,hoopR
-164,Rutgers,Rutgers Scarlet Knights,RUTG,Big Ten Conference,Rutgers,B10,hoopR
-2545,SE Louisiana,SE Louisiana Lions,SELA,Southland Conference,Southeastern Louisiana,Slnd,hoopR
-2565,SIU Edwardsville,SIU Edwardsville Cougars,SIUE,Ohio Valley Conference,SIUE,OVC,hoopR
-2567,SMU,SMU Mustangs,SMU,Atlantic Coast Conference,SMU,ACC,hoopR
-16,Sacramento State,Sacramento State Hornets,SAC,Big Sky Conference,Sacramento St.,BSky,hoopR
-2529,Sacred Heart,Sacred Heart Pioneers,SHU,Metro Conference,Sacred Heart,MAAC,hoopR
-2598,Saint Francis,Saint Francis Red Wolves,SFPA,Northeast Conference,Saint Francis,NEC,manual
-2603,Saint Joseph's,Saint Joseph's Hawks,JOES,Atlantic 10 Conference,Saint Joseph's,A10,hoopR
-139,Saint Louis,Saint Louis Billikens,SLU,Atlantic 10 Conference,Saint Louis,A10,hoopR
-2608,Saint Mary's,Saint Mary's Gaels,SMC,West Coast Conference,Saint Mary's,WCC,hoopR
-2612,Saint Peter's,Saint Peter's Peacocks,SPU,Metro Conference,Saint Peter's,MAAC,hoopR
-2534,Sam Houston,Sam Houston Bearkats,SHSU,Conference USA,Sam Houston St.,CUSA,hoopR
-2535,Samford,Samford Bulldogs,SAM,Southern Conference,Samford,SC,hoopR
-301,San Diego,San Diego Toreros,USD,West Coast Conference,San Diego,WCC,hoopR
-21,San Diego State,San Diego State Aztecs,SDSU,Mountain West Conference,San Diego St.,MWC,hoopR
-2539,San Francisco,San Francisco Dons,SF,West Coast Conference,San Francisco,WCC,hoopR
-23,San José State,San José State Spartans,SJSU,Mountain West Conference,San Jose St.,MWC,hoopR
-2541,Santa Clara,Santa Clara Broncos,SCU,West Coast Conference,Santa Clara,WCC,hoopR
-2547,Seattle U,Seattle U Redhawks,SEA,West Coast Conference,Seattle,WCC,hoopR
-2550,Seton Hall,Seton Hall Pirates,HALL,Big East Conference,Seton Hall,BE,hoopR
-2561,Siena,Siena Saints,SIE,Metro Conference,Siena,MAAC,hoopR
-6,South Alabama,South Alabama Jaguars,USA,Sun Belt Conference,South Alabama,SB,hoopR
-2579,South Carolina,South Carolina Gamecocks,SC,Southeastern Conference,South Carolina,SEC,hoopR
-2569,South Carolina State,South Carolina State Bulldogs,SCST,Mid-Eastern Athletic Conference,South Carolina St.,MEAC,hoopR
-2908,South Carolina Upstate,South Carolina Upstate Spartans,UPST,Big South Conference,USC Upstate,BSth,hoopR
-233,South Dakota,South Dakota Coyotes,SDAK,Summit League,South Dakota,Sum,hoopR
-2571,South Dakota State,South Dakota State Jackrabbits,SDST,Summit League,South Dakota St.,Sum,hoopR
-58,South Florida,South Florida Bulls,USF,American Conference,South Florida,Amer,hoopR
-2546,Southeast Missouri State,Southeast Missouri State Redhawks,SEMO,Ohio Valley Conference,Southeast Missouri,OVC,hoopR
-2582,Southern,Southern Jaguars,SOU,Southwestern Athletic Conference,Southern,SWAC,hoopR
-79,Southern Illinois,Southern Illinois Salukis,SIU,Missouri Valley Conference,Southern Illinois,MVC,hoopR
-88,Southern Indiana,Southern Indiana Screaming Eagles,USI,Ohio Valley Conference,Southern Indiana,OVC,manual
-2572,Southern Miss,Southern Miss Golden Eagles,USM,Sun Belt Conference,Southern Miss,SB,hoopR
-253,Southern Utah,Southern Utah Thunderbirds,SUU,United Athletic Conference,Southern Utah,WAC,hoopR
-179,St. Bonaventure,St. Bonaventure Bonnies,SBU,Atlantic 10 Conference,St. Bonaventure,A10,hoopR
-2599,St. John's,St. John's Red Storm,SJU,Big East Conference,St. John's,BE,hoopR
-2900,St. Thomas,St. Thomas Tommies,STMN,Summit League,St. Thomas,,manual
-24,Stanford,Stanford Cardinal,STAN,Atlantic Coast Conference,Stanford,ACC,hoopR
-2617,Stephen F. Austin,Stephen F. Austin Lumberjacks,SFA,Southland Conference,Stephen F. Austin,Slnd,hoopR
-56,Stetson,Stetson Hatters,STET,Atlantic Sun Conference,Stetson,ASun,hoopR
-284,Stonehill,Stonehill Skyhawks,STO,Northeast Conference,Stonehill,NEC,hoopR
-2619,Stony Brook,Stony Brook Seawolves,STBK,Coastal Athletic Association,Stony Brook,CAA,hoopR
-183,Syracuse,Syracuse Orange,SYR,Atlantic Coast Conference,Syracuse,ACC,hoopR
-2628,TCU,TCU Horned Frogs,TCU,Big 12 Conference,TCU,B12,hoopR
-2627,Tarleton State,Tarleton State Texans,TAR,United Athletic Conference,Tarleton St.,WAC,hoopR
-218,Temple,Temple Owls,TEM,American Conference,Temple,Amer,hoopR
-2633,Tennessee,Tennessee Volunteers,TENN,Southeastern Conference,Tennessee,SEC,hoopR
-2634,Tennessee State,Tennessee State Tigers,TNST,Ohio Valley Conference,Tennessee St.,OVC,hoopR
-2635,Tennessee Tech,Tennessee Tech Golden Eagles,TNTC,Ohio Valley Conference,Tennessee Tech,OVC,hoopR
-251,Texas,Texas Longhorns,TEX,Southeastern Conference,Texas,SEC,hoopR
-245,Texas A&M,Texas A&M Aggies,TA&M,Southeastern Conference,Texas A&M,SEC,hoopR
-357,Texas A&M-Corpus Christi,Texas A&M-Corpus Christi Islanders,AMCC,Southland Conference,Texas A&M Corpus Chris,Slnd,hoopR
-2640,Texas Southern,Texas Southern Tigers,TXSO,Southwestern Athletic Conference,Texas Southern,SWAC,hoopR
-326,Texas State,Texas State Bobcats,TXST,Sun Belt Conference,Texas St.,SB,hoopR
-2641,Texas Tech,Texas Tech Red Raiders,TTU,Big 12 Conference,Texas Tech,B12,hoopR
-2643,The Citadel,The Citadel Bulldogs,CIT,Southern Conference,The Citadel,SC,hoopR
-2649,Toledo,Toledo Rockets,TOL,Mid-American Conference,Toledo,MAC,hoopR
-119,Towson,Towson Tigers,TOW,Coastal Athletic Association,Towson,CAA,hoopR
-2653,Troy,Troy Trojans,TROY,Sun Belt Conference,Troy,SB,hoopR
-2655,Tulane,Tulane Green Wave,TULN,American Conference,Tulane,Amer,hoopR
-202,Tulsa,Tulsa Golden Hurricane,TLSA,American Conference,Tulsa,Amer,hoopR
-5,UAB,UAB Blazers,UAB,American Conference,UAB,Amer,hoopR
-399,UAlbany,UAlbany Great Danes,UALB,America East Conference,Albany,AE,hoopR
-302,UC Davis,UC Davis Aggies,UCD,Big West Conference,UC Davis,BW,hoopR
-300,UC Irvine,UC Irvine Anteaters,UCI,Big West Conference,UC Irvine,BW,hoopR
-27,UC Riverside,UC Riverside Highlanders,UCR,Big West Conference,UC Riverside,BW,hoopR
-28,UC San Diego,UC San Diego Tritons,UCSD,Big West Conference,UC San Diego,BW,hoopR
-2540,UC Santa Barbara,UC Santa Barbara Gauchos,UCSB,Big West Conference,UC Santa Barbara,BW,hoopR
-2116,UCF,UCF Knights,UCF,Big 12 Conference,UCF,B12,hoopR
-26,UCLA,UCLA Bruins,UCLA,Big Ten Conference,UCLA,B10,hoopR
-41,UConn,UConn Huskies,CONN,Big East Conference,Connecticut,BE,hoopR
-82,UIC,UIC Flames,UIC,Missouri Valley Conference,Illinois Chicago,MVC,hoopR
-2433,UL Monroe,UL Monroe Warhawks,ULM,Sun Belt Conference,Louisiana Monroe,SB,hoopR
-2378,UMBC,UMBC Retrievers,UMBC,America East Conference,UMBC,AE,hoopR
-2349,UMass Lowell,UMass Lowell River Hawks,UML,America East Conference,UMass Lowell,AE,hoopR
-2427,UNC Asheville,UNC Asheville Bulldogs,UNCA,Big South Conference,UNC Asheville,BSth,hoopR
-2430,UNC Greensboro,UNC Greensboro Spartans,UNCG,Southern Conference,UNC Greensboro,SC,hoopR
-350,UNC Wilmington,UNC Wilmington Seahawks,UNCW,Coastal Athletic Association,UNC Wilmington,CAA,hoopR
-2439,UNLV,UNLV Rebels,UNLV,Mountain West Conference,UNLV,MWC,hoopR
-30,USC,USC Trojans,USC,Big Ten Conference,USC,B10,hoopR
-250,UT Arlington,UT Arlington Mavericks,UTA,United Athletic Conference,UT Arlington,WAC,hoopR
-2630,UT Martin,UT Martin Skyhawks,UTM,Ohio Valley Conference,Tennessee Martin,OVC,hoopR
-292,UT Rio Grande Valley,UT Rio Grande Valley Vaqueros,RGV,Southland Conference,UT Rio Grande Valley,Slnd,hoopR
-2638,UTEP,UTEP Miners,UTEP,Conference USA,UTEP,CUSA,hoopR
-2636,UTSA,UTSA Roadrunners,UTSA,American Conference,UTSA,Amer,hoopR
-254,Utah,Utah Utes,UTAH,Big 12 Conference,Utah,B12,hoopR
-328,Utah State,Utah State Aggies,USU,Mountain West Conference,Utah St.,MWC,hoopR
-3101,Utah Tech,Utah Tech Trailblazers,UTU,United Athletic Conference,Utah Tech,WAC,hoopR
-3084,Utah Valley,Utah Valley Wolverines,UVU,United Athletic Conference,Utah Valley,WAC,hoopR
-2670,VCU,VCU Rams,VCU,Atlantic 10 Conference,VCU,A10,hoopR
-2678,VMI,VMI Keydets,VMI,Southern Conference,VMI,SC,hoopR
-2674,Valparaiso,Valparaiso Beacons,VAL,Missouri Valley Conference,Valparaiso,MVC,hoopR
-238,Vanderbilt,Vanderbilt Commodores,VAN,Southeastern Conference,Vanderbilt,SEC,hoopR
-261,Vermont,Vermont Catamounts,UVM,America East Conference,Vermont,AE,hoopR
-222,Villanova,Villanova Wildcats,VILL,Big East Conference,Villanova,BE,hoopR
-258,Virginia,Virginia Cavaliers,UVA,Atlantic Coast Conference,Virginia,ACC,hoopR
-259,Virginia Tech,Virginia Tech Hokies,VT,Atlantic Coast Conference,Virginia Tech,ACC,hoopR
-2681,Wagner,Wagner Seahawks,WAG,Northeast Conference,Wagner,NEC,hoopR
-154,Wake Forest,Wake Forest Demon Deacons,WAKE,Atlantic Coast Conference,Wake Forest,ACC,hoopR
-264,Washington,Washington Huskies,WASH,Big Ten Conference,Washington,B10,hoopR
-265,Washington State,Washington State Cougars,WSU,West Coast Conference,Washington St.,WCC,hoopR
-2692,Weber State,Weber State Wildcats,WEB,Big Sky Conference,Weber St.,BSky,hoopR
-2698,West Georgia,West Georgia Wolves,WGA,Atlantic Sun Conference,West Georgia,ASun,hoopR
-277,West Virginia,West Virginia Mountaineers,WVU,Big 12 Conference,West Virginia,B12,hoopR
-2717,Western Carolina,Western Carolina Catamounts,WCU,Southern Conference,Western Carolina,SC,hoopR
-2710,Western Illinois,Western Illinois Leathernecks,WIU,Ohio Valley Conference,Western Illinois,OVC,hoopR
-98,Western Kentucky,Western Kentucky Hilltoppers,WKU,Conference USA,Western Kentucky,CUSA,hoopR
-2711,Western Michigan,Western Michigan Broncos,WMU,Mid-American Conference,Western Michigan,MAC,hoopR
-2724,Wichita State,Wichita State Shockers,WICH,American Conference,Wichita St.,Amer,hoopR
-2729,William & Mary,William & Mary Tribe,W&M,Coastal Athletic Association,William & Mary,CAA,hoopR
-2737,Winthrop,Winthrop Eagles,WIN,Big South Conference,Winthrop,BSth,hoopR
-275,Wisconsin,Wisconsin Badgers,WIS,Big Ten Conference,Wisconsin,B10,hoopR
-2747,Wofford,Wofford Terriers,WOF,Southern Conference,Wofford,SC,hoopR
-2750,Wright State,Wright State Raiders,WRST,Horizon League,Wright St.,Horz,hoopR
-2751,Wyoming,Wyoming Cowboys,WYO,Mountain West Conference,Wyoming,MWC,hoopR
-2752,Xavier,Xavier Musketeers,XAV,Big East Conference,Xavier,BE,hoopR
-43,Yale,Yale Bulldogs,YALE,Ivy League,Yale,Ivy,hoopR
-2754,Youngstown State,Youngstown State Penguins,YSU,Horizon League,Youngstown St.,Horz,hoopR
+espn_id,espn_location,espn_name,espn_abbr,conference,kenpom,kenpom_id,kenpom_conf,source
+2000,Abilene Christian,Abilene Christian Wildcats,ACU,United Athletic Conference,Abilene Christian,1,WAC,hoopR
+2005,Air Force,Air Force Falcons,AF,Mountain West Conference,Air Force,2,MWC,hoopR
+2006,Akron,Akron Zips,AKR,Mid-American Conference,Akron,3,MAC,hoopR
+333,Alabama,Alabama Crimson Tide,ALA,Southeastern Conference,Alabama,4,SEC,hoopR
+2010,Alabama A&M,Alabama A&M Bulldogs,AAMU,Southwestern Athletic Conference,Alabama A&M,5,SWAC,hoopR
+2011,Alabama State,Alabama State Hornets,ALST,Southwestern Athletic Conference,Alabama St.,6,SWAC,hoopR
+2016,Alcorn State,Alcorn State Braves,ALCN,Southwestern Athletic Conference,Alcorn St.,8,SWAC,hoopR
+44,American University,American University Eagles,AMER,Patriot League,American,9,PL,hoopR
+2026,App State,App State Mountaineers,APP,Sun Belt Conference,Appalachian St.,10,SB,hoopR
+12,Arizona,Arizona Wildcats,ARIZ,Big 12 Conference,Arizona,11,B12,hoopR
+9,Arizona State,Arizona State Sun Devils,ASU,Big 12 Conference,Arizona St.,12,B12,hoopR
+8,Arkansas,Arkansas Razorbacks,ARK,Southeastern Conference,Arkansas,13,SEC,hoopR
+2032,Arkansas State,Arkansas State Red Wolves,ARST,Sun Belt Conference,Arkansas St.,16,SB,hoopR
+2029,Arkansas-Pine Bluff,Arkansas-Pine Bluff Golden Lions,UAPB,Southwestern Athletic Conference,Arkansas Pine Bluff,15,SWAC,hoopR
+349,Army,Army Black Knights,ARMY,Patriot League,Army,17,PL,hoopR
+2,Auburn,Auburn Tigers,AUB,Southeastern Conference,Auburn,18,SEC,hoopR
+2046,Austin Peay,Austin Peay Governors,APSU,Atlantic Sun Conference,Austin Peay,19,ASun,hoopR
+2050,Ball State,Ball State Cardinals,BALL,Mid-American Conference,Ball St.,20,MAC,hoopR
+239,Baylor,Baylor Bears,BAY,Big 12 Conference,Baylor,21,B12,hoopR
+91,Bellarmine,Bellarmine Knights,BELL,Atlantic Sun Conference,Bellarmine,360,ASun,hoopR
+2057,Belmont,Belmont Bruins,BEL,Missouri Valley Conference,Belmont,22,MVC,hoopR
+2065,Bethune-Cookman,Bethune-Cookman Wildcats,BCU,Southwestern Athletic Conference,Bethune Cookman,23,SWAC,hoopR
+2066,Binghamton,Binghamton Bearcats,BING,America East Conference,Binghamton,24,AE,hoopR
+68,Boise State,Boise State Broncos,BOIS,Mountain West Conference,Boise St.,25,MWC,hoopR
+103,Boston College,Boston College Eagles,BC,Atlantic Coast Conference,Boston College,26,ACC,hoopR
+104,Boston University,Boston University Terriers,BU,Patriot League,Boston University,27,PL,hoopR
+189,Bowling Green,Bowling Green Falcons,BGSU,Mid-American Conference,Bowling Green,28,MAC,hoopR
+71,Bradley,Bradley Braves,BRAD,Missouri Valley Conference,Bradley,29,MVC,hoopR
+225,Brown,Brown Bears,BRWN,Ivy League,Brown,30,Ivy,hoopR
+2803,Bryant,Bryant Bulldogs,BRY,America East Conference,Bryant,31,AE,hoopR
+2083,Bucknell,Bucknell Bison,BUCK,Patriot League,Bucknell,32,PL,hoopR
+2084,Buffalo,Buffalo Bulls,BUF,Mid-American Conference,Buffalo,33,MAC,hoopR
+2086,Butler,Butler Bulldogs,BTLR,Big East Conference,Butler,34,BE,hoopR
+252,BYU,BYU Cougars,BYU,Big 12 Conference,BYU,35,B12,hoopR
+13,Cal Poly,Cal Poly Mustangs,CP,Big West Conference,Cal Poly,36,BW,hoopR
+2934,Cal State Bakersfield,Cal State Bakersfield Roadrunners,CSUB,Big West Conference,Cal St. Bakersfield,37,BW,hoopR
+2239,Cal State Fullerton,Cal State Fullerton Titans,CSUF,Big West Conference,Cal St. Fullerton,38,BW,hoopR
+2463,Cal State Northridge,Cal State Northridge Matadors,CSUN,Big West Conference,CSUN,39,BW,hoopR
+25,California,California Golden Bears,CAL,Atlantic Coast Conference,California,40,ACC,hoopR
+2856,California Baptist,California Baptist Lancers,CBU,United Athletic Conference,Cal Baptist,357,WAC,hoopR
+2097,Campbell,Campbell Fighting Camels,CAM,Coastal Athletic Association,Campbell,41,CAA,hoopR
+2099,Canisius,Canisius Golden Griffins,CAN,Metro Conference,Canisius,42,MAAC,hoopR
+2110,Central Arkansas,Central Arkansas Bears,CARK,Atlantic Sun Conference,Central Arkansas,43,ASun,hoopR
+2115,Central Connecticut,Central Connecticut Blue Devils,CCSU,Northeast Conference,Central Connecticut,44,NEC,hoopR
+2117,Central Michigan,Central Michigan Chippewas,CMU,Mid-American Conference,Central Michigan,45,MAC,hoopR
+232,Charleston,Charleston Cougars,COFC,Coastal Athletic Association,Charleston,55,CAA,hoopR
+2127,Charleston Southern,Charleston Southern Buccaneers,CHSO,Big South Conference,Charleston Southern,46,BSth,hoopR
+2429,Charlotte,Charlotte 49ers,CLT,American Conference,Charlotte,47,Amer,hoopR
+236,Chattanooga,Chattanooga Mocs,UTC,Southern Conference,Chattanooga,48,SC,hoopR
+2130,Chicago State,Chicago State Cougars,CHST,Northeast Conference,Chicago St.,49,NEC,hoopR
+2132,Cincinnati,Cincinnati Bearcats,CIN,Big 12 Conference,Cincinnati,50,B12,hoopR
+228,Clemson,Clemson Tigers,CLEM,Atlantic Coast Conference,Clemson,51,ACC,hoopR
+325,Cleveland State,Cleveland State Vikings,CLE,Horizon League,Cleveland St.,52,Horz,hoopR
+324,Coastal Carolina,Coastal Carolina Chanticleers,CCU,Sun Belt Conference,Coastal Carolina,53,SB,hoopR
+2142,Colgate,Colgate Raiders,COLG,Patriot League,Colgate,54,PL,hoopR
+38,Colorado,Colorado Buffaloes,COLO,Big 12 Conference,Colorado,56,B12,hoopR
+36,Colorado State,Colorado State Rams,CSU,Mountain West Conference,Colorado St.,57,MWC,hoopR
+171,Columbia,Columbia Lions,COLU,Ivy League,Columbia,58,Ivy,hoopR
+2154,Coppin State,Coppin State Eagles,COPP,Mid-Eastern Athletic Conference,Coppin St.,60,MEAC,hoopR
+172,Cornell,Cornell Big Red,COR,Ivy League,Cornell,61,Ivy,hoopR
+156,Creighton,Creighton Bluejays,CREI,Big East Conference,Creighton,62,BE,hoopR
+159,Dartmouth,Dartmouth Big Green,DART,Ivy League,Dartmouth,63,Ivy,hoopR
+2166,Davidson,Davidson Wildcats,DAV,Atlantic 10 Conference,Davidson,64,A10,hoopR
+2168,Dayton,Dayton Flyers,DAY,Atlantic 10 Conference,Dayton,65,A10,hoopR
+48,Delaware,Delaware Blue Hens,DEL,Conference USA,Delaware,66,CUSA,hoopR
+2169,Delaware State,Delaware State Hornets,DSU,Mid-Eastern Athletic Conference,Delaware St.,67,MEAC,hoopR
+2172,Denver,Denver Pioneers,DEN,Summit League,Denver,68,Sum,hoopR
+305,DePaul,DePaul Blue Demons,DEP,Big East Conference,DePaul,69,BE,hoopR
+2174,Detroit Mercy,Detroit Mercy Titans,DETM,Horizon League,Detroit Mercy,70,Horz,hoopR
+2181,Drake,Drake Bulldogs,DRKE,Missouri Valley Conference,Drake,71,MVC,hoopR
+2182,Drexel,Drexel Dragons,DREX,Coastal Athletic Association,Drexel,72,CAA,hoopR
+150,Duke,Duke Blue Devils,DUKE,Atlantic Coast Conference,Duke,73,ACC,hoopR
+2184,Duquesne,Duquesne Dukes,DUQ,Atlantic 10 Conference,Duquesne,74,A10,hoopR
+151,East Carolina,East Carolina Pirates,ECU,American Conference,East Carolina,75,Amer,hoopR
+2193,East Tennessee State,East Tennessee State Buccaneers,ETSU,Southern Conference,East Tennessee St.,76,SC,hoopR
+2837,East Texas A&M,East Texas A&M Lions,ETAM,Southland Conference,East Texas A&M,369,Slnd,hoopR
+2197,Eastern Illinois,Eastern Illinois Panthers,EIU,Ohio Valley Conference,Eastern Illinois,77,OVC,hoopR
+2198,Eastern Kentucky,Eastern Kentucky Colonels,EKU,Atlantic Sun Conference,Eastern Kentucky,78,ASun,hoopR
+2199,Eastern Michigan,Eastern Michigan Eagles,EMU,Mid-American Conference,Eastern Michigan,79,MAC,hoopR
+331,Eastern Washington,Eastern Washington Eagles,EWU,Big Sky Conference,Eastern Washington,80,BSky,hoopR
+2210,Elon,Elon Phoenix,ELON,Coastal Athletic Association,Elon,81,CAA,hoopR
+339,Evansville,Evansville Purple Aces,EVAN,Missouri Valley Conference,Evansville,82,MVC,hoopR
+2217,Fairfield,Fairfield Stags,FAIR,Metro Conference,Fairfield,83,MAAC,hoopR
+161,Fairleigh Dickinson,Fairleigh Dickinson Knights,FDU,Northeast Conference,Fairleigh Dickinson,84,NEC,hoopR
+57,Florida,Florida Gators,FLA,Southeastern Conference,Florida,86,SEC,hoopR
+50,Florida A&M,Florida A&M Rattlers,FAMU,Southwestern Athletic Conference,Florida A&M,87,SWAC,hoopR
+2226,Florida Atlantic,Florida Atlantic Owls,FAU,American Conference,Florida Atlantic,88,Amer,hoopR
+526,Florida Gulf Coast,Florida Gulf Coast Eagles,FGCU,Atlantic Sun Conference,Florida Gulf Coast,89,ASun,hoopR
+2229,Florida International,Florida International Panthers,FIU,Conference USA,FIU,85,CUSA,hoopR
+52,Florida State,Florida State Seminoles,FSU,Atlantic Coast Conference,Florida St.,90,ACC,hoopR
+2230,Fordham,Fordham Rams,FOR,Atlantic 10 Conference,Fordham,91,A10,hoopR
+278,Fresno State,Fresno State Bulldogs,FRES,Mountain West Conference,Fresno St.,92,MWC,hoopR
+231,Furman,Furman Paladins,FUR,Southern Conference,Furman,93,SC,hoopR
+2241,Gardner-Webb,Gardner-Webb Runnin' Bulldogs,GWEB,Big South Conference,Gardner Webb,94,BSth,hoopR
+2244,George Mason,George Mason Patriots,GMU,Atlantic 10 Conference,George Mason,95,A10,hoopR
+45,George Washington,George Washington Revolutionaries,GW,Atlantic 10 Conference,George Washington,96,A10,hoopR
+46,Georgetown,Georgetown Hoyas,GTWN,Big East Conference,Georgetown,97,BE,hoopR
+61,Georgia,Georgia Bulldogs,UGA,Southeastern Conference,Georgia,98,SEC,hoopR
+290,Georgia Southern,Georgia Southern Eagles,GASO,Sun Belt Conference,Georgia Southern,99,SB,hoopR
+2247,Georgia State,Georgia State Panthers,GAST,Sun Belt Conference,Georgia St.,100,SB,hoopR
+59,Georgia Tech,Georgia Tech Yellow Jackets,GT,Atlantic Coast Conference,Georgia Tech,101,ACC,hoopR
+2250,Gonzaga,Gonzaga Bulldogs,GONZ,West Coast Conference,Gonzaga,102,WCC,hoopR
+2755,Grambling,Grambling Tigers,GRAM,Southwestern Athletic Conference,Grambling St.,103,SWAC,hoopR
+2253,Grand Canyon,Grand Canyon Lopes,GCU,Mountain West Conference,Grand Canyon,104,MWC,hoopR
+2739,Green Bay,Green Bay Phoenix,GB,Horizon League,Green Bay,105,Horz,hoopR
+2261,Hampton,Hampton Pirates,HAMP,Coastal Athletic Association,Hampton,106,CAA,hoopR
+42,Hartford,Hartford Hawks,HART,America East Conference,Hartford,107,AE,manual
+108,Harvard,Harvard Crimson,HARV,Ivy League,Harvard,108,Ivy,hoopR
+62,Hawai'i,Hawai'i Rainbow Warriors,HAW,Big West Conference,Hawaii,109,BW,hoopR
+2272,High Point,High Point Panthers,HPU,Big South Conference,High Point,110,BSth,hoopR
+2275,Hofstra,Hofstra Pride,HOF,Coastal Athletic Association,Hofstra,111,CAA,hoopR
+107,Holy Cross,Holy Cross Crusaders,HC,Patriot League,Holy Cross,112,PL,hoopR
+248,Houston,Houston Cougars,HOU,Big 12 Conference,Houston,113,B12,hoopR
+2277,Houston Christian,Houston Christian Huskies,HCU,Southland Conference,Houston Christian,114,Slnd,hoopR
+47,Howard,Howard Bison,HOW,Mid-Eastern Athletic Conference,Howard,115,MEAC,hoopR
+70,Idaho,Idaho Vandals,IDHO,Big Sky Conference,Idaho,116,BSky,hoopR
+304,Idaho State,Idaho State Bengals,IDST,Big Sky Conference,Idaho St.,117,BSky,hoopR
+356,Illinois,Illinois Fighting Illini,ILL,Big Ten Conference,Illinois,118,B10,hoopR
+2287,Illinois State,Illinois State Redbirds,ILST,Missouri Valley Conference,Illinois St.,120,MVC,hoopR
+2916,Incarnate Word,Incarnate Word Cardinals,UIW,Southland Conference,Incarnate Word,121,Slnd,hoopR
+84,Indiana,Indiana Hoosiers,IU,Big Ten Conference,Indiana,122,B10,hoopR
+282,Indiana State,Indiana State Sycamores,INST,Missouri Valley Conference,Indiana St.,123,MVC,hoopR
+314,Iona,Iona Gaels,IONA,Metro Conference,Iona,124,MAAC,hoopR
+2294,Iowa,Iowa Hawkeyes,IOWA,Big Ten Conference,Iowa,125,B10,hoopR
+66,Iowa State,Iowa State Cyclones,ISU,Big 12 Conference,Iowa St.,126,B12,hoopR
+85,IU Indianapolis,IU Indianapolis Jaguars,IUIN,Horizon League,IU Indy,128,Horz,hoopR
+2296,Jackson State,Jackson State Tigers,JKST,Southwestern Athletic Conference,Jackson St.,129,SWAC,hoopR
+294,Jacksonville,Jacksonville Dolphins,JAX,Atlantic Sun Conference,Jacksonville,130,ASun,hoopR
+55,Jacksonville State,Jacksonville State Gamecocks,JXST,Conference USA,Jacksonville St.,131,CUSA,hoopR
+256,James Madison,James Madison Dukes,JMU,Sun Belt Conference,James Madison,132,SB,hoopR
+2305,Kansas,Kansas Jayhawks,KU,Big 12 Conference,Kansas,133,B12,hoopR
+140,Kansas City,Kansas City Roos,KC,Summit League,Kansas City,310,Sum,hoopR
+2306,Kansas State,Kansas State Wildcats,KSU,Big 12 Conference,Kansas St.,134,B12,hoopR
+338,Kennesaw State,Kennesaw State Owls,KENN,Conference USA,Kennesaw St.,135,CUSA,hoopR
+2309,Kent State,Kent State Golden Flashes,KENT,Mid-American Conference,Kent St.,136,MAC,hoopR
+96,Kentucky,Kentucky Wildcats,UK,Southeastern Conference,Kentucky,137,SEC,hoopR
+2325,La Salle,La Salle Explorers,LAS,Atlantic 10 Conference,La Salle,138,A10,hoopR
+322,Lafayette,Lafayette Leopards,LAF,Patriot League,Lafayette,139,PL,hoopR
+2320,Lamar,Lamar Cardinals,LAM,Southland Conference,Lamar,140,Slnd,hoopR
+2330,Le Moyne,Le Moyne Dolphins,LEM,Northeast Conference,Le Moyne,370,NEC,hoopR
+2329,Lehigh,Lehigh Mountain Hawks,LEH,Patriot League,Lehigh,141,PL,hoopR
+2335,Liberty,Liberty Flames,LIB,Conference USA,Liberty,142,CUSA,hoopR
+2815,Lindenwood,Lindenwood Lions,LIN,Ohio Valley Conference,Lindenwood,368,OVC,manual
+288,Lipscomb,Lipscomb Bisons,LIP,Atlantic Sun Conference,Lipscomb,143,ASun,hoopR
+2031,Little Rock,Little Rock Trojans,LR,Ohio Valley Conference,Little Rock,14,OVC,hoopR
+299,Long Beach State,Long Beach State Beach,LBSU,Big West Conference,Long Beach St.,145,BW,hoopR
+112358,Long Island University,Long Island University Sharks,LIU,Northeast Conference,LIU,144,NEC,hoopR
+2344,Longwood,Longwood Lancers,LONG,Big South Conference,Longwood,146,BSth,hoopR
+309,Louisiana,Louisiana Ragin' Cajuns,UL,Sun Belt Conference,Louisiana,147,SB,hoopR
+2348,Louisiana Tech,Louisiana Tech Bulldogs,LT,Conference USA,Louisiana Tech,149,CUSA,hoopR
+97,Louisville,Louisville Cardinals,LOU,Atlantic Coast Conference,Louisville,150,ACC,hoopR
+2350,Loyola Chicago,Loyola Chicago Ramblers,LUC,Atlantic 10 Conference,Loyola Chicago,151,A10,hoopR
+2352,Loyola Maryland,Loyola Maryland Greyhounds,L-MD,Patriot League,Loyola MD,153,PL,hoopR
+2351,Loyola Marymount,Loyola Marymount Lions,LMU,West Coast Conference,Loyola Marymount,152,WCC,hoopR
+99,LSU,LSU Tigers,LSU,Southeastern Conference,LSU,154,SEC,hoopR
+2443,LSU New Orleans,LSU New Orleans Privateers,NOLA,Southland Conference,LSU New Orleans,192,,manual
+311,Maine,Maine Black Bears,ME,America East Conference,Maine,155,AE,hoopR
+2363,Manhattan,Manhattan Jaspers,MAN,Metro Conference,Manhattan,156,MAAC,hoopR
+2368,Marist,Marist Red Foxes,MRST,Metro Conference,Marist,157,MAAC,hoopR
+269,Marquette,Marquette Golden Eagles,MARQ,Big East Conference,Marquette,158,BE,hoopR
+276,Marshall,Marshall Thundering Herd,MRSH,Sun Belt Conference,Marshall,159,SB,hoopR
+120,Maryland,Maryland Terrapins,MD,Big Ten Conference,Maryland,160,B10,hoopR
+2379,Maryland Eastern Shore,Maryland Eastern Shore Hawks,UMES,Mid-Eastern Athletic Conference,Maryland Eastern Shore,161,MEAC,hoopR
+113,Massachusetts,Massachusetts Minutemen,MASS,Mid-American Conference,Massachusetts,162,MAC,hoopR
+2377,McNeese,McNeese Cowboys,MCN,Southland Conference,McNeese,163,Slnd,hoopR
+235,Memphis,Memphis Tigers,MEM,American Conference,Memphis,164,Amer,hoopR
+2382,Mercer,Mercer Bears,MER,Southern Conference,Mercer,165,SC,hoopR
+2385,Mercyhurst,Mercyhurst Lakers,MERC,Northeast Conference,Mercyhurst,371,NEC,hoopR
+2771,Merrimack,Merrimack Warriors,MRMK,Metro Conference,Merrimack,359,MAAC,hoopR
+2390,Miami,Miami Hurricanes,MIA,Atlantic Coast Conference,Miami FL,166,ACC,hoopR
+193,Miami (OH),Miami (OH) RedHawks,M-OH,Mid-American Conference,Miami OH,167,MAC,hoopR
+130,Michigan,Michigan Wolverines,MICH,Big Ten Conference,Michigan,168,B10,hoopR
+127,Michigan State,Michigan State Spartans,MSU,Big Ten Conference,Michigan St.,169,B10,hoopR
+2393,Middle Tennessee,Middle Tennessee Blue Raiders,MTSU,Conference USA,Middle Tennessee,170,CUSA,hoopR
+270,Milwaukee,Milwaukee Panthers,MILW,Horizon League,Milwaukee,171,Horz,hoopR
+135,Minnesota,Minnesota Golden Gophers,MINN,Big Ten Conference,Minnesota,172,B10,hoopR
+344,Mississippi State,Mississippi State Bulldogs,MSST,Southeastern Conference,Mississippi St.,174,SEC,hoopR
+2400,Mississippi Valley State,Mississippi Valley State Delta Devils,MVSU,Southwestern Athletic Conference,Mississippi Valley St.,175,SWAC,hoopR
+142,Missouri,Missouri Tigers,MIZ,Southeastern Conference,Missouri,176,SEC,hoopR
+2623,Missouri State,Missouri State Bears,MOST,Conference USA,Missouri St.,177,CUSA,hoopR
+2405,Monmouth,Monmouth Hawks,MONM,Coastal Athletic Association,Monmouth,178,CAA,hoopR
+149,Montana,Montana Grizzlies,MONT,Big Sky Conference,Montana,179,BSky,hoopR
+147,Montana State,Montana State Bobcats,MTST,Big Sky Conference,Montana St.,180,BSky,hoopR
+2413,Morehead State,Morehead State Eagles,MORE,Ohio Valley Conference,Morehead St.,181,OVC,hoopR
+2415,Morgan State,Morgan State Bears,MORG,Mid-Eastern Athletic Conference,Morgan St.,182,MEAC,hoopR
+116,Mount St. Mary's,Mount St. Mary's Mountaineers,MSM,Metro Conference,Mount St. Mary's,183,MAAC,hoopR
+93,Murray State,Murray State Racers,MUR,Missouri Valley Conference,Murray St.,184,MVC,hoopR
+2426,Navy,Navy Midshipmen,NAVY,Patriot League,Navy,185,PL,hoopR
+152,NC State,NC State Wolfpack,NCSU,Atlantic Coast Conference,N.C. State,200,ACC,hoopR
+158,Nebraska,Nebraska Cornhuskers,NEB,Big Ten Conference,Nebraska,186,B10,hoopR
+2440,Nevada,Nevada Wolf Pack,NEV,Mountain West Conference,Nevada,188,MWC,hoopR
+160,New Hampshire,New Hampshire Wildcats,UNH,America East Conference,New Hampshire,189,AE,hoopR
+2441,New Haven,New Haven Chargers,NHVN,Northeast Conference,New Haven,373,NEC,hoopR
+167,New Mexico,New Mexico Lobos,UNM,Mountain West Conference,New Mexico,190,MWC,hoopR
+166,New Mexico State,New Mexico State Aggies,NMSU,Conference USA,New Mexico St.,191,CUSA,hoopR
+315,Niagara,Niagara Purple Eagles,NIA,Metro Conference,Niagara,193,MAAC,hoopR
+2447,Nicholls,Nicholls Colonels,NICH,Southland Conference,Nicholls,194,Slnd,hoopR
+2885,NJIT,NJIT Highlanders,NJIT,America East Conference,NJIT,195,AE,hoopR
+2450,Norfolk State,Norfolk State Spartans,NORF,Mid-Eastern Athletic Conference,Norfolk St.,196,MEAC,hoopR
+2453,North Alabama,North Alabama Lions,UNA,Atlantic Sun Conference,North Alabama,356,ASun,hoopR
+153,North Carolina,North Carolina Tar Heels,UNC,Atlantic Coast Conference,North Carolina,197,ACC,hoopR
+2448,North Carolina A&T,North Carolina A&T Aggies,NCAT,Coastal Athletic Association,North Carolina A&T,198,CAA,hoopR
+2428,North Carolina Central,North Carolina Central Eagles,NCCU,Mid-Eastern Athletic Conference,North Carolina Central,199,MEAC,hoopR
+155,North Dakota,North Dakota Fighting Hawks,UND,Summit League,North Dakota,201,Sum,hoopR
+2449,North Dakota State,North Dakota State Bison,NDSU,Summit League,North Dakota St.,202,Sum,hoopR
+2454,North Florida,North Florida Ospreys,UNF,Atlantic Sun Conference,North Florida,203,ASun,hoopR
+249,North Texas,North Texas Mean Green,UNT,American Conference,North Texas,204,Amer,hoopR
+111,Northeastern,Northeastern Huskies,NE,Coastal Athletic Association,Northeastern,205,CAA,hoopR
+2464,Northern Arizona,Northern Arizona Lumberjacks,NAU,Big Sky Conference,Northern Arizona,206,BSky,hoopR
+2458,Northern Colorado,Northern Colorado Bears,UNCO,Big Sky Conference,Northern Colorado,207,BSky,hoopR
+2459,Northern Illinois,Northern Illinois Huskies,NIU,Mid-American Conference,Northern Illinois,208,MAC,hoopR
+2460,Northern Iowa,Northern Iowa Panthers,UNI,Missouri Valley Conference,Northern Iowa,209,MVC,hoopR
+94,Northern Kentucky,Northern Kentucky Norse,NKU,Horizon League,Northern Kentucky,210,Horz,hoopR
+77,Northwestern,Northwestern Wildcats,NU,Big Ten Conference,Northwestern,211,B10,hoopR
+2466,Northwestern State,Northwestern State Demons,NWST,Southland Conference,Northwestern St.,212,Slnd,hoopR
+87,Notre Dame,Notre Dame Fighting Irish,ND,Atlantic Coast Conference,Notre Dame,213,ACC,hoopR
+2473,Oakland,Oakland Golden Grizzlies,OAK,Horizon League,Oakland,214,Horz,hoopR
+195,Ohio,Ohio Bobcats,OHIO,Mid-American Conference,Ohio,215,MAC,hoopR
+194,Ohio State,Ohio State Buckeyes,OSU,Big Ten Conference,Ohio St.,216,B10,hoopR
+201,Oklahoma,Oklahoma Sooners,OU,Southeastern Conference,Oklahoma,217,SEC,hoopR
+197,Oklahoma State,Oklahoma State Cowboys,OKST,Big 12 Conference,Oklahoma St.,218,B12,hoopR
+295,Old Dominion,Old Dominion Monarchs,ODU,Sun Belt Conference,Old Dominion,219,SB,hoopR
+145,Ole Miss,Ole Miss Rebels,MISS,Southeastern Conference,Mississippi,173,SEC,hoopR
+2437,Omaha,Omaha Mavericks,OMA,Summit League,Nebraska Omaha,187,Sum,hoopR
+198,Oral Roberts,Oral Roberts Golden Eagles,ORU,Summit League,Oral Roberts,220,Sum,hoopR
+2483,Oregon,Oregon Ducks,ORE,Big Ten Conference,Oregon,221,B10,hoopR
+204,Oregon State,Oregon State Beavers,ORST,West Coast Conference,Oregon St.,222,WCC,hoopR
+279,Pacific,Pacific Tigers,PAC,West Coast Conference,Pacific,223,WCC,hoopR
+213,Penn State,Penn State Nittany Lions,PSU,Big Ten Conference,Penn St.,225,B10,hoopR
+219,Pennsylvania,Pennsylvania Quakers,PENN,Ivy League,Penn,224,Ivy,hoopR
+2492,Pepperdine,Pepperdine Waves,PEPP,West Coast Conference,Pepperdine,226,WCC,hoopR
+221,Pittsburgh,Pittsburgh Panthers,PITT,Atlantic Coast Conference,Pittsburgh,227,ACC,hoopR
+2501,Portland,Portland Pilots,PORT,West Coast Conference,Portland,228,WCC,hoopR
+2502,Portland State,Portland State Vikings,PRST,Big Sky Conference,Portland St.,229,BSky,hoopR
+2504,Prairie View A&M,Prairie View A&M Panthers,PV,Southwestern Athletic Conference,Prairie View A&M,230,SWAC,hoopR
+2506,Presbyterian,Presbyterian Blue Hose,PRES,Big South Conference,Presbyterian,231,BSth,hoopR
+163,Princeton,Princeton Tigers,PRIN,Ivy League,Princeton,232,Ivy,hoopR
+2507,Providence,Providence Friars,PROV,Big East Conference,Providence,233,BE,hoopR
+2509,Purdue,Purdue Boilermakers,PUR,Big Ten Conference,Purdue,234,B10,hoopR
+2870,Purdue Fort Wayne,Purdue Fort Wayne Mastodons,PFW,Horizon League,Purdue Fort Wayne,127,Horz,hoopR
+2511,Queens University,Queens University Royals,QUC,Atlantic Sun Conference,Queens,367,ASun,manual
+2514,Quinnipiac,Quinnipiac Bobcats,QUIN,Metro Conference,Quinnipiac,235,MAAC,hoopR
+2515,Radford,Radford Highlanders,RAD,Big South Conference,Radford,236,BSth,hoopR
+227,Rhode Island,Rhode Island Rams,URI,Atlantic 10 Conference,Rhode Island,237,A10,hoopR
+242,Rice,Rice Owls,RICE,American Conference,Rice,238,Amer,hoopR
+257,Richmond,Richmond Spiders,RICH,Atlantic 10 Conference,Richmond,239,A10,hoopR
+2520,Rider,Rider Broncs,RID,Metro Conference,Rider,240,MAAC,hoopR
+2523,Robert Morris,Robert Morris Colonials,RMU,Horizon League,Robert Morris,241,Horz,hoopR
+164,Rutgers,Rutgers Scarlet Knights,RUTG,Big Ten Conference,Rutgers,242,B10,hoopR
+16,Sacramento State,Sacramento State Hornets,SAC,Big Sky Conference,Sacramento St.,243,BSky,hoopR
+2529,Sacred Heart,Sacred Heart Pioneers,SHU,Metro Conference,Sacred Heart,244,MAAC,hoopR
+2598,Saint Francis,Saint Francis Red Wolves,SFPA,Northeast Conference,Saint Francis,276,NEC,manual
+2603,Saint Joseph's,Saint Joseph's Hawks,JOES,Atlantic 10 Conference,Saint Joseph's,245,A10,hoopR
+139,Saint Louis,Saint Louis Billikens,SLU,Atlantic 10 Conference,Saint Louis,246,A10,hoopR
+2608,Saint Mary's,Saint Mary's Gaels,SMC,West Coast Conference,Saint Mary's,247,WCC,hoopR
+2612,Saint Peter's,Saint Peter's Peacocks,SPU,Metro Conference,Saint Peter's,248,MAAC,hoopR
+2534,Sam Houston,Sam Houston Bearkats,SHSU,Conference USA,Sam Houston St.,249,CUSA,hoopR
+2535,Samford,Samford Bulldogs,SAM,Southern Conference,Samford,250,SC,hoopR
+301,San Diego,San Diego Toreros,USD,West Coast Conference,San Diego,251,WCC,hoopR
+21,San Diego State,San Diego State Aztecs,SDSU,Mountain West Conference,San Diego St.,252,MWC,hoopR
+2539,San Francisco,San Francisco Dons,SF,West Coast Conference,San Francisco,253,WCC,hoopR
+23,San José State,San José State Spartans,SJSU,Mountain West Conference,San Jose St.,254,MWC,hoopR
+2541,Santa Clara,Santa Clara Broncos,SCU,West Coast Conference,Santa Clara,255,WCC,hoopR
+2542,Savannah State,Savannah State Tigers,SAV,Mid-Eastern Athletic Conference,Savannah St.,256,MEAC,manual
+2545,SE Louisiana,SE Louisiana Lions,SELA,Southland Conference,Southeastern Louisiana,269,Slnd,hoopR
+2547,Seattle U,Seattle U Redhawks,SEA,West Coast Conference,Seattle,257,WCC,hoopR
+2550,Seton Hall,Seton Hall Pirates,HALL,Big East Conference,Seton Hall,258,BE,hoopR
+2561,Siena,Siena Saints,SIE,Metro Conference,Siena,259,MAAC,hoopR
+2565,SIU Edwardsville,SIU Edwardsville Cougars,SIUE,Ohio Valley Conference,SIUE,260,OVC,hoopR
+2567,SMU,SMU Mustangs,SMU,Atlantic Coast Conference,SMU,261,ACC,hoopR
+6,South Alabama,South Alabama Jaguars,USA,Sun Belt Conference,South Alabama,262,SB,hoopR
+2579,South Carolina,South Carolina Gamecocks,SC,Southeastern Conference,South Carolina,263,SEC,hoopR
+2569,South Carolina State,South Carolina State Bulldogs,SCST,Mid-Eastern Athletic Conference,South Carolina St.,264,MEAC,hoopR
+2908,South Carolina Upstate,South Carolina Upstate Spartans,UPST,Big South Conference,USC Upstate,316,BSth,hoopR
+233,South Dakota,South Dakota Coyotes,SDAK,Summit League,South Dakota,265,Sum,hoopR
+2571,South Dakota State,South Dakota State Jackrabbits,SDST,Summit League,South Dakota St.,266,Sum,hoopR
+58,South Florida,South Florida Bulls,USF,American Conference,South Florida,267,Amer,hoopR
+2546,Southeast Missouri State,Southeast Missouri State Redhawks,SEMO,Ohio Valley Conference,Southeast Missouri,268,OVC,hoopR
+2582,Southern,Southern Jaguars,SOU,Southwestern Athletic Conference,Southern,270,SWAC,hoopR
+79,Southern Illinois,Southern Illinois Salukis,SIU,Missouri Valley Conference,Southern Illinois,271,MVC,hoopR
+88,Southern Indiana,Southern Indiana Screaming Eagles,USI,Ohio Valley Conference,Southern Indiana,365,OVC,manual
+2572,Southern Miss,Southern Miss Golden Eagles,USM,Sun Belt Conference,Southern Miss,272,SB,hoopR
+253,Southern Utah,Southern Utah Thunderbirds,SUU,United Athletic Conference,Southern Utah,273,WAC,hoopR
+179,St. Bonaventure,St. Bonaventure Bonnies,SBU,Atlantic 10 Conference,St. Bonaventure,274,A10,hoopR
+2597,St. Francis Brooklyn,St. Francis Brooklyn Terriers,SFBK,Northeast Conference,St. Francis NY,275,NEC,manual
+2599,St. John's,St. John's Red Storm,SJU,Big East Conference,St. John's,277,BE,hoopR
+2900,St. Thomas,St. Thomas Tommies,STMN,Summit League,St. Thomas,364,,manual
+24,Stanford,Stanford Cardinal,STAN,Atlantic Coast Conference,Stanford,278,ACC,hoopR
+2617,Stephen F. Austin,Stephen F. Austin Lumberjacks,SFA,Southland Conference,Stephen F. Austin,279,Slnd,hoopR
+56,Stetson,Stetson Hatters,STET,Atlantic Sun Conference,Stetson,280,ASun,hoopR
+284,Stonehill,Stonehill Skyhawks,STO,Northeast Conference,Stonehill,366,NEC,hoopR
+2619,Stony Brook,Stony Brook Seawolves,STBK,Coastal Athletic Association,Stony Brook,281,CAA,hoopR
+183,Syracuse,Syracuse Orange,SYR,Atlantic Coast Conference,Syracuse,282,ACC,hoopR
+2627,Tarleton State,Tarleton State Texans,TAR,United Athletic Conference,Tarleton St.,362,WAC,hoopR
+2628,TCU,TCU Horned Frogs,TCU,Big 12 Conference,TCU,283,B12,hoopR
+218,Temple,Temple Owls,TEM,American Conference,Temple,284,Amer,hoopR
+2633,Tennessee,Tennessee Volunteers,TENN,Southeastern Conference,Tennessee,285,SEC,hoopR
+2634,Tennessee State,Tennessee State Tigers,TNST,Ohio Valley Conference,Tennessee St.,287,OVC,hoopR
+2635,Tennessee Tech,Tennessee Tech Golden Eagles,TNTC,Ohio Valley Conference,Tennessee Tech,288,OVC,hoopR
+251,Texas,Texas Longhorns,TEX,Southeastern Conference,Texas,289,SEC,hoopR
+245,Texas A&M,Texas A&M Aggies,TA&M,Southeastern Conference,Texas A&M,290,SEC,hoopR
+357,Texas A&M-Corpus Christi,Texas A&M-Corpus Christi Islanders,AMCC,Southland Conference,Texas A&M Corpus Chris,291,Slnd,hoopR
+2640,Texas Southern,Texas Southern Tigers,TXSO,Southwestern Athletic Conference,Texas Southern,292,SWAC,hoopR
+326,Texas State,Texas State Bobcats,TXST,Sun Belt Conference,Texas St.,293,SB,hoopR
+2641,Texas Tech,Texas Tech Red Raiders,TTU,Big 12 Conference,Texas Tech,294,B12,hoopR
+2643,The Citadel,The Citadel Bulldogs,CIT,Southern Conference,The Citadel,295,SC,hoopR
+2649,Toledo,Toledo Rockets,TOL,Mid-American Conference,Toledo,296,MAC,hoopR
+119,Towson,Towson Tigers,TOW,Coastal Athletic Association,Towson,297,CAA,hoopR
+2653,Troy,Troy Trojans,TROY,Sun Belt Conference,Troy,298,SB,hoopR
+2655,Tulane,Tulane Green Wave,TULN,American Conference,Tulane,299,Amer,hoopR
+202,Tulsa,Tulsa Golden Hurricane,TLSA,American Conference,Tulsa,300,Amer,hoopR
+5,UAB,UAB Blazers,UAB,American Conference,UAB,301,Amer,hoopR
+399,UAlbany,UAlbany Great Danes,UALB,America East Conference,Albany,7,AE,hoopR
+302,UC Davis,UC Davis Aggies,UCD,Big West Conference,UC Davis,302,BW,hoopR
+300,UC Irvine,UC Irvine Anteaters,UCI,Big West Conference,UC Irvine,303,BW,hoopR
+27,UC Riverside,UC Riverside Highlanders,UCR,Big West Conference,UC Riverside,304,BW,hoopR
+28,UC San Diego,UC San Diego Tritons,UCSD,Big West Conference,UC San Diego,363,BW,hoopR
+2540,UC Santa Barbara,UC Santa Barbara Gauchos,UCSB,Big West Conference,UC Santa Barbara,305,BW,hoopR
+2116,UCF,UCF Knights,UCF,Big 12 Conference,UCF,306,B12,hoopR
+26,UCLA,UCLA Bruins,UCLA,Big Ten Conference,UCLA,307,B10,hoopR
+41,UConn,UConn Huskies,CONN,Big East Conference,Connecticut,59,BE,hoopR
+82,UIC,UIC Flames,UIC,Missouri Valley Conference,Illinois Chicago,119,MVC,hoopR
+2433,UL Monroe,UL Monroe Warhawks,ULM,Sun Belt Conference,Louisiana Monroe,148,SB,hoopR
+2349,UMass Lowell,UMass Lowell River Hawks,UML,America East Conference,UMass Lowell,308,AE,hoopR
+2378,UMBC,UMBC Retrievers,UMBC,America East Conference,UMBC,309,AE,hoopR
+2427,UNC Asheville,UNC Asheville Bulldogs,UNCA,Big South Conference,UNC Asheville,311,BSth,hoopR
+2430,UNC Greensboro,UNC Greensboro Spartans,UNCG,Southern Conference,UNC Greensboro,312,SC,hoopR
+350,UNC Wilmington,UNC Wilmington Seahawks,UNCW,Coastal Athletic Association,UNC Wilmington,313,CAA,hoopR
+2439,UNLV,UNLV Rebels,UNLV,Mountain West Conference,UNLV,314,MWC,hoopR
+30,USC,USC Trojans,USC,Big Ten Conference,USC,315,B10,hoopR
+250,UT Arlington,UT Arlington Mavericks,UTA,United Athletic Conference,UT Arlington,317,WAC,hoopR
+2630,UT Martin,UT Martin Skyhawks,UTM,Ohio Valley Conference,Tennessee Martin,286,OVC,hoopR
+292,UT Rio Grande Valley,UT Rio Grande Valley Vaqueros,RGV,Southland Conference,UT Rio Grande Valley,318,Slnd,hoopR
+254,Utah,Utah Utes,UTAH,Big 12 Conference,Utah,319,B12,hoopR
+328,Utah State,Utah State Aggies,USU,Mountain West Conference,Utah St.,320,MWC,hoopR
+3101,Utah Tech,Utah Tech Trailblazers,UTU,United Athletic Conference,Utah Tech,361,WAC,hoopR
+3084,Utah Valley,Utah Valley Wolverines,UVU,United Athletic Conference,Utah Valley,321,WAC,hoopR
+2638,UTEP,UTEP Miners,UTEP,Conference USA,UTEP,322,CUSA,hoopR
+2636,UTSA,UTSA Roadrunners,UTSA,American Conference,UTSA,323,Amer,hoopR
+2674,Valparaiso,Valparaiso Beacons,VAL,Missouri Valley Conference,Valparaiso,324,MVC,hoopR
+238,Vanderbilt,Vanderbilt Commodores,VAN,Southeastern Conference,Vanderbilt,325,SEC,hoopR
+2670,VCU,VCU Rams,VCU,Atlantic 10 Conference,VCU,326,A10,hoopR
+261,Vermont,Vermont Catamounts,UVM,America East Conference,Vermont,327,AE,hoopR
+222,Villanova,Villanova Wildcats,VILL,Big East Conference,Villanova,328,BE,hoopR
+258,Virginia,Virginia Cavaliers,UVA,Atlantic Coast Conference,Virginia,329,ACC,hoopR
+259,Virginia Tech,Virginia Tech Hokies,VT,Atlantic Coast Conference,Virginia Tech,330,ACC,hoopR
+2678,VMI,VMI Keydets,VMI,Southern Conference,VMI,331,SC,hoopR
+2681,Wagner,Wagner Seahawks,WAG,Northeast Conference,Wagner,332,NEC,hoopR
+154,Wake Forest,Wake Forest Demon Deacons,WAKE,Atlantic Coast Conference,Wake Forest,333,ACC,hoopR
+264,Washington,Washington Huskies,WASH,Big Ten Conference,Washington,334,B10,hoopR
+265,Washington State,Washington State Cougars,WSU,West Coast Conference,Washington St.,335,WCC,hoopR
+2692,Weber State,Weber State Wildcats,WEB,Big Sky Conference,Weber St.,336,BSky,hoopR
+2697,West Florida,West Florida Argonauts,WF,Gulf South Conference,West Florida,374,ASun,manual
+2698,West Georgia,West Georgia Wolves,WGA,Atlantic Sun Conference,West Georgia,372,ASun,hoopR
+277,West Virginia,West Virginia Mountaineers,WVU,Big 12 Conference,West Virginia,337,B12,hoopR
+2717,Western Carolina,Western Carolina Catamounts,WCU,Southern Conference,Western Carolina,338,SC,hoopR
+2710,Western Illinois,Western Illinois Leathernecks,WIU,Ohio Valley Conference,Western Illinois,339,OVC,hoopR
+98,Western Kentucky,Western Kentucky Hilltoppers,WKU,Conference USA,Western Kentucky,340,CUSA,hoopR
+2711,Western Michigan,Western Michigan Broncos,WMU,Mid-American Conference,Western Michigan,341,MAC,hoopR
+2724,Wichita State,Wichita State Shockers,WICH,American Conference,Wichita St.,342,Amer,hoopR
+2729,William & Mary,William & Mary Tribe,W&M,Coastal Athletic Association,William & Mary,343,CAA,hoopR
+2737,Winthrop,Winthrop Eagles,WIN,Big South Conference,Winthrop,344,BSth,hoopR
+275,Wisconsin,Wisconsin Badgers,WIS,Big Ten Conference,Wisconsin,345,B10,hoopR
+2747,Wofford,Wofford Terriers,WOF,Southern Conference,Wofford,346,SC,hoopR
+2750,Wright State,Wright State Raiders,WRST,Horizon League,Wright St.,347,Horz,hoopR
+2751,Wyoming,Wyoming Cowboys,WYO,Mountain West Conference,Wyoming,348,MWC,hoopR
+2752,Xavier,Xavier Musketeers,XAV,Big East Conference,Xavier,349,BE,hoopR
+43,Yale,Yale Bulldogs,YALE,Ivy League,Yale,350,Ivy,hoopR
+2754,Youngstown State,Youngstown State Penguins,YSU,Horizon League,Youngstown St.,351,Horz,hoopR

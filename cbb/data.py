@@ -15,17 +15,17 @@ Outputs (both D-I vs D-I, completed games only):
 from __future__ import annotations
 
 import os
-import urllib.request
 
 import numpy as np
 import pandas as pd
+
+from . import net
 
 RELEASES = "https://github.com/sportsdataverse/sportsdataverse-data/releases/download"
 FILES = {
     "schedule": "espn_mens_college_basketball_schedules/mbb_schedule_{season}.parquet",
     "team_box": "espn_mens_college_basketball_team_boxscores/team_box_{season}.parquet",
 }
-CACHE = os.path.join(os.path.dirname(__file__), "cache")
 
 # Free-throw weight in the possession estimate (KenPom uses 0.475; Oliver's original is 0.44).
 FT_WEIGHT = 0.475
@@ -34,14 +34,8 @@ FT_WEIGHT = 0.475
 def fetch(kind: str, season: int, refresh: bool = False) -> pd.DataFrame:
     """One season of a hoopR file, downloaded once and cached in cbb/cache/."""
     rel = FILES[kind].format(season=season)
-    path = os.path.join(CACHE, os.path.basename(rel))
-    if refresh or not os.path.exists(path):
-        os.makedirs(CACHE, exist_ok=True)
-        req = urllib.request.Request(f"{RELEASES}/{rel}", headers={"User-Agent": "cbb-model"})
-        with urllib.request.urlopen(req, timeout=120) as r, open(path + ".tmp", "wb") as f:
-            f.write(r.read())
-        os.replace(path + ".tmp", path)
-    return pd.read_parquet(path)
+    live = 6 * 3600 if season >= net.current_season() else None
+    return pd.read_parquet(net.get(f"{RELEASES}/{rel}", os.path.basename(rel), refresh=refresh, max_age=live))
 
 
 def possessions(fga, orb, tov, fta):
