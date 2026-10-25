@@ -114,7 +114,7 @@ def add_features(b: pd.DataFrame, live: dict | None = None) -> pd.DataFrame:
     b["team_hca"] = b["team_hca"].fillna(0) * b["venue"]
 
     # Scoring environment: average total in this season's games so far (rules and pace drift year to year), once
-    # there are 200 games; before that, the average model total.
+    # there are 200 games; before that, last season's average total.
     if "season_avg_total" in live:
         b["season_avg_total"] = live["season_avg_total"]
     else:
@@ -123,6 +123,8 @@ def add_features(b: pd.DataFrame, live: dict | None = None) -> pd.DataFrame:
         cum = pts.groupby(b["season"]).cumsum() - pts
         cnt = b.groupby("season").cumcount()
         b["season_avg_total"] = np.where(cnt >= 200, cum / cnt.clip(lower=1), np.nan)
+        prev = (b["home_pts"] + b["away_pts"]).groupby(b["season"]).mean()
+        b["season_avg_total"] = b["season_avg_total"].fillna(b["season"].map(prev.shift()))
     b["season_avg_total"] = pd.to_numeric(b["season_avg_total"], errors="coerce").fillna(
         b["pred_total"].groupby(b["season"]).transform("mean"))
     return b.sort_index()

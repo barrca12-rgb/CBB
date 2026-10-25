@@ -42,13 +42,27 @@ def _solve(X, y, w, lam, beta0):
     return np.linalg.solve(XtW @ X + np.diag(lam), XtW @ y + lam * beta0)
 
 
+def league_averages(tg: pd.DataFrame) -> dict:
+    """League-wide averages from a season's team-games (efficiency, pace, Four Factors): the starting point for
+    the next season, before it has games of its own."""
+    return {"ppp": float(tg["ppp"].mean()), "pace": float(tg["pace"].mean()),
+            **{f: float(tg[f].mean()) for f in FACTORS}}
+
+
+# Used only when no league averages are passed and there are no games yet (2012-2026 means).
+DEFAULT_LEAGUE = {"ppp": 103.4, "pace": 67.9, "efg": 0.504, "tov_rate": 0.183, "orb_rate": 0.293, "ft_rate": 0.250}
+
+
 def fit(tg: pd.DataFrame, asof, teams: list[int], prior: pd.DataFrame | None = None,
-        cfg: RatingConfig | None = None) -> dict:
+        cfg: RatingConfig | None = None, league: dict | None = None) -> dict:
     """Ratings using only team-games strictly before `asof` (a date).
 
     tg: team_games from data.load (one season, or more; older games just get tiny weights).
     prior: index = team id, columns off, def, tempo (deviations from average). Missing teams get 0.
+    league: last season's league averages (league_averages), the baseline before this season has games. Without
+    it, a long-run default is used, which runs low in high-scoring seasons (2026 averaged 108.5 per 100).
     """
+    league = {**DEFAULT_LEAGUE, **(league or {})}
     cfg = cfg or RatingConfig()
     asof = pd.Timestamp(asof)
     h = tg[tg["date"] < asof]
@@ -76,7 +90,7 @@ def fit(tg: pd.DataFrame, asof, teams: list[int], prior: pd.DataFrame | None = N
     lam = np.full(2 + 2 * k, cfg.prior_games * wbar)
     lam[0] = 1e-6
     lam[1] = 20 * wbar  # home edge is well identified; light pull toward the usual value
-    beta0 = np.concatenate([[y.mean() if n else 103.0, cfg.hca_prior], pr["off"], pr["def"]])
+    beta0 = np.concatenate([[y.mean() if n else league["ppp"], cfg.hca_prior], pr["off"], pr["def"]])
     b = _solve(X, y, w, lam, beta0) if n else beta0
 
     # Four Factors: same design matrix, shrunk toward average.
@@ -87,6 +101,9 @@ def fit(tg: pd.DataFrame, asof, teams: list[int], prior: pd.DataFrame | None = N
         lamf = np.full(2 + 2 * k, cfg.factor_prior_games * wbar)
         lamf[:2] = 1e-6
     for f in FACTORS:
+        if not n and cfg.fit_factors:   # no games yet: everyone at last season's league average
+            factors[f] = {"b0": league[f], "hca": 0.0, "off": pd.Series(0.0, index=teams), "def": pd.Series(0.0, index=teams)}
+            continue
         if not n or not cfg.fit_factors or f not in h:
             continue
         yf = h[f].to_numpy(dtype=float)
@@ -104,7 +121,7 @@ def fit(tg: pd.DataFrame, asof, teams: list[int], prior: pd.DataFrame | None = N
     yp = h["pace"].to_numpy(dtype=float)
     lamp = np.full(1 + k, cfg.pace_prior_games * wbar)
     lamp[0] = 1e-6
-    p0 = np.concatenate([[yp.mean() if n else 68.0], pr["tempo"]])
+    p0 = np.concatenate([[yp.mean() if n else league["pace"]], pr["tempo"]])
     bp = _solve(P, yp, w, lamp, p0) if n else p0
 
     return {

@@ -32,7 +32,7 @@ SUMMARY = """## Summary (tuned model: ratings + KenPom + Barttorvik + Four Facto
 | ATS vs closing line, edge 3+ | 52.4% | 52.3% | 52.3% |
 | Over/under vs closing line, edge 3+ | 54.8% | 50.9% | 49.0% |
 | **ATS vs opening line, edge 3+** | 56.9% (2014-17) | | **57.5%** (1,288 bets) |
-| **Over/under vs opening line, edge 3+** | | | **54.2%** (3,925 bets) |
+| **Over/under vs opening line, edge 4+** | | | **56.7%** (1,433 bets) |
 
 Break-even at -110 is 52.4%.
 
@@ -40,7 +40,7 @@ Break-even at -110 is 52.4%.
 * **Closing lines: no edge.** Spreads and totals both land at or below break-even against the close.
 * **Opening lines: the edge.** The line moves toward the model 79% of the time when it disagrees with the
   opener by 3+ points, and betting the model's side at the opener won 57.4%, 57.7% and 57.2% in 2024, 2025 and
-  2026 (2+ points: 54.9%; 4+: 58.6%). Totals at the opener: 54.2% at 3+, 55.8% at 4+. Same lesson as the NFL
+  2026 (2+ points: 54.9%; 4+: 58.6%). Totals at the opener: 56.7% at 4+. Same lesson as the NFL
   model: the value is in betting the model's number early, before the market moves to it.
 * **Caveats:** openers carry low limits and move fast; openers exist only for 2014-2017 and 2024-2026; 6+ point
   edges are small samples. Data cleaning (projection sites, flipped openers, bad months) removed several fake

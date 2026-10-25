@@ -80,7 +80,8 @@ def project(day: pd.Timestamp, games: pd.DataFrame) -> tuple[pd.DataFrame, pd.Da
             date=pd.to_datetime([]))
     ids = sorted(set(teams.load()["espn_id"]) | set(tg.get("team_id", [])))
     games = games[games["home_id"].isin(ids) & games["away_id"].isin(ids)].copy()
-    r = ratings.fit(tg, day, ids, backtest.kenpom_prior(season))
+    last = data.season_games(season - 1)
+    r = ratings.fit(tg, day, ids, backtest.kenpom_prior(season), league=ratings.league_averages(last[1]))
     p = ratings.predict(r, games["home_id"], games["away_id"], games["neutral"])
     p.index = games.index
     b = games.join(p.add_prefix("pred_")).assign(season=season, date=day, games_before=r["games"],
@@ -104,8 +105,10 @@ def project(day: pd.Timestamp, games: pd.DataFrame) -> tuple[pd.DataFrame, pd.Da
         sides = pd.concat([b[["game_id", c]].rename(columns={c: "team_id"}) for c in ("home_id", "away_id")])
         av = sides.merge(av, on="team_id", how="left").fillna({"excess_missing": 0.0})
     played = hist[(hist["date"] < day)].dropna(subset=["home_pts"]) if len(hist) else hist
+    # scoring environment: this season's average total once it has 200 games, before that last season's
+    last_avg = float((last[0]["home_pts"] + last[0]["away_pts"]).mean())
     live = {"team_hca": projection.saved_team_hca(), "season": season,
-            "season_avg_total": float((played["home_pts"] + played["away_pts"]).mean()) if len(played) >= 200 else None}
+            "season_avg_total": float((played["home_pts"] + played["away_pts"]).mean()) if len(played) >= 200 else last_avg}
     if av is not None:
         live["availability"] = av[["game_id", "team_id", "excess_missing"]]
     f = projection.apply_saved(projection.add_features(b, live))

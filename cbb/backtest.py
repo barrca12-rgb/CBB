@@ -32,9 +32,10 @@ def season(season: int, cfg: ratings.RatingConfig | None = None, prior: str = "k
     g, t = data.season_games(season)
     ids = sorted(set(t["team_id"]))
     pr = kenpom_prior(season) if prior == "kenpom" else None
+    league = ratings.league_averages(data.season_games(season - 1)[1])
     out = []
     for day, gd in g.groupby("date"):
-        r = ratings.fit(t, day, ids, pr, cfg)
+        r = ratings.fit(t, day, ids, pr, cfg, league)
         p = ratings.predict(r, gd["home_id"], gd["away_id"], gd["neutral"])
         p.index = gd.index
         out.append(gd[["game_id", "season", "date", "home_id", "away_id", "neutral", "conf_game", "season_type",

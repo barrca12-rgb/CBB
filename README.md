@@ -31,7 +31,7 @@ players), then edges against every book. Calls come from the 2024-2026 backtest 
 | Market | BET (1u) | WATCH (not a play) | Backtest at the opener |
 |---|---|---|---|
 | Spread | edge 3+ pts | 2-3 | 57.5% at 3+ |
-| Total | edge 4+ pts | 3-4 | 56.1% at 4+ |
+| Total | edge 4+ pts | 3-4 | 56.7% at 4+ |
 
 The edge is against openers, not closing lines, so bet early and only at the "good down to" number or better.
 `lines/openers.csv` keeps the first number seen at each book (and when), `lines/closing.csv` the last pregame number.
