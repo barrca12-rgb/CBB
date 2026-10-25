@@ -60,11 +60,14 @@ def before(day) -> pd.DataFrame | None:
     return None
 
 
-def predict(games: pd.DataFrame) -> pd.DataFrame:
-    """Barttorvik-implied home margin and total for each game (game_id, date, home_id, away_id, neutral)."""
+def predict(games: pd.DataFrame, live_season: int | None = None) -> pd.DataFrame:
+    """Barttorvik-implied home margin and total for each game (game_id, date, home_id, away_id, neutral).
+    live_season: fall back to the live ratings file when the archive has nothing for the day before."""
     out = []
     for day, g in games.groupby("date"):
         t = before(day)
+        if t is None and live_season:
+            t = current(live_season)
         if t is None:
             continue
         t = t.dropna(subset=["espn_id"]).drop_duplicates("espn_id").set_index("espn_id")
@@ -77,3 +80,18 @@ def predict(games: pd.DataFrame) -> pd.DataFrame:
         ap = poss * a["adj_oe"].to_numpy() * h["adj_de"].to_numpy() / avg_e / 100
         out.append(pd.DataFrame({"game_id": g["game_id"].to_numpy(), "bt_margin": hp - ap, "bt_total": hp + ap}))
     return pd.concat(out, ignore_index=True) if out else pd.DataFrame(columns=["game_id", "bt_margin", "bt_total"])
+
+
+def current(season: int) -> pd.DataFrame | None:
+    """Barttorvik's live ratings for `season` (barttorvik.com/<season>_team_results.json), for today's games
+    when the time machine has no file yet (e.g. preseason). Not cached."""
+    req = urllib.request.Request(f"https://barttorvik.com/{season}_team_results.json", headers={"User-Agent": "cbb-model"})
+    try:
+        with urllib.request.urlopen(req, timeout=60) as r:
+            rows = json.load(r)
+    except Exception:
+        return None
+    t = pd.DataFrame([(r[1], r[4], r[6], r[44]) for r in rows], columns=["team", "adj_oe", "adj_de", "adj_tempo"])
+    ids = teams.id_lookup("kenpom")
+    t["espn_id"] = t["team"].map(lambda n: ids.get(teams.norm(n))).astype("Int64")
+    return t

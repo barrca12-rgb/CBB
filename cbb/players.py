@@ -16,8 +16,10 @@ from . import data
 data.FILES["player_box"] = "espn_mens_college_basketball_player_boxscores/player_box_{season}.parquet"
 
 
-def availability(season: int) -> pd.DataFrame:
-    p = data.fetch("player_box", season)
+def availability(season: int, upcoming: bool = False, refresh: bool = False) -> pd.DataFrame:
+    """Per team-game `missing`. upcoming=True adds one row per team with game_id 0: the state going into its next
+    game (who missed its most recent one), for live runs."""
+    p = data.fetch("player_box", season, refresh)
     p = p[p["athlete_id"].notna()].copy()
     p["min"] = pd.to_numeric(p["minutes"], errors="coerce").fillna(0)
     p["played"] = (p["min"] > 0) & ~p["did_not_play"].fillna(False).astype(bool)
@@ -42,7 +44,24 @@ def availability(season: int) -> pd.DataFrame:
                 cum_games[a] = cum_games.get(a, 0) + 1
             team_min += pl["min"].sum()
             last_played = set(pl["athlete_id"])
+        if upcoming:
+            missing = sum(m / team_min for a, m in cum_min.items()
+                          if team_min > 0 and cum_games.get(a, 0) >= 3 and a not in last_played)
+            out.append((0, int(team), missing))
     return pd.DataFrame(out, columns=["game_id", "team_id", "missing"])
+
+
+def next_excess_missing(season: int) -> pd.DataFrame:
+    """excess_missing going into each team's next game (team_id, excess_missing), from the latest box scores.
+    Empty before the season's first games."""
+    try:
+        a = availability(season, upcoming=True, refresh=True)
+    except Exception:
+        return pd.DataFrame(columns=["team_id", "excess_missing"])
+    played = a[a["game_id"] != 0]
+    typical = played.groupby("team_id")["missing"].mean()
+    nxt = a[a["game_id"] == 0].set_index("team_id")["missing"]
+    return (nxt - typical.reindex(nxt.index).fillna(0.06)).rename("excess_missing").reset_index()
 
 
 def load(seasons) -> pd.DataFrame:

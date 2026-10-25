@@ -32,7 +32,8 @@ def norm(name: str) -> str:
 
 def id_lookup(column: str) -> dict[str, int]:
     """Normalized name in `column` (e.g. 'kenpom') -> ESPN id, including that source's older names."""
-    t = load().dropna(subset=[column])
+    t = load()
+    t = t.dropna(subset=[column]) if column in t else t.iloc[:0].assign(**{column: []})
     out = {norm(n): int(i) for n, i in zip(t[column], t["espn_id"])}
     a = pd.read_csv(ALIASES)
     a = a[a["source"] == column]

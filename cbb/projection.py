@@ -16,6 +16,9 @@ It never sees the betting line, so the projection stays the model's own opinion.
 """
 from __future__ import annotations
 
+import json
+import os
+
 import numpy as np
 import pandas as pd
 
@@ -26,14 +29,19 @@ MARGIN_FEATURES = ["pred_margin", "pred_margin_x_early", "kp_margin", "kp_margin
                    "rest_diff", "b2b_diff", "team_hca", "miss_diff"] + [f"{f}_diff" for f in FACTORS]
 TOTAL_FEATURES = ["pred_total", "pred_total_x_early", "kp_total", "kp_total_x_early", "bt_total", "rest_sum",
                   "season_avg_total"] + [f"{f}_sum" for f in FACTORS]
+# League-typical Four Factor values, used when a team has no games yet (first days of a season).
+FACTOR_AVG = {"efg": 0.50, "tov_rate": 0.18, "orb_rate": 0.29, "ft_rate": 0.25}
+# Coefficients fit on every backtest season, plus each team's home edge for the next season (written by fit()).
+SAVED = os.path.join(os.path.dirname(__file__), "..", "data", "projection.json")
 
 
 def rest_days(seasons) -> pd.DataFrame:
-    """Days since each team's previous game (any opponent, D-I or not), per game."""
+    """Days since each team's previous game (any opponent, D-I or not), per game. Scheduled games count too, so
+    this works for today's slate; postponed and canceled games don't."""
     rows = []
     for s in seasons:
         sch = data.fetch("schedule", s)
-        sch = sch[sch["status_type_completed"].fillna(False).astype(bool)].drop_duplicates("game_id")
+        sch = sch[~sch["status_type_name"].isin(["STATUS_POSTPONED", "STATUS_CANCELED"])].drop_duplicates("game_id")
         d = pd.to_datetime(sch["game_date"])
         long = pd.concat([pd.DataFrame({"game_id": sch["game_id"], "team": sch["home_id"], "date": d}),
                           pd.DataFrame({"game_id": sch["game_id"], "team": sch["away_id"], "date": d})])
@@ -45,8 +53,13 @@ def rest_days(seasons) -> pd.DataFrame:
     return r[["game_id", "team", "rest"]]
 
 
-def add_features(b: pd.DataFrame) -> pd.DataFrame:
+def add_features(b: pd.DataFrame, live: dict | None = None) -> pd.DataFrame:
+    """Features for the second stage. Backtest: everything is computed from `b` and the cached data. Live (today's
+    slate): `live` supplies what can't come from today's rows alone: `availability` (game_id, team_id,
+    excess_missing), `team_hca` (Series by home team id), `season_avg_total` (float or None), and `season` (lets
+    Barttorvik fall back to its live file)."""
     b = b.copy()
+    live = live or {}
     rest = rest_days(sorted(b["season"].unique()))
     rest = rest.astype({"game_id": int, "team": int})
     hr = rest.rename(columns={"team": "home_id", "rest": "home_rest"})
@@ -58,7 +71,7 @@ def add_features(b: pd.DataFrame) -> pd.DataFrame:
     b["rest_sum"] = b["home_rest"].clip(upper=7) + b["away_rest"].clip(upper=7)
     b["venue"] = (~b["neutral"].astype(bool)).astype(float)
 
-    av = players.excess_missing(sorted(b["season"].unique()), b)
+    av = live["availability"] if "availability" in live else players.excess_missing(sorted(b["season"].unique()), b)
     b = b.merge(av.rename(columns={"team_id": "home_id", "excess_missing": "home_missing"})[
         ["game_id", "home_id", "home_missing"]], on=["game_id", "home_id"], how="left")
     b = b.merge(av.rename(columns={"team_id": "away_id", "excess_missing": "away_missing"})[
@@ -77,47 +90,53 @@ def add_features(b: pd.DataFrame) -> pd.DataFrame:
     b["kp_total_x_early"] = b["kp_total"] * b["early"]
 
     # Barttorvik starts in 2015; earlier games (and any gaps) fall back to KenPom.
-    bt = barttorvik.predict(b[["game_id", "date", "home_id", "away_id", "neutral"]])
+    bt = barttorvik.predict(b[["game_id", "date", "home_id", "away_id", "neutral"]], live.get("season"))
     b = b.merge(bt, on="game_id", how="left")
     b["bt_margin"] = b["bt_margin"].fillna(b["kp_margin"])
     b["bt_total"] = b["bt_total"].fillna(b["kp_total"])
 
-    # Four Factors in percentage points (eFG 0.52 -> 52) so the coefficients are readable. Before a season's
-    # first games there is nothing to fit, so they're 0 (average).
+    # Four Factors in percentage points (eFG 0.52 -> 52) so the coefficients are readable. Before a team's first
+    # games there is nothing to fit, so they're league-typical.
     for f in FACTORS:
-        h, a = b.get(f"pred_home_{f}"), b.get(f"pred_away_{f}")
-        if h is None:
-            b[f"{f}_diff"] = 0.0
-            b[f"{f}_sum"] = 0.0
-            continue
-        avg = (h + a).groupby(b["season"]).transform("mean") / 2
-        b[f"{f}_diff"] = (100 * (h - a)).fillna(0)
-        b[f"{f}_sum"] = (100 * (h + a - 2 * avg)).fillna(0)
+        h = b[f"pred_home_{f}"] if f"pred_home_{f}" in b else pd.Series(np.nan, index=b.index)
+        a = b[f"pred_away_{f}"] if f"pred_away_{f}" in b else pd.Series(np.nan, index=b.index)
+        h, a = h.fillna(FACTOR_AVG[f]), a.fillna(FACTOR_AVG[f])
+        b[f"{f}_diff"] = 100 * (h - a)
+        b[f"{f}_sum"] = 100 * (h + a)
 
-    # Team home edge: shrunk average of (result - model) in the team's home games minus its road games, over the
-    # three previous seasons. Only earlier seasons are used.
-    b["resid"] = (b["home_pts"] - b["away_pts"]) - b["pred_margin"]
-    nn = b[~b["neutral"].astype(bool)]
-    long = pd.concat([pd.DataFrame({"season": nn["season"], "team": nn["home_id"], "r": nn["resid"]}),
-                      pd.DataFrame({"season": nn["season"], "team": nn["away_id"], "r": -nn["resid"]})])
-    st = long.groupby(["team", "season"])["r"].agg(["sum", "count"]).reset_index()
-    hca = []
-    for s in sorted(b["season"].unique()):
-        prev = st[(st["season"] < s) & (st["season"] >= s - 3)].groupby("team")[["sum", "count"]].sum()
-        # League-wide average residual is ~0; shrink each team's toward 0 with 60 games of prior.
-        hca.append(pd.DataFrame({"season": s, "home_id": prev.index, "team_hca": prev["sum"] / (prev["count"] + 60)}))
-    b = b.merge(pd.concat(hca), on=["season", "home_id"], how="left")
+    # Team home edge (see team_hca_table): only earlier seasons are used.
+    if "team_hca" in live:
+        b["team_hca"] = b["home_id"].map(live["team_hca"])
+    else:
+        hca = [team_hca_table(b, s).rename("team_hca").rename_axis("home_id").reset_index().assign(season=s)
+               for s in sorted(b["season"].unique())]
+        b = b.merge(pd.concat(hca), on=["season", "home_id"], how="left")
     b["team_hca"] = b["team_hca"].fillna(0) * b["venue"]
 
-    # Scoring environment: average total in this season's games so far (rules and pace drift year to year).
-    b = b.sort_values("date")
-    pts = b["home_pts"] + b["away_pts"]
-    cum = pts.groupby(b["season"]).cumsum() - pts
-    cnt = b.groupby("season").cumcount()
-    prior_avg = pts.groupby(b["season"]).transform("mean").groupby(b["season"]).shift().fillna(pts.mean())
-    b["season_avg_total"] = np.where(cnt >= 200, cum / cnt.clip(lower=1), np.nan)
-    b["season_avg_total"] = b["season_avg_total"].fillna(b["pred_total"].groupby(b["season"]).transform("mean"))
-    return b.drop(columns=["resid"]).sort_index()
+    # Scoring environment: average total in this season's games so far (rules and pace drift year to year), once
+    # there are 200 games; before that, the average model total.
+    if "season_avg_total" in live:
+        b["season_avg_total"] = live["season_avg_total"]
+    else:
+        b = b.sort_values("date")
+        pts = b["home_pts"] + b["away_pts"]
+        cum = pts.groupby(b["season"]).cumsum() - pts
+        cnt = b.groupby("season").cumcount()
+        b["season_avg_total"] = np.where(cnt >= 200, cum / cnt.clip(lower=1), np.nan)
+    b["season_avg_total"] = pd.to_numeric(b["season_avg_total"], errors="coerce").fillna(
+        b["pred_total"].groupby(b["season"]).transform("mean"))
+    return b.sort_index()
+
+
+def team_hca_table(b: pd.DataFrame, season: int) -> pd.Series:
+    """Each team's own home edge for `season`: shrunk average of (result - ratings model) in its home games minus
+    its road games over the three seasons before. League-wide the residual is ~0, so each team is shrunk toward 0
+    with 60 games of prior."""
+    d = b[(b["season"] < season) & (b["season"] >= season - 3) & ~b["neutral"].astype(bool)]
+    r = (d["home_pts"] - d["away_pts"]) - d["pred_margin"]
+    long = pd.concat([pd.DataFrame({"team": d["home_id"], "r": r}), pd.DataFrame({"team": d["away_id"], "r": -r})])
+    g = long.groupby("team")["r"].agg(["sum", "count"])
+    return g["sum"] / (g["count"] + 60)
 
 
 def ridge(X, y, lam=1.0):
@@ -152,3 +171,43 @@ def coefficients(b: pd.DataFrame, upto: int) -> pd.DataFrame:
     ct = ridge(tr[TOTAL_FEATURES].to_numpy(float), (tr["home_pts"] + tr["away_pts"]).to_numpy(float))
     return pd.concat([pd.Series(cm, ["intercept"] + MARGIN_FEATURES, name="margin"),
                       pd.Series(ct, ["intercept"] + TOTAL_FEATURES, name="total")], axis=1)
+
+
+def fit(b: pd.DataFrame, next_season: int) -> dict:
+    """Coefficients on every season in `b` (already through add_features) and team home edges for next_season,
+    saved to data/projection.json for live runs."""
+    cm = ridge(b[MARGIN_FEATURES].to_numpy(float), (b["home_pts"] - b["away_pts"]).to_numpy(float))
+    ct = ridge(b[TOTAL_FEATURES].to_numpy(float), (b["home_pts"] + b["away_pts"]).to_numpy(float))
+    out = {"fitted_on": [int(b["season"].min()), int(b["season"].max())], "next_season": next_season,
+           "margin": dict(zip(["intercept"] + MARGIN_FEATURES, map(float, cm))),
+           "total": dict(zip(["intercept"] + TOTAL_FEATURES, map(float, ct))),
+           "team_hca": {str(int(k)): round(float(v), 3) for k, v in team_hca_table(b, next_season).items()}}
+    with open(SAVED, "w") as f:
+        json.dump(out, f, indent=1)
+    return out
+
+
+def apply_saved(b: pd.DataFrame) -> pd.DataFrame:
+    """Final margin and total from the saved coefficients (live runs)."""
+    with open(SAVED) as f:
+        c = json.load(f)
+    b = b.copy()
+    b["final_margin"] = c["margin"]["intercept"] + sum(b[k] * v for k, v in c["margin"].items() if k != "intercept")
+    b["final_total"] = c["total"]["intercept"] + sum(b[k] * v for k, v in c["total"].items() if k != "intercept")
+    return b
+
+
+def saved_team_hca() -> pd.Series:
+    with open(SAVED) as f:
+        c = json.load(f)
+    return pd.Series({int(k): v for k, v in c["team_hca"].items()}, dtype=float)
+
+
+if __name__ == "__main__":
+    # python -m cbb.projection 2027   refit on every backtest season (needs cbb/output/backtest_2013_2026.csv from
+    # `python -m cbb.backtest`) and save data/projection.json for the 2027 season. Re-run after each season.
+    import sys
+    from . import evaluate
+    nxt = int(sys.argv[1])
+    out = fit(add_features(evaluate.load(2013, nxt - 1)), nxt)
+    print(f"saved {SAVED}: fitted on {out['fitted_on']}, {len(out['team_hca'])} team home edges")
