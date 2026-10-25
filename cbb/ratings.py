@@ -22,9 +22,9 @@ import pandas as pd
 
 @dataclass
 class RatingConfig:
-    half_life: float = 60.0        # days for a game's weight to halve
-    prior_games: float = 5.0       # strength of the preseason prior, in games
-    pace_prior_games: float = 5.0
+    half_life: float = 120.0       # days for a game's weight to halve (grid 2014-2019: 30-120 within 0.1 pts)
+    prior_games: float = 6.0       # strength of the preseason prior, in games (grid best: 6)
+    pace_prior_games: float = 12.0  # stronger prior on tempo helped totals in the grid
     hca_prior: float = 3.5         # home edge in points per 100 possessions per side (~2.4 pts/game each way)
     factor_prior_games: float = 8.0  # Four Factors shrink toward average (no preseason prior for them)
     fit_factors: bool = True
