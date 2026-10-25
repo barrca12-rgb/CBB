@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import os
+from multiprocessing import Pool
 
 import numpy as np
 import pandas as pd
@@ -59,7 +60,9 @@ def main():
     ap.add_argument("--start", type=int, default=2013)
     ap.add_argument("--end", type=int, default=2026)
     a = ap.parse_args()
-    b = pd.concat([season(s) for s in range(a.start, a.end + 1)])
+    # One season per worker. Run with OMP_NUM_THREADS=1 so the workers don't fight over cores.
+    with Pool(4) as pool:
+        b = pd.concat(pool.map(season, range(a.start, a.end + 1)))
     os.makedirs(OUT, exist_ok=True)
     b.to_csv(os.path.join(OUT, f"backtest_{a.start}_{a.end}.csv"), index=False)
     print(summarize(b).round(3).to_string())

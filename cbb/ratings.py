@@ -26,6 +26,14 @@ class RatingConfig:
     prior_games: float = 5.0       # strength of the preseason prior, in games
     pace_prior_games: float = 5.0
     hca_prior: float = 3.5         # home edge in points per 100 possessions per side (~2.4 pts/game each way)
+    factor_prior_games: float = 8.0  # Four Factors shrink toward average (no preseason prior for them)
+    fit_factors: bool = True
+
+
+# The Four Factors (Dean Oliver / KenPom), per team-game in data.py: eFG%, turnover rate, offensive rebound rate,
+# free-throw rate. Fit with the same opponent/venue adjustment as efficiency, so off_efg = how much better than
+# average a team shoots and def_efg = how much it holds opponents below average.
+FACTORS = ["efg", "tov_rate", "orb_rate", "ft_rate"]
 
 
 def _solve(X, y, w, lam, beta0):
@@ -71,6 +79,23 @@ def fit(tg: pd.DataFrame, asof, teams: list[int], prior: pd.DataFrame | None = N
     beta0 = np.concatenate([[y.mean() if n else 103.0, cfg.hca_prior], pr["off"], pr["def"]])
     b = _solve(X, y, w, lam, beta0) if n else beta0
 
+    # Four Factors: same design matrix, shrunk toward average.
+    factors = {}
+    if n and cfg.fit_factors:
+        XtW = X.T * w
+        A = XtW @ X
+        lamf = np.full(2 + 2 * k, cfg.factor_prior_games * wbar)
+        lamf[:2] = 1e-6
+    for f in FACTORS:
+        if not n or not cfg.fit_factors or f not in h:
+            continue
+        yf = h[f].to_numpy(dtype=float)
+        ok = np.isfinite(yf)
+        yf = np.where(ok, yf, np.nanmean(yf))
+        bf = np.linalg.solve(A + np.diag(lamf), XtW @ yf + lamf * np.r_[yf.mean(), np.zeros(1 + 2 * k)])
+        factors[f] = {"b0": bf[0], "hca": bf[1], "off": pd.Series(bf[2:2 + k], index=teams),
+                      "def": pd.Series(bf[2 + k:], index=teams)}
+
     # Pace: [p0, tempo...]; both teams add to the game's pace.
     P = np.zeros((n, 1 + k))
     P[:, 0] = 1.0
@@ -85,7 +110,7 @@ def fit(tg: pd.DataFrame, asof, teams: list[int], prior: pd.DataFrame | None = N
     return {
         "asof": asof, "games": n // 2, "b0": b[0], "hca": b[1], "p0": bp[0],
         "off": pd.Series(b[2:2 + k], index=teams), "def": pd.Series(b[2 + k:], index=teams),
-        "tempo": pd.Series(bp[1:], index=teams),
+        "tempo": pd.Series(bp[1:], index=teams), "factors": factors,
     }
 
 
@@ -99,6 +124,10 @@ def predict(r: dict, home, away, neutral) -> pd.DataFrame:
     out = pd.DataFrame({"poss": poss, "home_pts": poss * home_ppp / 100, "away_pts": poss * away_ppp / 100})
     out["margin"] = out["home_pts"] - out["away_pts"]
     out["total"] = out["home_pts"] + out["away_pts"]
+    # Expected Four Factors for each side: offense's adjusted factor against the defense's.
+    for f, fr in r.get("factors", {}).items():
+        out[f"home_{f}"] = fr["b0"] + fr["hca"] * v + fr["off"].reindex(home).to_numpy() - fr["def"].reindex(away).to_numpy()
+        out[f"away_{f}"] = fr["b0"] - fr["hca"] * v + fr["off"].reindex(away).to_numpy() - fr["def"].reindex(home).to_numpy()
     return out
 
 

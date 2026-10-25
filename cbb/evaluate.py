@@ -57,6 +57,33 @@ def load(start: int, end: int) -> pd.DataFrame:
     return b
 
 
+def final(b: pd.DataFrame) -> pd.DataFrame:
+    """Swap in the second-stage projection (projection.py) as the model's numbers. The ratings-only numbers are kept
+    as raw_margin / raw_total. The first season only trains the second stage, so it has no final numbers."""
+    from . import projection
+    w = projection.walk_forward(projection.add_features(b))
+    w["raw_margin"], w["raw_total"] = w["pred_margin"], w["pred_total"]
+    w["pred_margin"], w["pred_total"] = w["final_margin"], w["final_total"]
+    return w.dropna(subset=["pred_margin"])
+
+
+def winners(b: pd.DataFrame, mid: int) -> str:
+    """Straight-up winner % for the model, the closing-line favorite and KenPom (games with all three)."""
+    d = b.dropna(subset=["home_spread", "kp_margin"])
+    d = d[(d["margin"] != 0) & (d["home_spread"] != 0)]
+    rows = {}
+    for part, P in [(f"through {mid - 1}", d[d["season"] < mid]), (f"{mid} on", d[d["season"] >= mid]), ("all", d)]:
+        rows[part] = {"games": len(P),
+                      "model": (np.sign(P["pred_margin"]) == np.sign(P["margin"])).mean(),
+                      "line favorite": (np.sign(-P["home_spread"]) == np.sign(P["margin"])).mean(),
+                      "KenPom": (np.sign(P["kp_margin"]) == np.sign(P["margin"])).mean()}
+    df = pd.DataFrame(rows).T
+    out = ["| | games | model | line favorite | KenPom |", "|---|---:|---:|---:|---:|"]
+    for k, r in df.iterrows():
+        out.append(f"| {k} | {int(r['games']):,} | {r['model']:.1%} | {r['line favorite']:.1%} | {r['KenPom']:.1%} |")
+    return "\n".join(out)
+
+
 def fanmatch(b: pd.DataFrame) -> pd.DataFrame:
     """KenPom's predicted home margin and total for each game (orientation matched to ESPN's home team)."""
     rows = []
@@ -132,6 +159,8 @@ def report(b: pd.DataFrame, start: int, end: int) -> str:
           "games): " + (", ".join(f"{pd.Timestamp(2000, m, 1):%b} {s - (m >= 11)} ({v:.0%})"
                                   for (s, m), v in bad.items()) or "none") + ".", ""]
 
+    md += ["## Winners picked (straight up, pick'em lines excluded)", "", winners(b, mid), ""]
+
     # 1. accuracy on games that have all three
     A = L.dropna(subset=["kp_margin"])
     md += ["## Accuracy (games with a line and a KenPom prediction)", "",
@@ -142,6 +171,9 @@ def report(b: pd.DataFrame, start: int, end: int) -> str:
                                 "total MAE": (A["total"] - A["points"]).abs().mean()},
                "KenPom": {"games": len(A), "margin MAE": (A["kp_margin"] - A["margin"]).abs().mean(),
                           "total MAE": (A["kp_total"] - A["points"]).abs().mean()},
+               **({"ratings only (before 2nd stage)": {
+                   "games": len(A), "margin MAE": (A["raw_margin"] - A["margin"]).abs().mean(),
+                   "total MAE": (A["raw_total"] - A["points"]).abs().mean()}} if "raw_margin" in A else {}),
            }), ""]
 
     # 2. how much of the model's disagreement shows up in results
@@ -203,7 +235,7 @@ def main():
     ap.add_argument("--start", type=int, default=2013)
     ap.add_argument("--end", type=int, default=2026)
     a = ap.parse_args()
-    md = report(load(a.start, a.end), a.start, a.end)
+    md = report(final(load(a.start, a.end)), a.start, a.end)
     with open(REPORT, "w") as f:
         f.write(md)
     print(md)

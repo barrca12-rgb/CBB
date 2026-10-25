@@ -5,7 +5,9 @@ coefficients fit only on earlier seasons), on features known before tipoff:
 
   * the ratings model's margin / total, and the same scaled by how far into the season we are
     (early on the ratings are mostly the preseason prior)
-  * KenPom's FanMatch prediction (a second, independently built rating)
+  * KenPom's FanMatch prediction and Barttorvik's ratings as of the day before (two independent ratings)
+  * the Four Factors (eFG%, turnover rate, offensive rebound rate, free-throw rate), opponent- and venue-adjusted
+    as of game day (ratings.py): home minus away for the margin, home plus away for the total
   * rest days for each team (capped), and a back-to-back flag
   * each home team's own home-court edge, measured from earlier seasons' results vs the model
   * player availability: share of usual minutes from players who missed the team's last game (players.py)
@@ -17,11 +19,13 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from . import data, players
+from . import barttorvik, data, players
+from .ratings import FACTORS
 
-MARGIN_FEATURES = ["pred_margin", "pred_margin_x_early", "kp_margin", "kp_margin_x_early", "venue",
-                   "rest_diff", "b2b_diff", "team_hca", "miss_diff"]
-TOTAL_FEATURES = ["pred_total", "pred_total_x_early", "kp_total", "kp_total_x_early", "rest_sum", "season_avg_total"]
+MARGIN_FEATURES = ["pred_margin", "pred_margin_x_early", "kp_margin", "kp_margin_x_early", "bt_margin", "venue",
+                   "rest_diff", "b2b_diff", "team_hca", "miss_diff"] + [f"{f}_diff" for f in FACTORS]
+TOTAL_FEATURES = ["pred_total", "pred_total_x_early", "kp_total", "kp_total_x_early", "bt_total", "rest_sum",
+                  "season_avg_total"] + [f"{f}_sum" for f in FACTORS]
 
 
 def rest_days(seasons) -> pd.DataFrame:
@@ -71,6 +75,24 @@ def add_features(b: pd.DataFrame) -> pd.DataFrame:
     b["kp_total"] = b["kp_total"].fillna(b["pred_total"])
     b["kp_margin_x_early"] = b["kp_margin"] * b["early"]
     b["kp_total_x_early"] = b["kp_total"] * b["early"]
+
+    # Barttorvik starts in 2015; earlier games (and any gaps) fall back to KenPom.
+    bt = barttorvik.predict(b[["game_id", "date", "home_id", "away_id", "neutral"]])
+    b = b.merge(bt, on="game_id", how="left")
+    b["bt_margin"] = b["bt_margin"].fillna(b["kp_margin"])
+    b["bt_total"] = b["bt_total"].fillna(b["kp_total"])
+
+    # Four Factors in percentage points (eFG 0.52 -> 52) so the coefficients are readable. Before a season's
+    # first games there is nothing to fit, so they're 0 (average).
+    for f in FACTORS:
+        h, a = b.get(f"pred_home_{f}"), b.get(f"pred_away_{f}")
+        if h is None:
+            b[f"{f}_diff"] = 0.0
+            b[f"{f}_sum"] = 0.0
+            continue
+        avg = (h + a).groupby(b["season"]).transform("mean") / 2
+        b[f"{f}_diff"] = (100 * (h - a)).fillna(0)
+        b[f"{f}_sum"] = (100 * (h + a - 2 * avg)).fillna(0)
 
     # Team home edge: shrunk average of (result - model) in the team's home games minus its road games, over the
     # three previous seasons. Only earlier seasons are used.
