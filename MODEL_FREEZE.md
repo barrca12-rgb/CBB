@@ -9,7 +9,7 @@ Allowed during the freeze: fixes to data feeds, alerts, the site, the bet log an
 picked), and logging. Any exception is versioned, announced in the Discord channel the day it goes live, and noted
 here.
 
-Frozen at commit: dfb4bc7196d4f72cdeb933abdfcbc87c951122b5 (git tag model-freeze-2026-10-26)
+Frozen at commit: dfb4bc7196d4f72cdeb933abdfcbc87c951122b5
 
 File fingerprints (sha256) at the freeze:
 
