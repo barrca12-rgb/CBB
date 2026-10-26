@@ -1,0 +1,28 @@
+market  class       split  share  plays  win% at opener  win% at close  ROI% at opener  ROI% at close
+spread chased development  0.581   1939          60.252         52.778          14.778          0.745
+spread chased     holdout  0.643   1028          61.089         52.626          16.625          0.469
+spread  faded development  0.091    303          51.525         57.667          -1.590          9.991
+spread  faded     holdout  0.123    197          47.208         51.777          -9.875         -1.154
+spread stable development  0.328   1096          51.966         51.661          -0.771         -1.360
+spread stable     holdout  0.234    374          53.743         53.743           2.601          2.601
+ total chased development  0.461   3883          59.932         53.411          14.223          1.946
+ total chased     holdout  0.693   1804          58.957         50.831          12.548         -2.958
+ total  faded development  0.217   1832          48.289         55.163          -7.726          5.250
+ total  faded     holdout  0.158    411          41.849         44.526         -20.106        -14.997
+ total stable development  0.322   2717          53.878         53.703           2.821          2.496
+ total stable     holdout  0.149    387          54.005         54.005           3.101          3.101
+        feature  coef (per SD)       z
+      intercept         -0.026  -1.368
+           edge          0.181   6.928
+       is_total         -0.501 -18.137
+        month_n          0.059   2.931
+        neutral         -0.084  -4.346
+    power_teams          0.014   0.740
+abs_open_spread          0.057   2.891
+        kp_edge          0.045   2.282
+        is_over          0.483  19.133
+AUC predicting 'chased': development 0.625, holdout 0.493
+    holdout tercile  plays  actually chased  mean lv  win% at opener  win% at close  ROI% at opener  ROI% at close
+least likely chased   1401            0.685    1.807          55.000         50.678           4.996         -3.251
+             middle   1400            0.656    1.360          57.071         51.286           8.955         -2.091
+ most likely chased   1400            0.682    1.866          56.929         51.786           8.682         -1.136

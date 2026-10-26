@@ -120,3 +120,29 @@ Calibration:
 - **Run 4 (`out/e5d_neutral.txt`, declared after run 3):** a looser check for smaller swaps. Neutral-site plays
   where the model and KenPom both favour the other team are 16% of neutral plays vs 8% at home courts; excluding
   them, neutral sites still read 60.0% / 59.6%.
+
+## 2026-10-26: execution timing, which picks must be taken now (pre-registered before running)
+
+- **Plays:** the frozen rule at the opener (idea 2's construction), with the likely swapped games excluded
+  (`evaluate.swapped` rule). Seasons 2014-17 and 2024 are development; 2025-26 is the holdout.
+- **Outcome classes, from the opener-to-close move toward the bet (line value, lv):**
+  - "chased" if lv >= 1;
+  - "stable" if -1 < lv < 1;
+  - "faded" if lv <= -1.
+- **Per class:** win % graded at the opener vs at the close. The difference is the value of acting at once.
+- **Predicting "chased" from what is known when the pick is made:**
+  - edge size;
+  - market;
+  - month;
+  - neutral site;
+  - power-conference teams in the game;
+  - opening spread size;
+  - KenPom's agreement with the model's side against the opener (KenPom's edge on the same side, points);
+  - whether a total is an over.
+
+  Logistic regression fitted on development and scored on the holdout by AUC. Then: holdout picks in the top and
+  bottom thirds of predicted "chased" probability, graded at the opener vs at the close.
+- **Question answered:** which picks lose their value by waiting, and whether that can be told in advance.
+  "Never realistically available" needs timestamps (live logs from Nov 1, or the historical snapshot sample).
+- **Run 1 (`out/e6_run.txt`), reported as is.** The "chased" model's development AUC was 0.625 and its holdout
+  AUC 0.493, so it is not predictable.

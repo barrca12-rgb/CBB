@@ -103,3 +103,49 @@ Nothing else stands out: by month, conference tier, spread size and total level 
 table, opener and close, with the pregame rule above: 152 games in 2013-2026. Spreads vs the opener at the live
 cutoffs move from 57.5% to 57.3% (2015-17) and from 58.1% to 58.0% (2024-26). Totals are unchanged. No live play
 changes.
+
+## Execution timing: which picks must be taken now? (Oct 26)
+
+Opener picks by what the line did by the close (swapped records excluded), graded at the opener vs at the close
+(-110 assumed):
+
+| Spreads | Share (dev / holdout) | Opener win % (dev / holdout) | Close win % (dev / holdout) |
+|---|---|---|---|
+| Chased (close moved 1+ toward us) | 58% / 64% | 60.3% / 61.1% | 52.8% / 52.6% |
+| Stable | 33% / 23% | 52.0% / 53.7% | 51.7% / 53.7% |
+| Faded (moved 1+ away) | 9% / 12% | 51.5% / 47.2% | 57.7% / 51.8% |
+
+| Totals | Share (dev / holdout) | Opener win % (dev / holdout) | Close win % (dev / holdout) |
+|---|---|---|---|
+| Chased | 46% / 69% | 59.9% / 59.0% | 53.4% / 50.8% |
+| Stable | 32% / 15% | 53.9% / 54.0% | 53.7% / 54.0% |
+| Faded | 22% / 16% | 48.3% / 41.8% | 55.2% / 44.5% |
+
+- **The edge is almost entirely "take it now".**
+  - **Chased picks:** most picks are chased, and they win about 60% at the opener but about 52-53% at the close.
+    The market finds the same thing the model found, and the value is gone by tip.
+  - **Stable picks:** about break-even to 54% at either time.
+  - **Faded picks** (the market moved against the model) are the losers at the opener.
+- **It cannot be told in advance which picks will be chased.** A model using edge size, market, month, neutral
+  site, conference, spread size and KenPom's agreement scored AUC 0.63 in development and 0.49 (chance) on the
+  2025-26 holdout. Every pick should be treated as "act at once"; nothing is gained by waiting.
+- **Graded at the close, holdout picks are 50.7-51.8% in every predicted group.** Without the opener there is no
+  edge in this data.
+
+**What this means:** the question that decides whether the edge is real money is no longer prediction. It is
+availability: whether the opener could be bet, at what price and limit, and for how many minutes after our card
+saw it. The answer can only come from timestamps:
+- the live delay windows from Nov 1 (5-10 / 15-25 / 30-45 / 60-80 minutes);
+- the historical snapshot sample (Option B in `research/market/STEP1_REPORT.md`, about 26,000 credits, no extra
+  dollars), which would also show when openers post relative to the card's runs.
+
+**Operational gap:**
+- **Card cadence:** the card runs every 30 minutes from midnight to 8 am ET, and about every 10 minutes the rest
+  of the day.
+- **When openers post:** this preseason, openers first appeared in our feed in the evening (6-10 pm ET, only 7
+  games so far).
+- **The risk:** if in-season openers post overnight, a 30-minute gap costs part of the edge. The live logs will
+  show when openers post.
+- **The fix, and why it waits for Chad:** a 10-minute overnight cadence costs about 2,900 credits a month. It
+  changes when signals are logged, so it is a decision for Chad (forward-test protocol section 8), not a logging
+  fix.
