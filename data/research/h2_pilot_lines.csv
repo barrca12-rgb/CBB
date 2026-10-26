@@ -1,0 +1,441 @@
+game_id,snapshot_min,book,market,name,team_id,point,price,last_update
+401812411,60,draftkings,spreads_h2,Chicago St Cougars,2130.0,-0.5,-110,2026-01-03T00:55:29Z
+401812411,60,draftkings,spreads_h2,Wagner Seahawks,2681.0,0.5,-120,2026-01-03T00:55:29Z
+401812411,60,draftkings,totals_h2,Over,,77.5,-115,2026-01-03T00:55:29Z
+401812411,60,draftkings,totals_h2,Under,,77.5,-115,2026-01-03T00:55:29Z
+401823901,60,draftkings,spreads_h2,Presbyterian Blue Hose,2506.0,0.5,-125,2026-01-03T19:55:22Z
+401823901,60,draftkings,spreads_h2,South Carolina Upstate Spartans,2908.0,-0.5,-110,2026-01-03T19:55:22Z
+401823901,60,draftkings,totals_h2,Over,,72.5,-115,2026-01-03T19:55:22Z
+401823901,60,draftkings,totals_h2,Under,,72.5,-115,2026-01-03T19:55:22Z
+401830260,60,fanduel,spreads_h2,Evansville Purple Aces,339.0,-0.5,-114,2026-01-04T21:55:35Z
+401830260,60,fanduel,spreads_h2,Northern Iowa Panthers,2460.0,0.5,-114,2026-01-04T21:55:35Z
+401830260,60,fanduel,totals_h2,Over,,69.5,-115,2026-01-04T21:55:35Z
+401830260,60,fanduel,totals_h2,Under,,69.5,-110,2026-01-04T21:55:35Z
+401830260,60,draftkings,spreads_h2,Evansville Purple Aces,339.0,-0.5,-125,2026-01-04T21:55:17Z
+401830260,60,draftkings,spreads_h2,Northern Iowa Panthers,2460.0,0.5,-110,2026-01-04T21:55:17Z
+401830260,60,draftkings,totals_h2,Over,,69.5,-125,2026-01-04T21:55:17Z
+401830260,60,draftkings,totals_h2,Under,,69.5,-110,2026-01-04T21:55:17Z
+401814508,60,fanduel,spreads_h2,Northern Illinois Huskies,2459.0,1.5,-106,2026-01-07T01:54:49Z
+401814508,60,fanduel,spreads_h2,Toledo Rockets,2649.0,-1.5,-125,2026-01-07T01:54:49Z
+401814508,60,fanduel,totals_h2,Over,,84.5,-115,2026-01-07T01:54:49Z
+401814508,60,fanduel,totals_h2,Under,,84.5,-110,2026-01-07T01:54:49Z
+401814508,60,draftkings,spreads_h2,Northern Illinois Huskies,2459.0,0.5,-110,2026-01-07T01:55:47Z
+401814508,60,draftkings,spreads_h2,Toledo Rockets,2649.0,-0.5,-120,2026-01-07T01:55:47Z
+401814508,60,draftkings,totals_h2,Over,,85.5,-120,2026-01-07T01:55:47Z
+401814508,60,draftkings,totals_h2,Under,,85.5,-110,2026-01-07T01:55:47Z
+401818380,60,draftkings,spreads_h2,Denver Pioneers,2172.0,5.5,-110,2026-01-09T01:55:22Z
+401818380,60,draftkings,spreads_h2,South Dakota St Jackrabbits,2571.0,-5.5,-125,2026-01-09T01:55:22Z
+401818380,60,draftkings,totals_h2,Over,,84.5,-110,2026-01-09T01:55:22Z
+401818380,60,draftkings,totals_h2,Under,,84.5,-125,2026-01-09T01:55:22Z
+401827609,60,fanduel,spreads_h2,Baylor Bears,239.0,-0.5,-118,2026-01-10T18:55:10Z
+401827609,60,fanduel,spreads_h2,Houston Cougars,248.0,0.5,-112,2026-01-10T18:55:10Z
+401827609,60,fanduel,totals_h2,Over,,75.5,-115,2026-01-10T18:55:10Z
+401827609,60,fanduel,totals_h2,Under,,75.5,-110,2026-01-10T18:55:10Z
+401827609,60,draftkings,spreads_h2,Baylor Bears,239.0,-0.5,-130,2026-01-10T18:55:00Z
+401827609,60,draftkings,spreads_h2,Houston Cougars,248.0,0.5,-105,2026-01-10T18:55:00Z
+401827609,60,draftkings,totals_h2,Over,,76.5,-110,2026-01-10T18:55:00Z
+401827609,60,draftkings,totals_h2,Under,,76.5,-120,2026-01-10T18:55:00Z
+401814513,60,draftkings,spreads_h2,Eastern Michigan Eagles,2199.0,-0.5,-105,2026-01-10T18:55:48Z
+401814513,60,draftkings,spreads_h2,Western Michigan Broncos,2711.0,0.5,-130,2026-01-10T18:55:48Z
+401814513,60,draftkings,totals_h2,Over,,75.5,-120,2026-01-10T18:55:48Z
+401814513,60,draftkings,totals_h2,Under,,75.5,-110,2026-01-10T18:55:48Z
+401812586,60,draftkings,spreads_h2,Brown Bears,225.0,3.5,-110,2026-01-10T19:55:26Z
+401812586,60,draftkings,spreads_h2,Pennsylvania Quakers,219.0,-3.5,-125,2026-01-10T19:55:26Z
+401812586,60,draftkings,totals_h2,Over,,76.5,-115,2026-01-10T19:55:26Z
+401812586,60,draftkings,totals_h2,Under,,76.5,-115,2026-01-10T19:55:26Z
+401809318,60,draftkings,spreads_h2,Chattanooga Mocs,236.0,2.5,-110,2026-01-10T22:24:53Z
+401809318,60,draftkings,spreads_h2,Samford Bulldogs,2535.0,-2.5,-120,2026-01-10T22:24:53Z
+401809318,60,draftkings,totals_h2,Over,,81.5,-110,2026-01-10T22:24:53Z
+401809318,60,draftkings,totals_h2,Under,,81.5,-120,2026-01-10T22:24:53Z
+401808161,60,fanduel,spreads_h2,Arkansas Razorbacks,8.0,-1.5,-128,2026-01-10T23:55:08Z
+401808161,60,fanduel,spreads_h2,Auburn Tigers,2.0,1.5,-104,2026-01-10T23:55:08Z
+401808161,60,fanduel,totals_h2,Over,,88.5,-115,2026-01-10T23:55:08Z
+401808161,60,fanduel,totals_h2,Under,,88.5,-110,2026-01-10T23:55:08Z
+401823773,60,draftkings,spreads_h2,Fresno St Bulldogs,278.0,6.5,-115,2026-01-11T05:05:33Z
+401823773,60,draftkings,spreads_h2,San Diego St Aztecs,21.0,-6.5,-115,2026-01-11T05:05:33Z
+401823773,60,draftkings,totals_h2,Over,,73.5,-115,2026-01-11T05:05:33Z
+401823773,60,draftkings,totals_h2,Under,,73.5,-120,2026-01-11T05:05:33Z
+401823773,60,fanduel,spreads_h2,Fresno St Bulldogs,278.0,5.5,-118,2026-01-11T05:05:21Z
+401823773,60,fanduel,spreads_h2,San Diego St Aztecs,21.0,-5.5,-112,2026-01-11T05:05:21Z
+401823773,60,fanduel,totals_h2,Over,,74.5,-105,2026-01-11T05:05:21Z
+401823773,60,fanduel,totals_h2,Under,,74.5,-120,2026-01-11T05:05:21Z
+401828170,60,fanduel,spreads_h2,Charlotte 49ers,2429.0,-0.5,-110,2026-01-11T19:53:49Z
+401828170,60,fanduel,spreads_h2,Rice Owls,242.0,0.5,-120,2026-01-11T19:53:49Z
+401828170,60,fanduel,totals_h2,Over,,71.5,-110,2026-01-11T19:53:49Z
+401828170,60,fanduel,totals_h2,Under,,71.5,-115,2026-01-11T19:53:49Z
+401828170,60,draftkings,spreads_h2,Charlotte 49ers,2429.0,-0.5,-120,2026-01-11T19:54:53Z
+401828170,60,draftkings,spreads_h2,Rice Owls,242.0,0.5,-115,2026-01-11T19:54:53Z
+401828170,60,draftkings,totals_h2,Over,,72.5,-110,2026-01-11T19:54:53Z
+401828170,60,draftkings,totals_h2,Under,,72.5,-120,2026-01-11T19:54:53Z
+401828172,60,fanduel,spreads_h2,North Texas Mean Green,249.0,1.5,-108,2026-01-11T20:54:46Z
+401828172,60,fanduel,spreads_h2,Wichita St Shockers,2724.0,-1.5,-122,2026-01-11T20:54:46Z
+401828172,60,fanduel,totals_h2,Over,,71.5,-120,2026-01-11T20:54:46Z
+401828172,60,fanduel,totals_h2,Under,,71.5,-105,2026-01-11T20:54:46Z
+401828172,60,draftkings,spreads_h2,North Texas Mean Green,249.0,1.5,-110,2026-01-11T20:54:56Z
+401828172,60,draftkings,spreads_h2,Wichita St Shockers,2724.0,-1.5,-125,2026-01-11T20:54:56Z
+401828172,60,draftkings,totals_h2,Over,,72.5,-115,2026-01-11T20:54:56Z
+401828172,60,draftkings,totals_h2,Under,,72.5,-120,2026-01-11T20:54:56Z
+401828177,60,draftkings,spreads_h2,Rice Owls,242.0,-0.5,-110,2026-01-15T01:55:02Z
+401828177,60,draftkings,spreads_h2,UTSA Roadrunners,2636.0,0.5,-125,2026-01-15T01:55:02Z
+401828177,60,draftkings,totals_h2,Over,,76.5,-115,2026-01-15T01:55:02Z
+401828177,60,draftkings,totals_h2,Under,,76.5,-115,2026-01-15T01:55:02Z
+401804883,60,fanduel,spreads_h2,Liberty Flames,2335.0,-1.5,-108,2026-01-15T23:55:07Z
+401804883,60,fanduel,spreads_h2,New Mexico St Aggies,166.0,1.5,-122,2026-01-15T23:55:07Z
+401804883,60,fanduel,totals_h2,Over,,75.5,-110,2026-01-15T23:55:07Z
+401804883,60,fanduel,totals_h2,Under,,75.5,-115,2026-01-15T23:55:07Z
+401804883,60,draftkings,spreads_h2,Liberty Flames,2335.0,-1.5,-115,2026-01-15T23:54:54Z
+401804883,60,draftkings,spreads_h2,New Mexico St Aggies,166.0,1.5,-115,2026-01-15T23:54:54Z
+401804883,60,draftkings,totals_h2,Over,,75.5,-120,2026-01-15T23:54:54Z
+401804883,60,draftkings,totals_h2,Under,,75.5,-115,2026-01-15T23:54:54Z
+401812119,60,draftkings,spreads_h2,Maine Black Bears,311.0,7.5,-110,2026-01-16T00:55:37Z
+401812119,60,draftkings,spreads_h2,Vermont Catamounts,261.0,-7.5,-125,2026-01-16T00:55:37Z
+401812119,60,draftkings,totals_h2,Over,,69.5,-115,2026-01-16T00:55:37Z
+401812119,60,draftkings,totals_h2,Under,,69.5,-115,2026-01-16T00:55:37Z
+401806441,60,draftkings,spreads_h2,Southern Indiana Screaming Eagles,88.0,0.5,-110,2026-01-16T02:55:43Z
+401806441,60,draftkings,spreads_h2,Tennessee Tech Golden Eagles,2635.0,-0.5,-125,2026-01-16T02:55:43Z
+401806441,60,draftkings,totals_h2,Over,,76.5,-115,2026-01-16T02:55:43Z
+401806441,60,draftkings,totals_h2,Under,,76.5,-115,2026-01-16T02:55:43Z
+401817627,60,draftkings,spreads_h2,Cleveland St Vikings,325.0,4.5,-120,2026-01-17T19:55:17Z
+401817627,60,draftkings,spreads_h2,Youngstown St Penguins,2754.0,-4.5,-110,2026-01-17T19:55:17Z
+401817627,60,draftkings,totals_h2,Over,,80.5,-120,2026-01-17T19:55:17Z
+401817627,60,draftkings,totals_h2,Under,,80.5,-110,2026-01-17T19:55:17Z
+401812615,60,draftkings,spreads_h2,Harvard Crimson,108.0,-4.5,-125,2026-01-17T19:54:51Z
+401812615,60,draftkings,spreads_h2,Princeton Tigers,163.0,4.5,-110,2026-01-17T19:54:51Z
+401812615,60,draftkings,totals_h2,Over,,70.5,-110,2026-01-17T19:54:51Z
+401812615,60,draftkings,totals_h2,Under,,70.5,-125,2026-01-17T19:54:51Z
+401828378,60,draftkings,spreads_h2,La Salle Explorers,2325.0,4.5,-130,2026-01-17T20:25:50Z
+401828378,60,draftkings,spreads_h2,St. Bonaventure Bonnies,179.0,-4.5,-105,2026-01-17T20:25:50Z
+401828378,60,draftkings,totals_h2,Over,,77.5,-120,2026-01-17T20:25:50Z
+401828378,60,draftkings,totals_h2,Under,,77.5,-115,2026-01-17T20:25:50Z
+401809330,60,draftkings,spreads_h2,Mercer Bears,2382.0,-1.5,-115,2026-01-17T21:55:36Z
+401809330,60,draftkings,spreads_h2,UNC Greensboro Spartans,2430.0,1.5,-120,2026-01-17T21:55:36Z
+401809330,60,draftkings,totals_h2,Over,,80.5,-115,2026-01-17T21:55:36Z
+401809330,60,draftkings,totals_h2,Under,,80.5,-120,2026-01-17T21:55:36Z
+401807691,60,fanduel,spreads_h2,Austin Peay Governors,2046.0,1.5,-120,2026-01-18T00:54:55Z
+401807691,60,fanduel,spreads_h2,Lipscomb Bisons,288.0,-1.5,-110,2026-01-18T00:54:55Z
+401807691,60,fanduel,totals_h2,Over,,81.5,-115,2026-01-18T00:54:55Z
+401807691,60,fanduel,totals_h2,Under,,81.5,-110,2026-01-18T00:54:55Z
+401807691,60,draftkings,spreads_h2,Austin Peay Governors,2046.0,1.5,-115,2026-01-18T00:55:23Z
+401807691,60,draftkings,spreads_h2,Lipscomb Bisons,288.0,-1.5,-115,2026-01-18T00:55:23Z
+401807691,60,draftkings,totals_h2,Over,,82.5,-115,2026-01-18T00:55:23Z
+401807691,60,draftkings,totals_h2,Under,,82.5,-115,2026-01-18T00:55:23Z
+401823775,60,fanduel,spreads_h2,New Mexico Lobos,167.0,-0.5,-106,2026-01-18T01:54:34Z
+401823775,60,fanduel,spreads_h2,San Diego St Aztecs,21.0,0.5,-125,2026-01-18T01:54:34Z
+401823775,60,fanduel,totals_h2,Over,,77.5,-115,2026-01-18T01:54:34Z
+401823775,60,fanduel,totals_h2,Under,,77.5,-110,2026-01-18T01:54:34Z
+401823775,60,draftkings,spreads_h2,New Mexico Lobos,167.0,0.5,-110,2026-01-18T01:55:18Z
+401823775,60,draftkings,spreads_h2,San Diego St Aztecs,21.0,-0.5,-125,2026-01-18T01:55:18Z
+401823775,60,draftkings,totals_h2,Over,,79.5,-115,2026-01-18T01:55:18Z
+401823775,60,draftkings,totals_h2,Under,,79.5,-115,2026-01-18T01:55:18Z
+401817630,60,draftkings,spreads_h2,Green Bay Phoenix,2739.0,1.5,-120,2026-01-18T19:55:44Z
+401817630,60,draftkings,spreads_h2,Oakland Golden Grizzlies,2473.0,-1.5,-115,2026-01-18T19:55:44Z
+401817630,60,draftkings,totals_h2,Over,,79.5,-125,2026-01-18T19:55:44Z
+401817630,60,draftkings,totals_h2,Under,,79.5,-110,2026-01-18T19:55:44Z
+401817630,60,fanduel,spreads_h2,Green Bay Phoenix,2739.0,1.5,-118,2026-01-18T19:54:10Z
+401817630,60,fanduel,spreads_h2,Oakland Golden Grizzlies,2473.0,-1.5,-112,2026-01-18T19:54:10Z
+401817630,60,fanduel,totals_h2,Over,,80.5,-110,2026-01-18T19:54:10Z
+401817630,60,fanduel,totals_h2,Under,,80.5,-115,2026-01-18T19:54:10Z
+401805175,60,draftkings,spreads_h2,Tarleton State Texans,2627.0,2.5,-115,2026-01-22T01:55:39Z
+401805175,60,draftkings,spreads_h2,UT-Arlington Mavericks,250.0,-2.5,-115,2026-01-22T01:55:39Z
+401805175,60,draftkings,totals_h2,Over,,74.5,-120,2026-01-22T01:55:39Z
+401805175,60,draftkings,totals_h2,Under,,74.5,-115,2026-01-22T01:55:39Z
+401805177,60,draftkings,spreads_h2,Southern Utah Thunderbirds,253.0,9.5,-125,2026-01-22T02:25:16Z
+401805177,60,draftkings,spreads_h2,Utah Valley Wolverines,3084.0,-9.5,-110,2026-01-22T02:25:16Z
+401805177,60,draftkings,totals_h2,Over,,84.5,-120,2026-01-22T02:25:16Z
+401805177,60,draftkings,totals_h2,Under,,84.5,-115,2026-01-22T02:25:16Z
+401806452,60,draftkings,spreads_h2,SIU-Edwardsville Cougars,2565.0,-1.5,100,2026-01-23T02:55:20Z
+401806452,60,draftkings,spreads_h2,Tennessee St Tigers,2634.0,1.5,-140,2026-01-23T02:55:20Z
+401806452,60,draftkings,totals_h2,Over,,75.5,-120,2026-01-23T02:55:20Z
+401806452,60,draftkings,totals_h2,Under,,75.5,-115,2026-01-23T02:55:20Z
+401828391,60,draftkings,spreads_h2,George Mason Patriots,2244.0,-1.5,-125,2026-01-24T19:55:06Z
+401828391,60,draftkings,spreads_h2,Rhode Island Rams,227.0,1.5,-105,2026-01-24T19:55:06Z
+401828391,60,draftkings,totals_h2,Over,,73.5,-115,2026-01-24T19:55:06Z
+401828391,60,draftkings,totals_h2,Under,,73.5,-115,2026-01-24T19:55:06Z
+401812616,60,draftkings,spreads_h2,Cornell Big Red,172.0,-1.5,-125,2026-01-24T19:55:09Z
+401812616,60,draftkings,spreads_h2,Harvard Crimson,108.0,1.5,-110,2026-01-24T19:55:09Z
+401812616,60,draftkings,totals_h2,Over,,84.5,-120,2026-01-24T19:55:09Z
+401812616,60,draftkings,totals_h2,Under,,84.5,-115,2026-01-24T19:55:09Z
+401820691,60,draftkings,spreads_h2,Louisville Cardinals,97.0,-5.5,-115,2026-01-24T20:10:44Z
+401820691,60,draftkings,spreads_h2,Virginia Tech Hokies,259.0,5.5,-120,2026-01-24T20:10:44Z
+401820691,60,draftkings,totals_h2,Over,,82.5,-115,2026-01-24T20:10:44Z
+401820691,60,draftkings,totals_h2,Under,,82.5,-115,2026-01-24T20:10:44Z
+401820691,60,fanduel,spreads_h2,Louisville Cardinals,97.0,-5.5,-118,2026-01-24T20:10:08Z
+401820691,60,fanduel,spreads_h2,Virginia Tech Hokies,259.0,5.5,-112,2026-01-24T20:10:08Z
+401820691,60,fanduel,totals_h2,Over,,83.5,-120,2026-01-24T20:10:08Z
+401820691,60,fanduel,totals_h2,Under,,83.5,-105,2026-01-24T20:10:08Z
+401818398,60,draftkings,spreads_h2,North Dakota St Bison,2449.0,0.5,-115,2026-01-24T20:55:33Z
+401818398,60,draftkings,spreads_h2,Oral Roberts Golden Eagles,198.0,-0.5,-115,2026-01-24T20:55:33Z
+401818398,60,draftkings,totals_h2,Over,,74.5,-120,2026-01-24T20:55:33Z
+401818398,60,draftkings,totals_h2,Under,,74.5,-115,2026-01-24T20:55:33Z
+401808516,60,draftkings,spreads_h2,Montana St Bobcats,147.0,-2.5,-120,2026-01-25T01:55:48Z
+401808516,60,draftkings,spreads_h2,Weber State Wildcats,2692.0,2.5,-110,2026-01-25T01:55:48Z
+401808516,60,draftkings,totals_h2,Over,,80.5,-110,2026-01-25T01:55:48Z
+401808516,60,draftkings,totals_h2,Under,,80.5,-125,2026-01-25T01:55:48Z
+401808202,60,fanduel,spreads_h2,LSU Tigers,99.0,-7.5,-118,2026-01-29T00:55:32Z
+401808202,60,fanduel,spreads_h2,Mississippi St Bulldogs,344.0,7.5,-112,2026-01-29T00:55:32Z
+401808202,60,fanduel,totals_h2,Over,,79.5,-110,2026-01-29T00:55:32Z
+401808202,60,fanduel,totals_h2,Under,,79.5,-115,2026-01-29T00:55:32Z
+401808202,60,draftkings,spreads_h2,LSU Tigers,99.0,-8.5,-110,2026-01-29T00:55:36Z
+401808202,60,draftkings,spreads_h2,Mississippi St Bulldogs,344.0,8.5,-120,2026-01-29T00:55:36Z
+401808202,60,draftkings,totals_h2,Over,,80.5,-110,2026-01-29T00:55:36Z
+401808202,60,draftkings,totals_h2,Under,,80.5,-120,2026-01-29T00:55:36Z
+401822920,60,draftkings,spreads_h2,DePaul Blue Demons,305.0,-1.5,-120,2026-01-29T02:25:40Z
+401822920,60,draftkings,spreads_h2,Georgetown Hoyas,46.0,1.5,-115,2026-01-29T02:25:40Z
+401822920,60,draftkings,totals_h2,Over,,73.5,-115,2026-01-29T02:25:40Z
+401822920,60,draftkings,totals_h2,Under,,73.5,-115,2026-01-29T02:25:40Z
+401822920,60,fanduel,spreads_h2,DePaul Blue Demons,305.0,-1.5,-104,2026-01-29T02:25:28Z
+401822920,60,fanduel,spreads_h2,Georgetown Hoyas,46.0,1.5,-128,2026-01-29T02:25:28Z
+401822920,60,fanduel,totals_h2,Over,,73.5,-115,2026-01-29T02:25:28Z
+401822920,60,fanduel,totals_h2,Under,,73.5,-115,2026-01-29T02:25:28Z
+401820701,60,draftkings,spreads_h2,Miami Hurricanes,2390.0,-6.5,-115,2026-01-29T02:55:32Z
+401820701,60,draftkings,spreads_h2,Stanford Cardinal,24.0,6.5,-120,2026-01-29T02:55:32Z
+401820701,60,draftkings,totals_h2,Over,,78.5,-120,2026-01-29T02:55:32Z
+401820701,60,draftkings,totals_h2,Under,,78.5,-115,2026-01-29T02:55:32Z
+401820701,60,fanduel,spreads_h2,Miami Hurricanes,2390.0,-6.5,-128,2026-01-29T02:55:24Z
+401820701,60,fanduel,spreads_h2,Stanford Cardinal,24.0,6.5,-104,2026-01-29T02:55:24Z
+401820701,60,fanduel,totals_h2,Over,,78.5,-110,2026-01-29T02:55:24Z
+401820701,60,fanduel,totals_h2,Under,,78.5,-115,2026-01-29T02:55:24Z
+401825477,60,draftkings,spreads_h2,Oregon Ducks,2483.0,-0.5,-120,2026-01-29T04:55:10Z
+401825477,60,draftkings,spreads_h2,UCLA Bruins,26.0,0.5,-115,2026-01-29T04:55:10Z
+401825477,60,draftkings,totals_h2,Over,,71.5,-115,2026-01-29T04:55:10Z
+401825477,60,draftkings,totals_h2,Under,,71.5,-120,2026-01-29T04:55:10Z
+401825477,60,fanduel,spreads_h2,Oregon Ducks,2483.0,0.5,-120,2026-01-29T04:54:21Z
+401825477,60,fanduel,spreads_h2,UCLA Bruins,26.0,-0.5,-110,2026-01-29T04:54:21Z
+401825477,60,fanduel,totals_h2,Over,,71.5,-115,2026-01-29T04:54:21Z
+401825477,60,fanduel,totals_h2,Under,,71.5,-110,2026-01-29T04:54:21Z
+401808647,60,fanduel,spreads_h2,James Madison Dukes,256.0,6.5,-114,2026-01-30T00:54:57Z
+401808647,60,fanduel,spreads_h2,Troy Trojans,2653.0,-6.5,-114,2026-01-30T00:54:57Z
+401808647,60,fanduel,totals_h2,Over,,76.5,-105,2026-01-30T00:54:57Z
+401808647,60,fanduel,totals_h2,Under,,76.5,-120,2026-01-30T00:54:57Z
+401808647,60,draftkings,spreads_h2,James Madison Dukes,256.0,7.5,-115,2026-01-30T00:55:22Z
+401808647,60,draftkings,spreads_h2,Troy Trojans,2653.0,-7.5,-115,2026-01-30T00:55:22Z
+401808647,60,draftkings,totals_h2,Over,,76.5,-115,2026-01-30T00:55:22Z
+401808647,60,draftkings,totals_h2,Under,,76.5,-120,2026-01-30T00:55:22Z
+401808644,60,draftkings,spreads_h2,Coastal Carolina Chanticleers,324.0,2.5,-110,2026-01-30T01:55:17Z
+401808644,60,draftkings,spreads_h2,South Alabama Jaguars,6.0,-2.5,-120,2026-01-30T01:55:17Z
+401808644,60,draftkings,totals_h2,Over,,72.5,-115,2026-01-30T01:55:17Z
+401808644,60,draftkings,totals_h2,Under,,72.5,-115,2026-01-30T01:55:17Z
+401808506,60,draftkings,spreads_h2,Montana Grizzlies,149.0,4.5,-125,2026-01-30T03:55:16Z
+401808506,60,draftkings,spreads_h2,Portland St Vikings,2502.0,-4.5,-105,2026-01-30T03:55:16Z
+401808506,60,draftkings,totals_h2,Over,,75.5,-115,2026-01-30T03:55:16Z
+401808506,60,draftkings,totals_h2,Under,,75.5,-115,2026-01-30T03:55:16Z
+401808506,60,fanduel,spreads_h2,Montana Grizzlies,149.0,3.5,-118,2026-01-30T03:55:44Z
+401808506,60,fanduel,spreads_h2,Portland St Vikings,2502.0,-3.5,-112,2026-01-30T03:55:44Z
+401808506,60,fanduel,totals_h2,Over,,75.5,-105,2026-01-30T03:55:44Z
+401808506,60,fanduel,totals_h2,Under,,75.5,-120,2026-01-30T03:55:44Z
+401827653,60,fanduel,spreads_h2,Texas Tech Red Raiders,2641.0,-4.5,-118,2026-01-31T17:55:39Z
+401827653,60,fanduel,spreads_h2,UCF Knights,2116.0,4.5,-112,2026-01-31T17:55:39Z
+401827653,60,fanduel,totals_h2,Over,,84.5,-115,2026-01-31T17:55:39Z
+401827653,60,fanduel,totals_h2,Under,,84.5,-110,2026-01-31T17:55:39Z
+401827653,60,draftkings,spreads_h2,Texas Tech Red Raiders,2641.0,-5.5,-110,2026-01-31T17:55:30Z
+401827653,60,draftkings,spreads_h2,UCF Knights,2116.0,5.5,-120,2026-01-31T17:55:30Z
+401827653,60,draftkings,totals_h2,Over,,84.5,-110,2026-01-31T17:55:30Z
+401827653,60,draftkings,totals_h2,Under,,84.5,-120,2026-01-31T17:55:30Z
+401804909,60,draftkings,spreads_h2,Jacksonville St Gamecocks,55.0,0.5,-130,2026-01-31T20:55:50Z
+401804909,60,draftkings,spreads_h2,Missouri St Bears,2623.0,-0.5,-105,2026-01-31T20:55:50Z
+401804909,60,draftkings,totals_h2,Over,,72.5,-115,2026-01-31T20:55:50Z
+401804909,60,draftkings,totals_h2,Under,,72.5,-120,2026-01-31T20:55:50Z
+401808960,60,draftkings,spreads_h2,SE Louisiana Lions,2545.0,-2.5,-110,2026-01-31T23:55:03Z
+401808960,60,draftkings,spreads_h2,Stephen F. Austin Lumberjacks,2617.0,2.5,-125,2026-01-31T23:55:03Z
+401808960,60,draftkings,totals_h2,Over,,71.5,-110,2026-01-31T23:55:03Z
+401808960,60,draftkings,totals_h2,Under,,71.5,-120,2026-01-31T23:55:03Z
+401808507,60,fanduel,spreads_h2,Montana Grizzlies,149.0,-5.5,-114,2026-02-01T03:55:30Z
+401808507,60,fanduel,spreads_h2,Sacramento St Hornets,16.0,5.5,-114,2026-02-01T03:55:30Z
+401808507,60,fanduel,totals_h2,Over,,81.5,-110,2026-02-01T03:55:30Z
+401808507,60,fanduel,totals_h2,Under,,81.5,-115,2026-02-01T03:55:30Z
+401808507,60,draftkings,spreads_h2,Montana Grizzlies,149.0,-5.5,-115,2026-02-01T03:55:44Z
+401808507,60,draftkings,spreads_h2,Sacramento St Hornets,16.0,5.5,-120,2026-02-01T03:55:44Z
+401808507,60,draftkings,totals_h2,Over,,80.5,-115,2026-02-01T03:55:44Z
+401808507,60,draftkings,totals_h2,Under,,80.5,-120,2026-02-01T03:55:44Z
+401809348,60,draftkings,spreads_h2,Chattanooga Mocs,236.0,-0.5,-110,2026-02-01T18:55:44Z
+401809348,60,draftkings,spreads_h2,Furman Paladins,231.0,0.5,-120,2026-02-01T18:55:44Z
+401809348,60,draftkings,totals_h2,Over,,78.5,-115,2026-02-01T18:55:44Z
+401809348,60,draftkings,totals_h2,Under,,78.5,-120,2026-02-01T18:55:44Z
+401809348,60,fanduel,spreads_h2,Chattanooga Mocs,236.0,-0.5,-110,2026-02-01T18:54:58Z
+401809348,60,fanduel,spreads_h2,Furman Paladins,231.0,0.5,-120,2026-02-01T18:54:58Z
+401809348,60,fanduel,totals_h2,Over,,77.5,-105,2026-02-01T18:54:58Z
+401809348,60,fanduel,totals_h2,Under,,77.5,-120,2026-02-01T18:54:58Z
+401828411,60,fanduel,spreads_h2,Duquesne Dukes,2184.0,7.5,-102,2026-02-05T00:55:10Z
+401828411,60,fanduel,spreads_h2,George Mason Patriots,2244.0,-7.5,-130,2026-02-05T00:55:10Z
+401828411,60,fanduel,totals_h2,Over,,75.5,-120,2026-02-05T00:55:10Z
+401828411,60,fanduel,totals_h2,Under,,75.5,-105,2026-02-05T00:55:10Z
+401828411,60,draftkings,spreads_h2,Duquesne Dukes,2184.0,7.5,-120,2026-02-05T00:55:10Z
+401828411,60,draftkings,spreads_h2,George Mason Patriots,2244.0,-7.5,-110,2026-02-05T00:55:10Z
+401828411,60,draftkings,totals_h2,Over,,76.5,-110,2026-02-05T00:55:10Z
+401828411,60,draftkings,totals_h2,Under,,76.5,-120,2026-02-05T00:55:10Z
+401828210,60,fanduel,spreads_h2,Florida Atlantic Owls,2226.0,3.5,-112,2026-02-05T00:55:32Z
+401828210,60,fanduel,spreads_h2,Tulsa Golden Hurricane,202.0,-3.5,-118,2026-02-05T00:55:32Z
+401828210,60,fanduel,totals_h2,Over,,83.5,-115,2026-02-05T00:55:32Z
+401828210,60,fanduel,totals_h2,Under,,83.5,-115,2026-02-05T00:55:32Z
+401828210,60,draftkings,spreads_h2,Florida Atlantic Owls,2226.0,4.5,-115,2026-02-05T00:55:29Z
+401828210,60,draftkings,spreads_h2,Tulsa Golden Hurricane,202.0,-4.5,-120,2026-02-05T00:55:29Z
+401828210,60,draftkings,totals_h2,Over,,83.5,-120,2026-02-05T00:55:29Z
+401828210,60,draftkings,totals_h2,Under,,83.5,-115,2026-02-05T00:55:29Z
+401829227,60,fanduel,spreads_h2,Gonzaga Bulldogs,2250.0,-15.5,-110,2026-02-05T03:55:32Z
+401829227,60,fanduel,spreads_h2,Portland Pilots,2501.0,15.5,-120,2026-02-05T03:55:32Z
+401829227,60,fanduel,totals_h2,Over,,80.5,-120,2026-02-05T03:55:32Z
+401829227,60,fanduel,totals_h2,Under,,80.5,-105,2026-02-05T03:55:32Z
+401829227,60,draftkings,spreads_h2,Gonzaga Bulldogs,2250.0,-15.5,-105,2026-02-05T03:54:59Z
+401829227,60,draftkings,spreads_h2,Portland Pilots,2501.0,15.5,-125,2026-02-05T03:54:59Z
+401829227,60,draftkings,totals_h2,Over,,82.5,-110,2026-02-05T03:54:59Z
+401829227,60,draftkings,totals_h2,Under,,82.5,-120,2026-02-05T03:54:59Z
+401845838,60,fanduel,spreads_h2,Coastal Carolina Chanticleers,324.0,-1.5,-106,2026-02-07T18:55:48Z
+401845838,60,fanduel,spreads_h2,Massachusetts Minutemen,113.0,1.5,-125,2026-02-07T18:55:48Z
+401845838,60,fanduel,totals_h2,Over,,74.5,-115,2026-02-07T18:55:48Z
+401845838,60,fanduel,totals_h2,Under,,74.5,-115,2026-02-07T18:55:48Z
+401845838,60,draftkings,spreads_h2,Coastal Carolina Chanticleers,324.0,-0.5,-115,2026-02-07T18:55:48Z
+401845838,60,draftkings,spreads_h2,Massachusetts Minutemen,113.0,0.5,-115,2026-02-07T18:55:48Z
+401845838,60,draftkings,totals_h2,Over,,76.5,-115,2026-02-07T18:55:48Z
+401845838,60,draftkings,totals_h2,Under,,76.5,-115,2026-02-07T18:55:48Z
+401845843,60,draftkings,spreads_h2,Marshall Thundering Herd,276.0,-4.5,-125,2026-02-07T21:55:46Z
+401845843,60,draftkings,spreads_h2,Miami (OH) RedHawks,193.0,4.5,-110,2026-02-07T21:55:46Z
+401845843,60,draftkings,totals_h2,Over,,82.5,-120,2026-02-07T21:55:46Z
+401845843,60,draftkings,totals_h2,Under,,82.5,-110,2026-02-07T21:55:46Z
+401845843,60,fanduel,spreads_h2,Marshall Thundering Herd,276.0,-4.5,-106,2026-02-07T21:55:51Z
+401845843,60,fanduel,spreads_h2,Miami (OH) RedHawks,193.0,4.5,-125,2026-02-07T21:55:51Z
+401845843,60,fanduel,totals_h2,Over,,83.5,-120,2026-02-07T21:55:51Z
+401845843,60,fanduel,totals_h2,Under,,83.5,-105,2026-02-07T21:55:51Z
+401812619,60,draftkings,spreads_h2,Dartmouth Big Green,159.0,1.5,-120,2026-02-07T22:55:19Z
+401812619,60,draftkings,spreads_h2,Harvard Crimson,108.0,-1.5,-115,2026-02-07T22:55:19Z
+401812619,60,draftkings,totals_h2,Over,,73.5,-110,2026-02-07T22:55:19Z
+401812619,60,draftkings,totals_h2,Under,,73.5,-125,2026-02-07T22:55:19Z
+401829688,60,draftkings,spreads_h2,Alcorn St Braves,2016.0,-0.5,-120,2026-02-08T00:25:21Z
+401829688,60,draftkings,spreads_h2,Arkansas-Pine Bluff Golden Lions,2029.0,0.5,-110,2026-02-08T00:25:21Z
+401829688,60,draftkings,totals_h2,Over,,76.5,-115,2026-02-08T00:25:21Z
+401829688,60,draftkings,totals_h2,Under,,76.5,-120,2026-02-08T00:25:21Z
+401820568,60,draftkings,spreads_h2,Air Force Falcons,2005.0,8.5,-115,2026-02-08T01:54:58Z
+401820568,60,draftkings,spreads_h2,San Diego St Aztecs,21.0,-8.5,-115,2026-02-08T01:54:58Z
+401820568,60,draftkings,totals_h2,Over,,73.5,-125,2026-02-08T01:54:58Z
+401820568,60,draftkings,totals_h2,Under,,73.5,-110,2026-02-08T01:54:58Z
+401809367,60,draftkings,spreads_h2,The Citadel Bulldogs,2643.0,0.5,-115,2026-02-11T23:55:45Z
+401809367,60,draftkings,spreads_h2,Western Carolina Catamounts,2717.0,-0.5,-115,2026-02-11T23:55:45Z
+401809367,60,draftkings,totals_h2,Over,,75.5,-120,2026-02-11T23:55:45Z
+401809367,60,draftkings,totals_h2,Under,,75.5,-115,2026-02-11T23:55:45Z
+401804926,60,fanduel,spreads_h2,Kennesaw St Owls,338.0,0.5,-125,2026-02-13T00:25:17Z
+401804926,60,fanduel,spreads_h2,Middle Tennessee Blue Raiders,2393.0,-0.5,-106,2026-02-13T00:25:17Z
+401804926,60,fanduel,totals_h2,Over,,79.5,-115,2026-02-13T00:25:17Z
+401804926,60,fanduel,totals_h2,Under,,79.5,-110,2026-02-13T00:25:17Z
+401804926,60,draftkings,spreads_h2,Kennesaw St Owls,338.0,-0.5,-110,2026-02-13T00:25:08Z
+401804926,60,draftkings,spreads_h2,Middle Tennessee Blue Raiders,2393.0,0.5,-125,2026-02-13T00:25:08Z
+401804926,60,draftkings,totals_h2,Over,,79.5,-120,2026-02-13T00:25:08Z
+401804926,60,draftkings,totals_h2,Under,,79.5,-115,2026-02-13T00:25:08Z
+401808239,60,fanduel,spreads_h2,Georgia Bulldogs,61.0,0.5,-114,2026-02-14T21:24:52Z
+401808239,60,fanduel,spreads_h2,Oklahoma Sooners,201.0,-0.5,-114,2026-02-14T21:24:52Z
+401808239,60,fanduel,totals_h2,Over,,85.5,-110,2026-02-14T21:24:52Z
+401808239,60,fanduel,totals_h2,Under,,85.5,-115,2026-02-14T21:24:52Z
+401808239,60,draftkings,spreads_h2,Georgia Bulldogs,61.0,0.5,-110,2026-02-14T21:25:20Z
+401808239,60,draftkings,spreads_h2,Oklahoma Sooners,201.0,-0.5,-125,2026-02-14T21:25:20Z
+401808239,60,draftkings,totals_h2,Over,,86.5,-110,2026-02-14T21:25:20Z
+401808239,60,draftkings,totals_h2,Under,,86.5,-120,2026-02-14T21:25:20Z
+401825519,60,draftkings,spreads_h2,Maryland Terrapins,120.0,0.5,-115,2026-02-15T17:54:31Z
+401825519,60,draftkings,spreads_h2,Rutgers Scarlet Knights,164.0,-0.5,-115,2026-02-15T17:54:31Z
+401825519,60,draftkings,totals_h2,Over,,76.5,-120,2026-02-15T17:54:31Z
+401825519,60,draftkings,totals_h2,Under,,76.5,-115,2026-02-15T17:54:31Z
+401829690,60,draftkings,spreads_h2,Alcorn St Braves,2016.0,-0.5,-120,2026-02-17T01:55:01Z
+401829690,60,draftkings,spreads_h2,Florida A&M Rattlers,50.0,0.5,-115,2026-02-17T01:55:01Z
+401829690,60,draftkings,totals_h2,Over,,73.5,-115,2026-02-17T01:55:01Z
+401829690,60,draftkings,totals_h2,Under,,73.5,-120,2026-02-17T01:55:01Z
+401829690,60,fanduel,spreads_h2,Alcorn St Braves,2016.0,-0.5,-125,2026-02-17T01:54:50Z
+401829690,60,fanduel,spreads_h2,Florida A&M Rattlers,50.0,0.5,-106,2026-02-17T01:54:50Z
+401829690,60,fanduel,totals_h2,Over,,73.5,-120,2026-02-17T01:54:50Z
+401829690,60,fanduel,totals_h2,Under,,73.5,-105,2026-02-17T01:54:50Z
+401829318,60,draftkings,spreads_h2,Nevada Wolf Pack,2440.0,-10.5,-120,2026-02-18T03:55:18Z
+401829318,60,draftkings,spreads_h2,San José St Spartans,23.0,10.5,-115,2026-02-18T03:55:18Z
+401829318,60,draftkings,totals_h2,Over,,76.5,-110,2026-02-18T03:55:18Z
+401829318,60,draftkings,totals_h2,Under,,76.5,-125,2026-02-18T03:55:18Z
+401829318,60,fanduel,spreads_h2,Nevada Wolf Pack,2440.0,-9.5,-114,2026-02-18T03:55:43Z
+401829318,60,fanduel,spreads_h2,San José St Spartans,23.0,9.5,-114,2026-02-18T03:55:43Z
+401829318,60,fanduel,totals_h2,Over,,77.5,-120,2026-02-18T03:55:43Z
+401829318,60,fanduel,totals_h2,Under,,77.5,-105,2026-02-18T03:55:43Z
+401828234,60,fanduel,spreads_h2,East Carolina Pirates,151.0,3.5,-118,2026-02-19T00:55:21Z
+401828234,60,fanduel,spreads_h2,Wichita St Shockers,2724.0,-3.5,-114,2026-02-19T00:55:21Z
+401828234,60,fanduel,totals_h2,Over,,79.5,-105,2026-02-19T00:55:21Z
+401828234,60,fanduel,totals_h2,Under,,79.5,-120,2026-02-19T00:55:21Z
+401828234,60,draftkings,spreads_h2,East Carolina Pirates,151.0,4.5,-125,2026-02-19T00:55:46Z
+401828234,60,draftkings,spreads_h2,Wichita St Shockers,2724.0,-4.5,-105,2026-02-19T00:55:46Z
+401828234,60,draftkings,totals_h2,Over,,79.5,-120,2026-02-19T00:55:46Z
+401828234,60,draftkings,totals_h2,Under,,79.5,-115,2026-02-19T00:55:46Z
+401808676,60,draftkings,spreads_h2,Troy Trojans,2653.0,-12.5,-110,2026-02-19T01:25:41Z
+401808676,60,draftkings,spreads_h2,UL Monroe Warhawks,2433.0,12.5,-125,2026-02-19T01:25:41Z
+401808676,60,draftkings,totals_h2,Over,,80.5,-110,2026-02-19T01:25:41Z
+401808676,60,draftkings,totals_h2,Under,,80.5,-120,2026-02-19T01:25:41Z
+401808680,60,draftkings,spreads_h2,South Alabama Jaguars,6.0,-4.5,-105,2026-02-20T01:55:42Z
+401808680,60,draftkings,spreads_h2,Texas State Bobcats,326.0,4.5,-125,2026-02-20T01:55:42Z
+401808680,60,draftkings,totals_h2,Over,,71.5,-125,2026-02-20T01:55:42Z
+401808680,60,draftkings,totals_h2,Under,,71.5,-110,2026-02-20T01:55:42Z
+401820755,60,fanduel,spreads_h2,Clemson Tigers,228.0,-3.5,-125,2026-02-21T17:55:04Z
+401820755,60,fanduel,spreads_h2,Florida St Seminoles,52.0,3.5,-106,2026-02-21T17:55:04Z
+401820755,60,fanduel,totals_h2,Over,,76.5,-105,2026-02-21T17:55:04Z
+401820755,60,fanduel,totals_h2,Under,,76.5,-120,2026-02-21T17:55:04Z
+401820755,60,draftkings,spreads_h2,Clemson Tigers,228.0,-4.5,-120,2026-02-21T17:55:45Z
+401820755,60,draftkings,spreads_h2,Florida St Seminoles,52.0,4.5,-110,2026-02-21T17:55:45Z
+401820755,60,draftkings,totals_h2,Over,,76.5,-120,2026-02-21T17:55:45Z
+401820755,60,draftkings,totals_h2,Under,,76.5,-110,2026-02-21T17:55:45Z
+401828440,60,fanduel,spreads_h2,La Salle Explorers,2325.0,4.5,-114,2026-02-21T20:25:07Z
+401828440,60,fanduel,spreads_h2,Rhode Island Rams,227.0,-4.5,-114,2026-02-21T20:25:07Z
+401828440,60,fanduel,totals_h2,Over,,73.5,-110,2026-02-21T20:25:07Z
+401828440,60,fanduel,totals_h2,Under,,73.5,-120,2026-02-21T20:25:07Z
+401808251,60,fanduel,spreads_h2,Georgia Bulldogs,61.0,1.5,-118,2026-02-21T21:24:56Z
+401808251,60,fanduel,spreads_h2,Texas Longhorns,251.0,-1.5,-112,2026-02-21T21:24:56Z
+401808251,60,fanduel,totals_h2,Over,,85.5,-120,2026-02-21T21:24:56Z
+401808251,60,fanduel,totals_h2,Under,,85.5,-105,2026-02-21T21:24:56Z
+401808251,60,draftkings,spreads_h2,Georgia Bulldogs,61.0,1.5,-110,2026-02-21T21:25:48Z
+401808251,60,draftkings,spreads_h2,Texas Longhorns,251.0,-1.5,-120,2026-02-21T21:25:48Z
+401808251,60,draftkings,totals_h2,Over,,85.5,-120,2026-02-21T21:25:48Z
+401808251,60,draftkings,totals_h2,Under,,85.5,-110,2026-02-21T21:25:48Z
+401808683,60,draftkings,spreads_h2,Georgia St Panthers,2247.0,-1.5,-120,2026-02-21T21:50:37Z
+401808683,60,draftkings,spreads_h2,James Madison Dukes,256.0,1.5,-115,2026-02-21T21:50:37Z
+401808683,60,draftkings,totals_h2,Over,,74.5,-110,2026-02-21T21:50:37Z
+401808683,60,draftkings,totals_h2,Under,,74.5,-120,2026-02-21T21:50:37Z
+401812164,60,draftkings,spreads_h2,Maine Black Bears,311.0,2.5,-115,2026-02-21T21:55:32Z
+401812164,60,draftkings,spreads_h2,New Hampshire Wildcats,160.0,-2.5,-115,2026-02-21T21:55:32Z
+401812164,60,draftkings,totals_h2,Over,,72.5,-115,2026-02-21T21:55:32Z
+401812164,60,draftkings,totals_h2,Under,,72.5,-115,2026-02-21T21:55:32Z
+401809136,60,draftkings,spreads_h2,UC Davis Aggies,302.0,-0.5,-115,2026-02-21T22:55:10Z
+401809136,60,draftkings,spreads_h2,UC Riverside Highlanders,27.0,0.5,-115,2026-02-21T22:55:10Z
+401809136,60,draftkings,totals_h2,Over,,78.5,-125,2026-02-21T22:55:10Z
+401809136,60,draftkings,totals_h2,Under,,78.5,-110,2026-02-21T22:55:10Z
+401822955,60,fanduel,spreads_h2,DePaul Blue Demons,305.0,-2.5,-112,2026-02-22T02:10:34Z
+401822955,60,fanduel,spreads_h2,Providence Friars,2507.0,2.5,-118,2026-02-22T02:10:34Z
+401822955,60,fanduel,totals_h2,Over,,80.5,-105,2026-02-22T02:10:34Z
+401822955,60,fanduel,totals_h2,Under,,80.5,-120,2026-02-22T02:10:34Z
+401822955,60,draftkings,spreads_h2,DePaul Blue Demons,305.0,-2.5,-110,2026-02-22T02:10:23Z
+401822955,60,draftkings,spreads_h2,Providence Friars,2507.0,2.5,-125,2026-02-22T02:10:23Z
+401822955,60,draftkings,totals_h2,Over,,80.5,-115,2026-02-22T02:10:23Z
+401822955,60,draftkings,totals_h2,Under,,80.5,-115,2026-02-22T02:10:23Z
+401808509,60,draftkings,spreads_h2,Montana Grizzlies,149.0,-3.5,-110,2026-02-22T03:24:52Z
+401808509,60,draftkings,spreads_h2,Weber State Wildcats,2692.0,3.5,-120,2026-02-22T03:24:52Z
+401808509,60,draftkings,totals_h2,Over,,79.5,-120,2026-02-22T03:24:52Z
+401808509,60,draftkings,totals_h2,Under,,79.5,-115,2026-02-22T03:24:52Z
+401822959,60,fanduel,spreads_h2,St. John's Red Storm,2599.0,-1.5,-114,2026-02-26T00:55:49Z
+401822959,60,fanduel,spreads_h2,UConn Huskies,41.0,1.5,-114,2026-02-26T00:55:49Z
+401822959,60,fanduel,totals_h2,Over,,75.5,-120,2026-02-26T00:55:49Z
+401822959,60,fanduel,totals_h2,Under,,75.5,-105,2026-02-26T00:55:49Z
+401825542,60,fanduel,spreads_h2,Oregon Ducks,2483.0,2.5,-112,2026-02-26T04:55:47Z
+401825542,60,fanduel,spreads_h2,Wisconsin Badgers,275.0,-2.5,-118,2026-02-26T04:55:47Z
+401825542,60,fanduel,totals_h2,Over,,80.5,-105,2026-02-26T04:55:47Z
+401825542,60,fanduel,totals_h2,Under,,80.5,-120,2026-02-26T04:55:47Z
+401825542,60,draftkings,spreads_h2,Oregon Ducks,2483.0,3.5,-105,2026-02-26T04:55:17Z
+401825542,60,draftkings,spreads_h2,Wisconsin Badgers,275.0,-3.5,-125,2026-02-26T04:55:17Z
+401825542,60,draftkings,totals_h2,Over,,81.5,-120,2026-02-26T04:55:17Z
+401825542,60,draftkings,totals_h2,Under,,81.5,-115,2026-02-26T04:55:17Z
+401825543,60,draftkings,spreads_h2,Michigan St Spartans,127.0,3.5,-110,2026-02-27T01:54:57Z
+401825543,60,draftkings,spreads_h2,Purdue Boilermakers,2509.0,-3.5,-125,2026-02-27T01:54:57Z
+401825543,60,draftkings,totals_h2,Over,,76.5,-125,2026-02-27T01:54:57Z
+401825543,60,draftkings,totals_h2,Under,,76.5,-110,2026-02-27T01:54:57Z
+401808267,60,fanduel,spreads_h2,Georgia Bulldogs,61.0,-4.5,-110,2026-02-28T21:25:16Z
+401808267,60,fanduel,spreads_h2,South Carolina Gamecocks,2579.0,4.5,-120,2026-02-28T21:25:16Z
+401808267,60,fanduel,totals_h2,Over,,83.5,-105,2026-02-28T21:25:16Z
+401808267,60,fanduel,totals_h2,Under,,83.5,-120,2026-02-28T21:25:16Z
+401808267,60,draftkings,spreads_h2,Georgia Bulldogs,61.0,-3.5,-110,2026-02-28T21:24:57Z
+401808267,60,draftkings,spreads_h2,South Carolina Gamecocks,2579.0,3.5,-125,2026-02-28T21:24:57Z
+401808267,60,draftkings,totals_h2,Over,,83.5,-115,2026-02-28T21:24:57Z
+401808267,60,draftkings,totals_h2,Under,,83.5,-115,2026-02-28T21:24:57Z
+401827708,60,fanduel,spreads_h2,Arizona St Sun Devils,9.0,-1.5,-118,2026-02-28T21:25:38Z
+401827708,60,fanduel,spreads_h2,Utah Utes,254.0,1.5,-112,2026-02-28T21:25:38Z
+401827708,60,fanduel,totals_h2,Over,,76.5,-120,2026-02-28T21:25:38Z
+401827708,60,fanduel,totals_h2,Under,,76.5,-105,2026-02-28T21:25:38Z
+401827708,60,draftkings,spreads_h2,Arizona St Sun Devils,9.0,-1.5,-110,2026-02-28T21:24:52Z
+401827708,60,draftkings,spreads_h2,Utah Utes,254.0,1.5,-125,2026-02-28T21:24:52Z
+401827708,60,draftkings,totals_h2,Over,,77.5,-125,2026-02-28T21:24:52Z
+401827708,60,draftkings,totals_h2,Under,,77.5,-110,2026-02-28T21:24:52Z
