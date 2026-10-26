@@ -1,0 +1,31 @@
+variant,market,seasons,plays,win%,ROI%@-110,mean move our way,same plays win% at close,rule,crews
+original cleaning (uses the later close; comparison only),spread,2015-2017,1981,57.57,9.68,1.26,53.2,close,as recorded
+original cleaning (uses the later close; comparison only),spread,2024-2026,2229,57.77,10.25,1.07,53.78,close,as recorded
+original cleaning (uses the later close; comparison only),total,2015-2017,3823,58.36,11.23,1.22,55.07,close,as recorded
+original cleaning (uses the later close; comparison only),total,2024-2026,4256,57.39,9.53,1.45,53.47,close,as recorded
+original cleaning (uses the later close; comparison only),total,2015-2017,3612,57.94,10.49,1.39,54.74,close,0 at the open
+original cleaning (uses the later close; comparison only),total,2024-2026,3993,56.22,7.3,1.59,51.93,close,0 at the open
+no orientation check (plausibility drop only),spread,2015-2017,2027,57.68,9.88,1.35,53.08,none,as recorded
+no orientation check (plausibility drop only),spread,2024-2026,2361,58.73,12.09,1.54,53.86,none,as recorded
+no orientation check (plausibility drop only),total,2015-2017,3822,58.35,11.21,1.18,55.06,none,as recorded
+no orientation check (plausibility drop only),total,2024-2026,4256,57.39,9.53,1.45,53.47,none,as recorded
+no orientation check (plausibility drop only),total,2015-2017,3611,57.93,10.47,1.35,54.73,none,0 at the open
+no orientation check (plausibility drop only),total,2024-2026,3993,56.22,7.3,1.59,51.93,none,0 at the open
+moneyline orientation: mis-oriented openers corrected,spread,2015-2017,2039,57.51,9.56,1.33,53.06,flip,as recorded
+moneyline orientation: mis-oriented openers corrected,spread,2024-2026,2297,58.06,10.8,1.16,53.84,flip,as recorded
+moneyline orientation: mis-oriented openers corrected,total,2015-2017,3822,58.35,11.21,1.18,55.06,flip,as recorded
+moneyline orientation: mis-oriented openers corrected,total,2024-2026,4256,57.39,9.53,1.45,53.47,flip,as recorded
+moneyline orientation: mis-oriented openers corrected,total,2015-2017,3611,57.93,10.47,1.35,54.73,flip,0 at the open
+moneyline orientation: mis-oriented openers corrected,total,2024-2026,3993,56.22,7.3,1.59,51.93,flip,0 at the open
+moneyline orientation: mis-oriented openers dropped,spread,2015-2017,1987,57.53,9.59,1.29,53.11,drop,as recorded
+moneyline orientation: mis-oriented openers dropped,spread,2024-2026,2253,57.95,10.6,1.11,53.91,drop,as recorded
+moneyline orientation: mis-oriented openers dropped,total,2015-2017,3822,58.35,11.21,1.18,55.06,drop,as recorded
+moneyline orientation: mis-oriented openers dropped,total,2024-2026,4256,57.39,9.53,1.45,53.47,drop,as recorded
+moneyline orientation: mis-oriented openers dropped,total,2015-2017,3611,57.93,10.47,1.35,54.73,drop,0 at the open
+moneyline orientation: mis-oriented openers dropped,total,2024-2026,3993,56.22,7.3,1.59,51.93,drop,0 at the open
+moneyline orientation: mis-oriented and uncheckable openers dropped,spread,2015-2017,1560,57.74,10.0,1.22,53.12,drop_residue,as recorded
+moneyline orientation: mis-oriented and uncheckable openers dropped,spread,2024-2026,2147,57.99,10.67,1.09,53.78,drop_residue,as recorded
+moneyline orientation: mis-oriented and uncheckable openers dropped,total,2015-2017,3822,58.35,11.21,1.18,55.06,drop_residue,as recorded
+moneyline orientation: mis-oriented and uncheckable openers dropped,total,2024-2026,4256,57.39,9.53,1.45,53.47,drop_residue,as recorded
+moneyline orientation: mis-oriented and uncheckable openers dropped,total,2015-2017,3611,57.93,10.47,1.35,54.73,drop_residue,0 at the open
+moneyline orientation: mis-oriented and uncheckable openers dropped,total,2024-2026,3993,56.22,7.3,1.59,51.93,drop_residue,0 at the open

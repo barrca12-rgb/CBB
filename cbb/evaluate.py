@@ -26,40 +26,60 @@ BREAKEVEN = 0.5238  # -110
 
 SUMMARY = """## Summary
 
+**Promising historical results; live profitability and execution remain unverified.** The 2026-27 forward test
+(FORWARD_TEST_PROTOCOL.md) is the evidence that counts; these tables come from seasons reused to design the model.
+
 Model: ratings with 3-point luck regressed, plus KenPom, Barttorvik, Four Factors, rest, home edge, missing
 players, market ratings from earlier closing lines, altitude, and referee crews.
 
-| | Result | Bets |
+Against the opener at the live card's cutoffs (spread edge 2.5+, total edge 3+; audit/b9_item7.py):
+
+| | 2015-2017 | 2024-2026 |
 |---|---:|---:|
-| **ATS vs opening line, edge 3+, 2024-2026** | **58.9%** | 1,254 |
-| **Over/under vs opening line, edge 4+, 2024-2026** (crew unknown at the open: 56.1% without referees) | 59.6% | 2,258 |
+| Spreads vs the opener, openers oriented by their own moneylines | 57.5% (2,039) | 58.1% (2,297) |
+| Totals vs the opener, referee crews unknown at the open (inputs 0, weights unchanged) | 57.9% (3,611) | 56.2% (3,993) |
+
+The spreads row sits in a **historical spread filtering-sensitivity range of about 56-58.7%**. That range spans
+the two opener seasons sets above, the opener-orientation rules (57.5-58.7%: correcting, dropping, or dropping
+uncheckable openers; 58.7% is 2024-26 with no orientation check, which is not stronger evidence), and the model
+timing variants in audit/AUDIT_v2.md (56.2-57.6%). It is not a confidence interval, an expected live win rate, or
+a result for totals.
+
+| Against the closing line | Result | Bets |
+|---|---:|---:|
 | ATS vs closing line, edge 3+, 2020-2026 | 53.6% | 3,347 |
-| **Over/under vs closing line, edge 4+, 2020-2026** | **54.7%** | 6,323 |
+| Over/under vs closing line, edge 4+, 2020-2026 | 54.7% | 6,323 |
 | Average miss on margin, 2020-2026 (model / closing line) | 8.88 / 8.84 | |
 | Average miss on total, 2020-2026 (model / closing line) | 13.09 / 13.00 | |
 
 Break-even at -110 is 52.4%. Closing lines exclude projection services listed as books (accuscore and others, Oct
-2026 cleanup). Neutral-site spreads bet from 2.5 points live (see run_day.py).
+2026 cleanup).
 
-* **Opening lines are the edge** on spreads and totals. Referee crews usually aren't posted when openers are, so
-  the realistic opener number for totals is ~56%.
-* **Closing lines:** referee crews took totals from 52.4% to 54.4% (positive in 8 of 11 seasons, but weaker
-  lately: 2024 55.3%, 2025 47.6%, 2026 53.0%). Spreads at the close are just above break-even.
-* **What moved it:** 3-point luck regression (spreads at the opener 57.5% -> 58.2%), market ratings and altitude
-  (-> 58.6%), referees (totals at the close 52.4% -> 54.4%), KenPom + Barttorvik preseason prior (Oct 2026: line
-  value at the opener up in November and overall; spreads at the opener 58.7% -> 58.9%). Tested and left out:
-  free-throw luck, blowout weighting, time zones, height/experience/continuity, production-weighted absences.
-* **Caveats:** openers carry low limits; openers exist only for 2014-2017 and 2024-2026; data cleaning removed
-  several fake 70-85% edges, so treat anything above ~60% with suspicion."""
+* **Openers:** since Oct 26, 2026 each opener is checked against the moneylines recorded with it (the shorter
+  moneyline marks the favourite). An opener that favours the other team is corrected; nothing uses the later
+  close. Openers within 1 point or without moneylines cannot be checked and are kept (counts in
+  audit/out/item7.md). The earlier rule dropped openers that sat nearer the mirrored close.
+* **Referees:** crews are usually posted near tip, after the openers, so opener tables for totals use crew inputs
+  of 0 under the existing weights (no refit). With crews as recorded, totals vs the opener read 58.4% / 57.4%.
+* **Caveats:** openers carry low limits; openers exist only for 2014-2017 and 2024-2026; historical opener plays
+  were not priced, timed or filled; data cleaning removed several fake 70-85% edges, so treat anything above
+  ~60% with suspicion."""
 
 
-def load(start: int, end: int) -> pd.DataFrame:
+OPEN_META = os.path.join(os.path.dirname(__file__), "..", "audit", "out", "espn_open_meta_{}.csv")
+
+
+def load(start: int, end: int, opener_rule: str = "flip") -> pd.DataFrame:
+    """opener_rule: how openers are oriented (lines_hist.consensus). "flip" (the reporting rule since Oct 26, 2026):
+    each opener is checked against the moneylines stored with it, never against the later close."""
     b = pd.read_csv(os.path.join(OUT_DIR, f"backtest_{start}_{end}.csv"), parse_dates=["date"])
     lines = []
     for s in range(start, end + 1):
         path = os.path.join(lines_hist.OUT, f"espn_{s}.csv")
         if os.path.exists(path):
-            lines.append(lines_hist.consensus(pd.read_csv(path)))
+            mp = OPEN_META.format(s)
+            meta = pd.read_csv(mp) if os.path.exists(mp) else None
+            lines.append(lines_hist.consensus(pd.read_csv(path), opener_rule, meta))
     if lines:
         b = b.merge(pd.concat(lines), on="game_id", how="left")
     b = b.merge(fanmatch(b), on="game_id", how="left")
@@ -78,6 +98,30 @@ def final(b: pd.DataFrame) -> pd.DataFrame:
     w["raw_margin"], w["raw_total"] = w["pred_margin"], w["pred_total"]
     w["pred_margin"], w["pred_total"] = w["final_margin"], w["final_total"]
     return w.dropna(subset=["pred_margin"])
+
+
+def final_at_open(b: pd.DataFrame) -> pd.DataFrame:
+    """final(), but predictions use what is known when openers post: referee crews are not posted yet, so the crew
+    inputs are 0 (an average crew), as on the live card. The walk-forward weights are fit exactly as in final()."""
+    from . import projection
+    tr = projection.add_features(b)
+    te = tr.assign(ref_fouls=0.0, ref_pts=0.0)
+    for d in (tr, te):
+        d["margin"] = d["home_pts"] - d["away_pts"]
+        d["points"] = d["home_pts"] + d["away_pts"]
+    te["final_margin"], te["final_total"] = np.nan, np.nan
+    for s in sorted(tr["season"].unique()):
+        fit = tr[(tr["season"] < s) & (tr["season"] >= 2013)]
+        if not len(fit):
+            continue
+        m = te["season"] == s
+        cm = projection.ridge(fit[projection.MARGIN_FEATURES].to_numpy(float), fit["margin"].to_numpy(float))
+        ct = projection.ridge(fit[projection.TOTAL_FEATURES].to_numpy(float), fit["points"].to_numpy(float))
+        te.loc[m, "final_margin"] = cm[0] + te.loc[m, projection.MARGIN_FEATURES].to_numpy(float) @ cm[1:]
+        te.loc[m, "final_total"] = ct[0] + te.loc[m, projection.TOTAL_FEATURES].to_numpy(float) @ ct[1:]
+    te["raw_margin"], te["raw_total"] = te["pred_margin"], te["pred_total"]
+    te["pred_margin"], te["pred_total"] = te["final_margin"], te["final_total"]
+    return te.dropna(subset=["pred_margin"])
 
 
 def winners(b: pd.DataFrame, mid: int) -> str:
@@ -248,7 +292,15 @@ def main():
     ap.add_argument("--start", type=int, default=2013)
     ap.add_argument("--end", type=int, default=2026)
     a = ap.parse_args()
-    md = report(final(load(a.start, a.end)), a.start, a.end)
+    raw = load(a.start, a.end)
+    md = report(final(raw), a.start, a.end)
+    # totals against the opener as bettable at the open: crews unknown (referee fix, audit/AUDIT_v2.md)
+    o = final_at_open(raw)
+    o = o[o["season"] >= a.end - 2].dropna(subset=["open_total"])
+    e = o["pred_total"] - o["open_total"]
+    md += ("\n## Totals vs the opener with crews unknown (as at the open)\n\n" +
+           table({f"edge {lo}+ pts, {a.end - 2}-{a.end}": ats(o.assign(e=e)[e.abs() >= lo], "e", "points", "open_total")
+                  for lo in (3, 4)}) + "\n")
     with open(REPORT, "w") as f:
         f.write(md)
     print(md)

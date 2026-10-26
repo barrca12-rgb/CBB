@@ -41,8 +41,9 @@ listed above that is missing simply never contributes. That is a property of the
 - The 30-minute gaps are the overnight stretch (03:00-12:30 UTC, 11 pm-8:30 am ET).
 - Since 10:00 UTC, the median gap is 8.8 minutes.
 
-**Targeted polls:** no achieved cadence yet. The workflow exists and was dispatched once by hand (results in the
-commit log), but the 3-minute cron-job.org job that drives it has not been created. Until it has, delay windows
+**Targeted polls:** no achieved cadence yet. The workflow is pushed, but this session cannot dispatch it: the GitHub
+integration returns 403 on workflow dispatch. The 3-minute cron-job.org job that drives it has not been created.
+Its first runs will show in `lines/polls_targeted.csv`. Until it has, delay windows
 rely on card pulls (about every 9 minutes). Many 5-10 and 15-25 minute windows will then be "missing", and they are
 reported that way.
 

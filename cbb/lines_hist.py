@@ -102,8 +102,57 @@ def season_lines(season: int, workers: int = 8) -> pd.DataFrame:
     return done
 
 
-def consensus(lines: pd.DataFrame) -> pd.DataFrame:
-    """One closing line per game: the median across books (robust to one stale or off-market book)."""
+def orient_openers(lines: pd.DataFrame, meta: pd.DataFrame | None, mode: str = "flip") -> tuple[pd.DataFrame, dict]:
+    """Check each opening spread against the moneylines recorded with it, never against the close. 2024-26: the
+    opening record's own moneylines (audit/b8_open_meta.py, `meta`); 2014-17: the "Opening" pseudo-book row's own
+    moneylines. The opening favourite is the side with the shorter moneyline. An opener favouring the other team is
+    mis-oriented: mode "flip" corrects its sign, "drop" removes it. Openers that cannot be checked (no moneylines,
+    equal moneylines, or a spread within 1 point, where a small disagreement can be genuine) are the residue: kept,
+    or removed with mode "drop_residue". Returns (lines, counts)."""
+    l = lines.copy()
+    if meta is not None and len(meta):
+        m = meta.drop_duplicates(["game_id", "book"]).set_index(["game_id", "book"])[["open_home_ml", "open_away_ml"]]
+        key = pd.MultiIndex.from_frame(l[["game_id", "book"]])
+        hml, aml = m["open_home_ml"].reindex(key).to_numpy(), m["open_away_ml"].reindex(key).to_numpy()
+    else:
+        hml, aml = np.full(len(l), np.nan), np.full(len(l), np.nan)
+    op = (l["book"] == "Opening").to_numpy()
+    hml = np.where(op, l["home_ml"], hml)
+    aml = np.where(op, l["away_ml"], aml)
+    hml = np.where(hml == 0, np.nan, hml)
+    aml = np.where(aml == 0, np.nan, aml)
+    col = np.where(op, "home_spread", "open_home_spread")
+    o = np.where(op, l["home_spread"], l["open_home_spread"]).astype(float)
+    has = ~np.isnan(o) & (op | l["book"].fillna("").ne("").to_numpy())
+    # implied win chance from each American price; the favourite is the side with the higher one
+    imp = lambda x: np.where(x < 0, -x / (100 - np.minimum(x, 0)), 100 / (np.maximum(x, 0) + 100))
+    fav = np.sign(imp(hml) - imp(aml))                     # +1 home favourite, -1 away, 0 even, nan unknown
+    spread_fav = -np.sign(o)                               # home spread < 0: home favoured
+    checkable = has & ~np.isnan(fav) & (fav != 0) & (np.abs(o) > 1)
+    wrong = checkable & (spread_fav != fav)
+    residue = has & ~checkable
+    counts = {"openers": int(has.sum()), "checked": int(checkable.sum()), "mis-oriented": int(wrong.sum()),
+              "residue (not checkable)": int(residue.sum())}
+    for c in ("home_spread", "open_home_spread"):
+        sel = wrong & (col == c)
+        if mode == "flip":
+            l.loc[sel, c] = -l.loc[sel, c]
+        else:
+            l.loc[sel, c] = np.nan
+        if mode == "drop_residue":
+            l.loc[residue & (col == c), c] = np.nan
+    return l, counts
+
+
+def consensus(lines: pd.DataFrame, opener_rule: str = "close", open_meta: pd.DataFrame | None = None) -> pd.DataFrame:
+    """One closing line per game: the median across books (robust to one stale or off-market book).
+
+    opener_rule "close" (the default, used by the live code through context.py) keeps the original opener cleaning,
+    which compares the opener with the later close. "flip", "drop" and "drop_residue" instead orient openers with
+    their own moneylines (orient_openers) and use the close for nothing: the historical reporting rule (protocol
+    item 7). Closing numbers are the same under every rule."""
+    if opener_rule != "close":
+        lines, consensus.counts = orient_openers(lines, open_meta, opener_rule)
     l = lines[~lines["book"].fillna("").isin(NOT_BOOKS | {"", "Opening"})].copy()
     l.loc[l["total"] <= 0, "total"] = np.nan
     # Drop a book whose spread is far from the others on the same game (side flipped or stale).
@@ -116,11 +165,16 @@ def consensus(lines: pd.DataFrame) -> pd.DataFrame:
     op = lines[lines["book"] == "Opening"].drop_duplicates("game_id").set_index("game_id")
     agg["open_home_spread"] = agg["open_home_spread"].fillna(op["home_spread"])
     agg["open_total"] = agg["open_total"].fillna(op["total"])
-    # ESPN sometimes stores the opener from the other team's side (Virginia +4.5 open, -6.5 close). An opener closer
-    # to the mirrored close than to the close itself is treated as that error and dropped.
-    o, c = agg["open_home_spread"], agg["home_spread"]
-    flipped = ((o + c).abs() < (o - c).abs()) & (c.abs() >= 2)
-    agg.loc[flipped, "open_home_spread"] = np.nan
+    if opener_rule == "close":
+        # ESPN sometimes stores the opener from the other team's side (Virginia +4.5 open, -6.5 close). An opener
+        # closer to the mirrored close than to the close itself is treated as that error and dropped.
+        o, c = agg["open_home_spread"], agg["home_spread"]
+        flipped = ((o + c).abs() < (o - c).abs()) & (c.abs() >= 2)
+        agg.loc[flipped, "open_home_spread"] = np.nan
+    else:
+        # drop-only plausibility, from the opener alone: spreads within +-60, totals 100-200
+        agg.loc[agg["open_home_spread"].abs() > 60, "open_home_spread"] = np.nan
+        agg.loc[~agg["open_total"].between(100, 200), "open_total"] = np.nan
     return agg.reset_index()
 
 

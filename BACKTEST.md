@@ -2,31 +2,44 @@
 
 ## Summary
 
+**Promising historical results; live profitability and execution remain unverified.** The 2026-27 forward test
+(FORWARD_TEST_PROTOCOL.md) is the evidence that counts; these tables come from seasons reused to design the model.
+
 Model: ratings with 3-point luck regressed, plus KenPom, Barttorvik, Four Factors, rest, home edge, missing
 players, market ratings from earlier closing lines, altitude, and referee crews.
 
-| | Result | Bets |
+Against the opener at the live card's cutoffs (spread edge 2.5+, total edge 3+; audit/b9_item7.py):
+
+| | 2015-2017 | 2024-2026 |
 |---|---:|---:|
-| **ATS vs opening line, edge 3+, 2024-2026** | **58.9%** | 1,254 |
-| **Over/under vs opening line, edge 4+, 2024-2026** (crew unknown at the open: 56.1% without referees) | 59.6% | 2,258 |
+| Spreads vs the opener, openers oriented by their own moneylines | 57.5% (2,039) | 58.1% (2,297) |
+| Totals vs the opener, referee crews unknown at the open (inputs 0, weights unchanged) | 57.9% (3,611) | 56.2% (3,993) |
+
+The spreads row sits in a **historical spread filtering-sensitivity range of about 56-58.7%**. That range spans
+the two opener seasons sets above, the opener-orientation rules (57.5-58.7%: correcting, dropping, or dropping
+uncheckable openers; 58.7% is 2024-26 with no orientation check, which is not stronger evidence), and the model
+timing variants in audit/AUDIT_v2.md (56.2-57.6%). It is not a confidence interval, an expected live win rate, or
+a result for totals.
+
+| Against the closing line | Result | Bets |
+|---|---:|---:|
 | ATS vs closing line, edge 3+, 2020-2026 | 53.6% | 3,347 |
-| **Over/under vs closing line, edge 4+, 2020-2026** | **54.7%** | 6,323 |
+| Over/under vs closing line, edge 4+, 2020-2026 | 54.7% | 6,323 |
 | Average miss on margin, 2020-2026 (model / closing line) | 8.88 / 8.84 | |
 | Average miss on total, 2020-2026 (model / closing line) | 13.09 / 13.00 | |
 
 Break-even at -110 is 52.4%. Closing lines exclude projection services listed as books (accuscore and others, Oct
-2026 cleanup). Neutral-site spreads bet from 2.5 points live (see run_day.py).
+2026 cleanup).
 
-* **Opening lines are the edge** on spreads and totals. Referee crews usually aren't posted when openers are, so
-  the realistic opener number for totals is ~56%.
-* **Closing lines:** referee crews took totals from 52.4% to 54.4% (positive in 8 of 11 seasons, but weaker
-  lately: 2024 55.3%, 2025 47.6%, 2026 53.0%). Spreads at the close are just above break-even.
-* **What moved it:** 3-point luck regression (spreads at the opener 57.5% -> 58.2%), market ratings and altitude
-  (-> 58.6%), referees (totals at the close 52.4% -> 54.4%), KenPom + Barttorvik preseason prior (Oct 2026: line
-  value at the opener up in November and overall; spreads at the opener 58.7% -> 58.9%). Tested and left out:
-  free-throw luck, blowout weighting, time zones, height/experience/continuity, production-weighted absences.
-* **Caveats:** openers carry low limits; openers exist only for 2014-2017 and 2024-2026; data cleaning removed
-  several fake 70-85% edges, so treat anything above ~60% with suspicion.
+* **Openers:** since Oct 26, 2026 each opener is checked against the moneylines recorded with it (the shorter
+  moneyline marks the favourite). An opener that favours the other team is corrected; nothing uses the later
+  close. Openers within 1 point or without moneylines cannot be checked and are kept (counts in
+  audit/out/item7.md). The earlier rule dropped openers that sat nearer the mirrored close.
+* **Referees:** crews are usually posted near tip, after the openers, so opener tables for totals use crew inputs
+  of 0 under the existing weights (no refit). With crews as recorded, totals vs the opener read 58.4% / 57.4%.
+* **Caveats:** openers carry low limits; openers exist only for 2014-2017 and 2024-2026; historical opener plays
+  were not priced, timed or filled; data cleaning removed several fake 70-85% edges, so treat anything above
+  ~60% with suspicion.
 
 Walk-forward: each game is predicted with ratings fit only on earlier games that season, starting from KenPom's and Barttorvik's preseason ratings averaged. Closing line = median of the books in ESPN's odds feed. KenPom = FanMatch predicted score. Records are against the closing line at -110 (break-even 52.4%).
 
@@ -162,15 +175,22 @@ Slope of (result - line) on (model - line). 0 = the line already knows everythin
 
 ## Line movement: does the model predict which way the opener moves?
 
-24,602 games where the line moved (seasons 2014, 2015, 2016, 2017, 2024, 2025, 2026). The line moved toward the model's side in 66.2%; 84.7% when the model disagreed with the opener by 3+.
+24,950 games where the line moved (seasons 2014, 2015, 2016, 2017, 2024, 2025, 2026). The line moved toward the model's side in 66.3%; 84.7% when the model disagreed with the opener by 3+.
 
 Betting the model's side at the **opening** number:
 
 | | bets | win% | roi% |
 |---|---:|---:|---:|
-| edge vs opener 0+ | 24,225 | 52.7% | 0.70 |
-| edge vs opener 2+ | 6,259 | 56.6% | 8.13 |
-| edge vs opener 3+ | 2,383 | 58.8% | 12.24 |
-| edge vs opener 4+ | 862 | 61.0% | 16.49 |
-| edge vs opener 6+ | 134 | 71.6% | 36.77 |
+| edge vs opener 0+ | 24,563 | 52.8% | 0.83 |
+| edge vs opener 2+ | 6,414 | 56.8% | 8.46 |
+| edge vs opener 3+ | 2,491 | 58.9% | 12.51 |
+| edge vs opener 4+ | 922 | 61.3% | 16.99 |
+| edge vs opener 6+ | 156 | 69.9% | 33.39 |
 
+
+## Totals vs the opener with crews unknown (as at the open)
+
+| | bets | win% | roi% |
+|---|---:|---:|---:|
+| edge 3+ pts, 2024-2026 | 3,981 | 56.2% | 7.32 |
+| edge 4+ pts, 2024-2026 | 1,985 | 56.8% | 8.39 |
