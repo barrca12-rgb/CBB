@@ -49,6 +49,11 @@ WATCH_BELOW = 1.0      # within this many points of a BET: WATCH (becomes a play
 WIN_PROB = {"spread": (0.0255, 0.58), "total": (0.014, 0.565)}
 PREFERRED_BOOK = "DraftKings"   # same number and price at several books: the play goes to this one
 MIN_EV = 0.02          # a play also needs +2% expected value at the book's price (3-pt spread edge: fine to -125)
+# Opening week (first 7 days of the season): totals are shifted so the day's average matches KenPom's, keeping our
+# game-to-game differences. The model starts each season at last season's scoring level, and in 2026-27 that put every
+# total about 3.6 below KenPom and the market: one league-wide bet that scoring falls back, not game-by-game edges.
+# Approved by Chad (Oct 26 2026) as a stopgap while a preseason scoring-level fix is tested.
+OPENING_WEEK = pd.Timedelta(days=7)
 
 
 def win_prob(market: str, edge: float) -> float:
@@ -163,6 +168,25 @@ def project(day: pd.Timestamp, games: pd.DataFrame) -> tuple[pd.DataFrame, pd.Da
     return f, ratings.table(r)
 
 
+def opening_week_totals(f: pd.DataFrame, day: pd.Timestamp) -> pd.DataFrame:
+    """Through the season's first OPENING_WEEK (and any earlier games, which the schedule feed can miss), shift
+    final_total by the day's average gap to KenPom (kp_total) and record the shift in total_shift. Unchanged
+    otherwise, or when KenPom has none of the day's games."""
+    sch = data.fetch("schedule", season_of(day))
+    sch = sch[~sch["status_type_name"].isin(["STATUS_POSTPONED", "STATUS_CANCELED"])]
+    first = pd.to_datetime(sch["date"], utc=True).dt.tz_convert("America/New_York").min()
+    if pd.isna(first) or day >= first.tz_localize(None).normalize() + OPENING_WEEK or "kp_total" not in f:
+        return f
+    gap = (f["final_total"] - f["kp_total"]).mean()
+    if pd.isna(gap):
+        return f
+    f = f.copy()
+    f["final_total"] = f["final_total"] - gap
+    f["total_shift"] = -gap
+    print(f"Opening week: totals shifted {-gap:+.1f} to KenPom's scoring level.")
+    return f
+
+
 def _best(lines: pd.DataFrame, market: str, sides: dict):
     """Best (side, book row, edge, win prob, EV) across books and both sides, by expected value at each book's
     price. sides: side -> (line column, edge function of the line, odds column)."""
@@ -207,7 +231,8 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame) -> pd.DataFrame:
         r.update(model_margin=m, model_total=t, model_home_spread=-m,
                  model_home_pts=(t + m) / 2, model_away_pts=(t - m) / 2, kp_margin=g.get("kp_margin"),
                  raw_margin=g.get("pred_margin"), home_missing=g.get("home_missing"), away_missing=g.get("away_missing"),
-                 p_home_win=0.5 * (1 + math.erf(m / 11.0 / math.sqrt(2))), n_books=l["book"].nunique())
+                 p_home_win=0.5 * (1 + math.erf(m / 11.0 / math.sqrt(2))), n_books=l["book"].nunique(),
+                 total_shift=g.get("total_shift", 0.0))
         r["book_lines"] = l.drop(columns=[c for c in ("home_id", "away_id", "sgo_event", "start") if c in l]).to_dict("records")
         if len(l):
             r["line_home_spread"] = float(l["home_spread"].median()) if l["home_spread"].notna().any() else np.nan
@@ -310,6 +335,7 @@ def build(day: pd.Timestamp, games: pd.DataFrame, lines: pd.DataFrame | None, re
     """Project one day's games, price them against the lines, log BETs and write the day's card. current=False adds
     the day to the site's day list without making it the day the site opens on."""
     f, rt = project(day, games)
+    f = opening_week_totals(f, day)
     if replay:
         lines = replay_lines(day, f)
     card = plays(f, lines)

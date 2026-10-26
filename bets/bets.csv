@@ -1,8 +1,8 @@
 bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,odds,book,edge,model,stake,placed,logged_at,close_line,clv_pts,clv_prob,home_score,away_score,result,profit,status
-2026-11-01|401920982|total|under,2026-11-01,401920982,total,Under 149.5,under,222,87,Villanova,Notre Dame,149.5,149.5,-110.0,DraftKings,9.73,139.77,1.0,,2026-10-25T22:32:02+00:00,,,,,,,,open
+2026-11-01|401920982|total|under,2026-11-01,401920982,total,Under 149.5,under,222,87,Villanova,Notre Dame,149.5,149.5,-110.0,DraftKings,9.73,139.77,1.0,,2026-10-25T22:32:02+00:00,,,,,,,,void
 2026-11-02|401916313|spread|away,2026-11-02,401916313,spread,Ohio State +1.5,away,252,194,BYU,Ohio State,1.5,1.5,-105.0,DraftKings,3.58,-2.08,1.0,,2026-10-26T01:53:02+00:00,,,,,,,,open
 2026-11-02|401921704|spread|home,2026-11-02,401921704,spread,Purdue +4.5,home,2509,2250,Purdue,Gonzaga,4.5,4.5,-118.0,DraftKings,2.61,-1.89,1.0,,2026-10-26T02:28:35+00:00,,,,,,,,open
 2026-11-02|401906769|spread|home,2026-11-02,401906769,spread,Florida -5.5,home,57,2390,Florida,Miami,-5.5,-5.5,-110.0,Caesars,2.53,8.03,1.0,,2026-10-26T02:40:27+00:00,,,,,,,,open
-2026-11-02|401921704|total|under,2026-11-02,401921704,total,Under 156.5,under,2509,2250,Purdue,Gonzaga,156.5,156.5,-110.0,DraftKings,3.84,152.66,1.0,,2026-10-26T13:53:44+00:00,,,,,,,,open
-2026-11-01|401920409|total|under,2026-11-01,401920409,total,Under 154.5,under,2272,2335,High Point,Liberty,154.5,154.5,-115.0,DraftKings,3.72,150.78,1.0,,2026-10-26T16:56:46+00:00,,,,,,,,open
-2026-11-02|401916313|total|under,2026-11-02,401916313,total,Under 160.5,under,252,194,BYU,Ohio State,160.5,160.5,-115.0,DraftKings,4.1,156.4,1.0,,2026-10-26T16:56:50+00:00,,,,,,,,open
+2026-11-02|401921704|total|under,2026-11-02,401921704,total,Under 156.5,under,2509,2250,Purdue,Gonzaga,156.5,156.5,-110.0,DraftKings,3.84,152.66,1.0,,2026-10-26T13:53:44+00:00,,,,,,,,void
+2026-11-01|401920409|total|under,2026-11-01,401920409,total,Under 154.5,under,2272,2335,High Point,Liberty,154.5,154.5,-115.0,DraftKings,3.72,150.78,1.0,,2026-10-26T16:56:46+00:00,,,,,,,,void
+2026-11-02|401916313|total|under,2026-11-02,401916313,total,Under 160.5,under,252,194,BYU,Ohio State,160.5,160.5,-115.0,DraftKings,4.1,156.4,1.0,,2026-10-26T16:56:50+00:00,,,,,,,,void
