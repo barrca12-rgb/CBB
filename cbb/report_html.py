@@ -233,6 +233,9 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   const sgn = (x, d = 1) => x == null ? "–" : (x > 0 ? "+" : x < 0 ? "−" : "") + Math.abs(x).toFixed(d).replace(/\.0+$/, "");
   const ln = (x) => x == null ? "–" : Math.abs(x) < 0.05 ? "PK" : sgn(x);
   const num = (x, d = 1) => x == null ? "–" : Number(x).toFixed(d).replace(/\.0$/, "");
+  // The half-point line a WATCH becomes a BET at (good_to is the exact number; books post halves).
+  const playAt = (v, higherBetter) => v == null ? null : (higherBetter ? Math.ceil(v * 2 - 1e-9) : Math.floor(v * 2 + 1e-9)) / 2;
+  const watchTag = (text) => "<span class='tag'>Watch · " + text + "</span>";
   const odds = (x) => x == null ? "" : (x > 0 ? "+" : "−") + Math.abs(Math.round(x));
   const pct = (x) => x == null ? "–" : (100 * x).toFixed(1) + "%";
   const day = new Date(D.date + "T12:00:00");
@@ -312,14 +315,18 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
           bookCells = BOOKS.map((bk) => { const x = bl(g, bk); if (!x || x.home_spread == null) return cell(null);
             const v = sd === "home" ? x.home_spread : -x.home_spread;
             return cell(ln(v), x[sd + "_spread_odds"], x[sd + "_spread_link"], pick && g.spread_book === bk && v === g.spread_line); });
-          if (pick) edge = "<span class='tag" + (g.spread_verdict === "BET" ? " bet" : "") + "'>" + (g.spread_verdict === "BET" ? "BET" : "Watch") + " " + sgn(g.spread_edge) + "</span>";
+          if (pick && g.spread_verdict === "BET") edge = "<span class='tag bet'>BET " + sgn(g.spread_edge) + "</span>";
+          else if (pick) { const at = playAt(g.spread_good_to, true);
+            edge = watchTag(g.spread_line >= at ? "better price" : "bet at " + ln(at)); }
         } else if (market === "total") {
           const ou = i === 0 ? "over" : "under";
           model = i === 0 ? num(g.model_total) : "";
           const pick = (g.total_pick || "").toLowerCase() === ou && ["BET", "WATCH"].includes(g.total_verdict);
           bookCells = BOOKS.map((bk) => { const x = bl(g, bk); if (!x || x.total == null) return cell(null);
             return cell((i === 0 ? "o" : "u") + num(x.total), x[ou + "_odds"], x[ou + "_link"], pick && g.total_book === bk && x.total === g.total_line); });
-          if (pick) edge = "<span class='tag" + (g.total_verdict === "BET" ? " bet" : "") + "'>" + (g.total_verdict === "BET" ? "BET" : "Watch") + " " + sgn(g.total_edge) + "</span>";
+          if (pick && g.total_verdict === "BET") edge = "<span class='tag bet'>BET " + sgn(g.total_edge) + "</span>";
+          else if (pick) { const at = playAt(g.total_good_to, ou === "under");
+            edge = watchTag((ou === "under" ? g.total_line >= at : g.total_line <= at) ? "better price" : "bet at " + ou[0] + num(at)); }
         } else {
           const p = sd === "home" ? g.p_home_win : 1 - g.p_home_win;
           model = Math.round(100 * p) + "%";
@@ -345,8 +352,8 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   // Watch list
   const W = [];
   D.games.forEach((g) => {
-    if (g.spread_verdict === "WATCH") W.push([tip(g), matchup(g), g.spread_pick, ln(g.spread_line), ln(g.spread_good_to), sgn(g.spread_edge)]);
-    if (g.total_verdict === "WATCH") W.push([tip(g), matchup(g), g.total_pick, num(g.total_line), num(g.total_good_to), sgn(g.total_edge)]);
+    if (g.spread_verdict === "WATCH") W.push([tip(g), matchup(g), g.spread_pick, ln(g.spread_line), ln(playAt(g.spread_good_to, true)), sgn(g.spread_edge)]);
+    if (g.total_verdict === "WATCH") W.push([tip(g), matchup(g), g.total_pick, num(g.total_line), num(playAt(g.total_good_to, g.total_pick === "Under")), sgn(g.total_edge)]);
   });
   if (!W.length) $("watch-sec").hidden = true;
   else $("t-watch").innerHTML = "<thead><tr><th>Time</th><th>Game</th><th>Side</th><th class='r'>Now</th><th class='r'>Play at</th><th class='r'>Edge now</th></tr></thead><tbody>" +
