@@ -1,1 +1,1 @@
-2026-10-26 16:10 UTC  events 9  book-game rows 14 (4 SGO, 10 The Odds API)  unmatched teams: Colorado Tigers, Kentucky Christian Knights, La Verne Leopards, Midway Eagles, New College of Florida Mighty Banyans, Rivier Raiders, West Coast Baptist Eagles  SGO month: 4,274 of 100,000 entities  The Odds API credits left: 95715
+2026-10-26 16:20 UTC  events 0  book-game rows 14 (0 SGO, 14 The Odds API)  unmatched teams: none  The Odds API credits left: 95712
