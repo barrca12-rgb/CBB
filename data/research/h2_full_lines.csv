@@ -1,0 +1,1211 @@
+game_id,snapshot_min,book,market,name,team_id,point,price,last_update
+401592849,60,draftkings,spreads_h2,South Carolina Gamecocks,2579,-1.5,-105,2023-11-07T00:54:33Z
+401592849,60,draftkings,spreads_h2,South Carolina Upstate Spartans,2908,1.5,-125,2023-11-07T00:54:33Z
+401593849,60,draftkings,spreads_h2,Maryland-Eastern Shore Hawks,2379,2.5,-105,2023-11-07T01:25:57Z
+401593849,60,draftkings,spreads_h2,Temple Owls,218,-2.5,-125,2023-11-07T01:25:57Z
+401594601,60,draftkings,spreads_h2,Oral Roberts Golden Eagles,198,1.5,-105,2023-11-07T01:53:21Z
+401594601,60,draftkings,spreads_h2,UT-Arlington Mavericks,250,-1.5,-125,2023-11-07T01:53:21Z
+401575451,60,draftkings,spreads_h2,Kansas Jayhawks,2305,-8.5,-115,2023-11-07T01:53:19Z
+401575451,60,draftkings,spreads_h2,North Carolina Central Eagles,2428,8.5,-115,2023-11-07T01:53:19Z
+401581868,60,draftkings,spreads_h2,New Mexico Lobos,167,-6.5,-120,2023-11-07T03:22:15Z
+401581868,60,draftkings,spreads_h2,Texas Southern Tigers,2640,6.5,-110,2023-11-07T03:22:15Z
+401574578,70,draftkings,spreads_h2,Ohio Bobcats,195,-0.5,-120,2023-11-09T01:03:33Z
+401574578,70,draftkings,spreads_h2,Troy Trojans,2653,0.5,-110,2023-11-09T01:03:33Z
+401574578,70,williamhill_us,spreads_h2,Ohio Bobcats,195,-0.5,-115,2023-11-09T01:00:03Z
+401574578,70,williamhill_us,spreads_h2,Troy Trojans,2653,0.5,-115,2023-11-09T01:00:03Z
+401588311,60,draftkings,spreads_h2,East Tennessee St Buccaneers,2193,-3.5,-120,2023-11-10T00:51:04Z
+401588311,60,draftkings,spreads_h2,Elon Phoenix,2210,3.5,-110,2023-11-10T00:51:04Z
+401574591,60,draftkings,spreads_h2,Binghamton Bearcats,2066,6.5,-120,2023-11-11T00:48:27Z
+401574591,60,draftkings,spreads_h2,Pittsburgh Panthers,221,-6.5,-110,2023-11-11T00:48:27Z
+401583847,60,draftkings,spreads_h2,Davidson Wildcats,2166,6.5,-110,2023-11-11T00:48:28Z
+401583847,60,draftkings,spreads_h2,Maryland Terrapins,120,-6.5,-120,2023-11-11T00:48:28Z
+401593970,60,draftkings,spreads_h2,Eastern Washington Eagles,331,8.5,-125,2023-11-11T01:55:12Z
+401593970,60,draftkings,spreads_h2,Ole Miss Rebels,145,-8.5,-105,2023-11-11T01:55:12Z
+401600085,60,draftkings,spreads_h2,UC Riverside Highlanders,27,2.5,-125,2023-11-11T03:54:19Z
+401600085,60,draftkings,spreads_h2,Utah Utes,254,-2.5,-105,2023-11-11T03:54:19Z
+401581869,60,draftkings,spreads_h2,Arizona St Sun Devils,9,-3.5,-125,2023-11-11T21:24:51Z
+401581869,60,draftkings,spreads_h2,Texas Southern Tigers,2640,3.5,-105,2023-11-11T21:24:51Z
+401575436,60,draftkings,spreads_h2,Houston Cougars,248,-12.5,-115,2023-11-14T01:52:31Z
+401575436,60,draftkings,spreads_h2,Stetson Hatters,56,12.5,-115,2023-11-14T01:52:31Z
+401577542,60,draftkings,spreads_h2,Saint Joseph's Hawks,2603,-5.5,-105,2023-11-15T00:50:37Z
+401577542,60,draftkings,spreads_h2,Stonehill Skyhawks,284,5.5,-125,2023-11-15T00:50:37Z
+401587111,60,draftkings,spreads_h2,Mississippi St Bulldogs,344,-7.5,-105,2023-11-15T01:23:49Z
+401587111,60,draftkings,spreads_h2,North Alabama Lions,2453,7.5,-125,2023-11-15T01:23:49Z
+401583726,60,draftkings,spreads_h2,Rice Owls,242,8.5,-125,2023-11-16T02:51:18Z
+401583726,60,draftkings,spreads_h2,Texas Longhorns,251,-8.5,-105,2023-11-16T02:51:18Z
+401583754,60,draftkings,spreads_h2,Detroit Mercy Titans,2174,6.5,-125,2023-11-18T19:51:22Z
+401583754,60,draftkings,spreads_h2,Ohio Bobcats,195,-6.5,-105,2023-11-18T19:51:22Z
+401600915,60,draftkings,spreads_h2,Bryant Bulldogs,2803,11.5,-120,2023-11-18T23:53:27Z
+401600915,60,draftkings,spreads_h2,Florida Atlantic Owls,2226,-11.5,-110,2023-11-18T23:53:27Z
+401600915,60,williamhill_us,spreads_h2,Bryant Bulldogs,2803,10.5,-115,2023-11-18T23:50:36Z
+401600915,60,williamhill_us,spreads_h2,Florida Atlantic Owls,2226,-10.5,-115,2023-11-18T23:50:36Z
+401590208,70,draftkings,spreads_h2,South Dakota St Jackrabbits,2571,3.5,-105,2023-11-20T02:05:34Z
+401590208,70,draftkings,spreads_h2,UCF Knights,2116,-3.5,-125,2023-11-20T02:05:34Z
+401582128,60,draftkings,spreads_h2,Fordham Rams,2230,5.5,-110,2023-11-20T23:49:48Z
+401582128,60,draftkings,spreads_h2,Kent State Golden Flashes,2309,-5.5,-120,2023-11-20T23:49:48Z
+401581529,60,draftkings,spreads_h2,Bucknell Bison,2083,-3.5,-105,2023-11-21T00:51:45Z
+401581529,60,draftkings,spreads_h2,Southern Indiana Screaming Eagles,88,3.5,-125,2023-11-21T00:51:45Z
+401593791,70,williamhill_us,spreads_h2,Colorado Buffaloes,38,-5.0,-115,2023-11-21T02:03:56Z
+401593791,70,williamhill_us,spreads_h2,Richmond Spiders,257,5.0,-115,2023-11-21T02:03:56Z
+401581576,60,draftkings,spreads_h2,High Point Panthers,2272,2.5,-115,2023-11-21T22:55:14Z
+401581576,60,draftkings,spreads_h2,Illinois St Redbirds,2287,-2.5,-115,2023-11-21T22:55:14Z
+401587151,60,draftkings,spreads_h2,Middle Tennessee Blue Raiders,2393,0.5,-115,2023-11-22T01:21:01Z
+401587151,60,draftkings,spreads_h2,UAB Blazers,5,-0.5,-115,2023-11-22T01:21:01Z
+401587151,60,williamhill_us,spreads_h2,Middle Tennessee Blue Raiders,2393,0.5,-115,2023-11-22T01:24:14Z
+401587151,60,williamhill_us,spreads_h2,UAB Blazers,5,-0.5,-115,2023-11-22T01:24:14Z
+401579007,60,draftkings,spreads_h2,Louisiana Tech Bulldogs,2348,-1.5,-115,2023-11-22T21:53:44Z
+401579007,60,draftkings,spreads_h2,McNeese Cowboys,2377,1.5,-115,2023-11-22T21:53:44Z
+401583855,70,draftkings,spreads_h2,Indiana St Sycamores,282,-2.5,-120,2023-11-24T19:58:23Z
+401583855,70,draftkings,spreads_h2,Toledo Rockets,2649,2.5,-110,2023-11-24T19:58:23Z
+401604298,60,draftkings,spreads_h2,Arkansas St Red Wolves,2032,-2.5,-115,2023-11-25T04:23:56Z
+401604298,60,draftkings,spreads_h2,San Diego Toreros,301,2.5,-115,2023-11-25T04:23:56Z
+401604298,60,williamhill_us,spreads_h2,Arkansas St Red Wolves,2032,-1.5,-115,2023-11-25T04:23:57Z
+401604298,60,williamhill_us,spreads_h2,San Diego Toreros,301,1.5,-115,2023-11-25T04:23:57Z
+401591570,60,draftkings,spreads_h2,Eastern Kentucky Colonels,2198,-1.5,-110,2023-11-28T00:54:23Z
+401591570,60,draftkings,spreads_h2,Troy Trojans,2653,1.5,-120,2023-11-28T00:54:23Z
+401583728,60,draftkings,spreads_h2,Texas Longhorns,251,-7.5,-110,2023-12-01T02:55:11Z
+401583728,60,draftkings,spreads_h2,Texas State Bobcats,326,7.5,-120,2023-12-01T02:55:11Z
+401575409,60,draftkings,spreads_h2,Northern Arizona Lumberjacks,2464,0.5,-120,2023-12-02T21:53:54Z
+401575409,60,draftkings,spreads_h2,Pacific Tigers,279,-0.5,-110,2023-12-02T21:53:54Z
+401597407,70,williamhill_us,spreads_h2,Oklahoma St Cowboys,197,-1.5,-115,2023-12-06T03:01:53Z
+401597407,70,williamhill_us,spreads_h2,Southern Illinois Salukis,79,1.5,-115,2023-12-06T03:01:53Z
+401577616,70,draftkings,spreads_h2,Auburn Tigers,2,-1.5,-125,2023-12-09T20:05:31Z
+401577616,70,draftkings,spreads_h2,Indiana Hoosiers,84,1.5,-105,2023-12-09T20:05:31Z
+401575439,60,draftkings,spreads_h2,Houston Cougars,248,-16.5,-115,2023-12-09T21:53:13Z
+401575439,60,draftkings,spreads_h2,Jackson St Tigers,2296,16.5,-115,2023-12-09T21:53:13Z
+401574418,60,draftkings,spreads_h2,Central Arkansas Bears,2110,1.5,-105,2023-12-10T20:51:17Z
+401574418,60,draftkings,spreads_h2,Eastern Illinois Panthers,2197,-1.5,-125,2023-12-10T20:51:17Z
+401590840,60,draftkings,spreads_h2,Nevada Wolf Pack,2440,-3.5,-110,2023-12-14T03:46:30Z
+401590840,60,draftkings,spreads_h2,Weber State Wildcats,2692,3.5,-120,2023-12-14T03:46:30Z
+401597986,60,draftkings,spreads_h2,Mississippi St Bulldogs,344,-3.5,-110,2023-12-17T21:52:53Z
+401597986,60,draftkings,spreads_h2,North Texas Mean Green,249,3.5,-120,2023-12-17T21:52:53Z
+401581178,60,draftkings,spreads_h2,Montana St Bobcats,147,-1.5,-115,2023-12-20T02:55:41Z
+401581178,60,draftkings,spreads_h2,Southern Utah Thunderbirds,253,1.5,-115,2023-12-20T02:55:41Z
+401581178,60,williamhill_us,spreads_h2,Montana St Bobcats,147,-0.5,-115,2023-12-20T02:51:52Z
+401581178,60,williamhill_us,spreads_h2,Southern Utah Thunderbirds,253,0.5,-115,2023-12-20T02:51:52Z
+401579119,60,draftkings,spreads_h2,San José St Spartans,23,4.5,-105,2023-12-21T03:55:25Z
+401579119,60,draftkings,spreads_h2,Santa Clara Broncos,2541,-4.5,-125,2023-12-21T03:55:25Z
+401579119,60,williamhill_us,spreads_h2,San José St Spartans,23,5.5,-115,2023-12-21T03:52:58Z
+401579119,60,williamhill_us,spreads_h2,Santa Clara Broncos,2541,-5.5,-115,2023-12-21T03:52:58Z
+401574614,60,draftkings,spreads_h2,New Hampshire Wildcats,160,3.5,-115,2023-12-21T23:51:39Z
+401574614,60,draftkings,spreads_h2,Rhode Island Rams,227,-3.5,-115,2023-12-21T23:51:39Z
+401588609,60,draftkings,spreads_h2,Ball State Cardinals,2050,4.5,-115,2023-12-22T01:53:56Z
+401588609,60,draftkings,spreads_h2,Minnesota Golden Gophers,135,-4.5,-115,2023-12-22T01:53:56Z
+401600770,60,draftkings,spreads_h2,Bryant Bulldogs,2803,5.5,-120,2023-12-22T16:52:21Z
+401600770,60,draftkings,spreads_h2,Drexel Dragons,2182,-5.5,-110,2023-12-22T16:52:21Z
+401600770,60,williamhill_us,spreads_h2,Bryant Bulldogs,2803,5.5,-115,2023-12-22T16:53:03Z
+401600770,60,williamhill_us,spreads_h2,Drexel Dragons,2182,-5.5,-115,2023-12-22T16:53:03Z
+401582015,60,draftkings,spreads_h2,Marist Red Foxes,2368,3.5,-110,2023-12-23T01:52:56Z
+401582015,60,draftkings,spreads_h2,Notre Dame Fighting Irish,87,-3.5,-120,2023-12-23T01:52:56Z
+401575477,70,williamhill_us,spreads_h2,Toledo Rockets,2649,-1.0,-115,2023-12-23T19:03:48Z
+401575477,70,williamhill_us,spreads_h2,West Virginia Mountaineers,277,1.0,-115,2023-12-23T19:03:48Z
+401583605,70,draftkings,spreads_h2,Memphis Tigers,235,-9.5,-115,2023-12-23T22:02:28Z
+401583605,70,draftkings,spreads_h2,Vanderbilt Commodores,238,9.5,-115,2023-12-23T22:02:28Z
+401583605,70,williamhill_us,spreads_h2,Memphis Tigers,235,-10.5,-115,2023-12-23T22:01:44Z
+401583605,70,williamhill_us,spreads_h2,Vanderbilt Commodores,238,10.5,-115,2023-12-23T22:01:44Z
+401581559,60,draftkings,spreads_h2,Georgia Tech Yellow Jackets,59,2.5,-120,2023-12-25T02:53:22Z
+401581559,60,draftkings,spreads_h2,Nevada Wolf Pack,2440,-2.5,-110,2023-12-25T02:53:22Z
+401581559,60,williamhill_us,spreads_h2,Georgia Tech Yellow Jackets,59,2.5,-115,2023-12-25T02:55:14Z
+401581559,60,williamhill_us,spreads_h2,Nevada Wolf Pack,2440,-2.5,-115,2023-12-25T02:55:14Z
+401588318,60,williamhill_us,spreads_h2,Elon Phoenix,2210,1.5,-115,2023-12-29T19:53:14Z
+401588318,60,williamhill_us,spreads_h2,Valparaiso Beacons,2674,-1.5,-115,2023-12-29T19:53:14Z
+401577665,60,draftkings,spreads_h2,Brown Bears,225,0.5,-115,2023-12-30T00:21:31Z
+401577665,60,draftkings,spreads_h2,Stony Brook Seawolves,2619,-0.5,-115,2023-12-30T00:21:31Z
+401577665,60,williamhill_us,spreads_h2,Brown Bears,225,1.5,-120,2023-12-30T00:23:48Z
+401577665,60,williamhill_us,spreads_h2,Stony Brook Seawolves,2619,-1.5,-110,2023-12-30T00:23:48Z
+401602056,60,draftkings,spreads_h2,UAB Blazers,5,-4.5,-115,2024-01-03T02:54:28Z
+401602056,60,draftkings,spreads_h2,UTSA Roadrunners,2636,4.5,-115,2024-01-03T02:54:28Z
+401587889,60,draftkings,spreads_h2,Chattanooga Mocs,236,4.5,-110,2024-01-04T01:21:22Z
+401587889,60,draftkings,spreads_h2,Samford Bulldogs,2535,-4.5,-120,2024-01-04T01:21:22Z
+401587889,60,williamhill_us,spreads_h2,Chattanooga Mocs,236,4.0,-115,2024-01-04T01:21:33Z
+401587889,60,williamhill_us,spreads_h2,Samford Bulldogs,2535,-4.0,-115,2024-01-04T01:21:33Z
+401602058,60,draftkings,spreads_h2,Rice Owls,242,2.5,-120,2024-01-04T02:52:30Z
+401602058,60,draftkings,spreads_h2,Tulane Green Wave,2655,-2.5,-110,2024-01-04T02:52:30Z
+401588624,60,draftkings,spreads_h2,Miami (OH) RedHawks,193,7.5,-110,2024-01-06T00:51:36Z
+401588624,60,draftkings,spreads_h2,Toledo Rockets,2649,-7.5,-120,2024-01-06T00:51:36Z
+401588624,60,williamhill_us,spreads_h2,Miami (OH) RedHawks,193,8.5,-115,2024-01-06T00:54:20Z
+401588624,60,williamhill_us,spreads_h2,Toledo Rockets,2649,-8.5,-115,2024-01-06T00:54:20Z
+401604106,60,draftkings,spreads_h2,Clemson Tigers,228,-0.5,-120,2024-01-06T17:53:16Z
+401604106,60,draftkings,spreads_h2,North Carolina Tar Heels,153,0.5,-110,2024-01-06T17:53:16Z
+401603403,60,draftkings,spreads_h2,Baylor Bears,239,-1.5,-120,2024-01-06T20:53:55Z
+401603403,60,draftkings,spreads_h2,Oklahoma St Cowboys,197,1.5,-110,2024-01-06T20:53:55Z
+401603403,60,williamhill_us,spreads_h2,Baylor Bears,239,-2.0,-115,2024-01-06T20:52:53Z
+401603403,60,williamhill_us,spreads_h2,Oklahoma St Cowboys,197,2.0,-115,2024-01-06T20:52:53Z
+401579067,70,williamhill_us,spreads_h2,Lamar Cardinals,2320,-4.5,-115,2024-01-07T01:04:51Z
+401579067,70,williamhill_us,spreads_h2,Northwestern St Demons,2466,4.5,-115,2024-01-07T01:04:51Z
+401579067,70,draftkings,spreads_h2,Lamar Cardinals,2320,-5.5,-105,2024-01-07T01:01:56Z
+401579067,70,draftkings,spreads_h2,Northwestern St Demons,2466,5.5,-125,2024-01-07T01:01:56Z
+401602992,70,draftkings,spreads_h2,New Mexico Lobos,167,-5.5,-115,2024-01-07T04:00:59Z
+401602992,70,draftkings,spreads_h2,Wyoming Cowboys,2751,5.5,-115,2024-01-07T04:00:59Z
+401596830,60,draftkings,spreads_h2,Davidson Wildcats,2166,-2.5,-110,2024-01-10T00:53:43Z
+401596830,60,draftkings,spreads_h2,Rhode Island Rams,227,2.5,-120,2024-01-10T00:53:43Z
+401601835,60,draftkings,spreads_h2,Drake Bulldogs,2181,-1.5,-125,2024-01-11T01:54:14Z
+401601835,60,draftkings,spreads_h2,Indiana St Sycamores,282,1.5,-105,2024-01-11T01:54:14Z
+401599483,70,draftkings,spreads_h2,UConn Huskies,41,-2.5,-120,2024-01-11T02:35:02Z
+401599483,70,draftkings,spreads_h2,Xavier Musketeers,2752,2.5,-110,2024-01-11T02:35:02Z
+401607375,60,draftkings,spreads_h2,UCLA Bruins,26,2.5,-110,2024-01-12T02:50:51Z
+401607375,60,draftkings,spreads_h2,Utah Utes,254,-2.5,-120,2024-01-12T02:50:51Z
+401607375,60,williamhill_us,spreads_h2,UCLA Bruins,26,2.0,-115,2024-01-12T02:54:45Z
+401607375,60,williamhill_us,spreads_h2,Utah Utes,254,-2.0,-115,2024-01-12T02:54:45Z
+401574537,60,draftkings,spreads_h2,Queens University Royals,2511,-0.5,-115,2024-01-13T00:51:41Z
+401574537,60,draftkings,spreads_h2,Stetson Hatters,56,0.5,-115,2024-01-13T00:51:41Z
+401600665,60,draftkings,spreads_h2,Northeastern Huskies,111,1.5,-105,2024-01-13T17:54:27Z
+401600665,60,draftkings,spreads_h2,Towson Tigers,119,-1.5,-125,2024-01-13T17:54:27Z
+401600665,60,williamhill_us,spreads_h2,Northeastern Huskies,111,1.5,-115,2024-01-13T17:53:50Z
+401600665,60,williamhill_us,spreads_h2,Towson Tigers,119,-1.5,-115,2024-01-13T17:53:50Z
+401607380,60,draftkings,spreads_h2,Colorado Buffaloes,38,-7.5,-110,2024-01-14T03:48:47Z
+401607380,60,draftkings,spreads_h2,USC Trojans,30,7.5,-120,2024-01-14T03:48:47Z
+401587694,60,draftkings,spreads_h2,Cleveland St Vikings,325,-0.5,-125,2024-01-14T18:51:12Z
+401587694,60,draftkings,spreads_h2,Green Bay Phoenix,2739,0.5,-105,2024-01-14T18:51:12Z
+401589367,60,draftkings,spreads_h2,Cornell Big Red,172,-5.5,-120,2024-01-15T19:54:02Z
+401589367,60,draftkings,spreads_h2,Pennsylvania Quakers,219,5.5,-110,2024-01-15T19:54:02Z
+401589367,60,williamhill_us,spreads_h2,Cornell Big Red,172,-5.5,-115,2024-01-15T19:54:06Z
+401589367,60,williamhill_us,spreads_h2,Pennsylvania Quakers,219,5.5,-115,2024-01-15T19:54:06Z
+401599489,60,draftkings,spreads_h2,Marquette Golden Eagles,269,-3.5,-110,2024-01-15T20:24:38Z
+401599489,60,draftkings,spreads_h2,Villanova Wildcats,222,3.5,-120,2024-01-15T20:24:38Z
+401599489,60,williamhill_us,spreads_h2,Marquette Golden Eagles,269,-3.5,-115,2024-01-15T20:24:39Z
+401599489,60,williamhill_us,spreads_h2,Villanova Wildcats,222,3.5,-115,2024-01-15T20:24:39Z
+401600795,70,draftkings,spreads_h2,New Mexico Lobos,167,0.5,-120,2024-01-17T04:48:57Z
+401600795,70,draftkings,spreads_h2,Utah State Aggies,328,-0.5,-110,2024-01-17T04:48:57Z
+401600795,70,williamhill_us,spreads_h2,New Mexico Lobos,167,1.5,-115,2024-01-17T04:48:34Z
+401600795,70,williamhill_us,spreads_h2,Utah State Aggies,328,-1.5,-115,2024-01-17T04:48:34Z
+401588646,60,draftkings,spreads_h2,Central Michigan Chippewas,2117,6.5,-125,2024-01-20T00:47:12Z
+401588646,60,draftkings,spreads_h2,Toledo Rockets,2649,-6.5,-105,2024-01-20T00:47:12Z
+401603430,60,draftkings,spreads_h2,Baylor Bears,239,0.5,-105,2024-01-20T17:55:32Z
+401603430,60,draftkings,spreads_h2,Texas Longhorns,251,-0.5,-125,2024-01-20T17:55:32Z
+401603430,60,williamhill_us,spreads_h2,Baylor Bears,239,1.5,-115,2024-01-20T17:55:38Z
+401603430,60,williamhill_us,spreads_h2,Texas Longhorns,251,-1.5,-115,2024-01-20T17:55:38Z
+401596850,60,draftkings,spreads_h2,George Mason Patriots,2244,-0.5,-110,2024-01-20T19:51:45Z
+401596850,60,draftkings,spreads_h2,St. Bonaventure Bonnies,179,0.5,-120,2024-01-20T19:51:45Z
+401602090,60,draftkings,spreads_h2,East Carolina Pirates,151,4.5,-110,2024-01-20T20:52:34Z
+401602090,60,draftkings,spreads_h2,UAB Blazers,5,-4.5,-120,2024-01-20T20:52:34Z
+401602090,60,williamhill_us,spreads_h2,East Carolina Pirates,151,4.5,-115,2024-01-20T20:52:37Z
+401602090,60,williamhill_us,spreads_h2,UAB Blazers,5,-4.5,-115,2024-01-20T20:52:37Z
+401607448,60,draftkings,spreads_h2,California Golden Bears,25,2.5,-125,2024-01-20T22:54:55Z
+401607448,60,draftkings,spreads_h2,Washington St Cougars,265,-2.5,-105,2024-01-20T22:54:55Z
+401607448,60,williamhill_us,spreads_h2,California Golden Bears,25,3.0,-115,2024-01-20T22:49:34Z
+401607448,60,williamhill_us,spreads_h2,Washington St Cougars,265,-3.0,-115,2024-01-20T22:49:34Z
+401600680,60,draftkings,spreads_h2,Hofstra Pride,2275,-2.5,-120,2024-01-23T02:46:25Z
+401600680,60,draftkings,spreads_h2,Stony Brook Seawolves,2619,2.5,-110,2024-01-23T02:46:25Z
+401600347,60,draftkings,spreads_h2,Nebraska Cornhuskers,158,-0.5,-110,2024-01-24T00:52:52Z
+401600347,60,draftkings,spreads_h2,Ohio State Buckeyes,194,0.5,-120,2024-01-24T00:52:52Z
+401587921,60,williamhill_us,spreads_h2,Furman Paladins,231,1.5,-115,2024-01-25T00:55:03Z
+401587921,60,williamhill_us,spreads_h2,Samford Bulldogs,2535,-1.5,-115,2024-01-25T00:55:03Z
+401587921,60,draftkings,spreads_h2,Furman Paladins,231,1.5,-110,2024-01-25T00:54:27Z
+401587921,60,draftkings,spreads_h2,Samford Bulldogs,2535,-1.5,-120,2024-01-25T00:54:27Z
+401587706,70,williamhill_us,spreads_h2,Detroit Mercy Titans,2174,4.0,-115,2024-01-26T02:00:59Z
+401587706,70,williamhill_us,spreads_h2,Milwaukee Panthers,270,-4.0,-115,2024-01-26T02:00:59Z
+401587706,70,draftkings,spreads_h2,Detroit Mercy Titans,2174,1.5,-115,2024-01-26T02:05:45Z
+401587706,70,draftkings,spreads_h2,Milwaukee Panthers,270,-1.5,-115,2024-01-26T02:05:45Z
+401589368,60,draftkings,spreads_h2,Columbia Lions,171,1.5,-120,2024-01-27T19:53:41Z
+401589368,60,draftkings,spreads_h2,Pennsylvania Quakers,219,-1.5,-110,2024-01-27T19:53:41Z
+401601865,60,draftkings,spreads_h2,Evansville Purple Aces,339,2.5,-115,2024-01-27T19:53:42Z
+401601865,60,draftkings,spreads_h2,Illinois St Redbirds,2287,-2.5,-115,2024-01-27T19:53:42Z
+401601865,60,williamhill_us,spreads_h2,Evansville Purple Aces,339,3.5,-115,2024-01-27T19:53:50Z
+401601865,60,williamhill_us,spreads_h2,Illinois St Redbirds,2287,-3.5,-115,2024-01-27T19:53:50Z
+401597155,60,draftkings,spreads_h2,Auburn Tigers,2,-2.5,-110,2024-01-27T21:25:22Z
+401597155,60,draftkings,spreads_h2,Mississippi St Bulldogs,344,2.5,-120,2024-01-27T21:25:22Z
+401597155,60,williamhill_us,spreads_h2,Auburn Tigers,2,-2.5,-115,2024-01-27T21:24:35Z
+401597155,60,williamhill_us,spreads_h2,Mississippi St Bulldogs,344,2.5,-115,2024-01-27T21:24:35Z
+401601863,60,draftkings,spreads_h2,Belmont Bruins,2057,-4.5,-110,2024-01-27T22:55:12Z
+401601863,60,draftkings,spreads_h2,UIC Flames,82,4.5,-120,2024-01-27T22:55:12Z
+401601863,60,williamhill_us,spreads_h2,Belmont Bruins,2057,-5.0,-115,2024-01-27T22:55:18Z
+401601863,60,williamhill_us,spreads_h2,UIC Flames,82,5.0,-115,2024-01-27T22:55:18Z
+401574539,60,draftkings,spreads_h2,North Alabama Lions,2453,-2.5,-110,2024-01-28T00:55:36Z
+401574539,60,draftkings,spreads_h2,Queens University Royals,2511,2.5,-120,2024-01-28T00:55:36Z
+401594367,60,draftkings,spreads_h2,Manhattan Jaspers,2363,5.5,-105,2024-01-28T19:54:16Z
+401594367,60,draftkings,spreads_h2,Niagara Purple Eagles,315,-5.5,-125,2024-01-28T19:54:16Z
+401574633,60,draftkings,spreads_h2,Alcorn St Braves,2016,2.5,-110,2024-01-30T02:51:47Z
+401574633,60,draftkings,spreads_h2,Bethune-Cookman Wildcats,2065,-2.5,-120,2024-01-30T02:51:47Z
+401600701,60,draftkings,spreads_h2,Hofstra Pride,2275,-6.5,-115,2024-02-02T00:50:58Z
+401600701,60,draftkings,spreads_h2,Stony Brook Seawolves,2619,6.5,-115,2024-02-02T00:50:58Z
+401574092,60,draftkings,spreads_h2,Stephen F. Austin Lumberjacks,2617,-1.5,-110,2024-02-02T01:25:45Z
+401574092,60,draftkings,spreads_h2,Utah Valley Wolverines,3084,1.5,-120,2024-02-02T01:25:45Z
+401588668,60,draftkings,spreads_h2,Ball State Cardinals,2050,4.5,-110,2024-02-03T18:52:41Z
+401588668,60,draftkings,spreads_h2,Western Michigan Broncos,2711,-4.5,-120,2024-02-03T18:52:41Z
+401600366,60,draftkings,spreads_h2,Minnesota Golden Gophers,135,1.5,-130,2024-02-03T19:48:29Z
+401600366,60,draftkings,spreads_h2,Northwestern Wildcats,77,-1.5,100,2024-02-03T19:48:29Z
+401600366,60,williamhill_us,spreads_h2,Minnesota Golden Gophers,135,1.0,-115,2024-02-03T19:52:37Z
+401600366,60,williamhill_us,spreads_h2,Northwestern Wildcats,77,-1.0,-115,2024-02-03T19:52:37Z
+401602115,60,draftkings,spreads_h2,North Texas Mean Green,249,-2.5,-115,2024-02-03T23:54:10Z
+401602115,60,draftkings,spreads_h2,South Florida Bulls,58,2.5,-115,2024-02-03T23:54:10Z
+401573427,60,draftkings,spreads_h2,Eastern Washington Eagles,331,1.5,-115,2024-02-04T02:54:22Z
+401573427,60,draftkings,spreads_h2,Montana Grizzlies,149,-1.5,-115,2024-02-04T02:54:22Z
+401599518,60,draftkings,spreads_h2,DePaul Blue Demons,305,9.5,-105,2024-02-07T00:21:04Z
+401599518,60,draftkings,spreads_h2,St. John's Red Storm,2599,-9.5,-125,2024-02-07T00:21:04Z
+401594266,60,draftkings,spreads_h2,Canisius Golden Griffins,2099,5.5,-110,2024-02-07T00:51:13Z
+401594266,60,draftkings,spreads_h2,Niagara Purple Eagles,315,-5.5,-120,2024-02-07T00:51:13Z
+401596887,60,williamhill_us,spreads_h2,Davidson Wildcats,2166,6.5,-115,2024-02-08T00:55:15Z
+401596887,60,williamhill_us,spreads_h2,Duquesne Dukes,2184,-6.5,-115,2024-02-08T00:55:15Z
+401596887,60,draftkings,spreads_h2,Davidson Wildcats,2166,6.5,-120,2024-02-08T00:51:18Z
+401596887,60,draftkings,spreads_h2,Duquesne Dukes,2184,-6.5,-110,2024-02-08T00:51:18Z
+401594267,60,draftkings,spreads_h2,Canisius Golden Griffins,2099,5.5,-105,2024-02-10T18:53:03Z
+401594267,60,draftkings,spreads_h2,Iona Gaels,314,-5.5,-125,2024-02-10T18:53:03Z
+401600377,60,draftkings,spreads_h2,Illinois Fighting Illini,356,0.5,-110,2024-02-10T19:53:52Z
+401600377,60,draftkings,spreads_h2,Michigan St Spartans,127,-0.5,-120,2024-02-10T19:53:52Z
+401588942,70,draftkings,spreads_h2,Gonzaga Bulldogs,2250,5.5,-115,2024-02-10T22:01:15Z
+401588942,70,draftkings,spreads_h2,Kentucky Wildcats,96,-5.5,-115,2024-02-10T22:01:15Z
+401588942,70,williamhill_us,spreads_h2,Gonzaga Bulldogs,2250,5.5,-115,2024-02-10T22:04:35Z
+401588942,70,williamhill_us,spreads_h2,Kentucky Wildcats,96,-5.5,-115,2024-02-10T22:04:35Z
+401604185,60,draftkings,spreads_h2,Florida St Seminoles,52,3.5,-120,2024-02-14T02:54:29Z
+401604185,60,draftkings,spreads_h2,Virginia Tech Hokies,259,-3.5,-110,2024-02-14T02:54:29Z
+401597182,70,draftkings,spreads_h2,Kentucky Wildcats,96,-1.5,-120,2024-02-14T03:04:56Z
+401597182,70,draftkings,spreads_h2,Ole Miss Rebels,145,1.5,-110,2024-02-14T03:04:56Z
+401589713,70,draftkings,spreads_h2,Pepperdine Waves,2492,7.5,-115,2024-02-16T05:01:38Z
+401589713,70,draftkings,spreads_h2,Saint Mary's Gaels,2608,-7.5,-115,2024-02-16T05:01:38Z
+401589713,70,williamhill_us,spreads_h2,Pepperdine Waves,2492,6.5,-115,2024-02-16T05:05:18Z
+401589713,70,williamhill_us,spreads_h2,Saint Mary's Gaels,2608,-6.5,-115,2024-02-16T05:05:18Z
+401603478,60,draftkings,spreads_h2,Kansas St Wildcats,2306,0.5,-110,2024-02-17T17:54:24Z
+401603478,60,draftkings,spreads_h2,TCU Horned Frogs,2628,-0.5,-120,2024-02-17T17:54:24Z
+401601899,60,draftkings,spreads_h2,Missouri St Bears,2623,-6.5,-125,2024-02-17T19:51:25Z
+401601899,60,draftkings,spreads_h2,Valparaiso Beacons,2674,6.5,-105,2024-02-17T19:51:25Z
+401601899,60,williamhill_us,spreads_h2,Missouri St Bears,2623,-7.5,-115,2024-02-17T19:55:36Z
+401601899,60,williamhill_us,spreads_h2,Valparaiso Beacons,2674,7.5,-115,2024-02-17T19:55:36Z
+401602138,60,draftkings,spreads_h2,Rice Owls,242,3.5,-120,2024-02-17T20:51:55Z
+401602138,60,draftkings,spreads_h2,Tulsa Golden Hurricane,202,-3.5,-110,2024-02-17T20:51:55Z
+401602138,60,williamhill_us,spreads_h2,Rice Owls,242,3.0,-115,2024-02-17T20:55:37Z
+401602138,60,williamhill_us,spreads_h2,Tulsa Golden Hurricane,202,-3.0,-115,2024-02-17T20:55:37Z
+401581624,60,draftkings,spreads_h2,Arkansas St Red Wolves,2032,-0.5,-115,2024-02-17T22:21:24Z
+401581624,60,draftkings,spreads_h2,South Alabama Jaguars,6,0.5,-115,2024-02-17T22:21:24Z
+401581624,60,williamhill_us,spreads_h2,Arkansas St Red Wolves,2032,-1.5,-115,2024-02-17T22:25:05Z
+401581624,60,williamhill_us,spreads_h2,South Alabama Jaguars,6,1.5,-115,2024-02-17T22:25:05Z
+401589717,60,draftkings,spreads_h2,Loyola Marymount Lions,2351,0.5,-110,2024-02-18T02:52:20Z
+401589717,60,draftkings,spreads_h2,San Francisco Dons,2539,-0.5,-120,2024-02-18T02:52:20Z
+401589717,60,williamhill_us,spreads_h2,Loyola Marymount Lions,2351,0.5,-115,2024-02-18T02:55:45Z
+401589717,60,williamhill_us,spreads_h2,San Francisco Dons,2539,-0.5,-115,2024-02-18T02:55:45Z
+401607425,70,draftkings,spreads_h2,Arizona St Sun Devils,9,5.5,-115,2024-02-18T03:30:57Z
+401607425,70,draftkings,spreads_h2,Arizona Wildcats,12,-5.5,-115,2024-02-18T03:30:57Z
+401607425,70,williamhill_us,spreads_h2,Arizona St Sun Devils,9,6.5,-115,2024-02-18T03:34:58Z
+401607425,70,williamhill_us,spreads_h2,Arizona Wildcats,12,-6.5,-115,2024-02-18T03:34:58Z
+401603485,70,draftkings,spreads_h2,TCU Horned Frogs,2628,3.5,-115,2024-02-21T03:01:22Z
+401603485,70,draftkings,spreads_h2,Texas Tech Red Raiders,2641,-3.5,-115,2024-02-21T03:01:22Z
+401603485,70,williamhill_us,spreads_h2,TCU Horned Frogs,2628,4.5,-115,2024-02-21T03:04:43Z
+401603485,70,williamhill_us,spreads_h2,Texas Tech Red Raiders,2641,-4.5,-115,2024-02-21T03:04:43Z
+401604202,60,williamhill_us,spreads_h2,Louisville Cardinals,97,-3.5,-115,2024-02-22T00:55:12Z
+401604202,60,williamhill_us,spreads_h2,Notre Dame Fighting Irish,87,3.5,-115,2024-02-22T00:55:12Z
+401604202,60,draftkings,spreads_h2,Louisville Cardinals,97,-2.5,-115,2024-02-22T00:54:31Z
+401604202,60,draftkings,spreads_h2,Notre Dame Fighting Irish,87,2.5,-115,2024-02-22T00:54:31Z
+401607430,60,draftkings,spreads_h2,California Golden Bears,25,-5.5,-120,2024-02-23T03:52:10Z
+401607430,60,draftkings,spreads_h2,Oregon St Beavers,204,5.5,-110,2024-02-23T03:52:10Z
+401594339,60,draftkings,spreads_h2,Manhattan Jaspers,2363,5.5,-105,2024-02-24T00:53:27Z
+401594339,60,draftkings,spreads_h2,Marist Red Foxes,2368,-5.5,-125,2024-02-24T00:53:27Z
+401594339,60,williamhill_us,spreads_h2,Manhattan Jaspers,2363,7.0,-115,2024-02-24T00:54:14Z
+401594339,60,williamhill_us,spreads_h2,Marist Red Foxes,2368,-7.0,-115,2024-02-24T00:54:14Z
+401594303,60,draftkings,spreads_h2,Fairfield Stags,2217,2.5,-125,2024-02-24T02:53:46Z
+401594303,60,draftkings,spreads_h2,Quinnipiac Bobcats,2514,-2.5,-105,2024-02-24T02:53:46Z
+401594303,60,williamhill_us,spreads_h2,Fairfield Stags,2217,2.0,-115,2024-02-24T02:55:19Z
+401594303,60,williamhill_us,spreads_h2,Quinnipiac Bobcats,2514,-2.0,-115,2024-02-24T02:55:19Z
+401602977,60,draftkings,spreads_h2,Boise State Broncos,68,-0.5,-105,2024-02-25T01:21:57Z
+401602977,60,draftkings,spreads_h2,Wyoming Cowboys,2751,0.5,-125,2024-02-25T01:21:57Z
+401573460,60,draftkings,spreads_h2,Montana St Bobcats,147,-5.5,-125,2024-02-25T01:55:05Z
+401573460,60,draftkings,spreads_h2,Sacramento St Hornets,16,5.5,-105,2024-02-25T01:55:05Z
+401589725,60,draftkings,spreads_h2,Pepperdine Waves,2492,5.5,-105,2024-02-25T03:55:35Z
+401589725,60,draftkings,spreads_h2,San Francisco Dons,2539,-5.5,-125,2024-02-25T03:55:35Z
+401589725,60,williamhill_us,spreads_h2,Pepperdine Waves,2492,4.5,-115,2024-02-25T03:55:30Z
+401589725,60,williamhill_us,spreads_h2,San Francisco Dons,2539,-4.5,-115,2024-02-25T03:55:30Z
+401600748,60,williamhill_us,spreads_h2,Delaware Blue Hens,48,-2.5,-115,2024-02-27T00:25:11Z
+401600748,60,williamhill_us,spreads_h2,Drexel Dragons,2182,2.5,-115,2024-02-27T00:25:11Z
+401600748,60,draftkings,spreads_h2,Delaware Blue Hens,48,-2.5,-120,2024-02-27T00:22:22Z
+401600748,60,draftkings,spreads_h2,Drexel Dragons,2182,2.5,-110,2024-02-27T00:22:22Z
+401607437,70,draftkings,spreads_h2,Arizona St Sun Devils,9,2.5,-115,2024-02-29T03:57:00Z
+401607437,70,draftkings,spreads_h2,Arizona Wildcats,12,-2.5,-115,2024-02-29T03:57:00Z
+401607437,70,williamhill_us,spreads_h2,Arizona St Sun Devils,9,3.5,-115,2024-02-29T04:05:35Z
+401607437,70,williamhill_us,spreads_h2,Arizona Wildcats,12,-3.5,-115,2024-02-29T04:05:35Z
+401600415,60,williamhill_us,spreads_h2,Nebraska Cornhuskers,158,1.0,-115,2024-03-01T00:25:18Z
+401600415,60,williamhill_us,spreads_h2,Ohio State Buckeyes,194,-1.0,-115,2024-03-01T00:25:18Z
+401600415,60,draftkings,spreads_h2,Nebraska Cornhuskers,158,0.5,-110,2024-03-01T00:24:30Z
+401600415,60,draftkings,spreads_h2,Ohio State Buckeyes,194,-0.5,-120,2024-03-01T00:24:30Z
+401573357,60,williamhill_us,spreads_h2,Jacksonville St Gamecocks,55,-4.0,-115,2024-03-01T00:55:26Z
+401573357,60,williamhill_us,spreads_h2,UTEP Miners,2638,4.0,-115,2024-03-01T00:55:26Z
+401573357,60,draftkings,spreads_h2,Jacksonville St Gamecocks,55,-3.5,-115,2024-03-01T00:49:48Z
+401573357,60,draftkings,spreads_h2,UTEP Miners,2638,3.5,-115,2024-03-01T00:49:48Z
+401602165,60,draftkings,spreads_h2,Temple Owls,218,-5.5,-120,2024-03-02T18:52:04Z
+401602165,60,draftkings,spreads_h2,Tulsa Golden Hurricane,202,5.5,-110,2024-03-02T18:52:04Z
+401602165,60,williamhill_us,spreads_h2,Temple Owls,218,-4.5,-115,2024-03-02T18:55:07Z
+401602165,60,williamhill_us,spreads_h2,Tulsa Golden Hurricane,202,4.5,-115,2024-03-02T18:55:07Z
+401601284,60,draftkings,spreads_h2,Radford Highlanders,2515,-1.5,-120,2024-03-02T19:54:22Z
+401601284,60,draftkings,spreads_h2,UNC Asheville Bulldogs,2427,1.5,-110,2024-03-02T19:54:22Z
+401601284,60,williamhill_us,spreads_h2,Radford Highlanders,2515,-1.5,-115,2024-03-02T19:55:19Z
+401601284,60,williamhill_us,spreads_h2,UNC Asheville Bulldogs,2427,1.5,-115,2024-03-02T19:55:19Z
+401589371,70,draftkings,spreads_h2,Columbia Lions,171,0.5,-120,2024-03-03T01:05:18Z
+401589371,70,draftkings,spreads_h2,Pennsylvania Quakers,219,-0.5,-110,2024-03-03T01:05:18Z
+401599563,60,draftkings,spreads_h2,Georgetown Hoyas,46,9.5,-105,2024-03-09T17:55:06Z
+401599563,60,draftkings,spreads_h2,St. John's Red Storm,2599,-9.5,-125,2024-03-09T17:55:06Z
+401573650,60,draftkings,spreads_h2,Louisiana Tech Bulldogs,2348,-7.5,-105,2024-03-09T20:50:32Z
+401573650,60,draftkings,spreads_h2,Middle Tennessee Blue Raiders,2393,7.5,-125,2024-03-09T20:50:32Z
+401607446,60,draftkings,spreads_h2,Oregon Ducks,2483,-3.5,-105,2024-03-10T00:53:46Z
+401607446,60,draftkings,spreads_h2,Utah Utes,254,3.5,-125,2024-03-10T00:53:46Z
+401630144,60,williamhill_us,spreads_h2,Delaware Blue Hens,48,-1.0,-115,2024-03-10T02:44:52Z
+401630144,60,williamhill_us,spreads_h2,Hampton Pirates,2261,1.0,-115,2024-03-10T02:44:52Z
+401630144,60,draftkings,spreads_h2,Delaware Blue Hens,48,0.5,-125,2024-03-10T02:37:07Z
+401630144,60,draftkings,spreads_h2,Hampton Pirates,2261,-0.5,-105,2024-03-10T02:37:07Z
+401625549,60,draftkings,spreads_h2,Richmond Spiders,257,-0.5,-125,2024-03-14T16:21:12Z
+401625549,60,draftkings,spreads_h2,Saint Joseph's Hawks,2603,0.5,-105,2024-03-14T16:21:12Z
+401625549,60,williamhill_us,spreads_h2,Richmond Spiders,257,-1.5,-115,2024-03-14T16:25:29Z
+401625549,60,williamhill_us,spreads_h2,Saint Joseph's Hawks,2603,1.5,-115,2024-03-14T16:25:29Z
+401625408,60,draftkings,spreads_h2,Pittsburgh Panthers,221,3.5,-110,2024-03-14T19:24:00Z
+401625408,60,draftkings,spreads_h2,Wake Forest Demon Deacons,154,-3.5,-120,2024-03-14T19:24:00Z
+401625561,60,draftkings,spreads_h2,Creighton Bluejays,156,-6.5,-115,2024-03-14T23:50:57Z
+401625561,60,draftkings,spreads_h2,Providence Friars,2507,6.5,-115,2024-03-14T23:50:57Z
+401625569,60,draftkings,spreads_h2,Delaware St Hornets,2169,-0.5,-120,2024-03-15T01:38:15Z
+401625569,60,draftkings,spreads_h2,South Carolina St Bulldogs,2569,0.5,-110,2024-03-15T01:38:15Z
+401625569,60,williamhill_us,spreads_h2,Delaware St Hornets,2169,-1.0,-115,2024-03-15T01:40:28Z
+401625569,60,williamhill_us,spreads_h2,South Carolina St Bulldogs,2569,1.0,-115,2024-03-15T01:40:28Z
+401625504,60,draftkings,spreads_h2,Bowling Green Falcons,189,0.5,-125,2024-03-15T21:54:03Z
+401625504,60,draftkings,spreads_h2,Kent State Golden Flashes,2309,-0.5,-105,2024-03-15T21:54:03Z
+401641099,60,draftkings,spreads_h2,Georgia Bulldogs,61,1.5,-110,2024-03-19T23:50:25Z
+401641099,60,draftkings,spreads_h2,Xavier Musketeers,2752,-1.5,-120,2024-03-19T23:50:25Z
+401641099,60,fanduel,spreads_h2,Georgia Bulldogs,61,2.5,-122,2024-03-19T23:51:55Z
+401641099,60,fanduel,spreads_h2,Xavier Musketeers,2752,-2.5,-106,2024-03-19T23:51:55Z
+401641099,60,williamhill_us,spreads_h2,Georgia Bulldogs,61,2.5,-115,2024-03-19T23:55:08Z
+401641099,60,williamhill_us,spreads_h2,Xavier Musketeers,2752,-2.5,-115,2024-03-19T23:55:08Z
+401638590,60,draftkings,spreads_h2,Oregon Ducks,2483,1.5,-125,2024-03-21T20:53:31Z
+401638590,60,draftkings,spreads_h2,South Carolina Gamecocks,2579,-1.5,-110,2024-03-21T20:53:31Z
+401638590,60,fanduel,spreads_h2,Oregon Ducks,2483,0.5,-125,2024-03-21T20:55:12Z
+401638590,60,fanduel,spreads_h2,South Carolina Gamecocks,2579,-0.5,-104,2024-03-21T20:55:12Z
+401638616,60,draftkings,spreads_h2,Iowa State Cyclones,66,-4.5,-120,2024-03-23T23:04:29Z
+401638616,60,draftkings,spreads_h2,Washington St Cougars,265,4.5,-110,2024-03-23T23:04:29Z
+401638616,60,williamhill_us,spreads_h2,Iowa State Cyclones,66,-4.5,-130,2024-03-23T23:05:38Z
+401638616,60,williamhill_us,spreads_h2,Washington St Cougars,265,4.5,100,2024-03-23T23:05:38Z
+401638616,60,fanduel,spreads_h2,Iowa State Cyclones,66,-4.5,-128,2024-03-23T23:03:46Z
+401638616,60,fanduel,spreads_h2,Washington St Cougars,265,4.5,-102,2024-03-23T23:03:46Z
+401700397,60,draftkings,spreads_h2,Navy Midshipmen,2426,9.5,-120,2024-11-05T00:54:13Z
+401700397,60,draftkings,spreads_h2,Saint Joseph's Hawks,2603,-9.5,-110,2024-11-05T00:54:13Z
+401706881,60,draftkings,spreads_h2,Duke Blue Devils,150,-14.5,-110,2024-11-05T00:55:52Z
+401706881,60,draftkings,spreads_h2,Maine Black Bears,311,14.5,-120,2024-11-05T00:55:52Z
+401715687,60,draftkings,spreads_h2,Pittsburgh Panthers,221,-6.5,-120,2024-11-05T00:55:23Z
+401715687,60,draftkings,spreads_h2,Radford Highlanders,2515,6.5,-110,2024-11-05T00:55:23Z
+401706926,60,draftkings,spreads_h2,Houston Cougars,248,-17.5,-120,2024-11-05T01:55:08Z
+401706926,60,draftkings,spreads_h2,Jackson St Tigers,2296,17.5,-110,2024-11-05T01:55:08Z
+401721667,60,draftkings,spreads_h2,Quinnipiac Bobcats,2514,1.5,-115,2024-11-05T01:55:05Z
+401721667,60,draftkings,spreads_h2,Yale Bulldogs,43,-1.5,-115,2024-11-05T01:55:05Z
+401711681,60,draftkings,spreads_h2,Duquesne Dukes,2184,-3.5,-105,2024-11-05T01:55:05Z
+401711681,60,draftkings,spreads_h2,Lipscomb Bisons,288,3.5,-125,2024-11-05T01:55:05Z
+401715379,60,draftkings,spreads_h2,Iowa Hawkeyes,2294,-10.5,-120,2024-11-08T01:53:52Z
+401715379,60,draftkings,spreads_h2,Southern Jaguars,2582,10.5,-110,2024-11-08T01:53:52Z
+401715379,60,williamhill_us,spreads_h2,Iowa Hawkeyes,2294,-12.5,-115,2024-11-08T01:54:37Z
+401715379,60,williamhill_us,spreads_h2,Southern Jaguars,2582,12.5,-115,2024-11-08T01:54:37Z
+401718448,60,draftkings,spreads_h2,Holy Cross Crusaders,107,12.5,-105,2024-11-09T00:53:45Z
+401718448,60,draftkings,spreads_h2,Rhode Island Rams,227,-12.5,-125,2024-11-09T00:53:45Z
+401722561,60,draftkings,spreads_h2,Belmont Bruins,2057,-3.5,-115,2024-11-09T01:25:27Z
+401722561,60,draftkings,spreads_h2,Furman Paladins,231,3.5,-115,2024-11-09T01:25:27Z
+401715591,60,draftkings,spreads_h2,Quinnipiac Bobcats,2514,12.5,-110,2024-11-09T19:55:03Z
+401715591,60,draftkings,spreads_h2,St. John's Red Storm,2599,-12.5,-120,2024-11-09T19:55:03Z
+401715591,60,williamhill_us,spreads_h2,Quinnipiac Bobcats,2514,12.5,-115,2024-11-09T19:55:56Z
+401715591,60,williamhill_us,spreads_h2,St. John's Red Storm,2599,-12.5,-115,2024-11-09T19:55:56Z
+401725814,60,draftkings,spreads_h2,Utah Valley Wolverines,3084,2.5,-115,2024-11-09T21:54:34Z
+401725814,60,draftkings,spreads_h2,UTEP Miners,2638,-2.5,-115,2024-11-09T21:54:34Z
+401712995,60,draftkings,spreads_h2,Butler Bulldogs,2086,-10.5,-105,2024-11-12T00:55:14Z
+401712995,60,draftkings,spreads_h2,Western Michigan Broncos,2711,10.5,-125,2024-11-12T00:55:14Z
+401715682,60,draftkings,spreads_h2,Buffalo Bulls,2084,13.5,-115,2024-11-12T00:54:51Z
+401715682,60,draftkings,spreads_h2,Notre Dame Fighting Irish,87,-13.5,-115,2024-11-12T00:54:51Z
+401715682,60,williamhill_us,spreads_h2,Buffalo Bulls,2084,12.5,-115,2024-11-12T00:54:12Z
+401715682,60,williamhill_us,spreads_h2,Notre Dame Fighting Irish,87,-12.5,-115,2024-11-12T00:54:12Z
+401715423,70,williamhill_us,spreads_h2,Rutgers Scarlet Knights,164,-11.5,-115,2024-11-12T01:02:12Z
+401715423,70,williamhill_us,spreads_h2,Saint Peter's Peacocks,2612,11.5,-115,2024-11-12T01:02:12Z
+401715380,60,draftkings,spreads_h2,Iowa Hawkeyes,2294,-8.5,-115,2024-11-13T02:55:26Z
+401715380,60,draftkings,spreads_h2,South Dakota Coyotes,233,8.5,-115,2024-11-13T02:55:26Z
+401715380,60,williamhill_us,spreads_h2,Iowa Hawkeyes,2294,-9.5,-115,2024-11-13T02:54:44Z
+401715380,60,williamhill_us,spreads_h2,South Dakota Coyotes,233,9.5,-115,2024-11-13T02:54:44Z
+401727286,60,draftkings,spreads_h2,Green Bay Phoenix,2739,5.5,-115,2024-11-14T01:55:27Z
+401727286,60,draftkings,spreads_h2,Western Illinois Leathernecks,2710,-5.5,-115,2024-11-14T01:55:27Z
+401725793,60,draftkings,spreads_h2,Omaha Mavericks,2437,1.5,-115,2024-11-17T02:24:53Z
+401725793,60,draftkings,spreads_h2,Southern Utah Thunderbirds,253,-1.5,-115,2024-11-17T02:24:53Z
+401725793,60,williamhill_us,spreads_h2,Omaha Mavericks,2437,1.5,-115,2024-11-17T02:25:48Z
+401725793,60,williamhill_us,spreads_h2,Southern Utah Thunderbirds,253,-1.5,-115,2024-11-17T02:25:48Z
+401726013,60,draftkings,spreads_h2,Charleston Cougars,232,-2.5,-105,2024-11-20T23:55:13Z
+401726013,60,draftkings,spreads_h2,The Citadel Bulldogs,2643,2.5,-125,2024-11-20T23:55:13Z
+401726013,60,williamhill_us,spreads_h2,Charleston Cougars,232,-2.5,-115,2024-11-20T23:55:33Z
+401726013,60,williamhill_us,spreads_h2,The Citadel Bulldogs,2643,2.5,-115,2024-11-20T23:55:33Z
+401729763,60,williamhill_us,spreads_h2,Jacksonville St Gamecocks,55,4.0,-115,2024-11-23T00:13:24Z
+401729763,60,williamhill_us,spreads_h2,Toledo Rockets,2649,-4.0,-115,2024-11-23T00:13:24Z
+401729763,60,draftkings,spreads_h2,Jacksonville St Gamecocks,55,2.5,-115,2024-11-23T00:20:21Z
+401729763,60,draftkings,spreads_h2,Toledo Rockets,2649,-2.5,-115,2024-11-23T00:20:21Z
+401722593,60,draftkings,spreads_h2,Evansville Purple Aces,339,3.5,-115,2024-11-23T01:54:52Z
+401722593,60,draftkings,spreads_h2,Green Bay Phoenix,2739,-3.5,-115,2024-11-23T01:54:52Z
+401706885,60,draftkings,spreads_h2,Arizona Wildcats,12,-2.5,-110,2024-11-23T04:25:20Z
+401706885,60,draftkings,spreads_h2,Duke Blue Devils,150,2.5,-120,2024-11-23T04:25:20Z
+401729764,60,draftkings,spreads_h2,La Salle Explorers,2325,-7.5,-125,2024-11-23T16:55:39Z
+401729764,60,draftkings,spreads_h2,Stetson Hatters,56,7.5,-105,2024-11-23T16:55:39Z
+401729764,60,williamhill_us,spreads_h2,La Salle Explorers,2325,-8.0,-115,2024-11-23T16:50:27Z
+401729764,60,williamhill_us,spreads_h2,Stetson Hatters,56,8.0,-115,2024-11-23T16:50:27Z
+401721691,70,draftkings,spreads_h2,Delaware Blue Hens,48,6.5,-115,2024-11-25T00:05:15Z
+401721691,70,draftkings,spreads_h2,Yale Bulldogs,43,-6.5,-115,2024-11-25T00:05:15Z
+401706168,60,draftkings,spreads_h2,Cornell Big Red,172,0.5,-120,2024-11-26T00:55:07Z
+401706168,60,draftkings,spreads_h2,Iona Gaels,314,-0.5,-110,2024-11-26T00:55:07Z
+401722609,60,draftkings,spreads_h2,Indiana St Sycamores,282,-3.5,-115,2024-11-26T01:55:42Z
+401722609,60,draftkings,spreads_h2,Southern Indiana Screaming Eagles,88,3.5,-115,2024-11-26T01:55:42Z
+401732170,60,draftkings,spreads_h2,Eastern Kentucky Colonels,2198,5.5,-120,2024-11-26T17:55:13Z
+401732170,60,draftkings,spreads_h2,Southern Illinois Salukis,79,-5.5,-110,2024-11-26T17:55:13Z
+401732170,60,williamhill_us,spreads_h2,Eastern Kentucky Colonels,2198,6.5,-115,2024-11-26T17:52:53Z
+401732170,60,williamhill_us,spreads_h2,Southern Illinois Salukis,79,-6.5,-115,2024-11-26T17:52:53Z
+401729777,60,draftkings,spreads_h2,Hampton Pirates,2261,4.5,-105,2024-11-26T19:25:50Z
+401729777,60,draftkings,spreads_h2,High Point Panthers,2272,-4.5,-125,2024-11-26T19:25:50Z
+401722229,60,draftkings,spreads_h2,Fresno St Bulldogs,278,6.5,-115,2024-11-27T05:55:28Z
+401722229,60,draftkings,spreads_h2,Washington St Cougars,265,-6.5,-115,2024-11-27T05:55:28Z
+401715958,60,draftkings,spreads_h2,Houston Christian Huskies,2277,5.5,-110,2024-11-28T01:54:02Z
+401715958,60,draftkings,spreads_h2,Northern Arizona Lumberjacks,2464,-5.5,-120,2024-11-28T01:54:02Z
+401727264,70,draftkings,spreads_h2,Bellarmine Knights,91,4.5,-105,2024-12-01T00:05:42Z
+401727264,70,draftkings,spreads_h2,Northern Kentucky Norse,94,-4.5,-125,2024-12-01T00:05:42Z
+401706173,70,williamhill_us,spreads_h2,Fairfield Stags,2217,1.5,-115,2024-12-05T01:02:42Z
+401706173,70,williamhill_us,spreads_h2,Rider Broncs,2520,-1.5,-115,2024-12-05T01:02:42Z
+401707863,60,draftkings,spreads_h2,Indiana Hoosiers,84,-10.5,-110,2024-12-07T00:54:50Z
+401707863,60,draftkings,spreads_h2,Miami (OH) RedHawks,193,10.5,-120,2024-12-07T00:54:50Z
+401720446,60,draftkings,spreads_h2,Charleston Southern Buccaneers,2127,6.5,-120,2024-12-07T00:55:51Z
+401720446,60,draftkings,spreads_h2,Davidson Wildcats,2166,-6.5,-110,2024-12-07T00:55:51Z
+401720446,60,williamhill_us,spreads_h2,Charleston Southern Buccaneers,2127,6.5,-115,2024-12-07T00:53:01Z
+401720446,60,williamhill_us,spreads_h2,Davidson Wildcats,2166,-6.5,-115,2024-12-07T00:53:01Z
+401711709,60,draftkings,spreads_h2,Queens University Royals,2511,0.5,-105,2024-12-07T18:55:42Z
+401711709,60,draftkings,spreads_h2,VMI Keydets,2678,-0.5,-125,2024-12-07T18:55:42Z
+401711709,60,williamhill_us,spreads_h2,Queens University Royals,2511,1.5,-120,2024-12-07T18:53:43Z
+401711709,60,williamhill_us,spreads_h2,VMI Keydets,2678,-1.5,-110,2024-12-07T18:53:43Z
+401715454,60,draftkings,spreads_h2,Creighton Bluejays,156,-2.5,-115,2024-12-07T21:55:30Z
+401715454,60,draftkings,spreads_h2,UNLV Rebels,2439,2.5,-115,2024-12-07T21:55:30Z
+401711749,60,draftkings,spreads_h2,Georgia Southern Eagles,290,1.5,-115,2024-12-08T00:53:51Z
+401711749,60,draftkings,spreads_h2,North Florida Ospreys,2454,-1.5,-115,2024-12-08T00:53:51Z
+401706181,60,draftkings,spreads_h2,Merrimack Warriors,2771,4.5,-125,2024-12-08T18:54:12Z
+401706181,60,draftkings,spreads_h2,Niagara Purple Eagles,315,-4.5,-105,2024-12-08T18:54:12Z
+401720995,60,draftkings,spreads_h2,Ball State Cardinals,2050,3.5,-125,2024-12-08T19:55:47Z
+401720995,60,draftkings,spreads_h2,SIU-Edwardsville Cougars,2565,-3.5,-105,2024-12-08T19:55:47Z
+401715464,60,williamhill_us,spreads_h2,DePaul Blue Demons,305,-3.5,-115,2024-12-14T18:53:28Z
+401715464,60,williamhill_us,spreads_h2,Wichita St Shockers,2724,3.5,-115,2024-12-14T18:53:28Z
+401715352,70,williamhill_us,spreads_h2,Arkansas-Pine Bluff Golden Lions,2029,14.5,-115,2024-12-15T21:04:37Z
+401715352,70,williamhill_us,spreads_h2,Texas Longhorns,251,-14.5,-115,2024-12-15T21:04:37Z
+401719330,60,draftkings,spreads_h2,Illinois St Redbirds,2287,4.5,-110,2024-12-15T22:55:33Z
+401719330,60,draftkings,spreads_h2,Saint Louis Billikens,139,-4.5,-120,2024-12-15T22:55:33Z
+401721654,70,draftkings,spreads_h2,Oregon Ducks,2483,-9.5,-120,2024-12-16T00:04:54Z
+401721654,70,draftkings,spreads_h2,Stephen F. Austin Lumberjacks,2617,9.5,-110,2024-12-16T00:04:54Z
+401721984,60,draftkings,spreads_h2,Charlotte 49ers,2429,-6.5,-115,2024-12-18T00:55:13Z
+401721984,60,draftkings,spreads_h2,West Georgia Wolves,2698,6.5,-115,2024-12-18T00:55:13Z
+401721026,60,draftkings,spreads_h2,Eastern Michigan Eagles,2199,-0.5,-105,2024-12-21T19:55:32Z
+401721026,60,draftkings,spreads_h2,Wright St Raiders,2750,0.5,-125,2024-12-21T19:55:32Z
+401715404,60,williamhill_us,spreads_h2,DePaul Blue Demons,305,1.5,-115,2024-12-21T21:54:40Z
+401715404,60,williamhill_us,spreads_h2,Northwestern Wildcats,77,-1.5,-115,2024-12-21T21:54:40Z
+401715404,60,draftkings,spreads_h2,DePaul Blue Demons,305,1.5,-110,2024-12-21T21:55:28Z
+401715404,60,draftkings,spreads_h2,Northwestern Wildcats,77,-1.5,-120,2024-12-21T21:55:28Z
+401720523,60,williamhill_us,spreads_h2,Utah Valley Wolverines,3084,1.5,-115,2024-12-22T02:54:41Z
+401720523,60,williamhill_us,spreads_h2,Weber State Wildcats,2692,-1.5,-115,2024-12-22T02:54:41Z
+401720523,60,draftkings,spreads_h2,Utah Valley Wolverines,3084,1.5,-110,2024-12-22T02:55:05Z
+401720523,60,draftkings,spreads_h2,Weber State Wildcats,2692,-1.5,-120,2024-12-22T02:55:05Z
+401706191,60,draftkings,spreads_h2,Harvard Crimson,108,2.5,-105,2024-12-29T18:55:44Z
+401706191,60,draftkings,spreads_h2,Iona Gaels,314,-2.5,-125,2024-12-29T18:55:44Z
+401721836,60,draftkings,spreads_h2,Navy Midshipmen,2426,2.5,-120,2024-12-29T18:55:05Z
+401721836,60,draftkings,spreads_h2,William & Mary Tribe,2729,-2.5,-110,2024-12-29T18:55:05Z
+401720990,60,draftkings,spreads_h2,Akron Zips,2006,5.5,-120,2024-12-30T18:55:00Z
+401720990,60,draftkings,spreads_h2,Princeton Tigers,163,-5.5,-110,2024-12-30T18:55:00Z
+401720990,60,williamhill_us,spreads_h2,Akron Zips,2006,6.0,-115,2024-12-30T18:53:28Z
+401720990,60,williamhill_us,spreads_h2,Princeton Tigers,163,-6.0,-115,2024-12-30T18:53:28Z
+401706672,60,draftkings,spreads_h2,Gonzaga Bulldogs,2250,-14.5,-105,2025-01-03T02:55:35Z
+401706672,60,draftkings,spreads_h2,Portland Pilots,2501,14.5,-125,2025-01-03T02:55:35Z
+401706301,60,draftkings,spreads_h2,Akron Zips,2006,-4.5,-120,2025-01-03T23:54:56Z
+401706301,60,draftkings,spreads_h2,Bowling Green Falcons,189,4.5,-110,2025-01-03T23:54:56Z
+401722458,60,draftkings,spreads_h2,Evansville Purple Aces,339,3.5,-120,2025-01-04T19:54:06Z
+401722458,60,draftkings,spreads_h2,Indiana St Sycamores,282,-3.5,-110,2025-01-04T19:54:06Z
+401719659,60,draftkings,spreads_h2,Portland St Vikings,2502,-1.5,-115,2025-01-04T21:55:26Z
+401719659,60,draftkings,spreads_h2,Sacramento St Hornets,16,1.5,-115,2025-01-04T21:55:26Z
+401719659,60,williamhill_us,spreads_h2,Portland St Vikings,2502,-1.5,-115,2025-01-04T21:49:02Z
+401719659,60,williamhill_us,spreads_h2,Sacramento St Hornets,16,1.5,-115,2025-01-04T21:49:02Z
+401716121,60,draftkings,spreads_h2,Incarnate Word Cardinals,2916,5.5,-110,2025-01-04T23:54:56Z
+401716121,60,draftkings,spreads_h2,Stephen F. Austin Lumberjacks,2617,-5.5,-120,2025-01-04T23:54:56Z
+401706678,60,draftkings,spreads_h2,San Francisco Dons,2539,1.5,-110,2025-01-05T00:55:31Z
+401706678,60,draftkings,spreads_h2,Washington St Cougars,265,-1.5,-120,2025-01-05T00:55:31Z
+401721336,60,draftkings,spreads_h2,Rutgers Scarlet Knights,164,-2.5,-110,2025-01-07T00:55:19Z
+401721336,60,draftkings,spreads_h2,Wisconsin Badgers,275,2.5,-120,2025-01-07T00:55:19Z
+401721336,60,williamhill_us,spreads_h2,Rutgers Scarlet Knights,164,-2.5,-115,2025-01-07T00:52:33Z
+401721336,60,williamhill_us,spreads_h2,Wisconsin Badgers,275,2.5,-115,2025-01-07T00:52:33Z
+401725651,60,fanduel,spreads_h2,Baylor Bears,239,0.5,-118,2025-01-08T01:55:23Z
+401725651,60,fanduel,spreads_h2,Cincinnati Bearcats,2132,-0.5,-110,2025-01-08T01:55:23Z
+401725651,60,draftkings,spreads_h2,Baylor Bears,239,1.5,-115,2025-01-08T01:55:00Z
+401725651,60,draftkings,spreads_h2,Cincinnati Bearcats,2132,-1.5,-115,2025-01-08T01:55:00Z
+401706576,60,draftkings,spreads_h2,UT-Arlington Mavericks,250,-4.5,-120,2025-01-10T02:55:07Z
+401706576,60,draftkings,spreads_h2,Utah Tech Trailblazers,3101,4.5,-110,2025-01-10T02:55:07Z
+401706576,60,williamhill_us,spreads_h2,UT-Arlington Mavericks,250,-4.5,-115,2025-01-10T02:53:34Z
+401706576,60,williamhill_us,spreads_h2,Utah Tech Trailblazers,3101,4.5,-115,2025-01-10T02:53:34Z
+401724749,60,fanduel,spreads_h2,Clemson Tigers,228,-2.5,-118,2025-01-11T19:55:30Z
+401724749,60,fanduel,spreads_h2,Florida St Seminoles,52,2.5,-110,2025-01-11T19:55:30Z
+401724749,60,draftkings,spreads_h2,Clemson Tigers,228,-2.5,-110,2025-01-11T19:55:18Z
+401724749,60,draftkings,spreads_h2,Florida St Seminoles,52,2.5,-120,2025-01-11T19:55:18Z
+401727877,60,draftkings,spreads_h2,Longwood Lancers,2344,-0.5,-120,2025-01-11T19:55:39Z
+401727877,60,draftkings,spreads_h2,Winthrop Eagles,2737,0.5,-110,2025-01-11T19:55:39Z
+401714539,60,draftkings,spreads_h2,Georgia Southern Eagles,290,2.5,-110,2025-01-11T21:55:44Z
+401714539,60,draftkings,spreads_h2,Marshall Thundering Herd,276,-2.5,-120,2025-01-11T21:55:44Z
+401719100,60,fanduel,spreads_h2,DePaul Blue Demons,305,8.5,-114,2025-01-15T00:54:46Z
+401719100,60,fanduel,spreads_h2,Marquette Golden Eagles,269,-8.5,-114,2025-01-15T00:54:46Z
+401719100,60,draftkings,spreads_h2,DePaul Blue Demons,305,8.5,-110,2025-01-15T00:54:53Z
+401719100,60,draftkings,spreads_h2,Marquette Golden Eagles,269,-8.5,-120,2025-01-15T00:54:53Z
+401706322,60,draftkings,spreads_h2,Miami (OH) RedHawks,193,-4.5,-120,2025-01-15T00:55:18Z
+401706322,60,draftkings,spreads_h2,Northern Illinois Huskies,2459,4.5,-110,2025-01-15T00:55:18Z
+401706323,60,fanduel,spreads_h2,Akron Zips,2006,-7.5,-108,2025-01-15T00:55:42Z
+401706323,60,fanduel,spreads_h2,Toledo Rockets,2649,7.5,-120,2025-01-15T00:55:42Z
+401706323,60,draftkings,spreads_h2,Akron Zips,2006,-7.5,-115,2025-01-15T00:55:50Z
+401706323,60,draftkings,spreads_h2,Toledo Rockets,2649,7.5,-115,2025-01-15T00:55:50Z
+401724366,60,fanduel,spreads_h2,Davidson Wildcats,2166,0.5,-115,2025-01-16T00:25:02Z
+401724366,60,fanduel,spreads_h2,La Salle Explorers,2325,-0.5,-113,2025-01-16T00:25:02Z
+401724366,60,draftkings,spreads_h2,Davidson Wildcats,2166,0.5,-115,2025-01-16T00:25:05Z
+401724366,60,draftkings,spreads_h2,La Salle Explorers,2325,-0.5,-115,2025-01-16T00:25:05Z
+401714543,60,draftkings,spreads_h2,South Alabama Jaguars,6,-5.5,-115,2025-01-16T01:55:22Z
+401714543,60,draftkings,spreads_h2,Southern Miss Golden Eagles,2572,5.5,-115,2025-01-16T01:55:22Z
+401721359,60,fanduel,spreads_h2,Michigan Wolverines,130,-3.5,-125,2025-01-17T00:54:59Z
+401721359,60,fanduel,spreads_h2,Minnesota Golden Gophers,135,3.5,-104,2025-01-17T00:54:59Z
+401721359,60,draftkings,spreads_h2,Michigan Wolverines,130,-3.5,-125,2025-01-17T00:54:52Z
+401721359,60,draftkings,spreads_h2,Minnesota Golden Gophers,135,3.5,-105,2025-01-17T00:54:52Z
+401721359,60,williamhill_us,spreads_h2,Michigan Wolverines,130,-3.5,-115,2025-01-17T00:50:56Z
+401721359,60,williamhill_us,spreads_h2,Minnesota Golden Gophers,135,3.5,-115,2025-01-17T00:50:56Z
+401724372,60,fanduel,spreads_h2,Saint Joseph's Hawks,2603,1.5,-114,2025-01-18T00:55:31Z
+401724372,60,fanduel,spreads_h2,VCU Rams,2670,-1.5,-114,2025-01-18T00:55:31Z
+401724372,60,draftkings,spreads_h2,Saint Joseph's Hawks,2603,-0.5,-105,2025-01-18T00:55:27Z
+401724372,60,draftkings,spreads_h2,VCU Rams,2670,0.5,-125,2025-01-18T00:55:27Z
+401719105,60,fanduel,spreads_h2,DePaul Blue Demons,305,4.5,-104,2025-01-18T01:55:25Z
+401719105,60,fanduel,spreads_h2,Georgetown Hoyas,46,-4.5,-125,2025-01-18T01:55:25Z
+401719105,60,draftkings,spreads_h2,DePaul Blue Demons,305,5.5,-125,2025-01-18T01:55:49Z
+401719105,60,draftkings,spreads_h2,Georgetown Hoyas,46,-5.5,-105,2025-01-18T01:55:49Z
+401711603,60,draftkings,spreads_h2,Austin Peay Governors,2046,6.5,-125,2025-01-19T00:55:27Z
+401711603,60,draftkings,spreads_h2,Lipscomb Bisons,288,-6.5,-105,2025-01-19T00:55:27Z
+401711603,60,williamhill_us,spreads_h2,Austin Peay Governors,2046,6.5,-115,2025-01-19T00:54:41Z
+401711603,60,williamhill_us,spreads_h2,Lipscomb Bisons,288,-6.5,-115,2025-01-19T00:54:41Z
+401708337,60,fanduel,spreads_h2,LSU Tigers,99,6.5,-122,2025-01-19T02:25:46Z
+401708337,60,fanduel,spreads_h2,Texas A&M Aggies,245,-6.5,-106,2025-01-19T02:25:46Z
+401708337,60,draftkings,spreads_h2,LSU Tigers,99,6.5,-110,2025-01-19T02:25:48Z
+401708337,60,draftkings,spreads_h2,Texas A&M Aggies,245,-6.5,-120,2025-01-19T02:25:48Z
+401708337,60,williamhill_us,spreads_h2,LSU Tigers,99,7.0,-115,2025-01-19T02:23:23Z
+401708337,60,williamhill_us,spreads_h2,Texas A&M Aggies,245,-7.0,-115,2025-01-19T02:23:23Z
+401721725,60,fanduel,spreads_h2,Harvard Crimson,108,-6.5,-106,2025-01-20T19:54:55Z
+401721725,60,fanduel,spreads_h2,Pennsylvania Quakers,219,6.5,-122,2025-01-20T19:54:55Z
+401721725,60,draftkings,spreads_h2,Harvard Crimson,108,-5.5,-125,2025-01-20T19:55:49Z
+401721725,60,draftkings,spreads_h2,Pennsylvania Quakers,219,5.5,-105,2025-01-20T19:55:49Z
+401721725,60,williamhill_us,spreads_h2,Harvard Crimson,108,-6.5,-115,2025-01-20T19:54:14Z
+401721725,60,williamhill_us,spreads_h2,Pennsylvania Quakers,219,6.5,-115,2025-01-20T19:54:14Z
+401722434,60,fanduel,spreads_h2,UNLV Rebels,2439,-5.5,-108,2025-01-22T04:55:39Z
+401722434,60,fanduel,spreads_h2,Wyoming Cowboys,2751,5.5,-120,2025-01-22T04:55:39Z
+401722434,60,draftkings,spreads_h2,UNLV Rebels,2439,-5.5,-115,2025-01-22T04:55:45Z
+401722434,60,draftkings,spreads_h2,Wyoming Cowboys,2751,5.5,-115,2025-01-22T04:55:45Z
+401706439,60,draftkings,spreads_h2,The Citadel Bulldogs,2643,3.5,-105,2025-01-23T00:55:13Z
+401706439,60,draftkings,spreads_h2,Wofford Terriers,2747,-3.5,-125,2025-01-23T00:55:13Z
+401708344,60,fanduel,spreads_h2,Florida Gators,57,-9.5,-118,2025-01-23T00:55:40Z
+401708344,60,fanduel,spreads_h2,South Carolina Gamecocks,2579,9.5,-110,2025-01-23T00:55:40Z
+401708344,60,draftkings,spreads_h2,Florida Gators,57,-9.5,-120,2025-01-23T00:54:08Z
+401708344,60,draftkings,spreads_h2,South Carolina Gamecocks,2579,9.5,-110,2025-01-23T00:54:08Z
+401708344,60,williamhill_us,spreads_h2,Florida Gators,57,-10.0,-115,2025-01-23T00:52:40Z
+401708344,60,williamhill_us,spreads_h2,South Carolina Gamecocks,2579,10.0,-115,2025-01-23T00:52:40Z
+401714558,60,draftkings,spreads_h2,James Madison Dukes,256,-2.5,-105,2025-01-23T00:55:21Z
+401714558,60,draftkings,spreads_h2,Old Dominion Monarchs,295,2.5,-125,2025-01-23T00:55:21Z
+401706593,60,draftkings,spreads_h2,Abilene Christian Wildcats,2000,0.5,-105,2025-01-24T01:55:17Z
+401706593,60,draftkings,spreads_h2,Tarleton State Texans,2627,-0.5,-125,2025-01-24T01:55:17Z
+401708347,60,fanduel,spreads_h2,Arkansas Razorbacks,8,-3.5,-106,2025-01-26T02:24:50Z
+401708347,60,fanduel,spreads_h2,Oklahoma Sooners,201,3.5,-122,2025-01-26T02:24:50Z
+401708347,60,draftkings,spreads_h2,Arkansas Razorbacks,8,-3.5,-110,2025-01-26T02:25:13Z
+401708347,60,draftkings,spreads_h2,Oklahoma Sooners,201,3.5,-120,2025-01-26T02:25:13Z
+401725701,60,fanduel,spreads_h2,Houston Cougars,248,-0.5,-110,2025-01-30T00:55:04Z
+401725701,60,fanduel,spreads_h2,West Virginia Mountaineers,277,0.5,-118,2025-01-30T00:55:04Z
+401725701,60,draftkings,spreads_h2,Houston Cougars,248,-0.5,-110,2025-01-30T00:55:12Z
+401725701,60,draftkings,spreads_h2,West Virginia Mountaineers,277,0.5,-120,2025-01-30T00:55:12Z
+401725699,60,fanduel,spreads_h2,Kansas St Wildcats,2306,-0.5,-114,2025-01-30T01:54:58Z
+401725699,60,fanduel,spreads_h2,Oklahoma St Cowboys,197,0.5,-114,2025-01-30T01:54:58Z
+401725699,60,draftkings,spreads_h2,Kansas St Wildcats,2306,0.5,-110,2025-01-30T01:55:44Z
+401725699,60,draftkings,spreads_h2,Oklahoma St Cowboys,197,-0.5,-120,2025-01-30T01:55:44Z
+401720830,60,draftkings,spreads_h2,NJIT Highlanders,2885,7.5,-110,2025-01-31T00:55:30Z
+401720830,60,draftkings,spreads_h2,UMass Lowell River Hawks,2349,-7.5,-120,2025-01-31T00:55:30Z
+401720830,60,williamhill_us,spreads_h2,NJIT Highlanders,2885,9.0,-115,2025-01-31T00:52:22Z
+401720830,60,williamhill_us,spreads_h2,UMass Lowell River Hawks,2349,-9.0,-115,2025-01-31T00:52:22Z
+401706534,60,draftkings,spreads_h2,North Dakota St Bison,2449,-0.5,-125,2025-01-31T01:55:11Z
+401706534,60,draftkings,spreads_h2,South Dakota St Jackrabbits,2571,0.5,-105,2025-01-31T01:55:11Z
+401721735,60,draftkings,spreads_h2,Brown Bears,225,0.5,-110,2025-02-01T22:55:07Z
+401721735,60,draftkings,spreads_h2,Princeton Tigers,163,-0.5,-120,2025-02-01T22:55:07Z
+401722355,60,fanduel,spreads_h2,San Diego St Aztecs,21,-8.5,-110,2025-02-02T01:55:06Z
+401722355,60,fanduel,spreads_h2,Wyoming Cowboys,2751,8.5,-118,2025-02-02T01:55:06Z
+401724848,60,fanduel,spreads_h2,Florida St Seminoles,52,-1.5,-108,2025-02-05T00:55:36Z
+401724848,60,fanduel,spreads_h2,Notre Dame Fighting Irish,87,1.5,-120,2025-02-05T00:55:36Z
+401724848,60,draftkings,spreads_h2,Florida St Seminoles,52,-1.5,-105,2025-02-05T00:55:23Z
+401724848,60,draftkings,spreads_h2,Notre Dame Fighting Irish,87,1.5,-125,2025-02-05T00:55:23Z
+401721402,60,fanduel,spreads_h2,Northwestern Wildcats,77,-1.5,-120,2025-02-05T02:54:22Z
+401721402,60,fanduel,spreads_h2,USC Trojans,30,1.5,-108,2025-02-05T02:54:22Z
+401721402,60,draftkings,spreads_h2,Northwestern Wildcats,77,-1.5,-110,2025-02-05T02:55:15Z
+401721402,60,draftkings,spreads_h2,USC Trojans,30,1.5,-120,2025-02-05T02:55:15Z
+401724854,60,fanduel,spreads_h2,California Golden Bears,25,-0.5,-106,2025-02-06T04:55:35Z
+401724854,60,fanduel,spreads_h2,NC State Wolfpack,152,0.5,-122,2025-02-06T04:55:35Z
+401724854,60,draftkings,spreads_h2,California Golden Bears,25,-0.5,-110,2025-02-06T04:55:11Z
+401724854,60,draftkings,spreads_h2,NC State Wolfpack,152,0.5,-120,2025-02-06T04:55:11Z
+401724854,60,williamhill_us,spreads_h2,California Golden Bears,25,0.0,-115,2025-02-06T04:54:50Z
+401724854,60,williamhill_us,spreads_h2,NC State Wolfpack,152,-0.0,-115,2025-02-06T04:54:50Z
+401706250,60,draftkings,spreads_h2,Canisius Golden Griffins,2099,9.5,-125,2025-02-07T00:55:08Z
+401706250,60,draftkings,spreads_h2,Quinnipiac Bobcats,2514,-9.5,-105,2025-02-07T00:55:08Z
+401706249,60,draftkings,spreads_h2,Merrimack Warriors,2771,-5.5,-125,2025-02-07T00:55:20Z
+401706249,60,draftkings,spreads_h2,Niagara Purple Eagles,315,5.5,-105,2025-02-07T00:55:20Z
+401721420,60,draftkings,spreads_h2,Michigan Wolverines,130,-1.5,-125,2025-02-12T00:54:51Z
+401721420,60,draftkings,spreads_h2,Purdue Boilermakers,2509,1.5,-105,2025-02-12T00:54:51Z
+401721421,60,draftkings,spreads_h2,Indiana Hoosiers,84,7.5,-115,2025-02-12T02:55:33Z
+401721421,60,draftkings,spreads_h2,Michigan St Spartans,127,-7.5,-115,2025-02-12T02:55:33Z
+401721421,60,fanduel,spreads_h2,Indiana Hoosiers,84,8.5,-118,2025-02-12T02:55:07Z
+401721421,60,fanduel,spreads_h2,Michigan St Spartans,127,-8.5,-110,2025-02-12T02:55:07Z
+401706732,60,fanduel,spreads_h2,Saint Mary's Gaels,2608,-5.5,-122,2025-02-12T04:55:50Z
+401706732,60,fanduel,spreads_h2,Santa Clara Broncos,2541,5.5,-106,2025-02-12T04:55:50Z
+401706732,60,draftkings,spreads_h2,Saint Mary's Gaels,2608,-6.5,-110,2025-02-12T04:54:06Z
+401706732,60,draftkings,spreads_h2,Santa Clara Broncos,2541,6.5,-120,2025-02-12T04:54:06Z
+401724424,70,draftkings,spreads_h2,Dayton Flyers,2168,-5.5,-105,2025-02-13T01:04:57Z
+401724424,70,draftkings,spreads_h2,Fordham Rams,2230,5.5,-125,2025-02-13T01:04:57Z
+401714269,60,draftkings,spreads_h2,Campbell Fighting Camels,2097,2.5,-115,2025-02-14T00:55:28Z
+401714269,60,draftkings,spreads_h2,Northeastern Huskies,111,-2.5,-115,2025-02-14T00:55:28Z
+401714269,60,williamhill_us,spreads_h2,Campbell Fighting Camels,2097,4.5,-115,2025-02-14T00:55:22Z
+401714269,60,williamhill_us,spreads_h2,Northeastern Huskies,111,-4.5,-115,2025-02-14T00:55:22Z
+401706550,60,fanduel,spreads_h2,North Dakota St Bison,2449,-9.5,-113,2025-02-14T02:55:17Z
+401706550,60,fanduel,spreads_h2,Oral Roberts Golden Eagles,198,9.5,-115,2025-02-14T02:55:17Z
+401706550,60,draftkings,spreads_h2,North Dakota St Bison,2449,-8.5,-110,2025-02-14T02:55:39Z
+401706550,60,draftkings,spreads_h2,Oral Roberts Golden Eagles,198,8.5,-125,2025-02-14T02:55:39Z
+401706369,60,draftkings,spreads_h2,Miami (OH) RedHawks,193,-5.5,-105,2025-02-15T20:25:23Z
+401706369,60,draftkings,spreads_h2,Western Michigan Broncos,2711,5.5,-125,2025-02-15T20:25:23Z
+401711645,60,fanduel,spreads_h2,Florida Gulf Coast Eagles,526,3.5,-114,2025-02-15T22:43:23Z
+401711645,60,fanduel,spreads_h2,Lipscomb Bisons,288,-3.5,-114,2025-02-15T22:43:23Z
+401711645,60,draftkings,spreads_h2,Florida Gulf Coast Eagles,526,1.5,-120,2025-02-15T22:55:02Z
+401711645,60,draftkings,spreads_h2,Lipscomb Bisons,288,-1.5,-115,2025-02-15T22:55:02Z
+401711611,60,draftkings,spreads_h2,Austin Peay Governors,2046,-3.5,-110,2025-02-15T22:54:58Z
+401711611,60,draftkings,spreads_h2,Stetson Hatters,56,3.5,-120,2025-02-15T22:54:58Z
+401725737,60,fanduel,spreads_h2,Arizona St Sun Devils,9,-3.5,-106,2025-02-16T01:55:09Z
+401725737,60,fanduel,spreads_h2,TCU Horned Frogs,2628,3.5,-122,2025-02-16T01:55:09Z
+401725737,60,draftkings,spreads_h2,Arizona St Sun Devils,9,-3.5,-110,2025-02-16T01:54:51Z
+401725737,60,draftkings,spreads_h2,TCU Horned Frogs,2628,3.5,-120,2025-02-16T01:54:51Z
+401700232,60,fanduel,spreads_h2,Middle Tennessee Blue Raiders,2393,0.5,-110,2025-02-16T01:51:46Z
+401700232,60,fanduel,spreads_h2,Western Kentucky Hilltoppers,98,-0.5,-118,2025-02-16T01:51:46Z
+401700232,60,draftkings,spreads_h2,Middle Tennessee Blue Raiders,2393,0.5,-110,2025-02-16T01:55:49Z
+401700232,60,draftkings,spreads_h2,Western Kentucky Hilltoppers,98,-0.5,-120,2025-02-16T01:55:49Z
+401722146,60,fanduel,spreads_h2,Southern Jaguars,2582,-0.5,-108,2025-02-18T02:54:34Z
+401722146,60,fanduel,spreads_h2,Texas Southern Tigers,2640,0.5,-120,2025-02-18T02:54:34Z
+401722146,60,draftkings,spreads_h2,Southern Jaguars,2582,-0.5,-120,2025-02-18T02:55:20Z
+401722146,60,draftkings,spreads_h2,Texas Southern Tigers,2640,0.5,-110,2025-02-18T02:55:20Z
+401722146,60,williamhill_us,spreads_h2,Southern Jaguars,2582,-0.5,-115,2025-02-18T02:51:37Z
+401722146,60,williamhill_us,spreads_h2,Texas Southern Tigers,2640,0.5,-115,2025-02-18T02:51:37Z
+401725747,60,draftkings,spreads_h2,Colorado Buffaloes,38,6.5,-115,2025-02-19T01:55:45Z
+401725747,60,draftkings,spreads_h2,Iowa State Cyclones,66,-6.5,-115,2025-02-19T01:55:45Z
+401725747,60,fanduel,spreads_h2,Colorado Buffaloes,38,7.5,-115,2025-02-19T01:55:00Z
+401725747,60,fanduel,spreads_h2,Iowa State Cyclones,66,-7.5,-113,2025-02-19T01:55:00Z
+401721438,60,fanduel,spreads_h2,Illinois Fighting Illini,356,-0.5,-120,2025-02-19T02:23:02Z
+401721438,60,fanduel,spreads_h2,Wisconsin Badgers,275,0.5,-108,2025-02-19T02:23:02Z
+401721437,60,fanduel,spreads_h2,Minnesota Golden Gophers,135,4.5,-118,2025-02-19T04:24:57Z
+401721437,60,fanduel,spreads_h2,UCLA Bruins,26,-4.5,-110,2025-02-19T04:24:57Z
+401724883,60,fanduel,spreads_h2,NC State Wolfpack,152,2.5,-118,2025-02-20T00:53:35Z
+401724883,60,fanduel,spreads_h2,North Carolina Tar Heels,153,-2.5,-110,2025-02-20T00:53:35Z
+401724883,60,draftkings,spreads_h2,NC State Wolfpack,152,2.5,-115,2025-02-20T00:54:16Z
+401724883,60,draftkings,spreads_h2,North Carolina Tar Heels,153,-2.5,-115,2025-02-20T00:54:16Z
+401714280,60,fanduel,spreads_h2,Delaware Blue Hens,48,-3.5,-125,2025-02-21T00:25:11Z
+401714280,60,fanduel,spreads_h2,Drexel Dragons,2182,3.5,-104,2025-02-21T00:25:11Z
+401714280,60,draftkings,spreads_h2,Delaware Blue Hens,48,-3.5,-110,2025-02-21T00:25:52Z
+401714280,60,draftkings,spreads_h2,Drexel Dragons,2182,3.5,-120,2025-02-21T00:25:52Z
+401714280,60,williamhill_us,spreads_h2,Delaware Blue Hens,48,-3.5,-115,2025-02-21T00:23:23Z
+401714280,60,williamhill_us,spreads_h2,Drexel Dragons,2182,3.5,-115,2025-02-21T00:23:23Z
+401721299,70,draftkings,spreads_h2,Alcorn St Braves,2016,-0.5,-115,2025-02-22T22:04:58Z
+401721299,70,draftkings,spreads_h2,Jackson St Tigers,2296,0.5,-115,2025-02-22T22:04:58Z
+401719669,60,draftkings,spreads_h2,Portland St Vikings,2502,-1.5,-115,2025-02-22T21:55:42Z
+401719669,60,draftkings,spreads_h2,Weber State Wildcats,2692,1.5,-120,2025-02-22T21:55:42Z
+401708406,60,draftkings,spreads_h2,Auburn Tigers,2,-6.5,-110,2025-02-22T21:55:42Z
+401708406,60,draftkings,spreads_h2,Georgia Bulldogs,61,6.5,-120,2025-02-22T21:55:42Z
+401708406,60,fanduel,spreads_h2,Auburn Tigers,2,-5.5,-122,2025-02-22T21:55:07Z
+401708406,60,fanduel,spreads_h2,Georgia Bulldogs,61,5.5,-106,2025-02-22T21:55:07Z
+401719158,60,draftkings,spreads_h2,Creighton Bluejays,156,-7.5,-125,2025-02-23T21:55:11Z
+401719158,60,draftkings,spreads_h2,Georgetown Hoyas,46,7.5,-110,2025-02-23T21:55:11Z
+401719158,60,fanduel,spreads_h2,Creighton Bluejays,156,-7.5,-102,2025-02-23T21:55:01Z
+401719158,60,fanduel,spreads_h2,Georgetown Hoyas,46,7.5,-128,2025-02-23T21:55:01Z
+401724446,60,fanduel,spreads_h2,Davidson Wildcats,2166,1.5,-118,2025-02-26T00:54:52Z
+401724446,60,fanduel,spreads_h2,Saint Louis Billikens,139,-1.5,-110,2025-02-26T00:54:52Z
+401724446,60,draftkings,spreads_h2,Davidson Wildcats,2166,1.5,-110,2025-02-26T00:55:00Z
+401724446,60,draftkings,spreads_h2,Saint Louis Billikens,139,-1.5,-120,2025-02-26T00:55:00Z
+401724446,60,williamhill_us,spreads_h2,Davidson Wildcats,2166,2.0,-115,2025-02-26T00:53:56Z
+401724446,60,williamhill_us,spreads_h2,Saint Louis Billikens,139,-2.0,-115,2025-02-26T00:53:56Z
+401708413,60,fanduel,spreads_h2,Alabama Crimson Tide,333,-1.5,-110,2025-02-26T02:55:39Z
+401708413,60,fanduel,spreads_h2,Mississippi St Bulldogs,344,1.5,-118,2025-02-26T02:55:39Z
+401708413,60,draftkings,spreads_h2,Alabama Crimson Tide,333,-2.5,-120,2025-02-26T02:55:31Z
+401708413,60,draftkings,spreads_h2,Mississippi St Bulldogs,344,2.5,-110,2025-02-26T02:55:31Z
+401724897,60,draftkings,spreads_h2,Louisville Cardinals,97,-3.5,-120,2025-02-26T02:55:27Z
+401724897,60,draftkings,spreads_h2,Virginia Tech Hokies,259,3.5,-110,2025-02-26T02:55:27Z
+401724897,60,fanduel,spreads_h2,Louisville Cardinals,97,-3.5,-120,2025-02-26T02:55:37Z
+401724897,60,fanduel,spreads_h2,Virginia Tech Hokies,259,3.5,-108,2025-02-26T02:55:37Z
+401719163,60,draftkings,spreads_h2,Creighton Bluejays,156,-7.5,-120,2025-02-27T02:54:56Z
+401719163,60,draftkings,spreads_h2,DePaul Blue Demons,305,7.5,-110,2025-02-27T02:54:56Z
+401719163,60,fanduel,spreads_h2,Creighton Bluejays,156,-7.5,-125,2025-02-27T02:55:35Z
+401719163,60,fanduel,spreads_h2,DePaul Blue Demons,305,7.5,-104,2025-02-27T02:55:35Z
+401719163,60,williamhill_us,spreads_h2,Creighton Bluejays,156,-8.5,-115,2025-02-27T02:55:16Z
+401719163,60,williamhill_us,spreads_h2,DePaul Blue Demons,305,8.5,-115,2025-02-27T02:55:16Z
+401714296,60,draftkings,spreads_h2,North Carolina A&T Aggies,2448,4.5,-110,2025-02-28T00:55:13Z
+401714296,60,draftkings,spreads_h2,Northeastern Huskies,111,-4.5,-120,2025-02-28T00:55:13Z
+401714632,70,draftkings,spreads_h2,Coastal Carolina Chanticleers,324,-1.5,-115,2025-03-01T01:35:15Z
+401714632,70,draftkings,spreads_h2,Old Dominion Monarchs,295,1.5,-115,2025-03-01T01:35:15Z
+401720859,60,fanduel,spreads_h2,UMBC Retrievers,2378,4.5,-120,2025-03-01T18:52:02Z
+401720859,60,fanduel,spreads_h2,Vermont Catamounts,261,-4.5,-110,2025-03-01T18:52:02Z
+401720859,60,draftkings,spreads_h2,UMBC Retrievers,2378,5.5,-115,2025-03-01T18:54:59Z
+401720859,60,draftkings,spreads_h2,Vermont Catamounts,261,-5.5,-115,2025-03-01T18:54:59Z
+401720859,60,williamhill_us,spreads_h2,UMBC Retrievers,2378,5.5,-115,2025-03-01T18:55:07Z
+401720859,60,williamhill_us,spreads_h2,Vermont Catamounts,261,-5.5,-115,2025-03-01T18:55:07Z
+401725617,60,fanduel,spreads_h2,North Texas Mean Green,249,-3.5,-110,2025-03-04T02:54:56Z
+401725617,60,fanduel,spreads_h2,Wichita St Shockers,2724,3.5,-118,2025-03-04T02:54:56Z
+401706402,60,draftkings,spreads_h2,Buffalo Bulls,2084,4.5,-110,2025-03-05T00:55:37Z
+401706402,60,draftkings,spreads_h2,Miami (OH) RedHawks,193,-4.5,-120,2025-03-05T00:55:37Z
+401719172,60,fanduel,spreads_h2,Georgetown Hoyas,46,3.5,-106,2025-03-05T01:55:29Z
+401719172,60,fanduel,spreads_h2,Villanova Wildcats,222,-3.5,-122,2025-03-05T01:55:29Z
+401719172,60,draftkings,spreads_h2,Georgetown Hoyas,46,4.5,-115,2025-03-05T01:55:52Z
+401719172,60,draftkings,spreads_h2,Villanova Wildcats,222,-4.5,-120,2025-03-05T01:55:52Z
+401725624,60,draftkings,spreads_h2,Memphis Tigers,235,-7.5,-125,2025-03-08T02:55:46Z
+401725624,60,draftkings,spreads_h2,South Florida Bulls,58,7.5,-105,2025-03-08T02:55:46Z
+401725624,60,fanduel,spreads_h2,Memphis Tigers,235,-8.5,-108,2025-03-08T02:55:11Z
+401725624,60,fanduel,spreads_h2,South Florida Bulls,58,8.5,-120,2025-03-08T02:55:11Z
+401744259,60,draftkings,spreads_h2,Loyola Marymount Lions,2351,-2.5,-120,2025-03-08T05:25:47Z
+401744259,60,draftkings,spreads_h2,San Diego Toreros,301,2.5,-110,2025-03-08T05:25:47Z
+401744259,60,fanduel,spreads_h2,Loyola Marymount Lions,2351,-3.5,-122,2025-03-08T05:23:55Z
+401744259,60,fanduel,spreads_h2,San Diego Toreros,301,3.5,-106,2025-03-08T05:23:55Z
+401700263,60,williamhill_us,spreads_h2,Louisiana Tech Bulldogs,2348,-0.5,-115,2025-03-08T20:55:21Z
+401700263,60,williamhill_us,spreads_h2,UTEP Miners,2638,0.5,-115,2025-03-08T20:55:21Z
+401700263,60,draftkings,spreads_h2,Louisiana Tech Bulldogs,2348,0.5,-120,2025-03-08T20:54:50Z
+401700263,60,draftkings,spreads_h2,UTEP Miners,2638,-0.5,-110,2025-03-08T20:54:50Z
+401719194,60,fanduel,spreads_h2,Butler Bulldogs,2086,4.5,-122,2025-03-08T23:54:55Z
+401719194,60,fanduel,spreads_h2,Creighton Bluejays,156,-4.5,-106,2025-03-08T23:54:55Z
+401719194,60,draftkings,spreads_h2,Butler Bulldogs,2086,4.5,-115,2025-03-08T23:55:27Z
+401719194,60,draftkings,spreads_h2,Creighton Bluejays,156,-4.5,-115,2025-03-08T23:55:27Z
+401743805,60,draftkings,spreads_h2,Lipscomb Bisons,288,-0.5,-120,2025-03-09T18:55:23Z
+401743805,60,draftkings,spreads_h2,North Alabama Lions,2453,0.5,-110,2025-03-09T18:55:23Z
+401743805,60,williamhill_us,spreads_h2,Lipscomb Bisons,288,-1.5,-115,2025-03-09T18:55:43Z
+401743805,60,williamhill_us,spreads_h2,North Alabama Lions,2453,1.5,-115,2025-03-09T18:55:43Z
+401743805,60,fanduel,spreads_h2,Lipscomb Bisons,288,-1.5,-104,2025-03-09T18:55:08Z
+401743805,60,fanduel,spreads_h2,North Alabama Lions,2453,1.5,-125,2025-03-09T18:55:08Z
+401744073,60,draftkings,spreads_h2,Fresno St Bulldogs,278,4.5,-110,2025-03-12T21:23:53Z
+401744073,60,draftkings,spreads_h2,Nevada Wolf Pack,2440,-4.5,-125,2025-03-12T21:23:53Z
+401744073,60,fanduel,spreads_h2,Fresno St Bulldogs,278,4.5,-122,2025-03-12T21:21:45Z
+401744073,60,fanduel,spreads_h2,Nevada Wolf Pack,2440,-4.5,-106,2025-03-12T21:21:45Z
+401743849,60,draftkings,spreads_h2,Colorado Buffaloes,38,9.5,-120,2025-03-13T20:15:29Z
+401743849,60,draftkings,spreads_h2,Houston Cougars,248,-9.5,-110,2025-03-13T20:15:29Z
+401743849,60,fanduel,spreads_h2,Colorado Buffaloes,38,9.5,-110,2025-03-13T20:13:54Z
+401743849,60,fanduel,spreads_h2,Houston Cougars,248,-9.5,-118,2025-03-13T20:13:54Z
+401743849,60,williamhill_us,spreads_h2,Colorado Buffaloes,38,10.5,-120,2025-03-13T20:15:42Z
+401743849,60,williamhill_us,spreads_h2,Houston Cougars,248,-10.5,-110,2025-03-13T20:15:42Z
+401743881,60,draftkings,spreads_h2,UConn Huskies,41,-6.5,-110,2025-03-14T03:15:48Z
+401743881,60,draftkings,spreads_h2,Villanova Wildcats,222,6.5,-125,2025-03-14T03:15:48Z
+401743881,60,fanduel,spreads_h2,UConn Huskies,41,-6.5,-114,2025-03-14T03:15:44Z
+401743881,60,fanduel,spreads_h2,Villanova Wildcats,222,6.5,-114,2025-03-14T03:15:44Z
+401743881,60,williamhill_us,spreads_h2,UConn Huskies,41,-7.0,-115,2025-03-14T03:15:48Z
+401743881,60,williamhill_us,spreads_h2,Villanova Wildcats,222,7.0,-115,2025-03-14T03:15:48Z
+401743946,60,fanduel,spreads_h2,Cal Poly Mustangs,13,4.5,-106,2025-03-14T04:25:43Z
+401743946,60,fanduel,spreads_h2,UC Riverside Highlanders,27,-4.5,-122,2025-03-14T04:25:43Z
+401745783,60,fanduel,spreads_h2,North Texas Mean Green,249,-8.5,-114,2025-03-14T23:54:02Z
+401745783,60,fanduel,spreads_h2,Tulsa Golden Hurricane,202,8.5,-115,2025-03-14T23:54:02Z
+401743776,60,draftkings,spreads_h2,Duke Blue Devils,150,-4.5,-115,2025-03-16T01:24:57Z
+401743776,60,draftkings,spreads_h2,Louisville Cardinals,97,4.5,-120,2025-03-16T01:24:57Z
+401743776,60,williamhill_us,spreads_h2,Duke Blue Devils,150,-6.0,-115,2025-03-16T01:25:50Z
+401743776,60,williamhill_us,spreads_h2,Louisville Cardinals,97,6.0,-115,2025-03-16T01:25:50Z
+401746001,60,fanduel,spreads_h2,Bryant Bulldogs,2803,7.5,-102,2025-03-22T03:10:53Z
+401746001,60,fanduel,spreads_h2,Michigan St Spartans,127,-7.5,-128,2025-03-22T03:10:53Z
+401746001,60,williamhill_us,spreads_h2,Bryant Bulldogs,2803,8.5,-110,2025-03-22T03:10:50Z
+401746001,60,williamhill_us,spreads_h2,Michigan St Spartans,127,-8.5,-120,2025-03-22T03:10:50Z
+401746001,60,draftkings,spreads_h2,Bryant Bulldogs,2803,8.5,-115,2025-03-22T03:10:12Z
+401746001,60,draftkings,spreads_h2,Michigan St Spartans,127,-8.5,-115,2025-03-22T03:10:12Z
+401751947,60,draftkings,spreads_h2,Bradley Braves,71,4.5,-110,2025-03-22T18:55:59Z
+401751947,60,draftkings,spreads_h2,George Mason Patriots,2244,-4.5,-120,2025-03-22T18:55:59Z
+401751947,60,fanduel,spreads_h2,Bradley Braves,71,4.5,-110,2025-03-22T18:55:49Z
+401751947,60,fanduel,spreads_h2,George Mason Patriots,2244,-4.5,-118,2025-03-22T18:55:49Z
+401751955,60,fanduel,spreads_h2,North Texas Mean Green,249,1.5,-106,2025-03-26T01:54:28Z
+401751955,60,fanduel,spreads_h2,Oklahoma St Cowboys,197,-1.5,-122,2025-03-26T01:54:28Z
+401751955,60,draftkings,spreads_h2,North Texas Mean Green,249,1.5,-115,2025-03-26T01:55:00Z
+401751955,60,draftkings,spreads_h2,Oklahoma St Cowboys,197,-1.5,-115,2025-03-26T01:55:00Z
+401746070,60,draftkings,spreads_h2,Michigan St Spartans,127,-3.5,-125,2025-03-29T00:04:50Z
+401746070,60,draftkings,spreads_h2,Ole Miss Rebels,145,3.5,-105,2025-03-29T00:04:50Z
+401746070,60,fanduel,spreads_h2,Michigan St Spartans,127,-3.5,-115,2025-03-29T00:04:57Z
+401746070,60,fanduel,spreads_h2,Ole Miss Rebels,145,3.5,-113,2025-03-29T00:04:57Z
+401826784,60,draftkings,spreads_h2,Arkansas Razorbacks,8,-11.5,-120,2025-11-04T00:55:31Z
+401826784,60,draftkings,spreads_h2,Southern Jaguars,2582,11.5,-110,2025-11-04T00:55:31Z
+401819882,60,fanduel,spreads_h2,Green Bay Phoenix,2739,13.5,-125,2025-11-04T01:55:10Z
+401819882,60,fanduel,spreads_h2,Kansas Jayhawks,2305,-13.5,-106,2025-11-04T01:55:10Z
+401819882,60,draftkings,spreads_h2,Green Bay Phoenix,2739,12.5,-120,2025-11-04T01:55:15Z
+401819882,60,draftkings,spreads_h2,Kansas Jayhawks,2305,-12.5,-115,2025-11-04T01:55:15Z
+401827170,60,draftkings,spreads_h2,Illinois Fighting Illini,356,-9.5,-115,2025-11-04T02:25:23Z
+401827170,60,draftkings,spreads_h2,Jackson St Tigers,2296,9.5,-120,2025-11-04T02:25:23Z
+401811101,60,draftkings,spreads_h2,South Dakota Coyotes,233,-2.5,-125,2025-11-04T02:25:46Z
+401811101,60,draftkings,spreads_h2,Utah Tech Trailblazers,3101,2.5,-110,2025-11-04T02:25:46Z
+401824054,60,draftkings,spreads_h2,North Dakota St Bison,2449,6.5,-125,2025-11-04T03:25:09Z
+401824054,60,draftkings,spreads_h2,Oregon St Beavers,204,-6.5,-110,2025-11-04T03:25:09Z
+401827525,60,fanduel,spreads_h2,North Carolina A&T Aggies,2448,9.5,-120,2025-11-05T00:54:15Z
+401827525,60,fanduel,spreads_h2,South Carolina Gamecocks,2579,-9.5,-110,2025-11-05T00:54:15Z
+401827525,60,draftkings,spreads_h2,North Carolina A&T Aggies,2448,9.5,-125,2025-11-05T00:54:59Z
+401827525,60,draftkings,spreads_h2,South Carolina Gamecocks,2579,-9.5,-105,2025-11-05T00:54:59Z
+401817212,60,fanduel,spreads_h2,Boston College Eagles,103,-7.5,-108,2025-11-07T00:54:49Z
+401817212,60,fanduel,spreads_h2,The Citadel Bulldogs,2643,7.5,-122,2025-11-07T00:54:49Z
+401817212,60,draftkings,spreads_h2,Boston College Eagles,103,-7.5,-110,2025-11-07T00:54:58Z
+401817212,60,draftkings,spreads_h2,The Citadel Bulldogs,2643,7.5,-120,2025-11-07T00:54:58Z
+401826698,60,draftkings,spreads_h2,George Mason Patriots,2244,-6.5,-105,2025-11-08T00:49:20Z
+401826698,60,draftkings,spreads_h2,Winthrop Eagles,2737,6.5,-130,2025-11-08T00:49:20Z
+401813374,60,draftkings,spreads_h2,Binghamton Bearcats,2066,0.5,-120,2025-11-08T19:55:53Z
+401813374,60,draftkings,spreads_h2,Niagara Purple Eagles,315,-0.5,-115,2025-11-08T19:55:53Z
+401822309,60,draftkings,spreads_h2,Milwaukee Panthers,270,-3.5,-125,2025-11-08T19:55:07Z
+401822309,60,draftkings,spreads_h2,Wofford Terriers,2747,3.5,-105,2025-11-08T19:55:07Z
+401819916,60,fanduel,spreads_h2,Lehigh Mountain Hawks,2329,7.5,-122,2025-11-09T20:55:04Z
+401819916,60,fanduel,spreads_h2,West Virginia Mountaineers,277,-7.5,-108,2025-11-09T20:55:04Z
+401819916,60,draftkings,spreads_h2,Lehigh Mountain Hawks,2329,8.5,-125,2025-11-09T20:55:21Z
+401819916,60,draftkings,spreads_h2,West Virginia Mountaineers,277,-8.5,-110,2025-11-09T20:55:21Z
+401826938,60,draftkings,spreads_h2,Georgia St Panthers,2247,1.5,-110,2025-11-11T00:55:29Z
+401826938,60,draftkings,spreads_h2,Presbyterian Blue Hose,2506,-1.5,-120,2025-11-11T00:55:29Z
+401817264,60,fanduel,spreads_h2,North Carolina Tar Heels,153,-8.5,-110,2025-11-12T00:54:49Z
+401817264,60,fanduel,spreads_h2,Radford Highlanders,2515,8.5,-120,2025-11-12T00:54:49Z
+401824825,60,draftkings,spreads_h2,Florida A&M Rattlers,50,8.5,-110,2025-11-12T00:54:54Z
+401824825,60,draftkings,spreads_h2,UCF Knights,2116,-8.5,-120,2025-11-12T00:54:54Z
+401822167,60,draftkings,spreads_h2,Fordham Rams,2230,-9.5,-105,2025-11-12T00:55:23Z
+401822167,60,draftkings,spreads_h2,Wagner Seahawks,2681,9.5,-125,2025-11-12T00:55:23Z
+401809076,60,draftkings,spreads_h2,Bucknell Bison,2083,4.5,-125,2025-11-15T00:54:59Z
+401809076,60,draftkings,spreads_h2,Hofstra Pride,2275,-4.5,-110,2025-11-15T00:54:59Z
+401822350,60,draftkings,spreads_h2,Fairfield Stags,2217,-3.5,-120,2025-11-15T00:55:27Z
+401822350,60,draftkings,spreads_h2,Stonehill Skyhawks,284,3.5,-110,2025-11-15T00:55:27Z
+401823589,60,draftkings,spreads_h2,South Carolina Upstate Spartans,2908,6.5,-110,2025-11-16T00:55:04Z
+401823589,60,draftkings,spreads_h2,UNC Wilmington Seahawks,350,-6.5,-120,2025-11-16T00:55:04Z
+401823012,60,fanduel,spreads_h2,Kent State Golden Flashes,2309,-3.5,-112,2025-11-16T17:55:14Z
+401823012,60,fanduel,spreads_h2,Wright St Raiders,2750,3.5,-118,2025-11-16T17:55:14Z
+401823012,60,draftkings,spreads_h2,Kent State Golden Flashes,2309,-3.5,-115,2025-11-16T17:54:31Z
+401823012,60,draftkings,spreads_h2,Wright St Raiders,2750,3.5,-120,2025-11-16T17:54:31Z
+401819816,60,fanduel,spreads_h2,Arizona St Sun Devils,9,-10.5,-125,2025-11-18T02:55:24Z
+401819816,60,fanduel,spreads_h2,Georgia St Panthers,2247,10.5,-106,2025-11-18T02:55:24Z
+401819816,60,draftkings,spreads_h2,Arizona St Sun Devils,9,-10.5,-110,2025-11-18T02:55:43Z
+401819816,60,draftkings,spreads_h2,Georgia St Panthers,2247,10.5,-120,2025-11-18T02:55:43Z
+401813276,60,draftkings,spreads_h2,Morgan St Bears,2415,-0.5,-115,2025-11-19T01:25:37Z
+401813276,60,draftkings,spreads_h2,North Carolina A&T Aggies,2448,0.5,-120,2025-11-19T01:25:37Z
+401828309,60,draftkings,spreads_h2,Jacksonville St Gamecocks,55,1.5,-125,2025-11-20T00:55:04Z
+401828309,60,draftkings,spreads_h2,South Alabama Jaguars,6,-1.5,-110,2025-11-20T00:55:04Z
+401823543,60,fanduel,spreads_h2,Southern Utah Thunderbirds,253,5.5,-122,2025-11-20T04:55:20Z
+401823543,60,fanduel,spreads_h2,Washington St Cougars,265,-5.5,-108,2025-11-20T04:55:20Z
+401823543,60,draftkings,spreads_h2,Southern Utah Thunderbirds,253,5.5,-125,2025-11-20T04:55:40Z
+401823543,60,draftkings,spreads_h2,Washington St Cougars,265,-5.5,-110,2025-11-20T04:55:40Z
+401822312,60,fanduel,spreads_h2,Milwaukee Panthers,270,7.5,-120,2025-11-23T00:54:48Z
+401822312,60,fanduel,spreads_h2,Wichita St Shockers,2724,-7.5,-110,2025-11-23T00:54:48Z
+401822312,60,draftkings,spreads_h2,Milwaukee Panthers,270,7.5,-110,2025-11-23T00:55:23Z
+401822312,60,draftkings,spreads_h2,Wichita St Shockers,2724,-7.5,-120,2025-11-23T00:55:23Z
+401831228,60,fanduel,spreads_h2,Boston College Eagles,103,-1.5,-122,2025-11-24T00:24:28Z
+401831228,60,fanduel,spreads_h2,Tulane Green Wave,2655,1.5,-108,2025-11-24T00:24:28Z
+401831228,60,draftkings,spreads_h2,Boston College Eagles,103,-2.5,-115,2025-11-24T00:25:24Z
+401831228,60,draftkings,spreads_h2,Tulane Green Wave,2655,2.5,-120,2025-11-24T00:25:24Z
+401826740,60,draftkings,spreads_h2,Arizona Wildcats,12,-13.5,-110,2025-11-25T04:25:30Z
+401826740,60,draftkings,spreads_h2,Denver Pioneers,2172,13.5,-125,2025-11-25T04:25:30Z
+401826740,60,fanduel,spreads_h2,Arizona Wildcats,12,-12.5,-120,2025-11-25T04:25:31Z
+401826740,60,fanduel,spreads_h2,Denver Pioneers,2172,12.5,-110,2025-11-25T04:25:31Z
+401830888,60,fanduel,spreads_h2,Liberty Flames,2335,-2.5,-114,2025-11-25T17:55:12Z
+401830888,60,fanduel,spreads_h2,Towson Tigers,119,2.5,-114,2025-11-25T17:55:12Z
+401830888,60,draftkings,spreads_h2,Liberty Flames,2335,-2.5,-115,2025-11-25T17:54:44Z
+401830888,60,draftkings,spreads_h2,Towson Tigers,119,2.5,-120,2025-11-25T17:54:44Z
+401829387,60,draftkings,spreads_h2,Tennessee St Tigers,2634,0.5,-110,2025-11-26T00:25:31Z
+401829387,60,draftkings,spreads_h2,UNC Asheville Bulldogs,2427,-0.5,-120,2025-11-26T00:25:31Z
+401826951,60,draftkings,spreads_h2,Samford Bulldogs,2535,-0.5,-115,2025-11-26T23:55:27Z
+401826951,60,draftkings,spreads_h2,Utah Valley Wolverines,3084,0.5,-120,2025-11-26T23:55:27Z
+401829475,60,draftkings,spreads_h2,South Dakota St Jackrabbits,2571,-0.5,-110,2025-11-27T02:25:47Z
+401829475,60,draftkings,spreads_h2,UC Irvine Anteaters,300,0.5,-120,2025-11-27T02:25:47Z
+401824027,60,draftkings,spreads_h2,UC Riverside Highlanders,27,1.5,-120,2025-11-29T22:55:11Z
+401824027,60,draftkings,spreads_h2,Utah Tech Trailblazers,3101,-1.5,-110,2025-11-29T22:55:11Z
+401824027,60,fanduel,spreads_h2,UC Riverside Highlanders,27,1.5,-128,2025-11-29T22:54:51Z
+401824027,60,fanduel,spreads_h2,Utah Tech Trailblazers,3101,-1.5,-104,2025-11-29T22:54:51Z
+401813352,60,fanduel,spreads_h2,Buffalo Bulls,2084,-4.5,-108,2025-11-29T23:55:23Z
+401813352,60,fanduel,spreads_h2,Canisius Golden Griffins,2099,4.5,-122,2025-11-29T23:55:23Z
+401813352,60,draftkings,spreads_h2,Buffalo Bulls,2084,-4.5,-125,2025-11-29T23:55:46Z
+401813352,60,draftkings,spreads_h2,Canisius Golden Griffins,2099,4.5,-110,2025-11-29T23:55:46Z
+401817188,60,draftkings,spreads_h2,Loyola Marymount Lions,2351,2.5,-115,2025-12-03T03:54:53Z
+401817188,60,draftkings,spreads_h2,Saint Louis Billikens,139,-2.5,-120,2025-12-03T03:54:53Z
+401817188,60,fanduel,spreads_h2,Loyola Marymount Lions,2351,1.5,-114,2025-12-03T03:55:43Z
+401817188,60,fanduel,spreads_h2,Saint Louis Billikens,139,-1.5,-114,2025-12-03T03:55:43Z
+401806378,60,fanduel,spreads_h2,Boston College Eagles,103,0.5,-104,2025-12-04T01:10:11Z
+401806378,60,fanduel,spreads_h2,LSU Tigers,99,-0.5,-128,2025-12-04T01:10:11Z
+401806378,60,draftkings,spreads_h2,Boston College Eagles,103,0.5,-110,2025-12-04T01:10:52Z
+401806378,60,draftkings,spreads_h2,LSU Tigers,99,-0.5,-120,2025-12-04T01:10:52Z
+401825399,60,fanduel,spreads_h2,Northwestern Wildcats,77,1.5,-114,2025-12-06T19:55:31Z
+401825399,60,fanduel,spreads_h2,Ohio State Buckeyes,194,-1.5,-114,2025-12-06T19:55:31Z
+401825399,60,draftkings,spreads_h2,Northwestern Wildcats,77,1.5,-105,2025-12-06T19:55:22Z
+401825399,60,draftkings,spreads_h2,Ohio State Buckeyes,194,-1.5,-130,2025-12-06T19:55:22Z
+401817202,60,fanduel,spreads_h2,Buffalo Bulls,2084,2.5,-114,2025-12-06T19:55:37Z
+401817202,60,fanduel,spreads_h2,St. Bonaventure Bonnies,179,-2.5,-114,2025-12-06T19:55:37Z
+401817202,60,draftkings,spreads_h2,Buffalo Bulls,2084,2.5,-115,2025-12-06T19:55:56Z
+401817202,60,draftkings,spreads_h2,St. Bonaventure Bonnies,179,-2.5,-120,2025-12-06T19:55:56Z
+401828305,60,draftkings,spreads_h2,Delaware Blue Hens,48,-3.5,-120,2025-12-06T19:55:26Z
+401828305,60,draftkings,spreads_h2,Delaware St Hornets,2169,3.5,-110,2025-12-06T19:55:26Z
+401817246,60,draftkings,spreads_h2,Indiana Hoosiers,84,-1.5,-115,2025-12-06T20:10:34Z
+401817246,60,draftkings,spreads_h2,Louisville Cardinals,97,1.5,-120,2025-12-06T20:10:34Z
+401817246,60,fanduel,spreads_h2,Indiana Hoosiers,84,-1.5,-110,2025-12-06T20:10:53Z
+401817246,60,fanduel,spreads_h2,Louisville Cardinals,97,1.5,-120,2025-12-06T20:10:53Z
+401823363,60,draftkings,spreads_h2,Evansville Purple Aces,339,5.5,-125,2025-12-06T21:55:28Z
+401823363,60,draftkings,spreads_h2,Western Kentucky Hilltoppers,98,-5.5,-110,2025-12-06T21:55:28Z
+401817189,60,draftkings,spreads_h2,Central Michigan Chippewas,2117,9.5,-115,2025-12-07T20:54:59Z
+401817189,60,draftkings,spreads_h2,Saint Louis Billikens,139,-9.5,-115,2025-12-07T20:54:59Z
+401817189,60,fanduel,spreads_h2,Central Michigan Chippewas,2117,10.5,-120,2025-12-07T20:55:24Z
+401817189,60,fanduel,spreads_h2,Saint Louis Billikens,139,-10.5,-110,2025-12-07T20:55:24Z
+401830422,60,fanduel,spreads_h2,Miami (OH) RedHawks,193,-2.5,-120,2025-12-10T23:55:19Z
+401830422,60,fanduel,spreads_h2,UNC Asheville Bulldogs,2427,2.5,-110,2025-12-10T23:55:19Z
+401830422,60,draftkings,spreads_h2,Miami (OH) RedHawks,193,-2.5,-115,2025-12-10T23:55:17Z
+401830422,60,draftkings,spreads_h2,UNC Asheville Bulldogs,2427,2.5,-120,2025-12-10T23:55:17Z
+401829424,60,draftkings,spreads_h2,South Carolina Gamecocks,2579,-9.5,-115,2025-12-14T00:55:06Z
+401829424,60,draftkings,spreads_h2,The Citadel Bulldogs,2643,9.5,-120,2025-12-14T00:55:06Z
+401823018,60,draftkings,spreads_h2,Kent State Golden Flashes,2309,-4.5,-130,2025-12-14T22:54:54Z
+401823018,60,draftkings,spreads_h2,Portland Pilots,2501,4.5,-105,2025-12-14T22:54:54Z
+401823018,60,fanduel,spreads_h2,Kent State Golden Flashes,2309,-5.5,-112,2025-12-14T22:55:41Z
+401823018,60,fanduel,spreads_h2,Portland Pilots,2501,5.5,-118,2025-12-14T22:55:41Z
+401827453,60,draftkings,spreads_h2,Charleston Cougars,232,-8.5,-110,2025-12-18T00:54:52Z
+401827453,60,draftkings,spreads_h2,The Citadel Bulldogs,2643,8.5,-125,2025-12-18T00:54:52Z
+401819831,60,draftkings,spreads_h2,Alcorn St Braves,2016,15.5,-120,2025-12-20T01:54:52Z
+401819831,60,draftkings,spreads_h2,Baylor Bears,239,-15.5,-115,2025-12-20T01:54:52Z
+401819831,60,fanduel,spreads_h2,Alcorn St Braves,2016,16.5,-125,2025-12-20T01:54:48Z
+401819831,60,fanduel,spreads_h2,Baylor Bears,239,-16.5,-106,2025-12-20T01:54:48Z
+401817249,60,fanduel,spreads_h2,Louisville Cardinals,97,-11.5,-122,2025-12-20T17:55:30Z
+401817249,60,fanduel,spreads_h2,Montana Grizzlies,149,11.5,-108,2025-12-20T17:55:30Z
+401817249,60,draftkings,spreads_h2,Louisville Cardinals,97,-10.5,-125,2025-12-20T17:55:37Z
+401817249,60,draftkings,spreads_h2,Montana Grizzlies,149,10.5,-110,2025-12-20T17:55:37Z
+401806413,60,draftkings,spreads_h2,SIU-Edwardsville Cougars,2565,-5.5,-105,2025-12-22T22:25:06Z
+401806413,60,draftkings,spreads_h2,Western Illinois Leathernecks,2710,5.5,-130,2025-12-22T22:25:06Z
+401811100,60,fanduel,spreads_h2,Illinois Fighting Illini,356,-1.5,-114,2025-12-23T01:55:31Z
+401811100,60,fanduel,spreads_h2,Missouri Tigers,142,1.5,-114,2025-12-23T01:55:31Z
+401811100,60,draftkings,spreads_h2,Illinois Fighting Illini,356,-1.5,-120,2025-12-23T01:55:31Z
+401811100,60,draftkings,spreads_h2,Missouri Tigers,142,1.5,-115,2025-12-23T01:55:31Z
+401822876,60,draftkings,spreads_h2,Seton Hall Pirates,2550,-1.5,-115,2025-12-24T00:55:45Z
+401822876,60,draftkings,spreads_h2,Villanova Wildcats,222,1.5,-120,2025-12-24T00:55:45Z
+401812583,60,fanduel,spreads_h2,George Mason Patriots,2244,-7.5,-122,2025-12-28T22:55:18Z
+401812583,60,fanduel,spreads_h2,Pennsylvania Quakers,219,7.5,-108,2025-12-28T22:55:18Z
+401812583,60,draftkings,spreads_h2,George Mason Patriots,2244,-8.5,-115,2025-12-28T22:55:51Z
+401812583,60,draftkings,spreads_h2,Pennsylvania Quakers,219,8.5,-115,2025-12-28T22:55:51Z
+401827279,60,fanduel,spreads_h2,North Carolina Central Eagles,2428,11.5,-114,2025-12-29T18:55:29Z
+401827279,60,fanduel,spreads_h2,Penn State Nittany Lions,213,-11.5,-114,2025-12-29T18:55:29Z
+401827279,60,draftkings,spreads_h2,North Carolina Central Eagles,2428,12.5,-125,2025-12-29T18:55:44Z
+401827279,60,draftkings,spreads_h2,Penn State Nittany Lions,213,-12.5,-105,2025-12-29T18:55:44Z
+401804854,60,fanduel,spreads_h2,Delaware Blue Hens,48,-2.5,-112,2025-12-29T19:55:32Z
+401804854,60,fanduel,spreads_h2,Missouri St Bears,2623,2.5,-118,2025-12-29T19:55:32Z
+401804854,60,draftkings,spreads_h2,Delaware Blue Hens,48,-2.5,-125,2025-12-29T19:55:01Z
+401804854,60,draftkings,spreads_h2,Missouri St Bears,2623,2.5,-110,2025-12-29T19:55:01Z
+401804832,60,draftkings,spreads_h2,Jacksonville St Gamecocks,55,4.5,-105,2025-12-30T00:55:29Z
+401804832,60,draftkings,spreads_h2,Western Kentucky Hilltoppers,98,-4.5,-125,2025-12-30T00:55:29Z
+401826790,60,draftkings,spreads_h2,Arkansas Razorbacks,8,-9.5,-115,2025-12-30T01:55:33Z
+401826790,60,draftkings,spreads_h2,James Madison Dukes,256,9.5,-115,2025-12-30T01:55:33Z
+401826790,60,fanduel,spreads_h2,Arkansas Razorbacks,8,-9.5,-106,2025-12-30T01:55:48Z
+401826790,60,fanduel,spreads_h2,James Madison Dukes,256,9.5,-125,2025-12-30T01:55:48Z
+401826770,60,draftkings,spreads_h2,Princeton Tigers,163,2.5,-110,2025-12-30T18:55:09Z
+401826770,60,draftkings,spreads_h2,Vermont Catamounts,261,-2.5,-125,2025-12-30T18:55:09Z
+401826776,60,draftkings,spreads_h2,Nebraska Cornhuskers,158,-13.5,-110,2025-12-31T02:55:47Z
+401826776,60,draftkings,spreads_h2,New Hampshire Wildcats,160,13.5,-120,2025-12-31T02:55:47Z
+401826776,60,fanduel,spreads_h2,Nebraska Cornhuskers,158,-14.5,-108,2025-12-31T02:54:51Z
+401826776,60,fanduel,spreads_h2,New Hampshire Wildcats,160,14.5,-122,2025-12-31T02:54:51Z
+401828345,60,draftkings,spreads_h2,George Mason Patriots,2244,-6.5,-110,2025-12-31T19:55:39Z
+401828345,60,draftkings,spreads_h2,La Salle Explorers,2325,6.5,-120,2025-12-31T19:55:39Z
+401828349,60,fanduel,spreads_h2,Saint Joseph's Hawks,2603,8.5,-120,2025-12-31T21:55:33Z
+401828349,60,fanduel,spreads_h2,Saint Louis Billikens,139,-8.5,-110,2025-12-31T21:55:33Z
+401828349,60,draftkings,spreads_h2,Saint Joseph's Hawks,2603,7.5,-110,2025-12-31T21:55:15Z
+401828349,60,draftkings,spreads_h2,Saint Louis Billikens,139,-7.5,-120,2025-12-31T21:55:15Z
+401820649,60,draftkings,spreads_h2,Virginia Tech Hokies,259,2.5,-120,2026-01-03T17:55:10Z
+401820649,60,draftkings,spreads_h2,Wake Forest Demon Deacons,154,-2.5,-115,2026-01-03T17:55:10Z
+401820649,60,fanduel,spreads_h2,Virginia Tech Hokies,259,1.5,-104,2026-01-03T17:55:02Z
+401820649,60,fanduel,spreads_h2,Wake Forest Demon Deacons,154,-1.5,-128,2026-01-03T17:55:02Z
+401809232,60,draftkings,spreads_h2,Chattanooga Mocs,236,-6.5,-110,2026-01-03T18:54:44Z
+401809232,60,draftkings,spreads_h2,VMI Keydets,2678,6.5,-125,2026-01-03T18:54:44Z
+401812108,60,draftkings,spreads_h2,Binghamton Bearcats,2066,-1.5,-115,2026-01-03T19:55:39Z
+401812108,60,draftkings,spreads_h2,NJIT Highlanders,2885,1.5,-115,2026-01-03T19:55:39Z
+401820476,60,draftkings,spreads_h2,Houston Christian Huskies,2277,3.5,-105,2026-01-03T22:55:13Z
+401820476,60,draftkings,spreads_h2,Incarnate Word Cardinals,2916,-3.5,-130,2026-01-03T22:55:13Z
+401807671,60,draftkings,spreads_h2,Lipscomb Bisons,288,-9.5,-115,2026-01-03T22:55:25Z
+401807671,60,draftkings,spreads_h2,North Florida Ospreys,2454,9.5,-115,2026-01-03T22:55:25Z
+401808150,60,fanduel,spreads_h2,Mississippi St Bulldogs,344,7.5,-130,2026-01-03T23:55:39Z
+401808150,60,fanduel,spreads_h2,Texas Longhorns,251,-7.5,-102,2026-01-03T23:55:39Z
+401808150,60,draftkings,spreads_h2,Mississippi St Bulldogs,344,7.5,-125,2026-01-03T23:55:23Z
+401808150,60,draftkings,spreads_h2,Texas Longhorns,251,-7.5,-110,2026-01-03T23:55:23Z
+401813385,60,draftkings,spreads_h2,Fairfield Stags,2217,-0.5,-125,2026-01-04T19:55:24Z
+401813385,60,draftkings,spreads_h2,Niagara Purple Eagles,315,0.5,-105,2026-01-04T19:55:24Z
+401820651,60,fanduel,spreads_h2,Boston College Eagles,103,5.5,-122,2026-01-07T02:55:36Z
+401820651,60,fanduel,spreads_h2,NC State Wolfpack,152,-5.5,-108,2026-01-07T02:55:36Z
+401820651,60,draftkings,spreads_h2,Boston College Eagles,103,5.5,-120,2026-01-07T02:55:06Z
+401820651,60,draftkings,spreads_h2,NC State Wolfpack,152,-5.5,-110,2026-01-07T02:55:06Z
+401827600,60,fanduel,spreads_h2,Houston Cougars,248,-3.5,-112,2026-01-07T02:54:48Z
+401827600,60,fanduel,spreads_h2,Texas Tech Red Raiders,2641,3.5,-118,2026-01-07T02:54:48Z
+401808160,60,fanduel,spreads_h2,Tennessee Volunteers,2633,-5.5,-118,2026-01-07T02:55:23Z
+401808160,60,fanduel,spreads_h2,Texas Longhorns,251,5.5,-112,2026-01-07T02:55:23Z
+401813301,60,fanduel,spreads_h2,Canisius Golden Griffins,2099,3.5,-125,2026-01-10T00:54:02Z
+401813301,60,fanduel,spreads_h2,Manhattan Jaspers,2363,-3.5,-106,2026-01-10T00:54:02Z
+401813301,60,draftkings,spreads_h2,Canisius Golden Griffins,2099,3.5,-115,2026-01-10T00:55:50Z
+401813301,60,draftkings,spreads_h2,Manhattan Jaspers,2363,-3.5,-120,2026-01-10T00:55:50Z
+401812007,60,draftkings,spreads_h2,Hofstra Pride,2275,-3.5,-115,2026-01-10T19:55:39Z
+401812007,60,draftkings,spreads_h2,Monmouth Hawks,2405,3.5,-115,2026-01-10T19:55:39Z
+401814511,60,draftkings,spreads_h2,Ball State Cardinals,2050,5.5,-125,2026-01-10T21:24:38Z
+401814511,60,draftkings,spreads_h2,Massachusetts Minutemen,113,-5.5,-110,2026-01-10T21:24:38Z
+401814511,60,fanduel,spreads_h2,Ball State Cardinals,2050,4.5,-108,2026-01-10T21:25:28Z
+401814511,60,fanduel,spreads_h2,Massachusetts Minutemen,113,-4.5,-122,2026-01-10T21:25:28Z
+401808455,60,draftkings,spreads_h2,Eastern Washington Eagles,331,-0.5,-115,2026-01-10T22:55:20Z
+401808455,60,draftkings,spreads_h2,Montana Grizzlies,149,0.5,-120,2026-01-10T22:55:20Z
+401829194,60,draftkings,spreads_h2,Pacific Tigers,279,-6.5,-125,2026-01-11T00:55:40Z
+401829194,60,draftkings,spreads_h2,San Diego Toreros,301,6.5,-110,2026-01-11T00:55:40Z
+401817618,60,fanduel,spreads_h2,Green Bay Phoenix,2739,5.5,-118,2026-01-11T19:55:33Z
+401817618,60,fanduel,spreads_h2,Northern Kentucky Norse,94,-5.5,-114,2026-01-11T19:55:33Z
+401817618,60,draftkings,spreads_h2,Green Bay Phoenix,2739,5.5,-110,2026-01-11T19:54:50Z
+401817618,60,draftkings,spreads_h2,Northern Kentucky Norse,94,-5.5,-125,2026-01-11T19:54:50Z
+401825442,60,fanduel,spreads_h2,Illinois Fighting Illini,356,-4.5,-125,2026-01-15T02:25:23Z
+401825442,60,fanduel,spreads_h2,Northwestern Wildcats,77,4.5,-106,2026-01-15T02:25:23Z
+401825442,60,draftkings,spreads_h2,Illinois Fighting Illini,356,-5.5,-110,2026-01-15T02:25:26Z
+401825442,60,draftkings,spreads_h2,Northwestern Wildcats,77,5.5,-120,2026-01-15T02:25:26Z
+401825445,60,fanduel,spreads_h2,Michigan Wolverines,130,-5.5,-106,2026-01-15T04:25:13Z
+401825445,60,fanduel,spreads_h2,Washington Huskies,264,5.5,-125,2026-01-15T04:25:13Z
+401830272,60,draftkings,spreads_h2,Indiana St Sycamores,282,3.5,-115,2026-01-17T21:55:24Z
+401830272,60,draftkings,spreads_h2,Murray St Racers,93,-3.5,-120,2026-01-17T21:55:24Z
+401813313,60,fanduel,spreads_h2,Manhattan Jaspers,2363,7.5,-118,2026-01-19T19:55:43Z
+401813313,60,fanduel,spreads_h2,Quinnipiac Bobcats,2514,-7.5,-112,2026-01-19T19:55:43Z
+401813313,60,draftkings,spreads_h2,Manhattan Jaspers,2363,7.5,-110,2026-01-19T19:55:07Z
+401813313,60,draftkings,spreads_h2,Quinnipiac Bobcats,2514,-7.5,-120,2026-01-19T19:55:07Z
+401817634,60,fanduel,spreads_h2,Green Bay Phoenix,2739,3.5,-122,2026-01-23T00:24:47Z
+401817634,60,fanduel,spreads_h2,Youngstown St Penguins,2754,-3.5,-108,2026-01-23T00:24:47Z
+401817634,60,draftkings,spreads_h2,Green Bay Phoenix,2739,3.5,-115,2026-01-23T00:25:07Z
+401817634,60,draftkings,spreads_h2,Youngstown St Penguins,2754,-3.5,-120,2026-01-23T00:25:07Z
+401828194,60,draftkings,spreads_h2,Charlotte 49ers,2429,-1.5,-105,2026-01-24T01:23:54Z
+401828194,60,draftkings,spreads_h2,Tulane Green Wave,2655,1.5,-130,2026-01-24T01:23:54Z
+401828194,60,fanduel,spreads_h2,Charlotte 49ers,2429,-0.5,-118,2026-01-24T01:25:23Z
+401828194,60,fanduel,spreads_h2,Tulane Green Wave,2655,0.5,-112,2026-01-24T01:25:23Z
+401822913,60,fanduel,spreads_h2,UConn Huskies,41,-8.5,-104,2026-01-24T18:25:02Z
+401822913,60,fanduel,spreads_h2,Villanova Wildcats,222,8.5,-128,2026-01-24T18:25:02Z
+401822913,60,draftkings,spreads_h2,UConn Huskies,41,-8.5,-120,2026-01-24T18:24:49Z
+401822913,60,draftkings,spreads_h2,Villanova Wildcats,222,8.5,-115,2026-01-24T18:24:49Z
+401830278,60,draftkings,spreads_h2,Drake Bulldogs,2181,1.5,-125,2026-01-24T18:55:22Z
+401830278,60,draftkings,spreads_h2,Indiana St Sycamores,282,-1.5,-110,2026-01-24T18:55:22Z
+401830278,60,fanduel,spreads_h2,Drake Bulldogs,2181,2.5,-114,2026-01-24T18:55:28Z
+401830278,60,fanduel,spreads_h2,Indiana St Sycamores,282,-2.5,-114,2026-01-24T18:55:28Z
+401813314,60,draftkings,spreads_h2,Iona Gaels,314,-0.5,-110,2026-01-25T00:55:44Z
+401813314,60,draftkings,spreads_h2,Manhattan Jaspers,2363,0.5,-125,2026-01-25T00:55:44Z
+401825470,60,draftkings,spreads_h2,Oregon Ducks,2483,1.5,-110,2026-01-25T20:54:59Z
+401825470,60,draftkings,spreads_h2,Washington Huskies,264,-1.5,-125,2026-01-25T20:54:59Z
+401825470,60,fanduel,spreads_h2,Oregon Ducks,2483,1.5,-112,2026-01-25T20:55:07Z
+401825470,60,fanduel,spreads_h2,Washington Huskies,264,-1.5,-118,2026-01-25T20:55:07Z
+401858320,60,draftkings,spreads_h2,East Texas A&M Lions,2837,3.5,-120,2026-01-28T00:55:53Z
+401858320,60,draftkings,spreads_h2,Lamar Cardinals,2320,-3.5,-115,2026-01-28T00:55:53Z
+401822918,60,draftkings,spreads_h2,Providence Friars,2507,8.5,-120,2026-01-28T01:24:49Z
+401822918,60,draftkings,spreads_h2,UConn Huskies,41,-8.5,-110,2026-01-28T01:24:49Z
+401822918,60,fanduel,spreads_h2,Providence Friars,2507,6.5,-114,2026-01-28T01:25:28Z
+401822918,60,fanduel,spreads_h2,UConn Huskies,41,-6.5,-114,2026-01-28T01:25:28Z
+401820705,60,fanduel,spreads_h2,Boston College Eagles,103,10.5,-118,2026-01-31T19:25:22Z
+401820705,60,fanduel,spreads_h2,Virginia Cavaliers,258,-10.5,-112,2026-01-31T19:25:22Z
+401820705,60,draftkings,spreads_h2,Boston College Eagles,103,10.5,-120,2026-01-31T19:24:58Z
+401820705,60,draftkings,spreads_h2,Virginia Cavaliers,258,-10.5,-110,2026-01-31T19:24:58Z
+401808661,60,draftkings,spreads_h2,Old Dominion Monarchs,295,-10.5,-120,2026-02-05T00:55:11Z
+401808661,60,draftkings,spreads_h2,UL Monroe Warhawks,2433,10.5,-115,2026-02-05T00:55:11Z
+401829230,60,fanduel,spreads_h2,Saint Mary's Gaels,2608,-7.5,-114,2026-02-05T03:55:07Z
+401829230,60,fanduel,spreads_h2,San Diego Toreros,301,7.5,-114,2026-02-05T03:55:07Z
+401829230,60,draftkings,spreads_h2,Saint Mary's Gaels,2608,-6.5,-115,2026-02-05T03:54:55Z
+401829230,60,draftkings,spreads_h2,San Diego Toreros,301,6.5,-115,2026-02-05T03:54:55Z
+401813391,60,draftkings,spreads_h2,Niagara Purple Eagles,315,4.5,-125,2026-02-07T19:54:55Z
+401813391,60,draftkings,spreads_h2,Quinnipiac Bobcats,2514,-4.5,-110,2026-02-07T19:54:55Z
+401845845,60,draftkings,spreads_h2,Buffalo Bulls,2084,-2.5,-120,2026-02-07T21:55:02Z
+401845845,60,draftkings,spreads_h2,South Alabama Jaguars,6,2.5,-115,2026-02-07T21:55:02Z
+401823855,60,draftkings,spreads_h2,Merrimack Warriors,2771,-1.5,-120,2026-02-08T00:54:53Z
+401823855,60,draftkings,spreads_h2,Rider Broncs,2520,1.5,-115,2026-02-08T00:54:53Z
+401829235,60,draftkings,spreads_h2,Loyola Marymount Lions,2351,0.5,-125,2026-02-08T02:55:18Z
+401829235,60,draftkings,spreads_h2,San Diego Toreros,301,-0.5,-110,2026-02-08T02:55:18Z
+401828218,60,fanduel,spreads_h2,South Florida Bulls,58,-0.5,-125,2026-02-08T17:53:53Z
+401828218,60,fanduel,spreads_h2,Tulsa Golden Hurricane,202,0.5,-106,2026-02-08T17:53:53Z
+401828218,60,draftkings,spreads_h2,South Florida Bulls,58,-0.5,-120,2026-02-08T17:55:42Z
+401828218,60,draftkings,spreads_h2,Tulsa Golden Hurricane,202,0.5,-115,2026-02-08T17:55:42Z
+401820818,60,draftkings,spreads_h2,Arizona Wildcats,12,-3.5,-110,2026-02-10T02:54:56Z
+401820818,60,draftkings,spreads_h2,Kansas Jayhawks,2305,3.5,-125,2026-02-10T02:54:56Z
+401820818,60,fanduel,spreads_h2,Arizona Wildcats,12,-2.5,-118,2026-02-10T02:54:11Z
+401820818,60,fanduel,spreads_h2,Kansas Jayhawks,2305,2.5,-112,2026-02-10T02:54:11Z
+401820738,60,fanduel,spreads_h2,California Golden Bears,25,3.5,-114,2026-02-12T00:54:58Z
+401820738,60,fanduel,spreads_h2,Syracuse Orange,183,-3.5,-114,2026-02-12T00:54:58Z
+401809116,60,fanduel,spreads_h2,Cal Poly Mustangs,13,0.5,-122,2026-02-13T03:54:55Z
+401809116,60,fanduel,spreads_h2,UC Irvine Anteaters,300,-0.5,-108,2026-02-13T03:54:55Z
+401809116,60,draftkings,spreads_h2,Cal Poly Mustangs,13,0.5,-125,2026-02-13T03:55:04Z
+401809116,60,draftkings,spreads_h2,UC Irvine Anteaters,300,-0.5,-110,2026-02-13T03:55:04Z
+401814567,60,draftkings,spreads_h2,Eastern Michigan Eagles,2199,-3.5,-105,2026-02-14T19:54:52Z
+401814567,60,draftkings,spreads_h2,Western Michigan Broncos,2711,3.5,-130,2026-02-14T19:54:52Z
+401814562,60,fanduel,spreads_h2,Ball State Cardinals,2050,1.5,-114,2026-02-14T19:55:30Z
+401814562,60,fanduel,spreads_h2,Kent State Golden Flashes,2309,-1.5,-114,2026-02-14T19:55:30Z
+401814562,60,draftkings,spreads_h2,Ball State Cardinals,2050,1.5,-125,2026-02-14T19:55:22Z
+401814562,60,draftkings,spreads_h2,Kent State Golden Flashes,2309,-1.5,-110,2026-02-14T19:55:22Z
+401809099,60,draftkings,spreads_h2,UC Riverside Highlanders,27,5.5,-130,2026-02-15T03:54:45Z
+401809099,60,draftkings,spreads_h2,UC San Diego Tritons,28,-5.5,-105,2026-02-15T03:54:45Z
+401830214,60,fanduel,spreads_h2,Belmont Bruins,2057,-2.5,-122,2026-02-15T23:55:10Z
+401830214,60,fanduel,spreads_h2,Murray St Racers,93,2.5,-108,2026-02-15T23:55:10Z
+401814573,60,fanduel,spreads_h2,Buffalo Bulls,2084,-2.5,-125,2026-02-18T00:25:58Z
+401814573,60,fanduel,spreads_h2,Northern Illinois Huskies,2459,2.5,-106,2026-02-18T00:25:58Z
+401820752,60,fanduel,spreads_h2,NC State Wolfpack,152,0.5,-108,2026-02-18T00:55:27Z
+401820752,60,fanduel,spreads_h2,North Carolina Tar Heels,153,-0.5,-122,2026-02-18T00:55:27Z
+401820752,60,draftkings,spreads_h2,NC State Wolfpack,152,1.5,-120,2026-02-18T00:55:26Z
+401820752,60,draftkings,spreads_h2,North Carolina Tar Heels,153,-1.5,-110,2026-02-18T00:55:26Z
+401808248,60,fanduel,spreads_h2,Ole Miss Rebels,145,7.5,-108,2026-02-19T00:54:57Z
+401808248,60,fanduel,spreads_h2,Texas A&M Aggies,245,-7.5,-122,2026-02-19T00:54:57Z
+401808248,60,draftkings,spreads_h2,Ole Miss Rebels,145,8.5,-125,2026-02-19T00:55:33Z
+401808248,60,draftkings,spreads_h2,Texas A&M Aggies,245,-8.5,-110,2026-02-19T00:55:33Z
+401807748,60,draftkings,spreads_h2,Florida Gulf Coast Eagles,526,-3.5,-105,2026-02-19T00:51:29Z
+401807748,60,draftkings,spreads_h2,Jacksonville Dolphins,294,3.5,-125,2026-02-19T00:51:29Z
+401828235,60,draftkings,spreads_h2,Florida Atlantic Owls,2226,-7.5,-120,2026-02-19T01:55:48Z
+401828235,60,draftkings,spreads_h2,UTSA Roadrunners,2636,7.5,-110,2026-02-19T01:55:48Z
+401808678,60,fanduel,spreads_h2,Georgia Southern Eagles,290,-4.5,-102,2026-02-20T01:54:54Z
+401808678,60,fanduel,spreads_h2,Georgia St Panthers,2247,4.5,-130,2026-02-20T01:54:54Z
+401820760,60,fanduel,spreads_h2,Miami Hurricanes,2390,6.5,-114,2026-02-21T19:55:39Z
+401820760,60,fanduel,spreads_h2,Virginia Cavaliers,258,-6.5,-114,2026-02-21T19:55:39Z
+401820760,60,draftkings,spreads_h2,Miami Hurricanes,2390,6.5,-125,2026-02-21T19:55:52Z
+401820760,60,draftkings,spreads_h2,Virginia Cavaliers,258,-6.5,-110,2026-02-21T19:55:52Z
+401809378,60,draftkings,spreads_h2,Mercer Bears,2382,-1.5,-110,2026-02-21T19:55:25Z
+401809378,60,draftkings,spreads_h2,Samford Bulldogs,2535,1.5,-120,2026-02-21T19:55:25Z
+401828668,60,draftkings,spreads_h2,Alcorn St Braves,2016,-0.5,-110,2026-02-21T22:40:00Z
+401828668,60,draftkings,spreads_h2,Jackson St Tigers,2296,0.5,-120,2026-02-21T22:40:00Z
+401827168,60,draftkings,spreads_h2,Alabama St Hornets,2011,-2.5,-120,2026-02-22T00:40:35Z
+401827168,60,draftkings,spreads_h2,Florida A&M Rattlers,50,2.5,-110,2026-02-22T00:40:35Z
+401829256,60,draftkings,spreads_h2,Oregon St Beavers,204,-5.5,-120,2026-02-22T01:55:32Z
+401829256,60,draftkings,spreads_h2,Pepperdine Waves,2492,5.5,-110,2026-02-22T01:55:32Z
+401829320,60,fanduel,spreads_h2,Nevada Wolf Pack,2440,1.5,-114,2026-02-25T04:54:50Z
+401829320,60,fanduel,spreads_h2,New Mexico Lobos,167,-1.5,-114,2026-02-25T04:54:50Z
+401820765,60,fanduel,spreads_h2,California Golden Bears,25,3.5,-114,2026-02-26T03:55:24Z
+401820765,60,fanduel,spreads_h2,SMU Mustangs,2567,-3.5,-114,2026-02-26T03:55:24Z
+401820765,60,draftkings,spreads_h2,California Golden Bears,25,3.5,-130,2026-02-26T03:55:31Z
+401820765,60,draftkings,spreads_h2,SMU Mustangs,2567,-3.5,-105,2026-02-26T03:55:31Z
+401808696,60,fanduel,spreads_h2,Georgia Southern Eagles,290,3.5,-128,2026-02-28T02:55:08Z
+401808696,60,fanduel,spreads_h2,Marshall Thundering Herd,276,-3.5,-104,2026-02-28T02:55:08Z
+401808696,60,draftkings,spreads_h2,Georgia Southern Eagles,290,3.5,-115,2026-02-28T02:55:05Z
+401808696,60,draftkings,spreads_h2,Marshall Thundering Herd,276,-3.5,-115,2026-02-28T02:55:05Z
+401822967,60,fanduel,spreads_h2,Georgetown Hoyas,46,11.5,-104,2026-03-04T00:55:07Z
+401822967,60,fanduel,spreads_h2,St. John's Red Storm,2599,-11.5,-128,2026-03-04T00:55:07Z
+401825557,60,draftkings,spreads_h2,Ohio State Buckeyes,194,-1.5,-120,2026-03-05T01:22:15Z
+401825557,60,draftkings,spreads_h2,Penn State Nittany Lions,213,1.5,-115,2026-03-05T01:22:15Z
+401825557,60,fanduel,spreads_h2,Ohio State Buckeyes,194,-1.5,-112,2026-03-05T01:25:11Z
+401825557,60,fanduel,spreads_h2,Penn State Nittany Lions,213,1.5,-118,2026-03-05T01:25:11Z
+401825558,60,fanduel,spreads_h2,USC Trojans,30,2.5,-106,2026-03-05T04:25:41Z
+401825558,60,fanduel,spreads_h2,Washington Huskies,264,-2.5,-125,2026-03-05T04:25:41Z
+401851460,60,draftkings,spreads_h2,Fairfield Stags,2217,1.5,-120,2026-03-07T02:25:21Z
+401851460,60,draftkings,spreads_h2,Saint Peter's Peacocks,2612,-1.5,-110,2026-03-07T02:25:21Z
+401814601,60,draftkings,spreads_h2,Miami (OH) RedHawks,193,-0.5,-115,2026-03-07T03:05:12Z
+401814601,60,draftkings,spreads_h2,Ohio Bobcats,195,0.5,-120,2026-03-07T03:05:12Z
+401814601,60,fanduel,spreads_h2,Miami (OH) RedHawks,193,-0.5,-108,2026-03-07T03:05:58Z
+401814601,60,fanduel,spreads_h2,Ohio Bobcats,195,0.5,-122,2026-03-07T03:05:58Z
+401851624,60,draftkings,spreads_h2,Denver Pioneers,2172,-5.5,-115,2026-03-07T03:25:29Z
+401851624,60,draftkings,spreads_h2,North Dakota Fighting Hawks,155,5.5,-120,2026-03-07T03:25:29Z
+401825562,60,draftkings,spreads_h2,Minnesota Golden Gophers,135,-0.5,-115,2026-03-08T02:54:53Z
+401825562,60,draftkings,spreads_h2,Northwestern Wildcats,77,0.5,-115,2026-03-08T02:54:53Z
+401825562,60,fanduel,spreads_h2,Minnesota Golden Gophers,135,-0.5,-104,2026-03-08T02:55:09Z
+401825562,60,fanduel,spreads_h2,Northwestern Wildcats,77,0.5,-128,2026-03-08T02:55:09Z
+401809104,60,draftkings,spreads_h2,UC San Diego Tritons,28,1.5,-125,2026-03-08T02:54:59Z
+401809104,60,draftkings,spreads_h2,UC Santa Barbara Gauchos,2540,-1.5,-110,2026-03-08T02:54:59Z
+401851759,60,draftkings,spreads_h2,Gonzaga Bulldogs,2250,-9.5,-110,2026-03-10T01:55:00Z
+401851759,60,draftkings,spreads_h2,Oregon St Beavers,204,9.5,-125,2026-03-10T01:55:00Z
+401851759,60,fanduel,spreads_h2,Gonzaga Bulldogs,2250,-8.5,-125,2026-03-10T01:54:57Z
+401851759,60,fanduel,spreads_h2,Oregon St Beavers,204,8.5,-106,2026-03-10T01:54:57Z
+401851287,60,fanduel,spreads_h2,Colorado Buffaloes,38,-1.5,-125,2026-03-11T02:31:59Z
+401851287,60,fanduel,spreads_h2,Oklahoma St Cowboys,197,1.5,-106,2026-03-11T02:31:59Z
+401851287,60,draftkings,spreads_h2,Colorado Buffaloes,38,-1.5,-115,2026-03-11T02:32:52Z
+401851287,60,draftkings,spreads_h2,Oklahoma St Cowboys,197,1.5,-115,2026-03-11T02:32:52Z
+401851175,60,draftkings,spreads_h2,California Golden Bears,25,-2.5,-120,2026-03-11T23:54:51Z
+401851175,60,draftkings,spreads_h2,Florida St Seminoles,52,2.5,-115,2026-03-11T23:54:51Z
+401851175,60,fanduel,spreads_h2,California Golden Bears,25,-2.5,-122,2026-03-11T23:55:24Z
+401851175,60,fanduel,spreads_h2,Florida St Seminoles,52,2.5,-108,2026-03-11T23:55:24Z
+401851221,60,fanduel,spreads_h2,Memphis Tigers,235,-4.5,-106,2026-03-11T23:54:37Z
+401851221,60,fanduel,spreads_h2,Tulane Green Wave,2655,4.5,-125,2026-03-11T23:54:37Z
+401851221,60,draftkings,spreads_h2,Memphis Tigers,235,-3.5,-120,2026-03-11T23:55:46Z
+401851221,60,draftkings,spreads_h2,Tulane Green Wave,2655,3.5,-110,2026-03-11T23:55:46Z
+401851735,60,fanduel,spreads_h2,Abilene Christian Wildcats,2000,-3.5,-125,2026-03-13T04:25:01Z
+401851735,60,fanduel,spreads_h2,Utah Tech Trailblazers,3101,3.5,-106,2026-03-13T04:25:01Z
+401851735,60,draftkings,spreads_h2,Abilene Christian Wildcats,2000,-4.5,-110,2026-03-13T04:25:35Z
+401851735,60,draftkings,spreads_h2,Utah Tech Trailblazers,3101,4.5,-125,2026-03-13T04:25:35Z
+401851736,60,draftkings,spreads_h2,UT-Arlington Mavericks,250,2.5,-110,2026-03-14T01:55:40Z
+401851736,60,draftkings,spreads_h2,Utah Valley Wolverines,3084,-2.5,-120,2026-03-14T01:55:40Z
+401858340,60,fanduel,spreads_h2,UNC Wilmington Seahawks,350,1.5,-108,2026-03-17T23:55:39Z
+401858340,60,fanduel,spreads_h2,Yale Bulldogs,43,-1.5,-122,2026-03-17T23:55:39Z
+401858340,60,draftkings,spreads_h2,UNC Wilmington Seahawks,350,1.5,-115,2026-03-17T23:55:22Z
+401858340,60,draftkings,spreads_h2,Yale Bulldogs,43,-1.5,-120,2026-03-17T23:55:22Z
+401856482,60,draftkings,spreads_h2,Louisville Cardinals,97,2.5,-120,2026-03-19T18:25:47Z
+401856482,60,draftkings,spreads_h2,South Florida Bulls,58,-2.5,-115,2026-03-19T18:25:47Z
+401856482,60,fanduel,spreads_h2,Louisville Cardinals,97,1.5,-110,2026-03-19T18:25:04Z
+401856482,60,fanduel,spreads_h2,South Florida Bulls,58,-1.5,-120,2026-03-19T18:25:04Z
+401856493,60,draftkings,spreads_h2,Houston Cougars,248,-10.5,-110,2026-03-20T03:10:52Z
+401856493,60,draftkings,spreads_h2,Idaho Vandals,70,10.5,-125,2026-03-20T03:10:52Z
+401856493,60,fanduel,spreads_h2,Houston Cougars,248,-9.5,-120,2026-03-20T03:10:12Z
+401856493,60,fanduel,spreads_h2,Idaho Vandals,70,9.5,-110,2026-03-20T03:10:12Z
+401856536,60,draftkings,spreads_h2,Arkansas Razorbacks,8,-7.5,-110,2026-03-22T02:40:47Z
+401856536,60,draftkings,spreads_h2,High Point Panthers,2272,7.5,-125,2026-03-22T02:40:47Z
+401856536,60,fanduel,spreads_h2,Arkansas Razorbacks,8,-7.5,-108,2026-03-22T02:40:48Z
+401856536,60,fanduel,spreads_h2,High Point Panthers,2272,7.5,-122,2026-03-22T02:40:48Z
+401858356,60,draftkings,spreads_h2,Oklahoma St Cowboys,197,-1.5,-125,2026-03-23T01:24:48Z
+401858356,60,draftkings,spreads_h2,Wichita St Shockers,2724,1.5,-110,2026-03-23T01:24:48Z
+401858356,60,fanduel,spreads_h2,Oklahoma St Cowboys,197,-1.5,-110,2026-03-23T01:25:32Z
+401858356,60,fanduel,spreads_h2,Wichita St Shockers,2724,1.5,-120,2026-03-23T01:25:32Z
