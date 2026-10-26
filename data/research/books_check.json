@@ -1,0 +1,14 @@
+{
+ "events": 7,
+ "credits": "3",
+ "books": {
+  "draftkings": {
+   "title": "DraftKings",
+   "games": 7
+  },
+  "williamhill_us": {
+   "title": "Caesars",
+   "games": 7
+  }
+ }
+}
