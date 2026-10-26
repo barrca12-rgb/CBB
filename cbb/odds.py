@@ -135,35 +135,102 @@ def fetch(api_key: str | None = None, max_events: int = 1500) -> pd.DataFrame:
     return pd.DataFrame(rows).reindex(columns=list(dict.fromkeys(base + [c for r in rows for c in r])))
 
 
+def game_key(d: pd.DataFrame) -> pd.Series:
+    """Source-independent game id: ET date and the two team ids in sorted order (sources can disagree on which team
+    is home at a neutral site)."""
+    date = pd.to_datetime(d["start"], utc=True, format="ISO8601").dt.tz_convert("America/New_York").dt.strftime("%Y-%m-%d")
+    lo = np.minimum(d["home_id"].astype(int), d["away_id"].astype(int)).astype(str)
+    hi = np.maximum(d["home_id"].astype(int), d["away_id"].astype(int)).astype(str)
+    return date + "|" + lo + "|" + hi
+
+
+def _flip(d: pd.DataFrame) -> pd.DataFrame:
+    """Same lines from the other team's side (home and away swapped)."""
+    sw = {"home_id": "away_id", "home_spread_odds": "away_spread_odds", "home_ml": "away_ml",
+          "home_spread_link": "away_spread_link", "home_ml_link": "away_ml_link"}
+    sw.update({v: k for k, v in sw.items()})
+    d = d.rename(columns={k: v for k, v in sw.items() if k in d})
+    d["home_spread"] = -d["home_spread"]
+    return d
+
+
+def _merge_second_source(l: pd.DataFrame, extra: pd.DataFrame, cl_path: str) -> pd.DataFrame:
+    """Add The Odds API rows for (game, book) pairs SGO doesn't have, oriented like SGO (or like the game's earlier
+    rows in closing.csv) so every source agrees on which team is home."""
+    if not len(extra):
+        return l
+    extra = extra.assign(gk=game_key(extra))
+    have = set(game_key(l) + "|" + l["book"]) if len(l) else set()
+    extra = extra[~(extra["gk"] + "|" + extra["book"]).isin(have)]
+    ref = {}
+    if os.path.exists(cl_path):
+        old = pd.read_csv(cl_path)
+        if len(old):
+            ref.update(dict(zip(game_key(old), old["home_id"])))
+    if len(l):
+        ref.update(dict(zip(game_key(l), l["home_id"])))
+    want = extra["gk"].map(ref)
+    flip = want.notna() & (want != extra["home_id"])
+    extra = pd.concat([extra[~flip], _flip(extra[flip])], ignore_index=True).drop(columns="gk")
+    return pd.concat([l, extra], ignore_index=True) if len(l) else extra
+
+
 def pull(api_key: str | None = None) -> pd.DataFrame:
     """Fetch, save a timestamped snapshot, and update lines/openers.csv. Returns the lines with open_home_spread and
-    open_total (first number seen at that book) added."""
-    l = fetch(api_key)
+    open_total (first number seen at that book) added. SGO first; The Odds API (odds_api.py) fills games and books
+    SGO doesn't have, on the runs it's due."""
+    from . import odds_api
     os.makedirs(LINES, exist_ok=True)
+    cl_path = os.path.join(LINES, "closing.csv")
+    try:
+        l = fetch(api_key)
+    except Exception as e:
+        if not odds_api.due():
+            raise
+        print(f"SportsGameOdds failed ({e}); using The Odds API only.")
+        l = pd.DataFrame(columns=["book", "sgo_event", "start", "home_id", "away_id", "home_spread", "total"])
+    n_sgo = len(l)
+    if odds_api.due():
+        try:
+            l = _merge_second_source(l, odds_api.fetch(), cl_path)
+        except Exception as e:
+            print(f"The Odds API failed ({e}); SGO lines only.")
     ts = pd.Timestamp.now(tz="UTC")
     if len(l):
-        cl_path = os.path.join(LINES, "closing.csv")
-        cur = l[["sgo_event", "book", "start", "home_id", "away_id", "home_spread", "home_spread_odds",
-                 "away_spread_odds", "total", "over_odds", "under_odds"]].copy()
-        cur["date"] = pd.to_datetime(cur["start"], utc=True).dt.tz_convert("America/New_York").dt.strftime("%Y-%m-%d")
+        cur = l.reindex(columns=["sgo_event", "book", "start", "home_id", "away_id", "home_spread", "home_spread_odds",
+                                 "away_spread_odds", "total", "over_odds", "under_odds"]).copy()
+        cur["date"] = pd.to_datetime(cur["start"], utc=True, format="ISO8601").dt.tz_convert("America/New_York").dt.strftime("%Y-%m-%d")
         cur["pulled_at"] = ts.isoformat(timespec="seconds")
         old = pd.read_csv(cl_path) if os.path.exists(cl_path) else cur.iloc[:0]
-        key = lambda d: d["sgo_event"].astype(str) + "|" + d["book"].astype(str)
+        key = lambda d: game_key(d) + "|" + d["book"].astype(str)
         pd.concat([old[~key(old).isin(set(key(cur)))], cur], ignore_index=True).to_csv(cl_path, index=False)
     op_path = os.path.join(LINES, "openers.csv")
     op = pd.read_csv(op_path) if os.path.exists(op_path) else pd.DataFrame(
         columns=["sgo_event", "book", "home_id", "away_id", "open_home_spread", "open_total", "first_seen"])
+    if "game_key" not in op and len(op):   # older file keyed by SGO event: look the games up in closing.csv
+        c = pd.read_csv(cl_path)
+        op["game_key"] = op["sgo_event"].map(dict(zip(c["sgo_event"], game_key(c))))
+    op = op.reindex(columns=["game_key", "sgo_event", "book", "home_id", "away_id", "open_home_spread", "open_total",
+                             "first_seen"])
     if len(l):
-        new = l[["sgo_event", "book", "home_id", "away_id", "home_spread", "total"]].rename(
+        l = l.assign(game_key=game_key(l))
+        new = l[["game_key", "sgo_event", "book", "home_id", "away_id", "home_spread", "total"]].rename(
             columns={"home_spread": "open_home_spread", "total": "open_total"}).assign(first_seen=ts.isoformat())
-        key = op["sgo_event"].astype(str) + "|" + op["book"].astype(str)
-        new = new[~(new["sgo_event"].astype(str) + "|" + new["book"]).isin(set(key))]
-        op = pd.concat([op, new], ignore_index=True)
+        key = set(op["game_key"].astype(str) + "|" + op["book"].astype(str))
+        new = new[~(new["game_key"] + "|" + new["book"]).isin(key)]
+        op = pd.concat([op, new], ignore_index=True) if len(op) else new
         op.to_csv(op_path, index=False)
-        l = l.merge(op[["sgo_event", "book", "open_home_spread", "open_total"]], on=["sgo_event", "book"], how="left")
+        m = op[["game_key", "book", "home_id", "open_home_spread", "open_total"]].rename(columns={"home_id": "op_home"})
+        l = l.merge(m, on=["game_key", "book"], how="left")
+        flipped = l["op_home"].notna() & (l["op_home"] != l["home_id"])
+        l.loc[flipped, "open_home_spread"] = -l.loc[flipped, "open_home_spread"]
+        l = l.drop(columns=["op_home", "game_key"])
+    oa = getattr(odds_api.fetch, "usage", None)
     with open(os.path.join(LINES, "last_pull.txt"), "w") as f:
-        f.write(f"{ts:%Y-%m-%d %H:%M} UTC  events {getattr(fetch, 'events', 0)}  book-game rows {len(l)}  "
-                f"unmatched teams: {', '.join(getattr(fetch, 'unmatched', [])) or 'none'}"
+        f.write(f"{ts:%Y-%m-%d %H:%M} UTC  events {getattr(fetch, 'events', 0)}  book-game rows {len(l)} "
+                f"({n_sgo} SGO, {len(l) - n_sgo} The Odds API)  "
+                f"unmatched teams: {', '.join(sorted(set(getattr(fetch, 'unmatched', [])) | set(getattr(odds_api.fetch, 'unmatched', [])))) or 'none'}"
                 + (f"  SGO month: {u['used']:,} of {u['max']:,} entities" if (u := getattr(fetch, "usage", {})) else "")
+                + (f"  The Odds API credits left: {oa['remaining']}" if oa and oa.get("remaining") is not None else "")
                 + "\n")
     return l

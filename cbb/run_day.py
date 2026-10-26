@@ -291,7 +291,7 @@ def main():
     build(day, games, lines)
     if a.auto and not a.date and len(lines):
         # books open some games days ahead: give each later day that already has lines its own card
-        ahead = pd.to_datetime(lines["start"], utc=True).dt.tz_convert("America/New_York").dt.normalize()
+        ahead = pd.to_datetime(lines["start"], utc=True, format="ISO8601").dt.tz_convert("America/New_York").dt.normalize()
         for d in sorted({t.tz_localize(None) for t in ahead.dropna()}):
             if day < d <= day + pd.Timedelta(days=7):
                 later = slate(d)

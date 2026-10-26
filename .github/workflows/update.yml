@@ -66,6 +66,7 @@ jobs:
         env:
           SGO_API_KEY: ${{ secrets.SGO_API_KEY }}
           KENPOM_API_KEY: ${{ secrets.KENPOM_API_KEY }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}   # second line source (cbb/odds_api.py); optional
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}     # phone alerts for new BETs (cbb/notify.py); optional
         run: |
           if [ -n "${{ github.event.inputs.date }}" ]; then python -m cbb.run_day --date "${{ github.event.inputs.date }}"
