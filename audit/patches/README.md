@@ -1,8 +1,14 @@
-# Proposed changes awaiting Chad's approval (none applied)
+# Changes to the live code during the freeze, and their validation
 
-Each diff applies cleanly to the branch as of Oct 26, 2026 (`git apply --check`). Nothing here changes a prediction,
-a selection, a threshold, a stake or the frozen model's fingerprints. Applying any of them is recorded under "Changes
-during the freeze" in `MODEL_FREEZE.md`, together with this validation.
+Nothing here changes a prediction, a selection, a threshold or a stake. Each applied change is recorded under
+"Changes during the freeze" in `MODEL_FREEZE.md`, together with its validation.
+
+| Diff | Status |
+|---|---|
+| `logging_reporting.diff` | **Applied Oct 26** (forward-test v2 instructions). The diff is the applied change against the commit before it. It is the original v1.1 diff plus: watch windows from the actual alert (95 minutes) and before the tip (20 minutes) instead of first-seen games; the signal's quote from its generating pull; "absent" rows; gzipped finished days; unique poll ids; and cohort B and an assumed-price note on the record page |
+| `referee_fix.diff` | applied with protocol item 7 (evaluation and `BACKTEST.md` only) |
+| `opener_cleaning_fix.diff` | superseded by the moneyline-orientation rule (protocol item 7) |
+
 
 | Diff | What it changes | Effect on plays this week | Needs from Chad | Validation |
 |---|---|---|---|---|

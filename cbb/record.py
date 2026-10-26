@@ -20,7 +20,7 @@ import urllib.request
 
 import pandas as pd
 
-from . import tracker
+from . import quotelog, tracker
 
 STATE = os.path.join(tracker.ROOT, "bets", "discord_posted.json")
 ANNOUNCEMENTS = os.path.join(tracker.ROOT, "bets", "announcements.json")
@@ -29,6 +29,13 @@ GREEN, RED, GRAY, BLUE = 0x2E7D32, 0xC62828, 0x757575, 0x1565C0
 
 class Refused(Exception):
     """Discord refused the webhook itself (bad or deleted URL): stop this run's posting."""
+
+
+def _label(payload: dict) -> str:
+    """What a post was about, for the alert log: the bet id in its footer, or its title or first words."""
+    e = (payload.get("embeds") or [{}])[0]
+    foot = (e.get("footer") or {}).get("text", "")
+    return foot.replace("bet id ", "") if foot.startswith("bet id ") else (e.get("title") or payload.get("content", ""))[:120]
 
 
 def url_shape(url: str) -> str:
@@ -50,8 +57,11 @@ def post(payload: dict, url: str | None = None) -> str | None:
                                  method="POST", headers={"Content-Type": "application/json", "User-Agent": "cbb-model"})
     try:
         with urllib.request.urlopen(req, timeout=20) as r:
-            return str(json.load(r).get("id") or "posted")
+            mid = str(json.load(r).get("id") or "posted")
+        quotelog.alert(_label(payload), "discord", "post", True, mid)
+        return mid
     except urllib.error.HTTPError as e:
+        quotelog.alert(_label(payload), "discord", "post", False)
         detail = e.read()[:200].decode(errors="ignore")
         print(f"Discord post failed: HTTP {e.code} {detail}")
         if e.code in (401, 403, 404):
@@ -59,6 +69,7 @@ def post(payload: dict, url: str | None = None) -> str | None:
             raise Refused from e
         return None
     except Exception as e:
+        quotelog.alert(_label(payload), "discord", "post", False)
         print(f"Discord post failed: {e}")
         return None
     finally:

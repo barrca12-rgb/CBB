@@ -19,7 +19,7 @@ import urllib.request
 import numpy as np
 import pandas as pd
 
-from . import teams
+from . import quotelog, teams
 
 API = "https://api.sportsgameodds.com/v2/events"
 LINES = os.path.join(os.path.dirname(__file__), "..", "lines")
@@ -33,6 +33,9 @@ ODDS = {"points-home-game-sp-home": ("home_spread", "home_spread_odds", "home_sp
         "points-home-game-ml-home": (None, "home_ml", "home_ml_link"),
         "points-away-game-ml-away": (None, "away_ml", "away_ml_link")}
 MAX_AGE = pd.Timedelta(hours=12)   # ignore a book's price it hasn't touched in this long (stale feed)
+# Quotes recorded for the forward-test log (moneylines are not part of the test)
+OBS_SIDES = {"points-home-game-sp-home": ("spread", "home"), "points-away-game-sp-away": ("spread", "away"),
+             "points-all-game-ou-over": ("total", "over"), "points-all-game-ou-under": ("total", "under")}
 
 
 def _num(x):
@@ -101,6 +104,7 @@ def fetch(api_key: str | None = None, max_events: int = 1500) -> pd.DataFrame:
     lookup = _lookup()
     now = pd.Timestamp.now(tz="UTC")
     rows, unmatched = [], set()
+    obs = []   # forward-test log (quotelog.py): every quote seen, including unavailable and stale ones
     for ev in events:
         st = ev.get("status") or {}
         if st.get("started") or st.get("ended") or st.get("cancelled"):
@@ -115,6 +119,14 @@ def fetch(api_key: str | None = None, max_events: int = 1500) -> pd.DataFrame:
         per_book: dict = {}
         for odd_id, (line_col, price_col, link_col) in ODDS.items():
             for bk, o in ((ev.get("odds") or {}).get(odd_id, {}).get("byBookmaker") or {}).items():
+                if bk in BOOKS and odd_id in OBS_SIDES:
+                    upd0 = pd.to_datetime(o.get("lastUpdatedAt"), utc=True, errors="coerce")
+                    status = "unavailable" if o.get("available") is False else \
+                        "stale" if pd.notna(upd0) and now - upd0 > MAX_AGE else "available"
+                    mk, side = OBS_SIDES[odd_id]
+                    obs.append(quotelog.observation("sgo", ev.get("eventID"), st.get("startsAt"), h, a, BOOKS[bk], mk,
+                                                    side, _num(o.get("spread") if mk == "spread" else o.get("overUnder")),
+                                                    _num(o.get("odds")), o.get("lastUpdatedAt"), now, status))
                 if bk not in BOOKS or o.get("available") is False:
                     continue
                 upd = pd.to_datetime(o.get("lastUpdatedAt"), utc=True, errors="coerce")
@@ -132,6 +144,7 @@ def fetch(api_key: str | None = None, max_events: int = 1500) -> pd.DataFrame:
         rows += per_book.values()
     fetch.unmatched = sorted(unmatched)
     fetch.events = len(events)
+    fetch.observations, fetch.observed_at = obs, now
     base = ["book", "sgo_event", "start", "home_id", "away_id", "home_spread", "total"]
     return pd.DataFrame(rows).reindex(columns=list(dict.fromkeys(base + [c for r in rows for c in r])))
 
@@ -223,15 +236,22 @@ def pull(api_key: str | None = None) -> pd.DataFrame:
     os.makedirs(LINES, exist_ok=True)
     cl_path = os.path.join(LINES, "closing.csv")
     empty = pd.DataFrame(columns=["book", "sgo_event", "start", "home_id", "away_id", "home_spread", "total"])
+    pending_obs = []   # (observations, poll_id, observed_at): logged after openers.csv, so new games are watched
     last = _sgo_last()
     if odds_api.due() and last is not None and pd.Timestamp.now(tz="UTC") - last < SGO_MIN_GAP:
         l = empty   # runs every 10 minutes; SGO's monthly allowance (shared with the NFL model) gets every third
+        quotelog.poll("sgo", "skipped", quotelog.now(), error="less than 25 minutes since the last SGO pull")
     else:
         try:
             l = fetch(api_key)
             with open(SGO_LAST, "w") as fh:
                 fh.write(pd.Timestamp.now(tz="UTC").isoformat(timespec="seconds"))
+            u = getattr(fetch, "usage", {}) or {}
+            pid = quotelog.poll("sgo", "ok", fetch.observed_at, events=fetch.events, quotes=len(fetch.observations),
+                                cost=fetch.events, remaining=(u["max"] - u["used"] - fetch.events) if u else None)
+            pending_obs.append((fetch.observations, pid, fetch.observed_at))
         except Exception as e:
+            quotelog.poll("sgo", "error", quotelog.now(), error=e)
             if not odds_api.due():
                 raise
             print(f"SportsGameOdds failed ({e}); using The Odds API only.")
@@ -240,8 +260,15 @@ def pull(api_key: str | None = None) -> pd.DataFrame:
     if odds_api.due():
         try:
             l = _merge_second_source(l, odds_api.fetch(), cl_path)
+            oa = odds_api.fetch
+            pid = quotelog.poll("oddsapi", "ok", oa.observed_at, events=oa.events, quotes=len(oa.observations),
+                                cost=oa.last_cost, remaining=(oa.usage or {}).get("remaining"))
+            pending_obs.append((oa.observations, pid, oa.observed_at))
         except Exception as e:
+            quotelog.poll("oddsapi", "error", quotelog.now(), error=e)
             print(f"The Odds API failed ({e}); SGO lines only.")
+    else:
+        quotelog.poll("oddsapi", "skipped", quotelog.now(), error="not due on this run")
     ts = pd.Timestamp.now(tz="UTC")
     if len(l):
         cur = l.reindex(columns=["sgo_event", "book", "start", "home_id", "away_id", "home_spread", "home_spread_odds",
@@ -273,6 +300,11 @@ def pull(api_key: str | None = None) -> pd.DataFrame:
         flipped = l["op_home"].notna() & (l["op_home"] != l["home_id"])
         l.loc[flipped, "open_home_spread"] = -l.loc[flipped, "open_home_spread"]
         l = l.drop(columns=["op_home", "game_key"])
+    pull.pulled_at = ts.isoformat(timespec="seconds")   # the lines this run's signals were built on (quotelog)
+    pull.observations = pending_obs   # the generating pull's quotes, for each new signal's quote record (quotelog)
+    for obs, pid, at in pending_obs:
+        quotelog.observations(obs, pid, at)
+    quotelog.compact()
     oa = getattr(odds_api.fetch, "usage", None)
     with open(os.path.join(LINES, "last_pull.txt"), "w") as f:
         f.write(f"{ts:%Y-%m-%d %H:%M} UTC  events {getattr(fetch, 'events', 0)}  book-game rows {len(l)} "

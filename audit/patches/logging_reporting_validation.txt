@@ -1,43 +1,32 @@
-# Validation: logging and reporting diff (logging_reporting.diff), run 2026-10-26T20:10Z
+# Validation: forward-test logging (logging_reporting.diff, as applied), run 2026-10-26T20:51Z
 
-## 1. Predictions and selections unchanged
-Prediction and selection check, Nov 2 card built from the stored lines in a frozen tree (dfb4bc7 code) and the patched tree:
-  card CSV same shape: True (119, 86) | same columns: True
-  columns with any difference: none
-  bets.csv identical (all columns except logged_at): True rows 8 8
+## 1. Predictions and selections unchanged (byte-identical)
+The Nov 2 card was built from the stored lines (validate_card_unchanged.py) in two trees: the commit before the
+change (ff858e8, model code identical to the freeze commit dfb4bc7) and the changed tree.
+In both, the clock was fixed at 2026-10-26T21:00Z and alerts and posting were off.
 
-## 2. New logs, exercised with mocked feeds (SGO, The Odds API), ntfy and Discord; no network
-1) card-run pull: SGO + The Odds API
-   returned rows: 2 | books: ['BetMGM', 'DraftKings']
-2) card-run pull 1 minute later: SGO throttled (skipped), The Odds API ok
-3) SGO error path
-SportsGameOdds failed (HTTP Error 503: Service Unavailable); using The Odds API only.
-                poll_id               observed_at  source  status                                        error  events  quotes  cost  remaining  secs_since_prev_ok
-    sgo-20261026T195820 2026-10-26T19:58:20+00:00     sgo      ok                                          NaN     1.0     6.0   1.0    95599.0                 NaN
-oddsapi-20261026T195820 2026-10-26T19:58:20+00:00 oddsapi      ok                                          NaN     1.0     4.0   3.0    95000.0                 NaN
-    sgo-20261026T195820 2026-10-26T19:58:20+00:00     sgo skipped less than 25 minutes since the last SGO pull     NaN     NaN   NaN        NaN                 NaN
-oddsapi-20261026T195820 2026-10-26T19:58:20+00:00 oddsapi      ok                                          NaN     1.0     4.0   3.0    95000.0                 1.0
-    sgo-20261026T195821 2026-10-26T19:58:21+00:00     sgo   error          HTTP Error 503: Service Unavailable     NaN     NaN   NaN        NaN                 NaN
-oddsapi-20261026T195821 2026-10-26T19:58:21+00:00 oddsapi      ok                                          NaN     1.0     4.0   3.0    95000.0                 1.0
-   obs rows 18; by source/status: {('oddsapi', 'available'): 12, ('sgo', 'available'): 2, ('sgo', 'stale'): 2, ('sgo', 'unavailable'): 2}
-source event_id             game_key       book market  side  line  price  quote_age_s      status
-   sgo     EVT1 2026-10-29|2250|2509 DraftKings spread  home  -3.5 -110.0          241   available
-   sgo     EVT1 2026-10-29|2250|2509    FanDuel spread  home  -3.0 -115.0          121 unavailable
-   sgo     EVT1 2026-10-29|2250|2509 DraftKings spread  away   3.5 -110.0          241   available
-   sgo     EVT1 2026-10-29|2250|2509    FanDuel spread  away   3.0 -105.0          121 unavailable
-   sgo     EVT1 2026-10-29|2250|2509 DraftKings  total  over 151.5 -110.0        48001       stale
-   sgo     EVT1 2026-10-29|2250|2509 DraftKings  total under 151.5 -110.0        48001       stale
-4) targeted poll
-Watched 1 game(s); logged 4 observation(s); cost 2, 95000 left.
-                         poll_id               observed_at           source status  error  events  quotes  cost  remaining  secs_since_prev_ok
-oddsapi-targeted-20261026T195821 2026-10-26T19:58:21+00:00 oddsapi-targeted     ok    NaN       1       4     2      95000                 NaN
-   targeted obs rows 4: [['BetMGM', 'spread', 'home', -3.5, -108, 61], ['BetMGM', 'spread', 'away', 3.5, -112, 61], ['BetMGM', 'total', 'over', 152.0, -110, 361], ['BetMGM', 'total', 'under', 152.0, -110, 361]]
-5) a signal on the synthetic game: signal_log, ntfy and Discord alert logs
+starting bet log: existing (8 signals after the build)
+  IDENTICAL  reports/cbb_2026-11-02.csv  sha256 bfad85949629a5ba960689b90f7086f1ee058c9c072e28dd8dc8866494586b31
+  IDENTICAL  reports/cbb_2026-11-02.html  sha256 336a7a7005e0c3b8b0f214387611d341b94bf98fc4a078c65667e315daab61f6
+  IDENTICAL  bets/bets.csv  sha256 22fe4ced8abb75842f5f931d3c2f47dd1ab5ec9a6c771218493f2aaad993a72e
+  changed tree also wrote: 
+starting bet log: empty (2 signals after the build)
+  IDENTICAL  reports/cbb_2026-11-02.csv  sha256 5a1e5525ab257f696ea3016eab4f9448595d0bbe1ff8892e0bb73f7e1db52487
+  IDENTICAL  reports/cbb_2026-11-02.html  sha256 7c6d4078a20991d43ec42666571b322833b8a65cc19023596556cea9ea0dc4d9
+  IDENTICAL  bets/bets.csv  sha256 e2c3f5bc0b99978cba148a7f2f757db1d76ce6a31a4dfb72716cad1bc0f108da
+  changed tree also wrote: bets/signal_log.csv
+
+## 2. New logs, exercised with mocked feeds (SGO, The Odds API), ntfy and Discord; no network (validate_logging.py)
+
+1) card-run pull, SGO + The Odds API, no signal on the game yet: nothing watched, nothing in the obs log
+   returned rows: 2 | books: ['BetMGM', 'DraftKings'] | obs file exists: False
+2) that pull generates a signal: signal_log gets its own quote from the generating pull, and the game's quotes
+   from that pull go into the obs log
                                                                0
 bet_id                                2026-10-29|999|spread|home
-generated_at                           2026-10-26T19:58:20+00:00
-logged_at                              2026-10-26T19:58:20+00:00
-lines_pulled_at                        2026-10-26T19:58:21+00:00
+generated_at                           2026-10-26T20:50:53+00:00
+logged_at                              2026-10-26T20:50:53+00:00
+lines_pulled_at                        2026-10-26T20:50:53+00:00
 market                                                    spread
 side                                                        home
 book                                                  DraftKings
@@ -45,7 +34,8 @@ line                                                        -3.5
 odds                                                        -110
 quote_source                                                 sgo
 quote_event_id                                              EVT1
-quote_source_updated_at                2026-10-26T19:54:20+00:00
+quote_poll_id                         sgo-20261026T205053.788213
+quote_source_updated_at                2026-10-26T20:46:53+00:00
 quote_age_s                                                  241
 quote_status                                           available
 box_scores_through                                           NaN
@@ -54,57 +44,39 @@ barttorvik_file          live file (current ratings at run time)
 crew_posted                                                False
 opening_week_shift                                           3.4
 code_version                                                 NaN
+   obs rows 12; by source/status: {('oddsapi', 'available'): 4, ('sgo', 'absent'): 2, ('sgo', 'available'): 2, ('sgo', 'stale'): 2, ('sgo', 'unavailable'): 2}
+3) the signal is in the bet log and alerted (ntfy, Discord): its game is now watched
                         id channel    kind                   sent_at   ok  message_id
-2026-10-29|999|spread|home    ntfy     bet 2026-10-26T19:58:21+00:00 True         NaN
-  CBB play cancelled: test    ntfy message 2026-10-26T19:58:21+00:00 True         NaN
-2026-10-29|999|spread|home discord    post 2026-10-26T19:58:21+00:00 True      9001.0
-6) record page cohorts with one confirmed accepted bet
-Signals, quotes and accepted bets  B excludes 6 signal(s) logged before quote timestamps were recorded or without one. C counts only bets confirmed with book, time, line, odds and stake (bets/accepted.csv); 1 of 6 signals matched. Accepted vs signal: number -0.50 pts (+ = better than signalled), price -5.0 (American), median delay 12 min.  
-         Cohort  Signals  Settled  W-L-P  Win %  Units (logged price)  CLV pts      A. Every signal  6  0  0-0-0  –  +0.00  –    B. Fresh quote at a named book  0  0  0-0-0  –  +0.00  –    C. Confirmed accepted bets  1  0  0-0-0  –  +0.00  –      
+2026-10-29|999|spread|home    ntfy     bet 2026-10-26T20:50:54+00:00 True         NaN
+2026-10-29|999|spread|home discord    post 2026-10-26T20:50:54+00:00 True      9001.0
+  CBB play cancelled: test    ntfy message 2026-10-26T20:50:54+00:00 True         NaN
+   watched now: ['2026-10-29|2250|2509']
+4) card-run pull 1 minute later: SGO throttled (skipped), The Odds API ok, watched game logged with absent rows
+5) SGO error path
+SportsGameOdds failed (HTTP Error 503: Service Unavailable); using The Odds API only.
+                       poll_id               observed_at  source  status                                        error  events  quotes  cost  remaining  secs_since_prev_ok
+    sgo-20261026T205053.788213 2026-10-26T20:50:53+00:00     sgo      ok                                          NaN     1.0     6.0   1.0    95599.0                 NaN
+oddsapi-20261026T205053.842930 2026-10-26T20:50:53+00:00 oddsapi      ok                                          NaN     1.0     4.0   3.0    95000.0                 NaN
+    sgo-20261026T205054.665781 2026-10-26T20:50:54+00:00     sgo skipped less than 25 minutes since the last SGO pull     NaN     NaN   NaN        NaN                 NaN
+oddsapi-20261026T205054.685926 2026-10-26T20:50:54+00:00 oddsapi      ok                                          NaN     1.0     4.0   3.0    95000.0                 2.0
+    sgo-20261026T205054.820777 2026-10-26T20:50:54+00:00     sgo   error          HTTP Error 503: Service Unavailable     NaN     NaN   NaN        NaN                 NaN
+oddsapi-20261026T205054.840610 2026-10-26T20:50:54+00:00 oddsapi      ok                                          NaN     1.0     4.0   3.0    95000.0                 1.0
+   obs rows 20; by source/status: {('oddsapi', 'available'): 12, ('sgo', 'absent'): 2, ('sgo', 'available'): 2, ('sgo', 'stale'): 2, ('sgo', 'unavailable'): 2}
+ source             game_key   book market  side  line  price  quote_age_s    status
+oddsapi 2026-10-29|2250|2509 BetMGM spread  home  -3.5 -108.0         62.0 available
+oddsapi 2026-10-29|2250|2509 BetMGM spread  away   3.5 -112.0         62.0 available
+oddsapi 2026-10-29|2250|2509 BetMGM  total  over 152.0 -110.0        362.0 available
+oddsapi 2026-10-29|2250|2509 BetMGM  total under 152.0 -110.0        362.0 available
+6) targeted poll
+Watched 1 game(s); logged 4 observation(s); cost 2, 95000 left.
+                                poll_id               observed_at           source status  error  events  quotes  cost  remaining  secs_since_prev_ok
+oddsapi-targeted-20261026T205055.019671 2026-10-26T20:50:55+00:00 oddsapi-targeted     ok    NaN       1       4     2      95000                 NaN
+   targeted obs rows 4: [['BetMGM', 'spread', 'home', -3.5, -108, 62, 'available'], ['BetMGM', 'spread', 'away', 3.5, -112, 62, 'available'], ['BetMGM', 'total', 'over', 152.0, -110, 362, 'available'], ['BetMGM', 'total', 'under', 152.0, -110, 362, 'available']]
+7) a finished day is gzipped and still read back in full
+   files: ['2026-10-01.csv.gz', '2026-10-26.csv'] | rows read back: 40
+8) record page cohorts with one confirmed accepted bet
+Signals, quotes and accepted bets  Units use the recorded price; 0 signal(s) without one are counted at -110 here and are left out of the forward test&#x27;s profitability figures. B excludes 6 signal(s) logged before quote timestamps were recorded or without one. C counts only bets confirmed with book, time, line, odds and stake (bets/accepted.csv); 1 of 7 signals matched. Accepted vs signal: number -0.50 pts (+ = better than signalled), price -5.0 (American), median delay 12 min.  
+         Cohort  Signals  Settled  W-L-P  Win %  Units (logged price)  CLV pts      A. Every signal  7  0  0-0-0  –  +0.00  –    B. Fresh quote at a named book  1  0  0-0-0  –  +0.00  –    C. Confirmed accepted bets  1  0  0-0-0  –  +0.00  –      
   
      Every play  Newest first. Void = cancelled before the game and not graded; its correction is in the log and on Discord.  
-         Date  Game  Play  Book  Edge  Close  CLV  Result  Units  Bet  Logged      2026-11-02  Memphis at Iowa State  Over 152.5  DraftKings  -115   4.5  –  –  Open  –  yes  Oct 26 1:20 PM ET    2026-11-02  Ohio State at BYU  Under 160.5  DraftKings  -115   4.1  –  –   Void   –  –  Oct 26 12:56 PM ET    2026-11-02  Gonzaga at Purdue  Under 156.5  DraftKings  -110   3.8  –  –  Open  –  yes  Oct 26 9:53 AM ET
-
-## 3. Forward-test evaluator self-test on synthetic data (audit/forward_eval.py)
-{
- "signals": 701,
- "voids listed and excluded": 1,
- "spread": {
-  "selections": 701,
-  "settled": 701,
-  "W": 389,
-  "L": 301,
-  "P": 11,
-  "unsettled": 0,
-  "win%": 56.38,
-  "ROI% (flat 1u, logged price)": 7.51,
-  "ROI z": 2.24,
-  "price assumed -110 (count)": 71,
-  "line value pts": 0.738,
-  "line value z": 61.19,
-  "missing close (excluded)": 0,
-  "line value distribution p10/50/90": [
-   0.75,
-   0.75,
-   0.75
-  ],
-  "phase": "interim",
-  "verdict": "continue"
- },
- "delay test": {
-  "no quote log yet (all signals unobserved after the alert)": 701
- },
- "opposite-side later signals (flagged)": 1
-}
-
-## 4. Delay test and any-book measure (v1.1), constructed case
-delay-test self-test (signal: DraftKings away +3.5; DK unavailable at +6, FanDuel +3.5 at +6, FanDuel +3 at +16, DK +3 at +20):
- delay                             outcome  elapsed_min  line
-     5          unavailable at observation          6.0   NaN
-    15                              filled         20.0   3.0
-    30                      no observation          NaN   NaN
-    60                      no observation          NaN   NaN
-     5 any book at logged number or better          NaN   NaN
-    15            no book at logged number          NaN   NaN
-    30            any book: no observation          NaN   NaN
-    60            any book: no observation          NaN   NaN
+         Date  Game  Play  Book  Edge  Close  CLV  Result  Units  Bet  Logged      2026-11-02  Memphis at Iowa State  Over 152.5  DraftKings  -115   4.5  –  –  Open  –  yes  Oct 26 1:20 PM ET    2026-11-02  Ohio State at BYU  Under 160.5  DraftKings  -115   4.1  –  –   Void   –  –  Oct 26 12:56 PM ET    2026-11-02  Gonzaga at Purdue  Under 156.5  DraftKings  -110  <td class='r

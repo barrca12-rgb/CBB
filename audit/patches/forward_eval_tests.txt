@@ -1,0 +1,25 @@
+test_consensus_median_and_away_rows (audit.test_forward_eval.Closes.test_consensus_median_and_away_rows) ... ok
+test_delayed_start_moves_the_cutoff (audit.test_forward_eval.Closes.test_delayed_start_moves_the_cutoff) ... ok
+test_line_value_signs (audit.test_forward_eval.Closes.test_line_value_signs) ... ok
+test_strict_close_rejects_stale_post_tip_and_old (audit.test_forward_eval.Closes.test_strict_close_rejects_stale_post_tip_and_old) ... ok
+test_A_acceptable_price_and_B_frozen_ev (audit.test_forward_eval.DelayWindows.test_A_acceptable_price_and_B_frozen_ev) ... ok
+test_alert_fallback_is_labelled (audit.test_forward_eval.DelayWindows.test_alert_fallback_is_labelled) ... ok
+test_duplicate_feeds_resolve_deterministically (audit.test_forward_eval.DelayWindows.test_duplicate_feeds_resolve_deterministically) ... ok
+test_first_observation_in_each_bounded_window (audit.test_forward_eval.DelayWindows.test_first_observation_in_each_bounded_window) ... ok
+test_late_alert_windows_stop_at_the_tip (audit.test_forward_eval.DelayWindows.test_late_alert_windows_stop_at_the_tip) ... ok
+test_no_observation_is_missing (audit.test_forward_eval.DelayWindows.test_no_observation_is_missing) ... ok
+test_unavailable_or_stale_first_observation_is_not_skipped (audit.test_forward_eval.DelayWindows.test_unavailable_or_stale_first_observation_is_not_skipped) ... ok
+test_final_read_contradicted (audit.test_forward_eval.Inference.test_final_read_contradicted) ... ok
+test_final_read_not_before_the_fixed_date (audit.test_forward_eval.Inference.test_final_read_not_before_the_fixed_date) ... ok
+test_final_read_supported_and_coverage_gate (audit.test_forward_eval.Inference.test_final_read_supported_and_coverage_gate) ... ok
+test_interim_read_is_descriptive_only (audit.test_forward_eval.Inference.test_interim_read_is_descriptive_only) ... ok
+test_missing_prices_never_enter_confirmatory_roi (audit.test_forward_eval.Inference.test_missing_prices_never_enter_confirmatory_roi) ... ok
+test_z_is_bootstrap_mean_over_bootstrap_se (audit.test_forward_eval.Inference.test_z_is_bootstrap_mean_over_bootstrap_se) ... ok
+test_absent_rows_and_generating_quote (audit.test_forward_eval.QuoteLogger.test_absent_rows_and_generating_quote) ... ok
+test_compact_keeps_every_row (audit.test_forward_eval.QuoteLogger.test_compact_keeps_every_row) ... ok
+test_watch_window_from_alert_and_before_tip (audit.test_forward_eval.QuoteLogger.test_watch_window_from_alert_and_before_tip) ... ok
+test_frozen_constants_match_the_frozen_card (audit.test_forward_eval.Versions.test_frozen_constants_match_the_frozen_card) ... ok
+test_immutability_flags_a_changed_or_deleted_signal (audit.test_forward_eval.Versions.test_immutability_flags_a_changed_or_deleted_signal) ... ok
+test_versions_are_separated (audit.test_forward_eval.Versions.test_versions_are_separated) ... ok
+Ran 23 tests in 108.199s
+OK

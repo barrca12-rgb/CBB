@@ -20,7 +20,7 @@ import urllib.request
 import numpy as np
 import pandas as pd
 
-from . import teams
+from . import quotelog, teams
 
 API = "https://api.the-odds-api.com/v4/sports/basketball_ncaab/odds"
 BOOKS = {"draftkings": "DraftKings", "fanduel": "FanDuel", "betmgm": "BetMGM", "williamhill_us": "Caesars",
@@ -66,6 +66,7 @@ def parse(events: list, lookup: dict | None = None) -> tuple[pd.DataFrame, list]
     lookup = lookup or _lookup()
     now = pd.Timestamp.now(tz="UTC")
     rows, unmatched = [], set()
+    obs = []   # forward-test log (quotelog.py): every quote seen at our books, stale ones included
     for ev in events:
         if pd.to_datetime(ev.get("commence_time"), utc=True) <= now:
             continue
@@ -77,6 +78,19 @@ def parse(events: list, lookup: dict | None = None) -> tuple[pd.DataFrame, list]
         for bk in ev.get("bookmakers") or []:
             if bk.get("key") not in BOOKS:
                 continue
+            for m in bk.get("markets") or []:
+                if m.get("key") not in ("spreads", "totals"):
+                    continue
+                mu = m.get("last_update") or bk.get("last_update")
+                mut = pd.to_datetime(mu, utc=True, errors="coerce")
+                status = "stale" if pd.notna(mut) and now - mut > MAX_AGE else "available"
+                for o in m.get("outcomes") or []:
+                    nm = o.get("name")
+                    side = ("home" if nm == hn else "away" if nm == an else None) if m["key"] == "spreads" else str(nm).lower()
+                    if side in ("home", "away", "over", "under"):
+                        obs.append(quotelog.observation("oddsapi", f"oa:{ev.get('id')}", ev.get("commence_time"), h, a,
+                                                        BOOKS[bk["key"]], "spread" if m["key"] == "spreads" else "total",
+                                                        side, o.get("point"), o.get("price"), mu, now, status))
             upd = pd.to_datetime(bk.get("last_update"), utc=True, errors="coerce")
             if pd.notna(upd) and now - upd > MAX_AGE:
                 continue
@@ -107,12 +121,27 @@ def parse(events: list, lookup: dict | None = None) -> tuple[pd.DataFrame, list]
                             if link:
                                 r[f"{side}_ml_link"] = link
             rows.append(r)
+    parse.observations, parse.observed_at = obs, now
     base = ["book", "sgo_event", "start", "home_id", "away_id", "home_spread", "total"]
     df = pd.DataFrame(rows).reindex(columns=list(dict.fromkeys(base + [c for r in rows for c in r])))
     for c in df.columns:
         if c.endswith(("_odds", "_ml", "spread")) or c == "total":
             df[c] = pd.to_numeric(df[c], errors="coerce")
     return df, sorted(unmatched)
+
+
+def fetch_quotes(api_key: str | None = None) -> tuple[list, dict]:
+    """Targeted poll for the forward-test log (poll_targets.py): spreads and totals only, no links, every book in the
+    frozen set. Costs 2 credits per call however many games it returns. Returns (observations, info)."""
+    api_key = api_key or os.environ.get("ODDS_API_KEY", "")
+    refused = set(json.load(open(REFUSED))) if os.path.exists(REFUSED) else set()
+    events, hdr = _get({"apiKey": api_key, "regions": "us", "markets": "spreads,totals", "oddsFormat": "american",
+                        "bookmakers": ",".join(b for b in BOOKS if b not in refused)})
+    parse(events)
+    left = hdr.get("x-requests-remaining")
+    return parse.observations, {"observed_at": parse.observed_at, "events": len(events),
+                                "cost": int(float(hdr["x-requests-last"])) if hdr.get("x-requests-last") else None,
+                                "remaining": int(float(left)) if left else None}
 
 
 def fetch(api_key: str | None = None) -> pd.DataFrame:
@@ -146,6 +175,8 @@ def fetch(api_key: str | None = None) -> pd.DataFrame:
             events, hdr = _get(dict(params, bookmakers=",".join(ok)))
     df, fetch.unmatched = parse(events)
     fetch.events = len(events)
+    fetch.observations, fetch.observed_at = parse.observations, parse.observed_at
+    fetch.last_cost = int(float(hdr["x-requests-last"])) if hdr.get("x-requests-last") else None
     u = {"remaining": int(float(hdr.get("x-requests-remaining", "nan"))) if hdr.get("x-requests-remaining") else None,
          "used": int(float(hdr.get("x-requests-used", 0) or 0)), "at": pd.Timestamp.now(tz="UTC").isoformat(timespec="seconds")}
     os.makedirs(os.path.dirname(USAGE), exist_ok=True)

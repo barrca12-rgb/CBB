@@ -59,41 +59,54 @@ os.environ.update({"SGO_API_KEY": "test", "ODDS_API_KEY": "test", "ODDS_API_EVER
                    "DISCORD_WEBHOOK": "https://discord.com/api/webhooks/1/" + "x" * 68})
 from cbb import odds, poll_targets, quotelog, notify, record, record_page, tracker
 
-for f in ("lines/sgo_last_pull.txt",):
+for f in ("lines/sgo_last_pull.txt", "bets/signal_log.csv", "bets/alert_log.csv"):
     if os.path.exists(f):
         os.remove(f)
-print("1) card-run pull: SGO + The Odds API")
-l = odds.pull()
-print("   returned rows:", len(l), "| books:", sorted(l["book"].unique()))
-print("2) card-run pull 1 minute later: SGO throttled (skipped), The Odds API ok")
-odds.pull()
-print("3) SGO error path")
-os.remove("lines/sgo_last_pull.txt"); FAIL_SGO["on"] = True
-odds.pull()
-p = pd.read_csv("lines/polls.csv")
-print(p.tail(6).to_string(index=False))
 day = pd.Timestamp(NOW.tz_convert("America/New_York").date()).strftime("%Y-%m-%d")
-o = pd.read_csv(f"lines/obs/{day}.csv")
-print(f"   obs rows {len(o)}; by source/status:", o.groupby(["source", "status"]).size().to_dict())
-print(o[o.poll_id == o.poll_id.iloc[0]][["source", "event_id", "game_key", "book", "market", "side", "line", "price", "quote_age_s", "status"]].to_string(index=False))
-print("4) targeted poll")
-poll_targets.main()
-print(pd.read_csv("lines/polls_targeted.csv").to_string(index=False))
-ot = pd.read_csv(f"lines/obs_targeted/{day}.csv"); print(f"   targeted obs rows {len(ot)}:", ot[["book", "market", "side", "line", "price", "quote_age_s"]].values.tolist())
-print("5) a signal on the synthetic game: signal_log, ntfy and Discord alert logs")
-quotelog.RUN_STARTED = NOW
 gk_date = pd.Timestamp(START).tz_convert("America/New_York").strftime("%Y-%m-%d")
+print("1) card-run pull, SGO + The Odds API, no signal on the game yet: nothing watched, nothing in the obs log")
+l = odds.pull()
+print("   returned rows:", len(l), "| books:", sorted(l["book"].unique()), "| obs file exists:", os.path.exists(f"lines/obs/{day}.csv"))
+print("2) that pull generates a signal: signal_log gets its own quote from the generating pull, and the game's quotes")
+print("   from that pull go into the obs log")
+quotelog.RUN_STARTED = NOW
 bet = {"bet_id": f"{gk_date}|999|spread|home", "date": gk_date, "game_id": 999, "market": "spread", "side": "home",
        "home_id": 2509, "away_id": 2250, "home": "Purdue", "away": "Gonzaga", "pick": "Purdue -3.5", "line": -3.5,
-       "odds": -110, "book": "DraftKings", "edge": 2.7, "logged_at": NOW.isoformat()}
+       "odds": -110, "book": "DraftKings", "edge": 2.7, "model": 6.2, "logged_at": NOW.isoformat(), "status": "open"}
 card = pd.DataFrame([{"game_id": 999, "start": START, "crew": None, "total_shift": 3.4, "spread_link": None}])
-quotelog.signals([bet], card, pd.Timestamp(gk_date), quotelog.inputs(pd.Timestamp(gk_date), None), getattr(odds.pull, "pulled_at", None))
+quotelog.signals([bet], card, pd.Timestamp(gk_date), quotelog.inputs(pd.Timestamp(gk_date), None),
+                 getattr(odds.pull, "pulled_at", None), getattr(odds.pull, "observations", None))
 print(pd.read_csv("bets/signal_log.csv").tail(1).T.to_string())
+o = pd.read_csv(f"lines/obs/{day}.csv")
+print(f"   obs rows {len(o)}; by source/status:", o.groupby(["source", "status"]).size().to_dict())
+print("3) the signal is in the bet log and alerted (ntfy, Discord): its game is now watched")
+b0 = tracker.load()
+pd.concat([b0, pd.DataFrame([bet])], ignore_index=True).to_csv(tracker.BETS if hasattr(tracker, "BETS") else "bets/bets.csv", index=False)
 notify.send([dict(bet, edge=2.7)], card)
-notify.message("CBB play cancelled: test", "body")
 record.post({"embeds": [{"title": "BET: Purdue -3.5 -110", "footer": {"text": "bet id " + bet["bet_id"]}}]})
+notify.message("CBB play cancelled: test", "body")
 print(pd.read_csv("bets/alert_log.csv").to_string(index=False))
-print("6) record page cohorts with one confirmed accepted bet")
+print("   watched now:", sorted(quotelog.watched_games(quotelog.now())))
+print("4) card-run pull 1 minute later: SGO throttled (skipped), The Odds API ok, watched game logged with absent rows")
+odds.pull()
+print("5) SGO error path")
+os.remove("lines/sgo_last_pull.txt"); FAIL_SGO["on"] = True
+odds.pull()
+print(pd.read_csv("lines/polls.csv").tail(6).to_string(index=False))
+o = pd.read_csv(f"lines/obs/{day}.csv")
+print(f"   obs rows {len(o)}; by source/status:", o.groupby(["source", "status"]).size().to_dict())
+last = o[o.poll_id == o.poll_id.iloc[-1]]
+print(last[["source", "game_key", "book", "market", "side", "line", "price", "quote_age_s", "status"]].to_string(index=False))
+print("6) targeted poll")
+poll_targets.main()
+print(pd.read_csv("lines/polls_targeted.csv").to_string(index=False))
+ot = pd.read_csv(f"lines/obs_targeted/{day}.csv"); print(f"   targeted obs rows {len(ot)}:", ot[["book", "market", "side", "line", "price", "quote_age_s", "status"]].values.tolist())
+print("7) a finished day is gzipped and still read back in full")
+os.makedirs("lines/obs", exist_ok=True)
+o.to_csv("lines/obs/2026-10-01.csv", index=False)
+quotelog.compact()
+print("   files:", sorted(os.listdir("lines/obs")), "| rows read back:", len(quotelog.read_obs(("obs",))))
+print("8) record page cohorts with one confirmed accepted bet")
 b = tracker.load()
 first = b[b["status"] != "void"].iloc[0]
 pd.DataFrame([{"bet_id": first["bet_id"], "book": first["book"], "placed_at": (pd.Timestamp(first["logged_at"]) + pd.Timedelta(minutes=12)).isoformat(),

@@ -11,6 +11,8 @@ import urllib.request
 
 import pandas as pd
 
+from . import quotelog
+
 SITE = "https://barrca12-rgb.github.io/CBB"
 
 
@@ -48,9 +50,11 @@ def message(title: str, body: str, topic: str | None = None, click: str | None =
                                           "Tags": "basketball"})
     try:
         urllib.request.urlopen(req, timeout=20).read()
+        quotelog.alert(title, "ntfy", "message", True)
         return True
     except Exception as e:
         print(f"Alert failed: {e}")
+        quotelog.alert(title, "ntfy", "message", False)
         return False
 
 
@@ -73,8 +77,10 @@ def send(new_bets: list[dict], card: pd.DataFrame, topic: str | None = None) -> 
         try:
             urllib.request.urlopen(req, timeout=20).read()
             sent += 1
+            quotelog.alert(bet["bet_id"], "ntfy", "bet", True)
         except Exception as e:
             print(f"Alert failed for {bet['bet_id']}: {e}")
+            quotelog.alert(bet["bet_id"], "ntfy", "bet", False)
     return sent
 
 

@@ -32,7 +32,7 @@ import numpy as np
 import pandas as pd
 
 from . import (backtest, context, data, injuries, injury_sources, injury_watch, kenpom, news, notify, odds, players,
-               projection, ratings, report_html, review, teams, tracker)
+               projection, quotelog, ratings, report_html, review, teams, tracker)
 from . import record as public_record   # build() has its own local named record
 from . import record_page
 
@@ -304,6 +304,7 @@ def main():
     ap.add_argument("--auto", action="store_true", help="after 8pm ET, build tomorrow's card (openers post overnight); "
                     "on a day without games, the next day that has them")
     a = ap.parse_args()
+    quotelog.RUN_STARTED = quotelog.now()   # forward-test log: when this run's predictions were generated
     day = pd.Timestamp(a.date) if a.date else today_et()
     if a.auto and not a.date and pd.Timestamp.now(tz="America/New_York").hour >= 20:
         day += pd.Timedelta(days=1)
@@ -418,6 +419,13 @@ def build(day: pd.Timestamp, games: pd.DataFrame, lines: pd.DataFrame | None, re
             public_record.sync()
         except Exception as e:
             print(f"Discord record failed ({e}); continuing.")
+        if new:   # forward-test log: what each new signal was built on (additive; never changes a play)
+            try:
+                hist = data.season_games(season_of(day))[0] if day <= today_et() + pd.Timedelta(days=14) else None
+            except Exception:
+                hist = None
+            quotelog.signals(new, card, day, quotelog.inputs(day, hist), getattr(odds.pull, "pulled_at", None),
+                             getattr(odds.pull, "observations", None))
         card = attach_logged(card, day)
         try:
             rv = review.summary()

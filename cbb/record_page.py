@@ -71,6 +71,61 @@ def _chart(s: pd.DataFrame) -> str:
             f"<span>{y[-1]:+.2f} units after {len(y) - 1} plays</span></div></div>")
 
 
+ACCEPTED = os.path.join(tracker.ROOT, "bets", "accepted.csv")
+FRESH_S = 600   # cohort B: quote observed at the generating pull, source timestamp no older than this
+
+
+def cohorts(b: pd.DataFrame) -> tuple[str, str]:
+    """Cohorts A (every logged signal), B (signal backed by a fresh observed quote at a named book at the logged
+    number) and C (confirmed accepted bets, bets/accepted.csv, matched to A) side by side, and C's deterioration
+    vs A. FORWARD_TEST_PROTOCOL.md section 6. A feed quote is never treated as proof of acceptance."""
+    a = b[b["status"] != "void"]
+    sl = os.path.join(tracker.ROOT, "bets", "signal_log.csv")
+    sig = pd.read_csv(sl) if os.path.exists(sl) else pd.DataFrame(columns=["bet_id", "quote_status", "quote_age_s", "book", "line"])
+    sig = sig.drop_duplicates("bet_id", keep="first").set_index("bet_id")
+    age = pd.to_numeric(a["bet_id"].map(sig["quote_age_s"]), errors="coerce")
+    fresh = (a["bet_id"].map(sig["quote_status"]) == "available") & age.between(-60, FRESH_S) & \
+        (a["bet_id"].map(sig["book"]) == a["book"]) & \
+        (pd.to_numeric(a["bet_id"].map(sig["line"]), errors="coerce") == pd.to_numeric(a["line"], errors="coerce"))
+    unknown = ~a["bet_id"].isin(sig.index) | age.isna()
+    acc = pd.read_csv(ACCEPTED) if os.path.exists(ACCEPTED) else pd.DataFrame(
+        columns=["bet_id", "book", "placed_at", "line", "odds", "stake", "source"])
+    acc = acc[acc["bet_id"].isin(a["bet_id"])]
+    c = a.merge(acc, on="bet_id", suffixes=("", "_acc"))
+
+    def col(d: pd.DataFrame, res_col="result", profit=None) -> str:
+        s_ = d[d["status"] == "settled"]
+        w, l, p = (s_[res_col] == "W").sum(), (s_[res_col] == "L").sum(), (s_[res_col] == "P").sum()
+        u = s_["profit"].astype(float).sum() if profit is None else profit
+        clv = s_["clv_pts"].astype(float).dropna()
+        return (f"<td class='r'>{len(d)}</td><td class='r'>{len(s_)}</td><td class='r'>{w}-{l}-{p}</td>"
+                f"<td class='r'>{_num(w / (w + l) if w + l else None, '{:.1%}')}</td><td class='r'>{_num(u)}</td>"
+                f"<td class='r'>{_num(clv.mean() if len(clv) else None)}</td>")
+
+    rows = (f"<tr><td class='b'>A. Every signal</td>{col(a)}</tr>"
+            f"<tr><td class='b'>B. Fresh quote at a named book</td>{col(a[fresh])}</tr>"
+            f"<tr><td class='b'>C. Confirmed accepted bets</td>{col(c) if len(c) else '<td class=r>0</td>' + '<td></td>' * 5}</tr>")
+    head = ("<thead><tr><th>Cohort</th><th class='r'>Signals</th><th class='r'>Settled</th><th class='r'>W-L-P</th>"
+            "<th class='r'>Win %</th><th class='r'>Units (logged price)</th><th class='r'>CLV pts</th></tr></thead>")
+    nop = int(pd.to_numeric(a["odds"], errors="coerce").isna().sum())
+    note = (f"Units use the recorded price; {nop} signal(s) without one are counted at -110 here and are left out of "
+            f"the forward test's profitability figures. "
+            f"B excludes {int(unknown.sum())} signal(s) logged before quote timestamps were recorded or without one. "
+            f"C counts only bets confirmed with book, time, line, odds and stake (bets/accepted.csv); "
+            f"{len(c)} of {len(a)} signals matched.")
+    if len(c):
+        # points better than signalled: spreads are from the bettor's side (higher is better); totals: lower is
+        # better on an over, higher on an under
+        diff = c["line_acc"].astype(float) - c["line"].astype(float)
+        dline = np.where(c["side"] == "over", -diff, diff)
+        delay = (pd.to_datetime(c["placed_at"], utc=True, errors="coerce") -
+                 pd.to_datetime(c["logged_at"], utc=True, errors="coerce")).dt.total_seconds() / 60
+        note += (f" Accepted vs signal: number {np.nanmean(dline):+.2f} pts (+ = better than signalled), "
+                 f"price {np.nanmean(c['odds_acc'].astype(float) - c['odds'].astype(float)):+.1f} (American), "
+                 f"median delay {np.nanmedian(delay):.0f} min.")
+    return head + "<tbody>" + rows + "</tbody>", note
+
+
 def build() -> str:
     b = tracker.load()
     live = b[b["status"] != "void"]
@@ -124,6 +179,7 @@ def build() -> str:
               f"to a Bitcoin block (check it at <a href='https://opentimestamps.org'>opentimestamps.org</a> with the log file).</li>"
               + disc)
 
+    coh_table, coh_note = cohorts(b)
     now = pd.Timestamp.now(tz="America/New_York")
     style = report_html.TEMPLATE[report_html.TEMPLATE.index("<style>"):report_html.TEMPLATE.index("</style>") + 8]
     return f"""<!doctype html>
@@ -145,6 +201,8 @@ def build() -> str:
   <div class="kpis">{kpis}</div>
   <section class="panel"><div class="panel-h"><h2>Summary</h2><span class="note">Settled plays. CLV = points the line moved our way from the logged number to the close. Break-even at -110 is 52.4%.</span></div>
     <div class="scroll"><table>{HEAD}<tbody>{''.join(rows)}</tbody></table></div>{_chart(s)}</section>
+  <section class="panel"><div class="panel-h"><h2>Signals, quotes and accepted bets</h2><span class="note">{html.escape(coh_note)}</span></div>
+    <div class="scroll"><table>{coh_table}</table></div></section>
   {f"<section class='panel'><div class='panel-h'><h2>By month</h2></div><div class='scroll'><table>{HEAD}<tbody>{months}</tbody></table></div></section>" if months else ""}
   <section class="panel"><div class="panel-h"><h2>Every play</h2><span class="note">Newest first. Void = cancelled before the game and not graded; its correction is in the log and on Discord.</span></div>
     <div class="scroll"><table>{plays_t}</table></div></section>
