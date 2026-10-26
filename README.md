@@ -60,12 +60,12 @@ alongside ESPN and records when each one first shows each player's status (`inju
 one 30-minute run), plus a health row per source per pull. `injuries/sources/timing.md` scores them on injuries that
 matter (Out / Doubtful / Questionable, 10%+ of team minutes): who had it first, and who had it before the spread moved
 1+ point against the team at any book (`lines/moves.csv`). After 7 game days with 30+ such injuries matched to a move
-(or 14 game days), the model's injury input switches once to the source that beat the move most often; ESPN keeps it
-on a tie, and a source must match 85%+ of its players to ESPN ids. The pick is saved in `injuries/sources/choice.json`
-(edit to override). Only the source changes: P(miss) by status, the missing-minutes weight and the bet rules don't.
+(or 14 game days), the source that beat the move most often is recommended once (ESPN keeps it on a tie, and a source
+must match 85%+ of its players to ESPN ids): saved to `injuries/sources/recommendation.json` and sent as a phone alert.
+The model switches only after Chad approves, when `injuries/sources/choice.json` is written. Only the source changes: P(miss) by status, the missing-minutes weight and the bet rules don't.
 If the chosen source fails on a run, the model uses ESPN for that run. A team name a source spells differently shows
-up as unmatched in `timing.md`; add it to `data/team_aliases.csv` with that source's name (rotowire, covers, cbs,
-action).
+up as unmatched in `timing.md`; add it to `data/team_aliases.csv` with that source's name (rotowire, covers, cbs).
+Action Network was dropped: its page sits behind a bot check.
 
 **Tracker** (`cbb/tracker.py`, like the NFL model's): every run grades earlier bets, logs today's BETs in
 `bets/bets.csv` at the number they first appeared, and shows the record, ROI and closing line value on the card.

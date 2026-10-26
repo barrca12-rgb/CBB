@@ -6,7 +6,6 @@ Sources (each pulled on every card run, about every 30 minutes):
     rotowire  rotowire.com/cbasketball injury report (the JSON table behind the page)
     covers    covers.com/sport/basketball/ncaab/injuries
     cbs       cbssports.com/college-basketball/injuries/
-    action    actionnetwork.com/ncaab/injury-report (the page's embedded __NEXT_DATA__ JSON)
 
 Files in injuries/sources/:
 
@@ -20,13 +19,16 @@ Files in injuries/sources/:
     timing.md       the scoreboard: for each injury that matters (Out/Doubtful/Questionable, 10%+ of minutes, before
                     tip) which sources had it, how far behind the first one, and whether they had it before the
                     spread moved against the team (lines/moves.csv).
-    choice.json     which source feeds the model (injuries.py). ESPN until the switch rule below fires.
+    recommendation.json  the switch rule's pick, with its numbers. Nothing changes until Chad approves it.
+    choice.json     which source feeds the model (injuries.py). ESPN until Chad approves a recommendation, then
+                    written by hand (or by Claude on his OK) with "approved" set.
 
 Switch rule (set before any data, so the choice can't be fit to noise): after 7 game days with 30+ material injuries
-matched to a line move, or after 14 game days with 10+, pick the source that reported before the move most often
-(ties within 2 points go to ESPN, then to the bigger median lead). A source also needs 85%+ of its players matched
-to ESPN athlete ids, or switching would quietly drop injuries from the projection. The pick is made once and kept;
-edit choice.json to override. Only where the injury input comes from changes: P(miss) by status, the missing-minutes
+matched to a line move, or after 14 game days with 10+, recommend the source that reported before the move most
+often (ties within 2 points go to ESPN, then to the bigger median lead). A source also needs 85%+ of its players
+matched to ESPN athlete ids, or switching would quietly drop injuries from the projection. The recommendation is made
+once, saved to recommendation.json and sent to Chad's phone; the model switches only when choice.json is written after
+he approves. Only where the injury input comes from changes: P(miss) by status, the missing-minutes
 weight and every bet rule stay as they are.
 """
 from __future__ import annotations
@@ -48,6 +50,7 @@ CURRENT = os.path.join(DIR, "current.csv")
 HEALTH = os.path.join(DIR, "health.csv")
 TIMING = os.path.join(DIR, "timing.md")
 CHOICE = os.path.join(DIR, "choice.json")
+RECOMMEND = os.path.join(DIR, "recommendation.json")
 LINES = os.path.join(os.path.dirname(__file__), "..", "lines")
 
 URLS = {
@@ -55,7 +58,6 @@ URLS = {
     "rotowire": "https://www.rotowire.com/cbasketball/tables/injury-report.php?team=ALL&pos=ALL",
     "covers": "https://www.covers.com/sport/basketball/ncaab/injuries",
     "cbs": "https://www.cbssports.com/college-basketball/injuries/",
-    "action": "https://www.actionnetwork.com/ncaab/injury-report",
 }
 SOURCES = list(URLS)
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36")
@@ -237,56 +239,8 @@ def parse_tables(html: str) -> list[dict]:
     return out
 
 
-def parse_action(html: str) -> list[dict]:
-    """Action Network's page embeds its data as Next.js JSON. Walk it: dicts with a status and a player are injuries,
-    their team from an enclosing team dict or a team id in the page's team list."""
-    m = re.search(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', html, re.S)
-    if not m:
-        return parse_tables(html)
-    root = json.loads(m.group(1))
-    team_names: dict = {}
-    out: list[dict] = []
-
-    def tname(d):
-        return d.get("full_name") or d.get("display_name") or d.get("location") or d.get("name")
-
-    def collect(o):
-        if isinstance(o, dict):
-            if "id" in o and ("abbr" in o or "location" in o) and tname(o):
-                team_names[o["id"]] = tname(o)
-            for v in o.values():
-                collect(v)
-        elif isinstance(o, list):
-            for v in o:
-                collect(v)
-
-    def walk(o, team=None):
-        if isinstance(o, dict):
-            if "id" in o and ("abbr" in o or "location" in o) and tname(o) and \
-                    any(isinstance(v, list) for v in o.values()):
-                team = tname(o)
-            p = o.get("player")
-            name = (p.get("full_name") or p.get("name") or tname(p)) if isinstance(p, dict) else \
-                (o.get("player_name") or (o.get("full_name") if "status" in o and "injury" in str(o).lower() else None))
-            if "status" in o and isinstance(o.get("status"), str) and name:
-                tid = o.get("team_id") or (p.get("team_id") if isinstance(p, dict) else None)
-                out.append(_row(team_names.get(tid, team), name, o["status"],
-                                o.get("description") or o.get("injury") or o.get("short_description") or "",
-                                o.get("updated_at") or o.get("date") or ""))
-                return
-            for v in o.values():
-                walk(v, team)
-        elif isinstance(o, list):
-            for v in o:
-                walk(v, team)
-
-    collect(root)
-    walk(root)
-    return out
-
-
-PARSERS = {"espn": parse_espn, "rotowire": parse_rotowire, "covers": parse_tables, "cbs": parse_tables,
-           "action": parse_action}
+PARSERS = {"espn": parse_espn, "rotowire": parse_rotowire, "covers": parse_tables, "cbs": parse_tables}
+# Action Network was dropped (Oct 26 2026): its page is behind a bot check that needs a real browser.
 
 
 def fetch(source: str) -> tuple[pd.DataFrame, str]:
@@ -588,20 +542,28 @@ def timing(now: pd.Timestamp | None = None) -> pd.DataFrame:
     played = g[(g["start"] >= start) & (g["start"] <= now)] if len(g) else g
     game_days = int(played["start"].dt.tz_convert("America/New_York").dt.date.nunique()) if len(played) else 0
     current = choice()
-    if not os.path.exists(CHOICE):
-        d = decide(board, game_days)
-        if d is not None:
-            with open(CHOICE, "w") as fh:
-                json.dump(d, fh, indent=1)
-            current = d["source"]
-            print(f"Injury source decided: {d['source']} ({d['reason']}).")
+    rec = None
+    if os.path.exists(RECOMMEND):
+        with open(RECOMMEND) as fh:
+            rec = json.load(fh)
+    elif not os.path.exists(CHOICE):
+        rec = decide(board, game_days)
+        if rec is not None:   # recommend once; the model only switches when Chad approves (choice.json)
+            with open(RECOMMEND, "w") as fh:
+                json.dump(rec, fh, indent=1)
+            print(f"Injury source recommended: {rec['source']} ({rec['reason']}). Waiting for approval.")
+            from . import notify
+            notify.message("CBB: injury source recommendation", f"Recommend {rec['source']} for injuries: "
+                           f"{rec['reason']}. Model stays on {current} until you approve.")
     fmt = lambda v, f: "" if pd.isna(v) else format(v, f)
     lines = [
         "# Injury sources: who reports first", "",
         f"Updated {now:%Y-%m-%d %H:%M} UTC by `cbb/injury_sources.py`. Logging since {start:%Y-%m-%d}; "
         f"{game_days} game day(s) so far. Model's injury input: **{current}**"
-        + ("" if os.path.exists(CHOICE) else f" (decision after {MIN_DAYS} game days with {MIN_EVENTS}+ "
-                                             f"line-matched injuries, or {MAX_DAYS} game days)") + ".", "",
+        + (f" (recommendation: **{rec['source']}**, {rec['reason']}; waiting for approval)" if rec and not
+           os.path.exists(CHOICE) else "" if os.path.exists(CHOICE) else
+           f" (recommendation after {MIN_DAYS} game days with {MIN_EVENTS}+ line-matched injuries, or {MAX_DAYS} game "
+           "days; the switch needs Chad's approval)") + ".", "",
         f"Material injuries: Out / Doubtful / Questionable, player with {MATERIAL_SHARE:.0%}+ of team minutes, first "
         f"reported after logging began and before the team's next game. A line move is the spread moving "
         f"{MOVE_PTS:g}+ point against the team at any book. Times are poll times (one run = 30 minutes).", "",

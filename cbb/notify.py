@@ -35,6 +35,22 @@ def _message(bet: dict, row: pd.Series | None) -> tuple[str, str, str]:
     return title, "\n".join(lines), click
 
 
+def message(title: str, body: str, topic: str | None = None, click: str | None = None) -> bool:
+    """A one-off alert (not a bet). Returns whether it went out."""
+    topic = topic or os.environ.get("NTFY_TOPIC", "")
+    if not topic:
+        return False
+    req = urllib.request.Request(f"https://ntfy.sh/{topic}", data=body.encode(), method="POST",
+                                 headers={"Title": title.encode("ascii", "ignore").decode(), "Click": click or SITE,
+                                          "Tags": "basketball"})
+    try:
+        urllib.request.urlopen(req, timeout=20).read()
+        return True
+    except Exception as e:
+        print(f"Alert failed: {e}")
+        return False
+
+
 def send(new_bets: list[dict], card: pd.DataFrame, topic: str | None = None) -> int:
     """Send an alert for each new bet. Returns how many went out; a failed send is printed, never raised."""
     topic = topic or os.environ.get("NTFY_TOPIC", "")
