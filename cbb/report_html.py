@@ -138,7 +138,8 @@ label.chk { display: inline-flex; gap: 6px; align-items: center; color: var(--mu
 .board tbody.g tr:first-child td { padding-top: 10px } .board tbody.g tr:last-child td { padding-bottom: 10px; border-bottom: 1px solid var(--line) }
 .board tbody.g tr:first-child td { border-bottom: 0 }
 .board tbody.g:last-child tr:last-child td { border-bottom: 0 }
-.board .team { font-weight: 500 } .board .tm { width: 72px; color: var(--muted); font-size: 12px }
+.board .team { font-weight: 500 }
+.inj { color: var(--warn); font-size: 11px; font-weight: 500; white-space: normal; max-width: 340px; margin-top: 1px } .board .tm { width: 72px; color: var(--muted); font-size: 12px }
 .board .pts { color: var(--muted); width: 40px }
 .odd { display: inline-flex; flex-direction: column; align-items: flex-end; min-width: 64px; padding: 3px 8px; border-radius: 6px; line-height: 1.25; color: var(--text); text-decoration: none }
 .odd small { color: var(--faint); font-size: 11px }
@@ -257,7 +258,8 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   });
   P.sort((a, b) => String(a.g.start).localeCompare(String(b.g.start)) || b.edge - a.edge);
   $("t-plays").innerHTML = P.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r hide-sm'>Model</th><th class='r'>Edge</th><th class='r hide-sm'>Win %</th><th class='r'>EV</th><th class='r'>Bet to</th><th class='r hide-sm'>Opened</th><th class='r hide-sm'>Units</th><th></th></tr></thead><tbody>" +
-    P.map((p) => "<tr><td><div class='b'>" + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + esc(matchup(p.g)) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div></td><td>" +
+    P.map((p) => "<tr><td><div class='b'>" + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + esc(matchup(p.g)) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
+      [["away", p.g.away], ["home", p.g.home]].filter(([sd]) => p.g[sd + "_injuries"]).map(([sd, nm]) => "<div class='inj'>" + esc(nm) + ": " + esc(p.g[sd + "_injuries"]) + "</div>").join("") + "</td><td>" +
       esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r m hide-sm'>" + esc(p.model) + "</td><td class='r pos b'>" + sgn(p.edge) +
       "</td><td class='r m hide-sm'>" + pct(p.p) + "</td><td class='r'>" + (p.ev == null ? "–" : sgn(100 * p.ev) + "%") +
       "</td><td class='r'>" + esc(p.to) + "</td><td class='r m hide-sm'>" + esc(p.open ?? "–") + "</td><td class='r hide-sm'>" + num(p.units, 2) + "</td><td class='r'>" +
@@ -318,7 +320,8 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
         }
         return "<tr>" + (i === 0 ? "<td class='tm' rowspan='2'>" + esc(tip(g)) + (g.state === "post" ? "<div class='f'>Final</div>" : "") + "</td>" : "") +
           "<td class='team'>" + (i === 1 && !g.neutral ? "<span class='f'>@ </span>" : "") + esc(team) +
-          (g.state === "post" ? " <span class='m'>" + esc(g[sd + "_score"]) + "</span>" : "") + "</td><td class='r pts'>" + pts + "</td><td class='r b'>" + model + "</td>" +
+          (g.state === "post" ? " <span class='m'>" + esc(g[sd + "_score"]) + "</span>" : "") +
+          (g[sd + "_injuries"] ? "<div class='inj'>" + esc(g[sd + "_injuries"]) + "</div>" : "") + "</td><td class='r pts'>" + pts + "</td><td class='r b'>" + model + "</td>" +
           bookCells.map((c) => "<td class='bk'>" + c + "</td>").join("") + "<td class='r'>" + edge + "</td></tr>";
       }).join("");
       return "<tbody class='g" + (hasBet ? " has-bet" : "") + "'>" + rows + "</tbody>";

@@ -30,7 +30,7 @@ import urllib.request
 import numpy as np
 import pandas as pd
 
-from . import backtest, data, kenpom, odds, players, projection, ratings, report_html, teams, tracker
+from . import backtest, data, injuries, kenpom, odds, players, projection, ratings, report_html, teams, tracker
 
 REPORTS = os.path.join(os.path.dirname(__file__), "..", "reports")
 SCOREBOARD = ("https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard"
@@ -122,6 +122,21 @@ def project(day: pd.Timestamp, games: pd.DataFrame) -> tuple[pd.DataFrame, pd.Da
     if av is not None:   # going-into-next-game availability, attached to today's game for each team
         sides = pd.concat([b[["game_id", c]].rename(columns={c: "team_id"}) for c in ("home_id", "away_id")])
         av = sides.merge(av, on="team_id", how="left").fillna({"excess_missing": 0.0})
+        # injury report: expected missing minutes for listed players who played the last game (injuries.py)
+        try:
+            inj_team, inj_players = injuries.adjustment(season)
+        except Exception as e:
+            print(f"Injury report unavailable ({e}); using last game's lineups only.")
+            inj_team, inj_players = pd.DataFrame(columns=["team_id", "injury_missing"]), pd.DataFrame()
+        av = av.merge(inj_team, on="team_id", how="left").fillna({"injury_missing": 0.0})
+        av["excess_missing"] = av["excess_missing"] + av["injury_missing"]
+        im = inj_team.set_index("team_id")["injury_missing"] if len(inj_team) else pd.Series(dtype=float)
+        with open(projection.SAVED) as fh:
+            miss_w = json.load(fh)["margin"].get("miss_diff", 0.0)   # points per 1.0 of minutes missing (home side)
+        nt = injuries.notes(inj_players, abs(miss_w)) if len(inj_players) else {}
+        for sd in ("home", "away"):
+            b[f"{sd}_injury_missing"] = b[f"{sd}_id"].map(im).fillna(0.0)
+            b[f"{sd}_injuries"] = b[f"{sd}_id"].map(nt).fillna("")
     played = hist[(hist["date"] < day)].dropna(subset=["home_pts"]) if len(hist) else hist
     # scoring environment: this season's average total once it has 200 games, before that last season's
     last_avg = float((last[0]["home_pts"] + last[0]["away_pts"]).mean())
@@ -171,7 +186,8 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame) -> pd.DataFrame:
                 home_spread=-flip["home_spread"], open_home_spread=-flip.get("open_home_spread", np.nan))
         m, t = g["final_margin"], g["final_total"]
         r = {k: g[k] for k in ["game_id", "start", "home", "away", "home_id", "away_id", "neutral", "state",
-                               "home_score", "away_score", "note"] if k in g}
+                               "home_score", "away_score", "note", "home_injuries", "away_injuries",
+                               "home_injury_missing", "away_injury_missing"] if k in g}
         r.update(model_margin=m, model_total=t, model_home_spread=-m,
                  model_home_pts=(t + m) / 2, model_away_pts=(t - m) / 2, kp_margin=g.get("kp_margin"),
                  raw_margin=g.get("pred_margin"), home_missing=g.get("home_missing"), away_missing=g.get("away_missing"),

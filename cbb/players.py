@@ -13,9 +13,6 @@ import pandas as pd
 
 from . import data
 
-data.FILES["player_box"] = "espn_mens_college_basketball_player_boxscores/player_box_{season}.parquet"
-
-
 GAME_SCORE = {"points": 1.0, "field_goals_made": 0.4, "field_goals_attempted": -0.7, "offensive_rebounds": 0.7,
               "defensive_rebounds": 0.3, "steals": 1.0, "assists": 0.7, "blocks": 0.7, "fouls": -0.4, "turnovers": -1.0}
 

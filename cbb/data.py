@@ -24,6 +24,7 @@ RELEASES = "https://github.com/sportsdataverse/sportsdataverse-data/releases/dow
 FILES = {
     "schedule": "espn_mens_college_basketball_schedules/mbb_schedule_{season}.parquet",
     "team_box": "espn_mens_college_basketball_team_boxscores/team_box_{season}.parquet",
+    "player_box": "espn_mens_college_basketball_player_boxscores/player_box_{season}.parquet",
 }
 CACHE = os.path.join(os.path.dirname(__file__), "cache")
 

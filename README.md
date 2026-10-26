@@ -36,6 +36,13 @@ players), then edges against every book. Calls come from the 2024-2026 backtest 
 The edge is against openers, not closing lines, so bet early and only at the "good down to" number or better.
 `lines/openers.csv` keeps the first number seen at each book (and when), `lines/closing.csv` the last pregame number.
 
+**Injuries** (`cbb/injuries.py`): each run reads ESPN's college basketball injury report. A listed player who
+played the team's last game adds P(miss) x his share of team minutes to the projection's missing-minutes input
+(Out 100%, Doubtful 75%, Questionable 40%, Day-To-Day 35%, Probable 10%; starting guesses). The card shows who's
+listed and what each moves the projection. Every report is logged to `injuries/log.csv` for calibration. The size
+of the effect is conservative (about 1 point for a player with 17% of team minutes) until a season of logs and CLV
+says otherwise.
+
 **Tracker** (`cbb/tracker.py`, like the NFL model's): every run grades earlier bets, logs today's BETs in
 `bets/bets.csv` at the number they first appeared, and shows the record, ROI and closing line value on the card.
 Stakes scale down automatically if a market's live win rate slides toward break-even. Edit `bets/bets.csv` to the
