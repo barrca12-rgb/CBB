@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CBB Model Record</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root {
+  --bg: #f6f7f9; --surface: #ffffff; --sunken: #f1f3f6; --line: #e3e6eb; --line-strong: #cfd4db;
+  --text: #101418; --muted: #5d6673; --faint: #8b93a0;
+  --accent: #1f5eff; --pos: #0f7b4b; --pos-bg: #e6f4ed; --neg: #c2352b; --warn: #8a5a00; --warn-bg: #fbf1dc;
+  --font: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d0f12; --surface: #15181d; --sunken: #1b1f25; --line: #262b33; --line-strong: #353b45;
+    --text: #e8eaed; --muted: #9aa2ae; --faint: #6c7481;
+    --accent: #6b9bff; --pos: #3ccf8e; --pos-bg: #12301f; --neg: #ff6b5e; --warn: #f0b44a; --warn-bg: #33270f;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box }
+.show-sm { display: none }
+body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.45 var(--font); font-feature-settings: "tnum" 1, "cv11" 1; -webkit-font-smoothing: antialiased }
+a { color: var(--accent); text-decoration: none } a:hover { text-decoration: underline }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 16px }
+
+/* Top bar */
+.top { background: var(--surface); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 5 }
+.top .wrap { display: flex; align-items: center; gap: 20px; height: 52px }
+.brand { font-weight: 700; letter-spacing: -.01em; font-size: 15px; white-space: nowrap }
+.tabs { display: flex; gap: 2px; height: 100% }
+.tabs a { display: flex; align-items: center; padding: 0 12px; color: var(--muted); font-weight: 500; border-bottom: 2px solid transparent; text-decoration: none }
+.tabs a[aria-current="page"] { color: var(--text); border-bottom-color: var(--text) }
+.status { margin-left: auto; display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: 13px; min-width: 0 }
+.status span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+button { font: inherit; font-weight: 600; font-size: 13px; color: var(--text); background: var(--surface); border: 1px solid var(--line-strong);
+  border-radius: 6px; padding: 6px 12px; cursor: pointer } button:hover { background: var(--sunken) } button:disabled { opacity: .5; cursor: progress }
+
+/* Page head */
+.head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px; padding: 24px 0 16px }
+h1 { font-size: 22px; font-weight: 700; letter-spacing: -.02em; margin: 0 }
+.sub { color: var(--muted); margin-top: 2px }
+.days { display: flex; gap: 4px; flex-wrap: wrap }
+.days a { padding: 5px 10px; border-radius: 6px; color: var(--muted); font-weight: 500; font-size: 13px; text-decoration: none; border: 1px solid transparent }
+.days a:hover { background: var(--sunken) }
+.days a[aria-current="page"] { color: var(--text); border-color: var(--line-strong); background: var(--surface) }
+.notice { border: 1px solid var(--line); background: var(--warn-bg); color: var(--warn); border-radius: 8px; padding: 10px 12px; margin-bottom: 16px; font-size: 13px }
+
+/* KPI strip */
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); border: 1px solid var(--line); border-radius: 8px; background: var(--surface); margin-bottom: 24px; overflow: hidden }
+.kpi { padding: 12px 16px; border-right: 1px solid var(--line) } .kpi:last-child { border-right: 0 }
+.kpi .k { color: var(--muted); font-size: 12px; font-weight: 500 } .kpi .v { font-size: 18px; font-weight: 600; margin-top: 2px; letter-spacing: -.01em }
+.kpi .v small { font-size: 12px; color: var(--muted); font-weight: 500; margin-left: 4px }
+
+/* Panels and tables */
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; margin-bottom: 24px; overflow: hidden }
+.panel-h { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--line) }
+.panel-h h2 { font-size: 15px; font-weight: 600; margin: 0 } .panel-h .note { color: var(--muted); font-size: 12px }
+.scroll { overflow-x: auto }
+table { width: 100%; border-collapse: collapse; font-size: 13px }
+th { text-align: left; font-weight: 500; font-size: 12px; color: var(--muted); padding: 8px 12px; border-bottom: 1px solid var(--line); background: var(--sunken); white-space: nowrap }
+td { padding: 9px 12px; border-bottom: 1px solid var(--line); white-space: nowrap; vertical-align: middle }
+tbody tr:last-child td { border-bottom: 0 }
+.r { text-align: right } .c { text-align: center } .m { color: var(--muted) } .f { color: var(--faint) }
+.pos { color: var(--pos) } .neg { color: var(--neg) } .b { font-weight: 600 }
+.empty { padding: 28px 16px; color: var(--muted); text-align: center }
+.betlink { font-weight: 600; font-size: 12px; border: 1px solid var(--line-strong); border-radius: 6px; padding: 4px 10px; color: var(--text); display: inline-block }
+.betlink:hover { background: var(--sunken); text-decoration: none }
+.tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 6px; border-radius: 4px; border: 1px solid var(--line-strong); color: var(--muted) }
+.tag.bet { color: var(--pos); border-color: var(--pos); background: var(--pos-bg) }
+
+/* Segmented control */
+.seg { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 6px; overflow: hidden }
+.seg button { border: 0; border-radius: 0; padding: 5px 12px; color: var(--muted); font-weight: 500; background: transparent }
+.seg button + button { border-left: 1px solid var(--line-strong) }
+.seg button[aria-pressed="true"] { background: var(--text); color: var(--surface) }
+.ctrls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center }
+label.chk { display: inline-flex; gap: 6px; align-items: center; color: var(--muted); font-size: 13px; cursor: pointer }
+
+/* Odds board: two rows per game (away, home) */
+.board td { padding-top: 6px; padding-bottom: 6px }
+.board tbody.g tr:first-child td { padding-top: 10px } .board tbody.g tr:last-child td { padding-bottom: 10px; border-bottom: 1px solid var(--line) }
+.board tbody.g tr:first-child td { border-bottom: 0 }
+.board tbody.g:last-child tr:last-child td { border-bottom: 0 }
+.board .team { font-weight: 500 }
+.inj { color: var(--warn); font-size: 11px; font-weight: 500; white-space: normal; max-width: 340px; margin-top: 1px } .board .tm { width: 72px; color: var(--muted); font-size: 12px }
+.board .pts { color: var(--muted); width: 40px }
+.odd { display: inline-flex; flex-direction: column; align-items: flex-end; min-width: 64px; padding: 3px 8px; border-radius: 6px; line-height: 1.25; color: var(--text); text-decoration: none }
+.odd small { color: var(--faint); font-size: 11px }
+a.odd:hover { background: var(--sunken); text-decoration: none }
+.odd.best { background: var(--pos-bg); color: var(--pos) } .odd.best small { color: var(--pos) }
+.na { color: var(--faint) }
+.board th.bk, .board td.bk { text-align: right; width: 96px }
+.board tbody.g.has-bet { background: linear-gradient(90deg, var(--pos) 0 2px, transparent 2px) }
+
+details.panel > summary { list-style: none; cursor: pointer; padding: 12px 16px; font-weight: 600; font-size: 15px; display: flex; justify-content: space-between }
+details.panel > summary::after { content: "Show"; color: var(--accent); font-size: 13px; font-weight: 500 }
+details.panel[open] > summary::after { content: "Hide" }
+details.panel[open] > summary { border-bottom: 1px solid var(--line) }
+footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 80ch }
+
+@media (max-width: 720px) {
+  .top .wrap { gap: 12px } .status span { display: none }
+  h1 { font-size: 19px }
+  .kpi { border-right: 0; border-bottom: 1px solid var(--line) } .kpi:last-child { border-bottom: 0 }
+  .hide-sm { display: none } .show-sm { display: inline }
+  td, th { padding-left: 10px; padding-right: 10px }
+  #t-plays td:first-child { white-space: normal; min-width: 150px }
+}
+</style>
+<header class="top"><div class="wrap">
+  <a class="brand" href="https://barrca12-rgb.github.io/" style="color:inherit;text-decoration:none">Model Card</a>
+  <nav class="tabs" aria-label="Pages"><a href="https://barrca12-rgb.github.io/NFL/">NFL</a><a href="./"><span class="hide-sm">College Basketball</span><span class="show-sm">CBB</span></a><a href="record.html" aria-current="page">Record</a></nav>
+</div></header>
+<main class="wrap">
+  <div class="head"><div><h1>CBB model record</h1>
+    <div class="sub">Every play the model logged, as logged, whether or not it was bet. Updated Oct 26, 2:45 PM ET.</div></div></div>
+  <div class="kpis"><div class='kpi'><div class='k'>Record</div><div class='v'>0-0</div></div><div class='kpi'><div class='k'>Win %</div><div class='v'>–</div></div><div class='kpi'><div class='k'>Units</div><div class='v'>+0.00</div></div><div class='kpi'><div class='k'>ROI</div><div class='v'>–</div></div><div class='kpi'><div class='k'>Avg CLV</div><div class='v'>–</div></div><div class='kpi'><div class='k'>Open plays</div><div class='v'>6</div></div></div>
+  <section class="panel"><div class="panel-h"><h2>Summary</h2><span class="note">Settled plays. CLV = points the line moved our way from the logged number to the close. Break-even at -110 is 52.4%.</span></div>
+    <div class="scroll"><table><thead><tr><th></th><th class='r'>Plays</th><th class='r'>W-L</th><th class='r'>Win %</th><th class='r'>Units</th><th class='r'>ROI</th><th class='r'>CLV pts</th><th class='r'>Beat close</th></tr></thead><tbody><tr><td class='b'>All plays</td><td class='r'>0</td><td class='r'>0-0</td><td class='r'>–</td><td class='r '>+0.00</td><td class='r'>–</td><td class='r'>–</td><td class='r'>–</td></tr><tr><td class='b'>Placed only</td><td class='r'>0</td><td class='r'>0-0</td><td class='r'>–</td><td class='r '>+0.00</td><td class='r'>–</td><td class='r'>–</td><td class='r'>–</td></tr><tr><td class='b'>Spreads</td><td class='r'>0</td><td class='r'>0-0</td><td class='r'>–</td><td class='r '>+0.00</td><td class='r'>–</td><td class='r'>–</td><td class='r'>–</td></tr><tr><td class='b'>Totals</td><td class='r'>0</td><td class='r'>0-0</td><td class='r'>–</td><td class='r '>+0.00</td><td class='r'>–</td><td class='r'>–</td><td class='r'>–</td></tr></tbody></table></div></section>
+  
+  <section class="panel"><div class="panel-h"><h2>Every play</h2><span class="note">Newest first. Void = cancelled before the game and not graded; its correction is in the log and on Discord.</span></div>
+    <div class="scroll"><table><thead><tr><th>Date</th><th>Game</th><th>Play</th><th>Book</th><th class='r'>Edge</th><th class='r'>Close</th><th class='r'>CLV</th><th>Result</th><th class='r'>Units</th><th class='c'>Bet</th><th class='hide-sm'>Logged</th></tr></thead><tbody><tr><td class='m'>2026-11-02</td><td>Memphis at Iowa State</td><td class='b'>Over 152.5</td><td>DraftKings <span class='m'>-115</span></td><td class='r'>4.5</td><td class='r'>–</td><td class='r'>–</td><td>Open</td><td class='r'>–</td><td class='c m'>yes</td><td class='m hide-sm'>Oct 26 1:20 PM ET</td></tr><tr><td class='m'>2026-11-02</td><td>Ohio State at BYU</td><td class='b'>Under 160.5</td><td>DraftKings <span class='m'>-115</span></td><td class='r'>4.1</td><td class='r'>–</td><td class='r'>–</td><td><span class='f'>Void</span></td><td class='r'>–</td><td class='c m'>–</td><td class='m hide-sm'>Oct 26 12:56 PM ET</td></tr><tr><td class='m'>2026-11-02</td><td>Gonzaga at Purdue</td><td class='b'>Under 156.5</td><td>DraftKings <span class='m'>-110</span></td><td class='r'>3.8</td><td class='r'>–</td><td class='r'>–</td><td>Open</td><td class='r'>–</td><td class='c m'>yes</td><td class='m hide-sm'>Oct 26 9:53 AM ET</td></tr><tr><td class='m'>2026-11-02</td><td>Miami at Florida</td><td class='b'>Florida -5.5</td><td>Caesars <span class='m'>-110</span></td><td class='r'>2.5</td><td class='r'>–</td><td class='r'>–</td><td>Open</td><td class='r'>–</td><td class='c m'>yes</td><td class='m hide-sm'>Oct 25 10:40 PM ET</td></tr><tr><td class='m'>2026-11-02</td><td>Gonzaga at Purdue</td><td class='b'>Purdue +4.5</td><td>DraftKings <span class='m'>-118</span></td><td class='r'>2.6</td><td class='r'>–</td><td class='r'>–</td><td>Open</td><td class='r'>–</td><td class='c m'>yes</td><td class='m hide-sm'>Oct 25 10:28 PM ET</td></tr><tr><td class='m'>2026-11-02</td><td>Ohio State at BYU</td><td class='b'>Ohio State +1.5</td><td>DraftKings <span class='m'>-105</span></td><td class='r'>3.6</td><td class='r'>–</td><td class='r'>–</td><td>Open</td><td class='r'>–</td><td class='c m'>yes</td><td class='m hide-sm'>Oct 25 9:53 PM ET</td></tr><tr><td class='m'>2026-11-01</td><td>Liberty at High Point</td><td class='b'>Under 154.5</td><td>DraftKings <span class='m'>-115</span></td><td class='r'>3.7</td><td class='r'>–</td><td class='r'>–</td><td><span class='f'>Void</span></td><td class='r'>–</td><td class='c m'>–</td><td class='m hide-sm'>Oct 26 12:56 PM ET</td></tr><tr><td class='m'>2026-11-01</td><td>Notre Dame at Villanova</td><td class='b'>Under 149.5</td><td>DraftKings <span class='m'>-110</span></td><td class='r'>9.7</td><td class='r'>–</td><td class='r'>–</td><td>Open</td><td class='r'>–</td><td class='c m'>yes</td><td class='m hide-sm'>Oct 25 6:32 PM ET</td></tr></tbody></table></div></section>
+  <section class="panel"><div class="panel-h"><h2>Check it</h2></div><ul style="margin:12px 0;padding:0 16px 0 34px;line-height:1.7"><li><a href='https://github.com/barrca12-rgb/CBB/blob/claude/college-basketball-model-nmztcl/bets/bets.csv'>The bet log</a> and <a href='https://github.com/barrca12-rgb/CBB/commits/claude/college-basketball-model-nmztcl/bets/bets.csv'>every change to it</a>, each with its time.</li><li><a href='https://github.com/barrca12-rgb/CBB/blob/claude/college-basketball-model-nmztcl/bets/bets.csv.ots'>OpenTimestamps proof</a>: anchors the current bet log to a Bitcoin block (check it at <a href='https://opentimestamps.org'>opentimestamps.org</a> with the log file).</li><li>Discord channel: every play posted when it was logged, with its result and any correction (invite on request).</li></ul></section>
+  <section class='panel'><div class='panel-h'><h2>Model changes</h2><span class='note'>Announced the day each went live</span></div><ul style='margin:12px 0;padding:0 16px 0 34px;line-height:1.6'><li><b>2026-10-26</b>: This channel posts every BET the model logs, at the time it is logged, whether or not it is bet, then its close, CLV and result. Posts are never edited; mistakes get a correction message. Bets logged before the channel opened are posted on its first day with their original logged time. The bet log is also timestamped with OpenTimestamps after every run (bets/bets.csv.ots in the repo).</li><li><b>2026-10-26</b>: Rule change, live Oct 26: for the first 7 days of each season, model totals are shifted so the day&#x27;s average matches KenPom&#x27;s scoring level. Before any games are played the model starts from last season&#x27;s scoring, which put every 2026-27 total about 3.6 points below KenPom and the market. Two unders logged before the rule and not bet were voided (corrections below); two that were bet stand.</li><li><b>2026-10-26</b>: Model change, live Oct 26: each season now starts from the average of KenPom&#x27;s and Barttorvik&#x27;s preseason ratings (was KenPom alone). Backtest, spread plays 2.5+ vs the opener: November line value +1.09 to +1.29 (2015-17) and +0.83 to +0.87 (2024-26); totals unchanged.</li></ul></section>
+  <footer>Plays come from the model's card, logged automatically at the posted number and price. Results are graded against final scores; closing lines are the median of the tracked books.</footer>
+</main>
+</html>

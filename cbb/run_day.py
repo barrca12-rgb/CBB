@@ -34,6 +34,7 @@ import pandas as pd
 from . import (backtest, context, data, injuries, injury_sources, injury_watch, kenpom, news, notify, odds, players,
                projection, ratings, report_html, review, teams, tracker)
 from . import record as public_record   # build() has its own local named record
+from . import record_page
 
 REPORTS = os.path.join(os.path.dirname(__file__), "..", "reports")
 SCOREBOARD = ("https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard"
@@ -355,6 +356,10 @@ def main():
                 later = slate(d)
                 if len(later):
                     build(d, later, lines, current=False)
+    try:   # the public record page (record.html on the site)
+        record_page.write()
+    except Exception as e:
+        print(f"Record page failed ({e}); continuing.")
 
 
 def attach_logged(card: pd.DataFrame, day: pd.Timestamp) -> pd.DataFrame:

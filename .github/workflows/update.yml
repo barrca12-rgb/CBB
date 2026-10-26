@@ -78,7 +78,7 @@ jobs:
       - name: Build site
         run: |
           mkdir -p _site
-          cp reports/cbb_*.html reports/days.json _site/ 2>/dev/null || true
+          cp reports/cbb_*.html reports/days.json reports/record.html _site/ 2>/dev/null || true
           CUR=$(python -c "import json; print('cbb_' + json.load(open('reports/days.json'))['current'] + '.html')" 2>/dev/null || true)
           if [ -n "$CUR" ] && [ -f "reports/$CUR" ]; then cp "reports/$CUR" _site/index.html
           else echo '<!doctype html><meta charset="utf-8"><title>CBB card</title><p>No card yet.</p>' > _site/index.html; fi
