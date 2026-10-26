@@ -66,6 +66,15 @@ def ev(p: float, odds) -> float:
     return p * (o / 100 if o > 0 else 100 / -o) - (1 - p)
 
 
+def price_needed(market: str, thr: float, good_to: float, higher_better: bool) -> float:
+    """Worst American price that still clears MIN_EV at the half-point line where a WATCH becomes a play (the card's
+    "bet at" number). The number alone isn't enough: at 3 points a total needs about -113, not -115."""
+    at = (math.ceil(good_to * 2 - 1e-9) if higher_better else math.floor(good_to * 2 + 1e-9)) / 2
+    p = win_prob(market, thr + abs(at - good_to))
+    pay = (MIN_EV + 1 - p) / p                # winnings per unit risked needed for +MIN_EV
+    return float(math.ceil(100 * pay)) if pay >= 1 else -float(math.floor(100 / pay))
+
+
 def season_of(day: pd.Timestamp) -> int:
     return day.year + 1 if day.month >= 8 else day.year
 
@@ -252,6 +261,7 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame) -> pd.DataFrame:
                          spread_book=row["book"], spread_odds=row.get(f"{side}_spread_odds"), spread_edge=edge,
                          spread_p=p, spread_ev=value, spread_link=row.get(f"{side}_spread_link"), spread_verdict=v,
                          spread_units=units, spread_good_to=(thr - m) if side == "home" else (thr + m))
+                r["spread_good_price"] = price_needed("spread", thr, r["spread_good_to"], True)
             to = _best(l, "total", {"over": ("total", lambda x: t - x, "over_odds"),
                                     "under": ("total", lambda x: x - t, "under_odds")})
             if to:
@@ -262,6 +272,7 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame) -> pd.DataFrame:
                          total_odds=row.get(f"{side}_odds"), total_edge=edge, total_p=p, total_ev=value,
                          total_link=row.get(f"{side}_link"), total_verdict=v, total_units=units,
                          total_good_to=(t - thr) if side == "over" else (t + thr))
+                r["total_good_price"] = price_needed("total", thr, r["total_good_to"], side == "under")
         out.append(r)
     return pd.DataFrame(out)
 
