@@ -136,10 +136,11 @@ def official_games(seasons) -> pd.DataFrame:
     return pd.concat(parts, ignore_index=True)
 
 
-def referees(b: pd.DataFrame, og: pd.DataFrame | None = None) -> pd.DataFrame:
+def referees(b: pd.DataFrame, og: pd.DataFrame | None = None, half_life: float | None = None) -> pd.DataFrame:
     """Crew tendencies for each game in b (needs game_id, date, season, pred_total, home_pts, away_pts):
     ref_fouls (fouls per game above the season average) and ref_pts (points above our ratings model's total),
-    each official shrunk toward 0 and averaged over the crew, from his earlier games only."""
+    each official shrunk toward 0 and averaged over the crew, from his earlier games only. half_life (days) weights
+    recent games more; None weights every earlier game equally."""
     og = official_games(sorted(b["season"].unique())) if og is None else og
     g = b[["game_id", "date", "season", "pred_total", "home_pts", "away_pts"]].copy()
     og = og.merge(g, on=["game_id", "season"], how="inner")
@@ -156,16 +157,23 @@ def referees(b: pd.DataFrame, og: pd.DataFrame | None = None) -> pd.DataFrame:
     # running sums per official, excluding the current date (games the same day aren't known yet)
     out = []
     sums: dict = {}
+    def get(name, day):
+        fs, ps, n, last = sums.get(name, (0.0, 0.0, 0.0, day))
+        if half_life:
+            k = 0.5 ** ((day - last).days / half_life)
+            fs, ps, n = fs * k, ps * k, n * k
+        return fs, ps, n
+
     for day, d in og.groupby("date", sort=True):
         f, p = [], []
         for name in d["official"]:
-            s_ = sums.get(name, (0.0, 0.0, 0))
+            s_ = get(name, day)
             f.append(s_[0] / (s_[2] + REF_PRIOR))
             p.append(s_[1] / (s_[2] + REF_PRIOR))
         out.append(d[["game_id"]].assign(of=f, op=p))
         for name, fd, pdv in zip(d["official"], d["foul_dev"], d["pts_dev"]):
-            s_ = sums.get(name, (0.0, 0.0, 0))
-            sums[name] = (s_[0] + fd, s_[1] + (pdv if pdv == pdv else 0.0), s_[2] + 1)
+            s_ = get(name, day)
+            sums[name] = (s_[0] + fd, s_[1] + (pdv if pdv == pdv else 0.0), s_[2] + 1, day)
     r = pd.concat(out).groupby("game_id").agg(ref_fouls=("of", "mean"), ref_pts=("op", "mean")).reset_index()
     return r
 
