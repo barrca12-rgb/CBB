@@ -10,9 +10,8 @@ Writes reports/cbb_<date>.html (the bet card), reports/cbb_<date>.csv (every num
 
 Calls, from the 2024-2026 backtest against opening lines (BACKTEST.md):
 
-    spread  edge 3+ points  BET 1u    (58.6% at the opener)     edge 2-3  WATCH
-            neutral site 2.5+ points  BET 1u                      edge 1.5-2.5  WATCH
-    total   edge 4+ points  BET 1u    (57.5%)                   edge 3-4  WATCH
+    spread  edge 2.5+ points  BET 1u   (about 57% at the opener)   edge 1.5-2.5  WATCH
+    total   edge 3+ points    BET 1u   (about 56.5%)                edge 2-3      WATCH
 
 and at least +2% expected value at the book's price, from the backtest's win rate for that edge (win_prob). The
 book is the one with the best expected value (number and price together); an edge that's there but at a bad price
@@ -38,12 +37,12 @@ from . import (backtest, context, data, injuries, injury_sources, kenpom, notify
 REPORTS = os.path.join(os.path.dirname(__file__), "..", "reports")
 SCOREBOARD = ("https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard"
               "?dates={}&groups=50&limit=500")
-SPREAD_CALLS = [(3.0, "BET", 1.0)]
-# Neutral sites (mostly November events and March): the spread edge held up better in every sample, so they bet from
-# 2.5. The added 2.5-3 point plays won 58.7% at the opener 2014-2017 (143) and 63.0% 2024-2026 (127); 56.0% at the
-# close 2014-2019 (168) but 48.3% 2020-2026 (267).
-NEUTRAL_SPREAD_CALLS = [(2.5, "BET", 1.0)]
-TOTAL_CALLS = [(4.0, "BET", 1.0)]
+# Thresholds from the CLV check (Oct 2026), opener plays 2014-2017 and 2024-2026: spreads at 2.5-3 points won 55.4%
+# with the line moving 0.86 points our way by the close (1,571 home-site plays; neutral sites the same, +0.89);
+# totals at 3-4 won about 55.5% with +0.95 (3,421). Against the close these bands are near break-even, so they rely
+# on betting early. Approved by Chad; was 3 (2.5 at neutral sites) and 4.
+SPREAD_CALLS = [(2.5, "BET", 1.0)]
+TOTAL_CALLS = [(3.0, "BET", 1.0)]
 WATCH_BELOW = 1.0      # within this many points of a BET: WATCH (becomes a play if the line moves)
 # Win chance by edge against the opener, 2014-2017 and 2024-2026 backtest (capped: bigger edges didn't win more):
 # spreads 54.7% at 2-3 pts, 58.0% at 3-4, flat after; totals 54.2% at 3-4, 56.8-57.3% at 4-6.
@@ -220,7 +219,7 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame) -> pd.DataFrame:
                                      "away": ("home_spread", lambda s_: -(m + s_), "away_spread_odds")})
             if sp:
                 side, row, edge, p, value = sp
-                calls = NEUTRAL_SPREAD_CALLS if bool(g.get("neutral")) else SPREAD_CALLS
+                calls = SPREAD_CALLS
                 v, units = _call(edge, value, calls)
                 line = row["home_spread"] if side == "home" else -row["home_spread"]
                 thr = calls[0][0]

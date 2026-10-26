@@ -31,7 +31,8 @@ import pandas as pd
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 BETS = os.path.join(ROOT, "bets", "bets.csv")
 CLOSING = os.path.join(ROOT, "lines", "closing.csv")
-MARKETS = {"spread": {"backtest": 0.582, "sd": 11.34}, "total": {"backtest": 0.575, "sd": 16.5}}
+# backtest win rate at the opener for the current thresholds (spreads 2.5+, totals 3+), the stake shutoff's prior
+MARKETS = {"spread": {"backtest": 0.571, "sd": 11.34}, "total": {"backtest": 0.565, "sd": 16.5}}
 BREAKEVEN = 110 / 210
 PRIOR_BETS = 100
 MIN_CLV_BETS = 25

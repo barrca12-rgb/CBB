@@ -182,7 +182,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   <div class="kpis" id="kpis"></div>
 
   <section class="panel" aria-labelledby="plays-h">
-    <div class="panel-h"><h2 id="plays-h">Plays</h2><span class="note">Spread edge 3+ pts · total edge 4+ pts · +2% EV at the price · 1 unit each. Win % = backtest rate for that edge.</span></div>
+    <div class="panel-h"><h2 id="plays-h">Plays</h2><span class="note">Spread edge 2.5+ pts · total edge 3+ pts · +2% EV at the price · 1 unit each. Win % = backtest rate for that edge.</span></div>
     <div class="scroll"><table id="t-plays"></table></div>
   </section>
 
