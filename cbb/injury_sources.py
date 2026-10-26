@@ -292,6 +292,8 @@ PARSERS = {"espn": parse_espn, "rotowire": parse_rotowire, "covers": parse_table
 def fetch(source: str) -> tuple[pd.DataFrame, str]:
     """(report, raw text) for one source: team_id, player_key and athlete_id attached, status normalized."""
     text = _get(URLS[source])
+    if len(text) < 20_000 and re.search(r"challenge-container|verify that you're not a robot|cf-chl|Just a moment", text):
+        raise RuntimeError("bot check page (needs a browser), no report")
     df = pd.DataFrame(PARSERS[source](text), columns=["team", "team_id", "player", "status_raw", "comment",
                                                       "source_date", "athlete_id"])
     df = df[df["player"].astype(str).str.strip().ne("")].copy()
