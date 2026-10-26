@@ -40,6 +40,11 @@ The edge is against openers, not closing lines, so bet early and only at the "go
 an altitude flag, and the referee crew when ESPN posts it (tendencies from every official's past games,
 `data/referees.csv`, refit with the projection). Unknown crews count as average.
 
+**Loss review** (`cbb/review.py`): every graded bet gets a reason: beat the close (variance), shooting luck (3-point
+luck swung it 6+ points), late injury news (line moved against us and a team hit the injury report after we bet),
+or market disagreed (line moved against us with no news: the real model misses). The card's Loss review shows
+record and CLV by reason, market, edge size and month, plus the biggest "market disagreed" losses.
+
 **Injuries** (`cbb/injuries.py`): each run reads ESPN's college basketball injury report. A listed player who
 played the team's last game adds P(miss) x his share of team minutes to the projection's missing-minutes input
 (Out 100%, Doubtful 75%, Questionable 40%, Day-To-Day 35%, Probable 10%; starting guesses). The card shows who's

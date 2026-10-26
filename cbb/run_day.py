@@ -30,7 +30,7 @@ import urllib.request
 import numpy as np
 import pandas as pd
 
-from . import backtest, context, data, injuries, kenpom, odds, players, projection, ratings, report_html, teams, tracker
+from . import backtest, context, data, injuries, kenpom, odds, players, projection, ratings, report_html, review, teams, tracker
 
 REPORTS = os.path.join(os.path.dirname(__file__), "..", "reports")
 SCOREBOARD = ("https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard"
@@ -289,7 +289,12 @@ def main():
             if f"{mk}_units" in card:
                 card[f"{mk}_units"] = card[f"{mk}_units"] * st[mk]["multiplier"]
         tracker.log(card, day, {mk: st[mk]["multiplier"] for mk in st})
-        record = {"status": tracker.status(), "recent": tracker.recent()}
+        try:
+            rv = review.summary()
+        except Exception as e:
+            print(f"Loss review failed ({e}); continuing.")
+            rv = {}
+        record = {"status": tracker.status(), "recent": tracker.recent(), "review": rv}
     os.makedirs(REPORTS, exist_ok=True)
     stem = os.path.join(REPORTS, f"cbb_{day:%Y-%m-%d}")
     card.drop(columns=["book_lines"]).to_csv(stem + ".csv", index=False)

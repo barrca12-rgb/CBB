@@ -43,7 +43,8 @@ def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, 
            t[["rank", "team", "net", "adj_oe", "adj_de", "adj_tempo"]].to_dict("records")]
     data = {"date": f"{day:%Y-%m-%d}", "season": season, "replay": replay, "repo": REPO, "nfl": NFL_SITE,
             "generated_at": pd.Timestamp.now(tz="UTC").isoformat(timespec="seconds"), "games": games, "ratings": rat,
-            "record": {"status": record["status"], "recent": [{k: _clean(v) for k, v in r.items()} for r in record["recent"]]}
+            "record": {"status": record["status"], "recent": [{k: _clean(v) for k, v in r.items()} for r in record["recent"]],
+                       "review": json.loads(json.dumps(record.get("review") or {}, default=_clean))}
             if record else None}
     payload = json.dumps(data).replace("</", "<\\/")
     title = f"{day:%a %b} {day.day} CBB Card"
@@ -205,6 +206,13 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     <div class="scroll"><table id="t-rec"></table></div>
   </section>
 
+  <section class="panel" id="review-sec" hidden>
+    <div class="panel-h"><h2>Loss review</h2><span class="note">Why bets lost. "Market disagreed" (the line moved against us with no news) are the real model misses; the rest is variance or late information.</span></div>
+    <div class="scroll"><table id="t-review"></table></div>
+    <div class="scroll"><table id="t-review2"></table></div>
+    <div class="scroll"><table id="t-misses"></table></div>
+  </section>
+
   <details class="panel" id="recent-sec" hidden><summary>Recent results</summary><div class="scroll"><table id="t-recent"></table></div></details>
   <details class="panel"><summary>Power ratings</summary><div class="scroll"><table id="t-rat"></table></div></details>
 
@@ -359,6 +367,25 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
           "</td><td class='r'>" + num(x.close_line) + "</td><td class='r'>" + sgn(x.clv_pts) + "</td><td class='r m'>" + esc(x.away_score) + "–" + esc(x.home_score) +
           "</td><td class='r b " + (x.result === "W" ? "pos" : x.result === "L" ? "neg" : "") + "'>" + esc(x.result) + "</td><td class='r'>" + sgn(x.profit, 2) + "</td></tr>").join("") + "</tbody>";
     }
+  }
+
+  // Loss review (review.py)
+  const RV = D.record && D.record.review;
+  if (RV && RV.by_reason) {
+    $("review-sec").hidden = false;
+    const rows = (obj, label) => Object.entries(obj || {}).map(([k, a]) => "<tr><td>" + esc(k) + "</td><td class='r'>" + a.bets + "</td><td class='r'>" + a.w + "–" + a.l +
+      "</td><td class='r'>" + pct(a.win) + "</td><td class='r " + (a.units > 0 ? "pos" : a.units < 0 ? "neg" : "") + "'>" + sgn(a.units, 2) + "</td><td class='r'>" + (a.clv == null ? "–" : sgn(a.clv, 2)) +
+      "</td>" + (label ? "<td class='r m'>" + ((RV.losses_by_reason || {})[k] || 0) + "</td>" : "") + "</tr>").join("");
+    const head = (first, extra) => "<thead><tr><th>" + first + "</th><th class='r'>Bets</th><th class='r'>Record</th><th class='r'>Win %</th><th class='r'>Units</th><th class='r'>Avg CLV</th>" + (extra ? "<th class='r'>Losses</th>" : "") + "</tr></thead>";
+    $("t-review").innerHTML = head("Reason", true) + "<tbody>" + rows(RV.by_reason, true) + "</tbody>";
+    $("t-review2").innerHTML = head("Split", false) + "<tbody>" + rows(Object.fromEntries([
+      ...Object.entries(RV.by_market || {}).map(([k, v]) => [k[0].toUpperCase() + k.slice(1), v]),
+      ...Object.entries(RV.by_edge || {}).map(([k, v]) => ["Edge " + k, v]),
+      ...Object.entries(RV.by_month || {})]), false) + "</tbody>";
+    const MM = RV.model_misses || [];
+    if (MM.length) $("t-misses").innerHTML = "<thead><tr><th>Market disagreed: biggest misses</th><th class='r'>Bet</th><th class='r'>Close</th><th class='r'>CLV</th><th class='r'>Model (home margin)</th><th class='r'>Final</th></tr></thead><tbody>" +
+      MM.map((x) => "<tr><td>" + esc(x.date + " · " + x.away + " @ " + x.home) + "</td><td class='r b'>" + esc(x.pick) + "</td><td class='r'>" + num(x.close_line) + "</td><td class='r neg'>" + sgn(x.clv_pts) +
+        "</td><td class='r m'>" + num(x.model) + "</td><td class='r m'>" + esc(x.away_score) + "–" + esc(x.home_score) + "</td></tr>").join("") + "</tbody>";
   }
 
   // Ratings
