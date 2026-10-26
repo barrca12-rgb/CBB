@@ -1,0 +1,17 @@
+2014-2018 done
+2019-2022 done
+2023-2026 done
+      era surprise                                                test     n  dates   slope     se       z
+2014-2018 S_league 1: close vs model (+ = market follows the surprise) 19006    691  0.0113 0.0012  9.0806
+2014-2018 S_league          2: result vs close (- = overreaction paid) 19006    691 -0.0115 0.0062 -1.8684
+2014-2018    S_adj 1: close vs model (+ = market follows the surprise) 19006    691  0.0077 0.0013  6.0970
+2014-2018    S_adj          2: result vs close (- = overreaction paid) 19006    691 -0.0088 0.0062 -1.4022
+2019-2022 S_league 1: close vs model (+ = market follows the surprise) 19386    537  0.0081 0.0010  8.1455
+2019-2022 S_league          2: result vs close (- = overreaction paid) 19386    537 -0.0066 0.0057 -1.1643
+2019-2022    S_adj 1: close vs model (+ = market follows the surprise) 19386    537  0.0046 0.0010  4.6801
+2019-2022    S_adj          2: result vs close (- = overreaction paid) 19386    537 -0.0036 0.0057 -0.6344
+2023-2026 S_league 1: close vs model (+ = market follows the surprise) 22344    579  0.0047 0.0013  3.6770
+2023-2026 S_league          2: result vs close (- = overreaction paid) 22344    579 -0.0046 0.0056 -0.8089
+2023-2026    S_adj 1: close vs model (+ = market follows the surprise) 22344    579  0.0026 0.0014  1.8960
+2023-2026    S_adj          2: result vs close (- = overreaction paid) 22344    579 -0.0006 0.0057 -0.1058
+surprise SD (points): {'S_league': 13.59, 'S_adj': 13.54}
