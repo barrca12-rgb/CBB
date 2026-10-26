@@ -62,8 +62,8 @@ def payout(odds) -> float:
     return o / 100 if o > 0 else 100 / -o
 
 
-def log(card: pd.DataFrame, day: pd.Timestamp, stakes: dict | None = None) -> int:
-    """Record today's BET plays that aren't logged yet. Returns how many were added."""
+def log(card: pd.DataFrame, day: pd.Timestamp, stakes: dict | None = None) -> list[dict]:
+    """Record today's BET plays that aren't logged yet. Returns the bets added."""
     b = load()
     have = set(b["bet_id"].astype(str))
     stakes = stakes or {}
@@ -87,7 +87,7 @@ def log(card: pd.DataFrame, day: pd.Timestamp, stakes: dict | None = None) -> in
     if new:
         b = pd.concat([b, pd.DataFrame(new)], ignore_index=True) if len(b) else pd.DataFrame(new)
         save(b.reindex(columns=COLS))
-    return len(new)
+    return new
 
 
 def _closing(bet: pd.Series, closing: pd.DataFrame) -> float:
