@@ -60,8 +60,28 @@ def _lookup() -> dict:
     return out
 
 
+BUDGET_STOP = 0.95   # skip pulls once the month's entity use passes this share of the plan's allowance
+
+
+def usage(api_key: str | None = None) -> dict:
+    """This month's SportsGameOdds entity use: {"used", "max"} (empty if the account endpoint can't be read)."""
+    api_key = api_key or os.environ.get("SGO_API_KEY", "")
+    try:
+        req = urllib.request.Request("https://api.sportsgameodds.com/v2/account/usage",
+                                     headers={"User-Agent": "cbb-model", "X-Api-Key": api_key})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            m = json.load(r)["data"]["rateLimits"]["per-month"]
+        return {"used": int(m["current-entities"]), "max": int(m["max-entities"])}
+    except Exception:
+        return {}
+
+
 def fetch(api_key: str | None = None, max_events: int = 1500) -> pd.DataFrame:
     api_key = api_key or os.environ.get("SGO_API_KEY", "")
+    u = usage(api_key)
+    fetch.usage = u
+    if u and u["used"] >= BUDGET_STOP * u["max"]:
+        raise RuntimeError(f"SGO monthly allowance nearly used ({u['used']:,} of {u['max']:,} entities)")
     events, cursor = [], None
     while len(events) < max_events:
         q = {"leagueID": "NCAAB", "oddsAvailable": "true", "limit": 100, "oddID": ",".join(ODDS)}
@@ -143,5 +163,7 @@ def pull(api_key: str | None = None) -> pd.DataFrame:
         l = l.merge(op[["sgo_event", "book", "open_home_spread", "open_total"]], on=["sgo_event", "book"], how="left")
     with open(os.path.join(LINES, "last_pull.txt"), "w") as f:
         f.write(f"{ts:%Y-%m-%d %H:%M} UTC  events {getattr(fetch, 'events', 0)}  book-game rows {len(l)}  "
-                f"unmatched teams: {', '.join(getattr(fetch, 'unmatched', [])) or 'none'}\n")
+                f"unmatched teams: {', '.join(getattr(fetch, 'unmatched', [])) or 'none'}"
+                + (f"  SGO month: {u['used']:,} of {u['max']:,} entities" if (u := getattr(fetch, "usage", {})) else "")
+                + "\n")
     return l
