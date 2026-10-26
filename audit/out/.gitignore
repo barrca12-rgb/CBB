@@ -1,0 +1,4 @@
+# large intermediate files (rebuilt by the audit scripts)
+*.pkl
+backtest_lag*.csv
+_stage1_*/
