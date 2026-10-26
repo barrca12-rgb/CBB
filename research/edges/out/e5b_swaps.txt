@@ -1,0 +1,29 @@
+spread plays flagged as likely swapped: 67 of 5004
+result_sides_with
+line     12
+model    55
+swap         False  True 
+edge                     
+[2.5, 3.5)    3103      0
+[3.5, 5.0)    1437      0
+[5.0, 7.0)     293      0
+[7.0, 99.0)    104     67
+                            set       split  bets  win%  win% se  ROI%  ROI% se
+               all spread plays development  3399 57.37     0.84  9.33     1.54
+               all spread plays     holdout  1605 57.69     1.25 10.14     2.38
+      all spread plays, edge 5+ development   348 71.30     2.40 35.82     4.55
+      all spread plays, edge 5+     holdout   116 63.79     4.63 21.79     8.84
+         excluding likely swaps development  3338 56.76     0.83  8.19     1.53
+         excluding likely swaps     holdout  1599 57.66     1.25 10.08     2.39
+excluding likely swaps, edge 5+ development   287 67.25     2.54 28.10     4.91
+excluding likely swaps, edge 5+     holdout   110 63.64     4.78 21.49     9.12
+              likely swaps only development    61 90.16     3.49 72.13     6.66
+              likely swaps only     holdout     6 66.67    19.10 27.27    36.46
+     likely swaps only, edge 5+ development    61 90.16     3.49 72.13     6.66
+     likely swaps only, edge 5+     holdout     6 66.67    19.10 27.27    36.46
+as reported (2015, 2017) 1995 57.14
+as reported (2024, 2026) 2282 57.78
+excluding likely swaps (2015, 2017) 1976 56.82
+excluding likely swaps (2024, 2026) 2276 57.76
+totals plays on swapped games: 43
+0.8805970149253731 0.16710552967389103

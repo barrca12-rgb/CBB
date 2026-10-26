@@ -1,0 +1,71 @@
+                                                    check       split  bets  win%  win% se  ROI%  ROI% se
+                                        edge band 2.5-3.5 development  2069 56.50     1.04  7.69     1.92
+                                        edge band 2.5-3.5     holdout  1034 57.06     1.69  8.93     3.22
+                                          edge band 3.5-5 development   982 54.21     1.62  3.42     3.09
+                                          edge band 3.5-5     holdout   455 57.58     2.51  9.93     4.80
+                                            edge band 5-7 development   214 64.79     2.96 23.58     5.62
+                                            edge band 5-7     holdout    79 56.96     5.85  8.75    11.17
+                                             edge band 7+ development   134 81.82     3.76 55.36     7.02
+                                             edge band 7+     holdout    37 78.38     5.88 49.63    11.23
+                                                  5+: all development   348 71.30     2.40 35.82     4.55
+                                                  5+: all     holdout   116 63.79     4.63 21.79     8.84
+         5+: excluding uncheckable (residue-only) openers development   252 71.20     2.88 35.64     5.44
+         5+: excluding uncheckable (residue-only) openers     holdout    71 59.15     5.88 12.93    11.22
+                5+: excluding opener-to-close moves of 5+ development   322 70.22     2.61 33.74     4.91
+                5+: excluding opener-to-close moves of 5+     holdout    76 55.26     5.87  5.50    11.20
+                                   5+: excluding November development   133 68.18     4.04 29.94     7.81
+                                   5+: excluding November     holdout    65 70.77     5.68 35.10    10.85
+                                  5+: excluding all three development    88 65.52     4.96 24.79     9.35
+                                  5+: excluding all three     holdout    21 57.14    11.91  9.09    22.73
+                       5+: same plays graded at the CLOSE development   348 65.89     2.81 25.42     5.29
+                       5+: same plays graded at the CLOSE     holdout   116 49.14     4.47 -6.19     8.54
+5+: model still 5+ against the close, graded at the close development   185 74.32     3.48 41.43     6.51
+5+: model still 5+ against the close, graded at the close     holdout    33 57.58     9.44  9.92    18.02
+                                          5+: season 2014 development   118 82.05     3.47 56.16     6.57
+                                          5+: season 2015 development    49 66.67     6.45 26.72    12.02
+                                          5+: season 2016 development   102 64.36     4.65 22.64     8.77
+                                          5+: season 2017 development    50 72.00     5.80 37.45    11.07
+                                          5+: season 2024 development    29 58.62     8.34 11.91    15.92
+                                          5+: season 2025     holdout    59 67.80     5.46 29.43    10.43
+                                          5+: season 2026     holdout    57 59.65     7.33 13.88    13.99
+
+profile (big = edge 5+):
+        plays  corrected  residue_only  move_median  move_5plus  november  abs_open_spread_median
+big                                                                                             
+False   4540      0.018         0.144          1.0       0.016     0.280                    7.00
+True     464      0.071         0.304          2.0       0.142     0.573                    9.25
+
+opener source:
+ opener source  Opening pseudo-book  multi-book median  single book
+big                                                               
+False                         2403                648         1489
+True                           319                 29          116
+
+development logistic: win prob = 1/(1+exp(-(-0.201 + 0.1336 x edge)))
+   band       split  plays  actual win%  live table win%  dev logistic fit win%
+2.5-3.5 development   2023         56.5             57.3                   54.7
+2.5-3.5     holdout   1034         57.1             57.3                   54.7
+  3.5-5 development    963         54.2             58.0                   58.5
+  3.5-5     holdout    455         57.6             58.0                   58.4
+    5-7 development    213         64.8             58.0                   63.3
+    5-7     holdout     79         57.0             58.0                   63.5
+     7+ development    132         81.8             58.0                   80.2
+     7+     holdout     37         78.4             58.0                   75.3
+
+largest 5+ edges (top 15 by edge):
+ season       date  home_id  away_id  open_home_spread  home_spread  final_margin      edge side res  corrected  residue only       opener source
+   2014 2013-11-23     2217       97             -25.0       -27.50    -25.392129 50.392129 away   W      False          True Opening pseudo-book
+   2014 2013-11-30     2184      221             -18.0       -19.50    -16.099717 34.099717 away   W      False          True Opening pseudo-book
+   2017 2016-11-21      139      252             -16.0       -16.50    -17.019254 33.019254 away   W      False         False Opening pseudo-book
+   2016 2015-11-25     2649       23              13.0        14.75     18.579300 31.579300 home   W      False         False Opening pseudo-book
+   2017 2016-12-22     2379     2006             -15.5       -17.00    -14.698072 30.198072 away   W      False         False Opening pseudo-book
+   2016 2016-01-21      350       48              15.0       -14.50     14.179053 29.179053 home   W       True          True Opening pseudo-book
+   2014 2013-11-28       26     2440              13.5        13.00     15.429580 28.929580 home   W      False         False Opening pseudo-book
+   2014 2013-11-25     2348     2430              12.5        13.00     15.333220 27.833220 home   W      False         False Opening pseudo-book
+   2017 2016-11-22      233      248             -13.0       -13.00    -14.735115 27.735115 away   W      False         False Opening pseudo-book
+   2014 2013-11-24     2275     2057             -14.0       -14.50    -12.448158 26.448158 away   W      False         False Opening pseudo-book
+   2016 2015-11-23      156      164              11.5        12.50     14.428787 25.928787 home   W      False         False Opening pseudo-book
+   2014 2013-11-28     2305      154              12.5        14.50     12.983228 25.483228 home   W      False         False Opening pseudo-book
+   2017 2016-11-23      139      333             -12.0       -12.50    -13.008422 25.008422 away   W      False         False Opening pseudo-book
+   2014 2013-11-29     2086      197             -12.5       -13.00    -11.942440 24.442440 away   W      False         False Opening pseudo-book
+   2014 2013-11-24     2166      167             -13.0       -13.50    -10.062180 23.062180 away   W      False         False Opening pseudo-book

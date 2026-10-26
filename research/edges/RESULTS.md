@@ -57,3 +57,48 @@ Nothing else stands out: by month, conference tier, spread size and total level 
 2. Opener moneyline favourites.
 3. **The edge-size gradient.** It is the most actionable: if large edges really win more than 58%, the staking
    and win-chance table could be revisited at the Jan 15 checkpoint, with Chad's approval and its own backtest.
+
+## Follow-up: spread edges of 5+ points (Oct 26)
+
+**Data problem found.**
+- **What:** 67 of the historical spread plays are home/away swaps between ESPN's odds and the game records. The
+  line favours one team while the model and KenPom both have the other by 10+.
+- **Where:** 88% at neutral sites. The result sided with the model in 55 of them, so the line is the flipped side.
+- **Effect:** all 67 sit in the 7+ edge band and won 90%. They are fake edges, and the moneyline orientation check
+  cannot catch them, because the whole record is flipped, moneyline included.
+- **Live is not affected:** the card matches lines by team IDs and handles reversed home/away.
+- **Headline effect (live-like model, spreads at the opener):** 2015-17 goes from 57.1% to 56.8%; 2024-26
+  unchanged (57.8%). The historical reports should exclude these games. Proposed below, not applied.
+
+**Without the swaps:**
+
+| Spread plays | Development | Holdout 2025-26 |
+|---|---|---|
+| Edge 2.5-3.5 | 56.5% (2,069) | 57.1% (1,034) |
+| Edge 3.5-5 | 54.2% (982) | 57.6% (455) |
+| Edge 5-7 | 64.8% (214) | 57.0% (79) |
+| Edge 7+ | 74.7% (73) | 80.6% (31) |
+| Edge 5+, graded at the close instead | 62.1% (287) | 49.1% (110) |
+
+- **The big-edge advantage is genuine but smaller than it looked, and it is an opener effect.** By the close, the
+  market had moved to the model's side; in 2025-26, graded at the close, the same plays were 49%.
+- **The development fit** (win chance by edge, swaps removed) is 53.9% at 2.5, 56.6% at 3.5, 60.6% at 5 and 65.8%
+  at 7. The live table caps at 58%.
+- **The holdout's 5-7 band** (57.0%, 79 plays) does not confirm the higher numbers. Only the small 7+ band does.
+- **Verdict:** not enough to raise the cap now. Revisit at Jan 15 with the forward data's large-edge plays.
+
+**Neutral-site spreads hold up.**
+- **Excluding every game where the model and KenPom both favour the other team** (a stricter swap filter):
+  neutral sites read 60.0% in development (499) and 59.6% in the holdout (193), against 56.2% and 57.6% at home
+  courts.
+- **Possible explanations:**
+  - early-season tournament games, where the market leans on reputation;
+  - neutral-court home-edge handling.
+- **Caveat:** neutral-site records are also where the residual data problems sit, so a few undetected swaps may
+  remain.
+- **Verdict:** the strongest candidate from this search. Track it in the forward data. If it holds at Jan 15, it
+  is a v2 staking proposal, not a selection change.
+
+**Proposed reporting correction (needs Chad's OK):** exclude likely swapped games from the historical opener
+tables (`BACKTEST.md`) with the pregame rule above (the model and KenPom both 10+ points on the other team). It
+changes no live play.

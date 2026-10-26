@@ -80,3 +80,43 @@ Shared for every idea:
 
 Run 1 is the reported output (`out/e4_run.txt`). The holdout was read once in the same run, which printed
 development and holdout together, as for idea 1.
+
+## 2026-10-26: follow-up, spread edges of 5+ points (pre-registered before running)
+
+Plays: the frozen rule's spread plays against the opener, edge 5+ (comparison bands 2.5-3.5 and 3.5-5), from idea 2's
+construction.
+
+Data-quality checks:
+- **Source of the opener:** the 2014-17 "Opening" pseudo-book; 2024 a multi-book median; 2025-26 a single book.
+  How many books stood behind each opener (2024).
+- **Orientation:** whether the opener was checked against its own moneylines, corrected, or in the uncheckable
+  residue.
+- **Opener-to-close move:** the share of 5+ plays whose consensus close moved 5+ points from the opener. A huge
+  move suggests a stale or wrong opener, or real news.
+- **Same plays at the close:** win % graded at the closing number, and the edge re-measured against the close. If
+  the model still has 5+ points against the close and wins, the opener was not the whole story.
+
+Robustness, recomputed with each exclusion:
+- excluding uncheckable openers;
+- excluding opener-to-close moves of 5+;
+- excluding November;
+- by season.
+
+Calibration:
+- win % by edge band (2.5-3.5, 3.5-5, 5-7, 7+) against the live card's win-chance table (0.5 + 0.0255 x edge,
+  capped at 0.58);
+- a logistic fit of win on edge, on development only, checked on the holdout.
+- **Run 1 (`out/e5_run.txt`):** the largest edges are home/away swaps between the odds data and the game data.
+  The model's margin is about the same size as the line with the opposite sign, and they grade as easy "wins".
+- **Added diagnostic (declared after seeing run 1, so it is a data check, not a pre-registered test):** flag a
+  game as "line likely swapped" when both the model and KenPom disagree with the opener's favourite and each is
+  10+ points from the opener (|model + open| >= 10 and |KenPom + open| >= 10). The rule uses only pregame
+  information; no result or close. Then recount the headline opener results without the flagged games.
+- **Run 2 (`out/e5b_swaps.txt`):**
+  - 67 spread plays flagged as likely swapped; 88% at neutral sites; the result sided with the model in 55 of 67.
+  - All 67 are in the 7+ edge band, and they won 90%.
+  - They were saved in `out/e5_swapped_games.csv` and excluded from runs 3 and 4.
+- **Run 3 (`out/e5c_clean.txt`):** the 5+ checks without the swaps.
+- **Run 4 (`out/e5d_neutral.txt`, declared after run 3):** a looser check for smaller swaps. Neutral-site plays
+  where the model and KenPom both favour the other team are 16% of neutral plays vs 8% at home courts; excluding
+  them, neutral sites still read 60.0% / 59.6%.

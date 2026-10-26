@@ -1,0 +1,17 @@
+both_disagree_fav  False  True 
+neutral                        
+False              0.923  0.077
+True               0.839  0.161
+ neutral  model+KenPom both pick the other favourite       split  bets  win%  win% se  ROI%  ROI% se
+   False                                       False development  2575 56.16     0.94  7.08     1.72
+   False                                       False     holdout  1222 57.61     1.42  9.98     2.71
+   False                                        True development   163 50.31     3.87 -3.90     7.31
+   False                                        True     holdout   152 53.95     4.07  2.99     7.76
+    True                                       False development   499 60.04     2.28 14.30     4.25
+    True                                       False     holdout   193 59.59     3.33 13.75     6.36
+    True                                        True development   101 66.33     4.77 25.83     8.94
+    True                                        True     holdout    32 65.62     8.22 25.28    15.69
+neutral, model/KenPom agree with line favourite development {'bets': 499, 'win%': 60.040983606557376, 'win% se': 2.277218999389542, 'ROI%': 14.301329932592461, 'ROI% se': 4.251883392683745}
+neutral, model/KenPom agree with line favourite holdout {'bets': 193, 'win%': 59.58549222797927, 'win% se': 3.3329047952110176, 'ROI%': 13.754121526142251, 'ROI% se': 6.362818245402849}
+home court, same development {'bets': 2575, 'win%': 56.163297661514065, 'win% se': 0.9380414664821929, 'ROI%': 7.075022065313327, 'ROI% se': 1.7194305516834225}
+home court, same holdout {'bets': 1222, 'win%': 57.61047463175123, 'win% se': 1.4214388050139681, 'ROI%': 9.983633387888707, 'ROI% se': 2.713655900481208}
