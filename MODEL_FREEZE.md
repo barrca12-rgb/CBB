@@ -33,7 +33,7 @@ b01cf85d894b68542db7483c9eec54329156fb619ef4b61385f67931757c4f58  data/barttorvi
 Check at the checkpoint: `sha256sum -c` on the lines above (run_day.py may differ only by non-picking changes, each
 listed below).
 
-## Forward-test declaration (v1.0, Oct 26, 2026, before the first games on Nov 1)
+## Forward-test declaration (v1.1, Oct 26, 2026, before the first games on Nov 1)
 
 The primary forward-test configuration is the live card as it runs on the model files fingerprinted above ("live v1";
 its configuration is spelled out in `FORWARD_TEST_PROTOCOL.md`, section 1). Cohort v1 starts at this freeze commit's
@@ -42,8 +42,8 @@ variants (production backtest, `safe_lag1`, no-Barttorvik, live-like) are resear
 2026-10-26: every model-file fingerprint above still matches (`sha256sum -c`).
 
 ```
-a0f446912cce6dc751f0d42390ea8c3d5be91ab9ae09394ccd9a6537b270868b  FORWARD_TEST_PROTOCOL.md
-db7e223fb94f4c2369249eda8de4a6aa93e2ad75ceaab962aaa3944c5df98231  audit/forward_eval.py
+5aa4d6487a95a7feb5b4b32899b617a3e556dcc707a3eafaf309b38339da63dd  FORWARD_TEST_PROTOCOL.md
+308631d1a1f6d5c923de3256d9043c4247c6fab71e13ab4ec4b985eeca46b422  audit/forward_eval.py
 2531cec9e0509d9f511025f3ad8e36359d4624978f5817be743460c127fc36ca  audit/out/frozen_preseason_prior_2027.csv
 ```
 

@@ -168,6 +168,15 @@ def delay_test(a: pd.DataFrame) -> pd.DataFrame:
                 continue
             rows.append({"bet_id": b["bet_id"], "delay": k, "outcome": "filled", "elapsed_min": (r["t"] - t0).total_seconds() / 60,
                          "line": r["line"], "price": r["price"]})
+        # v1.1 secondary: did ANY book in the frozen set show the logged number or better, available, at the first poll
+        # at least k minutes after the alert (each book's own first observation after t0 + k)
+        anyq = o[(o["game_key"] == f"{b['date']}|{lo}|{hi}") & (o["market"] == b["market"]) & (o["side"] == b["side"])]
+        for k in DELAYS:
+            first = anyq[anyq["t"] >= t0 + pd.Timedelta(minutes=k)].sort_values("t").drop_duplicates("book")
+            ok = first[first["status"] == "available"]
+            better = (ok["line"] >= float(b["line"])) if b["market"] == "spread" or b["side"] == "under" else (ok["line"] <= float(b["line"]))
+            rows.append({"bet_id": b["bet_id"], "delay": k, "outcome": "any book at logged number or better" if better.any()
+                         else ("no book at logged number" if len(first) else "any book: no observation")})
     return pd.DataFrame(rows)
 
 

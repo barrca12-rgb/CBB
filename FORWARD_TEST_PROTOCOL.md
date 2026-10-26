@@ -1,4 +1,4 @@
-# Forward-test protocol, v1.0 (declared Oct 26, 2026, before the season's first games on Nov 1)
+# Forward-test protocol, v1.1 (declared Oct 26, 2026, before the season's first games on Nov 1)
 
 This file fixes how the 2026-27 live record is collected and judged. It is fingerprinted in `MODEL_FREEZE.md`.
 Changing it creates v1.1 with a dated changelog entry. Results already computed are never recomputed under a later
@@ -134,6 +134,8 @@ separate counts:
 
 A quote is never assumed to have stayed available across a gap, a suspension or a missing observation.
 
+Secondary (v1.1): at each delay, whether any of the 7 books was observed available at the logged number or better, using each book's own first observation after that delay. Reported as a share, with "no book at logged number" and "no observation" counted separately.
+
 **If the logging change is not approved and running before a read:** delay results come only from card pulls (about
 10 minutes apart) and are labelled with actual elapsed observation time. No 5-minute claim is made.
 
@@ -199,3 +201,4 @@ doc and to Chad with:
 ## Changelog
 
 - v1.0 (2026-10-26): declared.
+- v1.1 (2026-10-26, before any forward data): adds the secondary any-book delay measure (section 5), from the helpers' response to the audit.

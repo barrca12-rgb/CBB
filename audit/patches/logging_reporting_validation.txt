@@ -96,3 +96,15 @@ Signals, quotes and accepted bets  B excludes 6 signal(s) logged before quote ti
  },
  "opposite-side later signals (flagged)": 1
 }
+
+## 4. Delay test and any-book measure (v1.1), constructed case
+delay-test self-test (signal: DraftKings away +3.5; DK unavailable at +6, FanDuel +3.5 at +6, FanDuel +3 at +16, DK +3 at +20):
+ delay                             outcome  elapsed_min  line
+     5          unavailable at observation          6.0   NaN
+    15                              filled         20.0   3.0
+    30                      no observation          NaN   NaN
+    60                      no observation          NaN   NaN
+     5 any book at logged number or better          NaN   NaN
+    15            no book at logged number          NaN   NaN
+    30            any book: no observation          NaN   NaN
+    60            any book: no observation          NaN   NaN
