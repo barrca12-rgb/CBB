@@ -251,6 +251,8 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame) -> pd.DataFrame:
             r["line_total"] = float(l["total"].median()) if l["total"].notna().any() else np.nan
             if "open_home_spread" in l:
                 r["open_home_spread"] = float(l["open_home_spread"].median()) if l["open_home_spread"].notna().any() else np.nan
+            if "open_total" in l:
+                r["open_total"] = float(l["open_total"].median()) if l["open_total"].notna().any() else np.nan
             # spread: home edge at line s is m + s; away edge is -(m + s)
             sp = _best(l, "spread", {"home": ("home_spread", lambda s_: m + s_, "home_spread_odds"),
                                      "away": ("home_spread", lambda s_: -(m + s_), "away_spread_odds")})
@@ -360,8 +362,21 @@ def attach_logged(card: pd.DataFrame, day: pd.Timestamp) -> pd.DataFrame:
     for mk in ("spread", "total"):
         m = b[b["market"] == mk].drop_duplicates("game_id", keep="last")
         m = m.set_index(m["game_id"].astype(str))
-        for c in ("pick", "side", "line", "book", "odds", "edge", "stake"):
+        for c in ("pick", "side", "line", "book", "odds", "edge", "stake", "placed"):
             card[f"{mk}_logged_{c}"] = gid.map(m[c]) if len(m) else np.nan
+        # the bet as the model sees it now: edge, win chance and EV at the logged number and price
+        now = []
+        for _, g in card.iterrows():
+            side, line = str(g[f"{mk}_logged_side"]).lower(), g[f"{mk}_logged_line"]
+            if pd.isna(line):
+                now.append((np.nan, np.nan, np.nan))
+                continue
+            m_, t = g["model_margin"], g["model_total"]
+            e = (m_ + line if side == "home" else line - m_) if mk == "spread" else (t - line if side == "over" else line - t)
+            slope, cap = WIN_PROB[mk]
+            p = float(min(max(0.5 + slope * e, 1 - cap), cap))
+            now.append((e, p, ev(p, g[f"{mk}_logged_odds"])))
+        card[[f"{mk}_now_edge", f"{mk}_now_p", f"{mk}_now_ev"]] = pd.DataFrame(now, index=card.index)
     return card
 
 
