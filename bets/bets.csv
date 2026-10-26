@@ -3,3 +3,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,odds,book,ed
 2026-11-02|401916313|spread|away,2026-11-02,401916313,spread,Ohio State +1.5,away,252,194,BYU,Ohio State,1.5,-105.0,DraftKings,3.58,-2.08,1.0,,2026-10-26T01:53:02+00:00,,,,,,,,open
 2026-11-02|401921704|spread|home,2026-11-02,401921704,spread,Purdue +4.5,home,2509,2250,Purdue,Gonzaga,4.5,-118.0,DraftKings,2.61,-1.89,1.0,,2026-10-26T02:28:35+00:00,,,,,,,,open
 2026-11-02|401906769|spread|home,2026-11-02,401906769,spread,Florida -5.5,home,57,2390,Florida,Miami,-5.5,-110.0,Caesars,2.53,8.03,1.0,,2026-10-26T02:40:27+00:00,,,,,,,,open
+2026-11-02|401921704|total|under,2026-11-02,401921704,total,Under 156.5,under,2509,2250,Purdue,Gonzaga,156.5,-110.0,DraftKings,3.84,152.66,1.0,,2026-10-26T13:53:44+00:00,,,,,,,,open
