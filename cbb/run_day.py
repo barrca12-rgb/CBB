@@ -12,6 +12,10 @@ Calls, from the 2024-2026 backtest against opening lines (BACKTEST.md):
     spread  edge 3+ points  BET 1u    (58.2% at the opener)     edge 2-3  WATCH
     total   edge 4+ points  BET 1u    (57.5%)                   edge 3-4  WATCH
 
+and at least +2% expected value at the book's price, from the backtest's win rate for that edge (win_prob). The
+book is the one with the best expected value (number and price together); an edge that's there but at a bad price
+is a WATCH.
+
 The edge held against the opener, not the close, so the card is meant to be acted on early: each play shows the
 worst number it's still a play at ("good down to").
 """
@@ -34,6 +38,20 @@ SCOREBOARD = ("https://site.api.espn.com/apis/site/v2/sports/basketball/mens-col
 SPREAD_CALLS = [(3.0, "BET", 1.0)]
 TOTAL_CALLS = [(4.0, "BET", 1.0)]
 WATCH_BELOW = 1.0      # within this many points of a BET: WATCH (becomes a play if the line moves)
+# Win chance by edge against the opener, 2014-2017 and 2024-2026 backtest (capped: bigger edges didn't win more):
+# spreads 54.7% at 2-3 pts, 58.0% at 3-4, flat after; totals 54.2% at 3-4, 56.8-57.3% at 4-6.
+WIN_PROB = {"spread": (0.0255, 0.58), "total": (0.014, 0.565)}
+MIN_EV = 0.02          # a play also needs +2% expected value at the book's price (3-pt spread edge: fine to -125)
+
+
+def win_prob(market: str, edge: float) -> float:
+    slope, cap = WIN_PROB[market]
+    return float(min(max(0.5 + slope * edge, 0.5), cap))
+
+
+def ev(p: float, odds) -> float:
+    o = -110.0 if odds is None or (isinstance(odds, float) and math.isnan(odds)) else float(odds)
+    return p * (o / 100 if o > 0 else 100 / -o) - (1 - p)
 
 
 def season_of(day: pd.Timestamp) -> int:
@@ -115,21 +133,27 @@ def project(day: pd.Timestamp, games: pd.DataFrame) -> tuple[pd.DataFrame, pd.Da
     return f, ratings.table(r)
 
 
-def _best(lines: pd.DataFrame, value_fn, line_col: str):
-    """Best (book, line, edge) for a side: value_fn(line) = edge at that line."""
-    l = lines.dropna(subset=[line_col])
-    if not len(l):
-        return None
-    e = l[line_col].map(value_fn)
-    i = e.idxmax()
-    return l.loc[i], float(e.loc[i])
+def _best(lines: pd.DataFrame, market: str, sides: dict):
+    """Best (side, book row, edge, win prob, EV) across books and both sides, by expected value at each book's
+    price. sides: side -> (line column, edge function of the line, odds column)."""
+    best = None
+    for side, (col, edge_fn, odds_col) in sides.items():
+        for _, row in lines.dropna(subset=[col]).iterrows():
+            e = float(edge_fn(row[col]))
+            if e <= 0:
+                continue
+            p = win_prob(market, e)
+            v = ev(p, row.get(odds_col))
+            if best is None or (v, e) > (best[4], best[2]):
+                best = (side, row, e, p, v)
+    return best
 
 
-def _call(edge: float, calls) -> tuple[str, float]:
-    for thr, name, units in calls:
-        if edge >= thr:
-            return name, units
-    if edge >= calls[-1][0] - WATCH_BELOW:
+def _call(edge: float, value: float, calls) -> tuple[str, float]:
+    thr, name, units = calls[0]
+    if edge >= thr and value >= MIN_EV:
+        return name, units
+    if edge >= thr - WATCH_BELOW:   # close on the number, or there on the number but not the price
         return "WATCH", 0.0
     return "PASS", 0.0
 
@@ -159,24 +183,27 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame) -> pd.DataFrame:
             if "open_home_spread" in l:
                 r["open_home_spread"] = float(l["open_home_spread"].median()) if l["open_home_spread"].notna().any() else np.nan
             # spread: home edge at line s is m + s; away edge is -(m + s)
-            hb, ab = _best(l, lambda s: m + s, "home_spread"), _best(l, lambda s: -(m + s), "home_spread")
-            if hb or ab:
-                side, (row, edge) = ("home", hb) if (hb and (not ab or hb[1] >= ab[1])) else ("away", ab)
-                v, units = _call(edge, SPREAD_CALLS)
+            sp = _best(l, "spread", {"home": ("home_spread", lambda s_: m + s_, "home_spread_odds"),
+                                     "away": ("home_spread", lambda s_: -(m + s_), "away_spread_odds")})
+            if sp:
+                side, row, edge, p, value = sp
+                v, units = _call(edge, value, SPREAD_CALLS)
                 line = row["home_spread"] if side == "home" else -row["home_spread"]
                 thr = SPREAD_CALLS[0][0]
                 r.update(spread_pick=g["home"] if side == "home" else g["away"], spread_side=side, spread_line=line,
                          spread_book=row["book"], spread_odds=row.get(f"{side}_spread_odds"), spread_edge=edge,
-                         spread_link=row.get(f"{side}_spread_link"), spread_verdict=v, spread_units=units,
-                         spread_good_to=(thr - m) if side == "home" else (thr + m))
-            ob, ub = _best(l, lambda x: t - x, "total"), _best(l, lambda x: x - t, "total")
-            if ob or ub:
-                side, (row, edge) = ("over", ob) if (ob and (not ub or ob[1] >= ub[1])) else ("under", ub)
-                v, units = _call(edge, TOTAL_CALLS)
+                         spread_p=p, spread_ev=value, spread_link=row.get(f"{side}_spread_link"), spread_verdict=v,
+                         spread_units=units, spread_good_to=(thr - m) if side == "home" else (thr + m))
+            to = _best(l, "total", {"over": ("total", lambda x: t - x, "over_odds"),
+                                    "under": ("total", lambda x: x - t, "under_odds")})
+            if to:
+                side, row, edge, p, value = to
+                v, units = _call(edge, value, TOTAL_CALLS)
                 thr = TOTAL_CALLS[0][0]
                 r.update(total_pick=side.title(), total_line=row["total"], total_book=row["book"],
-                         total_odds=row.get(f"{side}_odds"), total_edge=edge, total_link=row.get(f"{side}_link"),
-                         total_verdict=v, total_units=units, total_good_to=(t - thr) if side == "over" else (t + thr))
+                         total_odds=row.get(f"{side}_odds"), total_edge=edge, total_p=p, total_ev=value,
+                         total_link=row.get(f"{side}_link"), total_verdict=v, total_units=units,
+                         total_good_to=(t - thr) if side == "over" else (t + thr))
         out.append(r)
     return pd.DataFrame(out)
 

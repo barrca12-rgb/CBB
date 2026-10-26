@@ -72,12 +72,16 @@ def add_features(b: pd.DataFrame, live: dict | None = None) -> pd.DataFrame:
     b["venue"] = (~b["neutral"].astype(bool)).astype(float)
 
     av = live["availability"] if "availability" in live else players.excess_missing(sorted(b["season"].unique()), b)
-    b = b.merge(av.rename(columns={"team_id": "home_id", "excess_missing": "home_missing"})[
-        ["game_id", "home_id", "home_missing"]], on=["game_id", "home_id"], how="left")
-    b = b.merge(av.rename(columns={"team_id": "away_id", "excess_missing": "away_missing"})[
-        ["game_id", "away_id", "away_missing"]], on=["game_id", "away_id"], how="left")
-    b[["home_missing", "away_missing"]] = b[["home_missing", "away_missing"]].fillna(0)
+    if "excess_value" not in av:
+        av = av.assign(excess_value=av["excess_missing"])
+    b = b.merge(av.rename(columns={"team_id": "home_id", "excess_missing": "home_missing", "excess_value": "home_missing_value"})[
+        ["game_id", "home_id", "home_missing", "home_missing_value"]], on=["game_id", "home_id"], how="left")
+    b = b.merge(av.rename(columns={"team_id": "away_id", "excess_missing": "away_missing", "excess_value": "away_missing_value"})[
+        ["game_id", "away_id", "away_missing", "away_missing_value"]], on=["game_id", "away_id"], how="left")
+    cols = ["home_missing", "away_missing", "home_missing_value", "away_missing_value"]
+    b[cols] = b[cols].fillna(0)
     b["miss_diff"] = b["home_missing"] - b["away_missing"]
+    b["miss_value_diff"] = b["home_missing_value"] - b["away_missing_value"]
 
     # "Early": 1 at the start of the season, fading to 0 by ~30 games played per team (about mid-January).
     per_team = b["games_before"] * 2 / 360

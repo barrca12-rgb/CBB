@@ -180,7 +180,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   <div class="kpis" id="kpis"></div>
 
   <section class="panel" aria-labelledby="plays-h">
-    <div class="panel-h"><h2 id="plays-h">Plays</h2><span class="note">Spread edge 3+ pts · total edge 4+ pts · 1 unit each. Take the number shown or better.</span></div>
+    <div class="panel-h"><h2 id="plays-h">Plays</h2><span class="note">Spread edge 3+ pts · total edge 4+ pts · +2% EV at the price · 1 unit each. Win % = backtest rate for that edge.</span></div>
     <div class="scroll"><table id="t-plays"></table></div>
   </section>
 
@@ -250,15 +250,16 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   const P = [];
   D.games.forEach((g) => {
     if (g.spread_verdict === "BET") P.push({g, kind: "Spread", bet: g.spread_pick + " " + ln(g.spread_line), price: g.spread_odds, book: g.spread_book,
-      link: g.spread_link, edge: g.spread_edge, model: g.spread_side === "home" ? ln(-g.model_margin) : ln(g.model_margin), to: ln(g.spread_good_to),
+      link: g.spread_link, edge: g.spread_edge, p: g.spread_p, ev: g.spread_ev, model: g.spread_side === "home" ? ln(-g.model_margin) : ln(g.model_margin), to: ln(g.spread_good_to),
       open: g.open_home_spread == null ? null : ln(g.spread_side === "home" ? g.open_home_spread : -g.open_home_spread), units: g.spread_units});
     if (g.total_verdict === "BET") P.push({g, kind: "Total", bet: g.total_pick + " " + num(g.total_line), price: g.total_odds, book: g.total_book,
-      link: g.total_link, edge: g.total_edge, model: num(g.model_total), to: num(g.total_good_to), open: null, units: g.total_units});
+      link: g.total_link, edge: g.total_edge, p: g.total_p, ev: g.total_ev, model: num(g.model_total), to: num(g.total_good_to), open: null, units: g.total_units});
   });
   P.sort((a, b) => String(a.g.start).localeCompare(String(b.g.start)) || b.edge - a.edge);
-  $("t-plays").innerHTML = P.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r hide-sm'>Model</th><th class='r'>Edge</th><th class='r'>Bet to</th><th class='r hide-sm'>Opened</th><th class='r hide-sm'>Units</th><th></th></tr></thead><tbody>" +
+  $("t-plays").innerHTML = P.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r hide-sm'>Model</th><th class='r'>Edge</th><th class='r hide-sm'>Win %</th><th class='r'>EV</th><th class='r'>Bet to</th><th class='r hide-sm'>Opened</th><th class='r hide-sm'>Units</th><th></th></tr></thead><tbody>" +
     P.map((p) => "<tr><td><div class='b'>" + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + esc(matchup(p.g)) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div></td><td>" +
       esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r m hide-sm'>" + esc(p.model) + "</td><td class='r pos b'>" + sgn(p.edge) +
+      "</td><td class='r m hide-sm'>" + pct(p.p) + "</td><td class='r'>" + (p.ev == null ? "–" : sgn(100 * p.ev) + "%") +
       "</td><td class='r'>" + esc(p.to) + "</td><td class='r m hide-sm'>" + esc(p.open ?? "–") + "</td><td class='r hide-sm'>" + num(p.units, 2) + "</td><td class='r'>" +
       (p.link ? "<a class='betlink' href='" + esc(p.link) + "' target='_blank' rel='noopener'>Bet</a>" : "") + "</td></tr>").join("") + "</tbody>"
     : "<tbody><tr><td class='empty'>" + (withLines ? "No plays. No line is far enough from the model." : "No lines posted yet. Openers usually post the night before.") + "</td></tr></tbody>";

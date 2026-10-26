@@ -16,39 +16,50 @@ from . import data
 data.FILES["player_box"] = "espn_mens_college_basketball_player_boxscores/player_box_{season}.parquet"
 
 
+GAME_SCORE = {"points": 1.0, "field_goals_made": 0.4, "field_goals_attempted": -0.7, "offensive_rebounds": 0.7,
+              "defensive_rebounds": 0.3, "steals": 1.0, "assists": 0.7, "blocks": 0.7, "fouls": -0.4, "turnovers": -1.0}
+
+
 def availability(season: int, upcoming: bool = False, refresh: bool = False) -> pd.DataFrame:
-    """Per team-game `missing`. upcoming=True adds one row per team with game_id 0: the state going into its next
-    game (who missed its most recent one), for live runs."""
+    """Per team-game `missing` (share of the team's minutes so far from players who missed its last game) and
+    `missing_value` (the same, weighted by each player's production: his share of the team's Game Score so far,
+    Hollinger's box-score summary). upcoming=True adds one row per team with game_id 0: the state going into its
+    next game, for live runs."""
     p = data.fetch("player_box", season, refresh)
     p = p[p["athlete_id"].notna()].copy()
     p["min"] = pd.to_numeric(p["minutes"], errors="coerce").fillna(0)
     p["played"] = (p["min"] > 0) & ~p["did_not_play"].fillna(False).astype(bool)
     p["date"] = pd.to_datetime(p["game_date"])
+    num = {c: pd.to_numeric(p[c], errors="coerce").fillna(0) for c in list(GAME_SCORE) + ["free_throws_attempted", "free_throws_made"]}
+    p["gmsc"] = sum(w * num[c] for c, w in GAME_SCORE.items()) - 0.4 * (num["free_throws_attempted"] - num["free_throws_made"])
     p = p.sort_values(["team_id", "date", "game_id"])
     out = []
     for team, tg in p.groupby("team_id", sort=False):
         cum_min: dict = {}
+        cum_val: dict = {}
         cum_games: dict = {}
         team_min = 0.0
         last_played: set = set()
+
+        def state():
+            regulars = [a for a in cum_min if cum_games.get(a, 0) >= 3]
+            tot_val = sum(max(cum_val[a], 0.0) for a in cum_val)
+            missing = sum(cum_min[a] / team_min for a in regulars if a not in last_played) if team_min > 0 and last_played else 0.0
+            value = sum(max(cum_val[a], 0.0) / tot_val for a in regulars if a not in last_played) if tot_val > 0 and last_played else 0.0
+            return missing, value
+
         for gid, g in tg.groupby("game_id", sort=False):
-            missing = 0.0
-            if team_min > 0 and last_played:
-                for a, m in cum_min.items():
-                    if cum_games.get(a, 0) >= 3 and a not in last_played:
-                        missing += m / team_min
-            out.append((int(gid), int(team), missing))
+            out.append((int(gid), int(team), *state()))
             pl = g[g["played"]]
-            for a, m in zip(pl["athlete_id"], pl["min"]):
+            for a, m, v in zip(pl["athlete_id"], pl["min"], pl["gmsc"]):
                 cum_min[a] = cum_min.get(a, 0.0) + m
+                cum_val[a] = cum_val.get(a, 0.0) + v
                 cum_games[a] = cum_games.get(a, 0) + 1
             team_min += pl["min"].sum()
             last_played = set(pl["athlete_id"])
         if upcoming:
-            missing = sum(m / team_min for a, m in cum_min.items()
-                          if team_min > 0 and cum_games.get(a, 0) >= 3 and a not in last_played)
-            out.append((0, int(team), missing))
-    return pd.DataFrame(out, columns=["game_id", "team_id", "missing"])
+            out.append((0, int(team), *state()))
+    return pd.DataFrame(out, columns=["game_id", "team_id", "missing", "missing_value"])
 
 
 def next_excess_missing(season: int) -> pd.DataFrame:
@@ -70,7 +81,7 @@ def load(seasons) -> pd.DataFrame:
     parts = []
     for s in seasons:
         path = os.path.join(data.CACHE, f"availability_{s}.parquet")
-        if not os.path.exists(path):
+        if not os.path.exists(path) or "missing_value" not in pd.read_parquet(path).columns:
             availability(s).to_parquet(path)
         parts.append(pd.read_parquet(path))
     return pd.concat(parts, ignore_index=True)
@@ -80,9 +91,10 @@ def excess_missing(seasons, games: pd.DataFrame) -> pd.DataFrame:
     """`missing` minus the team's own average so far this season: ratings already reflect a team's usual absences,
     so only the extra matters. games: needs game_id and date."""
     a = load(seasons).merge(games[["game_id", "season", "date"]].drop_duplicates(), on="game_id").sort_values("date")
-    typical = a.groupby(["team_id", "season"])["missing"].transform(lambda x: x.shift().expanding().mean())
-    a["excess_missing"] = a["missing"] - typical.fillna(0.06)
-    return a[["game_id", "team_id", "missing", "excess_missing"]]
+    grp = a.groupby(["team_id", "season"])
+    a["excess_missing"] = a["missing"] - grp["missing"].transform(lambda x: x.shift().expanding().mean()).fillna(0.06)
+    a["excess_value"] = a["missing_value"] - grp["missing_value"].transform(lambda x: x.shift().expanding().mean()).fillna(0.05)
+    return a[["game_id", "team_id", "missing", "excess_missing", "missing_value", "excess_value"]]
 
 
 def roster_features(season: int) -> pd.DataFrame:
