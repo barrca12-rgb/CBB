@@ -55,6 +55,18 @@ listed and what each moves the projection. Every report is logged to `injuries/l
 of the effect is conservative (about 1 point for a player with 17% of team minutes) until a season of logs and CLV
 says otherwise.
 
+**Injury sources** (`cbb/injury_sources.py`): every run also pulls RotoWire, Covers, CBS Sports and Action Network
+alongside ESPN and records when each one first shows each player's status (`injuries/sources/first_seen.csv`, good to
+one 30-minute run), plus a health row per source per pull. `injuries/sources/timing.md` scores them on injuries that
+matter (Out / Doubtful / Questionable, 10%+ of team minutes): who had it first, and who had it before the spread moved
+1+ point against the team at any book (`lines/moves.csv`). After 7 game days with 30+ such injuries matched to a move
+(or 14 game days), the model's injury input switches once to the source that beat the move most often; ESPN keeps it
+on a tie, and a source must match 85%+ of its players to ESPN ids. The pick is saved in `injuries/sources/choice.json`
+(edit to override). Only the source changes: P(miss) by status, the missing-minutes weight and the bet rules don't.
+If the chosen source fails on a run, the model uses ESPN for that run. A team name a source spells differently shows
+up as unmatched in `timing.md`; add it to `data/team_aliases.csv` with that source's name (rotowire, covers, cbs,
+action).
+
 **Tracker** (`cbb/tracker.py`, like the NFL model's): every run grades earlier bets, logs today's BETs in
 `bets/bets.csv` at the number they first appeared, and shows the record, ROI and closing line value on the card.
 Stakes scale down automatically if a market's live win rate slides toward break-even. Edit `bets/bets.csv` to the

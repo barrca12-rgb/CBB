@@ -38,11 +38,16 @@ THREE_LUCK = 0.35
 FT_WEIGHT = 0.475
 
 
+_REFRESHED: set[str] = set()
+
+
 def fetch(kind: str, season: int, refresh: bool = False) -> pd.DataFrame:
-    """One season of a hoopR file, downloaded once and cached in cbb/cache/."""
+    """One season of a hoopR file, downloaded once and cached in cbb/cache/. refresh re-downloads it, at most once
+    per process."""
     rel = FILES[kind].format(season=season)
     path = os.path.join(CACHE, os.path.basename(rel))
-    if refresh or not os.path.exists(path):
+    if (refresh and path not in _REFRESHED) or not os.path.exists(path):
+        _REFRESHED.add(path)
         os.makedirs(CACHE, exist_ok=True)
         req = urllib.request.Request(f"{RELEASES}/{rel}", headers={"User-Agent": "cbb-model"})
         with urllib.request.urlopen(req, timeout=120) as r, open(path + ".tmp", "wb") as f:

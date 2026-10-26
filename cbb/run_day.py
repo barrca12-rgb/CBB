@@ -32,8 +32,8 @@ import urllib.request
 import numpy as np
 import pandas as pd
 
-from . import (backtest, context, data, injuries, kenpom, notify, odds, players, projection, ratings, report_html, review,
-               teams, tracker)
+from . import (backtest, context, data, injuries, injury_sources, kenpom, notify, odds, players, projection, ratings,
+               report_html, review, teams, tracker)
 
 REPORTS = os.path.join(os.path.dirname(__file__), "..", "reports")
 SCOREBOARD = ("https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard"
@@ -267,6 +267,11 @@ def main():
         day += pd.Timedelta(days=1)
     if not (os.environ.get("KENPOM_API_KEY") or os.path.isdir(kenpom.CACHE)):
         raise SystemExit("KENPOM_API_KEY is not set (add it as a repository secret for the scheduled runs).")
+    if not a.replay:   # every run, games or not: which outlet reports each injury first (injury_sources.py)
+        try:
+            injury_sources.log_all()
+        except Exception as e:
+            print(f"Injury source logger failed ({e}); continuing.")
     games = slate(day)
     if a.auto and not a.date:   # off day (or preseason): show the next day with games, up to two weeks out
         for _ in range(14):

@@ -13,40 +13,29 @@ injuries/log.csv, so after a few weeks the guesses can be checked against who ac
 The size of the effect is conservative: the -6 weight was learned from "missed the last game", which includes
 players who come right back, so a confirmed absence is probably worth more (a star at 17% of minutes moves the
 projection about 1 point; the market often moves 2-4). Calibrate once a season of logs and CLV exists.
+
+The report comes from injury_sources.py, which pulls ESPN, RotoWire, Covers, CBS and Action Network every run and,
+after 1-2 weeks of games, picks the one that reports injuries before the line moves most often. ESPN until then.
 """
 from __future__ import annotations
 
-import json
 import os
-import re
-import urllib.request
 
 import pandas as pd
 
 from . import data
 
-URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/injuries"
 LOG = os.path.join(os.path.dirname(__file__), "..", "injuries", "log.csv")
 P_MISS = {"out": 1.0, "doubtful": 0.75, "questionable": 0.4, "day-to-day": 0.35, "probable": 0.1}
 
 
 def fetch() -> pd.DataFrame:
-    """Current report: team_id, athlete_id, player, status, p_miss, date, comment. Logged to injuries/log.csv."""
-    req = urllib.request.Request(URL, headers={"User-Agent": "cbb-model"})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        d = json.load(r)
-    rows = []
-    for t in d.get("injuries") or []:
-        for i in t.get("injuries") or []:
-            a = i.get("athlete") or {}
-            href = next((l.get("href", "") for l in a.get("links") or [] if "/id/" in l.get("href", "")), "")
-            m = re.search(r"/id/(\d+)", href)
-            status = str(i.get("status", ""))
-            rows.append({"team_id": int(t["id"]), "athlete_id": float(m.group(1)) if m else None,
-                         "player": a.get("displayName"), "status": status,
-                         "p_miss": P_MISS.get(status.lower(), 0.5), "date": i.get("date"),
-                         "comment": i.get("shortComment") or ""})
-    inj = pd.DataFrame(rows, columns=["team_id", "athlete_id", "player", "status", "p_miss", "date", "comment"])
+    """Current report: team_id, athlete_id, player, status, p_miss, date, comment. ESPN's is logged to
+    injuries/log.csv every run. The model uses the source in injuries/sources/choice.json (injury_sources.py picks the
+    fastest after 1-2 weeks of games; ESPN until then), falling back to ESPN if that source fails this run."""
+    from . import injury_sources
+    esp = injury_sources.report("espn")
+    inj = _model_rows(esp)
     if len(inj):
         os.makedirs(os.path.dirname(LOG), exist_ok=True)
         log = inj.assign(pulled_at=pd.Timestamp.now(tz="UTC").isoformat(timespec="seconds"))
@@ -55,12 +44,43 @@ def fetch() -> pd.DataFrame:
             key = lambda x: x["athlete_id"].astype(str) + "|" + x["status"].astype(str) + "|" + x["date"].astype(str)
             log = pd.concat([old, log[~key(log).isin(set(key(old)))]], ignore_index=True)
         log.to_csv(LOG, index=False)
+    src = injury_sources.choice()
+    if src != "espn":
+        alt = injury_sources.report(src)
+        if alt is not None and (len(alt) or esp is None or not len(esp)):   # empty while ESPN isn't: broken parser
+            return _model_rows(alt, normalized=True)
+        print(f"Injury source {src} failed this run; using ESPN.")
+    if esp is None:
+        raise RuntimeError("ESPN injury feed unavailable")
     return inj
+
+
+def _model_rows(df: pd.DataFrame | None, normalized: bool = False) -> pd.DataFrame:
+    """injury_sources' report -> the model's columns. ESPN keeps its own status words (as logged since October);
+    other outlets use the normalized status, which uses the same P_MISS keys."""
+    cols = ["team_id", "athlete_id", "player", "status", "p_miss", "date", "comment"]
+    if df is None or not len(df):
+        return pd.DataFrame(columns=cols)
+    d = df[df["team_id"].notna()].copy()
+    d["status"] = d["status"].str.title() if normalized else d["status_raw"].astype(str)
+    d["p_miss"] = d["status"].str.lower().map(P_MISS).fillna(0.5)
+    d = d.assign(team_id=d["team_id"].astype(int), athlete_id=pd.to_numeric(d["athlete_id"], errors="coerce"),
+                 date=d["source_date"], comment=d["comment"].fillna(""))
+    return d[cols].reset_index(drop=True)
+
+
+_SHARES: dict[int, pd.DataFrame] = {}
 
 
 def shares(season: int) -> pd.DataFrame:
     """Each player's share of his team's minutes (this season, else last season on the same team) and whether he
-    played in the team's most recent game: team_id, athlete_id, share, played_last."""
+    played in the team's most recent game: team_id, athlete_id, share, played_last. Computed once per run."""
+    if season not in _SHARES:
+        _SHARES[season] = _shares(season)
+    return _SHARES[season]
+
+
+def _shares(season: int) -> pd.DataFrame:
     out = []
     for s, current in ((season, True), (season - 1, False)):
         try:
