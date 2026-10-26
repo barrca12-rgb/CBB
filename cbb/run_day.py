@@ -328,7 +328,12 @@ def build(day: pd.Timestamp, games: pd.DataFrame, lines: pd.DataFrame | None, re
         except Exception as e:
             print(f"Loss review failed ({e}); continuing.")
             rv = {}
-        record = {"status": tracker.status(), "recent": tracker.recent(), "review": rv}
+        try:
+            trip = tracker.check_tripwires()
+        except Exception as e:
+            print(f"Tripwire check failed ({e}); continuing.")
+            trip = None
+        record = {"status": tracker.status(), "recent": tracker.recent(), "review": rv, "tripwire": trip}
     os.makedirs(REPORTS, exist_ok=True)
     stem = os.path.join(REPORTS, f"cbb_{day:%Y-%m-%d}")
     card.drop(columns=["book_lines"]).to_csv(stem + ".csv", index=False)

@@ -43,7 +43,8 @@ def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, 
            t[["rank", "team", "net", "adj_oe", "adj_de", "adj_tempo"]].to_dict("records")]
     data = {"date": f"{day:%Y-%m-%d}", "season": season, "replay": replay, "repo": REPO, "nfl": NFL_SITE,
             "generated_at": pd.Timestamp.now(tz="UTC").isoformat(timespec="seconds"), "games": games, "ratings": rat,
-            "record": {"status": record["status"], "recent": [{k: _clean(v) for k, v in r.items()} for r in record["recent"]],
+            "record": {"status": record["status"], "tripwire": record.get("tripwire"),
+                       "recent": [{k: _clean(v) for k, v in r.items()} for r in record["recent"]],
                        "review": json.loads(json.dumps(record.get("review") or {}, default=_clean))}
             if record else None}
     payload = json.dumps(data).replace("</", "<\\/")
@@ -287,6 +288,11 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     ["Spreads", rec(st && st.spread) + "<small>" + (st && st.spread.win != null ? pct(st.spread.win) : "") + "</small>"],
     ["Totals", rec(st && st.total) + "<small>" + (st && st.total.win != null ? pct(st.total.win) : "") + "</small>"],
     ["Units", "<span class='" + (units > 0 ? "pos" : units < 0 ? "neg" : "") + "'>" + sgn(units, 2) + "</span>"],
+    ["Model check", (() => { const t = D.record && D.record.tripwire; if (!t) return "–";
+      const m = t.model, e = t.execution;
+      const lab = m.state === "collecting" ? "Collecting<small>" + m.n + "/150 bets</small>"
+        : "<span class='" + (m.state === "ok" ? "pos" : "neg") + "'>" + {ok: "OK", review: "Review", pause: "Pause"}[m.state] + "</span><small>CLV " + sgn(m.clv, 2) + "</small>";
+      return lab + (e.state === "review" ? "<small class='neg'> · slippage " + sgn(e.slip, 2) + "</small>" : ""); })()],
     ["Avg CLV", clvs.length ? sgn(clvs.reduce((s, x) => s + x.clv_pts * x.bets, 0) / clvs.reduce((s, x) => s + x.bets, 0), 2) + "<small>pts</small>" : "–"]];
   $("kpis").innerHTML = kp.map(([k, v]) => "<div class='kpi'><div class='k'>" + k + "</div><div class='v'>" + v + "</div></div>").join("");
 

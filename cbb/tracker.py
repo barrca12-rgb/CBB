@@ -37,7 +37,7 @@ BREAKEVEN = 110 / 210
 PRIOR_BETS = 100
 MIN_CLV_BETS = 25
 CLV_TARGET = 0.5 * (2 * BREAKEVEN - 1)
-COLS = ["bet_id", "date", "game_id", "market", "pick", "side", "home_id", "away_id", "home", "away", "line", "odds",
+COLS = ["bet_id", "date", "game_id", "market", "pick", "side", "home_id", "away_id", "home", "away", "line", "alert_line", "odds",
         "book", "edge", "model", "stake", "placed", "logged_at", "close_line", "clv_pts", "clv_prob", "home_score",
         "away_score", "result", "profit", "status"]
 
@@ -46,6 +46,8 @@ def load() -> pd.DataFrame:
     if not os.path.exists(BETS):
         return pd.DataFrame(columns=COLS)
     b = pd.read_csv(BETS, dtype={"bet_id": str, "result": str, "status": str, "placed": str, "side": str})
+    if "alert_line" not in b:   # bets logged before Oct 26 2026: the logged line is the alerted one
+        b["alert_line"] = b["line"]
     return b.reindex(columns=COLS)
 
 
@@ -81,7 +83,7 @@ def log(card: pd.DataFrame, day: pd.Timestamp, stakes: dict | None = None) -> li
             new.append({"bet_id": bid, "date": f"{day:%Y-%m-%d}", "game_id": int(g["game_id"]), "market": mk,
                         "pick": f"{g[mk + '_pick']} {g[mk + '_line']:+g}" if mk == "spread" else f"{g['total_pick']} {g['total_line']:g}",
                         "side": side, "home_id": int(g["home_id"]), "away_id": int(g["away_id"]), "home": g["home"],
-                        "away": g["away"], "line": g[f"{mk}_line"], "odds": g.get(f"{mk}_odds"), "book": g.get(f"{mk}_book"),
+                        "away": g["away"], "line": g[f"{mk}_line"], "alert_line": g[f"{mk}_line"], "odds": g.get(f"{mk}_odds"), "book": g.get(f"{mk}_book"),
                         "edge": round(float(g[f"{mk}_edge"]), 2),
                         "model": round(float(g["model_margin"] if mk == "spread" else g["model_total"]), 2),
                         "stake": stakes.get(mk, 1.0), "placed": "", "logged_at": now, "status": "open"})
@@ -176,6 +178,67 @@ def status(b: pd.DataFrame | None = None) -> dict:
                    "beat_close": round(float((clv > 0).mean()), 3) if len(clv) else None,
                    "multiplier": round(mult, 2), "open": int(((b["market"] == mk) & (b["status"] == "open")).sum())}
     return out
+
+
+# Tripwires (helpers' Round 4 answer, adopted Oct 2026): judged on CLV, never on win rate.
+#   model:      trailing 150 settled bets, mean CLV under +0.4 points -> review the projection; under 0 -> pause
+#               (historical opener plays averaged about +1.0 to +1.3 with a standard error near 0.12 at 150 bets)
+#   execution:  trailing 50 placed bets, the number you got averages 0.5+ points worse than the alerted number ->
+#               review alerts and book coverage (needs `line` edited to the number actually bet; `alert_line` keeps
+#               the alerted one)
+# They only alert (phone + card); nothing stops automatically.
+TRIP_MODEL_N, TRIP_REVIEW, TRIP_PAUSE = 150, 0.4, 0.0
+TRIP_EXEC_N, TRIP_SLIP = 50, 0.5
+TRIP_STATE = os.path.join(ROOT, "bets", "tripwire.json")
+
+
+def _slippage(b: pd.DataFrame) -> pd.Series:
+    """Points worse than the alert (+ = worse) for each bet: spreads and unders want a higher number, overs lower."""
+    line, alert = pd.to_numeric(b["line"], errors="coerce"), pd.to_numeric(b["alert_line"], errors="coerce")
+    worse_if_lower = (b["market"] == "spread") | (b["side"].astype(str) == "under")
+    return np.where(worse_if_lower, alert - line, line - alert)
+
+
+def tripwires(b: pd.DataFrame | None = None) -> dict:
+    b = load() if b is None else b
+    s = b[b["status"] == "settled"].sort_values(["date", "logged_at"])
+    clv = pd.to_numeric(s["clv_pts"], errors="coerce").dropna().tail(TRIP_MODEL_N)
+    m = {"n": int(len(clv)), "clv": round(float(clv.mean()), 2) if len(clv) else None}
+    m["state"] = ("collecting" if len(clv) < TRIP_MODEL_N else "pause" if clv.mean() < TRIP_PAUSE
+                  else "review" if clv.mean() < TRIP_REVIEW else "ok")
+    p = b[(b["placed"].astype(str).str.lower() != "no") & b.get("alert_line", pd.Series(dtype=float)).notna()]
+    p = p.sort_values(["date", "logged_at"]).tail(TRIP_EXEC_N)
+    slip = pd.Series(_slippage(p)).dropna() if len(p) else pd.Series(dtype=float)
+    e = {"n": int(len(slip)), "slip": round(float(slip.mean()), 2) if len(slip) else None}
+    e["state"] = "collecting" if len(slip) < TRIP_EXEC_N else "review" if slip.mean() >= TRIP_SLIP else "ok"
+    return {"model": m, "execution": e}
+
+
+def check_tripwires() -> dict:
+    """Compute the tripwires and send a phone alert when either changes state (into or out of review/pause)."""
+    import json
+    t = tripwires()
+    old = {}
+    if os.path.exists(TRIP_STATE):
+        with open(TRIP_STATE) as fh:
+            old = json.load(fh)
+    msgs = []
+    if t["model"]["state"] != old.get("model") and t["model"]["state"] in ("review", "pause", "ok") and old.get("model"):
+        m = t["model"]
+        msgs.append({"review": f"Model review: last {m['n']} bets average {m['clv']:+.2f} pts CLV (under +{TRIP_REVIEW}).",
+                     "pause": f"PAUSE opener bets: last {m['n']} bets average {m['clv']:+.2f} pts CLV (under 0).",
+                     "ok": f"Model check back to OK: last {m['n']} bets average {m['clv']:+.2f} pts CLV."}[m["state"]])
+    if t["execution"]["state"] != old.get("execution") and t["execution"]["state"] in ("review", "ok") and old.get("execution"):
+        e = t["execution"]
+        msgs.append(f"Execution review: last {e['n']} bets got {e['slip']:+.2f} pts worse than the alert on average."
+                    if e["state"] == "review" else f"Execution back to OK: slippage {e['slip']:+.2f} pts.")
+    if msgs:
+        from . import notify
+        notify.message("CBB: tripwire", " ".join(msgs))
+        print("Tripwire:", " ".join(msgs))
+    with open(TRIP_STATE, "w") as fh:
+        json.dump({"model": t["model"]["state"], "execution": t["execution"]["state"]}, fh)
+    return t
 
 
 def recent(n: int = 30) -> list[dict]:
