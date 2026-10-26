@@ -127,6 +127,7 @@ def _team_id(name, lookup: dict[str, int]):
 
 
 _ROSTER: dict[tuple[int, str], float] | None = None
+_BY_NAME: dict[str, float] = {}     # player_key -> athlete id, for names only one player has (transfers before game 1)
 
 
 def _roster() -> dict[tuple[int, str], float]:
@@ -147,6 +148,10 @@ def _roster() -> dict[tuple[int, str], float]:
                 continue
             for t, n, a in zip(p["team_id"], name, p["athlete_id"]):
                 _ROSTER[(int(t), player_key(n))] = float(a)
+        ids: dict[str, set] = {}
+        for (_, k), a in _ROSTER.items():
+            ids.setdefault(k, set()).add(a)
+        _BY_NAME.update({k: next(iter(v)) for k, v in ids.items() if len(v) == 1})
     return _ROSTER
 
 
@@ -159,10 +164,15 @@ def _get(url: str, timeout: int = 30) -> str:
         return r.read().decode("utf-8", errors="replace")
 
 
+def _clean(x) -> str:
+    """Text without HTML tags or RotoWire's paywall notes."""
+    x = re.sub(r"<[^>]+>", " ", str(x or "")).replace("Subscribers Only", "")
+    return " ".join(x.split())
+
+
 def _row(team, player, status, comment="", source_date="", athlete_id=None, team_id=None) -> dict:
-    return {"team": team, "team_id": team_id, "player": " ".join(str(player or "").split()), "status_raw": status,
-            "comment": " ".join(str(comment or "").split())[:200], "source_date": str(source_date or ""),
-            "athlete_id": athlete_id}
+    return {"team": team, "team_id": team_id, "player": _clean(player), "status_raw": _clean(status),
+            "comment": _clean(comment)[:200], "source_date": _clean(source_date), "athlete_id": athlete_id}
 
 
 def parse_espn(text: str) -> list[dict]:
@@ -289,7 +299,7 @@ def fetch(source: str) -> tuple[pd.DataFrame, str]:
     df["team_id"] = [t if pd.notna(t) else _team_id(n, lookup) for t, n in zip(df["team_id"], df["team"])]
     df["player_key"] = df["player"].map(player_key)
     ro = _roster()
-    df["athlete_id"] = [a if pd.notna(a) else (ro.get((int(t), k)) if pd.notna(t) else None)
+    df["athlete_id"] = [a if pd.notna(a) else ((ro.get((int(t), k)) if pd.notna(t) else None) or _BY_NAME.get(k))
                         for a, t, k in zip(df["athlete_id"], df["team_id"], df["player_key"])]
     df["status"] = df["status_raw"].map(norm_status)
     df["source"] = source
@@ -301,12 +311,16 @@ def fetch(source: str) -> tuple[pd.DataFrame, str]:
 
 def _append(path: str, df: pd.DataFrame):
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    df.to_csv(path, mode="a", header=not os.path.exists(path), index=False)
+    if os.path.exists(path) and list(pd.read_csv(path, nrows=0).columns) != list(df.columns):   # a column was added
+        pd.concat([pd.read_csv(path), df], ignore_index=True).to_csv(path, index=False)
+    else:
+        df.to_csv(path, mode="a", header=not os.path.exists(path), index=False)
 
 
 def _save_raw(source: str, text: str, now: pd.Timestamp):
-    """Keep a page that parsed to nothing (once a day per source) so the parser can be fixed offline. The save time is
-    the file's first line (a fresh checkout resets file times)."""
+    """Keep a page that parsed to nothing (once a day per source) so the parser can be fixed offline: styles, SVGs
+    and scripts other than embedded JSON are dropped so the content fits. The save time is the file's first line (a
+    fresh checkout resets file times)."""
     path = os.path.join(DIR, "raw", f"{source}.txt")
     try:
         with open(path) as fh:
@@ -314,6 +328,9 @@ def _save_raw(source: str, text: str, now: pd.Timestamp):
                 return
     except (OSError, ValueError):
         pass
+    text = re.sub(r"<style.*?</style>|<svg.*?</svg>|<script(?![^>]*(?:__NEXT_DATA__|application/(?:ld\+)?json))[^>]*>.*?</script>",
+                  "", text, flags=re.S | re.I)
+    text = re.sub(r"\n\s*\n+", "\n", text)
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w") as fh:
         fh.write(f"# {URLS[source]} saved {now.isoformat()}\n" + text[:400_000])
@@ -334,12 +351,13 @@ def log_all(now: pd.Timestamp | None = None) -> dict[str, pd.DataFrame]:
         t0 = time.time()
         try:
             df, text = fetch(src)
-            if not len(df) and len(text) > 5000:
+            if not len(df):
                 _save_raw(src, text, now)
             err = ""
         except Exception as e:
             df, err = None, f"{type(e).__name__}: {e}"[:300]
         h = {"pulled_at": stamp, "source": src, "ok": df is not None, "rows": 0 if df is None else len(df),
+             "bytes": len(text) if df is not None else 0,
              "teams_matched": None, "players_matched": None, "unmatched_teams": "", "error": err,
              "seconds": round(time.time() - t0, 1)}
         if df is not None:
