@@ -1,0 +1,37 @@
+# Bookmaker key check (cbb/research_books.py): which books The Odds API returns for college basketball, about 2 credits. Runs when data/research/books_request.txt changes, or from the Actions tab.
+name: Research check (bookmaker keys)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [claude/college-basketball-model-nmztcl, main]
+    paths:
+      - "data/research/books_request.txt"
+
+permissions:
+  contents: write
+
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - run: pip install -r requirements.txt
+      - name: List bookmakers
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: python -m cbb.research_books
+      - name: Save the result
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898+github-actions[bot]@users.noreply.github.com"
+          git add -A data/research
+          git diff --cached --quiet || git commit -m "Research: bookmaker key check ($(date -u +'%Y-%m-%d %H:%M') UTC)"
+          git pull --rebase -X theirs origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}"
