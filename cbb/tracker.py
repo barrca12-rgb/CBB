@@ -22,6 +22,7 @@ and it's capped at 0.5 if a market averages negative CLV after 25 bets.
 """
 from __future__ import annotations
 
+import json
 import math
 import os
 
@@ -154,6 +155,30 @@ def settle(scores: pd.DataFrame | None = None) -> int:
     if n:
         save(b)
     return n
+
+
+VOID_ALERTED = os.path.join(ROOT, "bets", "void_alerted.json")
+
+
+def alert_voided() -> int:
+    """One phone alert per voided bet (status "void") not yet announced: the play was alerted, then cancelled.
+    Returns alerts sent; a bet is marked announced only when its alert goes out."""
+    from . import notify
+    b = load()
+    v = b[b["status"] == "void"]
+    done = set(json.load(open(VOID_ALERTED))) if os.path.exists(VOID_ALERTED) else set()
+    v = v[~v["bet_id"].isin(done)]
+    sent = 0
+    for _, r in v.iterrows():
+        body = (f"CANCELLED: {r['pick']} ({r['away']} at {r['home']}, {r['date']}) is not a play. Don't bet it. "
+                f"If you already did, tell Claude and it goes back on the record.")
+        if notify.message(f"CBB play cancelled: {r['pick']}", body):
+            done.add(r["bet_id"])
+            sent += 1
+    if sent:
+        with open(VOID_ALERTED, "w") as fh:
+            json.dump(sorted(done), fh)
+    return sent
 
 
 def status(b: pd.DataFrame | None = None) -> dict:

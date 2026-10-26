@@ -333,6 +333,12 @@ def main():
         tracker.settle()
     except Exception as e:
         print(f"Settling bets failed ({e}); continuing.")
+    try:
+        n = tracker.alert_voided()
+        if n:
+            print(f"Sent {n} cancellation alert(s).")
+    except Exception as e:
+        print(f"Cancellation alerts failed ({e}); continuing.")
     build(day, games, lines)
     if a.auto and not a.date and len(lines):
         # books open some games days ahead: give each later day that already has lines its own card
