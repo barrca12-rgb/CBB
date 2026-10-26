@@ -31,14 +31,15 @@ players, market ratings from earlier closing lines, altitude, and referee crews.
 
 | | Result | Bets |
 |---|---:|---:|
-| **ATS vs opening line, edge 3+, 2024-2026** | **58.6%** | 1,220 |
-| **Over/under vs opening line, edge 4+, 2024-2026** (crew unknown at the open: 57.4% without referees) | 60.4% | 2,133 |
-| ATS vs closing line, edge 3+, 2020-2026 | 53.0% | 3,346 |
-| **Over/under vs closing line, edge 4+, 2020-2026** | **54.4%** | 5,965 |
+| **ATS vs opening line, edge 3+, 2024-2026** | **58.7%** | 1,228 |
+| **Over/under vs opening line, edge 4+, 2024-2026** (crew unknown at the open: 57.4% without referees) | 60.1% | 2,142 |
+| ATS vs closing line, edge 3+, 2020-2026 | 53.1% | 3,338 |
+| **Over/under vs closing line, edge 4+, 2020-2026** | **54.3%** | 5,952 |
 | Average miss on margin, 2020-2026 (model / closing line) | 8.88 / 8.84 | |
 | Average miss on total, 2020-2026 (model / closing line) | 13.08 / 13.00 | |
 
-Break-even at -110 is 52.4%.
+Break-even at -110 is 52.4%. Closing lines exclude projection services listed as books (accuscore and others, Oct
+2026 cleanup). Neutral-site spreads bet from 2.5 points live (see run_day.py).
 
 * **Opening lines are the edge** on spreads and totals. Referee crews usually aren't posted when openers are, so
   the realistic opener number for totals is ~57.4%.

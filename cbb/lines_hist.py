@@ -36,7 +36,10 @@ OUT = os.path.join(os.path.dirname(__file__), "..", "data", "lines")
 # Projection sites and aggregates, not sportsbooks. numberfire stores 0 for a missing line, and teamrankings tracks
 # results more closely than any book (likely updated after the close), so neither is a usable closing line. 2013
 # has only these, so the betting backtest starts in 2014.
-NOT_BOOKS = {"consensus", "numberfire", "teamrankings"}
+# Projection services and internal feeds that ESPN lists like books. accuscore alone has ~5,400 games a season from
+# 2019 and moved the median closing line by half a point or more in up to 2.6% of games.
+NOT_BOOKS = {"consensus", "numberfire", "teamrankings", "accuscore", "Fantasy911.com", "betegy",
+             "Sportradar Internal Odds(ISE)", "unknown"}
 COLS = ["game_id", "book", "home_spread", "total", "home_ml", "away_ml", "open_home_spread", "open_total"]
 
 

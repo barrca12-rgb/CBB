@@ -11,6 +11,7 @@ Writes reports/cbb_<date>.html (the bet card), reports/cbb_<date>.csv (every num
 Calls, from the 2024-2026 backtest against opening lines (BACKTEST.md):
 
     spread  edge 3+ points  BET 1u    (58.6% at the opener)     edge 2-3  WATCH
+            neutral site 2.5+ points  BET 1u                      edge 1.5-2.5  WATCH
     total   edge 4+ points  BET 1u    (57.5%)                   edge 3-4  WATCH
 
 and at least +2% expected value at the book's price, from the backtest's win rate for that edge (win_prob). The
@@ -38,6 +39,10 @@ REPORTS = os.path.join(os.path.dirname(__file__), "..", "reports")
 SCOREBOARD = ("https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard"
               "?dates={}&groups=50&limit=500")
 SPREAD_CALLS = [(3.0, "BET", 1.0)]
+# Neutral sites (mostly November events and March): the spread edge held up better in every sample, so they bet from
+# 2.5. The added 2.5-3 point plays won 58.7% at the opener 2014-2017 (143) and 63.0% 2024-2026 (127); 56.0% at the
+# close 2014-2019 (168) but 48.3% 2020-2026 (267).
+NEUTRAL_SPREAD_CALLS = [(2.5, "BET", 1.0)]
 TOTAL_CALLS = [(4.0, "BET", 1.0)]
 WATCH_BELOW = 1.0      # within this many points of a BET: WATCH (becomes a play if the line moves)
 # Win chance by edge against the opener, 2014-2017 and 2024-2026 backtest (capped: bigger edges didn't win more):
@@ -213,9 +218,10 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame) -> pd.DataFrame:
                                      "away": ("home_spread", lambda s_: -(m + s_), "away_spread_odds")})
             if sp:
                 side, row, edge, p, value = sp
-                v, units = _call(edge, value, SPREAD_CALLS)
+                calls = NEUTRAL_SPREAD_CALLS if bool(g.get("neutral")) else SPREAD_CALLS
+                v, units = _call(edge, value, calls)
                 line = row["home_spread"] if side == "home" else -row["home_spread"]
-                thr = SPREAD_CALLS[0][0]
+                thr = calls[0][0]
                 r.update(spread_pick=g["home"] if side == "home" else g["away"], spread_side=side, spread_line=line,
                          spread_book=row["book"], spread_odds=row.get(f"{side}_spread_odds"), spread_edge=edge,
                          spread_p=p, spread_ev=value, spread_link=row.get(f"{side}_spread_link"), spread_verdict=v,
