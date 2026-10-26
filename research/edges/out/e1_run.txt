@@ -1,0 +1,38 @@
+close done
+open done
+  era pricing  EV min                   split  primary  bets  win%  win% se  ROI%  ROI% se  avg price
+close    best    0.05             development     True 23456 40.55     0.39  3.01     1.37     155.00
+close    best    0.05 development: favourites    False  7021 65.92     0.59  2.04     0.93    -170.00
+close    best    0.05  development: underdogs    False 16435 29.71     0.39  3.42     1.86     235.00
+close    best    0.05                 holdout     True  3516 38.25     0.85 -4.94     2.82     155.00
+close    best    0.05     holdout: favourites    False  1047 61.51     1.40 -1.76     2.29    -155.00
+close    best    0.05      holdout: underdogs    False  2469 28.39     0.97 -6.29     3.93     240.00
+close    best    0.02             development    False 32228 45.48     0.37  1.75     1.03     130.00
+close    best    0.02                 holdout    False  4990 42.46     0.72 -3.14     2.21     130.00
+close    best    0.10             development    False 14411 34.35     0.48  3.75     2.01     205.00
+close    best    0.10                 holdout    False  1934 31.23     1.08 -8.68     4.03     220.00
+close  median    0.05             development    False 16530 40.00     0.44 -0.70     1.45     150.00
+close  median    0.05                 holdout    False  3505 38.32     0.85 -4.88     2.82     155.00
+close  median    0.02             development    False 23819 45.11     0.39 -0.99     1.07     125.00
+close  median    0.02                 holdout    False  4974 42.46     0.72 -3.15     2.20     130.00
+close  median    0.10             development    False  9419 34.48     0.52  2.56     2.26     195.00
+close  median    0.10                 holdout    False  1920 31.25     1.08 -8.73     4.02     220.00
+ open    best    0.05             development     True  3023 46.08     0.99  3.41     2.83     120.00
+ open    best    0.05 development: favourites    False  1306 67.84     1.21  5.34     1.76    -170.00
+ open    best    0.05  development: underdogs    False  1717 29.53     1.03  1.95     4.89     240.00
+ open    best    0.05                 holdout     True  3351 46.76     0.88  0.79     2.32     114.00
+ open    best    0.05     holdout: favourites    False  1458 66.80     1.20  5.14     1.92    -165.00
+ open    best    0.05      holdout: underdogs    False  1893 31.33     1.03 -2.56     3.87     215.00
+ open    best    0.02             development    False  4171 49.60     0.83  1.89     2.15    -103.00
+ open    best    0.02                 holdout    False  5102 50.61     0.73  0.03     1.68    -105.00
+ open    best    0.10             development    False  1679 40.44     1.32 10.20     4.64     165.00
+ open    best    0.10                 holdout    False  1718 39.52     1.17  1.01     3.72     160.00
+ open  median    0.05             development    False  1421 47.99     1.38  1.58     2.91     104.00
+ open  median    0.05                 holdout    False  3324 46.75     0.89  0.47     2.34     110.00
+ open  median    0.02             development    False  2246 51.65     1.11 -1.14     2.14    -119.24
+ open  median    0.02                 holdout    False  5061 50.58     0.74 -0.08     1.69    -105.00
+ open  median    0.10             development    False   631 44.06     2.35  5.84     5.89     140.00
+ open  median    0.10                 holdout    False  1688 39.63     1.19  1.20     3.79     160.00
+  era  games  log loss model  log loss market weight on model (z) weight on market (z)
+close  50112        0.529909         0.530644        0.496 (15.4)         0.597 (17.0)
+ open   5705        0.534494         0.534712         0.379 (3.0)          0.707 (4.9)
