@@ -27,6 +27,12 @@ FILES = {
 }
 CACHE = os.path.join(os.path.dirname(__file__), "cache")
 
+# 3-point luck: share of each team-game's 3-point makes above or below the league rate (given its attempts) that is
+# treated as noise and removed from points per 100 (`ppp`). Opponents' 3P% is mostly luck (KenPom); a team's own
+# shooting is partly skill. Walk-forward test 2017/19/22/24/25: 0.3-0.4 cut the margin miss 8.843 -> 8.806 and
+# the total miss 13.198 -> 13.154; regressing offense and defense separately did no better. `ppp_raw` keeps the
+# actual number.
+THREE_LUCK = 0.35
 # Free-throw weight in the possession estimate (KenPom uses 0.475; Oliver's original is 0.44).
 FT_WEIGHT = 0.475
 
@@ -107,7 +113,9 @@ def season_games(season: int, refresh: bool = False) -> tuple[pd.DataFrame, pd.D
     t["poss"] = (own + their) / 2
     minutes = 40 + 5 * (t["periods"].fillna(2) - 2).clip(lower=0)
     t["pace"] = t["poss"] * 40 / minutes
-    t["ppp"] = 100 * t["pts"] / t["poss"]                                   # points per 100 possessions
+    t["ppp_raw"] = 100 * t["pts"] / t["poss"]
+    p3 = t["fg3m"].sum() / t["fg3a"].sum()
+    t["ppp"] = t["ppp_raw"] - THREE_LUCK * 100 * 3 * (t["fg3m"] - t["fg3a"] * p3) / t["poss"]
     t["efg"] = (t["fgm"] + 0.5 * t["fg3m"]) / t["fga"]
     t["tov_rate"] = t["tov"] / t["poss"]
     t["orb_rate"] = t["orb"] / (t["orb"] + t["opp_drb"])

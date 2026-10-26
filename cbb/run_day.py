@@ -9,8 +9,8 @@ Writes reports/cbb_<date>.html (the bet card), reports/cbb_<date>.csv (every num
 
 Calls, from the 2024-2026 backtest against opening lines (BACKTEST.md):
 
-    spread  edge 3+ points  BET 1u    (57.5% at the opener)     edge 2-3  WATCH
-    total   edge 4+ points  BET 1u    (56.7%)                   edge 3-4  WATCH
+    spread  edge 3+ points  BET 1u    (58.2% at the opener)     edge 2-3  WATCH
+    total   edge 4+ points  BET 1u    (57.5%)                   edge 3-4  WATCH
 
 The edge held against the opener, not the close, so the card is meant to be acted on early: each play shows the
 worst number it's still a play at ("good down to").

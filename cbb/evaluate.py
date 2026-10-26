@@ -24,27 +24,24 @@ REPORT = os.path.join(os.path.dirname(__file__), "..", "BACKTEST.md")
 BREAKEVEN = 0.5238  # -110
 
 
-SUMMARY = """## Summary (tuned model: ratings + KenPom + Barttorvik + Four Factors + rest + home edge + availability)
+SUMMARY = """## Summary (ratings with 3-point luck regressed + KenPom + Barttorvik + Four Factors + rest + home edge + availability)
 
-| | 2014-2019 | 2020-2026 | 2024-2026 |
-|---|---:|---:|---:|
-| Winners picked (model / line favorite) | 73.4% / 73.6% | 72.7% / 73.0% | |
-| ATS vs closing line, edge 3+ | 52.4% | 52.3% | 52.3% |
-| Over/under vs closing line, edge 3+ | 54.8% | 50.9% | 49.0% |
-| **ATS vs opening line, edge 3+** | 56.9% (2014-17) | | **57.5%** (1,288 bets) |
-| **Over/under vs opening line, edge 4+** | | | **56.7%** (1,433 bets) |
+| | Result | Bets |
+|---|---:|---:|
+| **ATS vs opening line, edge 3+, 2024-2026** | **58.2%** (2024 58.0, 2025 59.1, 2026 57.4) | 1,271 |
+| **Over/under vs opening line, edge 4+, 2024-2026** | **57.5%** (2024 56.2, 2025 59.2, 2026 57.1) | 1,484 |
+| ATS vs closing line, edge 3+, 2020-2026 | 53.2% | 3,436 |
+| Average miss on margin, 2020-2026 (model / closing line) | 8.88 / 8.84 | |
+| Average miss on total, 2020-2026 (model / closing line) | 13.12 / 13.00 | |
 
 Break-even at -110 is 52.4%.
 
-* **Winners:** the model picks winners as well as the closing-line favorite (73%) and better than KenPom.
-* **Closing lines: no edge.** Spreads and totals both land at or below break-even against the close.
-* **Opening lines: the edge.** The line moves toward the model 79% of the time when it disagrees with the
-  opener by 3+ points, and betting the model's side at the opener won 57.4%, 57.7% and 57.2% in 2024, 2025 and
-  2026 (2+ points: 54.9%; 4+: 58.6%). Totals at the opener: 56.7% at 4+. Same lesson as the NFL
-  model: the value is in betting the model's number early, before the market moves to it.
-* **Caveats:** openers carry low limits and move fast; openers exist only for 2014-2017 and 2024-2026; 6+ point
-  edges are small samples. Data cleaning (projection sites, flipped openers, bad months) removed several fake
-  70-85% edges, so treat anything above ~60% with suspicion."""
+* **Opening lines are the edge.** Every season 2024-2026 is profitable at the opener on both spreads and totals.
+* **Closing lines:** just above break-even on spreads, not on totals. The market is sharper by tip-off.
+* **What moved it:** regressing 3-point makes 35% toward the league rate (opponents' 3P% is mostly luck, KenPom)
+  took spreads at the opener from 57.5% to 58.2% and totals from 56.7% to 57.5%.
+* **Caveats:** openers carry low limits; openers exist only for 2014-2017 and 2024-2026; data cleaning removed
+  several fake 70-85% edges, so treat anything above ~60% with suspicion."""
 
 
 def load(start: int, end: int) -> pd.DataFrame:

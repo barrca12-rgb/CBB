@@ -210,7 +210,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   <footer>
     Projections combine opponent-adjusted efficiency ratings from every Division I box score this season with KenPom, Barttorvik,
     Four Factor matchups, rest, home court and player availability. The line is never an input. In a 2014–2026 walk-forward
-    backtest the plays won 57.5% (spreads) and 56.7% (totals) against opening lines, and broke even against closing lines,
+    backtest the plays won 58.2% (spreads) and 57.5% (totals) against opening lines, and broke even against closing lines,
     so the value is in betting early. <a id="bt-link" href="#">Backtest details</a>.
   </footer>
 </main>
