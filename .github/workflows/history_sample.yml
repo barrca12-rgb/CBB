@@ -1,0 +1,40 @@
+# One-off research pull (research/market/pull_sample.py, "Option B"): The Odds API historical NCAAB snapshots for
+# the 12 dates fixed in research/market/sample_plan.json, about 24,000 credits. Started by hand from the Actions
+# tab. Stops on its own before leaving fewer than 50,000 credits, and never spends more than 27,000. Resumable:
+# running it again continues where it stopped. Never touches the live card, the bet log or the forward-test logs.
+name: Research - historical odds sample
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: research-history-sample
+  cancel-in-progress: false
+
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - run: pip install -r requirements.txt
+      - name: Pull the sample
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: python -m research.market.pull_sample
+      - name: Save the data
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898+github-actions[bot]@users.noreply.github.com"
+          if [ -d research/market/data ]; then git add -A -- research/market/data; fi
+          git diff --cached --quiet || git commit -m "Research: historical odds sample ($(date -u +'%Y-%m-%d %H:%M') UTC)"
+          for i in 1 2 3; do git pull --rebase -X theirs origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}" && break; sleep 5; done

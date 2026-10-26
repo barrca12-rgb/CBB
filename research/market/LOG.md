@@ -27,3 +27,14 @@ Specification as declared in `s2a_decompose.py`'s docstring, fixed before the fi
 Specification as declared in `s4_shooting.py`'s docstring, fixed before the first run. One run, reported as
 is (`out/s4_run.txt`). Both surprise definitions (league rate; team- and opponent-adjusted) were declared before
 the run.
+
+## 2026-10-26: Option B approved by Chad
+
+- **The plan** (`sample_plan.json`), fixed before any pull: 12 dates.
+  - 30-minute snapshots from 24 hours before each day's first tip to its last tip.
+  - Jan 11, 2025 at 5-minute snapshots.
+  - Spreads and totals, US region.
+  - 1,203 snapshots, about 24,060 credits.
+- **The pull:** `pull_sample.py`, run once by `.github/workflows/history_sample.yml`, started by hand.
+- **Guards:** it stops before leaving fewer than 50,000 credits, and spends at most 27,000.
+- **Stored:** a change log per date (new, changed, absent quotes) plus a list of every snapshot served.
