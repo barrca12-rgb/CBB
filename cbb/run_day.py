@@ -3,7 +3,8 @@
     python -m cbb.run_day                        # today (US Eastern), live lines
     python -m cbb.run_day --date 2026-11-14      # another day
     python -m cbb.run_day --date 2026-01-17 --replay   # a past day with ESPN's stored closing lines (to check the page)
-    python -m cbb.run_day --auto                 # what the scheduled runs use: tomorrow's card after 8pm ET
+    python -m cbb.run_day --auto                 # what the scheduled runs use: tomorrow's card after 8pm ET,
+                                                 # plus a card for each later day (up to a week) with lines posted
 
 Writes reports/cbb_<date>.html (the bet card), reports/cbb_<date>.csv (every number), and reports/days.json.
 
@@ -267,23 +268,41 @@ def main():
     if not len(games):
         print(f"No games on {day:%Y-%m-%d}.")
         return
-    f, rt = project(day, games)
     if a.replay:
+        build(day, games, None, replay=True)
+        return
+    try:
+        lines = odds.pull()
+    except Exception as e:   # no key or SportsGameOdds down: still publish the model's numbers
+        print(f"Live lines unavailable ({e}); card has model numbers only.")
+        lines = pd.DataFrame(columns=["book", "start", "home_id", "away_id", "home_spread", "total"])
+    # grade earlier days first, so every card built below shows the current record
+    try:
+        tracker.settle()
+    except Exception as e:
+        print(f"Settling bets failed ({e}); continuing.")
+    build(day, games, lines)
+    if a.auto and not a.date and len(lines):
+        # books open some games days ahead: give each later day that already has lines its own card
+        ahead = pd.to_datetime(lines["start"], utc=True).dt.tz_convert("America/New_York").dt.normalize()
+        for d in sorted({t.tz_localize(None) for t in ahead.dropna()}):
+            if day < d <= day + pd.Timedelta(days=7):
+                later = slate(d)
+                if len(later):
+                    build(d, later, lines, current=False)
+
+
+def build(day: pd.Timestamp, games: pd.DataFrame, lines: pd.DataFrame | None, replay: bool = False,
+          current: bool = True):
+    """Project one day's games, price them against the lines, log BETs and write the day's card. current=False adds
+    the day to the site's day list without making it the day the site opens on."""
+    f, rt = project(day, games)
+    if replay:
         lines = replay_lines(day, f)
-    else:
-        try:
-            lines = odds.pull()
-        except Exception as e:   # no key or SportsGameOdds down: still publish the model's numbers
-            print(f"Live lines unavailable ({e}); card has model numbers only.")
-            lines = pd.DataFrame(columns=["book", "home_id", "away_id", "home_spread", "total"])
     card = plays(f, lines)
     record = None
-    if not a.replay:
-        # grade earlier days, scale stakes by each market's live record, then log today's plays
-        try:
-            tracker.settle()
-        except Exception as e:
-            print(f"Settling bets failed ({e}); continuing.")
+    if not replay:
+        # scale stakes by each market's live record, then log the day's plays
         st = tracker.status()
         for mk in ("spread", "total"):
             if f"{mk}_units" in card:
@@ -301,11 +320,12 @@ def main():
     names = teams.load().set_index("espn_id")["espn_location"]
     rt = rt.assign(team=names.reindex(rt.index).to_numpy())
     with open(stem + ".html", "w") as fh:
-        fh.write(report_html.build(card, rt, day, season_of(day), replay=a.replay, record=record))
+        fh.write(report_html.build(card, rt, day, season_of(day), replay=replay, record=record))
     days_path = os.path.join(REPORTS, "days.json")
     days = json.load(open(days_path)) if os.path.exists(days_path) else {"days": []}
     days["days"] = sorted(set(days["days"]) | {f"{day:%Y-%m-%d}"})
-    days["current"] = f"{day:%Y-%m-%d}"
+    if current or "current" not in days:
+        days["current"] = f"{day:%Y-%m-%d}"
     with open(days_path, "w") as fh:
         json.dump(days, fh)
     n = lambda col, v: int((card.get(col) == v).sum()) if col in card else 0
