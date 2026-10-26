@@ -381,7 +381,19 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     $("t-review2").innerHTML = head("Split", false) + "<tbody>" + rows(Object.fromEntries([
       ...Object.entries(RV.by_market || {}).map(([k, v]) => [k[0].toUpperCase() + k.slice(1), v]),
       ...Object.entries(RV.by_edge || {}).map(([k, v]) => ["Edge " + k, v]),
-      ...Object.entries(RV.by_month || {})]), false) + "</tbody>";
+      ...Object.entries(RV.by_month || {}),
+      ...Object.entries(RV.by_venue || {}).filter(([k]) => !k.startsWith("Total"))]), false) + "</tbody>";
+    const HC = RV.home_court || {};
+    if (HC.home) {
+      const h = HC.home, nn = HC.neutral || {};
+      const verdict = h.resid_se && Math.abs(h.resid) > 2 * h.resid_se ? (h.resid > 0 ? "home edge looks too low" : "home edge looks too high") : "no evidence our home edge is off";
+      $("t-review2").insertAdjacentHTML("afterend", "<div class='scroll'><table><thead><tr><th>Home court check</th><th class='r'>Games</th><th class='r'>Result vs model</th><th class='r'>Close vs model</th></tr></thead><tbody>" +
+        "<tr><td>Home games <span class='m'>(" + verdict + ")</span></td><td class='r'>" + h.games + "</td><td class='r'>" + sgn(h.resid, 2) + (h.resid_se ? " <span class='f'>± " + num(2 * h.resid_se, 2) + "</span>" : "") +
+        "</td><td class='r'>" + (h.vs_close == null ? "–" : sgn(h.vs_close, 2)) + "</td></tr>" +
+        (nn.games ? "<tr><td>Neutral sites</td><td class='r'>" + nn.games + "</td><td class='r'>" + sgn(nn.resid, 2) + "</td><td class='r'>" + (nn.vs_close == null ? "–" : sgn(nn.vs_close, 2)) + "</td></tr>" : "") +
+        "</tbody></table></div><p class='note' style='padding:8px 16px 12px'>+ = home teams did better than our projection (or the closing line gave them more than we did). Biggest team misses at home: " +
+        esc((HC.teams_high || []).map((t) => t[0] + " " + sgn(t[1])).join(", ")) + " · " + esc((HC.teams_low || []).map((t) => t[0] + " " + sgn(t[1])).join(", ")) + "</p>");
+    }
     const MM = RV.model_misses || [];
     if (MM.length) $("t-misses").innerHTML = "<thead><tr><th>Market disagreed: biggest misses</th><th class='r'>Bet</th><th class='r'>Close</th><th class='r'>CLV</th><th class='r'>Model (home margin)</th><th class='r'>Final</th></tr></thead><tbody>" +
       MM.map((x) => "<tr><td>" + esc(x.date + " · " + x.away + " @ " + x.home) + "</td><td class='r b'>" + esc(x.pick) + "</td><td class='r'>" + num(x.close_line) + "</td><td class='r neg'>" + sgn(x.clv_pts) +

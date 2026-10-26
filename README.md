@@ -43,7 +43,10 @@ an altitude flag, and the referee crew when ESPN posts it (tendencies from every
 **Loss review** (`cbb/review.py`): every graded bet gets a reason: beat the close (variance), shooting luck (3-point
 luck swung it 6+ points), late injury news (line moved against us and a team hit the injury report after we bet),
 or market disagreed (line moved against us with no news: the real model misses). The card's Loss review shows
-record and CLV by reason, market, edge size and month, plus the biggest "market disagreed" losses.
+record and CLV by reason, market, edge size, month and venue (bet home / away / neutral), the biggest "market
+disagreed" losses, and a home court check: every projected game's result and closing line vs our margin, home
+and neutral, with the teams missing most at home. The league-wide home edge refits daily from this season's games;
+team-specific edges are set preseason from the prior three seasons, so this check is how to spot one that's off.
 
 **Injuries** (`cbb/injuries.py`): each run reads ESPN's college basketball injury report. A listed player who
 played the team's last game adds P(miss) x his share of team minutes to the projection's missing-minutes input
