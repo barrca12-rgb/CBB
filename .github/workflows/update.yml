@@ -69,6 +69,7 @@ jobs:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}   # second line source (cbb/odds_api.py); optional
           ODDS_API_EVERY_RUN: "1"                    # paid plan (20K credits/month): pull on all 12 runs
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}     # phone alerts for new BETs (cbb/notify.py); optional
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}   # public record channel (cbb/record.py); optional
         run: |
           if [ -n "${{ github.event.inputs.date }}" ]; then python -m cbb.run_day --date "${{ github.event.inputs.date }}"
           else python -m cbb.run_day --auto; fi
@@ -82,6 +83,19 @@ jobs:
           if [ -n "$CUR" ] && [ -f "reports/$CUR" ]; then cp "reports/$CUR" _site/index.html
           else echo '<!doctype html><meta charset="utf-8"><title>CBB card</title><p>No card yet.</p>' > _site/index.html; fi
           touch _site/.nojekyll
+
+      # Timestamp the bet log (OpenTimestamps, free, no account): a new proof whenever bets.csv changed, and each run
+      # upgrades the current proof once a Bitcoin block confirms it. Older proofs stay in git history.
+      - name: Timestamp the bet log
+        continue-on-error: true
+        run: |
+          pip install -q opentimestamps-client
+          if [ -f bets/bets.csv ] && { ! git diff --quiet -- bets/bets.csv || [ ! -f bets/bets.csv.ots ]; }; then
+            rm -f bets/bets.csv.ots && ots stamp bets/bets.csv
+          elif [ -f bets/bets.csv.ots ]; then
+            ots upgrade bets/bets.csv.ots || true
+            rm -f bets/bets.csv.ots.bak
+          fi
 
       - name: Save the card and lines to the repo
         run: |

@@ -32,7 +32,7 @@ import numpy as np
 import pandas as pd
 
 from . import (backtest, context, data, injuries, injury_sources, injury_watch, kenpom, news, notify, odds, players,
-               projection, ratings, report_html, review, teams, tracker)
+               projection, ratings, record, report_html, review, teams, tracker)
 
 REPORTS = os.path.join(os.path.dirname(__file__), "..", "reports")
 SCOREBOARD = ("https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard"
@@ -341,6 +341,10 @@ def main():
             print(f"Sent {n} cancellation alert(s).")
     except Exception as e:
         print(f"Cancellation alerts failed ({e}); continuing.")
+    try:   # results, voids and announcements, even on runs that log no new bet
+        record.sync()
+    except Exception as e:
+        print(f"Discord record failed ({e}); continuing.")
     build(day, games, lines)
     if a.auto and not a.date and len(lines):
         # books open some games days ahead: give each later day that already has lines its own card
@@ -404,6 +408,10 @@ def build(day: pd.Timestamp, games: pd.DataFrame, lines: pd.DataFrame | None, re
         new = tracker.log(card, day, {mk: st[mk]["multiplier"] for mk in st})
         if notify.send(new, card):
             print(f"Sent {len(new)} phone alert(s).")
+        try:   # same run as the phone alert, so the public post carries the same time
+            record.sync()
+        except Exception as e:
+            print(f"Discord record failed ({e}); continuing.")
         card = attach_logged(card, day)
         try:
             rv = review.summary()
