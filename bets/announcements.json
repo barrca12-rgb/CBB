@@ -1,11 +1,22 @@
 [
- {"id": "2026-10-26-prior",
+ {
+  "id": "2026-10-26-prior",
   "date": "2026-10-26",
-  "text": "Model change, live Oct 26: each season now starts from the average of KenPom's and Barttorvik's preseason ratings (was KenPom alone). Backtest, spread plays 2.5+ vs the opener: November line value +1.09 to +1.29 (2015-17) and +0.83 to +0.87 (2024-26); totals unchanged."},
- {"id": "2026-10-26-opening-week",
+  "text": "Model change, live Oct 26: each season now starts from the average of KenPom's and Barttorvik's preseason ratings (was KenPom alone). Backtest, spread plays 2.5+ vs the opener: November line value +1.09 to +1.29 (2015-17) and +0.83 to +0.87 (2024-26); totals unchanged."
+ },
+ {
+  "id": "2026-10-26-opening-week",
   "date": "2026-10-26",
-  "text": "Rule change, live Oct 26: for the first 7 days of each season, model totals are shifted so the day's average matches KenPom's scoring level. Before any games are played the model starts from last season's scoring, which put every 2026-27 total about 3.6 points below KenPom and the market. Two unders logged before the rule and not bet were voided (corrections below); two that were bet stand."},
- {"id": "2026-10-26-channel",
+  "text": "Rule change, live Oct 26: for the first 7 days of each season, model totals are shifted so the day's average matches KenPom's scoring level. Before any games are played the model starts from last season's scoring, which put every 2026-27 total about 3.6 points below KenPom and the market. Two unders logged before the rule and not bet were voided (corrections below); two that were bet stand."
+ },
+ {
+  "id": "2026-10-26-channel",
   "date": "2026-10-26",
-  "text": "This channel posts every BET the model logs, at the time it is logged, whether or not it is bet, then its close, CLV and result. Posts are never edited; mistakes get a correction message. Bets logged before the channel opened are posted on its first day with their original logged time. The bet log is also timestamped with OpenTimestamps after every run (bets/bets.csv.ots in the repo)."}
+  "text": "This channel posts every BET the model logs, at the time it is logged, whether or not it is bet, then its close, CLV and result. Posts are never edited; mistakes get a correction message. Bets logged before the channel opened are posted on its first day with their original logged time. The bet log is also timestamped with OpenTimestamps after every run (bets/bets.csv.ots in the repo)."
+ },
+ {
+  "id": "2026-10-26-freeze",
+  "date": "2026-10-26",
+  "text": "Model frozen from Oct 26, 2026 until a Jan 15, 2027 checkpoint: no changes to the ratings, the projection, the betting rules or the cutoffs (spreads 2.5+, totals 3+, +2% EV at the price). Team ratings keep updating from every result, as the frozen code does. Any exception will be announced here the day it goes live. Frozen version: commit dfb4bc7 in the repo (MODEL_FREEZE.md lists file fingerprints)."
+ }
 ]
