@@ -9,8 +9,8 @@ lines. Built the same way as the [NFL model](https://github.com/barrca12-rgb/NFL
    Barttorvik, ESPN historical lines, SportsGameOdds live lines, and a team-name table across them.
 2. **Ratings** (done): opponent-adjusted offense, defense, tempo and Four Factors by time-decayed ridge
    regression (the NFL model's method), KenPom preseason prior, plus a second stage (`projection.py`).
-3. **Backtest 2014-2026** (done, see [`BACKTEST.md`](BACKTEST.md)): no edge against closing lines; 57.5% ATS and
-   55-56% on totals against opening lines in 2024-2026.
+3. **Backtest 2014-2026** (done, see [`BACKTEST.md`](BACKTEST.md)): about break-even against closing lines; 58.2% ATS and
+   57.5% on totals against opening lines in 2024-2026.
 4. **Website** (done): the daily card below, with an NFL | CBB link between the two sites.
 
 ## Daily card (live)
