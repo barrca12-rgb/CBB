@@ -9,6 +9,10 @@ on:
         description: "Card date YYYY-MM-DD (blank = today, or tomorrow after 8pm ET)"
         required: false
         default: ""
+      test_alert:
+        description: "Also send a test phone alert"
+        type: boolean
+        default: false
   push:                     # rebuild the site when the page or model code changes
     branches: [claude/college-basketball-model-nmztcl, main]
     paths:
@@ -66,6 +70,7 @@ jobs:
         run: |
           if [ -n "${{ github.event.inputs.date }}" ]; then python -m cbb.run_day --date "${{ github.event.inputs.date }}"
           else python -m cbb.run_day --auto; fi
+          if [ "${{ github.event.inputs.test_alert }}" = "true" ]; then python -m cbb.notify; fi
 
       - name: Build site
         run: |

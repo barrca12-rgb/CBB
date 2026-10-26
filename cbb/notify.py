@@ -54,3 +54,9 @@ def send(new_bets: list[dict], card: pd.DataFrame, topic: str | None = None) -> 
         except Exception as e:
             print(f"Alert failed for {bet['bet_id']}: {e}")
     return sent
+
+
+if __name__ == "__main__":   # python -m cbb.notify: one test alert
+    test = {"bet_id": "test", "market": "spread", "pick": "Test pick +3.5", "odds": -110, "book": "DraftKings",
+            "away": "Away", "home": "Home", "edge": 3.5, "date": pd.Timestamp.now(tz="America/New_York").strftime("%Y-%m-%d")}
+    print("Test alert sent." if send([test], pd.DataFrame()) else "No alert sent (is NTFY_TOPIC set?)")
