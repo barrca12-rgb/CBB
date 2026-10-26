@@ -175,6 +175,33 @@ def _merge_second_source(l: pd.DataFrame, extra: pd.DataFrame, cl_path: str) -> 
     return pd.concat([l, extra], ignore_index=True) if len(l) else extra
 
 
+MOVES = os.path.join(LINES, "moves.csv")
+MOVE_COLS = ["spread", "spread_odds_lo", "spread_odds_hi", "total", "over_odds", "under_odds"]
+
+
+def _log_moves(cur: pd.DataFrame) -> int:
+    """Append each (game, book) whose number or price changed since its last logged row to lines/moves.csv: when
+    books post, how fast lines move, and whether injury news came before a move. Spreads are stored for the team
+    with the lower ESPN id (lo_id), so rows from sources that disagree on home and away compare cleanly."""
+    c = cur.assign(game_key=game_key(cur))
+    lo = np.minimum(c["home_id"], c["away_id"])
+    home_lo = c["home_id"] == lo
+    c["lo_id"], c["hi_id"] = lo, np.maximum(c["home_id"], c["away_id"])
+    c["spread"] = np.where(home_lo, c["home_spread"], -c["home_spread"])
+    c["spread_odds_lo"] = np.where(home_lo, c["home_spread_odds"], c["away_spread_odds"])
+    c["spread_odds_hi"] = np.where(home_lo, c["away_spread_odds"], c["home_spread_odds"])
+    c = c[["pulled_at", "date", "game_key", "book", "lo_id", "hi_id"] + MOVE_COLS]
+    if os.path.exists(MOVES):
+        old = pd.read_csv(MOVES)
+        last = old.drop_duplicates(["game_key", "book"], keep="last").set_index(["game_key", "book"])[MOVE_COLS]
+        prev = last.reindex(pd.MultiIndex.from_frame(c[["game_key", "book"]]))
+        same = (prev.to_numpy() == c[MOVE_COLS].to_numpy()) | (prev.isna().to_numpy() & c[MOVE_COLS].isna().to_numpy())
+        c = c[~same.all(axis=1)]
+        c = pd.concat([old, c], ignore_index=True)
+    c.to_csv(MOVES, index=False)
+    return len(c)
+
+
 def pull(api_key: str | None = None) -> pd.DataFrame:
     """Fetch, save a timestamped snapshot, and update lines/openers.csv. Returns the lines with open_home_spread and
     open_total (first number seen at that book) added. SGO first; The Odds API (odds_api.py) fills games and books
@@ -204,6 +231,7 @@ def pull(api_key: str | None = None) -> pd.DataFrame:
         old = pd.read_csv(cl_path) if os.path.exists(cl_path) else cur.iloc[:0]
         key = lambda d: game_key(d) + "|" + d["book"].astype(str)
         pd.concat([old[~key(old).isin(set(key(cur)))], cur], ignore_index=True).to_csv(cl_path, index=False)
+        _log_moves(cur)
     op_path = os.path.join(LINES, "openers.csv")
     op = pd.read_csv(op_path) if os.path.exists(op_path) else pd.DataFrame(
         columns=["sgo_event", "book", "home_id", "away_id", "open_home_spread", "open_total", "first_seen"])
