@@ -267,17 +267,38 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
 
   // Plays
   const P = [];
+  // A logged bet stays listed at the number it was logged at, with where the game stands now underneath.
+  const logged = (g, mk) => {
+    const pick = g[mk + "_logged_pick"];
+    if (!pick) return false;
+    const side = String(g[mk + "_logged_side"] || "").toLowerCase();
+    const curSide = mk === "spread" ? g.spread_side : String(g.total_pick || "").toLowerCase();
+    const still = g[mk + "_verdict"] === "BET" && curSide === side;
+    const cur = mk === "spread" ? (g.spread_line == null ? null : ln(g.spread_line)) : (g.total_line == null ? null : num(g.total_line));
+    const now = still ? "Still a play now: " + cur + " at " + g[mk + "_book"] + "."
+      : "Line now " + (cur ?? "–") + (curSide === side && g[mk + "_edge"] != null ? ", our edge " + sgn(g[mk + "_edge"]) : "") +
+        ": not a play at today's number. Your bet stands.";
+    P.push({g, kind: mk === "spread" ? "Spread" : "Total", bet: pick, price: g[mk + "_logged_odds"], book: g[mk + "_logged_book"],
+      link: still ? g[mk + "_link"] : null, warn: g[mk + "_warn"], edge: g[mk + "_logged_edge"], p: still ? g[mk + "_p"] : null,
+      ev: still ? g[mk + "_ev"] : null, model: mk === "spread" ? (side === "home" ? ln(-g.model_margin) : ln(g.model_margin)) : num(g.model_total),
+      to: still ? (mk === "spread" ? ln(g.spread_good_to) : num(g.total_good_to)) : "–",
+      open: mk === "spread" && g.open_home_spread != null ? ln(side === "home" ? g.open_home_spread : -g.open_home_spread) : null,
+      units: g[mk + "_logged_stake"], status: "Logged bet. " + now});
+    return true;
+  };
   D.games.forEach((g) => {
-    if (g.spread_verdict === "BET") P.push({g, kind: "Spread", bet: g.spread_pick + " " + ln(g.spread_line), price: g.spread_odds, book: g.spread_book,
+    const ls = logged(g, "spread"), lt = logged(g, "total");
+    if (!ls && g.spread_verdict === "BET") P.push({g, kind: "Spread", bet: g.spread_pick + " " + ln(g.spread_line), price: g.spread_odds, book: g.spread_book,
       link: g.spread_link, warn: g.spread_warn, edge: g.spread_edge, p: g.spread_p, ev: g.spread_ev, model: g.spread_side === "home" ? ln(-g.model_margin) : ln(g.model_margin), to: ln(g.spread_good_to),
       open: g.open_home_spread == null ? null : ln(g.spread_side === "home" ? g.open_home_spread : -g.open_home_spread), units: g.spread_units});
-    if (g.total_verdict === "BET") P.push({g, kind: "Total", bet: g.total_pick + " " + num(g.total_line), price: g.total_odds, book: g.total_book,
+    if (!lt && g.total_verdict === "BET") P.push({g, kind: "Total", bet: g.total_pick + " " + num(g.total_line), price: g.total_odds, book: g.total_book,
       link: g.total_link, warn: g.total_warn, edge: g.total_edge, p: g.total_p, ev: g.total_ev, model: num(g.model_total), to: num(g.total_good_to), open: null, units: g.total_units});
   });
   P.sort((a, b) => String(a.g.start).localeCompare(String(b.g.start)) || b.edge - a.edge);
   $("t-plays").innerHTML = P.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r hide-sm'>Model</th><th class='r'>Edge</th><th class='r hide-sm'>Win %</th><th class='r'>EV</th><th class='r'>Bet to</th><th class='r hide-sm'>Opened</th><th class='r hide-sm'>Units</th><th></th></tr></thead><tbody>" +
     P.map((p) => "<tr><td><div class='b'>" + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + esc(matchup(p.g)) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
       (p.kind === "Total" && p.g.crew ? "<div class='f' style='font-size:11px'>Refs: " + esc(p.g.crew) + "</div>" : "") +
+      (p.status ? "<div class='f' style='font-size:12px'>" + esc(p.status) + "</div>" : "") +
       (p.warn ? "<div class='inj'>&#9888; " + esc(p.warn) + "</div>" : "") +
       [["away", p.g.away], ["home", p.g.home]].filter(([sd]) => p.g[sd + "_injuries"]).map(([sd, nm]) => "<div class='inj'>" + esc(nm) + ": " + esc(p.g[sd + "_injuries"]) + "</div>").join("") + "</td><td>" +
       esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r m hide-sm'>" + esc(p.model) + "</td><td class='r pos b'>" + sgn(p.edge) +

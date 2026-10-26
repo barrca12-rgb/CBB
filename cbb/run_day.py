@@ -330,6 +330,21 @@ def main():
                     build(d, later, lines, current=False)
 
 
+def attach_logged(card: pd.DataFrame, day: pd.Timestamp) -> pd.DataFrame:
+    """Add the day's logged bets (not void) to the card as {market}_logged_* columns, so a bet stays on the Plays list
+    after the line or the model moves and the game is no longer a play at the current number."""
+    b = tracker.load()
+    b = b[(b["date"] == f"{day:%Y-%m-%d}") & (b["status"] != "void")]
+    card = card.copy()
+    gid = card["game_id"].astype(str)
+    for mk in ("spread", "total"):
+        m = b[b["market"] == mk].drop_duplicates("game_id", keep="last")
+        m = m.set_index(m["game_id"].astype(str))
+        for c in ("pick", "side", "line", "book", "odds", "edge", "stake"):
+            card[f"{mk}_logged_{c}"] = gid.map(m[c]) if len(m) else np.nan
+    return card
+
+
 def build(day: pd.Timestamp, games: pd.DataFrame, lines: pd.DataFrame | None, replay: bool = False,
           current: bool = True):
     """Project one day's games, price them against the lines, log BETs and write the day's card. current=False adds
@@ -354,6 +369,7 @@ def build(day: pd.Timestamp, games: pd.DataFrame, lines: pd.DataFrame | None, re
         new = tracker.log(card, day, {mk: st[mk]["multiplier"] for mk in st})
         if notify.send(new, card):
             print(f"Sent {len(new)} phone alert(s).")
+        card = attach_logged(card, day)
         try:
             rv = review.summary()
         except Exception as e:
