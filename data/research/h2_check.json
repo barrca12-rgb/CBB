@@ -1,0 +1,649 @@
+{
+ "upcoming": [
+  {
+   "game": "Villanova Wildcats at Notre Dame Fighting Irish",
+   "start": "2026-11-01T14:30:00Z",
+   "markets_by_book": {
+    "draftkings": [
+     "h2h",
+     "spreads",
+     "totals"
+    ],
+    "williamhill_us": [
+     "h2h",
+     "spreads",
+     "totals"
+    ]
+   },
+   "error": null
+  },
+  {
+   "game": "High Point Panthers at Liberty Flames",
+   "start": "2026-11-02T07:00:00Z",
+   "markets_by_book": {
+    "draftkings": [
+     "h2h",
+     "spreads",
+     "totals"
+    ],
+    "williamhill_us": [
+     "h2h",
+     "spreads",
+     "totals"
+    ]
+   },
+   "error": null
+  },
+  {
+   "game": "Florida Gators at Miami Hurricanes",
+   "start": "2026-11-02T23:00:00Z",
+   "markets_by_book": {
+    "draftkings": [
+     "h2h",
+     "spreads",
+     "totals"
+    ],
+    "williamhill_us": [
+     "h2h",
+     "spreads",
+     "totals"
+    ]
+   },
+   "error": null
+  }
+ ],
+ "historical": [
+  {
+   "game": "Iowa Hawkeyes at Wisconsin Badgers",
+   "tip": "2026-02-22 21:00:00+00:00",
+   "snapshot": "2026-02-22T21:55:00Z",
+   "event_found": true,
+   "error": null,
+   "markets_by_book": {
+    "fanduel": [
+     "spreads_h1",
+     "spreads_h2",
+     "totals_h1",
+     "totals_h2"
+    ],
+    "draftkings": [
+     "spreads_h1",
+     "totals_h1"
+    ],
+    "betmgm": [
+     "spreads_h1",
+     "totals_h1"
+    ]
+   },
+   "sample": [
+    {
+     "book": "fanduel",
+     "market": "spreads_h1",
+     "outcomes": [
+      [
+       "Iowa Hawkeyes",
+       -1.5,
+       100
+      ],
+      [
+       "Wisconsin Badgers",
+       1.5,
+       -132
+      ]
+     ],
+     "last_update": "2026-02-22T21:49:54Z"
+    },
+    {
+     "book": "fanduel",
+     "market": "spreads_h2",
+     "outcomes": [
+      [
+       "Iowa Hawkeyes",
+       1.5,
+       -104
+      ],
+      [
+       "Wisconsin Badgers",
+       -1.5,
+       -128
+      ]
+     ],
+     "last_update": "2026-02-22T21:49:54Z"
+    },
+    {
+     "book": "fanduel",
+     "market": "totals_h1",
+     "outcomes": [
+      [
+       "Over",
+       80.5,
+       -120
+      ],
+      [
+       "Under",
+       80.5,
+       -108
+      ]
+     ],
+     "last_update": "2026-02-22T21:49:54Z"
+    },
+    {
+     "book": "fanduel",
+     "market": "totals_h2",
+     "outcomes": [
+      [
+       "Over",
+       77.5,
+       -110
+      ],
+      [
+       "Under",
+       77.5,
+       -115
+      ]
+     ],
+     "last_update": "2026-02-22T21:49:54Z"
+    },
+    {
+     "book": "draftkings",
+     "market": "spreads_h1",
+     "outcomes": [
+      [
+       "Iowa Hawkeyes",
+       0.5,
+       -135
+      ],
+      [
+       "Wisconsin Badgers",
+       -0.5,
+       100
+      ]
+     ],
+     "last_update": "2026-02-22T21:44:58Z"
+    },
+    {
+     "book": "draftkings",
+     "market": "totals_h1",
+     "outcomes": [
+      [
+       "Over",
+       79.5,
+       100
+      ],
+      [
+       "Under",
+       79.5,
+       -135
+      ]
+     ],
+     "last_update": "2026-02-22T21:44:58Z"
+    },
+    {
+     "book": "betmgm",
+     "market": "spreads_h1",
+     "outcomes": [
+      [
+       "Iowa Hawkeyes",
+       -2.5,
+       -118
+      ],
+      [
+       "Wisconsin Badgers",
+       2.5,
+       -118
+      ]
+     ],
+     "last_update": "2026-02-22T21:47:46Z"
+    },
+    {
+     "book": "betmgm",
+     "market": "totals_h1",
+     "outcomes": [
+      [
+       "Over",
+       75.5,
+       -118
+      ],
+      [
+       "Under",
+       75.5,
+       -118
+      ]
+     ],
+     "last_update": "2026-02-22T21:43:36Z"
+    }
+   ]
+  },
+  {
+   "game": "Ohio State Buckeyes at Michigan State Spartans",
+   "tip": "2026-02-22 18:00:00+00:00",
+   "snapshot": "2026-02-22T18:55:00Z",
+   "event_found": true,
+   "error": null,
+   "markets_by_book": {
+    "fanduel": [
+     "spreads_h1",
+     "spreads_h2",
+     "totals_h1",
+     "totals_h2"
+    ],
+    "draftkings": [
+     "spreads_h1",
+     "totals_h1"
+    ],
+    "betmgm": [
+     "totals_h1"
+    ]
+   },
+   "sample": [
+    {
+     "book": "fanduel",
+     "market": "spreads_h1",
+     "outcomes": [
+      [
+       "Michigan St Spartans",
+       4.5,
+       104
+      ],
+      [
+       "Ohio State Buckeyes",
+       -4.5,
+       -138
+      ]
+     ],
+     "last_update": "2026-02-22T18:44:13Z"
+    },
+    {
+     "book": "fanduel",
+     "market": "spreads_h2",
+     "outcomes": [
+      [
+       "Michigan St Spartans",
+       -6.5,
+       -125
+      ],
+      [
+       "Ohio State Buckeyes",
+       6.5,
+       -106
+      ]
+     ],
+     "last_update": "2026-02-22T18:49:34Z"
+    },
+    {
+     "book": "fanduel",
+     "market": "totals_h1",
+     "outcomes": [
+      [
+       "Over",
+       49.5,
+       -113
+      ],
+      [
+       "Under",
+       49.5,
+       -115
+      ]
+     ],
+     "last_update": "2026-02-22T18:49:34Z"
+    },
+    {
+     "book": "fanduel",
+     "market": "totals_h2",
+     "outcomes": [
+      [
+       "Over",
+       76.5,
+       -115
+      ],
+      [
+       "Under",
+       76.5,
+       -110
+      ]
+     ],
+     "last_update": "2026-02-22T18:49:34Z"
+    },
+    {
+     "book": "draftkings",
+     "market": "spreads_h1",
+     "outcomes": [
+      [
+       "Michigan St Spartans",
+       2.5,
+       -110
+      ],
+      [
+       "Ohio State Buckeyes",
+       -2.5,
+       -125
+      ]
+     ],
+     "last_update": "2026-02-22T18:39:34Z"
+    },
+    {
+     "book": "draftkings",
+     "market": "totals_h1",
+     "outcomes": [
+      [
+       "Over",
+       53.5,
+       100
+      ],
+      [
+       "Under",
+       53.5,
+       -135
+      ]
+     ],
+     "last_update": "2026-02-22T18:39:34Z"
+    },
+    {
+     "book": "betmgm",
+     "market": "totals_h1",
+     "outcomes": [
+      [
+       "Over",
+       53.5,
+       -105
+      ],
+      [
+       "Under",
+       53.5,
+       -135
+      ]
+     ],
+     "last_update": "2026-02-22T18:37:48Z"
+    }
+   ]
+  },
+  {
+   "game": "Iowa State Cyclones at BYU Cougars",
+   "tip": "2026-02-22 03:38:00+00:00",
+   "snapshot": "2026-02-22T04:33:00Z",
+   "event_found": true,
+   "error": null,
+   "markets_by_book": {
+    "draftkings": [
+     "spreads_h1",
+     "spreads_h2",
+     "totals_h1",
+     "totals_h2"
+    ],
+    "fanduel": [
+     "spreads_h1",
+     "spreads_h2",
+     "totals_h1",
+     "totals_h2"
+    ],
+    "betmgm": [
+     "spreads_h1"
+    ]
+   },
+   "sample": [
+    {
+     "book": "draftkings",
+     "market": "spreads_h1",
+     "outcomes": [
+      [
+       "BYU Cougars",
+       -2.5,
+       -120
+      ],
+      [
+       "Iowa State Cyclones",
+       2.5,
+       -110
+      ]
+     ],
+     "last_update": "2026-02-22T04:16:34Z"
+    },
+    {
+     "book": "draftkings",
+     "market": "spreads_h2",
+     "outcomes": [
+      [
+       "BYU Cougars",
+       4.5,
+       -110
+      ],
+      [
+       "Iowa State Cyclones",
+       -4.5,
+       -120
+      ]
+     ],
+     "last_update": "2026-02-22T04:30:03Z"
+    },
+    {
+     "book": "draftkings",
+     "market": "totals_h1",
+     "outcomes": [
+      [
+       "Over",
+       69.5,
+       100
+      ],
+      [
+       "Under",
+       69.5,
+       -135
+      ]
+     ],
+     "last_update": "2026-02-22T04:16:34Z"
+    },
+    {
+     "book": "draftkings",
+     "market": "totals_h2",
+     "outcomes": [
+      [
+       "Over",
+       81.5,
+       -110
+      ],
+      [
+       "Under",
+       81.5,
+       -120
+      ]
+     ],
+     "last_update": "2026-02-22T04:30:03Z"
+    },
+    {
+     "book": "fanduel",
+     "market": "spreads_h1",
+     "outcomes": [
+      [
+       "BYU Cougars",
+       -3.5,
+       -132
+      ],
+      [
+       "Iowa State Cyclones",
+       3.5,
+       100
+      ]
+     ],
+     "last_update": "2026-02-22T04:21:13Z"
+    },
+    {
+     "book": "fanduel",
+     "market": "spreads_h2",
+     "outcomes": [
+      [
+       "BYU Cougars",
+       5.5,
+       -114
+      ],
+      [
+       "Iowa State Cyclones",
+       -5.5,
+       -114
+      ]
+     ],
+     "last_update": "2026-02-22T04:29:59Z"
+    },
+    {
+     "book": "fanduel",
+     "market": "totals_h1",
+     "outcomes": [
+      [
+       "Over",
+       67.5,
+       -140
+      ],
+      [
+       "Under",
+       67.5,
+       108
+      ]
+     ],
+     "last_update": "2026-02-22T04:24:30Z"
+    },
+    {
+     "book": "fanduel",
+     "market": "totals_h2",
+     "outcomes": [
+      [
+       "Over",
+       81.5,
+       -115
+      ],
+      [
+       "Under",
+       81.5,
+       -110
+      ]
+     ],
+     "last_update": "2026-02-22T04:29:59Z"
+    }
+   ]
+  },
+  {
+   "game": "UTSA Roadrunners at Tulsa Golden Hurricane",
+   "tip": "2026-02-22 21:00:00+00:00",
+   "snapshot": "2026-02-22T21:55:00Z",
+   "event_found": true,
+   "error": null,
+   "markets_by_book": {
+    "draftkings": [
+     "spreads_h2",
+     "totals_h2"
+    ],
+    "fanduel": [
+     "spreads_h1",
+     "spreads_h2",
+     "totals_h1",
+     "totals_h2"
+    ]
+   },
+   "sample": [
+    {
+     "book": "draftkings",
+     "market": "spreads_h2",
+     "outcomes": [
+      [
+       "Tulsa Golden Hurricane",
+       -7.5,
+       -110
+      ],
+      [
+       "UTSA Roadrunners",
+       7.5,
+       -120
+      ]
+     ],
+     "last_update": "2026-02-22T21:50:41Z"
+    },
+    {
+     "book": "draftkings",
+     "market": "totals_h2",
+     "outcomes": [
+      [
+       "Over",
+       83.5,
+       -120
+      ],
+      [
+       "Under",
+       83.5,
+       -110
+      ]
+     ],
+     "last_update": "2026-02-22T21:50:41Z"
+    },
+    {
+     "book": "fanduel",
+     "market": "spreads_h1",
+     "outcomes": [
+      [
+       "Tulsa Golden Hurricane",
+       -19.5,
+       -125
+      ],
+      [
+       "UTSA Roadrunners",
+       19.5,
+       -106
+      ]
+     ],
+     "last_update": "2026-02-22T21:40:03Z"
+    },
+    {
+     "book": "fanduel",
+     "market": "spreads_h2",
+     "outcomes": [
+      [
+       "Tulsa Golden Hurricane",
+       -7.5,
+       -114
+      ],
+      [
+       "UTSA Roadrunners",
+       7.5,
+       -114
+      ]
+     ],
+     "last_update": "2026-02-22T21:50:40Z"
+    },
+    {
+     "book": "fanduel",
+     "market": "totals_h1",
+     "outcomes": [
+      [
+       "Over",
+       88.5,
+       108
+      ],
+      [
+       "Under",
+       88.5,
+       -140
+      ]
+     ],
+     "last_update": "2026-02-22T21:40:03Z"
+    },
+    {
+     "book": "fanduel",
+     "market": "totals_h2",
+     "outcomes": [
+      [
+       "Over",
+       83.5,
+       -120
+      ],
+      [
+       "Under",
+       83.5,
+       -105
+      ]
+     ],
+     "last_update": "2026-02-22T21:50:40Z"
+    }
+   ]
+  }
+ ],
+ "events_error": null,
+ "credits_spent": 167,
+ "credits_remaining": "9223"
+}
