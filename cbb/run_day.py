@@ -106,7 +106,7 @@ def project(day: pd.Timestamp, games: pd.DataFrame) -> tuple[pd.DataFrame, pd.Da
     ids = sorted(set(teams.load()["espn_id"]) | set(tg.get("team_id", [])))
     games = games[games["home_id"].isin(ids) & games["away_id"].isin(ids)].copy()
     last = data.season_games(season - 1)
-    r = ratings.fit(tg, day, ids, backtest.kenpom_prior(season), league=ratings.league_averages(last[1]))
+    r = ratings.fit(tg, day, ids, backtest.preseason_prior(season), league=ratings.league_averages(last[1]))
     p = ratings.predict(r, games["home_id"], games["away_id"], games["neutral"])
     p.index = games.index
     b = games.join(p.add_prefix("pred_")).assign(season=season, date=day, games_before=r["games"],

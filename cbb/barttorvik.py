@@ -21,6 +21,8 @@ URL = "https://barttorvik.com/timemachine/team_results/{}_team_results.json.gz"
 # Barttorvik refuses some non-browser clients (403 from GitHub's runners with a plain user agent).
 UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
 CACHE = os.path.join(os.path.dirname(__file__), "cache", "barttorvik")
+# Each season's preseason ratings, saved before the first game (the live file changes once games are played)
+PRESEASON = os.path.join(os.path.dirname(__file__), "..", "data", "barttorvik_preseason_{}.csv")
 FIRST_SEASON = 2015
 
 
@@ -95,7 +97,30 @@ def current(season: int) -> pd.DataFrame | None:
             rows = json.load(r)
     except Exception:
         return None
-    t = pd.DataFrame([(r[1], r[4], r[6], r[44]) for r in rows], columns=["team", "adj_oe", "adj_de", "adj_tempo"])
+    t = pd.DataFrame([(r[1], r[4], r[6], r[44], r[3]) for r in rows],
+                     columns=["team", "adj_oe", "adj_de", "adj_tempo", "record"])
     ids = teams.id_lookup("kenpom")
     t["espn_id"] = t["team"].map(lambda n: ids.get(teams.norm(n))).astype("Int64")
     return t
+
+
+def preseason(season: int) -> pd.DataFrame | None:
+    """Barttorvik's preseason ratings for `season`: the saved file if there is one; else the live ratings while
+    every team is still 0-0 (saved then, for the rest of the season); else the earliest time-machine file between
+    October 25 and November 20 (what the backtest used). None if none of those exist."""
+    path = PRESEASON.format(season)
+    if os.path.exists(path):
+        return pd.read_csv(path, dtype={"espn_id": "Int64"})
+    t = current(season)
+    if t is not None and len(t) and (t["record"] == "0-0").all():
+        t = t.drop(columns="record")
+        t.to_csv(path, index=False)
+        return t
+    today = pd.Timestamp.now(tz="America/New_York").tz_localize(None).normalize()
+    for d in pd.date_range(f"{season - 1}-10-25", f"{season - 1}-11-20"):
+        if d >= today:     # a file for a later date may not exist yet; don't cache it as missing
+            break
+        t = snapshot(d)
+        if t is not None and t["espn_id"].notna().any():
+            return t
+    return None

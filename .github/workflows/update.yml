@@ -90,7 +90,7 @@ jobs:
           mkdir -p reports lines
           mkdir -p bets
           mkdir -p injuries
-          git add -A reports lines bets injuries
+          git add -A reports lines bets injuries data/barttorvik_preseason_*.csv
           git diff --cached --quiet || git commit -m "Update CBB card ($(date -u +'%Y-%m-%d %H:%M') UTC)"
           # if a push landed meanwhile, keep this run's freshly built card and lines on any conflict
           git pull --rebase -X theirs origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}"

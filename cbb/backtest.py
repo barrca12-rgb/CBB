@@ -2,8 +2,8 @@
 
     python -m cbb.backtest --start 2013 --end 2026        # writes cbb/output/backtest_<start>_<end>.csv
 
-Prior for each season: KenPom's preseason ratings (published before the first game, so no look-ahead),
-as deviations from that season's average.
+Prior for each season: KenPom's and Barttorvik's preseason ratings averaged (both published before the first
+game, so no look-ahead), as deviations from that season's average.
 """
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ from multiprocessing import Pool
 import numpy as np
 import pandas as pd
 
-from . import data, kenpom, ratings
+from . import barttorvik, data, kenpom, ratings
 
 OUT = os.path.join(os.path.dirname(__file__), "output")
 
@@ -28,10 +28,28 @@ def kenpom_prior(season: int) -> pd.DataFrame:
     })
 
 
-def season(season: int, cfg: ratings.RatingConfig | None = None, prior: str = "kenpom") -> pd.DataFrame:
+def preseason_prior(season: int) -> pd.DataFrame:
+    """The ratings each season starts from: KenPom's and Barttorvik's preseason ratings averaged, each centered on
+    its own national average. KenPom alone for teams (or seasons) Barttorvik doesn't have. Against KenPom alone
+    (2015-2026): November line value +1.09 -> +1.29 at the opener in 2015-17 and +0.83 -> +0.87 in 2024-26."""
+    k = kenpom_prior(season)
+    t = barttorvik.preseason(season)
+    if t is None:
+        return k
+    t = t.dropna(subset=["espn_id"]).assign(espn_id=lambda d: d["espn_id"].astype(int))
+    t = t.drop_duplicates("espn_id").set_index("espn_id")
+    t = pd.DataFrame({"off": t["adj_oe"] - t["adj_oe"].mean(), "def": t["adj_de"].mean() - t["adj_de"],
+                      "tempo": t["adj_tempo"] - t["adj_tempo"].mean()})
+    j = k.join(t, rsuffix="_t", how="left")
+    for c in ["off", "def", "tempo"]:
+        j[c] = np.where(j[c + "_t"].notna(), (j[c] + j[c + "_t"]) / 2, j[c])
+    return j[["off", "def", "tempo"]]
+
+
+def season(season: int, cfg: ratings.RatingConfig | None = None, prior: str = "blend") -> pd.DataFrame:
     g, t = data.season_games(season)
     ids = sorted(set(t["team_id"]))
-    pr = kenpom_prior(season) if prior == "kenpom" else None
+    pr = preseason_prior(season) if prior == "blend" else kenpom_prior(season) if prior == "kenpom" else None
     league = ratings.league_averages(data.season_games(season - 1)[1])
     out = []
     for day, gd in g.groupby("date"):

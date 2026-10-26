@@ -31,23 +31,24 @@ players, market ratings from earlier closing lines, altitude, and referee crews.
 
 | | Result | Bets |
 |---|---:|---:|
-| **ATS vs opening line, edge 3+, 2024-2026** | **58.7%** | 1,228 |
-| **Over/under vs opening line, edge 4+, 2024-2026** (crew unknown at the open: 57.4% without referees) | 60.1% | 2,142 |
-| ATS vs closing line, edge 3+, 2020-2026 | 53.1% | 3,338 |
-| **Over/under vs closing line, edge 4+, 2020-2026** | **54.3%** | 5,952 |
+| **ATS vs opening line, edge 3+, 2024-2026** | **58.9%** | 1,254 |
+| **Over/under vs opening line, edge 4+, 2024-2026** (crew unknown at the open: 56.1% without referees) | 59.6% | 2,258 |
+| ATS vs closing line, edge 3+, 2020-2026 | 53.6% | 3,347 |
+| **Over/under vs closing line, edge 4+, 2020-2026** | **54.7%** | 6,323 |
 | Average miss on margin, 2020-2026 (model / closing line) | 8.88 / 8.84 | |
-| Average miss on total, 2020-2026 (model / closing line) | 13.08 / 13.00 | |
+| Average miss on total, 2020-2026 (model / closing line) | 13.09 / 13.00 | |
 
 Break-even at -110 is 52.4%. Closing lines exclude projection services listed as books (accuscore and others, Oct
 2026 cleanup). Neutral-site spreads bet from 2.5 points live (see run_day.py).
 
 * **Opening lines are the edge** on spreads and totals. Referee crews usually aren't posted when openers are, so
-  the realistic opener number for totals is ~57.4%.
+  the realistic opener number for totals is ~56%.
 * **Closing lines:** referee crews took totals from 52.4% to 54.4% (positive in 8 of 11 seasons, but weaker
   lately: 2024 55.3%, 2025 47.6%, 2026 53.0%). Spreads at the close are just above break-even.
 * **What moved it:** 3-point luck regression (spreads at the opener 57.5% -> 58.2%), market ratings and altitude
-  (-> 58.6%), referees (totals at the close 52.4% -> 54.4%). Tested and left out: free-throw luck, blowout
-  weighting, time zones, height/experience/continuity, production-weighted absences.
+  (-> 58.6%), referees (totals at the close 52.4% -> 54.4%), KenPom + Barttorvik preseason prior (Oct 2026: line
+  value at the opener up in November and overall; spreads at the opener 58.7% -> 58.9%). Tested and left out:
+  free-throw luck, blowout weighting, time zones, height/experience/continuity, production-weighted absences.
 * **Caveats:** openers carry low limits; openers exist only for 2014-2017 and 2024-2026; data cleaning removed
   several fake 70-85% edges, so treat anything above ~60% with suspicion."""
 
@@ -165,7 +166,7 @@ def report(b: pd.DataFrame, start: int, end: int) -> str:
     mid = (start + end + 1) // 2
     md = [f"# Backtest {start}-{end}", "", SUMMARY, "",
           "Walk-forward: each game is predicted with ratings fit only on earlier games that season, starting from "
-          "KenPom's preseason ratings. Closing line = median of the books in ESPN's odds feed. KenPom = FanMatch "
+          "KenPom's and Barttorvik's preseason ratings averaged. Closing line = median of the books in ESPN's odds feed. KenPom = FanMatch "
           "predicted score. Records are against the closing line at -110 (break-even 52.4%).", "",
           "Lines dropped as bad data (closing line and KenPom favor different teams by 3+ in more than 3% of "
           "games): " + (", ".join(f"{pd.Timestamp(2000, m, 1):%b} {s - (m >= 11)} ({v:.0%})"
