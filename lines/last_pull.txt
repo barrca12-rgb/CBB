@@ -1,1 +1,1 @@
-2026-10-26 02:17 UTC  events 6  book-game rows 4  unmatched teams: La Verne Leopards, Midway Eagles, New College of Florida Mighty Banyans, West Coast Baptist Eagles  SGO month: 3,672 of 100,000 entities
+2026-10-26 02:22 UTC  events 6  book-game rows 4  unmatched teams: La Verne Leopards, Midway Eagles, New College of Florida Mighty Banyans, West Coast Baptist Eagles  SGO month: 3,824 of 100,000 entities
