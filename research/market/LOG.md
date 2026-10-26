@@ -38,3 +38,18 @@ the run.
 - **The pull:** `pull_sample.py`, run once by `.github/workflows/history_sample.yml`, started by hand.
 - **Guards:** it stops before leaving fewer than 50,000 credits, and spends at most 27,000.
 - **Stored:** a change log per date (new, changed, absent quotes) plus a list of every snapshot served.
+
+## 2026-10-26: Option B pulled and analysed
+
+- **The pull:** complete, all 12 dates, 24,060 credits, 71,466 credits left afterwards. The served snapshots sat a
+  few minutes before each requested time, as the API documents.
+- **Analysis run 1:** crashed (the schedule file already has a `game_id` column, so the rename made a duplicate).
+  Fixed; run 2 is reported (`out/s1_coverage.csv`, `out/s1_picks_at_first_quote.csv`).
+- **Added checks, declared after run 2:**
+  - how many games were already quoted at the first snapshot (truncation);
+  - team names that did not match;
+  - how long opening numbers lasted on the 5-minute day;
+  - for the model's picks, minutes until the picked number got worse. A game leaving the feed at tip counts as
+    "worse", so "never worse" is 0 by construction.
+
+  Output: `out/s1b_run.txt`.

@@ -39,7 +39,7 @@ def schedule(date: str, season: int) -> pd.DataFrame:
     t = pd.to_datetime(d["date"], utc=True)
     d = d.assign(tip=t, day=t.dt.tz_convert("America/New_York").dt.strftime("%Y-%m-%d"))
     d = d[d["day"] == date]
-    return d.rename(columns={"id": "game_id"})[["game_id", "tip", "home_id", "away_id"]].astype({"home_id": int, "away_id": int})
+    return d[["game_id", "tip", "home_id", "away_id"]].astype({"home_id": int, "away_id": int})
 
 
 def main() -> None:

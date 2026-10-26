@@ -1,0 +1,36 @@
+share of games already quoted at the first snapshot (24h+ before first tip), by date: [('2022-11-12', 0.56), ('2023-01-14', 0.07), ('2023-03-04', 0.21), ('2023-11-11', 0.5), ('2024-01-13', 0.1), ('2024-03-02', 0.14), ('2024-11-09', 0.47), ('2025-01-11', 0.14), ('2025-03-01', 0.17), ('2025-11-08', 0.42), ('2026-01-10', 0.08), ('2026-03-07', 0.34)]
+unmatched Odds API team names: 41 ['Albany Great Danes', 'American Eagles', 'Appalachian St Mountaineers', 'Arkansas-Little Rock Trojans', 'Army Knights', 'Boston Univ. Terriers', 'CSU Bakersfield Roadrunners', 'CSU Fullerton Titans', 'CSU Northridge Matadors', 'Cal Baptist Lancers', 'Central Connecticut St Blue Devils', "Florida Int'l Golden Panthers", 'Fort Wayne Mastodons', 'GW Revolutionaries', 'Gardner-Webb Bulldogs', 'George Washington Colonials', 'Grambling St Tigers', 'Grand Canyon Antelopes', 'Hartford Hawks', 'Houston Baptist Huskies', 'IUPUI Jaguars', 'LIU Sharks', 'Long Beach St 49ers', 'Loyola (Chi) Ramblers', 'Loyola (MD) Greyhounds', 'Miss Valley St Delta Devils', "Mt. St. Mary's Mountaineers", 'N Colorado Bears', 'New Orleans Privateers', 'Nicholls St Colonels', 'Prairie View Panthers', 'SE Missouri St Redhawks', 'Sam Houston St Bearkats', 'Seattle Redhawks', 'St. Francis (PA) Red Flash', 'St. Francis BKN Terriers', 'St. Thomas (MN) Tommies', 'Tenn-Martin Skyhawks', 'Texas A&M-CC Islanders', 'Texas A&M-Commerce Lions']
+
+Jan 11 2025 (5-minute snapshots): how long the opening number and opening quote lasted, minutes
+        number_lasts_min                                                      quote_lasts_min                                                     
+                   count   mean    std  min   10%   25%    50%    75%     max           count   mean    std  min   10%   25%    50%    75%     max
+market                                                                                                                                            
+spreads           1382.0  418.0  420.0  5.0  15.0  60.0  230.0  740.0  2199.0          1382.0  302.0  361.0  5.0  10.0  35.0  110.0  515.0  2199.0
+totals            1396.0  466.0  430.0  5.0  25.0  75.0  340.0  810.0  2129.0          1396.0  362.0  381.0  5.0  20.0  60.0  183.0  565.0  2129.0
+market   opened_late
+spreads  False          270.0
+         True           165.0
+totals   False          405.0
+         True           200.0
+share of opening numbers still unchanged after 5 min: {'spreads': 0.999, 'totals': 1.0}
+share of opening numbers still unchanged after 10 min: {'spreads': 0.961, 'totals': 0.971}
+share of opening numbers still unchanged after 15 min: {'spreads': 0.92, 'totals': 0.957}
+share of opening numbers still unchanged after 30 min: {'spreads': 0.848, 'totals': 0.891}
+share of opening numbers still unchanged after 60 min: {'spreads': 0.771, 'totals': 0.812}
+
+Jan 11 2025: model picks at the books first quotes - minutes until the picked number got worse
+        count   mean    std  min   10%   25%    50%     max
+market                                                     
+spread   59.0  359.0  395.0  5.0  15.0  48.0  165.0  1625.0
+total    76.0  660.0  561.0  5.0  30.0  99.0  570.0  1830.0
+still available after 10 min: {'spread': 0.983, 'total': 0.974}
+still available after 15 min: {'spread': 0.898, 'total': 0.961}
+still available after 30 min: {'spread': 0.831, 'total': 0.908}
+still available after 60 min: {'spread': 0.712, 'total': 0.803}
+never got worse before tip: {'spread': 0.0, 'total': 0.0}
+
+picks, one per game and market (best price among the four books at first quote):
+        picks    win    roi  dates
+market                            
+spread    193  0.615  0.172     12
+total     297  0.545  0.043     12
