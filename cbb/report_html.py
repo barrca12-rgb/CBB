@@ -242,7 +242,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   const day = new Date(D.date + "T12:00:00");
   const tip = (g) => g.start ? new Date(g.start).toLocaleTimeString("en-US", {hour: "numeric", minute: "2-digit", timeZone: "America/New_York"}) : "";
   const matchup = (g) => g.away + (g.neutral ? " vs " : " @ ") + g.home;
-  const BOOKS = ["FanDuel", "DraftKings", "BetMGM", "Caesars", "Fanatics", "bet365"];
+  const BOOKS = ["FanDuel", "DraftKings", "BetMGM", "Caesars", "Fanatics", "bet365", "theScore Bet"];
   const bl = (g, bk) => (g.book_lines || []).find((x) => x.book === bk);
 
   $("nfl-link").href = D.nfl;

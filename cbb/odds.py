@@ -25,7 +25,7 @@ API = "https://api.sportsgameodds.com/v2/events"
 LINES = os.path.join(os.path.dirname(__file__), "..", "lines")
 # The books we bet; plays and the board use only these.
 BOOKS = {"fanduel": "FanDuel", "draftkings": "DraftKings", "betmgm": "BetMGM", "caesars": "Caesars", "fanatics": "Fanatics",
-         "bet365": "bet365"}
+         "bet365": "bet365", "espnbet": "theScore Bet"}
 ODDS = {"points-home-game-sp-home": ("home_spread", "home_spread_odds", "home_spread_link"),
         "points-away-game-sp-away": (None, "away_spread_odds", "away_spread_link"),
         "points-all-game-ou-over": ("total", "over_odds", "over_link"),

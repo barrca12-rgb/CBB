@@ -24,8 +24,10 @@ from . import teams
 
 API = "https://api.the-odds-api.com/v4/sports/basketball_ncaab/odds"
 BOOKS = {"draftkings": "DraftKings", "fanduel": "FanDuel", "betmgm": "BetMGM", "williamhill_us": "Caesars",
-         "fanatics": "Fanatics", "bet365": "bet365"}   # up to 10 books cost the same as one region
+         "fanatics": "Fanatics", "bet365": "bet365", "espnbet": "theScore Bet"}   # up to 10 books cost one region
 CORE = ["draftkings", "fanduel", "betmgm", "williamhill_us"]
+# Book keys the API refused (wrong or not offered), found once by trying each extra book alone and then skipped
+REFUSED = os.path.join(os.path.dirname(__file__), "..", "lines", "odds_api_refused_books.json")
 PULL_HOURS = {7, 12, 18, 23}     # ET hours of the scheduled runs that pull (7:37 am, 12:37, 6:07 pm, 11:37 pm)
 MIN_LEFT = 15
 MAX_AGE = pd.Timedelta(hours=12)
@@ -115,20 +117,33 @@ def parse(events: list, lookup: dict | None = None) -> tuple[pd.DataFrame, list]
 
 def fetch(api_key: str | None = None) -> pd.DataFrame:
     api_key = api_key or os.environ.get("ODDS_API_KEY", "")
+    refused = set(json.load(open(REFUSED))) if os.path.exists(REFUSED) else set()
+    books = [b for b in BOOKS if b not in refused]
     params = {"apiKey": api_key, "regions": "us", "markets": "spreads,totals,h2h", "oddsFormat": "american",
-              "bookmakers": ",".join(BOOKS), "includeLinks": "true"}
+              "bookmakers": ",".join(books), "includeLinks": "true"}
     try:
         events, hdr = _get(params)
     except urllib.error.HTTPError as e:
         if e.code not in (400, 422):
             raise
-        # a book key the API doesn't know, or links not offered on this plan: retry with the core books, then no links
+        # an extra book's key was refused: find which by trying each alone with the core books, remember it, and
+        # pull with the rest (if the core books alone fail, links are the problem: pull without them)
+        bad = []
+        for b in [b for b in books if b not in CORE]:
+            try:
+                _get(dict(params, bookmakers=",".join(CORE + [b]), markets="spreads"))
+            except urllib.error.HTTPError:
+                bad.append(b)
+        if bad:
+            with open(REFUSED, "w") as fh:
+                json.dump(sorted(refused | set(bad)), fh)
+            print(f"The Odds API refused book keys {bad}; skipping them from now on.")
+        ok = [b for b in books if b not in bad]
         try:
-            events, hdr = _get(dict(params, bookmakers=",".join(CORE)))
-            print(f"The Odds API refused the book list ({e.code}); used {', '.join(CORE)}.")
+            events, hdr = _get(dict(params, bookmakers=",".join(ok)))
         except urllib.error.HTTPError:
             params.pop("includeLinks")
-            events, hdr = _get(dict(params, bookmakers=",".join(CORE)))
+            events, hdr = _get(dict(params, bookmakers=",".join(ok)))
     df, fetch.unmatched = parse(events)
     fetch.events = len(events)
     u = {"remaining": int(float(hdr.get("x-requests-remaining", "nan"))) if hdr.get("x-requests-remaining") else None,
