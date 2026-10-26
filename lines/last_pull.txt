@@ -1,1 +1,1 @@
-2026-10-26 02:23 UTC  events 6  book-game rows 4  unmatched teams: La Verne Leopards, Midway Eagles, New College of Florida Mighty Banyans, West Coast Baptist Eagles  SGO month: 3,830 of 100,000 entities
+2026-10-26 02:28 UTC  events 6  book-game rows 7 (2 SGO, 5 The Odds API)  unmatched teams: La Verne Leopards, Midway Eagles, New College of Florida Mighty Banyans, West Coast Baptist Eagles  SGO month: 3,842 of 100,000 entities  The Odds API credits left: 436
