@@ -34,8 +34,6 @@ class RatingConfig:
 # free-throw rate. Fit with the same opponent/venue adjustment as efficiency, so off_efg = how much better than
 # average a team shoots and def_efg = how much it holds opponents below average.
 FACTORS = ["efg", "tov_rate", "orb_rate", "ft_rate"]
-# Style stats fit the same way, for matchup tests: 3-point attempt rate (defenses control volume more than makes).
-STYLE = ["fg3a_rate"]
 
 
 def _solve(X, y, w, lam, beta0):
@@ -48,12 +46,11 @@ def league_averages(tg: pd.DataFrame) -> dict:
     """League-wide averages from a season's team-games (efficiency, pace, Four Factors): the starting point for
     the next season, before it has games of its own."""
     return {"ppp": float(tg["ppp"].mean()), "pace": float(tg["pace"].mean()),
-            **{f: float(tg[f].mean()) for f in FACTORS + STYLE if f in tg}}
+            **{f: float(tg[f].mean()) for f in FACTORS}}
 
 
 # Used only when no league averages are passed and there are no games yet (2012-2026 means).
-DEFAULT_LEAGUE = {"ppp": 103.4, "pace": 67.9, "efg": 0.504, "tov_rate": 0.183, "orb_rate": 0.293, "ft_rate": 0.250,
-                  "fg3a_rate": 0.37}
+DEFAULT_LEAGUE = {"ppp": 103.4, "pace": 67.9, "efg": 0.504, "tov_rate": 0.183, "orb_rate": 0.293, "ft_rate": 0.250}
 
 
 def fit(tg: pd.DataFrame, asof, teams: list[int], prior: pd.DataFrame | None = None,
@@ -111,9 +108,9 @@ def fit(tg: pd.DataFrame, asof, teams: list[int], prior: pd.DataFrame | None = N
         A = XtW @ X
         lamf = np.full(2 + 2 * k, cfg.factor_prior_games * wbar)
         lamf[:2] = 1e-6
-    for f in FACTORS + STYLE:
+    for f in FACTORS:
         if not n and cfg.fit_factors:   # no games yet: everyone at last season's league average
-            factors[f] = {"b0": league.get(f, DEFAULT_LEAGUE.get(f, 0.0)), "hca": 0.0, "off": pd.Series(0.0, index=teams), "def": pd.Series(0.0, index=teams)}
+            factors[f] = {"b0": league[f], "hca": 0.0, "off": pd.Series(0.0, index=teams), "def": pd.Series(0.0, index=teams)}
             continue
         if not n or not cfg.fit_factors or f not in h:
             continue
@@ -156,12 +153,6 @@ def predict(r: dict, home, away, neutral) -> pd.DataFrame:
     for f, fr in r.get("factors", {}).items():
         out[f"home_{f}"] = fr["b0"] + fr["hca"] * v + fr["off"].reindex(home).to_numpy() - fr["def"].reindex(away).to_numpy()
         out[f"away_{f}"] = fr["b0"] - fr["hca"] * v + fr["off"].reindex(away).to_numpy() - fr["def"].reindex(home).to_numpy()
-        # each side's own offense and defense numbers (deviations from average), for matchup interactions
-        for side, team in (("home", home), ("away", away)):
-            out[f"{side}_off_{f}"] = fr["off"].reindex(team).to_numpy()
-            out[f"{side}_def_{f}"] = fr["def"].reindex(team).to_numpy()
-    out["home_tempo"] = r["tempo"].reindex(home).to_numpy()
-    out["away_tempo"] = r["tempo"].reindex(away).to_numpy()
     return out
 
 
