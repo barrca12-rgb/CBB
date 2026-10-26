@@ -1,0 +1,22 @@
+# Validation: referee_fix.diff and opener_cleaning_fix.diff (not applied), run 2026-10-26T20:10Z
+
+## Before and after, production model, against the opener (audit/b6_fix_validation.py)
+                                            variant market   seasons  plays  win%  ROI%@-110  mean move our way  same plays win% at close
+                                production (before) spread 2015-2017   1981 57.57       9.68               1.26                     53.20
+                                production (before) spread 2024-2026   2229 57.77      10.25               1.07                     53.78
+                                production (before)  total 2015-2017   3823 58.36      11.23               1.22                     55.07
+                                production (before)  total 2024-2026   4256 57.39       9.53               1.45                     53.47
+                       referee fix: crews 0 at open spread 2015-2017   1981 57.57       9.68               1.26                     53.20
+                       referee fix: crews 0 at open spread 2024-2026   2229 57.77      10.25               1.07                     53.78
+                       referee fix: crews 0 at open  total 2015-2017   3612 57.94      10.49               1.39                     54.74
+                       referee fix: crews 0 at open  total 2024-2026   3993 56.22       7.30               1.59                     51.93
+opener-cleaning fix: no close rule, range rule only spread 2015-2017   2027 57.68       9.88               1.35                     53.08
+opener-cleaning fix: no close rule, range rule only spread 2024-2026   2361 58.73      12.09               1.54                     53.86
+opener-cleaning fix: no close rule, range rule only  total 2015-2017   3822 58.35      11.21               1.18                     55.06
+opener-cleaning fix: no close rule, range rule only  total 2024-2026   4256 57.39       9.53               1.45                     53.47
+
+## Both diffs applied in a scratch copy and run (then reverted)
+applied referee + opener-cleaning diffs: totals vs opener 3+ (2015, 2017): 3611 plays, win 57.93%
+applied referee + opener-cleaning diffs: spreads vs opener 2.5+ (2015, 2017): 2027 plays, win 57.68%
+applied referee + opener-cleaning diffs: totals vs opener 3+ (2024, 2026): 3993 plays, win 56.22%
+applied referee + opener-cleaning diffs: spreads vs opener 2.5+ (2024, 2026): 2361 plays, win 58.73%

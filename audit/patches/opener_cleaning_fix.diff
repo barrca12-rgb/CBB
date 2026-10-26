@@ -1,0 +1,20 @@
+diff --git a/cbb/lines_hist.py b/cbb/lines_hist.py
+index 70c4374..f6da275 100644
+--- a/cbb/lines_hist.py
++++ b/cbb/lines_hist.py
+@@ -116,11 +116,10 @@ def consensus(lines: pd.DataFrame) -> pd.DataFrame:
+     op = lines[lines["book"] == "Opening"].drop_duplicates("game_id").set_index("game_id")
+     agg["open_home_spread"] = agg["open_home_spread"].fillna(op["home_spread"])
+     agg["open_total"] = agg["open_total"].fillna(op["total"])
+-    # ESPN sometimes stores the opener from the other team's side (Virginia +4.5 open, -6.5 close). An opener closer
+-    # to the mirrored close than to the close itself is treated as that error and dropped.
+-    o, c = agg["open_home_spread"], agg["home_spread"]
+-    flipped = ((o + c).abs() < (o - c).abs()) & (c.abs() >= 2)
+-    agg.loc[flipped, "open_home_spread"] = np.nan
++    # Openers are never corrected or filtered with the close (it comes later). Drop-only plausibility rule using the
++    # opener alone (audit/AUDIT_v2.md, item 2): spreads within +-60, totals within 100-200.
++    agg.loc[agg["open_home_spread"].abs() > 60, "open_home_spread"] = np.nan
++    agg.loc[~agg["open_total"].between(100, 200), "open_total"] = np.nan
+     return agg.reset_index()
+ 
+ 

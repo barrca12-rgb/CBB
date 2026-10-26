@@ -1,0 +1,9 @@
+variant,market,seasons,plays,win%,ROI%@-110,mean move our way,same plays win% at close
+production backtest,spread,2015-2017,1981,57.57,9.68,1.26,53.2
+production backtest,spread,2024-2026,2229,57.77,10.25,1.07,53.78
+production backtest,total,2015-2017,3823,58.36,11.23,1.22,55.07
+production backtest,total,2024-2026,4256,57.39,9.53,1.45,53.47
+live-like approximation,spread,2015-2017,1936,57.17,8.93,1.27,52.57
+live-like approximation,spread,2024-2026,2217,57.49,9.72,1.07,53.53
+live-like approximation,total,2015-2017,3628,57.7,10.03,1.39,54.58
+live-like approximation,total,2024-2026,3719,55.57,6.07,1.67,50.98

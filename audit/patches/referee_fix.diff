@@ -1,0 +1,52 @@
+diff --git a/cbb/evaluate.py b/cbb/evaluate.py
+index 48057ca..9a233e9 100644
+--- a/cbb/evaluate.py
++++ b/cbb/evaluate.py
+@@ -80,6 +80,30 @@ def final(b: pd.DataFrame) -> pd.DataFrame:
+     return w.dropna(subset=["pred_margin"])
+ 
+ 
++def final_at_open(b: pd.DataFrame) -> pd.DataFrame:
++    """final(), but predictions use what is known when openers post: referee crews are not posted yet, so the crew
++    inputs are 0 (an average crew), as on the live card. The walk-forward weights are fit exactly as in final()."""
++    from . import projection
++    tr = projection.add_features(b)
++    te = tr.assign(ref_fouls=0.0, ref_pts=0.0)
++    for d in (tr, te):
++        d["margin"] = d["home_pts"] - d["away_pts"]
++        d["points"] = d["home_pts"] + d["away_pts"]
++    te["final_margin"], te["final_total"] = np.nan, np.nan
++    for s in sorted(tr["season"].unique()):
++        fit = tr[(tr["season"] < s) & (tr["season"] >= 2013)]
++        if not len(fit):
++            continue
++        m = te["season"] == s
++        cm = projection.ridge(fit[projection.MARGIN_FEATURES].to_numpy(float), fit["margin"].to_numpy(float))
++        ct = projection.ridge(fit[projection.TOTAL_FEATURES].to_numpy(float), fit["points"].to_numpy(float))
++        te.loc[m, "final_margin"] = cm[0] + te.loc[m, projection.MARGIN_FEATURES].to_numpy(float) @ cm[1:]
++        te.loc[m, "final_total"] = ct[0] + te.loc[m, projection.TOTAL_FEATURES].to_numpy(float) @ ct[1:]
++    te["raw_margin"], te["raw_total"] = te["pred_margin"], te["pred_total"]
++    te["pred_margin"], te["pred_total"] = te["final_margin"], te["final_total"]
++    return te.dropna(subset=["pred_margin"])
++
++
+ def winners(b: pd.DataFrame, mid: int) -> str:
+     """Straight-up winner % for the model, the closing-line favorite and KenPom (games with all three)."""
+     d = b.dropna(subset=["home_spread", "kp_margin"])
+@@ -248,7 +272,15 @@ def main():
+     ap.add_argument("--start", type=int, default=2013)
+     ap.add_argument("--end", type=int, default=2026)
+     a = ap.parse_args()
+-    md = report(final(load(a.start, a.end)), a.start, a.end)
++    raw = load(a.start, a.end)
++    md = report(final(raw), a.start, a.end)
++    # totals against the opener as bettable at the open: crews unknown (referee fix, audit/AUDIT_v2.md)
++    o = final_at_open(raw)
++    o = o[o["season"] >= a.end - 2].dropna(subset=["open_total"])
++    e = o["pred_total"] - o["open_total"]
++    md += ("\n## Totals vs the opener with crews unknown (as at the open)\n\n" +
++           table({f"edge {lo}+ pts, {a.end - 2}-{a.end}": ats(o.assign(e=e)[e.abs() >= lo], "e", "points", "open_total")
++                  for lo in (3, 4)}) + "\n")
+     with open(REPORT, "w") as f:
+         f.write(md)
+     print(md)

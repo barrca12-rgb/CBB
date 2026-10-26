@@ -1,0 +1,699 @@
+diff --git a/.gitattributes b/.gitattributes
+index c505811..345ba24 100644
+--- a/.gitattributes
++++ b/.gitattributes
+@@ -1,3 +1,8 @@
+ # Injury logs are appended by two workflows (card runs and injury checks); keep both sides' new rows.
+ injuries/sources/*.csv merge=union
+ injuries/log.csv merge=union
++lines/polls*.csv merge=union
++lines/obs/*.csv merge=union
++lines/obs_targeted/*.csv merge=union
++bets/signal_log.csv merge=union
++bets/alert_log.csv merge=union
+diff --git a/.github/workflows/quotes.yml b/.github/workflows/quotes.yml
+new file mode 100644
+index 0000000..6ef9d52
+--- /dev/null
++++ b/.github/workflows/quotes.yml
+@@ -0,0 +1,39 @@
++# Targeted quote polling for the forward-test execution check (FORWARD_TEST_PROTOCOL.md, section 5).
++# Dispatched every 3 minutes by a cron-job.org job (same token as the card job). Each run makes at most one Odds API
++# call (2 credits) and only when a game is inside a watch window; otherwise it records a skipped poll. It never
++# touches the model, the card, the bet log, openers.csv or closing.csv.
++name: Targeted quote poll
++
++on:
++  workflow_dispatch:
++
++permissions:
++  contents: write
++
++concurrency:
++  group: targeted-quote-poll
++  cancel-in-progress: false
++
++jobs:
++  poll:
++    runs-on: ubuntu-latest
++    timeout-minutes: 5
++    steps:
++      - uses: actions/checkout@v4
++      - uses: actions/setup-python@v5
++        with:
++          python-version: "3.11"
++          cache: pip
++          cache-dependency-path: requirements.txt
++      - run: pip install -r requirements.txt
++      - name: Poll watched games
++        env:
++          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
++        run: python -m cbb.poll_targets
++      - name: Save the log
++        run: |
++          git config user.name "github-actions[bot]"
++          git config user.email "41898+github-actions[bot]@users.noreply.github.com"
++          git add lines/polls_targeted.csv lines/obs_targeted 2>/dev/null || true
++          git diff --cached --quiet || git commit -m "Quote poll ($(date -u +'%Y-%m-%d %H:%M') UTC)"
++          for i in 1 2 3; do git pull --rebase -X theirs origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}" && break; sleep 5; done
+diff --git a/bets/accepted.csv b/bets/accepted.csv
+new file mode 100644
+index 0000000..a525f69
+--- /dev/null
++++ b/bets/accepted.csv
+@@ -0,0 +1 @@
++bet_id,book,placed_at,line,odds,stake,source
+diff --git a/cbb/notify.py b/cbb/notify.py
+index d33ad22..2ffe986 100644
+--- a/cbb/notify.py
++++ b/cbb/notify.py
+@@ -11,6 +11,8 @@ import urllib.request
+ 
+ import pandas as pd
+ 
++from . import quotelog
++
+ SITE = "https://barrca12-rgb.github.io/CBB"
+ 
+ 
+@@ -48,9 +50,11 @@ def message(title: str, body: str, topic: str | None = None, click: str | None =
+                                           "Tags": "basketball"})
+     try:
+         urllib.request.urlopen(req, timeout=20).read()
++        quotelog.alert(title, "ntfy", "message", True)
+         return True
+     except Exception as e:
+         print(f"Alert failed: {e}")
++        quotelog.alert(title, "ntfy", "message", False)
+         return False
+ 
+ 
+@@ -73,8 +77,10 @@ def send(new_bets: list[dict], card: pd.DataFrame, topic: str | None = None) ->
+         try:
+             urllib.request.urlopen(req, timeout=20).read()
+             sent += 1
++            quotelog.alert(bet["bet_id"], "ntfy", "bet", True)
+         except Exception as e:
+             print(f"Alert failed for {bet['bet_id']}: {e}")
++            quotelog.alert(bet["bet_id"], "ntfy", "bet", False)
+     return sent
+ 
+ 
+diff --git a/cbb/odds.py b/cbb/odds.py
+index cbec9e2..9a9d985 100644
+--- a/cbb/odds.py
++++ b/cbb/odds.py
+@@ -19,7 +19,7 @@ import urllib.request
+ import numpy as np
+ import pandas as pd
+ 
+-from . import teams
++from . import quotelog, teams
+ 
+ API = "https://api.sportsgameodds.com/v2/events"
+ LINES = os.path.join(os.path.dirname(__file__), "..", "lines")
+@@ -33,6 +33,9 @@ ODDS = {"points-home-game-sp-home": ("home_spread", "home_spread_odds", "home_sp
+         "points-home-game-ml-home": (None, "home_ml", "home_ml_link"),
+         "points-away-game-ml-away": (None, "away_ml", "away_ml_link")}
+ MAX_AGE = pd.Timedelta(hours=12)   # ignore a book's price it hasn't touched in this long (stale feed)
++# Quotes recorded for the forward-test log (moneylines are not part of the test)
++OBS_SIDES = {"points-home-game-sp-home": ("spread", "home"), "points-away-game-sp-away": ("spread", "away"),
++             "points-all-game-ou-over": ("total", "over"), "points-all-game-ou-under": ("total", "under")}
+ 
+ 
+ def _num(x):
+@@ -101,6 +104,7 @@ def fetch(api_key: str | None = None, max_events: int = 1500) -> pd.DataFrame:
+     lookup = _lookup()
+     now = pd.Timestamp.now(tz="UTC")
+     rows, unmatched = [], set()
++    obs = []   # forward-test log (quotelog.py): every quote seen, including unavailable and stale ones
+     for ev in events:
+         st = ev.get("status") or {}
+         if st.get("started") or st.get("ended") or st.get("cancelled"):
+@@ -115,6 +119,14 @@ def fetch(api_key: str | None = None, max_events: int = 1500) -> pd.DataFrame:
+         per_book: dict = {}
+         for odd_id, (line_col, price_col, link_col) in ODDS.items():
+             for bk, o in ((ev.get("odds") or {}).get(odd_id, {}).get("byBookmaker") or {}).items():
++                if bk in BOOKS and odd_id in OBS_SIDES:
++                    upd0 = pd.to_datetime(o.get("lastUpdatedAt"), utc=True, errors="coerce")
++                    status = "unavailable" if o.get("available") is False else \
++                        "stale" if pd.notna(upd0) and now - upd0 > MAX_AGE else "available"
++                    mk, side = OBS_SIDES[odd_id]
++                    obs.append(quotelog.observation("sgo", ev.get("eventID"), st.get("startsAt"), h, a, BOOKS[bk], mk,
++                                                    side, _num(o.get("spread") if mk == "spread" else o.get("overUnder")),
++                                                    _num(o.get("odds")), o.get("lastUpdatedAt"), now, status))
+                 if bk not in BOOKS or o.get("available") is False:
+                     continue
+                 upd = pd.to_datetime(o.get("lastUpdatedAt"), utc=True, errors="coerce")
+@@ -132,6 +144,7 @@ def fetch(api_key: str | None = None, max_events: int = 1500) -> pd.DataFrame:
+         rows += per_book.values()
+     fetch.unmatched = sorted(unmatched)
+     fetch.events = len(events)
++    fetch.observations, fetch.observed_at = obs, now
+     base = ["book", "sgo_event", "start", "home_id", "away_id", "home_spread", "total"]
+     return pd.DataFrame(rows).reindex(columns=list(dict.fromkeys(base + [c for r in rows for c in r])))
+ 
+@@ -223,15 +236,22 @@ def pull(api_key: str | None = None) -> pd.DataFrame:
+     os.makedirs(LINES, exist_ok=True)
+     cl_path = os.path.join(LINES, "closing.csv")
+     empty = pd.DataFrame(columns=["book", "sgo_event", "start", "home_id", "away_id", "home_spread", "total"])
++    pending_obs = []   # (observations, poll_id, observed_at): logged after openers.csv, so new games are watched
+     last = _sgo_last()
+     if odds_api.due() and last is not None and pd.Timestamp.now(tz="UTC") - last < SGO_MIN_GAP:
+         l = empty   # runs every 10 minutes; SGO's monthly allowance (shared with the NFL model) gets every third
++        quotelog.poll("sgo", "skipped", quotelog.now(), error="less than 25 minutes since the last SGO pull")
+     else:
+         try:
+             l = fetch(api_key)
+             with open(SGO_LAST, "w") as fh:
+                 fh.write(pd.Timestamp.now(tz="UTC").isoformat(timespec="seconds"))
++            u = getattr(fetch, "usage", {}) or {}
++            pid = quotelog.poll("sgo", "ok", fetch.observed_at, events=fetch.events, quotes=len(fetch.observations),
++                                cost=fetch.events, remaining=(u["max"] - u["used"] - fetch.events) if u else None)
++            pending_obs.append((fetch.observations, pid, fetch.observed_at))
+         except Exception as e:
++            quotelog.poll("sgo", "error", quotelog.now(), error=e)
+             if not odds_api.due():
+                 raise
+             print(f"SportsGameOdds failed ({e}); using The Odds API only.")
+@@ -240,8 +260,15 @@ def pull(api_key: str | None = None) -> pd.DataFrame:
+     if odds_api.due():
+         try:
+             l = _merge_second_source(l, odds_api.fetch(), cl_path)
++            oa = odds_api.fetch
++            pid = quotelog.poll("oddsapi", "ok", oa.observed_at, events=oa.events, quotes=len(oa.observations),
++                                cost=oa.last_cost, remaining=(oa.usage or {}).get("remaining"))
++            pending_obs.append((oa.observations, pid, oa.observed_at))
+         except Exception as e:
++            quotelog.poll("oddsapi", "error", quotelog.now(), error=e)
+             print(f"The Odds API failed ({e}); SGO lines only.")
++    else:
++        quotelog.poll("oddsapi", "skipped", quotelog.now(), error="not due on this run")
+     ts = pd.Timestamp.now(tz="UTC")
+     if len(l):
+         cur = l.reindex(columns=["sgo_event", "book", "start", "home_id", "away_id", "home_spread", "home_spread_odds",
+@@ -273,6 +300,9 @@ def pull(api_key: str | None = None) -> pd.DataFrame:
+         flipped = l["op_home"].notna() & (l["op_home"] != l["home_id"])
+         l.loc[flipped, "open_home_spread"] = -l.loc[flipped, "open_home_spread"]
+         l = l.drop(columns=["op_home", "game_key"])
++    pull.pulled_at = ts.isoformat(timespec="seconds")   # the lines this run's signals were built on (quotelog)
++    for obs, pid, at in pending_obs:   # games first seen in this pull are inside their watch window now
++        quotelog.observations(obs, pid, at)
+     oa = getattr(odds_api.fetch, "usage", None)
+     with open(os.path.join(LINES, "last_pull.txt"), "w") as f:
+         f.write(f"{ts:%Y-%m-%d %H:%M} UTC  events {getattr(fetch, 'events', 0)}  book-game rows {len(l)} "
+diff --git a/cbb/odds_api.py b/cbb/odds_api.py
+index c68b05c..1c38e4a 100644
+--- a/cbb/odds_api.py
++++ b/cbb/odds_api.py
+@@ -20,7 +20,7 @@ import urllib.request
+ import numpy as np
+ import pandas as pd
+ 
+-from . import teams
++from . import quotelog, teams
+ 
+ API = "https://api.the-odds-api.com/v4/sports/basketball_ncaab/odds"
+ BOOKS = {"draftkings": "DraftKings", "fanduel": "FanDuel", "betmgm": "BetMGM", "williamhill_us": "Caesars",
+@@ -66,6 +66,7 @@ def parse(events: list, lookup: dict | None = None) -> tuple[pd.DataFrame, list]
+     lookup = lookup or _lookup()
+     now = pd.Timestamp.now(tz="UTC")
+     rows, unmatched = [], set()
++    obs = []   # forward-test log (quotelog.py): every quote seen at our books, stale ones included
+     for ev in events:
+         if pd.to_datetime(ev.get("commence_time"), utc=True) <= now:
+             continue
+@@ -77,6 +78,19 @@ def parse(events: list, lookup: dict | None = None) -> tuple[pd.DataFrame, list]
+         for bk in ev.get("bookmakers") or []:
+             if bk.get("key") not in BOOKS:
+                 continue
++            for m in bk.get("markets") or []:
++                if m.get("key") not in ("spreads", "totals"):
++                    continue
++                mu = m.get("last_update") or bk.get("last_update")
++                mut = pd.to_datetime(mu, utc=True, errors="coerce")
++                status = "stale" if pd.notna(mut) and now - mut > MAX_AGE else "available"
++                for o in m.get("outcomes") or []:
++                    nm = o.get("name")
++                    side = ("home" if nm == hn else "away" if nm == an else None) if m["key"] == "spreads" else str(nm).lower()
++                    if side in ("home", "away", "over", "under"):
++                        obs.append(quotelog.observation("oddsapi", f"oa:{ev.get('id')}", ev.get("commence_time"), h, a,
++                                                        BOOKS[bk["key"]], "spread" if m["key"] == "spreads" else "total",
++                                                        side, o.get("point"), o.get("price"), mu, now, status))
+             upd = pd.to_datetime(bk.get("last_update"), utc=True, errors="coerce")
+             if pd.notna(upd) and now - upd > MAX_AGE:
+                 continue
+@@ -107,6 +121,7 @@ def parse(events: list, lookup: dict | None = None) -> tuple[pd.DataFrame, list]
+                             if link:
+                                 r[f"{side}_ml_link"] = link
+             rows.append(r)
++    parse.observations, parse.observed_at = obs, now
+     base = ["book", "sgo_event", "start", "home_id", "away_id", "home_spread", "total"]
+     df = pd.DataFrame(rows).reindex(columns=list(dict.fromkeys(base + [c for r in rows for c in r])))
+     for c in df.columns:
+@@ -115,6 +130,20 @@ def parse(events: list, lookup: dict | None = None) -> tuple[pd.DataFrame, list]
+     return df, sorted(unmatched)
+ 
+ 
++def fetch_quotes(api_key: str | None = None) -> tuple[list, dict]:
++    """Targeted poll for the forward-test log (poll_targets.py): spreads and totals only, no links, every book in the
++    frozen set. Costs 2 credits per call however many games it returns. Returns (observations, info)."""
++    api_key = api_key or os.environ.get("ODDS_API_KEY", "")
++    refused = set(json.load(open(REFUSED))) if os.path.exists(REFUSED) else set()
++    events, hdr = _get({"apiKey": api_key, "regions": "us", "markets": "spreads,totals", "oddsFormat": "american",
++                        "bookmakers": ",".join(b for b in BOOKS if b not in refused)})
++    parse(events)
++    left = hdr.get("x-requests-remaining")
++    return parse.observations, {"observed_at": parse.observed_at, "events": len(events),
++                                "cost": int(float(hdr["x-requests-last"])) if hdr.get("x-requests-last") else None,
++                                "remaining": int(float(left)) if left else None}
++
++
+ def fetch(api_key: str | None = None) -> pd.DataFrame:
+     api_key = api_key or os.environ.get("ODDS_API_KEY", "")
+     refused = set(json.load(open(REFUSED))) if os.path.exists(REFUSED) else set()
+@@ -146,6 +175,8 @@ def fetch(api_key: str | None = None) -> pd.DataFrame:
+             events, hdr = _get(dict(params, bookmakers=",".join(ok)))
+     df, fetch.unmatched = parse(events)
+     fetch.events = len(events)
++    fetch.observations, fetch.observed_at = parse.observations, parse.observed_at
++    fetch.last_cost = int(float(hdr["x-requests-last"])) if hdr.get("x-requests-last") else None
+     u = {"remaining": int(float(hdr.get("x-requests-remaining", "nan"))) if hdr.get("x-requests-remaining") else None,
+          "used": int(float(hdr.get("x-requests-used", 0) or 0)), "at": pd.Timestamp.now(tz="UTC").isoformat(timespec="seconds")}
+     os.makedirs(os.path.dirname(USAGE), exist_ok=True)
+diff --git a/cbb/poll_targets.py b/cbb/poll_targets.py
+new file mode 100644
+index 0000000..d80f6b2
+--- /dev/null
++++ b/cbb/poll_targets.py
+@@ -0,0 +1,46 @@
++"""Targeted quote polling for the forward-test execution check (FORWARD_TEST_PROTOCOL.md, section 5).
++
++Run every 3 minutes by .github/workflows/quotes.yml. If any game is inside a watch window (a signal logged, or a
++first-seen quote, in the last 65 minutes: quotelog.watched_games) it makes one Odds API call for spreads and totals
++(2 credits) and logs every quote of the watched games to lines/obs_targeted/; otherwise it records a skipped poll and spends
++nothing. It never touches the model, the card, the bet log, openers.csv or closing.csv.
++
++    python -m cbb.poll_targets
++"""
++from __future__ import annotations
++
++from . import odds_api, quotelog
++
++
++def main() -> None:
++    # own files, so this workflow and the card workflow never append to the same file
++    polls, obs_dir = quotelog.POLLS, quotelog.OBS_DIR
++    quotelog.POLLS = polls.replace("polls.csv", "polls_targeted.csv")
++    quotelog.OBS_DIR = obs_dir + "_targeted"
++    try:
++        _poll()
++    finally:
++        quotelog.POLLS, quotelog.OBS_DIR = polls, obs_dir
++
++
++def _poll() -> None:
++    t = quotelog.now()
++    watched = quotelog.watched_games(t)
++    if not watched:
++        quotelog.poll("oddsapi-targeted", "skipped", t, error="no game in a watch window")
++        print("Nothing to watch.")
++        return
++    try:
++        obs, info = odds_api.fetch_quotes()
++    except Exception as e:
++        quotelog.poll("oddsapi-targeted", "error", quotelog.now(), error=e)
++        print(f"Targeted poll failed: {e}")
++        return
++    pid = quotelog.poll("oddsapi-targeted", "ok", info["observed_at"], events=info["events"], quotes=len(obs),
++                        cost=info["cost"], remaining=info["remaining"])
++    n = quotelog.observations(obs, pid, info["observed_at"], watched)
++    print(f"Watched {len(watched)} game(s); logged {n} observation(s); cost {info['cost']}, {info['remaining']} left.")
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/cbb/quotelog.py b/cbb/quotelog.py
+new file mode 100644
+index 0000000..5e7b73a
+--- /dev/null
++++ b/cbb/quotelog.py
+@@ -0,0 +1,198 @@
++"""Forward-test logging (FORWARD_TEST_PROTOCOL.md): what each line pull saw, when, and what each signal was built on.
++
++Additive only: nothing here feeds the model, the card or the bet log, and every writer swallows its own errors so a
++logging failure can never stop or change a card run.
++
++  lines/polls.csv              one row per poll attempt per source (targeted polls: lines/polls_targeted.csv): observed_at, source, status (ok / error /
++                               skipped), error text, events and quotes returned, cost (SGO entities = events; The Odds
++                               API credits from its x-requests-last header), credits left, seconds since that source's
++                               previous successful poll
++  lines/obs/<ET date>.csv      (targeted polls: lines/obs_targeted/) every quote observation, both sides of each spread and total at every book in the frozen
++                               book set, for games inside a watch window (a signal logged in the last WATCH minutes, or
++                               a first-seen quote in the last WATCH minutes): observed_at (our clock), source,
++                               event_id, game_key, book, market, side, line, price, source_updated_at (the feed's
++                               lastUpdatedAt / last_update), quote_age_s, status (available / unavailable / stale),
++                               poll_id. A quote is only ever "seen" at an observed_at; nothing is inferred between polls.
++  bets/signal_log.csv          one row per logged signal: generated_at (card run start), logged_at, the lines pull it
++                               used, the quote it was logged at (source, book, line, price, source_updated_at, age),
++                               input cutoffs (box scores through, KenPom source, Barttorvik file, crew posted),
++                               opening-week shift, code version
++  bets/alert_log.csv           one row per alert attempt: id, channel (ntfy / discord), kind, sent_at, ok, message id
++"""
++from __future__ import annotations
++
++import os
++
++import pandas as pd
++
++ROOT = os.path.join(os.path.dirname(__file__), "..")
++LINES = os.path.join(ROOT, "lines")
++POLLS = os.path.join(LINES, "polls.csv")
++OBS_DIR = os.path.join(LINES, "obs")
++SIGNALS = os.path.join(ROOT, "bets", "signal_log.csv")
++ALERTS = os.path.join(ROOT, "bets", "alert_log.csv")
++WATCH = pd.Timedelta(minutes=65)       # delay test reaches 60 minutes after the alert
++POLL_COLS = ["poll_id", "observed_at", "source", "status", "error", "events", "quotes", "cost", "remaining",
++             "secs_since_prev_ok"]
++OBS_COLS = ["poll_id", "observed_at", "source", "event_id", "game_key", "start", "book", "market", "side", "line",
++            "price", "source_updated_at", "quote_age_s", "status"]
++SIGNAL_COLS = ["bet_id", "generated_at", "logged_at", "lines_pulled_at", "market", "side", "book", "line", "odds",
++               "quote_source", "quote_event_id", "quote_source_updated_at", "quote_age_s", "quote_status",
++               "box_scores_through", "kenpom_source", "barttorvik_file", "crew_posted", "opening_week_shift",
++               "code_version"]
++ALERT_COLS = ["id", "channel", "kind", "sent_at", "ok", "message_id"]
++
++RUN_STARTED: pd.Timestamp | None = None    # set by run_day.main at the start of a card run
++
++
++def now() -> pd.Timestamp:
++    return pd.Timestamp.now(tz="UTC")
++
++
++def _append(path: str, rows: list[dict], cols: list[str]) -> None:
++    if not rows:
++        return
++    os.makedirs(os.path.dirname(path), exist_ok=True)
++    df = pd.DataFrame(rows).reindex(columns=cols)
++    df.to_csv(path, mode="a", header=not os.path.exists(path), index=False)
++
++
++def poll(source: str, status: str, observed_at: pd.Timestamp, events=None, quotes=None, cost=None, remaining=None,
++         error: str = "") -> str:
++    """Record one poll attempt. Returns its poll_id."""
++    pid = f"{source}-{observed_at:%Y%m%dT%H%M%S}"
++    try:
++        prev = None
++        if os.path.exists(POLLS):
++            p = pd.read_csv(POLLS)
++            p = p[(p["source"] == source) & (p["status"] == "ok")]
++            if len(p):
++                prev = pd.Timestamp(p["observed_at"].iloc[-1])
++        gap = round((observed_at - prev).total_seconds()) if prev is not None and status == "ok" else None
++        _append(POLLS, [{"poll_id": pid, "observed_at": observed_at.isoformat(timespec="seconds"), "source": source,
++                         "status": status, "error": str(error)[:300], "events": events, "quotes": quotes, "cost": cost,
++                         "remaining": remaining, "secs_since_prev_ok": gap}], POLL_COLS)
++    except Exception as e:
++        print(f"quotelog.poll failed ({e}); continuing.")
++    return pid
++
++
++def _game_key(start, home_id, away_id) -> str | None:
++    try:
++        d = pd.Timestamp(start).tz_convert("America/New_York").strftime("%Y-%m-%d")
++        lo, hi = sorted((int(home_id), int(away_id)))
++        return f"{d}|{lo}|{hi}"
++    except Exception:
++        return None
++
++
++def observation(source, event_id, start, home_id, away_id, book, market, side, line, price, source_updated_at,
++                observed_at, status) -> dict:
++    upd = pd.to_datetime(source_updated_at, utc=True, errors="coerce")
++    return {"observed_at": observed_at.isoformat(timespec="seconds"), "source": source, "event_id": event_id,
++            "game_key": _game_key(start, home_id, away_id), "start": start, "book": book, "market": market,
++            "side": side, "line": line, "price": price,
++            "source_updated_at": upd.isoformat() if pd.notna(upd) else None,
++            "quote_age_s": round((observed_at - upd).total_seconds()) if pd.notna(upd) else None, "status": status}
++
++
++def watched_games(observed_at: pd.Timestamp) -> set:
++    """game_keys inside a watch window: a signal logged, or a first-seen quote, within WATCH of observed_at."""
++    keys: set = set()
++    try:
++        bets = os.path.join(ROOT, "bets", "bets.csv")
++        if os.path.exists(bets):
++            b = pd.read_csv(bets)
++            t = pd.to_datetime(b["logged_at"], utc=True, errors="coerce")
++            b = b[(t >= observed_at - WATCH) & (b["status"] == "open")]
++            for _, r in b.iterrows():
++                lo, hi = sorted((int(r["home_id"]), int(r["away_id"])))
++                keys.add(f"{r['date']}|{lo}|{hi}")
++        op = os.path.join(LINES, "openers.csv")
++        if os.path.exists(op):
++            o = pd.read_csv(op)
++            t = pd.to_datetime(o["first_seen"], utc=True, errors="coerce", format="ISO8601")
++            keys |= set(o.loc[t >= observed_at - WATCH, "game_key"].astype(str))
++    except Exception as e:
++        print(f"quotelog.watched_games failed ({e}); continuing.")
++    return keys
++
++
++def observations(rows: list[dict], poll_id: str, observed_at: pd.Timestamp, watched: set | None = None) -> int:
++    """Append the observations of games inside a watch window to lines/obs/<ET date of observation>.csv."""
++    try:
++        watched = watched_games(observed_at) if watched is None else watched
++        keep = [dict(r, poll_id=poll_id) for r in rows if r.get("game_key") in watched]
++        day = observed_at.tz_convert("America/New_York").strftime("%Y-%m-%d")
++        _append(os.path.join(OBS_DIR, f"{day}.csv"), keep, OBS_COLS)
++        return len(keep)
++    except Exception as e:
++        print(f"quotelog.observations failed ({e}); continuing.")
++        return 0
++
++
++def latest_quote(game_key: str, book: str, market: str, side: str) -> dict:
++    """The most recent logged observation of one quote from the card run's own pulls (for signal_log)."""
++    try:
++        files = sorted(f for f in os.listdir(OBS_DIR) if f.endswith(".csv"))[-2:] if os.path.isdir(OBS_DIR) else []
++        if not files:
++            return {}
++        o = pd.concat([pd.read_csv(os.path.join(OBS_DIR, f)) for f in files], ignore_index=True)
++        o = o[(o["game_key"] == game_key) & (o["book"] == book) & (o["market"] == market) & (o["side"] == side)]
++        return o.iloc[-1].to_dict() if len(o) else {}
++    except Exception:
++        return {}
++
++
++def inputs(day: pd.Timestamp, hist: pd.DataFrame | None) -> dict:
++    """Input cutoffs for a card day, read from what the run had on disk (no model code is touched)."""
++    from . import barttorvik, kenpom
++    out = {}
++    try:
++        out["box_scores_through"] = str(pd.to_datetime(hist["date"]).max().date()) if hist is not None and len(hist) else ""
++    except Exception:
++        out["box_scores_through"] = ""
++    fm = os.path.join(kenpom.CACHE, f"endpoint-fanmatch_d-{day:%Y-%m-%d}.json")
++    out["kenpom_source"] = "fanmatch" if os.path.exists(fm) else "current ratings at run time"
++    try:   # what barttorvik.before() would find: a non-empty cached file in the 7 days before; else the live file
++        out["barttorvik_file"] = "live file (current ratings at run time)"
++        for k in range(1, 8):
++            f = os.path.join(barttorvik.CACHE, f"{day - pd.Timedelta(days=k):%Y%m%d}.parquet")
++            if os.path.exists(f) and len(pd.read_parquet(f)):
++                out["barttorvik_file"] = os.path.basename(f)[:8]
++                break
++    except Exception:
++        out["barttorvik_file"] = ""
++    return out
++
++
++def signals(new_bets: list[dict], card: pd.DataFrame, day: pd.Timestamp, inp: dict, lines_pulled_at: str | None) -> None:
++    """One signal_log row per newly logged bet."""
++    try:
++        rows = []
++        cg = card.set_index("game_id") if len(card) else None
++        for b in new_bets:
++            g = cg.loc[b["game_id"]] if cg is not None and b["game_id"] in cg.index else {}
++            lo, hi = sorted((int(b["home_id"]), int(b["away_id"])))
++            q = latest_quote(f"{b['date']}|{lo}|{hi}", b.get("book"), b["market"], b["side"])
++            crew = g.get("crew") if hasattr(g, "get") else None
++            rows.append({"bet_id": b["bet_id"], "generated_at": RUN_STARTED.isoformat(timespec="seconds") if RUN_STARTED is not None else "",
++                         "logged_at": b["logged_at"], "lines_pulled_at": lines_pulled_at or "", "market": b["market"],
++                         "side": b["side"], "book": b.get("book"), "line": b.get("line"), "odds": b.get("odds"),
++                         "quote_source": q.get("source", ""), "quote_event_id": q.get("event_id", ""),
++                         "quote_source_updated_at": q.get("source_updated_at", ""), "quote_age_s": q.get("quote_age_s", ""),
++                         "quote_status": q.get("status", ""), **inp,
++                         "crew_posted": bool(isinstance(crew, str) and crew),
++                         "opening_week_shift": g.get("total_shift", 0.0) if hasattr(g, "get") else 0.0,
++                         "code_version": os.environ.get("GITHUB_SHA", "")})
++        _append(SIGNALS, rows, SIGNAL_COLS)
++    except Exception as e:
++        print(f"quotelog.signals failed ({e}); continuing.")
++
++
++def alert(id_: str, channel: str, kind: str, ok: bool, message_id: str | None = None) -> None:
++    try:
++        _append(ALERTS, [{"id": id_, "channel": channel, "kind": kind, "sent_at": now().isoformat(timespec="seconds"),
++                          "ok": bool(ok), "message_id": message_id or ""}], ALERT_COLS)
++    except Exception as e:
++        print(f"quotelog.alert failed ({e}); continuing.")
+diff --git a/cbb/record.py b/cbb/record.py
+index e4686dc..df6e7e4 100644
+--- a/cbb/record.py
++++ b/cbb/record.py
+@@ -20,7 +20,7 @@ import urllib.request
+ 
+ import pandas as pd
+ 
+-from . import tracker
++from . import quotelog, tracker
+ 
+ STATE = os.path.join(tracker.ROOT, "bets", "discord_posted.json")
+ ANNOUNCEMENTS = os.path.join(tracker.ROOT, "bets", "announcements.json")
+@@ -31,6 +31,13 @@ class Refused(Exception):
+     """Discord refused the webhook itself (bad or deleted URL): stop this run's posting."""
+ 
+ 
++def _label(payload: dict) -> str:
++    """What a post was about, for the alert log: the bet id in its footer, or its title or first words."""
++    e = (payload.get("embeds") or [{}])[0]
++    foot = (e.get("footer") or {}).get("text", "")
++    return foot.replace("bet id ", "") if foot.startswith("bet id ") else (e.get("title") or payload.get("content", ""))[:120]
++
++
+ def url_shape(url: str) -> str:
+     """What the webhook URL looks like, without the secret parts: prefix ok, id digits, token length (68 expected)."""
+     m = re.match(r"^https://(?:ptb\.|canary\.)?discord(?:app)?\.com/api/(?:v\d+/)?webhooks/(\d+)/([\w-]+)$", url)
+@@ -50,8 +57,11 @@ def post(payload: dict, url: str | None = None) -> str | None:
+                                  method="POST", headers={"Content-Type": "application/json", "User-Agent": "cbb-model"})
+     try:
+         with urllib.request.urlopen(req, timeout=20) as r:
+-            return str(json.load(r).get("id") or "posted")
++            mid = str(json.load(r).get("id") or "posted")
++        quotelog.alert(_label(payload), "discord", "post", True, mid)
++        return mid
+     except urllib.error.HTTPError as e:
++        quotelog.alert(_label(payload), "discord", "post", False)
+         detail = e.read()[:200].decode(errors="ignore")
+         print(f"Discord post failed: HTTP {e.code} {detail}")
+         if e.code in (401, 403, 404):
+@@ -59,6 +69,7 @@ def post(payload: dict, url: str | None = None) -> str | None:
+             raise Refused from e
+         return None
+     except Exception as e:
++        quotelog.alert(_label(payload), "discord", "post", False)
+         print(f"Discord post failed: {e}")
+         return None
+     finally:
+diff --git a/cbb/record_page.py b/cbb/record_page.py
+index 3e078bc..efa55e7 100644
+--- a/cbb/record_page.py
++++ b/cbb/record_page.py
+@@ -71,6 +71,56 @@ def _chart(s: pd.DataFrame) -> str:
+             f"<span>{y[-1]:+.2f} units after {len(y) - 1} plays</span></div></div>")
+ 
+ 
++ACCEPTED = os.path.join(tracker.ROOT, "bets", "accepted.csv")
++FRESH_S = 600   # cohort B: quote observed at the generating pull, source timestamp no older than this
++
++
++def cohorts(b: pd.DataFrame) -> tuple[str, str]:
++    """Cohorts A (every logged signal), B (signal backed by a fresh observed quote at a named book at the logged
++    number) and C (confirmed accepted bets, bets/accepted.csv, matched to A) side by side, and C's deterioration
++    vs A. FORWARD_TEST_PROTOCOL.md section 6. A feed quote is never treated as proof of acceptance."""
++    a = b[b["status"] != "void"]
++    sl = os.path.join(tracker.ROOT, "bets", "signal_log.csv")
++    sig = pd.read_csv(sl) if os.path.exists(sl) else pd.DataFrame(columns=["bet_id", "quote_status", "quote_age_s"])
++    sig = sig.drop_duplicates("bet_id", keep="first").set_index("bet_id")
++    age = pd.to_numeric(a["bet_id"].map(sig["quote_age_s"]), errors="coerce")
++    fresh = (a["bet_id"].map(sig["quote_status"]) == "available") & (age <= FRESH_S)
++    unknown = ~a["bet_id"].isin(sig.index) | age.isna()
++    acc = pd.read_csv(ACCEPTED) if os.path.exists(ACCEPTED) else pd.DataFrame(
++        columns=["bet_id", "book", "placed_at", "line", "odds", "stake", "source"])
++    acc = acc[acc["bet_id"].isin(a["bet_id"])]
++    c = a.merge(acc, on="bet_id", suffixes=("", "_acc"))
++
++    def col(d: pd.DataFrame, res_col="result", profit=None) -> str:
++        s_ = d[d["status"] == "settled"]
++        w, l, p = (s_[res_col] == "W").sum(), (s_[res_col] == "L").sum(), (s_[res_col] == "P").sum()
++        u = s_["profit"].astype(float).sum() if profit is None else profit
++        clv = s_["clv_pts"].astype(float).dropna()
++        return (f"<td class='r'>{len(d)}</td><td class='r'>{len(s_)}</td><td class='r'>{w}-{l}-{p}</td>"
++                f"<td class='r'>{_num(w / (w + l) if w + l else None, '{:.1%}')}</td><td class='r'>{_num(u)}</td>"
++                f"<td class='r'>{_num(clv.mean() if len(clv) else None)}</td>")
++
++    rows = (f"<tr><td class='b'>A. Every signal</td>{col(a)}</tr>"
++            f"<tr><td class='b'>B. Fresh quote at a named book</td>{col(a[fresh])}</tr>"
++            f"<tr><td class='b'>C. Confirmed accepted bets</td>{col(c) if len(c) else '<td class=r>0</td>' + '<td></td>' * 5}</tr>")
++    head = ("<thead><tr><th>Cohort</th><th class='r'>Signals</th><th class='r'>Settled</th><th class='r'>W-L-P</th>"
++            "<th class='r'>Win %</th><th class='r'>Units (logged price)</th><th class='r'>CLV pts</th></tr></thead>")
++    note = (f"B excludes {int(unknown.sum())} signal(s) logged before quote timestamps were recorded or without one. "
++            f"C counts only bets confirmed with book, time, line, odds and stake (bets/accepted.csv); "
++            f"{len(c)} of {len(a)} signals matched.")
++    if len(c):
++        # points better than signalled: spreads are from the bettor's side (higher is better); totals: lower is
++        # better on an over, higher on an under
++        diff = c["line_acc"].astype(float) - c["line"].astype(float)
++        dline = np.where(c["side"] == "over", -diff, diff)
++        delay = (pd.to_datetime(c["placed_at"], utc=True, errors="coerce") -
++                 pd.to_datetime(c["logged_at"], utc=True, errors="coerce")).dt.total_seconds() / 60
++        note += (f" Accepted vs signal: number {np.nanmean(dline):+.2f} pts (+ = better than signalled), "
++                 f"price {np.nanmean(c['odds_acc'].astype(float) - c['odds'].astype(float)):+.1f} (American), "
++                 f"median delay {np.nanmedian(delay):.0f} min.")
++    return head + "<tbody>" + rows + "</tbody>", note
++
++
+ def build() -> str:
+     b = tracker.load()
+     live = b[b["status"] != "void"]
+@@ -124,6 +174,7 @@ def build() -> str:
+               f"to a Bitcoin block (check it at <a href='https://opentimestamps.org'>opentimestamps.org</a> with the log file).</li>"
+               + disc)
+ 
++    coh_table, coh_note = cohorts(b)
+     now = pd.Timestamp.now(tz="America/New_York")
+     style = report_html.TEMPLATE[report_html.TEMPLATE.index("<style>"):report_html.TEMPLATE.index("</style>") + 8]
+     return f"""<!doctype html>
+@@ -145,6 +196,8 @@ def build() -> str:
+   <div class="kpis">{kpis}</div>
+   <section class="panel"><div class="panel-h"><h2>Summary</h2><span class="note">Settled plays. CLV = points the line moved our way from the logged number to the close. Break-even at -110 is 52.4%.</span></div>
+     <div class="scroll"><table>{HEAD}<tbody>{''.join(rows)}</tbody></table></div>{_chart(s)}</section>
++  <section class="panel"><div class="panel-h"><h2>Signals, quotes and accepted bets</h2><span class="note">{html.escape(coh_note)}</span></div>
++    <div class="scroll"><table>{coh_table}</table></div></section>
+   {f"<section class='panel'><div class='panel-h'><h2>By month</h2></div><div class='scroll'><table>{HEAD}<tbody>{months}</tbody></table></div></section>" if months else ""}
+   <section class="panel"><div class="panel-h"><h2>Every play</h2><span class="note">Newest first. Void = cancelled before the game and not graded; its correction is in the log and on Discord.</span></div>
+     <div class="scroll"><table>{plays_t}</table></div></section>
+diff --git a/cbb/run_day.py b/cbb/run_day.py
+index a52f326..a6cdb07 100644
+--- a/cbb/run_day.py
++++ b/cbb/run_day.py
+@@ -32,7 +32,7 @@ import numpy as np
+ import pandas as pd
+ 
+ from . import (backtest, context, data, injuries, injury_sources, injury_watch, kenpom, news, notify, odds, players,
+-               projection, ratings, report_html, review, teams, tracker)
++               projection, quotelog, ratings, report_html, review, teams, tracker)
+ from . import record as public_record   # build() has its own local named record
+ from . import record_page
+ 
+@@ -304,6 +304,7 @@ def main():
+     ap.add_argument("--auto", action="store_true", help="after 8pm ET, build tomorrow's card (openers post overnight); "
+                     "on a day without games, the next day that has them")
+     a = ap.parse_args()
++    quotelog.RUN_STARTED = quotelog.now()   # forward-test log: when this run's predictions were generated
+     day = pd.Timestamp(a.date) if a.date else today_et()
+     if a.auto and not a.date and pd.Timestamp.now(tz="America/New_York").hour >= 20:
+         day += pd.Timedelta(days=1)
+@@ -418,6 +419,12 @@ def build(day: pd.Timestamp, games: pd.DataFrame, lines: pd.DataFrame | None, re
+             public_record.sync()
+         except Exception as e:
+             print(f"Discord record failed ({e}); continuing.")
++        if new:   # forward-test log: what each new signal was built on (additive; never changes a play)
++            try:
++                hist = data.season_games(season_of(day))[0] if day <= today_et() + pd.Timedelta(days=14) else None
++            except Exception:
++                hist = None
++            quotelog.signals(new, card, day, quotelog.inputs(day, hist), getattr(odds.pull, "pulled_at", None))
+         card = attach_logged(card, day)
+         try:
+             rv = review.summary()

@@ -1,0 +1,9 @@
+variant,market,seasons,plays,win%,ROI%@-110,mean move our way,same plays win% at close
+safe_lag1,spread,2015-2017,1856,56.28,7.21,1.21,51.73
+safe_lag1,spread,2024-2026,2262,57.45,9.65,1.04,53.68
+safe_lag1,total,2015-2017,3046,57.72,10.08,1.45,54.57
+safe_lag1,total,2024-2026,3149,54.9,4.8,1.67,50.52
+safe_lag1_nobt,spread,2015-2017,1781,56.18,7.05,1.15,51.62
+safe_lag1_nobt,spread,2024-2026,2364,57.62,9.96,0.94,54.75
+safe_lag1_nobt,total,2015-2017,2982,57.69,10.01,1.45,54.45
+safe_lag1_nobt,total,2024-2026,3058,55.61,6.14,1.67,51.03
