@@ -36,7 +36,7 @@ Against the opener at the live card's cutoffs (spread edge 2.5+, total edge 3+; 
 
 | | 2015-2017 | 2024-2026 |
 |---|---:|---:|
-| Spreads vs the opener, openers oriented by their own moneylines | 57.5% (2,039) | 58.1% (2,297) |
+| Spreads vs the opener, openers oriented by their own moneylines, swapped records excluded | 57.3% (2,020) | 58.0% (2,291) |
 | Totals vs the opener, referee crews unknown at the open (inputs 0, weights unchanged) | 57.9% (3,611) | 56.2% (3,993) |
 
 The spreads row sits in a **historical spread filtering-sensitivity range of about 56-58.7%**. That range spans
@@ -47,7 +47,7 @@ a result for totals.
 
 | Against the closing line | Result | Bets |
 |---|---:|---:|
-| ATS vs closing line, edge 3+, 2020-2026 | 53.6% | 3,347 |
+| ATS vs closing line, edge 3+, 2020-2026 | 53.5% | 3,335 |
 | Over/under vs closing line, edge 4+, 2020-2026 | 54.7% | 6,323 |
 | Average miss on margin, 2020-2026 (model / closing line) | 8.88 / 8.84 | |
 | Average miss on total, 2020-2026 (model / closing line) | 13.09 / 13.00 | |
@@ -59,6 +59,10 @@ Break-even at -110 is 52.4%. Closing lines exclude projection services listed as
   moneyline marks the favourite). An opener that favours the other team is corrected; nothing uses the later
   close. Openers within 1 point or without moneylines cannot be checked and are kept (counts in
   audit/out/item7.md). The earlier rule dropped openers that sat nearer the mirrored close.
+* **Swapped records:** some ESPN odds records have home and away reversed against the game (mostly neutral
+  sites; the whole record, moneyline included). Games where the line's favourite is the other team from both the
+  model's and KenPom's, each by 10+ points, are left out of the spread tables (pregame information only; 152
+  games in 2013-2026). They had shown up as large, fake winning edges.
 * **Referees:** crews are usually posted near tip, after the openers, so opener tables for totals use crew inputs
   of 0 under the existing weights (no refit). With crews as recorded, totals vs the opener read 58.4% / 57.4%.
 * **Caveats:** openers carry low limits; openers exist only for 2014-2017 and 2024-2026; historical opener plays
@@ -198,11 +202,24 @@ def bad_months(b: pd.DataFrame, limit: float = 0.03) -> pd.Series:
     return r[r > limit]
 
 
+def swapped(b: pd.DataFrame) -> pd.Series:
+    """Games whose ESPN odds record has home and away reversed against the game record (mostly neutral sites): the
+    line's favourite is the other team from both the model's and KenPom's, each by 10+ points. Pregame
+    information only (the opener, else the close; never the result). The whole record is reversed, moneyline
+    included, so the opener orientation check cannot catch it. Spread lines of these games are left out of the
+    tables; totals are unaffected. research/edges/RESULTS.md: 55 of 67 such opener plays went the model's way."""
+    line = -b["open_home_spread"].fillna(b["home_spread"])
+    return ((np.sign(b["pred_margin"]) != np.sign(line)) & (np.sign(b["kp_margin"]) != np.sign(line)) &
+            ((b["pred_margin"] - line).abs() >= 10) & ((b["kp_margin"] - line).abs() >= 10) & line.notna())
+
+
 def report(b: pd.DataFrame, start: int, end: int) -> str:
     bad = bad_months(b)
     drop = b.set_index(["season", "month"]).index.isin(bad.index)
     b = b.copy()
     b.loc[drop, ["home_spread", "total", "open_home_spread", "open_total", "line_margin"]] = np.nan
+    sw = swapped(b)
+    b.loc[sw, ["home_spread", "open_home_spread", "line_margin"]] = np.nan
     L = b.dropna(subset=["home_spread"]).copy()
     L["edge"] = L["pred_margin"] - L["line_margin"]        # + = model likes home more than the line
     T = b.dropna(subset=["total"]).copy()

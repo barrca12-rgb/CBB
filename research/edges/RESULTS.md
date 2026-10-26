@@ -99,6 +99,7 @@ Nothing else stands out: by month, conference tier, spread size and total level 
 - **Verdict:** the strongest candidate from this search. Track it in the forward data. If it holds at Jan 15, it
   is a v2 staking proposal, not a selection change.
 
-**Proposed reporting correction (needs Chad's OK):** exclude likely swapped games from the historical opener
-tables (`BACKTEST.md`) with the pregame rule above (the model and KenPom both 10+ points on the other team). It
-changes no live play.
+**Reporting correction, applied Oct 26:** `BACKTEST.md` now leaves the likely swapped games out of every spread
+table, opener and close, with the pregame rule above: 152 games in 2013-2026. Spreads vs the opener at the live
+cutoffs move from 57.5% to 57.3% (2015-17) and from 58.1% to 58.0% (2024-26). Totals are unchanged. No live play
+changes.

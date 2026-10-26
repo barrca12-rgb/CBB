@@ -12,7 +12,7 @@ Against the opener at the live card's cutoffs (spread edge 2.5+, total edge 3+; 
 
 | | 2015-2017 | 2024-2026 |
 |---|---:|---:|
-| Spreads vs the opener, openers oriented by their own moneylines | 57.5% (2,039) | 58.1% (2,297) |
+| Spreads vs the opener, openers oriented by their own moneylines, swapped records excluded | 57.3% (2,020) | 58.0% (2,291) |
 | Totals vs the opener, referee crews unknown at the open (inputs 0, weights unchanged) | 57.9% (3,611) | 56.2% (3,993) |
 
 The spreads row sits in a **historical spread filtering-sensitivity range of about 56-58.7%**. That range spans
@@ -23,7 +23,7 @@ a result for totals.
 
 | Against the closing line | Result | Bets |
 |---|---:|---:|
-| ATS vs closing line, edge 3+, 2020-2026 | 53.6% | 3,347 |
+| ATS vs closing line, edge 3+, 2020-2026 | 53.5% | 3,335 |
 | Over/under vs closing line, edge 4+, 2020-2026 | 54.7% | 6,323 |
 | Average miss on margin, 2020-2026 (model / closing line) | 8.88 / 8.84 | |
 | Average miss on total, 2020-2026 (model / closing line) | 13.09 / 13.00 | |
@@ -35,6 +35,10 @@ Break-even at -110 is 52.4%. Closing lines exclude projection services listed as
   moneyline marks the favourite). An opener that favours the other team is corrected; nothing uses the later
   close. Openers within 1 point or without moneylines cannot be checked and are kept (counts in
   audit/out/item7.md). The earlier rule dropped openers that sat nearer the mirrored close.
+* **Swapped records:** some ESPN odds records have home and away reversed against the game (mostly neutral
+  sites; the whole record, moneyline included). Games where the line's favourite is the other team from both the
+  model's and KenPom's, each by 10+ points, are left out of the spread tables (pregame information only; 152
+  games in 2013-2026). They had shown up as large, fake winning edges.
 * **Referees:** crews are usually posted near tip, after the openers, so opener tables for totals use crew inputs
   of 0 under the existing weights (no refit). With crews as recorded, totals vs the opener read 58.4% / 57.4%.
 * **Caveats:** openers carry low limits; openers exist only for 2014-2017 and 2024-2026; historical opener plays
@@ -49,18 +53,18 @@ Lines dropped as bad data (closing line and KenPom favor different teams by 3+ i
 
 | | games | model | line favorite | KenPom |
 |---|---:|---:|---:|---:|
-| through 2019 | 23,445 | 73.7% | 73.6% | 73.2% |
-| 2020 on | 37,351 | 72.9% | 73.0% | 72.3% |
-| all | 60,796 | 73.2% | 73.2% | 72.7% |
+| through 2019 | 23,382 | 73.7% | 73.7% | 73.2% |
+| 2020 on | 37,340 | 72.9% | 73.0% | 72.3% |
+| all | 60,722 | 73.2% | 73.3% | 72.7% |
 
 ## Accuracy (games with a line and a KenPom prediction)
 
 | | games | margin MAE | total MAE |
 |---|---:|---:|---:|
-| model | 61,119 | 8.75 | 13.32 |
-| closing line | 61,119 | 8.71 | 13.13 |
-| KenPom | 61,119 | 8.85 | 13.38 |
-| ratings only (before 2nd stage) | 61,119 | 8.77 | 13.26 |
+| model | 61,045 | 8.75 | 13.32 |
+| closing line | 61,045 | 8.70 | 13.13 |
+| KenPom | 61,045 | 8.85 | 13.38 |
+| ratings only (before 2nd stage) | 61,045 | 8.77 | 13.26 |
 
 ## How much of the model's disagreement with the line shows up in the result
 
@@ -68,45 +72,45 @@ Slope of (result - line) on (model - line). 0 = the line already knows everythin
 
 | season | margin | total |
 |---|---:|---:|
-| 2014 | 0.29 | 0.09 |
-| 2015 | 0.23 | 0.68 |
-| 2016 | 0.40 | 0.32 |
-| 2017 | 0.56 | 0.45 |
-| 2018 | 0.52 | 0.64 |
-| 2019 | 0.63 | 0.32 |
+| 2014 | 0.24 | 0.09 |
+| 2015 | 0.22 | 0.68 |
+| 2016 | 0.34 | 0.32 |
+| 2017 | 0.32 | 0.45 |
+| 2018 | 0.33 | 0.64 |
+| 2019 | 0.46 | 0.32 |
 | 2020 | 0.17 | 0.46 |
-| 2021 | 0.43 | 0.27 |
+| 2021 | 0.42 | 0.27 |
 | 2022 | 0.19 | 0.46 |
-| 2023 | 0.97 | 0.52 |
+| 2023 | 0.96 | 0.52 |
 | 2024 | 0.38 | 0.38 |
 | 2025 | 0.21 | 0.14 |
 | 2026 | 0.15 | 0.14 |
-| all | 0.60 | 0.25 |
+| all | 0.53 | 0.25 |
 
 ## Spreads: betting the model's side vs the closing line, by size of disagreement
 
 | | bets | win% | roi% |
 |---|---:|---:|---:|
-| edge 0-1 pts, 2013-2019 | 10,631 | 51.2% | -2.27 |
-| edge 0-1 pts, 2020-2026 | 16,921 | 50.7% | -3.23 |
-| edge 1-2 pts, 2013-2019 | 7,209 | 52.0% | -0.64 |
-| edge 1-2 pts, 2020-2026 | 11,319 | 50.9% | -2.75 |
+| edge 0-1 pts, 2013-2019 | 10,627 | 51.2% | -2.27 |
+| edge 0-1 pts, 2020-2026 | 16,918 | 50.7% | -3.21 |
+| edge 1-2 pts, 2013-2019 | 7,207 | 52.0% | -0.66 |
+| edge 1-2 pts, 2020-2026 | 11,318 | 50.9% | -2.76 |
 | edge 2-3 pts, 2013-2019 | 3,381 | 52.5% | 0.17 |
-| edge 2-3 pts, 2020-2026 | 5,543 | 51.6% | -1.46 |
+| edge 2-3 pts, 2020-2026 | 5,541 | 51.6% | -1.43 |
 | edge 3-4 pts, 2013-2019 | 1,244 | 51.4% | -1.78 |
 | edge 3-4 pts, 2020-2026 | 2,108 | 53.5% | 2.07 |
 | edge 4-6 pts, 2013-2019 | 581 | 54.6% | 4.16 |
 | edge 4-6 pts, 2020-2026 | 1,071 | 53.3% | 1.78 |
-| edge 6-+ pts, 2013-2019 | 157 | 70.7% | 34.97 |
-| edge 6-+ pts, 2020-2026 | 159 | 54.7% | 4.46 |
+| edge 6-+ pts, 2013-2019 | 100 | 59.0% | 12.64 |
+| edge 6-+ pts, 2020-2026 | 156 | 54.5% | 4.02 |
 
 ### Spreads, edge 3+ points, by month
 
 | | bets | win% | roi% |
 |---|---:|---:|---:|
-| Nov | 1,896 | 53.4% | 1.90 |
-| Dec | 1,258 | 54.1% | 3.19 |
-| Jan | 979 | 52.9% | 1.01 |
+| Nov | 1,859 | 52.6% | 0.44 |
+| Dec | 1,235 | 53.4% | 2.02 |
+| Jan | 977 | 52.8% | 0.83 |
 | Feb | 708 | 54.9% | 4.89 |
 | Mar | 478 | 54.2% | 3.44 |
 
@@ -114,16 +118,16 @@ Slope of (result - line) on (model - line). 0 = the line already knows everythin
 
 | | bets | win% | roi% |
 |---|---:|---:|---:|
-| 2014 | 221 | 54.8% | 4.52 |
-| 2015 | 333 | 51.1% | -2.54 |
-| 2016 | 414 | 51.4% | -1.78 |
-| 2017 | 346 | 56.6% | 8.15 |
-| 2018 | 198 | 51.0% | -2.62 |
-| 2019 | 470 | 56.8% | 8.45 |
-| 2020 | 528 | 53.4% | 1.96 |
-| 2021 | 399 | 52.4% | 0.00 |
+| 2014 | 218 | 54.1% | 3.34 |
+| 2015 | 332 | 50.9% | -2.82 |
+| 2016 | 412 | 51.2% | -2.23 |
+| 2017 | 336 | 55.7% | 6.25 |
+| 2018 | 187 | 48.7% | -7.10 |
+| 2019 | 440 | 54.5% | 4.13 |
+| 2020 | 527 | 53.3% | 1.79 |
+| 2021 | 397 | 52.4% | 0.02 |
 | 2022 | 453 | 51.7% | -1.38 |
-| 2023 | 413 | 59.8% | 14.18 |
+| 2023 | 411 | 59.6% | 13.80 |
 | 2024 | 537 | 55.7% | 6.30 |
 | 2025 | 485 | 53.6% | 2.34 |
 | 2026 | 532 | 49.4% | -5.62 |
@@ -175,17 +179,17 @@ Slope of (result - line) on (model - line). 0 = the line already knows everythin
 
 ## Line movement: does the model predict which way the opener moves?
 
-24,950 games where the line moved (seasons 2014, 2015, 2016, 2017, 2024, 2025, 2026). The line moved toward the model's side in 66.3%; 84.7% when the model disagreed with the opener by 3+.
+24,923 games where the line moved (seasons 2014, 2015, 2016, 2017, 2024, 2025, 2026). The line moved toward the model's side in 66.3%; 85.0% when the model disagreed with the opener by 3+.
 
 Betting the model's side at the **opening** number:
 
 | | bets | win% | roi% |
 |---|---:|---:|---:|
-| edge vs opener 0+ | 24,563 | 52.8% | 0.83 |
-| edge vs opener 2+ | 6,414 | 56.8% | 8.46 |
-| edge vs opener 3+ | 2,491 | 58.9% | 12.51 |
-| edge vs opener 4+ | 922 | 61.3% | 16.99 |
-| edge vs opener 6+ | 156 | 69.9% | 33.39 |
+| edge vs opener 0+ | 24,536 | 52.8% | 0.77 |
+| edge vs opener 2+ | 6,387 | 56.7% | 8.26 |
+| edge vs opener 3+ | 2,464 | 58.7% | 12.04 |
+| edge vs opener 4+ | 895 | 60.7% | 15.83 |
+| edge vs opener 6+ | 129 | 67.4% | 28.75 |
 
 
 ## Totals vs the opener with crews unknown (as at the open)
