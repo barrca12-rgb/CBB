@@ -1,6 +1,6 @@
 # Targeted quote polling for the forward-test execution check (FORWARD_TEST_PROTOCOL.md, section 5).
 # Dispatched every 3 minutes by a cron-job.org job (same token as the card job). Each run makes at most one Odds API
-# call (2 credits) and only when a game is inside a watch window; otherwise it records a skipped poll. It never
+# call (2 credits) and only when a game is inside a watch window; otherwise it spends nothing and writes nothing. It never
 # touches the model, the card, the bet log, openers.csv or closing.csv.
 name: Targeted quote poll
 
@@ -34,6 +34,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898+github-actions[bot]@users.noreply.github.com"
-          git add lines/polls_targeted.csv lines/obs_targeted 2>/dev/null || true
+          for p in lines/polls_targeted.csv lines/obs_targeted; do if [ -e "$p" ]; then git add -A -- "$p"; fi; done
           git diff --cached --quiet || git commit -m "Quote poll ($(date -u +'%Y-%m-%d %H:%M') UTC)"
           for i in 1 2 3; do git pull --rebase -X theirs origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}" && break; sleep 5; done

@@ -69,12 +69,12 @@ comparisons. v2.0 supersedes v1.1 before any forward data existed. The v1.1 fing
 record.
 
 ```
-155c935a089fc81d910851df1c80c9eb20b45c5566ad70c56f7d585963f47ac3  FORWARD_TEST_PROTOCOL.md
+6e3f80813e6bb6e51412a5737a68a582b457216997bdca7d9c99aacd9beeb3c2  FORWARD_TEST_PROTOCOL.md
 86cbcef72e8a3a9d74f9b2edc6d063b04c21cfb65c6dd42cb0c1b8ff9154a152  audit/forward_eval.py
 a7a56f811a7cf402a9161e0c93be66dd4bdeb61fa4cb1c6c4bd6391f41578b1e  audit/test_forward_eval.py
 e7438f0999e6e95dd7328d128797cc675fb5bdd5308280dc47d08f6e02e0fd24  cbb/quotelog.py
-1dbe7b0e1d5e778752dd722497b7ef21b3098862d3b2222f04ada95a02cce65b  cbb/poll_targets.py
-b387fa9f6fcb3bba716d8b50beeefe1f1f99f596bc0eb19aa411fb5f03229bf2  .github/workflows/quotes.yml
+dddbaf58ed33761e567c9806a23d7d51988a94112fda91195e34233e08a2c957  cbb/poll_targets.py
+7d557cd0e580fbd80ed9406794c67680dec53a1b6414c27755a389f6a1542d99  .github/workflows/quotes.yml
 2531cec9e0509d9f511025f3ad8e36359d4624978f5817be743460c127fc36ca  audit/out/frozen_preseason_prior_2027.csv
 ```
 

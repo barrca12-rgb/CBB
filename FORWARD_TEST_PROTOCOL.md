@@ -151,7 +151,9 @@ record.
     its tip.
 
 **Other logs:**
-- Each poll attempt is logged with its status (ok, skipped, error), error text, cost, credits left and gap.
+- Each poll attempt is logged with its status (ok, skipped, error), error text, cost, credits left and gap. A
+  targeted poll with no game in a watch window makes no call and writes no row; the workflow's run history shows
+  it ran.
 - Each signal records its generation time, the pull it used, its quote, and its input cutoffs.
 - Each alert attempt (ntfy and Discord) is logged with its send time and result.
 
@@ -339,3 +341,5 @@ The output goes to the helpers' doc and to Chad with:
     plus the tip-cutoff and duplicate rules.
   - Model versions, the shadow strategy and the immutability check are added.
   - The frozen definition covers injury-source choice and line feeds.
+  - Same day, operational fix after the first scheduled targeted poll and still before any forward data: idle
+    targeted polls write no row, and the workflow saves its log correctly before the first quote is logged.

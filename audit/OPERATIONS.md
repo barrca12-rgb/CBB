@@ -56,7 +56,7 @@ reported that way.
 | Concurrent writes | the two workflows write different files (`lines/obs/` and `polls.csv` vs `lines/obs_targeted/` and `polls_targeted.csv`). Shared append-only logs use `merge=union` (`.gitattributes`). Finished days are gzipped once and never rewritten |
 | Idempotency | the signal log is keyed by `bet_id` (first row wins); an observation is written once per poll and game (`quotelog.LOGGED`); the evaluation sorts and de-duplicates deterministically |
 | Budgets | SGO 95% stop; The Odds API 15-credit floor; targeted polls spend nothing when no game is watched |
-| Failure logging | every poll attempt (ok, skipped, error with text) is in `lines/polls*.csv`; every alert attempt in `bets/alert_log.csv`. Every logger call catches its own errors, so logging can never stop a card run |
+| Failure logging | every card-run poll attempt (ok, skipped, error with text) is in `lines/polls.csv`, and every targeted poll that calls the API (ok or error) in `lines/polls_targeted.csv`; every alert attempt in `bets/alert_log.csv`. Every logger call catches its own errors, so logging can never stop a card run |
 
 ## Discord record
 

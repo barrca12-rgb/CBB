@@ -3,7 +3,7 @@
 Run every 3 minutes by .github/workflows/quotes.yml. If any game is inside a watch window (from a signal's actual
 alert through 95 minutes, or the last 20 minutes before its scheduled tip: quotelog.watched_games) it makes one Odds
 API call for spreads and totals (2 credits) and logs every quote of the watched games to lines/obs_targeted/;
-otherwise it records a skipped poll and spends nothing. It never touches the model, the card, the bet log, openers.csv or closing.csv.
+otherwise it spends nothing and writes nothing. It never touches the model, the card, the bet log, openers.csv or closing.csv.
 
     python -m cbb.poll_targets
 """
@@ -27,8 +27,7 @@ def main() -> None:
 def _poll() -> None:
     t = quotelog.now()
     watched = quotelog.watched_games(t)
-    if not watched:
-        quotelog.poll("oddsapi-targeted", "skipped", t, error="no game in a watch window")
+    if not watched:   # idle: no API call and no log row (the Actions run history shows the schedule is alive)
         print("Nothing to watch.")
         return
     try:
