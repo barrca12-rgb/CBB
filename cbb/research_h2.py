@@ -91,7 +91,10 @@ def main():
 
 PILOT_GAMES = os.path.join(os.path.dirname(__file__), "..", "data", "research", "h2_pilot_games.csv")
 PILOT_OUT = os.path.join(os.path.dirname(__file__), "..", "data", "research", "h2_pilot_lines.csv")
-PILOT_CAP = 2400
+PILOT_CAP = int(os.environ.get("H2_CAP", "2400"))
+PILOT_GAMES = os.environ.get("H2_GAMES", PILOT_GAMES)
+PILOT_OUT = os.environ.get("H2_OUT", PILOT_OUT)
+PILOT_MARKETS = os.environ.get("H2_MARKETS", "spreads_h2,totals_h2")
 
 
 def pilot():
@@ -123,7 +126,7 @@ def pilot():
             for mins in (60, 70):
                 at = (r["start"] + pd.Timedelta(minutes=mins)).strftime("%Y-%m-%dT%H:%M:%SZ")
                 od, err = get(f"/historical/sports/basketball_ncaab/events/{eid}/odds", date=at, regions="us",
-                              markets="spreads_h2,totals_h2", oddsFormat="american", bookmakers=books)
+                              markets=PILOT_MARKETS, oddsFormat="american", bookmakers=books)
                 d = (od or {}).get("data") or {}
                 for b in d.get("bookmakers") or []:
                     for m in b.get("markets") or []:
