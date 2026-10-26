@@ -10,6 +10,11 @@
 
 absences() turns that into a per-team-game input: the minutes share times relative rating of regulars (3+ games)
 who sat out the team's previous game, summed. Positive = the team is missing better-than-average players.
+
+Backtest (second stage, 2020-26, Oct 2026): neither feature earns a place in the model. Absences by player value on
+top of the minutes-based miss_diff: spreads vs close 53.0 -> 53.4%, vs opener 58.6 -> 58.0%, margin MAE 8.880 ->
+8.875. Roster strength (last season's ratings of the players used, transfers included): within 0.3 points of
+win rate everywhere. KenPom's preseason and the market already price rosters. Not wired into projection.py.
 """
 from __future__ import annotations
 
