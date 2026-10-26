@@ -240,6 +240,9 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame) -> pd.DataFrame:
         r.update(model_margin=m, model_total=t, model_home_spread=-m,
                  model_home_pts=(t + m) / 2, model_away_pts=(t - m) / 2, kp_margin=g.get("kp_margin"),
                  raw_margin=g.get("pred_margin"), home_missing=g.get("home_missing"), away_missing=g.get("away_missing"),
+                 # each source alone, for the in-season check of our ratings against KenPom and Barttorvik
+                 raw_total=g.get("pred_total"), kp_total=g.get("kp_total"), bt_margin=g.get("bt_margin"),
+                 bt_total=g.get("bt_total"),
                  p_home_win=0.5 * (1 + math.erf(m / 11.0 / math.sqrt(2))), n_books=l["book"].nunique(),
                  total_shift=g.get("total_shift", 0.0))
         r["book_lines"] = l.drop(columns=[c for c in ("home_id", "away_id", "sgo_event", "start") if c in l]).to_dict("records")
