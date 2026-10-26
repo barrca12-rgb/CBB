@@ -48,6 +48,7 @@ WATCH_BELOW = 1.0      # within this many points of a BET: WATCH (becomes a play
 # Win chance by edge against the opener, 2014-2017 and 2024-2026 backtest (capped: bigger edges didn't win more):
 # spreads 54.7% at 2-3 pts, 58.0% at 3-4, flat after; totals 54.2% at 3-4, 56.8-57.3% at 4-6.
 WIN_PROB = {"spread": (0.0255, 0.58), "total": (0.014, 0.565)}
+PREFERRED_BOOK = "DraftKings"   # same number and price at several books: the play goes to this one
 MIN_EV = 0.02          # a play also needs +2% expected value at the book's price (3-pt spread edge: fine to -125)
 
 
@@ -174,9 +175,10 @@ def _best(lines: pd.DataFrame, market: str, sides: dict):
                 continue
             p = win_prob(market, e)
             v = ev(p, row.get(odds_col))
-            if best is None or (v, e) > (best[4], best[2]):
-                best = (side, row, e, p, v)
-    return best
+            key = (round(v, 6), round(e, 6), row.get("book") == PREFERRED_BOOK)
+            if best is None or key > best[5]:
+                best = (side, row, e, p, v, key)
+    return best[:5] if best else None
 
 
 def _call(edge: float, value: float, calls) -> tuple[str, float]:
