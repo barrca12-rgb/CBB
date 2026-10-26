@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import json
 import os
+import urllib.error
 import urllib.parse
 import urllib.request
 
@@ -22,7 +23,9 @@ import pandas as pd
 from . import teams
 
 API = "https://api.the-odds-api.com/v4/sports/basketball_ncaab/odds"
-BOOKS = {"draftkings": "DraftKings", "fanduel": "FanDuel", "betmgm": "BetMGM", "williamhill_us": "Caesars"}
+BOOKS = {"draftkings": "DraftKings", "fanduel": "FanDuel", "betmgm": "BetMGM", "williamhill_us": "Caesars",
+         "fanatics": "Fanatics", "bet365": "bet365"}   # up to 10 books cost the same as one region
+CORE = ["draftkings", "fanduel", "betmgm", "williamhill_us"]
 PULL_HOURS = {7, 12, 18, 23}     # ET hours of the scheduled runs that pull (7:37 am, 12:37, 6:07 pm, 11:37 pm)
 MIN_LEFT = 15
 MAX_AGE = pd.Timedelta(hours=12)
@@ -119,8 +122,13 @@ def fetch(api_key: str | None = None) -> pd.DataFrame:
     except urllib.error.HTTPError as e:
         if e.code not in (400, 422):
             raise
-        params.pop("includeLinks")   # links not offered on this plan: lines without betslip links
-        events, hdr = _get(params)
+        # a book key the API doesn't know, or links not offered on this plan: retry with the core books, then no links
+        try:
+            events, hdr = _get(dict(params, bookmakers=",".join(CORE)))
+            print(f"The Odds API refused the book list ({e.code}); used {', '.join(CORE)}.")
+        except urllib.error.HTTPError:
+            params.pop("includeLinks")
+            events, hdr = _get(dict(params, bookmakers=",".join(CORE)))
     df, fetch.unmatched = parse(events)
     fetch.events = len(events)
     u = {"remaining": int(float(hdr.get("x-requests-remaining", "nan"))) if hdr.get("x-requests-remaining") else None,

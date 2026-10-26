@@ -23,8 +23,9 @@ from . import teams
 
 API = "https://api.sportsgameodds.com/v2/events"
 LINES = os.path.join(os.path.dirname(__file__), "..", "lines")
-# The four books we bet (same as the NFL card); plays and the board use only these.
-BOOKS = {"fanduel": "FanDuel", "draftkings": "DraftKings", "betmgm": "BetMGM", "caesars": "Caesars"}
+# The books we bet; plays and the board use only these.
+BOOKS = {"fanduel": "FanDuel", "draftkings": "DraftKings", "betmgm": "BetMGM", "caesars": "Caesars", "fanatics": "Fanatics",
+         "bet365": "bet365"}
 ODDS = {"points-home-game-sp-home": ("home_spread", "home_spread_odds", "home_spread_link"),
         "points-away-game-sp-away": (None, "away_spread_odds", "away_spread_link"),
         "points-all-game-ou-over": ("total", "over_odds", "over_link"),
@@ -202,6 +203,18 @@ def _log_moves(cur: pd.DataFrame) -> int:
     return len(c)
 
 
+SGO_MIN_GAP = pd.Timedelta(minutes=25)
+SGO_LAST = os.path.join(LINES, "sgo_last_pull.txt")
+
+
+def _sgo_last() -> pd.Timestamp | None:
+    try:
+        with open(SGO_LAST) as fh:
+            return pd.Timestamp(fh.read().strip())
+    except (OSError, ValueError):
+        return None
+
+
 def pull(api_key: str | None = None) -> pd.DataFrame:
     """Fetch, save a timestamped snapshot, and update lines/openers.csv. Returns the lines with open_home_spread and
     open_total (first number seen at that book) added. SGO first; The Odds API (odds_api.py) fills games and books
@@ -209,13 +222,20 @@ def pull(api_key: str | None = None) -> pd.DataFrame:
     from . import odds_api
     os.makedirs(LINES, exist_ok=True)
     cl_path = os.path.join(LINES, "closing.csv")
-    try:
-        l = fetch(api_key)
-    except Exception as e:
-        if not odds_api.due():
-            raise
-        print(f"SportsGameOdds failed ({e}); using The Odds API only.")
-        l = pd.DataFrame(columns=["book", "sgo_event", "start", "home_id", "away_id", "home_spread", "total"])
+    empty = pd.DataFrame(columns=["book", "sgo_event", "start", "home_id", "away_id", "home_spread", "total"])
+    last = _sgo_last()
+    if odds_api.due() and last is not None and pd.Timestamp.now(tz="UTC") - last < SGO_MIN_GAP:
+        l = empty   # runs every 10 minutes; SGO's monthly allowance (shared with the NFL model) gets every third
+    else:
+        try:
+            l = fetch(api_key)
+            with open(SGO_LAST, "w") as fh:
+                fh.write(pd.Timestamp.now(tz="UTC").isoformat(timespec="seconds"))
+        except Exception as e:
+            if not odds_api.due():
+                raise
+            print(f"SportsGameOdds failed ({e}); using The Odds API only.")
+            l = empty
     n_sgo = len(l)
     if odds_api.due():
         try:
