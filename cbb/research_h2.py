@@ -89,5 +89,57 @@ def main():
     print(json.dumps(out, indent=1, default=str)[:4000])
 
 
+PILOT_GAMES = os.path.join(os.path.dirname(__file__), "..", "data", "research", "h2_pilot_games.csv")
+PILOT_OUT = os.path.join(os.path.dirname(__file__), "..", "data", "research", "h2_pilot_lines.csv")
+PILOT_CAP = 2400
+
+
+def pilot():
+    """Second-half spreads and totals at halftime for the games in h2_pilot_games.csv (2025-26): one historical
+    snapshot at tip + 60 minutes, a second at tip + 70 only if the first had no second-half line. About 20 credits a
+    game; stops before PILOT_CAP."""
+    g = pd.read_csv(PILOT_GAMES)
+    g["start"] = pd.to_datetime(g["start_utc"], utc=True, format="ISO8601")
+    g["day"] = g["start"].dt.tz_convert("America/New_York").dt.strftime("%Y-%m-%d")
+    look = odds_api._lookup()
+    books = ",".join(odds_api.BOOKS)
+    rows, status = [], []
+    for day, dg in g.groupby("day"):
+        if spent["credits"] >= PILOT_CAP - 60:
+            break
+        snap = pd.Timestamp(day + " 10:00", tz="America/New_York").tz_convert("UTC").strftime("%Y-%m-%dT%H:%M:%SZ")
+        ev, err = get("/historical/sports/basketball_ncaab/events", date=snap)
+        ids = {}
+        for e in ((ev or {}).get("data") or []):
+            k = frozenset((look.get(teams.norm(e.get("home_team", ""))), look.get(teams.norm(e.get("away_team", "")))))
+            ids[k] = e["id"]
+        for _, r in dg.iterrows():
+            if spent["credits"] >= PILOT_CAP - 60:
+                break
+            eid = ids.get(frozenset((int(r["home_id"]), int(r["away_id"]))))
+            if not eid:
+                status.append((r["game_id"], "no event")); continue
+            got = False
+            for mins in (60, 70):
+                at = (r["start"] + pd.Timedelta(minutes=mins)).strftime("%Y-%m-%dT%H:%M:%SZ")
+                od, err = get(f"/historical/sports/basketball_ncaab/events/{eid}/odds", date=at, regions="us",
+                              markets="spreads_h2,totals_h2", oddsFormat="american", bookmakers=books)
+                d = (od or {}).get("data") or {}
+                for b in d.get("bookmakers") or []:
+                    for m in b.get("markets") or []:
+                        for o in m.get("outcomes") or []:
+                            rows.append({"game_id": r["game_id"], "snapshot_min": mins, "book": b["key"], "market": m["key"],
+                                         "name": o.get("name"), "team_id": look.get(teams.norm(o.get("name", ""))),
+                                         "point": o.get("point"), "price": o.get("price"), "last_update": m.get("last_update")})
+                            got = True
+                if got:
+                    break
+            status.append((r["game_id"], "lines" if got else "no second-half line"))
+    pd.DataFrame(rows).to_csv(PILOT_OUT, index=False)
+    st = pd.Series(dict(status))
+    print(f"games {len(st)}: {st.value_counts().to_dict()}; credits {spent['credits']}, remaining {spent['remaining']}")
+
+
 if __name__ == "__main__":
-    main()
+    import sys
+    pilot() if "--pilot" in sys.argv else main()
