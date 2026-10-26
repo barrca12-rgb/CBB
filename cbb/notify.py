@@ -30,6 +30,9 @@ def _message(bet: dict, row: pd.Series | None) -> tuple[str, str, str]:
     if row is not None and pd.notna(row.get(f"{mk}_good_to")):
         lines.append(f"Good down to {row[f'{mk}_good_to']:+.1f}" if mk == "spread"
                      else f"Good to {row[f'{mk}_good_to']:.1f}")
+    warn = row.get(f"{mk}_warn") if row is not None else None
+    if isinstance(warn, str) and warn:
+        lines.insert(0, "WARNING: " + warn)
     link = row.get(f"{mk}_link") if row is not None else None
     click = link if isinstance(link, str) and link else f"{SITE}/cbb_{bet['date']}.html"
     return title, "\n".join(lines), click
@@ -61,9 +64,12 @@ def send(new_bets: list[dict], card: pd.DataFrame, topic: str | None = None) -> 
     for bet in new_bets:
         row = rows.loc[bet["game_id"]] if rows is not None and bet["game_id"] in rows.index else None
         title, body, click = _message(bet, row)
-        req = urllib.request.Request(f"https://ntfy.sh/{topic}", data=body.encode(), method="POST",
-                                     headers={"Title": title.encode("ascii", "ignore").decode(), "Click": click,
-                                              "Priority": "high", "Tags": "basketball"})
+        headers = {"Title": title.encode("ascii", "ignore").decode(), "Click": click, "Priority": "high",
+                   "Tags": "basketball"}
+        news = row.get("news_url") if row is not None else None
+        if isinstance(news, str) and news:   # buttons on the alert: injury news search, and the bet
+            headers["Actions"] = f"view, News, {news}; view, Bet, {click}"
+        req = urllib.request.Request(f"https://ntfy.sh/{topic}", data=body.encode(), method="POST", headers=headers)
         try:
             urllib.request.urlopen(req, timeout=20).read()
             sent += 1

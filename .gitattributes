@@ -1,0 +1,3 @@
+# Injury logs are appended by two workflows (card runs and injury checks); keep both sides' new rows.
+injuries/sources/*.csv merge=union
+injuries/log.csv merge=union

@@ -31,8 +31,8 @@ import urllib.request
 import numpy as np
 import pandas as pd
 
-from . import (backtest, context, data, injuries, injury_sources, kenpom, notify, odds, players, projection, ratings,
-               report_html, review, teams, tracker)
+from . import (backtest, context, data, injuries, injury_sources, injury_watch, kenpom, news, notify, odds, players,
+               projection, ratings, report_html, review, teams, tracker)
 
 REPORTS = os.path.join(os.path.dirname(__file__), "..", "reports")
 SCOREBOARD = ("https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard"
@@ -268,7 +268,7 @@ def main():
         raise SystemExit("KENPOM_API_KEY is not set (add it as a repository secret for the scheduled runs).")
     if not a.replay:   # every run, games or not: which outlet reports each injury first (injury_sources.py)
         try:
-            injury_sources.log_all()
+            injury_watch.check()
         except Exception as e:
             print(f"Injury source logger failed ({e}); continuing.")
     games = slate(day)
@@ -313,6 +313,11 @@ def build(day: pd.Timestamp, games: pd.DataFrame, lines: pd.DataFrame | None, re
     if replay:
         lines = replay_lines(day, f)
     card = plays(f, lines)
+    if not replay:
+        try:
+            card = news.annotate(card)
+        except Exception as e:
+            print(f"News checks failed ({e}); continuing.")
     record = None
     if not replay:
         # scale stakes by each market's live record, then log the day's plays
