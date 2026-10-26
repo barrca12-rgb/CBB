@@ -24,22 +24,29 @@ REPORT = os.path.join(os.path.dirname(__file__), "..", "BACKTEST.md")
 BREAKEVEN = 0.5238  # -110
 
 
-SUMMARY = """## Summary (ratings with 3-point luck regressed + KenPom + Barttorvik + Four Factors + rest + home edge + availability)
+SUMMARY = """## Summary
+
+Model: ratings with 3-point luck regressed, plus KenPom, Barttorvik, Four Factors, rest, home edge, missing
+players, market ratings from earlier closing lines, altitude, and referee crews.
 
 | | Result | Bets |
 |---|---:|---:|
-| **ATS vs opening line, edge 3+, 2024-2026** | **58.2%** (2024 58.0, 2025 59.1, 2026 57.4) | 1,271 |
-| **Over/under vs opening line, edge 4+, 2024-2026** | **57.5%** (2024 56.2, 2025 59.2, 2026 57.1) | 1,484 |
-| ATS vs closing line, edge 3+, 2020-2026 | 53.2% | 3,436 |
+| **ATS vs opening line, edge 3+, 2024-2026** | **58.6%** | 1,220 |
+| **Over/under vs opening line, edge 4+, 2024-2026** (crew unknown at the open: 57.4% without referees) | 60.4% | 2,133 |
+| ATS vs closing line, edge 3+, 2020-2026 | 53.0% | 3,346 |
+| **Over/under vs closing line, edge 4+, 2020-2026** | **54.4%** | 5,965 |
 | Average miss on margin, 2020-2026 (model / closing line) | 8.88 / 8.84 | |
-| Average miss on total, 2020-2026 (model / closing line) | 13.12 / 13.00 | |
+| Average miss on total, 2020-2026 (model / closing line) | 13.08 / 13.00 | |
 
 Break-even at -110 is 52.4%.
 
-* **Opening lines are the edge.** Every season 2024-2026 is profitable at the opener on both spreads and totals.
-* **Closing lines:** just above break-even on spreads, not on totals. The market is sharper by tip-off.
-* **What moved it:** regressing 3-point makes 35% toward the league rate (opponents' 3P% is mostly luck, KenPom)
-  took spreads at the opener from 57.5% to 58.2% and totals from 56.7% to 57.5%.
+* **Opening lines are the edge** on spreads and totals. Referee crews usually aren't posted when openers are, so
+  the realistic opener number for totals is ~57.4%.
+* **Closing lines:** referee crews took totals from 52.4% to 54.4% (positive in 8 of 11 seasons, but weaker
+  lately: 2024 55.3%, 2025 47.6%, 2026 53.0%). Spreads at the close are just above break-even.
+* **What moved it:** 3-point luck regression (spreads at the opener 57.5% -> 58.2%), market ratings and altitude
+  (-> 58.6%), referees (totals at the close 52.4% -> 54.4%). Tested and left out: free-throw luck, blowout
+  weighting, time zones, height/experience/continuity, production-weighted absences.
 * **Caveats:** openers carry low limits; openers exist only for 2014-2017 and 2024-2026; data cleaning removed
   several fake 70-85% edges, so treat anything above ~60% with suspicion."""
 

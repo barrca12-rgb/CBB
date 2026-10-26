@@ -9,7 +9,7 @@ lines. Built the same way as the [NFL model](https://github.com/barrca12-rgb/NFL
    Barttorvik, ESPN historical lines, SportsGameOdds live lines, and a team-name table across them.
 2. **Ratings** (done): opponent-adjusted offense, defense, tempo and Four Factors by time-decayed ridge
    regression (the NFL model's method), KenPom preseason prior, plus a second stage (`projection.py`).
-3. **Backtest 2014-2026** (done, see [`BACKTEST.md`](BACKTEST.md)): about break-even against closing lines; 58.2% ATS and
+3. **Backtest 2014-2026** (done, see [`BACKTEST.md`](BACKTEST.md)): about break-even against closing lines (totals 54.4% with referee crews); 58.6% ATS and
    57.5% on totals against opening lines in 2024-2026.
 4. **Website** (done): the daily card below, with an NFL | CBB link between the two sites.
 
@@ -30,11 +30,15 @@ players), then edges against every book. Calls come from the 2024-2026 backtest 
 
 | Market | BET (1u) | WATCH (not a play) | Backtest at the opener |
 |---|---|---|---|
-| Spread | edge 3+ pts | 2-3 | 58.2% at 3+ |
+| Spread | edge 3+ pts | 2-3 | 58.6% at 3+ |
 | Total | edge 4+ pts | 3-4 | 57.5% at 4+ |
 
 The edge is against openers, not closing lines, so bet early and only at the "good down to" number or better.
 `lines/openers.csv` keeps the first number seen at each book (and when), `lines/closing.csv` the last pregame number.
+
+**Context** (`cbb/context.py`): market ratings from this season's earlier closing lines (`lines/closing.csv`),
+an altitude flag, and the referee crew when ESPN posts it (tendencies from every official's past games,
+`data/referees.csv`, refit with the projection). Unknown crews count as average.
 
 **Injuries** (`cbb/injuries.py`): each run reads ESPN's college basketball injury report. A listed player who
 played the team's last game adds P(miss) x his share of team minutes to the projection's missing-minutes input

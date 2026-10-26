@@ -1,21 +1,28 @@
 # Backtest 2013-2026
 
-## Summary (ratings with 3-point luck regressed + KenPom + Barttorvik + Four Factors + rest + home edge + availability)
+## Summary
+
+Model: ratings with 3-point luck regressed, plus KenPom, Barttorvik, Four Factors, rest, home edge, missing
+players, market ratings from earlier closing lines, altitude, and referee crews.
 
 | | Result | Bets |
 |---|---:|---:|
-| **ATS vs opening line, edge 3+, 2024-2026** | **58.2%** (2024 58.0, 2025 59.1, 2026 57.4) | 1,271 |
-| **Over/under vs opening line, edge 4+, 2024-2026** | **57.5%** (2024 56.2, 2025 59.2, 2026 57.1) | 1,484 |
-| ATS vs closing line, edge 3+, 2020-2026 | 53.2% | 3,436 |
+| **ATS vs opening line, edge 3+, 2024-2026** | **58.6%** | 1,220 |
+| **Over/under vs opening line, edge 4+, 2024-2026** (crew unknown at the open: 57.4% without referees) | 60.4% | 2,133 |
+| ATS vs closing line, edge 3+, 2020-2026 | 53.0% | 3,346 |
+| **Over/under vs closing line, edge 4+, 2020-2026** | **54.4%** | 5,965 |
 | Average miss on margin, 2020-2026 (model / closing line) | 8.88 / 8.84 | |
-| Average miss on total, 2020-2026 (model / closing line) | 13.12 / 13.00 | |
+| Average miss on total, 2020-2026 (model / closing line) | 13.08 / 13.00 | |
 
 Break-even at -110 is 52.4%.
 
-* **Opening lines are the edge.** Every season 2024-2026 is profitable at the opener on both spreads and totals.
-* **Closing lines:** just above break-even on spreads, not on totals. The market is sharper by tip-off.
-* **What moved it:** regressing 3-point makes 35% toward the league rate (opponents' 3P% is mostly luck, KenPom)
-  took spreads at the opener from 57.5% to 58.2% and totals from 56.7% to 57.5%.
+* **Opening lines are the edge** on spreads and totals. Referee crews usually aren't posted when openers are, so
+  the realistic opener number for totals is ~57.4%.
+* **Closing lines:** referee crews took totals from 52.4% to 54.4% (positive in 8 of 11 seasons, but weaker
+  lately: 2024 55.3%, 2025 47.6%, 2026 53.0%). Spreads at the close are just above break-even.
+* **What moved it:** 3-point luck regression (spreads at the opener 57.5% -> 58.2%), market ratings and altitude
+  (-> 58.6%), referees (totals at the close 52.4% -> 54.4%). Tested and left out: free-throw luck, blowout
+  weighting, time zones, height/experience/continuity, production-weighted absences.
 * **Caveats:** openers carry low limits; openers exist only for 2014-2017 and 2024-2026; data cleaning removed
   several fake 70-85% edges, so treat anything above ~60% with suspicion.
 
@@ -27,15 +34,15 @@ Lines dropped as bad data (closing line and KenPom favor different teams by 3+ i
 
 | | games | model | line favorite | KenPom |
 |---|---:|---:|---:|---:|
-| through 2019 | 23,809 | 73.5% | 73.6% | 73.2% |
-| 2020 on | 37,366 | 72.9% | 73.0% | 72.3% |
+| through 2019 | 23,809 | 73.4% | 73.6% | 73.2% |
+| 2020 on | 37,366 | 72.8% | 73.0% | 72.3% |
 | all | 61,175 | 73.1% | 73.2% | 72.6% |
 
 ## Accuracy (games with a line and a KenPom prediction)
 
 | | games | margin MAE | total MAE |
 |---|---:|---:|---:|
-| model | 61,463 | 8.76 | 13.33 |
+| model | 61,463 | 8.75 | 13.31 |
 | closing line | 61,463 | 8.71 | 13.13 |
 | KenPom | 61,463 | 8.85 | 13.39 |
 | ratings only (before 2nd stage) | 61,463 | 8.78 | 13.26 |
@@ -46,122 +53,122 @@ Slope of (result - line) on (model - line). 0 = the line already knows everythin
 
 | season | margin | total |
 |---|---:|---:|
-| 2014 | 0.31 | 0.08 |
-| 2015 | 0.16 | 0.71 |
-| 2016 | 0.37 | 0.27 |
-| 2017 | 0.51 | 0.41 |
-| 2018 | 0.51 | 0.56 |
-| 2019 | 0.62 | 0.23 |
-| 2020 | 0.17 | 0.28 |
-| 2021 | 0.38 | 0.23 |
-| 2022 | 0.14 | 0.44 |
-| 2023 | 0.96 | 0.37 |
-| 2024 | 0.39 | 0.24 |
-| 2025 | 0.20 | -0.06 |
-| 2026 | 0.15 | -0.04 |
-| all | 0.58 | 0.19 |
+| 2014 | 0.30 | 0.09 |
+| 2015 | 0.15 | 0.67 |
+| 2016 | 0.38 | 0.30 |
+| 2017 | 0.53 | 0.45 |
+| 2018 | 0.51 | 0.69 |
+| 2019 | 0.64 | 0.32 |
+| 2020 | 0.19 | 0.44 |
+| 2021 | 0.39 | 0.28 |
+| 2022 | 0.12 | 0.51 |
+| 2023 | 0.96 | 0.51 |
+| 2024 | 0.44 | 0.41 |
+| 2025 | 0.24 | 0.12 |
+| 2026 | 0.17 | 0.15 |
+| all | 0.60 | 0.26 |
 
 ## Spreads: betting the model's side vs the closing line, by size of disagreement
 
 | | bets | win% | roi% |
 |---|---:|---:|---:|
-| edge 0-1 pts, 2013-2019 | 10,696 | 51.4% | -1.96 |
-| edge 0-1 pts, 2020-2026 | 16,652 | 50.8% | -3.11 |
-| edge 1-2 pts, 2013-2019 | 7,339 | 51.5% | -1.59 |
-| edge 1-2 pts, 2020-2026 | 11,547 | 50.9% | -2.92 |
-| edge 2-3 pts, 2013-2019 | 3,437 | 52.8% | 0.76 |
-| edge 2-3 pts, 2020-2026 | 5,475 | 50.8% | -2.99 |
-| edge 3-4 pts, 2013-2019 | 1,277 | 49.6% | -5.22 |
-| edge 3-4 pts, 2020-2026 | 2,185 | 51.6% | -1.44 |
-| edge 4-6 pts, 2013-2019 | 594 | 52.9% | 0.92 |
-| edge 4-6 pts, 2020-2026 | 1,092 | 55.3% | 5.59 |
-| edge 6-+ pts, 2013-2019 | 158 | 70.3% | 34.12 |
-| edge 6-+ pts, 2020-2026 | 150 | 58.0% | 10.73 |
+| edge 0-1 pts, 2013-2019 | 10,789 | 51.8% | -1.12 |
+| edge 0-1 pts, 2020-2026 | 16,914 | 50.5% | -3.56 |
+| edge 1-2 pts, 2013-2019 | 7,297 | 52.1% | -0.61 |
+| edge 1-2 pts, 2020-2026 | 11,449 | 50.7% | -3.19 |
+| edge 2-3 pts, 2013-2019 | 3,404 | 51.7% | -1.35 |
+| edge 2-3 pts, 2020-2026 | 5,401 | 51.6% | -1.45 |
+| edge 3-4 pts, 2013-2019 | 1,276 | 50.0% | -4.55 |
+| edge 3-4 pts, 2020-2026 | 2,136 | 51.7% | -1.33 |
+| edge 4-6 pts, 2013-2019 | 579 | 54.4% | 3.86 |
+| edge 4-6 pts, 2020-2026 | 1,054 | 54.8% | 4.69 |
+| edge 6-+ pts, 2013-2019 | 156 | 71.2% | 35.84 |
+| edge 6-+ pts, 2020-2026 | 147 | 55.8% | 6.49 |
 
 ### Spreads, edge 3+ points, by month
 
 | | bets | win% | roi% |
 |---|---:|---:|---:|
-| Nov | 1,845 | 53.6% | 2.34 |
-| Dec | 1,211 | 51.4% | -1.94 |
-| Jan | 1,067 | 52.4% | 0.02 |
-| Feb | 805 | 54.0% | 3.16 |
-| Mar | 522 | 52.7% | 0.57 |
+| Nov | 1,825 | 54.0% | 3.04 |
+| Dec | 1,204 | 52.0% | -0.74 |
+| Jan | 1,042 | 52.0% | -0.70 |
+| Feb | 760 | 52.5% | 0.23 |
+| Mar | 515 | 54.4% | 3.80 |
 
 ### Spreads, edge 3+ points, by season
 
 | | bets | win% | roi% |
 |---|---:|---:|---:|
-| 2014 | 213 | 54.0% | 3.07 |
-| 2015 | 382 | 48.2% | -8.04 |
-| 2016 | 353 | 47.9% | -8.60 |
-| 2017 | 414 | 55.6% | 6.06 |
-| 2018 | 253 | 48.6% | -7.19 |
-| 2019 | 414 | 57.5% | 9.75 |
-| 2020 | 402 | 54.2% | 3.53 |
-| 2021 | 402 | 51.2% | -2.17 |
-| 2022 | 527 | 50.9% | -2.92 |
-| 2023 | 425 | 58.1% | 10.95 |
-| 2024 | 530 | 53.6% | 2.30 |
-| 2025 | 549 | 53.4% | 1.89 |
-| 2026 | 601 | 51.9% | -0.89 |
+| 2014 | 218 | 54.1% | 3.34 |
+| 2015 | 388 | 48.5% | -7.50 |
+| 2016 | 339 | 49.0% | -6.52 |
+| 2017 | 399 | 55.9% | 6.70 |
+| 2018 | 263 | 48.7% | -7.09 |
+| 2019 | 404 | 59.7% | 13.88 |
+| 2020 | 426 | 53.1% | 1.28 |
+| 2021 | 403 | 50.9% | -2.89 |
+| 2022 | 509 | 50.7% | -3.23 |
+| 2023 | 427 | 56.9% | 8.64 |
+| 2024 | 516 | 53.9% | 2.85 |
+| 2025 | 508 | 55.3% | 5.60 |
+| 2026 | 557 | 50.6% | -3.35 |
 
 ## Totals: betting the model's side vs the closing line, by size of disagreement
 
 | | bets | win% | roi% |
 |---|---:|---:|---:|
-| edge 0-1 pts, 2013-2019 | 5,688 | 51.6% | -1.56 |
-| edge 0-1 pts, 2020-2026 | 11,354 | 50.8% | -3.10 |
-| edge 1-2 pts, 2013-2019 | 4,879 | 51.0% | -2.65 |
-| edge 1-2 pts, 2020-2026 | 9,821 | 50.3% | -4.03 |
-| edge 2-3 pts, 2013-2019 | 3,628 | 53.3% | 1.77 |
-| edge 2-3 pts, 2020-2026 | 7,164 | 49.9% | -4.68 |
-| edge 3-4 pts, 2013-2019 | 2,471 | 53.0% | 1.13 |
-| edge 3-4 pts, 2020-2026 | 4,327 | 51.3% | -2.01 |
-| edge 4-6 pts, 2013-2019 | 2,318 | 53.1% | 1.47 |
-| edge 4-6 pts, 2020-2026 | 3,522 | 52.8% | 0.88 |
-| edge 6-+ pts, 2013-2019 | 3,824 | 53.6% | 2.39 |
-| edge 6-+ pts, 2020-2026 | 1,102 | 51.1% | -2.47 |
+| edge 0-1 pts, 2013-2019 | 5,075 | 52.4% | 0.06 |
+| edge 0-1 pts, 2020-2026 | 10,377 | 50.6% | -3.43 |
+| edge 1-2 pts, 2013-2019 | 4,671 | 51.8% | -1.05 |
+| edge 1-2 pts, 2020-2026 | 9,159 | 50.0% | -4.62 |
+| edge 2-3 pts, 2013-2019 | 3,605 | 51.3% | -2.03 |
+| edge 2-3 pts, 2020-2026 | 7,072 | 52.0% | -0.74 |
+| edge 3-4 pts, 2013-2019 | 2,558 | 53.6% | 2.40 |
+| edge 3-4 pts, 2020-2026 | 4,717 | 52.4% | 0.13 |
+| edge 4-6 pts, 2013-2019 | 2,740 | 55.1% | 5.28 |
+| edge 4-6 pts, 2020-2026 | 4,404 | 53.9% | 2.82 |
+| edge 6-+ pts, 2013-2019 | 4,159 | 54.2% | 3.56 |
+| edge 6-+ pts, 2020-2026 | 1,561 | 55.7% | 6.40 |
 
 ### Totals, edge 3+ points, by month
 
 | | bets | win% | roi% |
 |---|---:|---:|---:|
-| Nov | 3,297 | 52.2% | -0.29 |
-| Dec | 3,255 | 53.1% | 1.47 |
-| Jan | 4,373 | 52.7% | 0.54 |
-| Feb | 3,711 | 53.5% | 2.07 |
-| Mar | 2,877 | 51.0% | -2.59 |
+| Nov | 3,634 | 53.5% | 2.13 |
+| Dec | 3,661 | 54.6% | 4.19 |
+| Jan | 5,200 | 54.0% | 3.16 |
+| Feb | 4,551 | 54.6% | 4.24 |
+| Mar | 3,048 | 52.2% | -0.35 |
 
 ### Totals, edge 3+ points, by season
 
 | | bets | win% | roi% |
 |---|---:|---:|---:|
-| 2014 | 3,137 | 52.9% | 1.08 |
-| 2015 | 873 | 57.0% | 8.90 |
-| 2016 | 1,102 | 54.7% | 4.46 |
-| 2017 | 1,049 | 54.6% | 4.28 |
-| 2018 | 865 | 52.1% | -0.46 |
-| 2019 | 1,587 | 50.8% | -3.04 |
-| 2020 | 1,661 | 53.2% | 1.49 |
-| 2021 | 1,001 | 50.8% | -2.92 |
-| 2022 | 1,431 | 54.4% | 3.79 |
-| 2023 | 1,154 | 54.2% | 3.40 |
-| 2024 | 1,064 | 51.8% | -1.14 |
-| 2025 | 1,157 | 48.1% | -8.09 |
-| 2026 | 1,483 | 50.0% | -4.48 |
+| 2014 | 3,125 | 53.0% | 1.17 |
+| 2015 | 1,089 | 60.0% | 14.48 |
+| 2016 | 1,387 | 53.6% | 2.27 |
+| 2017 | 1,142 | 55.0% | 4.98 |
+| 2018 | 962 | 55.0% | 4.98 |
+| 2019 | 1,752 | 53.1% | 1.34 |
+| 2020 | 1,822 | 55.4% | 5.72 |
+| 2021 | 1,190 | 52.0% | -0.70 |
+| 2022 | 1,679 | 54.7% | 4.38 |
+| 2023 | 1,478 | 55.6% | 6.18 |
+| 2024 | 1,458 | 53.3% | 1.74 |
+| 2025 | 1,436 | 49.7% | -5.08 |
+| 2026 | 1,619 | 52.9% | 1.06 |
 
 ## Line movement: does the model predict which way the opener moves?
 
-24,311 games where the line moved (seasons 2014, 2015, 2016, 2017, 2024, 2025, 2026). The line moved toward the model's side in 64.9%; 82.2% when the model disagreed with the opener by 3+.
+24,311 games where the line moved (seasons 2014, 2015, 2016, 2017, 2024, 2025, 2026). The line moved toward the model's side in 65.7%; 82.7% when the model disagreed with the opener by 3+.
 
 Betting the model's side at the **opening** number:
 
 | | bets | win% | roi% |
 |---|---:|---:|---:|
-| edge vs opener 0+ | 23,936 | 52.4% | 0.00 |
-| edge vs opener 2+ | 6,057 | 56.6% | 8.05 |
-| edge vs opener 3+ | 2,275 | 58.8% | 12.20 |
-| edge vs opener 4+ | 798 | 58.8% | 12.20 |
-| edge vs opener 6+ | 128 | 76.6% | 46.16 |
+| edge vs opener 0+ | 23,936 | 52.5% | 0.21 |
+| edge vs opener 2+ | 6,082 | 56.7% | 8.17 |
+| edge vs opener 3+ | 2,246 | 58.7% | 12.03 |
+| edge vs opener 4+ | 778 | 59.4% | 13.37 |
+| edge vs opener 6+ | 127 | 76.4% | 45.81 |
 

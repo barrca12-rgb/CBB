@@ -22,17 +22,22 @@ import os
 import numpy as np
 import pandas as pd
 
-from . import barttorvik, data, players
+from . import barttorvik, context, data, players
 from .ratings import FACTORS
 
 MARGIN_FEATURES = ["pred_margin", "pred_margin_x_early", "kp_margin", "kp_margin_x_early", "bt_margin", "venue",
-                   "rest_diff", "b2b_diff", "team_hca", "miss_diff"] + [f"{f}_diff" for f in FACTORS]
+                   "rest_diff", "b2b_diff", "team_hca", "miss_diff"] + [f"{f}_diff" for f in FACTORS] + \
+                  ["mkt_m", "altitude"]
 TOTAL_FEATURES = ["pred_total", "pred_total_x_early", "kp_total", "kp_total_x_early", "bt_total", "rest_sum",
-                  "season_avg_total"] + [f"{f}_sum" for f in FACTORS]
+                  "season_avg_total"] + [f"{f}_sum" for f in FACTORS] + ["mkt_t", "altitude", "ref_fouls", "ref_pts"]
+# Context inputs (context.py), backtest 2020-2026 vs the plain model: market ratings + altitude + referees took
+# totals vs the closing line at 4+ points from 52.4% to 54.4% (5,965 bets) and spreads vs the opener at 3+ from
+# 58.2% to 58.6%. Referee crews are usually unknown when openers post; an unknown crew counts as average (0).
 # League-typical Four Factor values, used when a team has no games yet (first days of a season).
 FACTOR_AVG = {"efg": 0.50, "tov_rate": 0.18, "orb_rate": 0.29, "ft_rate": 0.25}
 # Coefficients fit on every backtest season, plus each team's home edge for the next season (written by fit()).
 SAVED = os.path.join(os.path.dirname(__file__), "..", "data", "projection.json")
+REFEREES = os.path.join(os.path.dirname(__file__), "..", "data", "referees.csv")
 
 
 def rest_days(seasons) -> pd.DataFrame:
@@ -131,6 +136,23 @@ def add_features(b: pd.DataFrame, live: dict | None = None) -> pd.DataFrame:
         b["season_avg_total"] = b["season_avg_total"].fillna(b["season"].map(prev.shift()))
     b["season_avg_total"] = pd.to_numeric(b["season_avg_total"], errors="coerce").fillna(
         b["pred_total"].groupby(b["season"]).transform("mean"))
+
+    # Context: market ratings from earlier closing lines, referee crew tendencies, altitude (context.py).
+    if "context" in live:
+        ctx = live["context"]
+    else:
+        keys = b[["game_id", "season", "date", "home_id", "away_id", "neutral"]]
+        ctx = context.market(keys, context.backtest_closes(sorted(b["season"].unique())))
+        ctx = ctx.merge(context.referees(b), on="game_id", how="left")
+    b = b.drop(columns=[c for c in ("mkt_margin", "mkt_total", "mkt_n", "ref_fouls", "ref_pts") if c in b])
+    b = b.merge(ctx, on="game_id", how="left")
+    w = np.minimum(b["mkt_n"].fillna(0) / 10, 1)     # market ratings count fully once both teams have 10 lined games
+    b["mkt_m"] = b["mkt_margin"].fillna(0) * w
+    b["mkt_t"] = b["mkt_total"].fillna(0) * w
+    b["ref_fouls"] = b["ref_fouls"].fillna(0)
+    b["ref_pts"] = b["ref_pts"].fillna(0)
+    b["altitude"] = (b["home_id"].isin(context.ALTITUDE) & ~b["away_id"].isin(context.ALTITUDE)
+                     & ~b["neutral"].astype(bool)).astype(float)
     return b.sort_index()
 
 
@@ -190,6 +212,9 @@ def fit(b: pd.DataFrame, next_season: int) -> dict:
            "team_hca": {str(int(k)): round(float(v), 3) for k, v in team_hca_table(b, next_season).items()}}
     with open(SAVED, "w") as f:
         json.dump(out, f, indent=1)
+    # every official's tendency from all backtest games, for live crews
+    og = context.official_games(sorted(b["season"].unique()))
+    context.crew_tendencies(og, b).to_csv(REFEREES, index=False)
     return out
 
 

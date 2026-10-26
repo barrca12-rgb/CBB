@@ -211,7 +211,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   <footer>
     Projections combine opponent-adjusted efficiency ratings from every Division I box score this season with KenPom, Barttorvik,
     Four Factor matchups, rest, home court and player availability. The line is never an input. In a 2014–2026 walk-forward
-    backtest the plays won 58.2% (spreads) and 57.5% (totals) against opening lines, and broke even against closing lines,
+    backtest the plays won 58.6% (spreads) and about 57.5% (totals) against opening lines, and broke even against closing lines,
     so the value is in betting early. <a id="bt-link" href="#">Backtest details</a>.
   </footer>
 </main>
@@ -259,6 +259,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   P.sort((a, b) => String(a.g.start).localeCompare(String(b.g.start)) || b.edge - a.edge);
   $("t-plays").innerHTML = P.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r hide-sm'>Model</th><th class='r'>Edge</th><th class='r hide-sm'>Win %</th><th class='r'>EV</th><th class='r'>Bet to</th><th class='r hide-sm'>Opened</th><th class='r hide-sm'>Units</th><th></th></tr></thead><tbody>" +
     P.map((p) => "<tr><td><div class='b'>" + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + esc(matchup(p.g)) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
+      (p.kind === "Total" && p.g.crew ? "<div class='f' style='font-size:11px'>Refs: " + esc(p.g.crew) + "</div>" : "") +
       [["away", p.g.away], ["home", p.g.home]].filter(([sd]) => p.g[sd + "_injuries"]).map(([sd, nm]) => "<div class='inj'>" + esc(nm) + ": " + esc(p.g[sd + "_injuries"]) + "</div>").join("") + "</td><td>" +
       esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r m hide-sm'>" + esc(p.model) + "</td><td class='r pos b'>" + sgn(p.edge) +
       "</td><td class='r m hide-sm'>" + pct(p.p) + "</td><td class='r'>" + (p.ev == null ? "–" : sgn(100 * p.ev) + "%") +

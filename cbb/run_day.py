@@ -9,7 +9,7 @@ Writes reports/cbb_<date>.html (the bet card), reports/cbb_<date>.csv (every num
 
 Calls, from the 2024-2026 backtest against opening lines (BACKTEST.md):
 
-    spread  edge 3+ points  BET 1u    (58.2% at the opener)     edge 2-3  WATCH
+    spread  edge 3+ points  BET 1u    (58.6% at the opener)     edge 2-3  WATCH
     total   edge 4+ points  BET 1u    (57.5%)                   edge 3-4  WATCH
 
 and at least +2% expected value at the book's price, from the backtest's win rate for that edge (win_prob). The
@@ -30,7 +30,7 @@ import urllib.request
 import numpy as np
 import pandas as pd
 
-from . import backtest, data, injuries, kenpom, odds, players, projection, ratings, report_html, teams, tracker
+from . import backtest, context, data, injuries, kenpom, odds, players, projection, ratings, report_html, teams, tracker
 
 REPORTS = os.path.join(os.path.dirname(__file__), "..", "reports")
 SCOREBOARD = ("https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard"
@@ -144,6 +144,14 @@ def project(day: pd.Timestamp, games: pd.DataFrame) -> tuple[pd.DataFrame, pd.Da
             "season_avg_total": float((played["home_pts"] + played["away_pts"]).mean()) if len(played) >= 200 else last_avg}
     if av is not None:
         live["availability"] = av[["game_id", "team_id", "excess_missing"]]
+    # context: market ratings from this season's closing lines, referee crews if posted (context.py)
+    keys = b[["game_id", "season", "date", "home_id", "away_id", "neutral"]]
+    closes = context.live_closes(os.path.join(odds.LINES, "closing.csv"), hist) if len(hist) else pd.DataFrame()
+    ctx = context.market(keys, closes) if len(closes) else keys[["game_id"]].assign(mkt_margin=0.0, mkt_total=0.0, mkt_n=0)
+    refs = context.live_referees(b["game_id"], projection.REFEREES) if day >= today_et() - pd.Timedelta(days=1) else \
+        pd.DataFrame(columns=["game_id", "ref_fouls", "ref_pts", "crew"])
+    live["context"] = ctx.merge(refs[["game_id", "ref_fouls", "ref_pts"]], on="game_id", how="left")
+    b = b.merge(refs[["game_id", "crew"]], on="game_id", how="left")
     f = projection.apply_saved(projection.add_features(b, live))
     return f, ratings.table(r)
 
@@ -187,7 +195,7 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame) -> pd.DataFrame:
         m, t = g["final_margin"], g["final_total"]
         r = {k: g[k] for k in ["game_id", "start", "home", "away", "home_id", "away_id", "neutral", "state",
                                "home_score", "away_score", "note", "home_injuries", "away_injuries",
-                               "home_injury_missing", "away_injury_missing"] if k in g}
+                               "home_injury_missing", "away_injury_missing", "crew"] if k in g}
         r.update(model_margin=m, model_total=t, model_home_spread=-m,
                  model_home_pts=(t + m) / 2, model_away_pts=(t - m) / 2, kp_margin=g.get("kp_margin"),
                  raw_margin=g.get("pred_margin"), home_missing=g.get("home_missing"), away_missing=g.get("away_missing"),
