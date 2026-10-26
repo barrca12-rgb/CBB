@@ -13,7 +13,9 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import time
+import urllib.error
 import urllib.request
 
 import pandas as pd
@@ -25,9 +27,23 @@ ANNOUNCEMENTS = os.path.join(tracker.ROOT, "bets", "announcements.json")
 GREEN, RED, GRAY, BLUE = 0x2E7D32, 0xC62828, 0x757575, 0x1565C0
 
 
+class Refused(Exception):
+    """Discord refused the webhook itself (bad or deleted URL): stop this run's posting."""
+
+
+def url_shape(url: str) -> str:
+    """What the webhook URL looks like, without the secret parts: prefix ok, id digits, token length (68 expected)."""
+    m = re.match(r"^https://(?:ptb\.|canary\.)?discord(?:app)?\.com/api/(?:v\d+/)?webhooks/(\d+)/([\w-]+)$", url)
+    if not m:
+        return (f"not a Discord webhook URL (length {len(url)}, starts {url[:8]!r}, "
+                f"whitespace {'yes' if url != url.strip() else 'no'})")
+    return f"prefix ok, id {len(m.group(1))} digits, token {len(m.group(2))} chars"
+
+
 def post(payload: dict, url: str | None = None) -> str | None:
-    """Post one message; returns Discord's message id, or None if it didn't go out (printed, never raised)."""
-    url = url or os.environ.get("DISCORD_WEBHOOK", "")
+    """Post one message; returns Discord's message id, or None if it didn't go out (printed, never raised). Raises
+    Refused when Discord rejects the webhook itself (401, 403, 404)."""
+    url = (url or os.environ.get("DISCORD_WEBHOOK", "")).strip()
     if not url:
         return None
     req = urllib.request.Request(url + ("&" if "?" in url else "?") + "wait=true", data=json.dumps(payload).encode(),
@@ -35,6 +51,13 @@ def post(payload: dict, url: str | None = None) -> str | None:
     try:
         with urllib.request.urlopen(req, timeout=20) as r:
             return str(json.load(r).get("id") or "posted")
+    except urllib.error.HTTPError as e:
+        detail = e.read()[:200].decode(errors="ignore")
+        print(f"Discord post failed: HTTP {e.code} {detail}")
+        if e.code in (401, 403, 404):
+            print(f"Discord refused the webhook; check the DISCORD_WEBHOOK secret ({url_shape(url)}).")
+            raise Refused from e
+        return None
     except Exception as e:
         print(f"Discord post failed: {e}")
         return None
@@ -71,9 +94,16 @@ def _settled(b: pd.Series) -> dict:
 
 def sync(url: str | None = None) -> int:
     """Post everything not posted yet: new bets, results, voids and reinstatements, announcements. Returns posts."""
-    url = url or os.environ.get("DISCORD_WEBHOOK", "")
+    url = (url or os.environ.get("DISCORD_WEBHOOK", "")).strip()
     if not url:
         return 0
+    try:
+        return _sync(url)
+    except Refused:
+        return 0
+
+
+def _sync(url: str) -> int:
     st = json.load(open(STATE)) if os.path.exists(STATE) else {}
     for k in ("bets", "settled", "voided", "reinstated", "notes"):
         st.setdefault(k, {} if k == "bets" else [])
