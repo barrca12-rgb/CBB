@@ -1,0 +1,56 @@
+hl60 fitted
+hl240 fitted
+prior3 fitted
+prior12 fitted
+luck20 fitted
+luck50 fitted
+variant tier          era  games  margin MAE  line MAE
+ frozen high  dev 2014-19   5552       8.513     8.479
+ frozen high test 2020-26   6660       8.976     8.918
+ frozen  mid  dev 2014-19   4876       8.606     8.619
+ frozen  mid test 2020-26   5589       8.818     8.786
+ frozen  low  dev 2014-19  22655       8.576     8.574
+ frozen  low test 2020-26  25446       8.872     8.837
+   hl60 high  dev 2014-19   5552       8.512     8.479
+   hl60 high test 2020-26   6660       8.979     8.918
+   hl60  mid  dev 2014-19   4876       8.609     8.619
+   hl60  mid test 2020-26   5589       8.823     8.786
+   hl60  low  dev 2014-19  22655       8.579     8.574
+   hl60  low test 2020-26  25446       8.872     8.837
+  hl240 high  dev 2014-19   5552       8.516     8.479
+  hl240 high test 2020-26   6660       8.977     8.918
+  hl240  mid  dev 2014-19   4876       8.607     8.619
+  hl240  mid test 2020-26   5589       8.827     8.786
+  hl240  low  dev 2014-19  22655       8.576     8.574
+  hl240  low test 2020-26  25446       8.875     8.837
+ prior3 high  dev 2014-19   5552       8.535     8.479
+ prior3 high test 2020-26   6660       8.989     8.918
+ prior3  mid  dev 2014-19   4876       8.617     8.619
+ prior3  mid test 2020-26   5589       8.828     8.786
+ prior3  low  dev 2014-19  22655       8.588     8.574
+ prior3  low test 2020-26  25446       8.885     8.837
+prior12 high  dev 2014-19   5552       8.522     8.479
+prior12 high test 2020-26   6660       8.983     8.918
+prior12  mid  dev 2014-19   4876       8.600     8.619
+prior12  mid test 2020-26   5589       8.829     8.786
+prior12  low  dev 2014-19  22655       8.573     8.574
+prior12  low test 2020-26  25446       8.881     8.837
+ luck20 high  dev 2014-19   5552       8.522     8.479
+ luck20 high test 2020-26   6660       8.988     8.918
+ luck20  mid  dev 2014-19   4876       8.604     8.619
+ luck20  mid test 2020-26   5589       8.825     8.786
+ luck20  low  dev 2014-19  22655       8.582     8.574
+ luck20  low test 2020-26  25446       8.879     8.837
+ luck50 high  dev 2014-19   5552       8.512     8.479
+ luck50 high test 2020-26   6660       8.970     8.918
+ luck50  mid  dev 2014-19   4876       8.609     8.619
+ luck50  mid test 2020-26   5589       8.827     8.786
+ luck50  low  dev 2014-19  22655       8.572     8.574
+ luck50  low test 2020-26  25446       8.871     8.837
+tier variant chosen on 2014-19  test games  tier-specific MAE  frozen MAE  line MAE  gain vs frozen
+high                    luck50        6660             8.9696      8.9756    8.9175          0.0060
+ mid                   prior12        5589             8.8290      8.8184    8.7859         -0.0106
+ low                    luck50       25446             8.8715      8.8719    8.8367          0.0004
+opener CLV (tier-specific vs frozen): {'dev 2014-17': (0.805, 0.807), 'confirm 2024-26': (1.456, 1.465)}
+information beyond the close (2020-26): {'margin: adjustment coef (se)': '0.133 (0.164)', 'margin: adjustment SD': 0.4054048527948115, 'total: adjustment coef (se)': '0.404 (0.211)', 'total: adjustment SD': 0.44940960723499385}
+KILL (low-major gain < 0.03): True

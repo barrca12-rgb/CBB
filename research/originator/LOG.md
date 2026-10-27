@@ -137,3 +137,8 @@ that).
   - **What:** each variant's stage-1 outputs are now swapped into the frozen frames, and the features derived
     from them are recomputed (`d2_tiers.swap`).
   - **Equivalence:** it matches a full rebuild except for two rare fallbacks, documented in the function.
+- **D2 run** (`out/d2_run.txt`): **KILLED.**
+  - Choices on 2014-2019: high-major luck 0.5, mid prior 12, low-major luck 0.5.
+  - Test 2020-26 MAE gain vs frozen: high +0.006, mid -0.011, **low +0.0004** (kill bar 0.03).
+  - Opener CLV: 0.805 vs 0.807 (development), 1.456 vs 1.465 (confirmation).
+  - Scorecard 2: margin coefficient 0.13 (se 0.16); total 0.40 (se 0.21).
