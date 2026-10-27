@@ -91,5 +91,8 @@ normal approval path (protocol section 8); if not, it is closed with the others.
 frozen model's residual in the backtest. That is equivalent to adding the adjustment as one more stage-2 input
 while holding the other stage-2 weights fixed. Live beta is frozen at 0.4022.
 
-**Discord:** not posted. Posting v2 signals to the record with a version tag (the helpers' suggestion) is a new
-external message, and waits for Chad's yes.
+**Discord and the site:** Chad decided on Oct 27 that v2 is tracked behind the scenes only.
+- **Not posted:** v2 signals never go to Discord. The posting code exists in `cbb/shadow_v2.py` but stays off
+  (`SHADOW_V2_DISCORD` is not set).
+- **Not on the site:** v2 is never part of the site's record or play tracking, which read `bets/bets.csv` only.
+- **Where it lives:** `bets/shadow_v2/`, for the Jan 15 and March 16 evaluations.

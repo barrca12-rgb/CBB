@@ -4,7 +4,7 @@ Reads what the card run committed (reports/cbb_<date>.csv for today and later da
 lines/closing.csv: the latest pull's quotes), adds the lineup adjustment (cbb/lineup.py, frozen BETA) to v1's
 spread margin, applies v1's spread rule unchanged (run_day: best EV across books, edge 2.5+, EV +2%), and logs each
 new v2 spread signal once to bets/shadow_v2/signals.csv. Never alerts, posts, stakes or touches bets/bets.csv, the
-card or any frozen file. Totals are v1's (unchanged in v2) and are not logged here.
+card or any frozen file. Not part of the site's record (record.html and the card read bets/bets.csv only). Totals are v1's (unchanged in v2) and are not logged here.
 
     python -m cbb.shadow_v2 [--now ISO]
 """
@@ -17,14 +17,19 @@ import os
 import numpy as np
 import pandas as pd
 
-from . import lineup, run_day
+import json
+
+from . import data, lineup, run_day
+from . import record as public_record
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 DIR = os.path.join(ROOT, "bets", "shadow_v2")
 SIGNALS = os.path.join(DIR, "signals.csv")
 RUNS = os.path.join(DIR, "runs.csv")
-GAMES = os.path.join(DIR, "games_latest.csv")   # every card game: the latest pregame v1, adjustment, v2 (one row per game)
-COLS = ["bet_id", "date", "game_id", "home_id", "away_id", "start", "side", "book", "line", "odds", "v1_margin",
+GAMES = os.path.join(DIR, "games_latest.csv")
+POSTED = os.path.join(DIR, "discord_posted.json")   # bet_id -> {"signal": message id, "result": message id}
+PURPLE = 0x8E5CF6   # every card game: the latest pregame v1, adjustment, v2 (one row per game)
+COLS = ["bet_id", "pick", "game", "date", "game_id", "home_id", "away_id", "start", "side", "book", "line", "odds", "v1_margin",
         "home_adj", "away_adj", "adj_margin", "v2_margin", "edge", "ev", "v1_edge_at_quote", "v1_signal_at_quote",
         "lines_pulled_at", "logged_at"]
 
@@ -49,7 +54,7 @@ def card_games(now: pd.Timestamp) -> pd.DataFrame:
         if d >= today:
             x = pd.read_csv(f)
             if len(x) and "model_margin" in x:
-                parts.append(x.assign(date=d)[["date", "game_id", "start", "home_id", "away_id", "model_margin"]])
+                parts.append(x.assign(date=d)[["date", "game_id", "start", "home_id", "away_id", "home", "away", "model_margin"]])
     return pd.concat(parts, ignore_index=True) if parts else pd.DataFrame()
 
 
@@ -66,9 +71,89 @@ def best_spread(lines: pd.DataFrame, g, m: float):
                                        "away": ("home_spread", lambda s_: -(m + s_), "away_spread_odds")})
 
 
+def _price(o) -> str:
+    try:
+        return f"{float(o):+.0f}"
+    except (TypeError, ValueError):
+        return ""
+
+
+def _teams() -> dict:
+    from . import teams
+    t = teams.load().drop_duplicates("espn_id")
+    return dict(zip(t["espn_id"].astype(int), t["espn_location"]))
+
+
+def label(r) -> str:
+    if isinstance(r.get("pick"), str):
+        return r["pick"]
+    name = _teams().get(int(r["home_id"] if r["side"] == "home" else r["away_id"]), r["side"])
+    return f"{name} {float(r['line']):+g}"
+
+
+def game(r) -> str:
+    if isinstance(r.get("game"), str):
+        return r["game"]
+    t = _teams()
+    return f"{t.get(int(r['away_id']), r['away_id'])} at {t.get(int(r['home_id']), r['home_id'])}"
+
+
+def post_discord(now: pd.Timestamp) -> None:
+    """Optional, OFF: post each v2 signal once, when logged, and its result once final, to the Discord record,
+    tagged as the v2 shadow. Chad asked (Oct 27) for v2 to be tracked behind the scenes only, so this runs only if
+    SHADOW_V2_DISCORD=1 is set in the workflow, which it is not. Never edits a post."""
+    url = os.environ.get("DISCORD_WEBHOOK") if os.environ.get("SHADOW_V2_DISCORD") == "1" else None
+    if not url or not os.path.exists(SIGNALS):   # off unless SHADOW_V2_DISCORD=1 (Chad: track it behind the scenes)
+        return
+    st = json.load(open(POSTED)) if os.path.exists(POSTED) else {}
+    sig = pd.read_csv(SIGNALS)
+    scores = None
+    for _, r in sig.iterrows():
+        rec = st.setdefault(r["bet_id"], {})
+        if "signal" not in rec:
+            logged = pd.Timestamp(r["logged_at"]).tz_convert("America/New_York").strftime("%b %d %I:%M %p ET")
+            mid = public_record.post({"embeds": [{
+                "title": f"V2 SHADOW (not bet): {label(r)} {_price(r['odds'])}", "color": PURPLE,
+                "description": "Lineup v2 shadow test. Not a bet; tracked against the live model.",
+                "fields": [{"name": "Game", "value": f"{game(r)} · {r['date']}", "inline": False},
+                           {"name": "Book", "value": str(r["book"]), "inline": True},
+                           {"name": "Edge", "value": f"{float(r['edge']):.1f} pts", "inline": True},
+                           {"name": "Lineup adjustment", "value": f"{float(r['adj_margin']):+.1f} pts", "inline": True},
+                           {"name": "Live model also a play", "value": "yes" if str(r["v1_signal_at_quote"]) == "True" else "no", "inline": True},
+                           {"name": "Logged", "value": logged, "inline": True}],
+                "footer": {"text": f"v2 bet id {r['bet_id']}"}}]}, url)
+            if mid:
+                rec["signal"] = mid
+                json.dump(st, open(POSTED, "w"), indent=1)
+        if "signal" in rec and "result" not in rec:
+            if scores is None:
+                try:
+                    g = data.season_games(season_of(pd.Timestamp(r["date"])), refresh=True)[0]
+                    scores = g.drop_duplicates("game_id").set_index("game_id")[["home_pts", "away_pts"]]
+                except Exception:
+                    scores = pd.DataFrame(columns=["home_pts", "away_pts"])
+            if int(r["game_id"]) not in scores.index:
+                continue
+            hp, ap = scores.loc[int(r["game_id"])]
+            m = (hp - ap if r["side"] == "home" else ap - hp) + float(r["line"])
+            res = "WIN" if m > 0 else "LOSS" if m < 0 else "PUSH"
+            mid = public_record.post({"embeds": [{
+                "title": f"V2 SHADOW {res}: {label(r)} {_price(r['odds'])}",
+                "color": 0x2ECC71 if res == "WIN" else 0xE74C3C if res == "LOSS" else 0x95A5A6,
+                "description": f"Final: {game(r)} {int(ap)}-{int(hp)}. Not a bet (lineup v2 shadow).",
+                "footer": {"text": f"v2 bet id {r['bet_id']}"}}]}, url)
+            if mid:
+                rec["result"] = mid
+                json.dump(st, open(POSTED, "w"), indent=1)
+
+
 def main(now: pd.Timestamp | None = None) -> None:
     now = now or pd.Timestamp.now(tz="UTC")
     os.makedirs(DIR, exist_ok=True)
+    if os.path.exists(SIGNALS):   # older log without the newer columns: rewrite it once in the current layout
+        old = pd.read_csv(SIGNALS)
+        if list(old.columns) != COLS:
+            old.reindex(columns=COLS).to_csv(SIGNALS, index=False)
     have = set(pd.read_csv(SIGNALS)["bet_id"]) if os.path.exists(SIGNALS) else set()
     run = {"run_at": now.isoformat(timespec="seconds"), "games": 0, "teams_with_adjustment": 0, "signals": 0, "error": ""}
     try:
@@ -109,7 +194,8 @@ def main(now: pd.Timestamp | None = None) -> None:
             e1 = (m1 + row["home_spread"]) if side == "home" else -(m1 + row["home_spread"])
             p1 = run_day.win_prob("spread", e1)
             v1_sig = bool(e1 >= run_day.SPREAD_CALLS[0][0] and run_day.ev(p1, row.get(f"{side}_spread_odds")) >= run_day.MIN_EV)
-            new.append({"bet_id": bid, "date": g["date"], "game_id": int(g["game_id"]), "home_id": int(g["home_id"]),
+            new.append({"bet_id": bid, "pick": f"{g['home'] if side == 'home' else g['away']} {line:+g}",
+                        "game": f"{g['away']} at {g['home']}", "date": g["date"], "game_id": int(g["game_id"]), "home_id": int(g["home_id"]),
                         "away_id": int(g["away_id"]), "start": g["start"], "side": side, "book": row["book"], "line": line,
                         "odds": row.get(f"{side}_spread_odds"), "v1_margin": round(m1, 3), "home_adj": round(ha, 3),
                         "away_adj": round(aa, 3), "adj_margin": round(ha - aa, 3), "v2_margin": round(m2, 3),
@@ -127,6 +213,10 @@ def main(now: pd.Timestamp | None = None) -> None:
         run["error"] = str(e)[:300]
         print(f"shadow_v2 failed: {e}")
     finally:
+        try:
+            post_discord(now)
+        except Exception as e:
+            run["error"] = (run["error"] + f" | discord: {str(e)[:150]}").strip(" |")
         pd.DataFrame([run]).to_csv(RUNS, mode="a", header=not os.path.exists(RUNS), index=False)
         print(run)
 
