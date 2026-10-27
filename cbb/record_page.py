@@ -184,17 +184,17 @@ def build() -> str:
 <html lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CBB Model Record</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<title>Off The Glass · College Basketball Record</title>
+<meta property="og:title" content="Off The Glass · College Basketball Record">
+{report_html.HEAD}
 {style}
 <header class="top"><div class="wrap">
-  <a class="brand" href="https://barrca12-rgb.github.io/" style="color:inherit;text-decoration:none">Model Card</a>
+  {report_html.BRAND}
   <nav class="tabs" aria-label="Sport"><a href="{report_html.NFL_SITE}">NFL</a><a href="./" aria-current="page"><span class="hide-sm">College Basketball</span><span class="show-sm">CBB</span></a></nav>
 </div></header>
 <main class="wrap">
-  <div class="head"><div><h1>CBB model record</h1>
+  <img class="hero" src="assets/otg-banner.webp" alt="Off The Glass Hoops" width="2000" height="667">
+  <div class="head"><div><h1>College Basketball Record</h1>
     <div class="sub">Bets placed on the model's plays, at the logged number and price. Updated {now:%b %-d, %-I:%M %p} ET.</div></div><a class="pagebtn" href="./">&larr; Card</a></div>
   <div class="kpis">{kpis}</div>
   <section class="panel"><div class="panel-h"><h2>Summary</h2><span class="note">Settled bets placed. CLV = points the line moved our way from the logged number to the close. Break-even at -110 is 52.4%.</span></div>
@@ -206,7 +206,8 @@ def build() -> str:
     <div class="scroll"><table>{plays_t}</table></div></section>
   <section class="panel"><div class="panel-h"><h2>Check it</h2></div><ul style="margin:12px 0;padding:0 16px 0 34px;line-height:1.7">{verify}</ul></section>
   {f"<section class='panel'><div class='panel-h'><h2>Model changes</h2><span class='note'>Announced the day each went live</span></div><ul style='margin:12px 0;padding:0 16px 0 34px;line-height:1.6'>{notes}</ul></section>" if notes else ""}
-  <footer>Plays come from the model's card, logged automatically at the posted number and price. Results are graded against final scores; closing lines are the median of the tracked books.</footer>
+  <footer>Plays come from the model's card, logged automatically at the posted number and price. Results are graded against final scores; closing lines are the median of the tracked books.
+    <div><a class="follow" href="https://x.com/{report_html.X_HANDLE}" target="_blank" rel="noopener"><img src="assets/otg-logo-512.png" alt="">Follow @{report_html.X_HANDLE} on X for every play</a></div></footer>
 </main>
 </html>
 """
