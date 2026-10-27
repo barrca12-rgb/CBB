@@ -1,0 +1,20 @@
+frozen done
+V1 no KenPom done
+V2 no Barttorvik done
+V3 no KenPom, no Barttorvik done
+V4 no market ratings done
+V5 own ratings + context done
+V6 ridge 100 done
+V7 ridge 1000 done
+variant                   frozen V1 no KenPom V2 no Barttorvik V3 no KenPom, no Barttorvik V4 no market ratings V5 own ratings + context V6 ridge 100 V7 ridge 1000
+margin MAE                8.8823       8.8824           8.8855                      8.8856               8.8835                   8.8859       8.8824        8.8874
+total MAE                13.1499      13.1559          13.1496                      13.157              13.1503                  13.1569        13.15       13.1508
+spread win% dev            56.76        56.93             56.7                       57.06                57.02                    57.08        56.18         56.12
+spread win% hold           57.66        57.89            57.85                       57.69                57.79                    57.46        58.14         58.82
+spread n dev/hold      3270/1599    3202/1603        3286/1668                   3295/1737            3290/1630                3283/1749    3115/1529     2992/1435
+spread CLV dev/conf  1.250/1.127  1.266/1.155      1.247/1.106                 1.257/1.106          1.247/1.099              1.272/1.081  1.233/1.134   1.226/1.117
+total win% dev             55.45        55.73            55.45                       55.67                55.44                    55.55        55.56         56.83
+total win% hold            55.53        55.96            55.47                       54.96                55.27                    54.91        55.56         55.44
+total n dev/hold       8333/2602    8647/2863        8307/2587                   8675/3026            8366/2609                8700/3016    8279/2601     7229/2585
+total CLV dev/conf   0.646/1.671  0.660/1.568      0.644/1.669                 0.673/1.540          0.652/1.672              0.675/1.547  0.668/1.675   1.002/1.679
+chosen on development, verdict: {'spread': 'V5 own ratings + context: KILL', 'total': 'V7 ridge 1000: KILL'}
