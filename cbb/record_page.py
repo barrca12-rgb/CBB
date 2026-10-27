@@ -128,9 +128,10 @@ def cohorts(b: pd.DataFrame) -> tuple[str, str]:
 
 def build() -> str:
     b = tracker.load()
-    live = b[b["status"] != "void"]
+    # The record counts only bets Chad placed (Chad, Oct 27). Every logged play stays in the bet log and on Discord,
+    # and the forward test's cohorts (cohorts(), below) still use every signal.
+    live = b[(b["status"] != "void") & (b["placed"].astype(str).str.lower() == "yes")]
     s = live[live["status"] == "settled"]
-    placed = s[s["placed"].astype(str).str.lower() != "no"]
     tot = summary(s)
     links = json.load(open(LINKS)) if os.path.exists(LINKS) else {}
     ann = json.load(open(os.path.join(tracker.ROOT, "bets", "announcements.json"))) \
@@ -141,7 +142,7 @@ def build() -> str:
           ("Open plays", str(int((live["status"] == "open").sum())))]
     kpis = "".join(f"<div class='kpi'><div class='k'>{k}</div><div class='v'>{v}</div></div>" for k, v in kp)
 
-    rows = [_row("All plays", tot), _row("Placed only", summary(placed))]
+    rows = [_row("All bets", tot)]
     rows += [_row(lbl, summary(s[s["market"] == mk])) for mk, lbl in (("spread", "Spreads"), ("total", "Totals"))]
     months = ""
     if len(s):
@@ -195,9 +196,9 @@ def build() -> str:
 </div></header>
 <main class="wrap">
   <div class="head"><div><h1>CBB model record</h1>
-    <div class="sub">Every play the model logged, as logged, whether or not it was bet. Updated {now:%b %-d, %-I:%M %p} ET.</div></div></div>
+    <div class="sub">Bets placed on the model's plays, at the logged number and price. Updated {now:%b %-d, %-I:%M %p} ET.</div></div></div>
   <div class="kpis">{kpis}</div>
-  <section class="panel"><div class="panel-h"><h2>Summary</h2><span class="note">Settled plays. CLV = points the line moved our way from the logged number to the close. Break-even at -110 is 52.4%.</span></div>
+  <section class="panel"><div class="panel-h"><h2>Summary</h2><span class="note">Settled bets placed. CLV = points the line moved our way from the logged number to the close. Break-even at -110 is 52.4%.</span></div>
     <div class="scroll"><table>{HEAD}<tbody>{''.join(rows)}</tbody></table></div>{_chart(s)}</section>
   <section class="panel"><div class="panel-h"><h2>Signals, quotes and accepted bets</h2><span class="note">{html.escape(coh_note)}</span></div>
     <div class="scroll"><table>{coh_table}</table></div></section>

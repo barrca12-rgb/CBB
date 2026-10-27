@@ -113,3 +113,15 @@ The proposed 15-unit daily cap and any staking change are not part of this work.
 - **Change:** the "Every play" table is now "Bets placed": only rows marked `placed` = yes, no voids.
 - **Unchanged:** the summary, KPIs, cohorts and monthly rows on the same page, and the bet log itself. Voided and
   unplaced plays stay in `bets/bets.csv` (linked under "Check it") and on Discord.
+
+## 2026-10-27: the record counts placed bets only (Chad)
+
+- **What counts:** the record page's numbers (record, win %, units, ROI, CLV, monthly rows, chart, open plays) now
+  use only bets marked `placed` = yes, voids excluded. At the change these were exactly Chad's 7 Pikkit bets.
+- **Unchanged:**
+  - every play is still logged in `bets/bets.csv` and posted to Discord;
+  - the forward test's cohorts A/B/C (FORWARD_TEST_PROTOCOL.md) on the same page still use every signal;
+  - the card's stake multipliers (`tracker.status`, frozen) still read every play.
+- **Safeguard:** `cbb/placed.py` refuses to mark a bet placed once its game has tipped (start time from that day's
+  card), so the placed-only record cannot be edited after results are known. A late entry is done by hand in the
+  session and shows in the log's commit history.

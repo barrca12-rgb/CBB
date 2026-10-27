@@ -20,6 +20,18 @@ ACCEPTED = os.path.join(ROOT, "bets", "accepted.csv")
 ACC_COLS = ["bet_id", "book", "placed_at", "line", "odds", "stake", "source"]
 
 
+def tip_time(bet_id: str) -> pd.Timestamp | None:
+    """The game's start from that day's card (reports/cbb_<date>.csv); None if the card has no start for it."""
+    d, gid = bet_id.split("|")[:2]
+    path = os.path.join(ROOT, "reports", f"cbb_{d}.csv")
+    if not os.path.exists(path):
+        return None
+    c = pd.read_csv(path, usecols=["game_id", "start"])
+    m = c[c["game_id"].astype(str) == gid]["start"]
+    t = pd.to_datetime(m.iloc[0], utc=True, errors="coerce") if len(m) else pd.NaT
+    return None if pd.isna(t) else t
+
+
 def record(bet_id: str, book: str, line: float, odds: float, stake: float, placed_at: str | None = None,
            source: str = "card button") -> None:
     if not book.strip():
@@ -33,6 +45,10 @@ def record(bet_id: str, book: str, line: float, odds: float, stake: float, place
     hit = [r for r in rows[1:] if r[h.index("bet_id")] == bet_id]
     if len(hit) != 1:
         raise ValueError(f"bet_id {bet_id!r} found {len(hit)} times in bets/bets.csv")
+    start = tip_time(bet_id)
+    if start is not None and pd.Timestamp.now(tz="UTC") >= start:
+        raise ValueError(f"{bet_id} tipped off at {start:%Y-%m-%d %H:%M} UTC; a bet can only be marked placed before "
+                         "tip (the record counts placed bets only). Ask in the session to record a late one by hand.")
     hit[0][h.index("placed")] = "yes"
     with open(BETS, "w", newline="") as f:
         csv.writer(f, lineterminator="\n").writerows(rows)
