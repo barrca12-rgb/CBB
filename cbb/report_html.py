@@ -16,6 +16,10 @@ import pandas as pd
 
 REPO = "barrca12-rgb/CBB"
 NFL_SITE = "https://barrca12-rgb.github.io/NFL/"
+NBA_SITE = "https://barrca12-rgb.github.io/NBA/"
+# NBA tab stays hidden until the NBA page answers (same origin, so a HEAD request works from the browser)
+NBA_TAB = (f'<a id="nba-link" href="{NBA_SITE}" hidden>NBA</a>'
+           f'<script>fetch("{NBA_SITE}", {{method: "HEAD", cache: "no-store"}}).then((r) => {{ if (r.ok) document.getElementById("nba-link").hidden = false; }}).catch(() => {{}});</script>')
 SITE_URL = "https://barrca12-rgb.github.io/CBB/"
 X_HANDLE = "OffTheGlassHQ"
 # Off The Glass brand: shared <head> for the card and the record page (icons, link previews on X, fonts)
@@ -115,6 +119,7 @@ a { color: var(--accent); text-decoration: none } a:hover { text-decoration: und
 .tabs { display: flex; gap: 2px; height: 100% }
 .tabs a { display: flex; align-items: center; padding: 0 12px; color: var(--bar-muted); font-weight: 600; font-size: 13px; letter-spacing: .04em;
   text-transform: uppercase; border-bottom: 3px solid transparent; margin-bottom: -3px; text-decoration: none }
+.tabs a[hidden] { display: none }
 .tabs a:hover { color: var(--bar-text); text-decoration: none }
 .tabs a[aria-current="page"] { color: var(--bar-text); border-bottom-color: var(--brand) }
 .status { margin-left: auto; display: flex; align-items: center; gap: 12px; color: var(--bar-muted); font-size: 13px; min-width: 0 }
@@ -227,7 +232,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
 
 <header class="top"><div class="wrap">
   __BRAND__
-  <nav class="tabs" aria-label="Sport"><a id="nfl-link" href="#">NFL</a><a href="./" aria-current="page"><span class="hide-sm">College Basketball</span><span class="show-sm">CBB</span></a></nav>
+  <nav class="tabs" aria-label="Sport"><a id="nfl-link" href="#">NFL</a>""" + NBA_TAB + r"""<a href="./" aria-current="page"><span class="hide-sm">College Basketball</span><span class="show-sm">CBB</span></a></nav>
   <div class="status"><span id="upd-status"></span><button id="upd-btn" type="button">Update</button></div>
 </div></header>
 

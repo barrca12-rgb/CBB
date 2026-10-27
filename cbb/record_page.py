@@ -201,7 +201,7 @@ def build() -> str:
 {style}
 <header class="top"><div class="wrap">
   {report_html.BRAND}
-  <nav class="tabs" aria-label="Sport"><a href="{report_html.NFL_SITE}">NFL</a><a href="./" aria-current="page"><span class="hide-sm">College Basketball</span><span class="show-sm">CBB</span></a></nav>
+  <nav class="tabs" aria-label="Sport"><a href="{report_html.NFL_SITE}">NFL</a>{report_html.NBA_TAB}<a href="./" aria-current="page"><span class="hide-sm">College Basketball</span><span class="show-sm">CBB</span></a></nav>
 </div></header>
 <main class="wrap">
   <img class="hero" src="assets/otg-banner.webp" alt="Off The Glass Hoops" width="2000" height="667">
