@@ -149,25 +149,23 @@ def build() -> str:
         months = "".join(_row(p.strftime("%b %Y"), summary(g)) for p, g in sorted(m.groupby("mo"), key=lambda x: x[0], reverse=True))
 
     plays = []
-    for _, r in b.sort_values(["date", "logged_at"], ascending=False).iterrows():
+    mine = b[(b["status"] != "void") & (b["placed"].astype(str).str.lower() == "yes")]   # bets Chad placed
+    for _, r in mine.sort_values(["date", "logged_at"], ascending=False).iterrows():
         res = {"W": "<span class='pos b'>Win</span>", "L": "<span class='neg b'>Loss</span>", "P": "Push"}.get(
             str(r["result"]), "Open")
-        if r["status"] == "void":
-            res = "<span class='f'>Void</span>"
         units = _num(float(r["profit"])) if r["status"] == "settled" else "–"
         logged = pd.Timestamp(r["logged_at"]).tz_convert("America/New_York")
-        bet = "no" if str(r["placed"]).lower() == "no" else "yes" if str(r["placed"]).lower() == "yes" else "–"
         plays.append(
             f"<tr><td class='m'>{r['date']}</td><td>{html.escape(str(r['away']))} at {html.escape(str(r['home']))}</td>"
             f"<td class='b'>{html.escape(str(r['pick']))}</td><td>{html.escape(str(r['book']))} "
             f"<span class='m'>{_num(r['odds'], '{:+.0f}')}</span></td><td class='r'>{_num(r['edge'], '{:.1f}')}</td>"
             f"<td class='r'>{_num(r['close_line'], '{:g}')}</td><td class='r'>{_num(r['clv_pts'], '{:+.1f}')}</td>"
-            f"<td>{res}</td><td class='r'>{units}</td><td class='c m'>{bet}</td>"
+            f"<td>{res}</td><td class='r'>{units}</td>"
             f"<td class='m hide-sm'>{logged:%b %-d %-I:%M %p} ET</td></tr>")
     plays_t = ("<thead><tr><th>Date</th><th>Game</th><th>Play</th><th>Book</th><th class='r'>Edge</th><th class='r'>Close</th>"
-               "<th class='r'>CLV</th><th>Result</th><th class='r'>Units</th><th class='c'>Bet</th>"
+               "<th class='r'>CLV</th><th>Result</th><th class='r'>Units</th>"
                "<th class='hide-sm'>Logged</th></tr></thead><tbody>" + "".join(plays) + "</tbody>") if plays else \
-        "<tbody><tr><td class='empty'>No plays logged yet.</td></tr></tbody>"
+        "<tbody><tr><td class='empty'>No placed bets yet.</td></tr></tbody>"
 
     notes = "".join(f"<li><b>{html.escape(a['date'])}</b>: {html.escape(a['text'])}</li>" for a in reversed(ann))
     disc = (f"<li><a href='{html.escape(links['discord_invite'])}'>Discord channel</a>: every play posted when it was "
@@ -204,7 +202,7 @@ def build() -> str:
   <section class="panel"><div class="panel-h"><h2>Signals, quotes and accepted bets</h2><span class="note">{html.escape(coh_note)}</span></div>
     <div class="scroll"><table>{coh_table}</table></div></section>
   {f"<section class='panel'><div class='panel-h'><h2>By month</h2></div><div class='scroll'><table>{HEAD}<tbody>{months}</tbody></table></div></section>" if months else ""}
-  <section class="panel"><div class="panel-h"><h2>Every play</h2><span class="note">Newest first. Void = cancelled before the game and not graded; its correction is in the log and on Discord.</span></div>
+  <section class="panel"><div class="panel-h"><h2>Bets placed</h2><span class="note">Newest first. Every logged play, including ones not bet and voided ones, is in the bet log and on Discord (below).</span></div>
     <div class="scroll"><table>{plays_t}</table></div></section>
   <section class="panel"><div class="panel-h"><h2>Check it</h2></div><ul style="margin:12px 0;padding:0 16px 0 34px;line-height:1.7">{verify}</ul></section>
   {f"<section class='panel'><div class='panel-h'><h2>Model changes</h2><span class='note'>Announced the day each went live</span></div><ul style='margin:12px 0;padding:0 16px 0 34px;line-height:1.6'>{notes}</ul></section>" if notes else ""}

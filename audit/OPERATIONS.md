@@ -107,3 +107,9 @@ The proposed 15-unit daily cap and any staking change are not part of this work.
 - **Health line:** the Monday line counts "placed with the card button".
 - **Tested:** in a browser with GitHub mocked (exact dispatch payload checked), and the script on a copy of the bet
   log (only the `placed` column changed).
+
+## 2026-10-27: record page lists placed bets only (Chad)
+
+- **Change:** the "Every play" table is now "Bets placed": only rows marked `placed` = yes, no voids.
+- **Unchanged:** the summary, KPIs, cohorts and monthly rows on the same page, and the bet log itself. Voided and
+  unplaced plays stay in `bets/bets.csv` (linked under "Check it") and on Discord.
