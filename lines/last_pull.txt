@@ -1,1 +1,1 @@
-2026-10-27 11:00 UTC  events 0  book-game rows 21 (0 SGO, 21 The Odds API)  unmatched teams: none  The Odds API credits left: 71189
+2026-10-27 11:10 UTC  events 7  book-game rows 21 (4 SGO, 17 The Odds API)  unmatched teams: Colorado Tigers, Kentucky Christian Knights, La Verne Leopards, Rivier Raiders, West Coast Baptist Eagles  SGO month: 4,585 of 100,000 entities  The Odds API credits left: 71186
