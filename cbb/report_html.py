@@ -89,6 +89,8 @@ a { color: var(--accent); text-decoration: none } a:hover { text-decoration: und
 .tabs { display: flex; gap: 2px; height: 100% }
 .tabs a { display: flex; align-items: center; padding: 0 12px; color: var(--muted); font-weight: 500; border-bottom: 2px solid transparent; text-decoration: none }
 .tabs a[aria-current="page"] { color: var(--text); border-bottom-color: var(--text) }
+.pagebtn { font-weight: 600; font-size: 13px; border: 1px solid var(--line-strong); border-radius: 6px; padding: 5px 12px; color: var(--text); background: var(--surface); text-decoration: none; white-space: nowrap }
+.pagebtn:hover { background: var(--sunken); text-decoration: none }
 .status { margin-left: auto; display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: 13px; min-width: 0 }
 .status span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
 button { font: inherit; font-weight: 600; font-size: 13px; color: var(--text); background: var(--surface); border: 1px solid var(--line-strong);
@@ -169,14 +171,14 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
 
 <header class="top"><div class="wrap">
   <a class="brand" href="https://barrca12-rgb.github.io/" style="color:inherit;text-decoration:none">Model Card</a>
-  <nav class="tabs" aria-label="Sport"><a id="nfl-link" href="#">NFL</a><a href="./" aria-current="page"><span class="hide-sm">College Basketball</span><span class="show-sm">CBB</span></a><a href="record.html">Record</a></nav>
+  <nav class="tabs" aria-label="Sport"><a id="nfl-link" href="#">NFL</a><a href="./" aria-current="page"><span class="hide-sm">College Basketball</span><span class="show-sm">CBB</span></a></nav>
   <div class="status"><span id="upd-status"></span><button id="upd-btn" type="button">Update</button></div>
 </div></header>
 
 <main class="wrap">
   <div class="head">
     <div><h1 id="h1"></h1><div class="sub" id="sub"></div></div>
-    <nav class="days" id="days" aria-label="Days"></nav>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><nav class="days" id="days" aria-label="Days"></nav><a class="pagebtn" href="record.html">Record</a></div>
   </div>
   <div class="notice" id="replay" hidden>Replay of a past day using ESPN's stored closing lines. Prices and bet links appear on live cards only.</div>
 

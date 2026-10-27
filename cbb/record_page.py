@@ -191,11 +191,11 @@ def build() -> str:
 {style}
 <header class="top"><div class="wrap">
   <a class="brand" href="https://barrca12-rgb.github.io/" style="color:inherit;text-decoration:none">Model Card</a>
-  <nav class="tabs" aria-label="Pages"><a href="{report_html.NFL_SITE}">NFL</a><a href="./"><span class="hide-sm">College Basketball</span><span class="show-sm">CBB</span></a><a href="record.html" aria-current="page">Record</a></nav>
+  <nav class="tabs" aria-label="Sport"><a href="{report_html.NFL_SITE}">NFL</a><a href="./" aria-current="page"><span class="hide-sm">College Basketball</span><span class="show-sm">CBB</span></a></nav>
 </div></header>
 <main class="wrap">
   <div class="head"><div><h1>CBB model record</h1>
-    <div class="sub">Bets placed on the model's plays, at the logged number and price. Updated {now:%b %-d, %-I:%M %p} ET.</div></div></div>
+    <div class="sub">Bets placed on the model's plays, at the logged number and price. Updated {now:%b %-d, %-I:%M %p} ET.</div></div><a class="pagebtn" href="./">&larr; Card</a></div>
   <div class="kpis">{kpis}</div>
   <section class="panel"><div class="panel-h"><h2>Summary</h2><span class="note">Settled bets placed. CLV = points the line moved our way from the logged number to the close. Break-even at -110 is 52.4%.</span></div>
     <div class="scroll"><table>{HEAD}<tbody>{''.join(rows)}</tbody></table></div>{_chart(s)}</section>
