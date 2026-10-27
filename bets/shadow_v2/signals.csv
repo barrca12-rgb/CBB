@@ -1,0 +1,2 @@
+bet_id,date,game_id,home_id,away_id,start,side,book,line,odds,v1_margin,home_adj,away_adj,adj_margin,v2_margin,edge,ev,v1_edge_at_quote,v1_signal_at_quote,lines_pulled_at,logged_at
+2026-11-02|401916313|spread|away,2026-11-02,401916313,252,194,2026-11-03T02:00Z,away,DraftKings,1.5,-105.0,-1.571,0.0,0.0,0.0,-1.571,3.071,0.1291,3.071,True,2026-10-27T12:55:13+00:00,2026-10-27T12:55:52+00:00
