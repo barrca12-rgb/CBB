@@ -254,3 +254,23 @@ higher juice?
 
 ### Prior
 Low-moderate. The pilot showed lines move toward tip, and the hold is about 7% at DraftKings and BetMGM.
+
+### First-half option A results (`out/h1_result.csv`, `out/h1_ladder.csv`, `out/h1_run.txt`): KILL both markets
+
+- **Pull:** 576 of 576 games had first-half lines; 11,520 credits.
+
+| | spreads_h1 | totals_h1 |
+|---|---|---|
+| beyond-line coef (se), 95% CI | 0.29 (0.57), [-0.82, 1.40] | 0.07 (0.14), [-0.21, 0.35] |
+| full-game benchmark vs ESPN close, same games | 0.20 (0.34) | -0.22 (0.24) |
+| model MAE / line MAE | 7.77 / 7.75 | 8.65 / 8.52 |
+| plays at 1.5 / 2.0 | 61 | 108 |
+| win% | 49.2 | 50.0 |
+| ROI at actual price | -8.7% [-32.6, 15.2] | -6.8% [-24.1, 10.6] |
+
+- **The ladder** is negative at every threshold, in both markets, and at the best of the three books.
+- **Reading:** near tip, the first-half line is as accurate as the model (slightly better on MAE) and the model
+  adds nothing beyond it. The same is true of the full-game close on these games, so near-tip first halves are no
+  softer than full games, and the extra hold makes them worse.
+- **Not tested:** early first-half lines (game-day morning). That needs another pull of about 11,700 credits,
+  which would take the balance below the 50,000 floor until the plan renews.
