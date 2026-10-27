@@ -117,8 +117,6 @@ a { color: var(--accent); text-decoration: none } a:hover { text-decoration: und
   text-transform: uppercase; border-bottom: 3px solid transparent; margin-bottom: -3px; text-decoration: none }
 .tabs a:hover { color: var(--bar-text); text-decoration: none }
 .tabs a[aria-current="page"] { color: var(--bar-text); border-bottom-color: var(--brand) }
-.pagebtn { font-weight: 600; font-size: 13px; border: 1px solid var(--line-strong); border-radius: 6px; padding: 5px 12px; color: var(--text); background: var(--surface); text-decoration: none; white-space: nowrap }
-.pagebtn:hover { background: var(--sunken); text-decoration: none }
 .status { margin-left: auto; display: flex; align-items: center; gap: 12px; color: var(--bar-muted); font-size: 13px; min-width: 0 }
 .status a { color: var(--bar-text) }
 #upd-btn { background: transparent; color: var(--bar-text); border-color: rgba(251,246,234,.35) } #upd-btn:hover { background: rgba(251,246,234,.1) }
@@ -131,9 +129,10 @@ button { font: inherit; font-weight: 600; font-size: 13px; color: var(--text); b
 h1 { font-family: var(--display); font-weight: 400; font-size: 26px; letter-spacing: .01em; margin: 0; line-height: 1.15 }
 .sub { color: var(--muted); margin-top: 2px }
 .days { display: flex; gap: 4px; flex-wrap: wrap }
-.days a { padding: 5px 10px; border-radius: 6px; color: var(--muted); font-weight: 500; font-size: 13px; text-decoration: none; border: 1px solid transparent }
-.days a:hover { background: var(--sunken) }
-.days a[aria-current="page"] { color: var(--text); border-color: var(--line-strong); background: var(--surface) }
+.days a, .pagebtn { padding: 5px 12px; border-radius: 6px; color: var(--text); font-weight: 600; font-size: 13px; text-decoration: none;
+  border: 1px solid var(--line-strong); background: var(--surface); white-space: nowrap }
+.days a:hover, .pagebtn:hover { background: var(--sunken); text-decoration: none }
+.days a[aria-current="page"] { color: var(--surface); border-color: var(--text); background: var(--text) }
 .notice { border: 1px solid var(--line); background: var(--warn-bg); color: var(--warn); border-radius: 8px; padding: 10px 12px; margin-bottom: 16px; font-size: 13px }
 
 /* KPI strip */
