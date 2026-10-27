@@ -120,3 +120,10 @@ What changed in each:
 The checkpoint check therefore runs:
 - `sha256sum -c` on the original list, with `run_day.py` expected to differ;
 - `sha256sum -c` on these three new lines.
+
+**Oct 27, 2026: lineup v2 shadow test added** (Chad's request; `research/v2_lineup/PLAN.md`). It adds
+`cbb/lineup.py`, `cbb/shadow_v2.py` and `.github/workflows/shadow_v2.yml`, which runs after each card run.
+- **No effect on v1:** none of the fingerprinted files changed, and the live card imports neither module, so no
+  v1 prediction, selection, alert or log changes.
+- **Logging:** v2's spread signals go only to `bets/shadow_v2/`.
+- **Status:** v2 is a shadow strategy. A switch would follow protocol section 8, with v1 continuing as a shadow.

@@ -1,0 +1,14 @@
+     set                     split  bets   win%  win% se   ROI%  ROI% se  opener CLV (pts)
+v1 (all) development 2015-17, 2024  2653 57.126    0.894  8.865    1.693             1.128
+v1 (all)           holdout 2025-26  1599 57.661    1.253 10.080    2.392             1.336
+v2 (all) development 2015-17, 2024  2739 57.724    0.880  9.980    1.662             1.185
+v2 (all)           holdout 2025-26  1667 57.469    1.205  9.713    2.300             1.355
+    both development 2015-17, 2024  2367 57.790    0.935 10.109    1.752             1.200
+    both           holdout 2025-26  1434 57.950    1.366 10.631    2.608             1.394
+ v1 only development 2015-17, 2024   286 51.613    2.984 -1.430    5.587             0.533
+ v1 only           holdout 2025-26   165 55.152    4.206  5.289    8.030             0.836
+ v2 only development 2015-17, 2024   372 57.300    2.799  9.164    5.308             1.095
+ v2 only           holdout 2025-26   233 54.506    3.045  4.058    5.814             1.116
+walk-forward beta by season: {2015: 0.468, 2016: 0.35, 2017: 0.355, 2024: 0.377, 2025: 0.393, 2026: 0.38}
+beta for the live shadow (all games 2015-2026, frozen residual on adjustment): 0.4022
+margin MAE 2020-26 v1 vs v2: 8.8823 8.8779
