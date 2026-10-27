@@ -1,0 +1,82 @@
+# Survivor tab (cbb/survivor.py): records Chad's survivor-pool picks from the page's Pick button and refreshes the
+# plan (schedule, results, win chances) three times a day. Each team once per entry; refuses used teams, a second
+# pick for the same entry and day, and games that have tipped. Never touches the betting model, the card's picks,
+# the bet log or the record. After saving, starts a card run so the site publishes the page.
+name: Survivor
+
+on:
+  schedule:
+    - cron: "23 11,17,22 * * *"      # 6:23 am, 12:23 pm, 5:23 pm ET (EST): results in, plan refreshed before the evening tips
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "plan (refresh), pick, or unpick"
+        required: true
+        default: "plan"
+      entry:
+        description: "Entry 1-5 (pick/unpick)"
+        required: false
+        default: ""
+      date:
+        description: "Contest day YYYY-MM-DD (pick/unpick)"
+        required: false
+        default: ""
+      team_id:
+        description: "ESPN team id (pick)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: survivor
+  cancel-in-progress: false
+
+jobs:
+  survivor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: claude/college-basketball-model-nmztcl
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - run: pip install -r requirements.txt scipy
+      - name: Pick or refresh
+        env:
+          ACTION: ${{ github.event.inputs.action || 'plan' }}
+          ENTRY: ${{ github.event.inputs.entry }}
+          DAY: ${{ github.event.inputs.date }}
+          TEAM: ${{ github.event.inputs.team_id }}
+        run: |
+          case "$ACTION" in
+            pick)   python -m cbb.survivor --pick "$ENTRY" "$DAY" "$TEAM" ;;
+            unpick) python -m cbb.survivor --unpick "$ENTRY" "$DAY" ;;
+            *)      python -m cbb.survivor ;;
+          esac
+      - name: Save
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898+github-actions[bot]@users.noreply.github.com"
+          git add -A -- data/survivor site/record/survivor.html
+          git diff --cached --quiet || git commit -m "Survivor ${ACTION:-plan} ($(date -u +'%Y-%m-%d %H:%M') UTC)"
+          ok=0
+          for i in 1 2 3 4 5 6; do
+            if git pull --rebase -X theirs origin claude/college-basketball-model-nmztcl && git push origin HEAD:claude/college-basketball-model-nmztcl; then ok=1; break; fi
+            git rebase --abort 2>/dev/null || true
+            sleep $((i * 4))
+          done
+          [ "$ok" = 1 ]
+        env:
+          ACTION: ${{ github.event.inputs.action || 'plan' }}
+      - name: Publish (start a card run, which copies site/record/ into the site)
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run update.yml --ref claude/college-basketball-model-nmztcl
