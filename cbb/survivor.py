@@ -305,6 +305,23 @@ def _when(start) -> str:
     return f"{t:%a %b} {t.day} · {t:%-I:%M %p}"
 
 
+def by_date(p: pd.DataFrame) -> str:
+    """Every recorded pick, one row per contest day, one column per entry, newest day first."""
+    if not len(p):
+        return "<div class='empty'>No picks recorded yet.</div>"
+    res = {"W": " <span class='pos b'>W</span>", "L": " <span class='neg b'>L</span>", "void": " <span class='f'>void</span>"}
+    head = "<thead><tr><th>Date</th>" + "".join(f"<th>Entry {e}</th>" for e in range(1, ENTRIES + 1)) + "</tr></thead>"
+    rows = []
+    for d in sorted(p["date"].unique(), reverse=True):
+        x = p[p["date"] == d].set_index("entry")
+        cells = "".join(
+            (f"<td>{_logo(x.loc[e, 'team_id'], 16)}<b>{html.escape(str(x.loc[e, 'team']))}</b>{res.get(str(x.loc[e, 'result']), '')}"
+             f"<div class='f' style='font-size:11px'>vs {html.escape(str(x.loc[e, 'opponent']))}</div></td>") if e in x.index else "<td class='f'>–</td>"
+            for e in range(1, ENTRIES + 1))
+        rows.append(f"<tr><td class='b'>{pd.Timestamp(d):%a %b} {pd.Timestamp(d).day}</td>{cells}</tr>")
+    return f"<div class='scroll'><table>{head}<tbody>{''.join(rows)}</tbody></table></div>"
+
+
 def page(entries: list[dict], o: pd.DataFrame, p: pd.DataFrame) -> str:
     R = report_html
     style = R.TEMPLATE[R.TEMPLATE.index("<style>"):R.TEMPLATE.index("</style>") + 8]
@@ -354,7 +371,7 @@ def page(entries: list[dict], o: pd.DataFrame, p: pd.DataFrame) -> str:
                          f"<b>{html.escape(str(r['team']))}</b> <span class='m'>vs {html.escape(str(r['opponent']))}</span></div>"
                          for _, r in pend.iterrows())
         blocks.append(f"<section class='panel'><div class='panel-h'><h2>Entry {n}</h2><div class='ctrls'>{head}"
-                      f"<span class='chip zero'>{len(used)} used</span></div></div>{locked}{body}"
+                      f"<span class='chip zero'>{len(used)} team{'' if len(used) == 1 else 's'} used</span></div></div>{locked}{body}"
                       f"<details class='usedd'><summary>Picks so far ({len(used)})</summary><div class='scroll'><table><tbody>{hist}</tbody></table></div></details></section>")
     return f"""<!doctype html>
 <html lang="en">
@@ -387,6 +404,8 @@ details.usedd > summary {{ cursor: pointer; padding: 10px 16px; font-size: 13px;
   <div class="head"><div><h1>Survivor</h1>
     <div class="sub">Five entries · one team to win each day · each team once per entry. Updated {now:%b} {now.day}, {now:%-I:%M %p} ET.</div></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="pagebtn" href="./">&larr; Card</a><a class="pagebtn" href="record.html">Record</a><a class="pagebtn" href="record/charts.html">Charts</a></div></div>
+  <section class="panel"><div class="panel-h"><h2>My picks by date</h2><span class="note">Every pick recorded, all five entries. W / L once the game is final.</span></div>
+    {by_date(p)}</section>
   <section class="panel"><div class="panel-h"><h2>How the plan works</h2></div><div style="padding:12px 16px;font-size:13px;color:var(--muted);line-height:1.55">
     Each entry gets one unused team per day for the rest of the season, chosen so the product of win chances is as high as
     possible. That spends teams whose only safe games are November and December buy games and saves the teams that are
