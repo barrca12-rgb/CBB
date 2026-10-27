@@ -54,6 +54,7 @@ a { color: var(--accent); text-decoration: none } a:hover { text-decoration: und
 .tabs { display: flex; gap: 2px; height: 100% }
 .tabs a { display: flex; align-items: center; padding: 0 12px; color: var(--bar-muted); font-weight: 600; font-size: 13px; letter-spacing: .04em;
   text-transform: uppercase; border-bottom: 3px solid transparent; margin-bottom: -3px; text-decoration: none }
+.tabs a[hidden] { display: none }
 .tabs a:hover { color: var(--bar-text); text-decoration: none }
 .tabs a[aria-current="page"] { color: var(--bar-text); border-bottom-color: var(--brand) }
 .status { margin-left: auto; display: flex; align-items: center; gap: 12px; color: var(--bar-muted); font-size: 13px; min-width: 0 }
@@ -165,12 +166,12 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
 </style>
 <header class="top"><div class="wrap">
   <a class="brand" href="./" aria-label="Off The Glass home"><img src="assets/otg-logo-512.png" alt="" width="34" height="34"><span class="wordmark">Off The Glass</span></a>
-  <nav class="tabs" aria-label="Sport"><a href="https://barrca12-rgb.github.io/NFL/">NFL</a><a href="./" aria-current="page"><span class="hide-sm">College Basketball</span><span class="show-sm">CBB</span></a></nav>
+  <nav class="tabs" aria-label="Sport"><a href="https://barrca12-rgb.github.io/NFL/">NFL</a><a id="nba-link" href="https://barrca12-rgb.github.io/NBA/" hidden>NBA</a><script>fetch("https://barrca12-rgb.github.io/NBA/", {method: "HEAD", cache: "no-store"}).then((r) => { if (r.ok) document.getElementById("nba-link").hidden = false; }).catch(() => {});</script><a href="./" aria-current="page"><span class="hide-sm">College Basketball</span><span class="show-sm">CBB</span></a></nav>
 </div></header>
 <main class="wrap">
   <img class="hero" src="assets/otg-banner.webp" alt="Off The Glass Hoops" width="2000" height="667">
   <div class="head"><div><h1>College Basketball Record</h1>
-    <div class="sub">Bets placed on the model's plays, at the logged number and price. Updated Oct 27, 2:50 PM ET.</div></div><a class="pagebtn" href="./">&larr; Card</a></div>
+    <div class="sub">Bets placed on the model's plays, at the logged number and price. Updated Oct 27, 2:58 PM ET.</div></div><a class="pagebtn" href="./">&larr; Card</a></div>
   <div class="kpis"><div class='kpi'><div class='k'>Record</div><div class='v'>0-0</div></div><div class='kpi'><div class='k'>Win %</div><div class='v'>–</div></div><div class='kpi'><div class='k'>Units</div><div class='v'>+0.00</div></div><div class='kpi'><div class='k'>ROI</div><div class='v'>–</div></div><div class='kpi'><div class='k'>Avg CLV</div><div class='v'>–</div></div><div class='kpi'><div class='k'>Open plays</div><div class='v'>7</div></div></div>
   <section class="panel"><div class="panel-h"><h2>Summary</h2><span class="note">Settled bets placed. CLV = points the line moved our way from the logged number to the close. Break-even at -110 is 52.4%.</span></div>
     <div class="scroll"><table><thead><tr><th></th><th class='r'>Plays</th><th class='r'>W-L</th><th class='r'>Win %</th><th class='r'>Units</th><th class='r'>ROI</th><th class='r'>CLV pts</th><th class='r'>Beat close</th></tr></thead><tbody><tr><td class='b'>All bets</td><td class='r'>0</td><td class='r'>0-0</td><td class='r'>–</td><td class='r '>+0.00</td><td class='r'>–</td><td class='r'>–</td><td class='r'>–</td></tr><tr><td class='b'>Spreads</td><td class='r'>0</td><td class='r'>0-0</td><td class='r'>–</td><td class='r '>+0.00</td><td class='r'>–</td><td class='r'>–</td><td class='r'>–</td></tr><tr><td class='b'>Totals</td><td class='r'>0</td><td class='r'>0-0</td><td class='r'>–</td><td class='r '>+0.00</td><td class='r'>–</td><td class='r'>–</td><td class='r'>–</td></tr></tbody></table></div></section>
