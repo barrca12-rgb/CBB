@@ -46,4 +46,11 @@ jobs:
           git config user.email "41898+github-actions[bot]@users.noreply.github.com"
           if [ -d bets/shadow_v2 ]; then git add -A -- bets/shadow_v2; fi
           git diff --cached --quiet || git commit -m "Shadow v2 ($(date -u +'%Y-%m-%d %H:%M') UTC)"
-          for i in 1 2 3; do git pull --rebase -X theirs origin claude/college-basketball-model-nmztcl && git push origin HEAD:claude/college-basketball-model-nmztcl && break; sleep 5; done
+          # retry: another job may push between this job's pull and push; fail only if every try fails
+          ok=0
+          for i in 1 2 3 4 5 6; do
+            if git pull --rebase -X theirs origin claude/college-basketball-model-nmztcl && git push origin HEAD:claude/college-basketball-model-nmztcl; then ok=1; break; fi
+            git rebase --abort 2>/dev/null || true
+            sleep $((i * 4))
+          done
+          [ "$ok" = 1 ]

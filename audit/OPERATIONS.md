@@ -66,3 +66,14 @@ and 4 notes posted (`bets/discord_posted.json`). Every new signal posts when it 
 ## Out of scope
 
 The proposed 15-unit daily cap and any staking change are not part of this work.
+
+## 2026-10-27: push collisions (operational fix, no model or rule change)
+
+- **What happened:** card run 246 (13:40 UTC) failed. A research commit was pushed in the 0.6 seconds between the
+  job's pull and its push, so GitHub rejected the push. That card update was not saved. The 13:50 run succeeded,
+  so no card was lost for more than one cycle.
+- **Cause:** `update.yml`, `injuries.yml` and the research pulls pushed only once. `quotes.yml`, `shadow_v2.yml`
+  and `history_sample.yml` retried three times, but their loop reported success even if every try failed.
+- **Fix, in every workflow:** up to 6 tries of pull-rebase-then-push, waiting 4, 8, 12, 16 and 20 seconds between
+  tries. Any half-finished rebase is aborted between tries. The step fails only if all 6 fail, so a real failure
+  still shows.

@@ -107,7 +107,14 @@ jobs:
           git add -A reports lines bets injuries data/barttorvik_preseason_*.csv
           git diff --cached --quiet || git commit -m "Update CBB card ($(date -u +'%Y-%m-%d %H:%M') UTC)"
           # if a push landed meanwhile, keep this run's freshly built card and lines on any conflict
-          git pull --rebase -X theirs origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}"
+          # retry: another job may push between this job's pull and push; fail only if every try fails
+          ok=0
+          for i in 1 2 3 4 5 6; do
+            if git pull --rebase -X theirs origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}"; then ok=1; break; fi
+            git rebase --abort 2>/dev/null || true
+            sleep $((i * 4))
+          done
+          [ "$ok" = 1 ]
 
       - uses: actions/upload-pages-artifact@v3
         with:
