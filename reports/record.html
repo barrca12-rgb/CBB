@@ -105,6 +105,13 @@ tbody tr:last-child td { border-bottom: 0 }
 .seg button + button { border-left: 1px solid var(--line-strong) }
 .seg button[aria-pressed="true"] { background: var(--text); color: var(--surface) }
 .ctrls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center }
+/* Plays header: a count chip and a Rules toggle, so it reads as a control bar like the odds board's */
+.chip { display: inline-flex; align-items: center; padding: 5px 12px; border-radius: 6px; font-size: 13px; font-weight: 700;
+  background: var(--brand); color: #fff; white-space: nowrap }
+.chip.zero { background: var(--sunken); color: var(--muted); border: 1px solid var(--line-strong) }
+.chipbtn { padding: 5px 12px; font-weight: 500; color: var(--muted) }
+.chipbtn[aria-expanded="true"] { background: var(--text); color: var(--surface); border-color: var(--text) }
+.rules { padding: 10px 16px; border-bottom: 1px solid var(--line); background: var(--sunken); color: var(--muted); font-size: 12px }
 label.chk { display: inline-flex; gap: 6px; align-items: center; color: var(--muted); font-size: 13px; cursor: pointer }
 
 /* Odds board: two rows per game (away, home) */
@@ -171,7 +178,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
 <main class="wrap">
   <img class="hero" src="assets/otg-banner.webp" alt="Off The Glass Hoops" width="2000" height="667">
   <div class="head"><div><h1>College Basketball Record</h1>
-    <div class="sub">Bets placed on the model's plays, at the logged number and price. Updated Oct 27, 6:20 PM ET.</div></div>
+    <div class="sub">Bets placed on the model's plays, at the logged number and price. Updated Oct 27, 6:27 PM ET.</div></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="pagebtn" href="./">&larr; Card</a><a class="pagebtn" href="record/charts.html">Charts</a></div></div>
   <div class="kpis"><div class='kpi'><div class='k'>Record</div><div class='v'>0-0</div></div><div class='kpi'><div class='k'>Win %</div><div class='v'>–</div></div><div class='kpi'><div class='k'>Units</div><div class='v'>+0.00</div></div><div class='kpi'><div class='k'>ROI</div><div class='v'>–</div></div><div class='kpi'><div class='k'>Avg CLV</div><div class='v'>–</div></div><div class='kpi'><div class='k'>Open plays</div><div class='v'>7</div></div></div>
   <section class="panel"><div class="panel-h"><h2>Summary</h2><span class="note">Settled bets placed. CLV = points the line moved our way from the logged number to the close (the forward test's primary close: each book's last fresh quote in the 15 minutes before tip, median). Break-even at -110 is 52.4%.</span></div>
