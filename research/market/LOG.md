@@ -196,3 +196,17 @@ Caesars +0.70%.
 - **Purpose: coverage only, no betting test.** How many games have pregame first-half lines, at which books, and
   whether they are up by the morning. That decides whether option A is worth pulling. The betting test will be
   pre-registered before any larger pull.
+
+### First-half pilot results (`data/h1_pilot_status.csv`, `data/h1_pilot_lines.csv`)
+
+- **Cost:** 760 credits. The 2 calls that found no lines were not charged.
+- **Near tip (tip - 15 min):** all 20 games had first-half spreads and totals. DraftKings 20/20, FanDuel 20/20,
+  BetMGM 17-20/20, Bovada 19, BetOnline and BetUS 15. Caesars had none.
+- **Game-day morning (15:00 UTC):** 18 of 20 games had a line somewhere. DraftKings 13, FanDuel 11, BetMGM 5-6,
+  offshore books 14-15. The two games with nothing were low-majors (Wagner, Stetson). By tip, lines had moved in
+  several games (e.g. Syracuse -15.5 -> -14.5).
+- **Hold (both sides' implied probabilities minus 100%):** DraftKings and BetMGM 6.9%, FanDuel 5.6%, offshore
+  4.7%. A -110/-110 full-game line is 4.8%. Break-even is about 54.1% at DraftKings and BetMGM vs 52.4% on full
+  games.
+- **Reading:** coverage near tip is essentially complete, so option A (5 recent dates, near tip) would pull
+  close to its 11,700-credit estimate. The higher hold means first halves need a bigger edge to profit.
