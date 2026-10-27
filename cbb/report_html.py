@@ -58,8 +58,24 @@ def _clean(v):
     return v if isinstance(v, (int, str, bool)) else str(v)
 
 
+def _logged_view(card: pd.DataFrame) -> pd.DataFrame:
+    """Win chance and EV of each logged play as they were when it was logged: the frozen win-chance table applied to
+    the logged edge, at the logged price (run_day's own functions, read-only). Display only."""
+    from .run_day import ev, win_prob
+    card = card.copy()
+    for mk in ("spread", "total"):
+        e, o = f"{mk}_logged_edge", f"{mk}_logged_odds"
+        if e not in card:
+            continue
+        p = [win_prob(mk, float(x)) if pd.notna(x) else np.nan for x in card[e]]
+        card[f"{mk}_logged_p"] = p
+        card[f"{mk}_logged_ev"] = [ev(pp, oo) if pd.notna(pp) and pd.notna(oo) else np.nan for pp, oo in zip(p, card[o])]
+    return card
+
+
 def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, replay: bool = False,
           record: dict | None = None) -> str:
+    card = _logged_view(card)
     games = [{k: _clean(v) for k, v in r.items()} for r in card.to_dict("records")]
     t = rt.reset_index(names="espn_id")
     t["rank"] = range(1, len(t) + 1)
@@ -256,7 +272,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     <div class="panel-h"><h2 id="plays-h">Plays</h2>
       <div class="ctrls"><span class="chip" id="plays-count"></span><button type="button" class="chipbtn" id="rules-btn" aria-expanded="false" aria-controls="plays-rules">Rules</button></div>
     </div>
-    <div class="rules" id="plays-rules" hidden>Spread edge 2.5+ pts · total edge 3+ pts · +2% EV at the price · 1 unit each. Win % = backtest rate for that edge. A logged play stays a play at the number and edge it was logged at; its win % and EV are at that number with today's model.</div>
+    <div class="rules" id="plays-rules" hidden>Spread edge 2.5+ pts · total edge 3+ pts · +2% EV at the price · 1 unit each. Win % = backtest rate for that edge. A logged play stays a play: its edge, win % and EV are as they were when it was logged; the line under it says where the line and the model are now.</div>
     <div class="scroll"><table id="t-plays"></table></div>
   </section>
 
@@ -351,10 +367,13 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       : (g.total_line == null ? null : num(g.total_line));
     const placed = String(g[mk + "_logged_placed"] || "").toLowerCase() === "yes";
     // a logged play stays a play at its logged number; this only says where the market is now
-    const now = still ? "still available at " + cur + " (" + g[mk + "_book"] + ")" : "line now " + (cur ?? "–");
+    // today's model number from the bet's side, in the same form as the bet (spread: the team's line; total: points)
+    const mnow = mk === "spread" ? (g.model_margin == null ? null : "model now " + (side === "home" ? g.home : g.away) + " " + ln(-(side === "home" ? g.model_margin : -g.model_margin)))
+      : (g.model_total == null ? null : "model now " + num(g.model_total));
+    const now = (still ? "still available at " + cur + " (" + g[mk + "_book"] + ")" : "line now " + (cur ?? "–")) + (mnow ? " · " + mnow : "");
     P.push({g, kind: mk === "spread" ? "Spread" : "Total", side, bet: pick, price: g[mk + "_logged_odds"], book: g[mk + "_logged_book"],
-      link: still ? g[mk + "_link"] : null, warn: g[mk + "_warn"], edge: g[mk + "_logged_edge"] ?? g[mk + "_now_edge"], p: g[mk + "_now_p"],
-      ev: g[mk + "_now_ev"], model: mk === "spread" ? (side === "home" ? ln(-g.model_margin) : ln(g.model_margin)) : num(g.model_total),
+      link: still ? g[mk + "_link"] : null, warn: g[mk + "_warn"], edge: g[mk + "_logged_edge"] ?? g[mk + "_now_edge"],
+      p: g[mk + "_logged_p"] ?? g[mk + "_now_p"], ev: g[mk + "_logged_ev"] ?? g[mk + "_now_ev"], model: mk === "spread" ? (side === "home" ? ln(-g.model_margin) : ln(g.model_margin)) : num(g.model_total),
       to: placed ? "Placed" : still ? (mk === "spread" ? ln(g.spread_good_to) : num(g.total_good_to)) : "–",
       open: mk === "spread" ? (g.open_home_spread != null ? ln(side === "home" ? g.open_home_spread : -g.open_home_spread) : null)
         : (g.open_total != null ? num(g.open_total) : null),
