@@ -1,0 +1,23 @@
+per book (each book its own first quote):
+            picks  win%  ROI%
+book                         
+BetMGM      137.0  55.5   5.2
+Caesars     130.0  57.8  10.1
+DraftKings  133.0  60.2  14.3
+FanDuel     140.0  51.4  -3.0
+
+the first of the four books to post that game:
+picks    229.0
+win%      58.5
+ROI%      10.9
+
+later books (2nd-4th to post):
+picks    311.0
+win%      54.4
+ROI%       3.2
+
+best number (then price) across the four, one per game:
+picks    229.0
+win%      58.8
+ROI%      11.5
+dates: 12 games: 229

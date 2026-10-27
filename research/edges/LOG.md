@@ -146,3 +146,30 @@ Calibration:
   "Never realistically available" needs timestamps (live logs from Nov 1, or the historical snapshot sample).
 - **Run 1 (`out/e6_run.txt`), reported as is.** The "chased" model's development AUC was 0.625 and its holdout
   AUC 0.493, so it is not predictable.
+
+## 2026-10-27: spread agreement and situation filters (pre-registered before running)
+
+**Plays:** the frozen rule's spread plays at the opener (swapped records excluded). Development 2014-17 and 2024;
+holdout 2025-26.
+
+**"Source edge"** = a source's home margin plus the opening home spread, from the play's side. Each source's
+average offset against the line is removed first; the offset is computed on development games only (Barttorvik's
+margins carry no home edge, so they sit about 2.5 points lower).
+
+**Filters, each splitting plays into keep and drop:**
+- A. KenPom agrees: source edge >= 1.
+- B. Barttorvik agrees: >= 1.
+- C. Both agree.
+- D. Market ratings agree (`mkt_margin`, from earlier closes; only where `mkt_m` is not 0): >= 1.
+- E. Rest favours the play's side (rest_diff from that side > 0).
+- F. Conference game vs not.
+- G. Injury-driven: |miss_value_diff| >= 0.1 vs not.
+
+**Report** for keep and drop, development and holdout: plays and win % (-110 assumed).
+
+**Flag:** a keep subset 2+ date-clustered SEs above its market's development rate, with the drop side below it.
+Holdout read once. 7 filters means about 0.3 flags expected by chance at this one-sided bar.
+- **Filters run 1 (`out/e7_run.txt`), reported as is.** Nothing flagged. The closest, D (market ratings agree),
+  was +2.6 at 1.9 SEs in development and reversed in the holdout.
+- **Added descriptive check (not pre-registered), Option B picks** (`out/e8_first_book.txt`): spreads at the first
+  of the four books to post a game vs at the later books.

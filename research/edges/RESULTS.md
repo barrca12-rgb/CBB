@@ -149,3 +149,50 @@ saw it. The answer can only come from timestamps:
 - **The fix, and why it waits for Chad:** a 10-minute overnight cadence costs about 2,900 credits a month. It
   changes when signals are logged, so it is a decision for Chad (forward-test protocol section 8), not a logging
   fix.
+
+## Spread filters: agreement and situations (Oct 27). Nothing raises the spread win rate.
+
+Seven pre-registered filters, keep vs drop (spreads at the opener, swapped records excluded):
+
+| Filter | Keep: development / holdout | Drop: development / holdout |
+|---|---|---|
+| KenPom agrees | 56.7% / 56.2% | 56.8% / 61.6% |
+| Barttorvik agrees | 56.8% / 57.7% | 56.7% / 57.6% |
+| Both agree | 57.3% / 56.1% | 56.4% / 59.4% |
+| Market ratings agree | 59.4% / 57.7% | 54.9% / 59.7% |
+| Rest favours our side | 53.5% / 59.5% | 57.7% / 57.1% |
+| Conference game | 57.1% / 60.2% | 56.4% / 55.6% |
+| Injury-driven edge | 55.6% / 56.9% | 57.0% / 57.9% |
+| **All spread picks** | **56.8% / 57.7%** | |
+
+- **No filter cleared the bar.** The closest (market ratings) reversed in the holdout.
+- **What it means:** the model already absorbs these sources. Agreement among them adds no information about which
+  spread picks win.
+
+## Where spread win % can still come from: execution (Option B, 12 dates; small sample)
+
+| Spread picks at real first quotes | Picks | Win % | ROI |
+|---|---|---|---|
+| The first of the four books to post that game | 229 | 58.5% | +10.9% |
+| The 2nd to 4th book to post | 311 | 54.4% | +3.2% |
+| Best number across the four, one per game | 229 | 58.8% | +11.5% |
+| By book: DraftKings / Caesars / BetMGM / FanDuel | 133 / 130 / 137 / 140 | 60.2% / 57.8% / 55.5% / 51.4% | +14 / +10 / +5 / -3% |
+
+- **Same pick, earlier book:** the same picks at the first book to post won about 4 points more than at the books
+  that followed. DraftKings usually posts first and had the best results.
+- **What it says:** the spread number rises with how early, and at which book, the bet is placed, not with more
+  filters. That fits the timing study (most spread value is gone by the close).
+- **Caveat:** 12 dates, wide errors.
+- **Live check:** the logs from Nov 1 show how often the card's alert arrives while the first book's number is
+  still up.
+
+## Honest summary for the spread number
+
+- **Ruled out so far as ways to raise it:** segments, agreement filters, matchup features and moneylines. The
+  frozen model's spread edge looks spread evenly across its picks.
+- **Two levers remain:**
+  1. **Execution:** bet the first book to post, as soon as the alert lands. This needs no model change, only speed
+     and accounts at the books that post first.
+  2. **New information the model lacks:** better player-level injury values (EvanMiya BPR history, or a
+     player-impact rating built from our box scores back to 2013). That is a v2 research project, measured against
+     the frozen model, with no live change before the Jan 15 checkpoint.
