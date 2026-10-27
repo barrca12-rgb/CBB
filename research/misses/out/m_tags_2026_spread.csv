@@ -1,0 +1,9 @@
+tag,plays,share of plays,miss rate,lift (share of misses / share of plays),mean line value,win% at opener,win% when missed,season,market
+(all plays),797,1.0,0.064,1.0,1.3,58.0,35.3,2026,spread
+absence_ours,89,0.112,0.067,1.05,0.87,52.8,50.0,2026,spread
+absence_other,74,0.093,0.054,0.84,1.28,62.2,75.0,2026,spread
+early,36,0.045,0.083,1.3,1.67,58.3,33.3,2026,spread
+kp_disagrees,260,0.326,0.031,0.48,1.6,59.6,37.5,2026,spread
+low_major,566,0.71,0.08,1.24,1.13,55.7,33.3,2026,spread
+neutral_site,120,0.151,0.025,0.39,1.94,61.7,33.3,2026,spread
+big,55,0.069,0.018,0.28,1.87,58.2,0.0,2026,spread

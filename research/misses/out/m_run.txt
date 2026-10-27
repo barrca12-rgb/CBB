@@ -1,0 +1,46 @@
+
+== 2025-26 (primary) · spreads: 797 plays, 51 misses (6.4%)
+          tag  plays  share of plays  miss rate  lift (share of misses / share of plays)  mean line value  win% at opener  win% when missed
+  (all plays)    797           1.000      0.064                                     1.00             1.30            58.0              35.3
+ absence_ours     89           0.112      0.067                                     1.05             0.87            52.8              50.0
+absence_other     74           0.093      0.054                                     0.84             1.28            62.2              75.0
+        early     36           0.045      0.083                                     1.30             1.67            58.3              33.3
+ kp_disagrees    260           0.326      0.031                                     0.48             1.60            59.6              37.5
+    low_major    566           0.710      0.080                                     1.24             1.13            55.7              33.3
+ neutral_site    120           0.151      0.025                                     0.39             1.94            61.7              33.3
+          big     55           0.069      0.018                                     0.28             1.87            58.2               0.0
+primary cause of misses, % (vs % of all plays): {'low-major': '56.9 (38.0)', 'KenPom disagrees': '13.7 (27.1)', 'none of these': '3.9 (11.4)', 'absence (our side)': '11.8 (11.2)', 'absence (other side)': '7.8 (7.8)', 'early season': '5.9 (4.5)'}
+
+== 2025-26 (primary) · totals: 1418 plays, 100 misses (7.1%)
+         tag  plays  share of plays  miss rate  lift (share of misses / share of plays)  mean line value  win% at opener  win% when missed
+ (all plays)   1418           1.000      0.071                                     1.00             2.18            54.9              30.0
+absence_ours    273           0.193      0.059                                     0.83             2.29            51.6              31.2
+       early     57           0.040      0.298                                     4.23            -0.46            47.4              23.5
+kp_disagrees    604           0.426      0.053                                     0.75             2.38            54.7              34.4
+   low_major   1002           0.707      0.082                                     1.16             1.90            55.0              26.8
+neutral_site    198           0.140      0.061                                     0.86             2.63            52.3              16.7
+         big    199           0.140      0.075                                     1.07             3.05            58.3               6.7
+primary cause of misses, % (vs % of all plays): {'KenPom disagrees': '28.0 (33.5)', 'low-major': '30.0 (32.7)', 'absence (our side)': '16.0 (19.3)', 'none of these': '9.0 (10.5)', 'early season': '17.0 (4.0)'}
+
+== 2024-25 (check) · spreads: 802 plays, 16 misses (2.0%)
+          tag  plays  share of plays  miss rate  lift (share of misses / share of plays)  mean line value  win% at opener  win% when missed
+  (all plays)    802           1.000      0.020                                     1.00             1.37            57.4              50.0
+ absence_ours     75           0.094      0.000                                     0.00             1.09            57.3               NaN
+absence_other     93           0.116      0.022                                     1.08             1.55            52.7              50.0
+        early     45           0.056      0.022                                     1.11             1.24            53.3               0.0
+ kp_disagrees    272           0.339      0.026                                     1.29             1.16            55.5              57.1
+    low_major    572           0.713      0.023                                     1.14             1.47            57.2              38.5
+ neutral_site    105           0.131      0.019                                     0.95             1.60            59.0             100.0
+          big     55           0.069      0.000                                     0.00             5.13            69.1               NaN
+primary cause of misses, % (vs % of all plays): {'low-major': '31.2 (35.3)', 'KenPom disagrees': '37.5 (25.3)', 'none of these': '12.5 (14.1)', 'absence (other side)': '12.5 (10.3)', 'absence (our side)': '0 (9.4)', 'early season': '6.2 (5.6)'}
+
+== 2024-25 (check) · totals: 1185 plays, 93 misses (7.8%)
+         tag  plays  share of plays  miss rate  lift (share of misses / share of plays)  mean line value  win% at opener  win% when missed
+ (all plays)   1185           1.000      0.078                                     1.00             1.54            56.3              40.9
+absence_ours    264           0.223      0.098                                     1.25             1.20            58.7              38.5
+       early     35           0.030      0.086                                     1.09             3.31            57.1               0.0
+kp_disagrees    448           0.378      0.038                                     0.48             1.26            58.5              58.8
+   low_major    795           0.671      0.075                                     0.96             1.70            56.7              36.7
+neutral_site    236           0.199      0.106                                     1.35             1.38            52.5              44.0
+         big    140           0.118      0.071                                     0.91             4.56            59.3              40.0
+primary cause of misses, % (vs % of all plays): {'low-major': '39.8 (31.3)', 'KenPom disagrees': '11.8 (28.9)', 'absence (our side)': '28.0 (22.3)', 'none of these': '17.2 (14.5)', 'early season': '3.2 (3.0)'}
