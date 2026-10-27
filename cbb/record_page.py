@@ -14,7 +14,7 @@ import os
 import numpy as np
 import pandas as pd
 
-from . import report_html, tracker
+from . import clv_primary, report_html, tracker
 
 OUT = os.path.join(tracker.ROOT, "reports", "record.html")
 VERIFY = os.path.join(tracker.ROOT, "reports", "verify.html")      # published unlisted at record/verify.html
@@ -192,7 +192,8 @@ def build_charts() -> str:
 
 
 def build() -> str:
-    b = tracker.load()
+    # CLV and the close shown are the forward-test protocol's primary close (cbb/clv_primary.py), as the weekly chart
+    b = clv_primary.attach(tracker.load())
     # Every play counts as placed (Chad bets them all, Oct 27) unless marked placed = "no"; voids are out.
     live = b[(b["status"] != "void") & (b["placed"].astype(str).str.lower() != "no")]
     s = live[live["status"] == "settled"]
@@ -263,7 +264,7 @@ def build() -> str:
     <div class="sub">Bets placed on the model's plays, at the logged number and price. Updated {now:%b %-d, %-I:%M %p} ET.</div></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="pagebtn" href="./">&larr; Card</a><a class="pagebtn" href="record/charts.html">Charts</a></div></div>
   <div class="kpis">{kpis}</div>
-  <section class="panel"><div class="panel-h"><h2>Summary</h2><span class="note">Settled bets placed. CLV = points the line moved our way from the logged number to the close. Break-even at -110 is 52.4%.</span></div>
+  <section class="panel"><div class="panel-h"><h2>Summary</h2><span class="note">Settled bets placed. CLV = points the line moved our way from the logged number to the close (the forward test's primary close: each book's last fresh quote in the 15 minutes before tip, median). Break-even at -110 is 52.4%.</span></div>
     <div class="scroll"><table>{HEAD}<tbody>{''.join(rows)}</tbody></table></div>{_chart(s)}</section>
   {f"<section class='panel'><div class='panel-h'><h2>By month</h2></div><div class='scroll'><table>{HEAD}<tbody>{months}</tbody></table></div></section>" if months else ""}
   <section class="panel"><div class="panel-h"><h2>Bets placed</h2><span class="note">Newest first.</span></div>
@@ -287,7 +288,7 @@ document.querySelectorAll("main table").forEach((t) => {{
 def build_verify() -> str:
     """The unlisted verification page (record/verify.html; linked only from the record page's footer): the
     forward-test cohorts, the bet log and its history, the OpenTimestamps proof, and every model-change note."""
-    b = tracker.load()
+    b = clv_primary.attach(tracker.load())
     links = json.load(open(LINKS)) if os.path.exists(LINKS) else {}
     ap = os.path.join(tracker.ROOT, "bets", "announcements.json")
     ann = json.load(open(ap)) if os.path.exists(ap) else []

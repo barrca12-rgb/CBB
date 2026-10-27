@@ -1,6 +1,6 @@
-"""Weekly record chart for @OffTheGlassHQ: two 1600x900 PNGs a week, drawn only from bets/bets.csv (whose CLV the
-grader computes from lines/closing.csv), the same file the record page and the forward test read, so the chart and
-the page can never disagree. Reads and displays only: no pick, number, rule, stake, log or grading change.
+"""Weekly record chart for @OffTheGlassHQ: two 1600x900 PNGs a week, drawn from bets/bets.csv with CLV at the
+forward-test protocol's primary close (cbb/clv_primary.py, the protocol's own code), the same plays and close the
+record page and the March read use, so they can never disagree. Reads and displays only: no pick, number, rule, stake, log or grading change.
 
   <date>-clv.png    cumulative closing-line value by play, season to date, spreads and totals as separate lines,
                     under a row of six stat tiles
@@ -22,7 +22,7 @@ import subprocess
 import numpy as np
 import pandas as pd
 
-from . import tracker
+from . import clv_primary, tracker
 
 ROOT = tracker.ROOT
 OUT = os.path.join(ROOT, "site", "record", "weekly")
@@ -226,6 +226,21 @@ def draw_units(st: dict, path: str) -> None:
     plt.close(fig)
 
 
+RECORD_URL = "https://barrca12-rgb.github.io/CBB/record.html"
+
+
+def caption(st: dict) -> str:
+    """The weekly X caption, from site/record/CAPTION.md's fixed template (same numbers as the chart)."""
+    t = st["through"]
+    n = len(st["weekly"])                                  # weeks from the first logged play's week, Week 1 = Nov 1
+    sp, to = st["tiles"]["spread"], st["tiles"]["total"]
+    clv = lambda x: _fmt(x["mean"]) if x["n"] else "–"
+    return (f"Week {n}, through Sun {t:%b} {t.day}.\n"
+            f"Plays logged: {st['logged']}. Record: {st['w']}-{st['l']}-{st['p']}. Units (flat 1u): {_fmt(st['units'])}.\n"
+            f"CLV spreads: {clv(sp)} pts (n {sp['n']}). CLV totals: {clv(to)} pts (n {to['n']}).\n"
+            f"Every play alerted and timestamped before tip. Record and verification: {RECORD_URL}\n")
+
+
 def index(out: str) -> list[str]:
     """Weeks with charts, newest first (the record page reads this)."""
     return sorted({f[:10] for f in os.listdir(out) if f.endswith("-clv.png")}, reverse=True) if os.path.isdir(out) else []
@@ -233,12 +248,15 @@ def index(out: str) -> list[str]:
 
 def write(through: pd.Timestamp | None = None, bets: str | None = None, out: str = OUT) -> dict:
     through = pd.Timestamp(through) if through is not None else last_sunday()
-    b = pd.read_csv(bets) if bets else tracker.load()
+    # the real log gets the protocol's primary close (cbb/clv_primary.py), as the record page; a --bets file is used as is
+    b = pd.read_csv(bets) if bets else clv_primary.attach(tracker.load())
     st = stats(b, through)
     os.makedirs(out, exist_ok=True)
     tag = f"{through:%Y-%m-%d}"
     draw_clv(st, os.path.join(out, f"{tag}-clv.png"))
     draw_units(st, os.path.join(out, f"{tag}-units.png"))
+    with open(os.path.join(out, f"{tag}-caption.txt"), "w") as fh:
+        fh.write(caption(st))
     with open(os.path.join(out, "index.json"), "w") as fh:
         json.dump({"weeks": index(out)}, fh)
     return st

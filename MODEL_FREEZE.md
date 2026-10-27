@@ -173,3 +173,18 @@ f064ccda9a2464dd33b6b7fea18c3b45554e9b76c8e4184272dab84d536743bf  .github/workfl
 
 The Jan 15 check runs `sha256sum -c` on this line in place of the v2.0 line for `update.yml`. Any later edit to
 `update.yml` gets its own dated entry here with its new fingerprint, and a change to its schedule is a model change.
+
+## 2026-10-27: displayed CLV uses the protocol's primary close (display only; grader unchanged)
+
+- **Found:** the grader (`cbb/tracker.py`, fingerprinted) writes `clv_pts` in `bets/bets.csv` against
+  `lines/closing.csv`: the last pregame number at the bet's book, or the median of all books, with no 15-minute
+  window or feed-age check. The forward-test protocol's primary endpoint (section 7) uses the strict close: per
+  eligible book, the last valid observation within 15 minutes of the tip cutoff with a feed timestamp at most 300
+  seconds old, median across books.
+- **Change:** the record page, its verification page and the weekly chart now compute CLV with the protocol's own
+  code (`audit/forward_eval.py`, imported read-only) through `cbb/clv_primary.py`, so they match the March read by
+  construction. A play with no valid observation in the window shows no CLV, as in the protocol.
+- **Unchanged:** `cbb/tracker.py`, `bets/bets.csv` (its `clv_pts` stays as the per-book benchmark close), every
+  fingerprinted file, selection, staking and grading of results.
+- Same day: the chart writes a fixed caption (`site/record/CAPTION.md`, `site/record/weekly/<date>-caption.txt`),
+  and `site/record/PROFILE.md` holds the X bio and pinned-post drafts. Posting is by hand.
