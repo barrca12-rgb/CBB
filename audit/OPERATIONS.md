@@ -125,3 +125,13 @@ The proposed 15-unit daily cap and any staking change are not part of this work.
 - **Safeguard:** `cbb/placed.py` refuses to mark a bet placed once its game has tipped (start time from that day's
   card), so the placed-only record cannot be edited after results are known. A late entry is done by hand in the
   session and shows in the log's commit history.
+
+## 2026-10-27: every play counts as placed (Chad, replaces the entry above)
+
+- **Rule:** Chad bets every play, so the record counts every logged play except voids and any row marked
+  `placed` = "no".
+- **Why the placed filter existed:** it came from the Oct 26 unders mix-up. That is handled by voiding (the two voids
+  stay out).
+- **Placed button:** now optional, for recording the actual book, price and stake (cohort C). Its before-tip check
+  stays.
+- **Matching counts:** the card tiles, Discord and the record page count the same plays again.

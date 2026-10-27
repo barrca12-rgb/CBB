@@ -128,9 +128,8 @@ def cohorts(b: pd.DataFrame) -> tuple[str, str]:
 
 def build() -> str:
     b = tracker.load()
-    # The record counts only bets Chad placed (Chad, Oct 27). Every logged play stays in the bet log and on Discord,
-    # and the forward test's cohorts (cohorts(), below) still use every signal.
-    live = b[(b["status"] != "void") & (b["placed"].astype(str).str.lower() == "yes")]
+    # Every play counts as placed (Chad bets them all, Oct 27) unless marked placed = "no"; voids are out.
+    live = b[(b["status"] != "void") & (b["placed"].astype(str).str.lower() != "no")]
     s = live[live["status"] == "settled"]
     tot = summary(s)
     links = json.load(open(LINKS)) if os.path.exists(LINKS) else {}
@@ -150,7 +149,7 @@ def build() -> str:
         months = "".join(_row(p.strftime("%b %Y"), summary(g)) for p, g in sorted(m.groupby("mo"), key=lambda x: x[0], reverse=True))
 
     plays = []
-    mine = b[(b["status"] != "void") & (b["placed"].astype(str).str.lower() == "yes")]   # bets Chad placed
+    mine = live   # every play except voids and any marked placed = "no"
     for _, r in mine.sort_values(["date", "logged_at"], ascending=False).iterrows():
         res = {"W": "<span class='pos b'>Win</span>", "L": "<span class='neg b'>Loss</span>", "P": "Push"}.get(
             str(r["result"]), "Open")
@@ -203,7 +202,7 @@ def build() -> str:
   <section class="panel"><div class="panel-h"><h2>Signals, quotes and accepted bets</h2><span class="note">{html.escape(coh_note)}</span></div>
     <div class="scroll"><table>{coh_table}</table></div></section>
   {f"<section class='panel'><div class='panel-h'><h2>By month</h2></div><div class='scroll'><table>{HEAD}<tbody>{months}</tbody></table></div></section>" if months else ""}
-  <section class="panel"><div class="panel-h"><h2>Bets placed</h2><span class="note">Newest first. Every logged play, including ones not bet and voided ones, is in the bet log and on Discord (below).</span></div>
+  <section class="panel"><div class="panel-h"><h2>Bets placed</h2><span class="note">Newest first. Voided plays (cancelled before the game) are left out; they and their corrections are in the bet log and on Discord (below).</span></div>
     <div class="scroll"><table>{plays_t}</table></div></section>
   <section class="panel"><div class="panel-h"><h2>Check it</h2></div><ul style="margin:12px 0;padding:0 16px 0 34px;line-height:1.7">{verify}</ul></section>
   {f"<section class='panel'><div class='panel-h'><h2>Model changes</h2><span class='note'>Announced the day each went live</span></div><ul style='margin:12px 0;padding:0 16px 0 34px;line-height:1.6'>{notes}</ul></section>" if notes else ""}
