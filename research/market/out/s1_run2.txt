@@ -1,0 +1,58 @@
+2022-11-12 done
+2023-01-14 done
+2023-03-04 done
+2023-11-11 done
+2024-01-13 done
+2024-03-02 done
+2024-11-09 done
+2025-01-11 done
+2025-03-01 done
+2025-11-08 done
+2026-01-10 done
+2026-03-07 done
+      date  season cadence planned  snapshots served  median gap min  credits used  ESPN games  games with any quote  coverage  low-major games  low-major with any quote  DraftKings games  FanDuel games  BetMGM games  Caesars games  share of quotes priced  median first quote, hours before tip
+2022-11-12    2023           30min                71            30.0          1420          59                    38      0.64               51                        30                36             33            34             36                     1.0                                 18.07
+2023-01-14    2023           30min                73            30.0          1460         152                   152      1.00              121                       121               146             96           139            147                     1.0                                 22.07
+2023-03-04    2023           30min                71            30.0          1420          93                    93      1.00               62                        62                86             86            83             86                     1.0                                 22.07
+2023-11-11    2024           30min                72            30.0          1440          58                    48      0.83               48                        38                45             48            47             48                     1.0                                 25.57
+2024-01-13    2024           30min                73            30.0          1460         133                   133      1.00              103                       103               129            132           131            133                     1.0                                 21.57
+2024-03-02    2024           30min                69            30.0          1380         136                   136      1.00              102                       102               131            136           134            132                     1.0                                 21.57
+2024-11-09    2025           30min                70            30.0          1400          63                    52      0.83               47                        36                52             52            51             52                     1.0                                 24.57
+2025-01-11    2025            5min               415             5.0          8300         143                   143      1.00              112                       112               143            143           141            139                     1.0                                 22.49
+2025-03-01    2025           30min                73            30.0          1460         133                   133      1.00              100                       100               133            133           131            133                     1.0                                 22.57
+2025-11-08    2026           30min                70            30.0          1400          68                    59      0.87               48                        39                59             59            57             59                     1.0                                 23.07
+2026-01-10    2026           30min                73            30.0          1460         149                   149      1.00              116                       116               149            149           146            142                     1.0                                 22.07
+2026-03-07    2026           30min                73            30.0          1460          92                    92      1.00               59                        59                83             92            90             87                     1.0                                 24.07
+
+books seen: ['barstool', 'betmgm', 'betonlineag', 'betrivers', 'betus', 'bovada', 'circasports', 'draftkings', 'fanatics', 'fanduel', 'foxbet', 'gtbets', 'lowvig', 'mybookieag', 'pointsbetus', 'sugarhouse', 'superbook', 'twinspires', 'unibet_us', 'williamhill_us', 'wynnbet']
+
+first quote per game and book, hours before tip (quartiles):
+             count   25%   50%   75%
+book                                
+BetMGM      1184.0  14.1  18.1  20.6
+Caesars     1194.0  16.1  19.1  22.1
+DraftKings  1192.0  18.6  21.1  24.1
+FanDuel     1159.0  16.6  20.3  23.7
+
+opening spread prices at the four books (share):
+price
+-110.0    0.579
+-115.0    0.100
+-105.0    0.100
+-112.0    0.035
+-108.0    0.035
+-102.0    0.034
+-118.0    0.031
+-120.0    0.029
+
+model picks at the books' first quotes (all four books counted separately):
+                   picks    win    roi  median_price
+market book                                         
+spread BetMGM        137  0.555  0.052        -110.0
+       Caesars       130  0.578  0.101        -110.0
+       DraftKings    133  0.602  0.143        -110.0
+       FanDuel       140  0.514 -0.030        -112.0
+total  BetMGM        228  0.566  0.080        -110.0
+       Caesars       226  0.538  0.027        -110.0
+       DraftKings    240  0.573  0.095        -110.0
+       FanDuel       242  0.550  0.039        -112.0

@@ -1,0 +1,27 @@
+2022-11-12 done
+2023-01-14 done
+2023-03-04 done
+2023-11-11 done
+2024-01-13 done
+2024-03-02 done
+2024-11-09 done
+2025-01-11 done
+2025-03-01 done
+2025-11-08 done
+2026-01-10 done
+2026-03-07 done
+market                                        group  picks   win%  ROI% (real prices)  ROI se  line value  median price
+spread                                 current rule    140  54.29                3.15    5.15        3.22        -110.0
+spread              model agrees / favourable quote     42  47.62              -10.35   10.56       -1.67        -114.0
+spread                model agrees / ordinary quote      2  50.00               -9.02   64.24         NaN        -117.0
+spread      model opposes market / favourable quote     19  52.63               -0.40   28.07        5.00        -112.0
+spread        model opposes market / ordinary quote     77  58.44               11.70    7.66        4.07        -110.0
+spread market only (1+ pt off the others, no model)    207  45.15              -14.74    5.56         NaN        -110.0
+ total                                 current rule    242  57.68               10.07    3.55        2.14        -110.0
+ total              model agrees / favourable quote     47  58.70               11.49   11.54       -5.67        -110.0
+ total                model agrees / ordinary quote      1 100.00               90.91     NaN         NaN        -110.0
+ total      model opposes market / favourable quote     38  71.05               34.77   16.35        2.25        -110.0
+ total        model opposes market / ordinary quote    156  53.85                3.11    6.84        3.43        -110.0
+ total market only (1+ pt off the others, no model)    329  51.07               -2.73    4.54         NaN        -110.0
+hours before tip at the market open (picks): median 21.6
+pick books: {'DraftKings': 161, 'FanDuel': 109, 'Caesars': 66, 'BetMGM': 46}

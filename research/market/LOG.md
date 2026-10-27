@@ -53,3 +53,22 @@ the run.
     "worse", so "never worse" is 0 by construction.
 
   Output: `out/s1b_run.txt`.
+
+## 2026-10-27: alias map and step 2a on real quotes (declared before running)
+
+- **Alias map:** `oddsapi_aliases.csv` maps 41 Odds API team names (research only; the live alias file is frozen).
+  Coverage re-run: `out/s1_run2.txt`.
+- **Step 2a on the Option B sample (`s2a_real.py`):**
+  - **When:** for each game and market, the "market open" is the first snapshot with 3+ US books quoting it.
+    State at that snapshot = each book's latest quote so far.
+  - **Pick:** the live rule. Across DraftKings, FanDuel, BetMGM and Caesars, the side and book with the best EV at
+    the book's real price (frozen win-chance table). A BET needs edge >= 2.5 / 3 and EV >= +2%.
+  - **Reference:** the median number of every OTHER US book at that snapshot.
+  - **Decomposition:** D = model deviation from the reference, Q = the bet book's quote advantage, in points.
+    Cells as in s2a (D >= threshold "opposes", Q >= 0.5 "favourable").
+  - **Outcomes:** win % and ROI at the real price. Line value to the last pregame snapshot's median across books.
+  - **Benchmark:** market only, the book furthest from the others (1+ points), on its favourable side, at its
+    price.
+  - **Uncertainty:** date-clustered; only 12 dates, so wide.
+- **s2a_real run 1** (`out/s2a_real_run.txt`), reported as is. Line value is shown in the table output but not
+  relied on: "last pregame snapshot" can be many hours after the open, and it was not pre-specified beyond that.

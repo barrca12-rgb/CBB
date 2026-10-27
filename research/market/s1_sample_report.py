@@ -23,6 +23,15 @@ POWER = {"ACC", "B10", "B12", "BE", "SEC", "P12"}
 FOUR = {"draftkings": "DraftKings", "fanduel": "FanDuel", "betmgm": "BetMGM", "williamhill_us": "Caesars"}
 
 
+def lookup() -> dict:
+    """The live card's Odds API name lookup plus research/market/oddsapi_aliases.csv (research only: the live
+    alias file is frozen). Two schools there (Hartford, St. Francis Brooklyn) left Division I in 2023."""
+    lk = odds_api._lookup()
+    a = pd.read_csv(os.path.join(HERE, "oddsapi_aliases.csv"))
+    lk.update({teams.norm(n): int(i) for n, i in zip(a["oddsapi_name"], a["espn_id"])})
+    return lk
+
+
 def load(date: str) -> tuple[pd.DataFrame, pd.DataFrame]:
     q = pd.read_csv(os.path.join(DATA, f"quotes_{date}.csv.gz"))
     s = pd.read_csv(os.path.join(DATA, f"snapshots_{date}.csv"))
@@ -45,7 +54,7 @@ def schedule(date: str, season: int) -> pd.DataFrame:
 def main() -> None:
     os.makedirs(OUT, exist_ok=True)
     plan = json.load(open(os.path.join(HERE, "sample_plan.json")))
-    lk = odds_api._lookup()
+    lk = lookup()
     conf = teams.load().drop_duplicates("espn_id").set_index("espn_id")["kenpom_conf"]
     w = pd.read_pickle(os.path.join(ROOT, "audit", "out", "wf_live_approx.pkl"))[["game_id", "final_margin", "final_total", "home_pts", "away_pts"]]
     per_date, firsts, picks = [], [], []

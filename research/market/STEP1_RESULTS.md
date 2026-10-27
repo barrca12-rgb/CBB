@@ -7,8 +7,8 @@
 
 | | |
 |---|---|
-| Games with any line | 54-87% of ESPN's games per date, lowest on the November dates. This is understated: 41 Odds API team names (mostly small schools such as "Boston Univ. Terriers" and "Loyola (Chi) Ramblers") do not match our team table yet |
-| Small-conference games with lines | 59-77% of them (same caveat) |
+| Games with any line | **100%** of ESPN's games on every January and March date. 64-87% on the November dates (early-season games, often against weak or non-Division I opponents, that books did not list). Before the 41 team names were matched (`oddsapi_aliases.csv`, research only), this read 54-87% |
+| Small-conference games with lines | 100% in January and March; 59-81% in November |
 | DraftKings, FanDuel, BetMGM, Caesars | all four present on every date, on nearly every listed game, all with prices |
 | Other books seen | Fanatics, BetRivers, Bovada, Circa, PointsBet, Unibet, SuperBook, WynnBET, BetOnline, LowVig and more |
 | Snapshot cadence served | exactly as requested (30 minutes, or 5 on Jan 11) |
@@ -68,8 +68,34 @@ actually offered:
 - **Full pull:** 2023-2026, about 5.1M credits, price still unverified. Not needed to answer the availability
   question at this level. It would matter only for a large-sample, real-price re-grade of every historical pick.
 
+## Step 2a again, on real prices and times (Oct 27)
+
+`s2a_real.py`, pre-registered in LOG.md.
+- **When:** at each game's "market open", the first snapshot with 3+ US books quoting it.
+- **Pick:** the live rule (best EV across the four books at their real prices).
+- **Reference:** the median of every other US book.
+
+| | Spreads: picks, win %, ROI (real prices) | Totals: picks, win %, ROI |
+|---|---|---|
+| Current rule | 140, 54.3%, +3.2% (se 5.2) | 242, 57.7%, +10.1% (se 3.6) |
+| Model opposes market, ordinary quote | 77, 58.4%, +11.7% | 156, 53.8%, +3.1% |
+| Model opposes market, favourable quote | 19, 52.6%, -0.4% | 38, 71.1%, +34.8% |
+| Model agrees, favourable quote (the book is off, not the model) | 42, 47.6%, -10.4% | 47, 58.7%, +11.5% |
+| Market only: a book 1+ point off the others, no model | 207, 45.2%, -14.7% | 329, 51.1%, -2.7% |
+
+- **Confirms the ESPN result with real prices: the edge is the model's forecast, not finding an off-market
+  book.** Betting the outlier book alone loses at real prices.
+- **For spreads, the weak cell is "model agrees, favourable quote"** (47.6%, 42 picks). Those picks qualify only
+  because one book is off, not because the model disagrees with the market. It is a **candidate v2 filter, not
+  established** (12 dates, wide errors; the ESPN close data showed no such weakness). Recorded for a future test
+  only.
+- **Timing again:** spreads at the 3-book market open (54.3%) did worse than at each book's own first quote
+  (61.5% in the table above). The first book to post seems to carry more of the value than the market a little
+  later. Speed at the very first posting may matter more than speed in general. The live logs will show how often
+  our card catches a book's first quote.
+
 ## Next steps (no spend)
 
-1. Add the 41 team names to a research-only alias map (the live alias file is frozen) and re-run the coverage
-   figures.
-2. Re-run step 2a's edge-vs-quote decomposition on these dates with real prices and times.
+1. Done: alias map and coverage re-run (above).
+2. Done: step 2a on real prices (above).
+3. From Nov 1: the live logs show how often the card catches a book's very first quote, and the delay windows.
