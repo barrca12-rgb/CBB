@@ -84,7 +84,7 @@ def main() -> None:
             b = d.assign(side=np.where(home, "home", "away"), ev=ev, price=price,
                          res=np.where(won == 1, "W", "L"), u=np.where(won == 1, payout(price), -1.0),
                          split=np.where(d["season"].isin(HOLDOUT), "holdout", "development"),
-                         dog=np.where(price > 0, "underdog", "favourite"))
+                         dog=np.where(price > 0, "underdog", "favorite"))
             for thr in THRESHOLDS:
                 q = b[b["ev"] >= thr]
                 for split, s_ in q.groupby("split"):

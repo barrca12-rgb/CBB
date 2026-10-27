@@ -10,7 +10,7 @@ needs the provider's page. Details and two affordable sample options are in `STE
 
 **Data:** ESPN per-book numbers. Prices are not in the data, so ROI is at an assumed -110.
 
-| Era | Market | Current rule | Market only (no model) | Model opposes / favourable | Model opposes / ordinary | Model agrees / favourable |
+| Era | Market | Current rule | Market only (no model) | Model opposes / favorable | Model opposes / ordinary | Model agrees / favorable |
 |---|---|---|---|---|---|---|
 | Closes 2014-2023 | spread | 53.7% (8,778) | 52.4% (6,976) | 54.3% (2,621) | 53.9% (3,560) | 53.3% (2,479) |
 | Closes 2014-2023 | total | 54.1% (19,887) | 52.7% (17,318) | 54.5% (9,432) | 53.3% (6,407) | 54.1% (3,927) |
@@ -27,7 +27,7 @@ needs the provider's page. Details and two affordable sample options are in `STE
   | Openers 2024 | z 1.1 or less, too few bets to separate the two | z 0.9 or less |
 
   Betting the outlier book with no model is break-even at the close (52.4-52.7%) and about 53% at the 2024
-  openers. Those 2024 outlier quotes still show about +1 point of line value, so a favourable number moves the
+  openers. Those 2024 outlier quotes still show about +1 point of line value, so a favorable number moves the
   right way but does not win by itself.
 - **No weak cell.** At the 2024 openers, "model opposes the market, ordinary quote" won 59.6% (spreads, 198) and
   58.2% (totals, 328), no worse than the rest. There is no candidate filter for v2 from this decomposition.

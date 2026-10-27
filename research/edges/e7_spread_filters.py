@@ -28,7 +28,7 @@ def main() -> None:
         "B. Barttorvik agrees (1+)": p["bt_margin_edge"] >= 1,
         "C. KenPom and Barttorvik agree": (p["kp_margin_edge"] >= 1) & (p["bt_margin_edge"] >= 1),
         "D. market ratings agree (1+)": (p["mkt_margin_edge"] >= 1).where(p["mkt_m"] != 0),
-        "E. rest favours our side": pd.Series(sgn * p["rest_diff"] > 0, index=p.index),
+        "E. rest favors our side": pd.Series(sgn * p["rest_diff"] > 0, index=p.index),
         "F. conference game": p["conf_game"].astype(bool),
         "G. injury-driven (|missing value diff| >= 0.1)": p["miss_value_diff"].abs() >= 0.1,
     }

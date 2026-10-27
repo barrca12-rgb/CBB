@@ -79,13 +79,13 @@ actually offered:
 |---|---|---|
 | Current rule | 140, 54.3%, +3.2% (se 5.2) | 242, 57.7%, +10.1% (se 3.6) |
 | Model opposes market, ordinary quote | 77, 58.4%, +11.7% | 156, 53.8%, +3.1% |
-| Model opposes market, favourable quote | 19, 52.6%, -0.4% | 38, 71.1%, +34.8% |
-| Model agrees, favourable quote (the book is off, not the model) | 42, 47.6%, -10.4% | 47, 58.7%, +11.5% |
+| Model opposes market, favorable quote | 19, 52.6%, -0.4% | 38, 71.1%, +34.8% |
+| Model agrees, favorable quote (the book is off, not the model) | 42, 47.6%, -10.4% | 47, 58.7%, +11.5% |
 | Market only: a book 1+ point off the others, no model | 207, 45.2%, -14.7% | 329, 51.1%, -2.7% |
 
 - **Confirms the ESPN result with real prices: the edge is the model's forecast, not finding an off-market
   book.** Betting the outlier book alone loses at real prices.
-- **For spreads, the weak cell is "model agrees, favourable quote"** (47.6%, 42 picks). Those picks qualify only
+- **For spreads, the weak cell is "model agrees, favorable quote"** (47.6%, 42 picks). Those picks qualify only
   because one book is off, not because the model disagrees with the market. It is a **candidate v2 filter, not
   established** (12 dates, wide errors; the ESPN close data showed no such weakness). Recorded for a future test
   only.

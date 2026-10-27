@@ -10,7 +10,7 @@ For each team-game, from games before it only:
                     season to date, shrunk toward the team average with 150 possessions (player_ratings' scheme,
                     with Game Score weights split into offensive and defensive terms)
   adjustment        sum over players of (expected - embedded minutes)/200 x relative value x team possessions/100,
-                    offence and defence separately, in points
+                    offense and defence separately, in points
 
 Gate: margin adjustment = (home off + home def) - (away off + away def). Does it predict the frozen model's margin
 residual? Fit 2014-2019, test 2020-2026: coefficient with date-clustered 95% interval (on the test seasons) and

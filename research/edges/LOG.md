@@ -35,7 +35,7 @@ Shared for every idea:
   - opening spread size (0-4.5, 5-9.5, 10-14.5, 15+);
   - opening total (<135, 135-144.5, 145-154.5, 155+);
   - site (neutral / not);
-  - side (favourite vs underdog for spreads, over vs under for totals);
+  - side (favorite vs underdog for spreads, over vs under for totals);
   - edge size (2.5-3.5 / 3.5-5 / 5+ spreads; 3-4 / 4-6 / 6+ totals).
 - **Flag:** a segment with 100+ development plays whose win % differs from the market's overall development win % by
   2+ date-clustered SEs.
@@ -109,7 +109,7 @@ Calibration:
 - **Run 1 (`out/e5_run.txt`):** the largest edges are home/away swaps between the odds data and the game data.
   The model's margin is about the same size as the line with the opposite sign, and they grade as easy "wins".
 - **Added diagnostic (declared after seeing run 1, so it is a data check, not a pre-registered test):** flag a
-  game as "line likely swapped" when both the model and KenPom disagree with the opener's favourite and each is
+  game as "line likely swapped" when both the model and KenPom disagree with the opener's favorite and each is
   10+ points from the opener (|model + open| >= 10 and |KenPom + open| >= 10). The rule uses only pregame
   information; no result or close. Then recount the headline opener results without the flagged games.
 - **Run 2 (`out/e5b_swaps.txt`):**
@@ -118,7 +118,7 @@ Calibration:
   - They were saved in `out/e5_swapped_games.csv` and excluded from runs 3 and 4.
 - **Run 3 (`out/e5c_clean.txt`):** the 5+ checks without the swaps.
 - **Run 4 (`out/e5d_neutral.txt`, declared after run 3):** a looser check for smaller swaps. Neutral-site plays
-  where the model and KenPom both favour the other team are 16% of neutral plays vs 8% at home courts; excluding
+  where the model and KenPom both favor the other team are 16% of neutral plays vs 8% at home courts; excluding
   them, neutral sites still read 60.0% / 59.6%.
 
 ## 2026-10-26: execution timing, which picks must be taken now (pre-registered before running)
@@ -161,7 +161,7 @@ margins carry no home edge, so they sit about 2.5 points lower).
 - B. Barttorvik agrees: >= 1.
 - C. Both agree.
 - D. Market ratings agree (`mkt_margin`, from earlier closes; only where `mkt_m` is not 0): >= 1.
-- E. Rest favours the play's side (rest_diff from that side > 0).
+- E. Rest favors the play's side (rest_diff from that side > 0).
 - F. Conference game vs not.
 - G. Injury-driven: |miss_value_diff| >= 0.1 vs not.
 

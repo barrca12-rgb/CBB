@@ -1,4 +1,4 @@
-"""Step 2a on the Option B sample: model edge vs favourable quote, with real prices and times (LOG.md).
+"""Step 2a on the Option B sample: model edge vs favorable quote, with real prices and times (LOG.md).
 
     python -m research.market.s2a_real
 """
@@ -119,7 +119,7 @@ def main() -> None:
                         sig.append({**c.to_dict(), "lv": lv})
                     # market-only benchmark: the four-book quote furthest from the others' median
                     cc = pd.DataFrame(cands + [])
-                # market only (no model): any four-book quote 1+ points off the others' median, favourable side
+                # market only (no model): any four-book quote 1+ points off the others' median, favorable side
                 for _, x in st[st["book"].isin(FOUR)].iterrows():
                     others = per_book.drop(x["book"])
                     if len(others) < 2:
@@ -137,7 +137,7 @@ def main() -> None:
     for df in (S, M):
         df["u"] = np.where(df["res"] == "W", payout(df["price"]), np.where(df["res"] == "L", -1.0, 0.0))
     S["cell"] = np.where(S["D"] >= S["market"].map(THR), "model opposes market", "model agrees") + " / " + \
-        np.where(S["Q"] >= 0.5, "favourable quote", "ordinary quote")
+        np.where(S["Q"] >= 0.5, "favorable quote", "ordinary quote")
     rows = []
     def rec(lab, g):
         dec = g[g["res"] != "P"]

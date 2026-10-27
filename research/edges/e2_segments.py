@@ -27,7 +27,7 @@ def segments(p: pd.DataFrame) -> pd.DataFrame:
     out["site"] = np.where(p["neutral"].astype(bool), "neutral", "home court")
     fav_home = p["open_home_spread"] < 0
     out["side"] = np.where(p["market"] == "spread",
-                           np.where((p["side"] == "home") == fav_home, "favourite", "underdog"), p["side"])
+                           np.where((p["side"] == "home") == fav_home, "favorite", "underdog"), p["side"])
     out["edge size"] = np.where(p["market"] == "spread",
                                 pd.cut(p["edge"], [0, 3.5, 5, 99], right=False, labels=["2.5-3.5", "3.5-5", "5+"]).astype(str),
                                 pd.cut(p["edge"], [0, 4, 6, 99], right=False, labels=["3-4", "4-6", "6+"]).astype(str))

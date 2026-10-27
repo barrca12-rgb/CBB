@@ -1,4 +1,4 @@
-"""Part A: decompose the frozen model's (and the closing line's) misses into possessions, home and away offence
+"""Part A: decompose the frozen model's (and the closing line's) misses into possessions, home and away offense
 efficiency (with overtime points shown inside them) and personnel; then test each component's predictability and
 whether the closing line already carries it. Specification in LOG.md (pre-registered).
 
@@ -110,8 +110,8 @@ def shares(d: pd.DataFrame, w: pd.DataFrame, tag: str) -> list[dict]:
              [(f"tier {t}", w["tier"] == t) for t in ["high", "mid/mixed", "low"]]
     for name, idx in groups:
         x, ww = d.loc[idx], w.loc[idx]
-        for mk, parts in (("total", [("possessions", f"{tag}_poss_T"), ("home offence", f"{tag}_hoff"), ("away offence", f"{tag}_aoff")]),
-                          ("margin", [("possessions", f"{tag}_poss_M"), ("home offence", f"{tag}_hoff"), ("away offence (negative)", f"{tag}_aoff")])):
+        for mk, parts in (("total", [("possessions", f"{tag}_poss_T"), ("home offense", f"{tag}_hoff"), ("away offense", f"{tag}_aoff")]),
+                          ("margin", [("possessions", f"{tag}_poss_M"), ("home offense", f"{tag}_hoff"), ("away offense (negative)", f"{tag}_aoff")])):
             miss = x[f"{tag}_miss_{mk[0].upper()}"]
             v = miss.var()
             r = {"forecaster": tag, "group": name, "market": mk, "games": len(x), "MAE": miss.abs().mean(), "miss SD": np.sqrt(v)}
@@ -142,7 +142,7 @@ def cluster_ols(X: np.ndarray, y: np.ndarray, groups: np.ndarray) -> tuple[np.nd
 
 
 def team_rows(w: pd.DataFrame, d: pd.DataFrame) -> pd.DataFrame:
-    """One row per team-game: its offence residual (model), the possessions residual, personnel, the line's
+    """One row per team-game: its offense residual (model), the possessions residual, personnel, the line's
     disagreement with the model in that team's points, and the line's own residual."""
     rows = []
     T_L, M_L = w["total"], -w["home_spread"]
@@ -161,7 +161,7 @@ def team_rows(w: pd.DataFrame, d: pd.DataFrame) -> pd.DataFrame:
     for c in ("off_res", "poss_res", "absent", "new"):
         t[f"{c}_mean"] = g[c].transform(lambda s: s.shift(1).expanding().mean())
         t[f"{c}_last"] = g[c].shift(1)
-    # the opponent's offence residual ALLOWED so far (its defence), season to date
+    # the opponent's offense residual ALLOWED so far (its defence), season to date
     allowed = t[["game_id", "opp", "season", "date", "off_res"]].rename(columns={"opp": "team", "off_res": "allowed"})
     allowed = allowed.sort_values(["team", "date", "game_id"])
     allowed["allowed_mean"] = allowed.groupby(["team", "season"])["allowed"].transform(lambda s: s.shift(1).expanding().mean())
@@ -172,7 +172,7 @@ def team_rows(w: pd.DataFrame, d: pd.DataFrame) -> pd.DataFrame:
 
 def predictability(t: pd.DataFrame) -> pd.DataFrame:
     specs = {"possessions residual": ("poss_res", ["poss_res_mean", "poss_res_last"]),
-             "offence efficiency residual (points)": ("off_res", ["off_res_mean", "off_res_last", "opp_def_mean"]),
+             "offense efficiency residual (points)": ("off_res", ["off_res_mean", "off_res_last", "opp_def_mean"]),
              "personnel: absent share": ("absent", ["absent_mean", "absent_last"]),
              "personnel: newly present share": ("new", ["new_mean", "new_last"])}
     rows = []

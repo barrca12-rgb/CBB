@@ -48,7 +48,7 @@ conference tier (high = ACC, B10, B12, BE, SEC, P12 by today's table; game tier 
 mixed), model vs line side by side.
 
 **Predictability:**
-- **Per component** (possessions residual; each team's offense residual, from the offence's view; personnel
+- **Per component** (possessions residual; each team's offense residual, from the offense's view; personnel
   shares): predictors are the team's season-to-date mean and previous game of the same component, and the
   opponent's season-to-date mean of the mirror component.
 - **Out of sample:** fit 2014-2019, test 2020-2026, R-squared.

@@ -17,12 +17,12 @@ Signals (the current rule without prices): for each game and market, every famil
 edge of 2.5+ (spreads) or 3+ (totals) qualifies; the signal is the family with the largest edge (ties: family
 name order). Side = the model's side at that number.
 
-Decomposition, points in the bettor's favour, reference = median of every OTHER family's number:
+Decomposition, points in the bettor's favor, reference = median of every OTHER family's number:
   D = model deviation from the reference (the edge the model would have against the reference itself)
   Q = the bet book's quote advantage over the reference.   D + Q = the signal's edge.
 
 Cells (fixed before results): model "opposes" the market if D >= the market's threshold (2.5 / 3), else "agrees";
-quote "favourable" if Q >= 0.5 points, else "ordinary".
+quote "favorable" if Q >= 0.5 points, else "ordinary".
 
 Outcomes: win % (pushes excluded), ROI at an ASSUMED -110 (ESPN carries no spread or total prices: labelled
 assumed), line value to the consensus close (open era only). Uncertainty: date-clustered bootstrap (5,000 draws).
@@ -197,7 +197,7 @@ def main() -> None:
                 m = oriented(m, m["final_margin"] if mk == "spread" else m["final_total"]).assign(disp=disp, era=era)
                 q = m[m["edge"] >= THR[mk]].sort_values(["game_id", "edge", "family"], ascending=[True, False, True])
                 signals.append(q.drop_duplicates("game_id"))
-                # market-only benchmark: the family furthest from the others, on its favourable side, no model
+                # market-only benchmark: the family furthest from the others, on its favorable side, no model
                 mm = m.assign(adv=(m["num"] - m["ref"]).abs())
                 mm = mm.sort_values(["game_id", "adv", "family"], ascending=[True, False, True]).drop_duplicates("game_id")
                 mm = mm[mm["adv"] >= MKT_ONLY_Q].copy()
@@ -210,7 +210,7 @@ def main() -> None:
     sig = pd.concat(signals, ignore_index=True)
     sig["res"] = grade(sig)
     sig["opposes"] = np.where(sig["D"] >= sig["market"].map(THR), "model opposes market", "model agrees")
-    sig["quote"] = np.where(sig["Q"] >= FAV_Q, "favourable quote", "ordinary quote")
+    sig["quote"] = np.where(sig["Q"] >= FAV_Q, "favorable quote", "ordinary quote")
     if "close_spread" in sig:
         sig["lv"] = line_value(sig)
     mo = pd.concat(mkt_only, ignore_index=True)

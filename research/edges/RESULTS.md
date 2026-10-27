@@ -12,10 +12,10 @@ Rule: the model's win probability (the card's own mapping) against the best mone
 |---|---|---|
 | At the close | +3.0% ROI (23,456 bets, se 1.4) | **-4.9%** (3,516, se 2.8) |
 | At the opener (2024 only in development) | +3.4% (3,023, se 2.8) | +0.8% (3,351, se 2.3) |
-| Opener favourites only (a split, not the rule) | +5.3% (1,306, se 1.8) | +5.1% (1,458, se 1.9) |
+| Opener favorites only (a split, not the rule) | +5.3% (1,306, se 1.8) | +5.1% (1,458, se 1.9) |
 
 - **Verdict:** the closing-line result reversed in the holdout, and the opener result is within noise.
-- **Opener favourites:** the one consistent pattern is moneyline favourites at the opener, +5% in both periods.
+- **Opener favorites:** the one consistent pattern is moneyline favorites at the opener, +5% in both periods.
   That is a split examined after the fact, and close to what the spread edge already captures. **Watch, don't
   adopt.**
 - **Calibration:** the model's win probabilities carry real information beyond the market (z 15 at the close),
@@ -54,7 +54,7 @@ Nothing else stands out: by month, conference tier, spread size and total level 
 
 **Nothing that justifies a v2 change on its own.** Worth tracking in the forward data:
 1. Spreads at neutral sites.
-2. Opener moneyline favourites.
+2. Opener moneyline favorites.
 3. **The edge-size gradient.** It is the most actionable: if large edges really win more than 58%, the staking
    and win-chance table could be revisited at the Jan 15 checkpoint, with Chad's approval and its own backtest.
 
@@ -62,7 +62,7 @@ Nothing else stands out: by month, conference tier, spread size and total level 
 
 **Data problem found.**
 - **What:** 67 of the historical spread plays are home/away swaps between ESPN's odds and the game records. The
-  line favours one team while the model and KenPom both have the other by 10+.
+  line favors one team while the model and KenPom both have the other by 10+.
 - **Where:** 88% at neutral sites. The result sided with the model in 55 of them, so the line is the flipped side.
 - **Effect:** all 67 sit in the 7+ edge band and won 90%. They are fake edges, and the moneyline orientation check
   cannot catch them, because the whole record is flipped, moneyline included.
@@ -88,7 +88,7 @@ Nothing else stands out: by month, conference tier, spread size and total level 
 - **Verdict:** not enough to raise the cap now. Revisit at Jan 15 with the forward data's large-edge plays.
 
 **Neutral-site spreads hold up.**
-- **Excluding every game where the model and KenPom both favour the other team** (a stricter swap filter):
+- **Excluding every game where the model and KenPom both favor the other team** (a stricter swap filter):
   neutral sites read 60.0% in development (499) and 59.6% in the holdout (193), against 56.2% and 57.6% at home
   courts.
 - **Possible explanations:**
@@ -160,7 +160,7 @@ Seven pre-registered filters, keep vs drop (spreads at the opener, swapped recor
 | Barttorvik agrees | 56.8% / 57.7% | 56.7% / 57.6% |
 | Both agree | 57.3% / 56.1% | 56.4% / 59.4% |
 | Market ratings agree | 59.4% / 57.7% | 54.9% / 59.7% |
-| Rest favours our side | 53.5% / 59.5% | 57.7% / 57.1% |
+| Rest favors our side | 53.5% / 59.5% | 57.7% / 57.1% |
 | Conference game | 57.1% / 60.2% | 56.4% / 55.6% |
 | Injury-driven edge | 55.6% / 56.9% | 57.0% / 57.9% |
 | **All spread picks** | **56.8% / 57.7%** | |

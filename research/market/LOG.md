@@ -10,7 +10,7 @@ Every specification tried, in order, with its result. Nothing is removed from th
 - Credit cost computed from the schedule: 101,680 credits for the sample as specified. **Not pulled** (see
   STEP1_REPORT.md).
 
-## 2026-10-26: step 2a, model edge vs favourable quote (ESPN multi-book, no new data)
+## 2026-10-26: step 2a, model edge vs favorable quote (ESPN multi-book, no new data)
 
 Specification as declared in `s2a_decompose.py`'s docstring, fixed before the first run.
 - **Run 1:** crashed in the by-season summary (a pandas groupby column error); no results were read. Fixed and
@@ -65,9 +65,9 @@ the run.
     the book's real price (frozen win-chance table). A BET needs edge >= 2.5 / 3 and EV >= +2%.
   - **Reference:** the median number of every OTHER US book at that snapshot.
   - **Decomposition:** D = model deviation from the reference, Q = the bet book's quote advantage, in points.
-    Cells as in s2a (D >= threshold "opposes", Q >= 0.5 "favourable").
+    Cells as in s2a (D >= threshold "opposes", Q >= 0.5 "favorable").
   - **Outcomes:** win % and ROI at the real price. Line value to the last pregame snapshot's median across books.
-  - **Benchmark:** market only, the book furthest from the others (1+ points), on its favourable side, at its
+  - **Benchmark:** market only, the book furthest from the others (1+ points), on its favorable side, at its
     price.
   - **Uncertainty:** date-clustered; only 12 dates, so wide.
 - **s2a_real run 1** (`out/s2a_real_run.txt`), reported as is. Line value is shown in the table output but not

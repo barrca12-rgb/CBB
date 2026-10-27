@@ -9,7 +9,7 @@ failures included.
 |---|---|---|
 | 1. Sample and completeness check (The Odds API historical snapshots) | **stopped before spending: cost reported, approval needed** | `STEP1_REPORT.md` |
 | 2. Opener and execution test on real quotes | waits for the full-pull approval | |
-| 2a. Model edge vs favourable quote | run on existing ESPN multi-book data | `s2a_decompose.py`, `out/s2a_*` |
+| 2a. Model edge vs favorable quote | run on existing ESPN multi-book data | `s2a_decompose.py`, `out/s2a_*` |
 | 3. Book-lag replay | waits for the full-pull approval | |
 | 4. Market overreaction to a shooting night | run on existing closes and box scores | `s4_shooting.py`, `out/s4_*` |
 
