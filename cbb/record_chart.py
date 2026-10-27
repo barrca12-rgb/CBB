@@ -104,11 +104,8 @@ def version() -> tuple[str, str]:
 
 def _footer(fig, st: dict) -> None:
     t = st["through"]
-    v, u = version()
-    fig.text(0.04, 0.045, f"Through {t:%a %b} {t.day}, {t:%Y}  ·  every play alerted and timestamped before tip  ·  "
-             f"bets/bets.csv, OpenTimestamps-stamped  ·  {SITE}", fontsize=13, color=MUTED, family="Inter")
-    fig.text(0.04, 0.018, f"{v}  ·  {u}  ·  every logged play counts, bet or not; {st['voids']} void"
-             f"{'' if st['voids'] == 1 else 's'} excluded", fontsize=13, color=MUTED, family="Inter")
+    fig.text(0.04, 0.035, f"Through {t:%a %b} {t.day}, {t:%Y}  ·  every play alerted and timestamped before tip  ·  "
+             f"bets/bets.csv, OpenTimestamps-stamped", fontsize=13, color=MUTED, family="Inter")
 
 
 def _title(fig, text: str, y: float) -> None:
