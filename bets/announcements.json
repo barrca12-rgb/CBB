@@ -18,5 +18,10 @@
   "id": "2026-10-26-freeze",
   "date": "2026-10-26",
   "text": "Model frozen from Oct 26, 2026 until a Jan 15, 2027 checkpoint: no changes to the ratings, the projection, the betting rules or the cutoffs (spreads 2.5+, totals 3+, +2% EV at the price). Team ratings keep updating from every result, as the frozen code does. Any exception will be announced here the day it goes live. Frozen version: commit dfb4bc7 in the repo (MODEL_FREEZE.md lists file fingerprints)."
+ },
+ {
+  "id": "2026-10-27-cadence",
+  "date": "2026-10-27",
+  "text": "Schedule note, recorded Oct 27: the card checks lines every 10 minutes around the clock. Overnight checks moved from every 30 minutes to every 10 minutes at midnight Oct 27, before the first games on Nov 1. No change to the ratings, the projection, the betting rules, the cutoffs or staking; plays may simply be alerted sooner after a line posts overnight. Recorded in MODEL_FREEZE.md."
  }
 ]
