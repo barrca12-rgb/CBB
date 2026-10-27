@@ -167,3 +167,22 @@ excluding 0.
 
 Per book, best of four vs that book alone, spread EV gain: DraftKings +1.39%, FanDuel +1.20%, BetMGM +0.82%,
 Caesars +0.70%.
+
+## 2026-10-27: first-half lines, cost estimate (nothing pulled)
+
+- **Price:** The Odds API's historical event odds cost 10 credits per market per region per call, one call per game
+  per moment (confirmed by the Oct 26 second-half pulls, about 20 credits a game for one market at up to two
+  moments). First-half spreads plus totals = 20 credits per game per moment. Games with no first-half lines should
+  not be charged, so the figures below are upper bounds.
+- **Available dates:** the Option B dates from the 2023-24 season on: 9 dates, 975 games. The archive's extra
+  markets start in 2023.
+- **Balance:** 71,138 credits at 13:20 UTC Oct 27 (lines/odds_api_usage.json). The guard floor used for Option B is
+  50,000, which leaves about 21,000 to spend.
+
+| option | games | moments per game | credits, at most |
+|---|---|---|---|
+| pilot: 20 games, 2025-26 | 20 | 2 | 800 |
+| A: 5 recent dates (2025-26) | 585 | 1 (near tip) | 11,700 |
+| B: all 9 dates | 975 | 1 (near tip) | 19,500 |
+| C: 5 recent dates | 585 | 2 (game-day morning + near tip) | 23,400 (above the floor) |
+| D: all 9 dates | 975 | 2 | 39,000 (above the floor) |
