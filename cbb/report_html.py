@@ -193,7 +193,8 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
 .follow img { width: 22px; height: 22px; border-radius: 5px }
 .tl img { width: auto; vertical-align: -3px; margin-right: 5px; object-fit: contain }
 .pick .tl img { vertical-align: -5px; margin-right: 6px }
-.hero { display: block; width: 100%; height: auto; border-radius: 12px; margin-top: 20px; border: 1px solid var(--line) }
+.hero { display: block; height: 120px; width: auto; max-width: 100%; object-fit: contain; border-radius: 10px; margin-top: 18px; border: 1px solid var(--line) }
+@media (max-width: 720px) { .hero { height: auto; width: 100% } }
 
 @media (max-width: 720px) {
   .top .wrap { gap: 10px } .status span { display: none }
