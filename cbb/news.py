@@ -69,4 +69,9 @@ def annotate(card: pd.DataFrame, now: pd.Timestamp | None = None) -> pd.DataFram
             against = dt if str(g.get("total_pick")).lower() == "over" else -dt
             if against >= SHARP:
                 card.loc[i, "total_warn"] = f"Total moved {against:g} pts against us in the last hour: check news first"
+    try:   # team news and the eligibility watchlist (team_news.py); information only, never stops the card
+        from . import team_news
+        card = team_news.annotate(card, now)
+    except Exception as e:
+        print(f"Team news failed ({e}); continuing.")
     return card

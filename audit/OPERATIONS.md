@@ -135,3 +135,23 @@ The proposed 15-unit daily cap and any staking change are not part of this work.
 - **Placed button:** now optional, for recording the actual book, price and stake (cohort C). Its before-tip check
   stays.
 - **Matching counts:** the card tiles, Discord and the record page count the same plays again.
+
+## 2026-10-27: news and injury automation (approved by Chad; information only)
+
+1. **Team news scanner** (`cbb/team_news.py`, called from `news.annotate`):
+   - each card run reads ESPN's free per-team news feed for both teams of every play or watch;
+   - it keeps articles tagged with that team from the last 7 days whose headline or summary matches eligibility,
+     suspension, season-ending injury or left-the-team keywords;
+   - a hit shows as a warning under the play and in its phone alert, and is logged once to
+     `injuries/news_log.csv`;
+   - adds about 5 seconds a run, and a failed feed is skipped.
+2. **Injury status in every new-bet alert:** Out / Doubtful / Questionable players for both teams from every
+   injury source (`injuries/sources/current.csv`), with the sources named, or "none listed".
+3. **Eligibility watchlist** (`data/eligibility_watch.csv`): 17 teams with a key player's eligibility or an
+   announced absence unresolved, from Greg Peterson's 2026-27 preview (plus ESPN for Auburn). Plays involving them
+   carry the warning until Dec 15, or until the row is removed when the case resolves.
+
+- **Unchanged:** no projection, pick, stake or rule. No fingerprinted file changed (run_day.py and tracker.py
+  hashes match). ESPN covers mostly high-majors; low-major news still relies on the X link on each play.
+- **First live hit:** today's Arizona at UCLA play, with "Arizona's Lloyd fumes over fifth-year F RJ Godfrey's
+  eligibility limbo" (ESPN, Oct 21).

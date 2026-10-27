@@ -35,6 +35,17 @@ def _message(bet: dict, row: pd.Series | None) -> tuple[str, str, str]:
     warn = row.get(f"{mk}_warn") if row is not None else None
     if isinstance(warn, str) and warn:
         lines.insert(0, "WARNING: " + warn)
+    # injury report (every source) and team news for both teams at the moment of the alert
+    try:
+        from . import team_news
+        if row is not None and pd.notna(row.get("home_id")):
+            inj = team_news.injury_lines(int(row["home_id"]), int(row["away_id"]))
+            lines.append("Injuries: " + ("; ".join(inj) if inj else "none listed"))
+        flag = row.get("news_flag") if row is not None else None
+        if isinstance(flag, str) and flag:
+            lines.append(flag)
+    except Exception as e:
+        print(f"Alert news lines failed ({e}); continuing.")
     link = row.get(f"{mk}_link") if row is not None else None
     click = link if isinstance(link, str) and link else f"{SITE}/cbb_{bet['date']}.html"
     return title, "\n".join(lines), click

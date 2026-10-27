@@ -10,3 +10,4 @@ bets/shadow_v2/*.csv merge=union
 bets/shadow_v2/games_latest.csv merge=text
 bets/shadow_r1000/*.csv merge=union
 bets/shadow_r1000/games_latest.csv merge=text
+injuries/news_log.csv merge=union
