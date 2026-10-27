@@ -77,3 +77,18 @@ The proposed 15-unit daily cap and any staking change are not part of this work.
 - **Fix, in every workflow:** up to 6 tries of pull-rebase-then-push, waiting 4, 8, 12, 16 and 20 seconds between
   tries. Any half-finished rebase is aborted between tries. The step fails only if all 6 fail, so a real failure
   still shows.
+
+## 2026-10-27: Odds API renewal date
+
+- **Renewal:** Chad confirmed the plan renews on **Nov 25**. Balance after the Oct 27 research pulls was about 58,800.
+- **Projected use to Nov 25:** live use (card about 400 a day, plus targeted polls once the season starts) is about
+  20,000-32,000, leaving about 27,000-39,000 at renewal.
+- **Research pulls** keep their 50,000 floor.
+
+## 2026-10-27: line shopping on the card (display only)
+
+- **What it shows:** each play on the card lists the other books on the same side under the bet, best number first,
+  then best price ("Also: DraftKings +3.5 (-110) · ..."). The Book column still shows the book with the best EV, as
+  before.
+- **Unchanged:** picks, edges, stakes, alerts and the bet log. `cbb/report_html.py` only; not a fingerprinted file.
+- **Approved by Chad, Oct 27.** Backed by `research/market/LOG.md` (best of four books: +1.1% ROI per spread bet).

@@ -285,19 +285,36 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       status: "Logged at edge " + sgn(g[mk + "_logged_edge"]) + " · " + now});
     return true;
   };
+  // Line shopping: every other book on the play's side, best number first, then best price.
+  const others = (g, mk, side, used) => {
+    const pay = (o) => o == null ? -1 : (o > 0 ? o / 100 : 100 / -o);
+    const L = (g.book_lines || []).filter((x) => x.book !== used).map((x) => {
+      if (mk === "spread") {
+        if (x.home_spread == null) return null;
+        const v = side === "home" ? x.home_spread : -x.home_spread;
+        return {book: x.book, key: v, price: x[side + "_spread_odds"], txt: ln(v)};
+      }
+      if (x.total == null) return null;
+      return {book: x.book, key: side === "over" ? -x.total : x.total, price: x[side + "_odds"], txt: (side === "over" ? "o" : "u") + num(x.total)};
+    }).filter(Boolean).sort((p, q) => q.key - p.key || pay(q.price) - pay(p.price));
+    return L.length ? "Also: " + L.map((x) => x.book + " " + x.txt + (x.price != null ? " (" + odds(x.price) + ")" : "")).join(" · ") : "";
+  };
   D.games.forEach((g) => {
     const ls = logged(g, "spread"), lt = logged(g, "total");
     if (!ls && g.spread_verdict === "BET") P.push({g, kind: "Spread", bet: g.spread_pick + " " + ln(g.spread_line), price: g.spread_odds, book: g.spread_book,
       link: g.spread_link, warn: g.spread_warn, edge: g.spread_edge, p: g.spread_p, ev: g.spread_ev, model: g.spread_side === "home" ? ln(-g.model_margin) : ln(g.model_margin), to: ln(g.spread_good_to),
-      open: g.open_home_spread == null ? null : ln(g.spread_side === "home" ? g.open_home_spread : -g.open_home_spread), units: g.spread_units});
+      open: g.open_home_spread == null ? null : ln(g.spread_side === "home" ? g.open_home_spread : -g.open_home_spread), units: g.spread_units,
+      also: others(g, "spread", g.spread_side, g.spread_book)});
     if (!lt && g.total_verdict === "BET") P.push({g, kind: "Total", bet: g.total_pick + " " + num(g.total_line), price: g.total_odds, book: g.total_book,
-      link: g.total_link, warn: g.total_warn, edge: g.total_edge, p: g.total_p, ev: g.total_ev, model: num(g.model_total), to: num(g.total_good_to), open: g.open_total == null ? null : num(g.open_total), units: g.total_units});
+      link: g.total_link, warn: g.total_warn, edge: g.total_edge, p: g.total_p, ev: g.total_ev, model: num(g.model_total), to: num(g.total_good_to), open: g.open_total == null ? null : num(g.open_total), units: g.total_units,
+      also: others(g, "total", String(g.total_pick || "").toLowerCase(), g.total_book)});
   });
   P.sort((a, b) => String(a.g.start).localeCompare(String(b.g.start)) || b.edge - a.edge);
   $("t-plays").innerHTML = P.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r hide-sm'>Model</th><th class='r'>Edge</th><th class='r hide-sm'>Win %</th><th class='r'>EV</th><th class='r'>Bet to</th><th class='r hide-sm'>Opened</th><th class='r hide-sm'>Units</th><th></th></tr></thead><tbody>" +
     P.map((p) => "<tr><td><div class='b'>" + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + esc(matchup(p.g)) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
       (p.kind === "Total" && p.g.crew ? "<div class='f' style='font-size:11px'>Refs: " + esc(p.g.crew) + "</div>" : "") +
       (p.status ? "<div class='f' style='font-size:12px'>" + esc(p.status) + "</div>" : "") +
+      (p.also ? "<div class='f' style='font-size:12px'>" + esc(p.also) + "</div>" : "") +
       (p.warn ? "<div class='inj'>&#9888; " + esc(p.warn) + "</div>" : "") +
       [["away", p.g.away], ["home", p.g.home]].filter(([sd]) => p.g[sd + "_injuries"]).map(([sd, nm]) => "<div class='inj'>" + esc(nm) + ": " + esc(p.g[sd + "_injuries"]) + "</div>").join("") + "</td><td>" +
       esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r m hide-sm'>" + esc(p.model) + "</td><td class='r " + (p.edge >= (p.kind === "Spread" ? 2.5 : 3) ? "pos b" : p.edge < 0 ? "neg" : "m") + "'>" + sgn(p.edge) +
