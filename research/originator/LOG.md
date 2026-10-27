@@ -142,3 +142,26 @@ that).
   - Test 2020-26 MAE gain vs frozen: high +0.006, mid -0.011, **low +0.0004** (kill bar 0.03).
   - Opener CLV: 0.805 vs 0.807 (development), 1.456 vs 1.465 (confirmation).
   - Scorecard 2: margin coefficient 0.13 (se 0.16); total 0.40 (se 0.21).
+
+## 2026-10-27: Part B subset pass (helpers' review; pre-registered before running; `b2_subset.py`)
+
+- **Subset:** games where either team's minutes-weighted value change (adj_off + adj_def, from
+  `b_adjustments.csv.gz`) is 2+ points in absolute value. The threshold is fixed and not iterated.
+- **Report** (fit 2014-2019, test 2020-2026):
+  - subset size per season;
+  - the frozen model's mean margin residual signed by the adjustment;
+  - the coefficient of the residual on the margin adjustment within the subset (date-clustered 95% interval);
+  - opener CLV of the frozen rule's spread plays in the subset where the adjustment points the same way vs the
+    opposite way.
+- **Decision rule (from the review):** a few hundred games a season with a residual near 0.42 x the change makes
+  it a v2 shadow candidate; dozens of games means close.
+- **b2_subset run 1** (`out/b2_run.txt`):
+  - About 280 games a season (2020-26); residual in the adjustment's direction 1.36 points; coefficient 0.44
+    (CI 0.27-0.62).
+  - Opener CLV: 1.55 (on the adjustment's side) vs 0.72 (against).
+  - **Meets the review's rule: v2 shadow candidate.**
+- **Added check (not pre-registered), information beyond the close** (`out/b2b_beyond_close.txt`): the adjustment's
+  coefficient on (result - close), controlling for the frozen edge vs the close:
+  - subset 2014-19: 0.22 [0.02, 0.43];
+  - subset 2020-26: 0.31 [0.13, 0.49];
+  - all games 2020-26: 0.35 [0.24, 0.46].

@@ -1,0 +1,38 @@
+unmatched cohorts (as first reported), first book vs later books:
+  spreads: first-book picks 142 56.3% | later-book picks (own selection) 348 54.9%
+  totals: first-book picks 260 57.3% | later-book picks (own selection) 593 55.4%
+ market  picks at first book  matched pairs  win% at first quote (paired)  win% at later quote (paired)  paired ROI diff, first - later (units)         95% CI  mean number advantage of first quote (pts)  pairs with equal number  ROI diff, equal number    95% CI equal
+spreads                  142            362                        54.420                        51.667                                   0.046 [0.013, 0.084]                                       0.688                      103                  -0.002 [-0.008, 0.002]
+ totals                  260            668                        58.383                        54.887                                   0.066 [0.030, 0.097]                                       0.890                      198                   0.004  [0.001, 0.007]
+status                         available at number or better  moved or worse price  no snapshot  unavailable
+market  cadence        window                                                                               
+spreads 30-min         15-25                               0                     0          123            0
+                       30-45                              81                     9           32            1
+                       5-10                                0                     0          123            0
+                       60-80                              70                    15           37            1
+        5-min (Jan 11) 15-25                              14                     3            0            2
+                       30-45                              14                     3            0            2
+                       5-10                               19                     0            0            0
+                       60-80                              13                     4            0            2
+totals  30-min         15-25                               0                     0          233            0
+                       30-45                             150                    24           56            3
+                       5-10                                0                     0          233            0
+                       60-80                             129                    37           66            1
+        5-min (Jan 11) 15-25                              22                     3            0            2
+                       30-45                              19                     6            0            2
+                       5-10                               24                     3            0            0
+                       60-80                              17                     8            0            2
+                               count   mean
+market  cadence        window              
+spreads 30-min         30-45      79  0.036
+                       60-80      65  0.024
+        5-min (Jan 11) 15-25      14  0.087
+                       30-45      14  0.087
+                       5-10       19 -0.000
+                       60-80      13  0.024
+totals  30-min         30-45     143  0.092
+                       60-80     122  0.109
+        5-min (Jan 11) 15-25      22  0.120
+                       30-45      19  0.297
+                       5-10       24  0.184
+                       60-80      17  0.224

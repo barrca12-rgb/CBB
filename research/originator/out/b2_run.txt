@@ -1,0 +1,11 @@
+season  2014  2015  2016  2017  2018  2019  2020  2021  2022  2023  2024  2025  2026
+games   5281  5287  5251  5269  5328  5374  5109  3701  5256  5498  5504  5540  5531
+subset   198   272   258   248   281   267   239   138   273   287   333   301   392
+         era  subset games  games per season  mean |adjustment| (pts)  mean residual in the adjustment's direction (pts)  coef       95% CI  0.42 x mean |adj|
+ fit 2014-19          1524           254.000                    2.887                                              1.060 0.433 [0.26, 0.61]              1.213
+test 2020-26          1963           280.429                    2.830                                              1.358 0.442 [0.27, 0.62]              1.189
+                                plays    n  opener CLV (pts)       95% CI
+                     all spread plays 4538             1.190 [1.13, 1.25]
+                               subset  240             1.044 [0.83, 1.25]
+subset, play on the adjustment's side   94             1.545 [1.23, 1.86]
+  subset, play against the adjustment  146             0.721 [0.45, 0.99]

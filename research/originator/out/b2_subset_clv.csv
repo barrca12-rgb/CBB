@@ -1,0 +1,5 @@
+plays,n,opener CLV (pts),95% CI
+all spread plays,4538,1.1896760687527543,"[1.13, 1.25]"
+subset,240,1.04375,"[0.83, 1.25]"
+"subset, play on the adjustment's side",94,1.5452127659574473,"[1.23, 1.86]"
+"subset, play against the adjustment",146,0.720890410958904,"[0.45, 0.99]"

@@ -72,3 +72,30 @@ the run.
   - **Uncertainty:** date-clustered; only 12 dates, so wide.
 - **s2a_real run 1** (`out/s2a_real_run.txt`), reported as is. Line value is shown in the table output but not
   relied on: "last pregame snapshot" can be many hours after the open, and it was not pre-specified beyond that.
+
+## 2026-10-27: helpers' review follow-ups (pre-registered before running; `s3_followups.py`)
+
+### 1. Matched first-book comparison
+
+- **Sample:** for each game and market in the Option B sample, the "first book" is the first of the four to post
+  that game (earliest first quote). A pick is the frozen rule at the first book's first quote (spread edge 2.5+,
+  total 3+, no EV rule; the original comparison also had none).
+- **Pairing:** each pick is paired with every later book's first quote on the SAME side (same game, side and
+  prediction). Each pair is graded at both quotes, at recorded prices.
+- **Report:**
+  - the paired ROI difference (first minus later) with a date-clustered interval;
+  - the mean number difference;
+  - the same restricted to pairs where the number is equal (only time and price vary).
+- **Also shown:** the original unmatched 58.5% vs 54.4% cohorts, to show how much was selection.
+
+### 4. Reconciliation table
+
+One row per headline figure, each from its own source, in the order: corrected full backtest; live-like model;
+12-Saturday sample at first quotes; picks with quotes at the four books at the 3-book market open; picks still at
+the number after each delay window (30-45 and 60-80 minutes on all 12 dates at 30-minute snapshots; all four
+windows on Jan 11 at 5-minute); results at the observed quote.
+
+- **Signal time** = the first book's first-quote snapshot. "Still at the number" = the same book, same side,
+  number equal or better and payout at least as good, at the first snapshot in the window. Pregame only.
+- **s3_followups run 1** (`out/s3_run.txt`), reported as is. At 30-minute cadence the 5-10 and 15-25 minute
+  windows have no snapshot except on Jan 11.
