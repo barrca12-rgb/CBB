@@ -23,10 +23,36 @@ def tiers(w: pd.DataFrame) -> pd.Series:
     return pd.Series(np.minimum(lvl(w["home_id"]), lvl(w["away_id"])), index=w.index).map({2: "high", 1: "mid", 0: "low"})
 
 
+FACTORS = ["efg", "tov_rate", "orb_rate", "ft_rate"]
+
+
+def swap(frame: pd.DataFrame, stage1: pd.DataFrame) -> pd.DataFrame:
+    """The frozen stage-2 frame with a variant's stage-1 outputs swapped in and the features derived from them
+    recomputed (projection.add_features: pred_*_x_early, Four Factors diffs and sums). Everything else (KenPom,
+    Barttorvik, market ratings, rest, altitude) is unchanged, as it does not depend on stage 1. Two rare fallbacks
+    keep the frozen values: KenPom filled from pred_* where KenPom is missing, and season_avg_total's early-season
+    fallback to the mean of pred_total."""
+    cols = ["pred_margin", "pred_total"] + [f"pred_{s}_{f}" for s in ("home", "away") for f in FACTORS]
+    v = stage1.drop_duplicates("game_id").set_index("game_id")[[c for c in cols if c in stage1]]
+    b = frame.copy()
+    for c in v.columns:
+        b[c] = b["game_id"].map(v[c]).fillna(b[c])
+    b["pred_margin_x_early"] = b["pred_margin"] * b["early"]
+    b["pred_total_x_early"] = b["pred_total"] * b["early"]
+    for f in FACTORS:
+        h, a = b.get(f"pred_home_{f}"), b.get(f"pred_away_{f}")
+        if h is not None and a is not None:
+            b[f"{f}_diff"] = 100 * (h - a)
+            b[f"{f}_sum"] = 100 * (h + a)
+    return b
+
+
 def main() -> None:
-    fits = {"frozen": walk_forward(*frames())}
+    train, pred = frames()
+    fits = {"frozen": walk_forward(train, pred)}
     for tag in VARIANTS:
-        fits[tag] = walk_forward(*frames(os.path.join(OUT, f"stage1_{tag}.csv"), tag))
+        s1 = pd.read_csv(os.path.join(OUT, f"stage1_{tag}.csv"))
+        fits[tag] = walk_forward(swap(train, s1), swap(pred, s1))
         print(tag, "fitted", flush=True)
     base = fits["frozen"]
     base = base.assign(tier=tiers(base))

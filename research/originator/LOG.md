@@ -123,3 +123,17 @@ that).
   - **Note for the reader, added after the result:** a single feature with a typical effect of half a point
     cannot reach R2 0.01 on game margins whose miss SD is 11 points (0.5^2 / 11^2 = 0.002). The bar fits large
     signals only.
+
+## 2026-10-27: Part D1 result; D2 run method
+
+- **D1 run** (`out/d1_run.txt`), after two container restarts (the first run was lost; the second completed).
+- **Refit check:** reproduces the frozen live-like numbers exactly (max difference 2e-13).
+- **All four variants KILLED.** Opener CLV gain was -0.011 to -0.005 (development) and -0.012 to +0.030
+  (confirmation), all under 0.1. MAE changed by 0.001 points or less.
+- **Scorecard 2:** every adjustment's coefficient on (result - close) is within about 1.2 SE of 0.
+- **D2 method change (an implementation shortcut, not a new specification):**
+  - **Why:** rebuilding the full stage-2 frame per variant (KenPom from the day before for every date) took
+    longer than each container session lasted.
+  - **What:** each variant's stage-1 outputs are now swapped into the frozen frames, and the features derived
+    from them are recomputed (`d2_tiers.swap`).
+  - **Equivalence:** it matches a full rebuild except for two rare fallbacks, documented in the function.

@@ -1,0 +1,17 @@
+frozen (refit check) done
+recency h=2 done
+recency h=4 done
+two regimes done
+two regimes + h=4 done
+refit check vs wf_live_approx: max |margin diff| = 1.580957587066223e-13
+             variant  dev 2014-17 CLV combined  dev 2014-17 spread CLV  dev 2014-17 total CLV  dev 2014-17 plays  confirm 2024-26 CLV combined  confirm 2024-26 spread CLV  confirm 2024-26 total CLV  confirm 2024-26 plays  MAE 2020-26 margin MAE  MAE 2020-26 total MAE  dev 2014-17 CLV combined gain  confirm 2024-26 CLV combined gain  kill (<0.1 gain in either era)
+frozen (refit check)                    0.8070                  1.2502                 0.6458               9978                        1.4648                      1.1274                     1.6714                   5994                  8.8823                13.1499                         0.0000                             0.0000                            True
+         recency h=2                    0.7961                  1.2360                 0.6358              10108                        1.4952                      1.1247                     1.7272                   5886                  8.8812                13.1398                        -0.0109                             0.0303                            True
+         recency h=4                    0.8018                  1.2480                 0.6387              10040                        1.4807                      1.1305                     1.6977                   5896                  8.8815                13.1436                        -0.0052                             0.0158                            True
+         two regimes                    0.7997                  1.1571                 0.6634              10157                        1.4525                      1.1454                     1.6316                   6221                  8.8813                13.1626                        -0.0073                            -0.0123                            True
+   two regimes + h=4                    0.7991                  1.1543                 0.6643              10197                        1.4807                      1.1062                     1.7097                   6125                  8.8809                13.1518                        -0.0079                             0.0158                            True
+          variant margin: adjustment coef (se)  margin: adjustment SD total: adjustment coef (se)  total: adjustment SD
+      recency h=2                0.211 (0.230)                 0.2740               0.126 (0.235)                0.4018
+      recency h=4                0.234 (0.436)                 0.1447               0.156 (0.448)                0.2094
+      two regimes                0.179 (0.181)                 0.3255               0.176 (0.164)                0.6243
+two regimes + h=4                0.181 (0.153)                 0.4018               0.181 (0.159)                0.5819
