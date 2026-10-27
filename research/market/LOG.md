@@ -210,3 +210,47 @@ Caesars +0.70%.
   games.
 - **Reading:** coverage near tip is essentially complete, so option A (5 recent dates, near tip) would pull
   close to its 11,700-credit estimate. The higher hold means first halves need a bigger edge to profit.
+
+## 2026-10-27: first-half test, option A (approved by Chad; pre-registered before the pull)
+
+**Question:** are college basketball first-half lines soft enough near tip for the model to beat them, after the
+higher juice?
+
+### Data
+- **Lines:** spreads_h1 and totals_h1, all US-region books, at tip - 15 minutes.
+- **Games:** every mapped game on the 5 Option B dates from 2025 on (Jan 11 and Mar 1, 2025; Nov 8, 2025; Jan 10 and
+  Mar 7, 2026): 576 games in `data/h1_a_games.csv`. Pulled by `h1_pull.py` (`research_h1_a.yml`), at most 11,700
+  credits, floor 50,000.
+- **Results:** first-half scores from ESPN play-by-play (score at the last play of period 1).
+
+### Model first-half numbers
+- From the frozen live-like model (`audit/out/wf_live_approx.pkl`), fit walk-forward by season on 2014..s-1, OLS
+  with intercept:
+  - first-half home margin on the full-game `final_margin`;
+  - first-half total on the full-game `final_total`.
+- No other inputs, no tuning.
+
+### Reference line
+- Per game and market, the first of DraftKings, FanDuel, BetMGM that quotes it.
+- Orientation by team names, using the same event mapping and flip as the Option B sample. Swapped records
+  (`evaluate.swapped`) are excluded.
+
+### Scorecards (2025 and 2026 together; also shown by season)
+1. **Beyond the line (decisive):** OLS of (first-half result - reference line) on (model - reference line), with a
+   date-clustered 95% interval.
+   - Benchmark: the same regression for the full game, on the same games, against the ESPN closing line.
+2. **Plays (decisive):** spread edge 1.5+ or total edge 2.0+ vs the reference line, about 60% of the full-game
+   thresholds. Graded at the reference book's number and price: win %, ROI at the actual price, game-level
+   bootstrap interval.
+3. **Descriptive:**
+   - thresholds 1.0 / 2.0 / 2.5 (spreads) and 1.5 / 2.5 / 3.0 (totals);
+   - the same plays at the best number and price across DraftKings, FanDuel and BetMGM;
+   - model vs line MAE.
+
+### Pass rule (per market)
+- **Pass:** (1)'s coefficient interval is above 0 AND (2)'s ROI point estimate is above 0. The result is then a
+  candidate for a forward first-half shadow log, not for betting.
+- **Kill:** otherwise.
+
+### Prior
+Low-moderate. The pilot showed lines move toward tip, and the hold is about 7% at DraftKings and BetMGM.
