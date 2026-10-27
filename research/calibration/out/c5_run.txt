@@ -1,0 +1,6 @@
+coverage of ref_home != 0 (2014-26 pred): 0.977 SD: 0.514
+margin MAE 2020-26 benchmark / with ref_home: (8.8823, 8.8788)
+MAE gain: 0.0035
+close spread plays / win% benchmark: (5561, 52.22)
+close spread plays / win% with ref_home: (5584, 52.6)
+verdict: closed

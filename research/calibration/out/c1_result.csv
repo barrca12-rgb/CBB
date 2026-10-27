@@ -1,0 +1,19 @@
+check,metric,value,interval,intercept,games,mean predicted edge,mean realized edge,win%
+1 overall spread,slope of actual on predicted 2020-26,0.9927,"[0.9784, 1.0070]",-0.073,,,,
+1 spread vs close,edge 0-2.5,0.285,"[0.157, 0.418]",,31866.0,1.01,0.29,51.0
+1 spread vs close,edge 2.5-4,0.299,"[0.191, 0.410]",,4368.0,3.07,0.92,51.9
+1 spread vs close,edge 4-6,0.19,"[0.042, 0.337]",,1082.0,4.69,0.89,53.0
+1 spread vs close,edge 6-+,0.254,"[-0.113, 0.620]",,164.0,6.78,1.73,54.0
+1 spread vs opener,edge 0-2.5,0.501,"[0.380, 0.619]",,27693.0,1.02,0.51,51.8
+1 spread vs opener,edge 2.5-4,0.574,"[0.457, 0.687]",,3830.0,3.07,1.76,56.2
+1 spread vs opener,edge 4-6,0.493,"[0.335, 0.644]",,936.0,4.65,2.29,58.3
+1 spread vs opener,edge 6-+,0.767,"[0.562, 0.982]",,171.0,7.95,6.09,68.6
+1 overall total,slope of actual on predicted 2020-26,1.0027,"[0.9839, 1.0215]",-0.943,,,,
+1 total vs close,edge 0-2.5,0.166,"[-0.008, 0.345]",,23084.0,1.18,0.2,50.4
+1 total vs close,edge 2.5-4,0.285,"[0.170, 0.400]",,8368.0,3.18,0.91,51.0
+1 total vs close,edge 4-6,0.272,"[0.177, 0.378]",,4522.0,4.8,1.31,51.9
+1 total vs close,edge 6-+,0.212,"[0.095, 0.338]",,1511.0,7.47,1.59,53.1
+1 total vs opener,edge 0-2.5,0.588,"[0.374, 0.795]",,18205.0,1.16,0.68,51.4
+1 total vs opener,edge 2.5-4,0.626,"[0.476, 0.767]",,5815.0,3.15,1.97,54.4
+1 total vs opener,edge 4-6,0.509,"[0.379, 0.633]",,3180.0,4.81,2.45,55.5
+1 total vs opener,edge 6-+,0.166,"[0.113, 0.225]",,4522.0,10.66,1.77,55.8

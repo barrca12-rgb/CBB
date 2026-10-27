@@ -1,0 +1,14 @@
+                                subset      n    coef           interval verdict
+                           all 2014-26 118453 -0.0047  [-0.0172, 0.0078]  closed
+                             month Nov   5435 -0.0014  [-0.0557, 0.0529]  closed
+                             month Dec  24626 -0.0345 [-0.0622, -0.0068]  closed
+                             month Jan  36798 -0.0030  [-0.0244, 0.0183]  closed
+                             month Feb  34844  0.0012  [-0.0224, 0.0247]  closed
+                             month Mar  16584  0.0263  [-0.0089, 0.0615]  closed
+                             tier high  23037 -0.0293 [-0.0564, -0.0021]  closed
+                              tier mid  18551 -0.0238  [-0.0548, 0.0073]  closed
+                              tier low  76865  0.0075  [-0.0083, 0.0232]  closed
+             first 10 games, new coach   3625 -0.0034  [-0.0722, 0.0654]  closed
+           5 games after first absence  19204 -0.0296  [-0.0609, 0.0017]  closed
+first 10 games, <40% returning minutes   4590 -0.0288  [-0.0892, 0.0317]  closed
+out-of-sample R2 on 2020-26: -0.00009

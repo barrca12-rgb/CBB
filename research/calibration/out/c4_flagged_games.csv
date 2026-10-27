@@ -1,0 +1,722 @@
+game_id,season,date,home_id,away_id,neutral,venue_full_name,venue_address_city,venue_address_state,home_city,away_city,flag,res,flag_res
+400496839,2014,2013-11-08,2567,2628,True,American Airlines Center,Dallas,TX,Dallas,Fort Worth,F3 neutral in a team's home city,-0.1336293262020103,-0.1336293262020103
+400499525,2014,2013-11-10,104,111,True,TD Garden,Boston,MA,Boston,Boston,F3 neutral in a team's home city,-2.2101985401806292,2.2101985401806292
+400496843,2014,2013-11-11,41,43,False,XL Center,Hartford,CT,Storrs,New Haven,F4 home game away from home arena/city,0.40412044567472805,0.40412044567472805
+400496846,2014,2013-11-11,2567,227,False,Curtis Culwell Center,Garland,TX,Dallas,Kingston,F4 home game away from home arena/city,24.075497020541555,24.075497020541555
+400504668,2014,2013-11-19,311,2885,False,Harold Alfond Arena,Orono,ME,Bangor,Newark,F4 home game away from home arena/city,-9.350846874912138,-9.350846874912138
+400496866,2014,2013-11-20,2567,326,False,Curtis Culwell Center,Garland,TX,Dallas,San Marcos,F4 home game away from home arena/city,6.69199783003304,6.69199783003304
+400503092,2014,2013-11-23,2502,2565,True,Stott Center,Portland,OR,Portland,Edwardsville,F3 neutral in a team's home city,-0.4948253777218623,-0.4948253777218623
+400496876,2014,2013-11-24,2567,2029,False,Curtis Culwell Center,Garland,TX,Dallas,Pine Bluff,F4 home game away from home arena/city,7.852008372899149,7.852008372899149
+400502515,2014,2013-11-25,311,2514,False,Harold Alfond Arena,Orono,ME,Bangor,Hamden,F4 home game away from home arena/city,-32.97727120308442,-32.97727120308442
+400496879,2014,2013-11-26,41,2352,False,XL Center,Hartford,CT,Storrs,Baltimore,F4 home game away from home arena/city,-7.185856023460683,-7.185856023460683
+400496880,2014,2013-11-26,2567,2534,False,Curtis Culwell Center,Garland,TX,Dallas,Nacogdoches,F4 home game away from home arena/city,4.402530359309861,4.402530359309861
+400513798,2014,2013-11-27,68,70,True,Idaho Central Arena,Boise,ID,Boise,Moscow,F3 neutral in a team's home city,-3.593536532246288,-3.593536532246288
+400502702,2014,2013-11-30,2184,221,True,PPG Paints Arena,Pittsburgh,PA,Pittsburgh,Pittsburgh,F3 neutral in a team's home city,-0.900282968338125,0.900282968338125
+400505766,2014,2013-12-01,311,159,False,Harold Alfond Arena,Orono,ME,Bangor,Hanover,F4 home game away from home arena/city,-20.278405137246768,-20.278405137246768
+400496889,2014,2013-12-02,2567,2377,False,Curtis Culwell Center,Garland,TX,Dallas,Lake Charles,F4 home game away from home arena/city,7.576890059208669,7.576890059208669
+400503909,2014,2013-12-06,2534,256,True,William R. Johnson Coliseum,Nacogdoches,TX,Nacogdoches,Harrisonburg,F3 neutral in a team's home city,-0.27572878559327263,-0.27572878559327263
+400496898,2014,2013-12-06,41,311,False,XL Center,Hartford,CT,Storrs,Bangor,F4 home game away from home arena/city,-4.171379060620055,-4.171379060620055
+400504486,2014,2013-12-07,2599,2230,False,Madison Square Garden,New York,NY,Queens,Bronx,F4 home game away from home arena/city,34.380893296164935,34.380893296164935
+400500011,2014,2013-12-07,2181,2294,True,Wells Fargo Arena (IA),Des Moines,IA,Des Moines,Iowa City,F3 neutral in a team's home city,-3.6952639575599378,-3.6952639575599378
+400503914,2014,2013-12-07,2534,119,True,William R. Johnson Coliseum,Nacogdoches,TX,Nacogdoches,Towson,F3 neutral in a team's home city,16.118863227821983,16.118863227821983
+400502729,2014,2013-12-08,120,45,True,Capital One Arena,Washington,DC,College Park,Washington,F3 neutral in a team's home city,-5.473322846334723,5.473322846334723
+400499579,2014,2013-12-13,311,349,False,Harold Alfond Arena,Orono,ME,Bangor,West Point,F4 home game away from home arena/city,-7.219657765794207,-7.219657765794207
+400496912,2014,2013-12-14,2752,2132,True,Heritage Bank Center,Cincinnati,OH,Cincinnati,Cincinnati,F3 neutral in a team's home city,21.32174095072768,-21.32174095072768
+400504493,2014,2013-12-14,2086,2509,True,Gainbridge Fieldhouse,Indianapolis,IN,Indianapolis,West Lafayette,F3 neutral in a team's home city,4.18524630453269,4.18524630453269
+400502737,2014,2013-12-15,2599,183,False,Madison Square Garden,New York,NY,Queens,Syracuse,F4 home game away from home arena/city,-2.3335567209299293,-2.3335567209299293
+400496922,2014,2013-12-18,41,24,False,XL Center,Hartford,CT,Storrs,Stanford,F4 home game away from home arena/city,-8.164873915873565,-8.164873915873565
+400496921,2014,2013-12-18,2567,292,False,Curtis Culwell Center,Garland,TX,Dallas,Edinburg,F4 home game away from home arena/city,4.842755966205125,4.842755966205125
+400502748,2014,2013-12-21,259,2670,True,Richmond Coliseum,Richmond,VA,Blacksburg,Richmond,F3 neutral in a team's home city,-19.6124967811581,19.6124967811581
+400496926,2014,2013-12-21,248,242,True,Toyota Center (Houston),Houston,TX,Houston,Houston,F3 neutral in a team's home city,-2.3362172009701236,2.3362172009701236
+400496928,2014,2013-12-21,112358,218,True,Barclays Center,Brooklyn,NY,Brooklyn,Philadelphia,F3 neutral in a team's home city,-24.132131946685128,-24.132131946685128
+400505532,2014,2013-12-22,2439,2541,True,Orleans Arena,Las Vegas,NV,Las Vegas,Santa Clara,F3 neutral in a team's home city,15.115885589603796,15.115885589603796
+400522845,2014,2013-12-23,2439,344,True,Orleans Arena,Las Vegas,NV,Las Vegas,Starkville,F3 neutral in a team's home city,8.606625010816236,8.606625010816236
+400499592,2014,2013-12-27,2550,322,False,Walsh Gymnasium,South Orange,NJ,Newark,Easton,F4 home game away from home arena/city,24.015042221851083,24.015042221851083
+400507103,2014,2013-12-28,356,82,True,United Center,Chicago,IL,Champaign,Chicago,F3 neutral in a team's home city,-0.7444100513628413,0.7444100513628413
+400496938,2014,2013-12-28,41,331,False,Total Mortgage Arena,Bridgeport,CT,Storrs,Cheney,F4 home game away from home arena/city,-3.4169939843375587,-3.4169939843375587
+400506174,2014,2014-01-08,265,38,False,Spokane Arena,Spokane,WA,Pullman,Boulder,F4 home game away from home arena/city,4.657893121529788,4.657893121529788
+400504527,2014,2014-01-11,2599,222,False,Madison Square Garden,New York,NY,Queens,Villanova,F4 home game away from home arena/city,-2.5373452883496084,-2.5373452883496084
+400496963,2014,2014-01-18,2325,218,True,The Palestra,Philadelphia,PA,Philadelphia,Philadelphia,F3 neutral in a team's home city,0.10722708926724867,-0.10722708926724867
+400505990,2014,2014-01-18,311,399,False,Memorial Gymnasium (ME),Orono,ME,Bangor,Albany,F4 home game away from home arena/city,-1.5993831107934318,-1.5993831107934318
+400504539,2014,2014-01-20,222,156,False,Wells Fargo Center,Philadelphia,PA,Villanova,Omaha,F4 home game away from home arena/city,-33.919233345700704,-33.919233345700704
+400496969,2014,2014-01-21,41,218,False,XL Center,Hartford,CT,Storrs,Philadelphia,F4 home game away from home arena/city,10.567873582756224,10.567873582756224
+400504553,2014,2014-02-01,2599,269,False,Madison Square Garden,New York,NY,Queens,Milwaukee,F4 home game away from home arena/city,12.91029541611936,12.91029541611936
+400504564,2014,2014-02-09,2599,156,False,Madison Square Garden,New York,NY,Queens,Omaha,F4 home game away from home arena/city,6.826422380539121,6.826422380539121
+400496998,2014,2014-02-12,41,58,False,XL Center,Hartford,CT,Storrs,Tampa,F4 home game away from home arena/city,28.317630576442788,28.317630576442788
+400497002,2014,2014-02-15,41,235,False,XL Center,Hartford,CT,Storrs,Memphis,F4 home game away from home arena/city,-0.1117332544566283,-0.1117332544566283
+400507138,2014,2014-02-15,270,2674,True,UW-Milwaukee Panther Arena,Milwaukee,WI,Milwaukee,Valparaiso,F1 neutral at home team's arena,-12.092180466827106,-12.092180466827106
+400498873,2014,2014-02-16,112358,2597,True,Barclays Center,Brooklyn,NY,Brooklyn,Brooklyn,F3 neutral in a team's home city,5.63618821170143,-5.63618821170143
+400504574,2014,2014-02-16,2599,46,False,Madison Square Garden,New York,NY,Queens,Washington,F4 home game away from home arena/city,18.759673563777792,18.759673563777792
+400504576,2014,2014-02-18,2599,2086,False,Madison Square Garden,New York,NY,Queens,Indianapolis,F4 home game away from home arena/city,17.12470714541469,17.12470714541469
+400504581,2014,2014-02-22,222,2599,False,Wells Fargo Center,Philadelphia,PA,Villanova,Queens,F4 home game away from home arena/city,-5.877351400667104,-5.877351400667104
+400506018,2014,2014-02-22,2184,2168,True,PPG Paints Arena,Pittsburgh,PA,Pittsburgh,Dayton,F3 neutral in a team's home city,3.587950321080548,3.587950321080548
+400514402,2014,2014-02-22,2400,2640,False,The Pinnacle,Clarksdale,MS,Greenwood,Houston,F4 home game away from home arena/city,-1.6586642405307668,-1.6586642405307668
+400504585,2014,2014-02-25,2599,2752,False,Madison Square Garden,New York,NY,Queens,Cincinnati,F4 home game away from home arena/city,-16.942881066270466,-16.942881066270466
+400507145,2014,2014-02-25,270,82,True,UW-Milwaukee Panther Arena,Milwaukee,WI,Milwaukee,Chicago,F1 neutral at home team's arena,-24.678950877925324,-24.678950877925324
+400497020,2014,2014-03-01,41,2132,False,XL Center,Hartford,CT,Storrs,Cincinnati,F4 home game away from home arena/city,2.68688278360167,2.68688278360167
+400504591,2014,2014-03-02,2599,305,False,Madison Square Garden,New York,NY,Queens,Rosemont,F4 home game away from home arena/city,-6.964285571472644,-6.964285571472644
+400504592,2014,2014-03-02,222,269,False,Wells Fargo Center,Philadelphia,PA,Villanova,Milwaukee,F4 home game away from home arena/city,7.199022865306205,7.199022865306205
+400541874,2014,2014-03-07,324,2127,True,The HTC Center,Conway,SC,Conway,Charleston,F1 neutral at home team's arena,6.690828207956596,6.690828207956596
+400542654,2014,2014-03-07,2057,2413,True,Nashville Municipal Auditorium,Nashville,TN,Nashville,Morehead,F3 neutral in a team's home city,19.614026587196243,19.614026587196243
+400543574,2014,2014-03-08,324,2678,True,The HTC Center,Conway,SC,Conway,Lexington,F1 neutral at home team's arena,4.263570590983922,4.263570590983922
+400541191,2014,2014-03-08,399,2378,True,SEFCU Arena,Albany,NY,Albany,Baltimore,F1 neutral at home team's arena,23.82194054634661,23.82194054634661
+400504598,2014,2014-03-08,222,46,False,Wells Fargo Center,Philadelphia,PA,Villanova,Washington,F4 home game away from home arena/city,8.910192544340422,8.910192544340422
+400543634,2014,2014-03-08,2739,270,True,Resch Center,Ashwaubenon,WI,Ashwaubenon,Milwaukee,F1 neutral at home team's arena,-15.969795758246827,-15.969795758246827
+400543674,2014,2014-03-08,2057,2198,True,Nashville Municipal Auditorium,Nashville,TN,Nashville,Richmond,F3 neutral in a team's home city,-8.12734956114955,-8.12734956114955
+400543740,2014,2014-03-09,324,2737,True,The HTC Center,Conway,SC,Conway,Rock Hill,F1 neutral at home team's arena,14.370350382135975,14.370350382135975
+400543744,2014,2014-03-09,399,261,True,SEFCU Arena,Albany,NY,Albany,Burlington,F1 neutral at home team's arena,16.62894850736301,16.62894850736301
+400543785,2014,2014-03-10,2450,2379,True,Norfolk Scope Arena,Norfolk,VA,Norfolk,Princess Anne,F3 neutral in a team's home city,-6.857919166320501,-6.857919166320501
+400545134,2014,2014-03-12,2640,2755,True,Toyota Center (Houston),Houston,TX,Houston,Grambling,F3 neutral in a team's home city,10.374501781810425,10.374501781810425
+400545259,2014,2014-03-12,2638,151,True,Don Haskins Center,El Paso,TX,El Paso,Greenville,F1 neutral at home team's arena,0.5386134965597265,0.5386134965597265
+400544235,2014,2014-03-13,2439,2751,True,Thomas & Mack Center,Las Vegas,NV,Las Vegas,Laramie,F1 neutral at home team's arena,0.46707655557393624,0.46707655557393624
+400543748,2014,2014-03-13,41,235,True,FedExForum,Memphis,TN,Storrs,Memphis,F2 neutral at away team's arena,16.375107661569423,-16.375107661569423
+400545854,2014,2014-03-13,2572,2638,True,Don Haskins Center,El Paso,TX,Hattiesburg,El Paso,F2 neutral at away team's arena,4.592297122327949,-4.592297122327949
+400544974,2014,2014-03-13,2450,2542,True,Norfolk Scope Arena,Norfolk,VA,Norfolk,Savannah,F3 neutral in a team's home city,7.314023781049459,7.314023781049459
+400546403,2014,2014-03-14,2428,2450,True,Norfolk Scope Arena,Norfolk,VA,Durham,Norfolk,F3 neutral in a team's home city,14.07442222412449,-14.07442222412449
+400546241,2014,2014-03-14,2640,2011,True,Toyota Center (Houston),Houston,TX,Houston,Montgomery,F3 neutral in a team's home city,6.747186936091043,6.747186936091043
+400546434,2014,2014-03-14,61,145,True,Georgia Dome,Atlanta,GA,Athens,Oxford,"F5 neutral, team name in venue",2.660086690586737,2.660086690586737
+400546306,2014,2014-03-14,21,2439,True,Thomas & Mack Center,Las Vegas,NV,San Diego,Las Vegas,F2 neutral at away team's arena,1.405096601334253,-1.405096601334253
+400546408,2014,2014-03-14,2692,2458,True,Dee Events Center,Ogden,UT,Ogden,Greeley,F1 neutral at home team's arena,1.9869091427873022,1.9869091427873022
+400546632,2014,2014-03-15,96,61,True,Georgia Dome,Atlanta,GA,Lexington,Athens,"F5 neutral, team name in venue",3.2088397201624606,3.2088397201624606
+400546624,2014,2014-03-15,2692,155,True,Dee Events Center,Ogden,UT,Ogden,Grand Forks,F1 neutral at home team's arena,18.695848096739066,18.695848096739066
+400546631,2014,2014-03-15,2640,2504,True,Toyota Center (Houston),Houston,TX,Houston,Prairie View,F3 neutral in a team's home city,-3.2099120793789027,-3.2099120793789027
+400587031,2015,2014-11-16,111,104,True,TD Garden,Boston,MA,Boston,Boston,F3 neutral in a team's home city,2.5426158301355426,-2.5426158301355426
+400587780,2015,2014-11-21,62,221,False,War Memorial Gym,Wailuku,HI,Honolulu,Pittsburgh,F4 home game away from home arena/city,10.75121568271567,10.75121568271567
+400587230,2015,2014-11-23,279,264,True,KeyArena,Seattle,WA,Stockton,Seattle,F3 neutral in a team's home city,2.686599973349601,-2.686599973349601
+400585911,2015,2014-11-25,70,68,True,Idaho Central Arena,Boise,ID,Moscow,Boise,F3 neutral in a team's home city,-3.4017112243178413,3.4017112243178413
+400588344,2015,2014-11-26,135,2599,True,Madison Square Garden,New York,NY,Minneapolis,New York,F3 neutral in a team's home city,-13.239585706116385,13.239585706116385
+400608873,2015,2014-11-28,2250,2599,True,Madison Square Garden,New York,NY,Spokane,New York,F3 neutral in a team's home city,-4.706129240385048,4.706129240385048
+400609060,2015,2014-11-29,2515,357,True,American Bank Center,Corpus Christi,TX,Radford,Corpus Christi,F2 neutral at away team's arena,8.570274563055383,-8.570274563055383
+400586153,2015,2014-11-29,2099,2084,True,KeyBank Center,Buffalo,NY,Buffalo,Buffalo,F3 neutral in a team's home city,-12.026679769486627,12.026679769486627
+400588351,2015,2014-11-30,222,48,False,Wells Fargo Center,Philadelphia,PA,Villanova,Newark,F4 home game away from home arena/city,0.4931163759460837,0.4931163759460837
+400587825,2015,2014-12-05,221,2184,True,PPG Paints Arena,Pittsburgh,PA,Pittsburgh,Pittsburgh,F3 neutral in a team's home city,5.9738104137523695,-5.9738104137523695
+400586716,2015,2014-12-06,218,2325,True,The Palestra,Philadelphia,PA,Philadelphia,Philadelphia,F3 neutral in a team's home city,1.2533167230943865,-1.2533167230943865
+400591124,2015,2014-12-07,45,2429,True,Capital One Arena,Washington,DC,Washington,Charlotte,F3 neutral in a team's home city,3.3418712445354988,3.3418712445354988
+400586727,2015,2014-12-14,41,2154,False,XL Center,Hartford,CT,Storrs,Baltimore,F4 home game away from home arena/city,-8.431146459273627,-8.431146459273627
+400588380,2015,2014-12-20,2086,84,True,Gainbridge Fieldhouse,Indianapolis,IN,Indianapolis,Bloomington,F3 neutral in a team's home city,-12.379668179520873,-12.379668179520873
+400587863,2015,2014-12-20,222,183,False,Wells Fargo Center,Philadelphia,PA,Villanova,Syracuse,F4 home game away from home arena/city,-4.139850206166706,-4.139850206166706
+400591604,2015,2014-12-20,2439,254,True,MGM Grand Garden Arena,Las Vegas,NV,Las Vegas,Salt Lake City,F3 neutral in a team's home city,-1.4728091961036132,-1.4728091961036132
+400585752,2015,2014-12-20,2181,66,True,Wells Fargo Arena (IA),Des Moines,IA,Des Moines,Ames,F3 neutral in a team's home city,-7.1778391183910735,-7.1778391183910735
+400591777,2015,2014-12-28,112358,2275,True,Barclays Center,Brooklyn,NY,Brooklyn,Hempstead,F3 neutral in a team's home city,-17.499218116053644,-17.499218116053644
+400586756,2015,2014-12-28,41,2115,False,XL Center,Hartford,CT,Storrs,New Britain,F4 home game away from home arena/city,11.008551831753238,11.008551831753238
+400586763,2015,2014-12-31,41,218,False,XL Center,Hartford,CT,Storrs,Philadelphia,F4 home game away from home arena/city,-13.407457618021349,-13.407457618021349
+400586775,2015,2015-01-10,41,2132,False,XL Center,Hartford,CT,Storrs,Cincinnati,F4 home game away from home arena/city,1.5457673428486185,1.5457673428486185
+400591780,2015,2015-01-17,112358,116,True,Barclays Center,Brooklyn,NY,Brooklyn,Emmitsburg,F3 neutral in a team's home city,-4.4024590108481325,-4.4024590108481325
+400586796,2015,2015-01-24,2655,235,True,Smoothie King Center,New Orleans,LA,New Orleans,Memphis,F3 neutral in a team's home city,4.695950184514816,4.695950184514816
+400591181,2015,2015-01-24,2603,219,True,The Palestra,Philadelphia,PA,Philadelphia,Philadelphia,F2 neutral at away team's arena,-11.824384984095698,11.824384984095698
+400586798,2015,2015-01-25,41,58,False,XL Center,Hartford,CT,Storrs,Tampa,F4 home game away from home arena/city,-2.2130242352025125,-2.2130242352025125
+400598821,2015,2015-01-26,2400,2640,False,Leflore County Civic Center,Greenwood,MS,Itta Bena,Houston,F4 home game away from home arena/city,13.535302267462407,13.535302267462407
+400588443,2015,2015-02-04,222,269,False,Wells Fargo Center,Philadelphia,PA,Villanova,Milwaukee,F4 home game away from home arena/city,3.1467327138701044,3.1467327138701044
+400588449,2015,2015-02-07,222,46,False,Wells Fargo Center,Philadelphia,PA,Villanova,Washington,F4 home game away from home arena/city,7.202083293241271,7.202083293241271
+400586825,2015,2015-02-12,41,202,False,XL Center,Hartford,CT,Storrs,Tulsa,F4 home game away from home arena/city,21.415996695089806,21.415996695089806
+400591030,2015,2015-02-16,2400,2582,False,Leflore County Civic Center,Greenwood,MS,Itta Bena,Baton Rouge,F4 home game away from home arena/city,-4.554939511208914,-4.554939511208914
+400586851,2015,2015-03-01,41,2567,False,XL Center,Hartford,CT,Storrs,Dallas,F4 home game away from home arena/city,7.53391732462333,7.53391732462333
+400765408,2015,2015-03-05,2561,315,True,MVP Arena,Albany,NY,Albany,Niagara Falls,F1 neutral at home team's arena,13.976034307001298,13.976034307001298
+400766114,2015,2015-03-05,2057,2197,True,Nashville Municipal Auditorium,Nashville,TN,Nashville,Charleston,F3 neutral in a team's home city,25.304527996372354,25.304527996372354
+400766521,2015,2015-03-06,2198,2057,True,Nashville Municipal Auditorium,Nashville,TN,Richmond,Nashville,F3 neutral in a team's home city,-5.214419187209728,5.214419187209728
+400766094,2015,2015-03-06,324,2427,True,The HTC Center,Conway,SC,Conway,Asheville,F1 neutral at home team's arena,10.849817191756829,10.849817191756829
+400766444,2015,2015-03-07,314,2561,True,MVP Arena,Albany,NY,New Rochelle,Albany,F2 neutral at away team's arena,-6.1277294898767245,6.1277294898767245
+400588482,2015,2015-03-07,222,2599,False,Wells Fargo Center,Philadelphia,PA,Villanova,New York,F4 home game away from home arena/city,23.761042336489552,23.761042336489552
+400766612,2015,2015-03-07,324,2241,True,The HTC Center,Conway,SC,Conway,Boiling Springs,F1 neutral at home team's arena,-1.8675048336983746,-1.8675048336983746
+400766620,2015,2015-03-07,2674,325,True,Athletics-Recreation Center,Valparaiso,IN,Valparaiso,Cleveland,F1 neutral at home team's arena,2.1385546315864485,2.1385546315864485
+400766705,2015,2015-03-07,93,2057,True,Nashville Municipal Auditorium,Nashville,TN,Murray,Nashville,F3 neutral in a team's home city,-7.045423907840878,7.045423907840878
+400766751,2015,2015-03-08,324,2737,True,The HTC Center,Conway,SC,Conway,Rock Hill,F1 neutral at home team's arena,8.394036212726753,8.394036212726753
+400766999,2015,2015-03-11,2439,2440,True,Thomas & Mack Center,Las Vegas,NV,Las Vegas,Reno,F1 neutral at home team's arena,13.361967781979976,13.361967781979976
+400768176,2015,2015-03-11,2640,2016,True,Toyota Center (Houston),Houston,TX,Houston,Lorman,F3 neutral in a team's home city,8.793620663909422,8.793620663909422
+400768174,2015,2015-03-11,2450,2569,True,Norfolk Scope Arena,Norfolk,VA,Norfolk,Orangeburg,F3 neutral in a team's home city,3.2237512943728976,3.2237512943728976
+400766780,2015,2015-03-12,2507,2599,True,Madison Square Garden,New York,NY,Providence,New York,F3 neutral in a team's home city,13.030159489391737,-13.030159489391737
+400766969,2015,2015-03-12,149,2692,True,Dahlberg Arena,Missoula,MT,Missoula,Ogden,F1 neutral at home team's arena,-2.8655775133313384,-2.8655775133313384
+400768401,2015,2015-03-12,21,2439,True,Thomas & Mack Center,Las Vegas,NV,San Diego,Las Vegas,F2 neutral at away team's arena,-6.189128715318503,6.189128715318503
+400766869,2015,2015-03-12,238,2633,True,Bridgestone Arena,Nashville,TN,Nashville,Knoxville,F3 neutral in a team's home city,-8.034723253958601,-8.034723253958601
+400768425,2015,2015-03-12,5,98,True,Legacy Arena at BJCC,Birmingham,AL,Birmingham,Bowling Green,F3 neutral in a team's home city,0.08882073221691777,0.08882073221691777
+400785002,2015,2015-03-13,2348,5,True,Legacy Arena at BJCC,Birmingham,AL,Ruston,Birmingham,F3 neutral in a team's home city,-17.81286692400863,17.81286692400863
+400784975,2015,2015-03-13,2450,2261,True,Norfolk Scope Arena,Norfolk,VA,Norfolk,Hampton,F3 neutral in a team's home city,-16.83465262210624,-16.83465262210624
+400785000,2015,2015-03-13,2640,2504,True,Toyota Center (Houston),Houston,TX,Houston,Prairie View,F3 neutral in a team's home city,6.116012679389003,6.116012679389003
+400784929,2015,2015-03-13,149,2464,True,Dahlberg Arena,Missoula,MT,Missoula,Flagstaff,F1 neutral at home team's arena,-0.9467475182142895,-0.9467475182142895
+400785103,2015,2015-03-14,5,2393,True,Legacy Arena at BJCC,Birmingham,AL,Birmingham,Murfreesboro,F3 neutral in a team's home city,12.987312223164095,12.987312223164095
+400785118,2015,2015-03-14,2640,2582,True,Toyota Center (Houston),Houston,TX,Houston,Baton Rouge,F3 neutral in a team's home city,-0.402700032135046,-0.402700032135046
+400785121,2015,2015-03-14,149,331,True,Dahlberg Arena,Missoula,MT,Missoula,Cheney,F1 neutral at home team's arena,-3.867922128476642,-3.867922128476642
+400785477,2015,2015-03-17,356,333,True,Coleman Coliseum,Tuscaloosa,AL,Champaign,Tuscaloosa,F2 neutral at away team's arena,-24.210892670437786,24.210892670437786
+400785474,2015,2015-03-18,68,2168,True,UD Arena,Dayton,OH,Boise,Dayton,F2 neutral at away team's arena,-1.0768871105151876,1.0768871105151876
+400818730,2016,2015-11-13,2670,2504,False,Simmons Bank Arena,North Little Rock,AR,Richmond,Prairie View,F4 home game away from home arena/city,-6.999513254679119,-6.999513254679119
+400827753,2016,2015-11-14,305,2711,False,McGrath-Phillips Arena,Chicago,IL,Rosemont,Kalamazoo,F4 home game away from home arena/city,2.880902407768719,2.880902407768719
+400827770,2016,2015-11-15,2550,2681,False,Walsh Gymnasium,South Orange,NJ,Newark,Staten Island,F4 home game away from home arena/city,-5.611137285627725,-5.611137285627725
+400818731,2016,2015-11-16,2670,2515,False,Simmons Bank Arena,North Little Rock,AR,Richmond,Radford,F4 home game away from home arena/city,0.8902597925859652,0.8902597925859652
+400816804,2016,2015-12-02,41,2529,False,XL Center,Hartford,CT,Storrs,Fairfield,F4 home game away from home arena/city,4.743227509701843,4.743227509701843
+400817667,2016,2015-12-04,2184,221,True,PPG Paints Arena,Pittsburgh,PA,Pittsburgh,Pittsburgh,F3 neutral in a team's home city,-9.143924030633933,9.143924030633933
+400818903,2016,2015-12-04,2439,2483,True,MGM Grand Garden Arena,Las Vegas,NV,Las Vegas,Eugene,F3 neutral in a team's home city,19.25353191886712,19.25353191886712
+400830161,2016,2015-12-05,252,2692,False,Vivint Arena,Salt Lake City,UT,Provo,Ogden,F4 home game away from home arena/city,-4.907290567198643,-4.907290567198643
+400809391,2016,2015-12-05,113,145,False,MassMutual Center,Springfield,MA,Amherst,Oxford,F4 home game away from home arena/city,-11.94182066723296,-11.94182066723296
+400840319,2016,2015-12-06,2599,2597,False,Madison Square Garden,New York,NY,Queens,Brooklyn,F4 home game away from home arena/city,-3.581366259944094,-3.581366259944094
+400855968,2016,2015-12-06,21,301,True,Petco Park,San Diego,CA,San Diego,San Diego,F3 neutral in a team's home city,-21.80922010015496,21.80922010015496
+400814244,2016,2015-12-12,2393,2,False,Bridgestone Arena,Nashville,TN,Murfreesboro,Auburn,F4 home game away from home arena/city,4.605249176635935,4.605249176635935
+400817668,2016,2015-12-12,2598,2184,False,Cambria County War Memorial Arena,Johnstown,PA,Loretto,Pittsburgh,F4 home game away from home arena/city,4.459172229452388,4.459172229452388
+400839255,2016,2015-12-12,82,356,True,United Center,Chicago,IL,Chicago,Champaign,F3 neutral in a team's home city,16.934714839729757,16.934714839729757
+400813745,2016,2015-12-12,2305,204,False,T-Mobile Center,Kansas City,MO,Lawrence,Corvallis,F4 home game away from home arena/city,0.053576819636793616,0.053576819636793616
+400827756,2016,2015-12-12,305,2031,False,McGrath-Phillips Arena,Chicago,IL,Rosemont,Little Rock,F4 home game away from home arena/city,-26.02418520872013,-26.02418520872013
+400839190,2016,2015-12-13,2599,183,False,Madison Square Garden,New York,NY,Queens,Syracuse,F4 home game away from home arena/city,19.859032415294653,19.859032415294653
+400813757,2016,2015-12-18,2501,2692,True,Moda Center,Portland,OR,Portland,Ogden,F3 neutral in a team's home city,-6.783042238559919,-6.783042238559919
+400813759,2016,2015-12-19,2501,2239,True,Moda Center,Portland,OR,Portland,Fullerton,F3 neutral in a team's home city,2.366814949704202,2.366814949704202
+400813753,2016,2015-12-19,2294,2181,True,Wells Fargo Arena (IA),Des Moines,IA,Iowa City,Des Moines,F3 neutral in a team's home city,-12.168333286076017,12.168333286076017
+400813747,2016,2015-12-19,2509,2086,True,Gainbridge Fieldhouse,Indianapolis,IN,West Lafayette,Indianapolis,F3 neutral in a team's home city,-12.646515165260846,12.646515165260846
+400830644,2016,2015-12-19,2182,213,True,The Palestra,Philadelphia,PA,Philadelphia,University Park,F3 neutral in a team's home city,-0.04557349218358109,-0.04557349218358109
+400816806,2016,2015-12-20,41,2349,False,XL Center,Hartford,CT,Storrs,Lowell,F4 home game away from home arena/city,-22.041364803398906,-22.041364803398906
+400816807,2016,2015-12-23,41,2115,False,XL Center,Hartford,CT,Storrs,New Britain,F4 home game away from home arena/city,14.726201973242382,14.726201973242382
+400840129,2016,2015-12-28,233,526,True,The DakotaDome,Vermillion,SD,Vermillion,Fort Myers,F3 neutral in a team's home city,7.300704767804105,7.300704767804105
+400835227,2016,2016-01-05,41,218,False,XL Center,Hartford,CT,Storrs,Philadelphia,F4 home game away from home arena/city,-14.167332546795203,-14.167332546795203
+400840262,2016,2016-01-13,2599,46,False,Madison Square Garden,New York,NY,Queens,Washington,F4 home game away from home arena/city,-12.500257310382365,-12.500257310382365
+400835231,2016,2016-01-19,41,2655,False,XL Center,Hartford,CT,Storrs,New Orleans,F4 home game away from home arena/city,2.244381925642662,2.244381925642662
+400825572,2016,2016-01-20,2325,218,True,The Palestra,Philadelphia,PA,Philadelphia,Philadelphia,F3 neutral in a team's home city,-3.523881170099097,3.523881170099097
+400816809,2016,2016-01-23,41,46,False,XL Center,Hartford,CT,Storrs,Washington,F4 home game away from home arena/city,-0.3422525894167645,-0.3422525894167645
+400861696,2016,2016-01-24,222,2507,False,Wells Fargo Center,Philadelphia,PA,Villanova,Providence,F4 home game away from home arena/city,-20.865168171762583,-20.865168171762583
+400843573,2016,2016-01-24,325,2754,True,Rocket Mortgage FieldHouse,Cleveland,OH,Cleveland,Youngstown,F3 neutral in a team's home city,-20.48763701564962,-20.48763701564962
+400835232,2016,2016-01-28,41,2132,False,XL Center,Hartford,CT,Storrs,Cincinnati,F4 home game away from home arena/city,-2.480616116194167,-2.480616116194167
+400840321,2016,2016-01-31,2599,222,False,Madison Square Garden,New York,NY,Queens,Villanova,F4 home game away from home arena/city,4.433146989933707,4.433146989933707
+400840323,2016,2016-02-13,222,2599,False,Wells Fargo Center,Philadelphia,PA,Villanova,Queens,F4 home game away from home arena/city,-17.65326716632929,-17.65326716632929
+400847063,2016,2016-02-15,2000,2534,True,Mabee Athletic Complex,Abilene,TX,Abilene,Huntsville,F3 neutral in a team's home city,-4.228306773401492,-4.228306773401492
+400835238,2016,2016-02-18,41,2567,False,XL Center,Hartford,CT,Storrs,Dallas,F4 home game away from home arena/city,4.451362709966086,4.451362709966086
+400840313,2016,2016-02-21,2599,2550,False,Madison Square Garden,New York,NY,Queens,Newark,F4 home game away from home arena/city,8.714185834958434,8.714185834958434
+400839841,2016,2016-02-27,325,2750,True,Rocket Mortgage FieldHouse,Cleveland,OH,Cleveland,Dayton,F3 neutral in a team's home city,2.7197593176426507,2.7197593176426507
+400841022,2016,2016-03-02,179,2603,False,Blue Cross Arena,Rochester,NY,Saint Bonaventure,Philadelphia,F4 home game away from home arena/city,9.385271456960957,9.385271456960957
+400868852,2016,2016-03-03,2634,2046,True,Nashville Municipal Auditorium,Nashville,TN,Nashville,Clarksville,F3 neutral in a team's home city,-8.694939700560367,-8.694939700560367
+400868278,2016,2016-03-03,2241,2097,True,John W. Pope Jr. Convocation Center,Buies Creek,NC,Boiling Springs,Buies Creek,F2 neutral at away team's arena,6.124654849824399,-6.124654849824399
+400869913,2016,2016-03-04,2057,2046,True,Nashville Municipal Auditorium,Nashville,TN,Nashville,Clarksville,F3 neutral in a team's home city,-11.199138657578155,-11.199138657578155
+400840272,2016,2016-03-05,222,46,False,Wells Fargo Center,Philadelphia,PA,Villanova,Washington,F4 home game away from home arena/city,-2.660756624353331,-2.660756624353331
+400840304,2016,2016-03-05,2599,2507,False,Madison Square Garden,New York,NY,Queens,Providence,F4 home game away from home arena/city,-5.937757352993518,-5.937757352993518
+400868381,2016,2016-03-05,2174,2754,True,Joe Louis Arena,Detroit,MI,Detroit,Youngstown,F3 neutral in a team's home city,2.9904201227496596,2.9904201227496596
+400869926,2016,2016-03-05,2561,2363,True,MVP Arena,Albany,NY,Albany,Riverdale,F1 neutral at home team's arena,5.77881971686354,5.77881971686354
+400870189,2016,2016-03-06,2750,2174,True,Joe Louis Arena,Detroit,MI,Dayton,Detroit,F3 neutral in a team's home city,7.463840558833502,-7.463840558833502
+400870180,2016,2016-03-06,2561,314,True,MVP Arena,Albany,NY,Albany,New Rochelle,F1 neutral at home team's arena,-6.491379348054046,-6.491379348054046
+400870238,2016,2016-03-09,2439,2005,True,Thomas & Mack Center,Las Vegas,NV,Las Vegas,Colorado Springs,F1 neutral at home team's arena,-4.490039263760121,-4.490039263760121
+400870671,2016,2016-03-09,2450,2428,True,Norfolk Scope Arena,Norfolk,VA,Norfolk,Durham,F3 neutral in a team's home city,12.542081761501102,12.542081761501102
+400870693,2016,2016-03-09,2640,2010,True,Toyota Center (Houston),Houston,TX,Houston,Normal,F3 neutral in a team's home city,-1.509818880333377,-1.509818880333377
+400870741,2016,2016-03-10,238,2633,True,Bridgestone Arena,Nashville,TN,Nashville,Knoxville,F3 neutral in a team's home city,-12.629761758475219,-12.629761758475219
+400870715,2016,2016-03-10,5,98,True,Legacy Arena at BJCC,Birmingham,AL,Birmingham,Bowling Green,F3 neutral in a team's home city,-18.331966964488483,-18.331966964488483
+400870284,2016,2016-03-10,2116,2655,True,Amway Center,Orlando,FL,Orlando,New Orleans,F3 neutral in a team's home city,-2.8344791912718366,-2.8344791912718366
+400870728,2016,2016-03-10,278,2439,True,Thomas & Mack Center,Las Vegas,NV,Fresno,Las Vegas,F2 neutral at away team's arena,10.699986900845527,-10.699986900845527
+400870812,2016,2016-03-11,2450,2569,True,Norfolk Scope Arena,Norfolk,VA,Norfolk,Orangeburg,F3 neutral in a team's home city,-8.302706785348562,-8.302706785348562
+400870833,2016,2016-03-11,2640,2582,True,Toyota Center (Houston),Houston,TX,Houston,Baton Rouge,F3 neutral in a team's home city,-13.838674870296558,-13.838674870296558
+400871485,2016,2016-03-16,2217,160,False,George Bisacca Court at Alumni Hall,Fairfield,CT,Bridgeport,Durham,F4 home game away from home arena/city,-18.207081666283038,-18.207081666283038
+400872576,2016,2016-03-23,45,57,False,Exactech Arena at Stephen C. O'Connell Center,Gainesville,FL,Washington,Gainesville,F4 home game away from home arena/city,5.265670102077433,5.265670102077433
+400919134,2017,2016-11-11,2550,161,False,Walsh Gymnasium,South Orange,NJ,Newark,Teaneck,F4 home game away from home arena/city,-2.3901265466380757,-2.3901265466380757
+400919140,2017,2016-11-19,111,112358,True,Case Gym,Boston,MA,Boston,Brooklyn,F3 neutral in a team's home city,-12.679938249249085,-12.679938249249085
+400918681,2017,2016-11-20,311,111,True,Case Gym,Boston,MA,Bangor,Boston,F3 neutral in a team's home city,1.026330160916837,-1.026330160916837
+400916294,2017,2016-11-21,16,302,True,Golden 1 Center,Sacramento,CA,Sacramento,Davis,F3 neutral in a team's home city,-8.46859448253602,-8.46859448253602
+400927027,2017,2016-11-27,314,2440,True,Lawlor Events Center,Reno,NV,New Rochelle,Reno,F2 neutral at away team's arena,2.1661194653856906,-2.1661194653856906
+400916509,2017,2016-11-30,41,104,False,XL Center,Hartford,CT,Storrs,Boston,F4 home game away from home arena/city,-6.569297296158332,-6.569297296158332
+400915274,2017,2016-12-02,221,2184,True,PPG Paints Arena,Pittsburgh,PA,Pittsburgh,Pittsburgh,F3 neutral in a team's home city,-23.301320350232732,23.301320350232732
+400915549,2017,2016-12-03,30,252,True,crypto.com Arena,Los Angeles,CA,Los Angeles,Provo,F3 neutral in a team's home city,2.4278860907623816,2.4278860907623816
+400915286,2017,2016-12-04,45,52,True,Capital One Arena,Washington,DC,Washington,Tallahassee,F3 neutral in a team's home city,-6.692556505860315,-6.692556505860315
+400918322,2017,2016-12-06,2523,2184,False,PPG Paints Arena,Pittsburgh,PA,Moon Township,Pittsburgh,F4 home game away from home arena/city,5.5280189014006025,5.5280189014006025
+400915557,2017,2016-12-10,2306,265,False,T-Mobile Center,Kansas City,MO,Manhattan,Pullman,F4 home game away from home arena/city,-2.4454362865020016,-2.4454362865020016
+400915307,2017,2016-12-10,2439,150,True,T-Mobile Arena,Las Vegas,NV,Las Vegas,Durham,F3 neutral in a team's home city,-26.38396696624014,-26.38396696624014
+400919158,2017,2016-12-11,112358,2599,True,Barclays Center,Brooklyn,NY,Brooklyn,Queens,F3 neutral in a team's home city,12.579696000770483,12.579696000770483
+400918552,2017,2016-12-14,305,82,False,McGrath-Phillips Arena,Chicago,IL,Rosemont,Chicago,F4 home game away from home arena/city,-14.619409358143297,-14.619409358143297
+400915570,2017,2016-12-16,204,299,False,Moda Center,Portland,OR,Corvallis,Long Beach,F4 home game away from home arena/city,-3.9981170306660125,-3.9981170306660125
+400916175,2017,2016-12-17,36,2306,False,Ball Arena,Denver,CO,Fort Collins,Manhattan,F4 home game away from home arena/city,-14.873981300666802,-14.873981300666802
+400917537,2017,2016-12-17,2561,2083,False,Glens Falls Civic Center,Glens Falls,NY,Albany,Lewisburg,F4 home game away from home arena/city,-0.330391788179651,-0.330391788179651
+400915126,2017,2016-12-17,84,2086,True,Gainbridge Fieldhouse,Indianapolis,IN,Bloomington,Indianapolis,F3 neutral in a team's home city,-5.279094024112978,5.279094024112978
+400916176,2017,2016-12-17,66,2181,True,Wells Fargo Arena (IA),Des Moines,IA,Ames,Des Moines,F3 neutral in a team's home city,-4.521202244353855,4.521202244353855
+400916182,2017,2016-12-17,2305,2166,False,T-Mobile Center,Kansas City,MO,Lawrence,Davidson,F4 home game away from home arena/city,1.5083558172533422,1.5083558172533422
+400915174,2017,2016-12-18,2599,213,False,Madison Square Garden,New York,NY,Queens,University Park,F4 home game away from home arena/city,-17.296153923655083,-17.296153923655083
+400915578,2017,2016-12-18,204,2501,True,Moda Center,Portland,OR,Corvallis,Portland,F3 neutral in a team's home city,-5.814810464051232,5.814810464051232
+400917089,2017,2016-12-21,2523,2084,False,PPG Paints Arena,Pittsburgh,PA,Moon Township,Buffalo,F4 home game away from home arena/city,9.723379143727033,9.723379143727033
+400910615,2017,2016-12-23,41,2,False,XL Center,Hartford,CT,Storrs,Auburn,F4 home game away from home arena/city,-8.000864696432739,-8.000864696432739
+400916561,2017,2016-12-28,41,248,False,XL Center,Hartford,CT,Storrs,Houston,F4 home game away from home arena/city,-15.130671140284605,-15.130671140284605
+400919673,2017,2017-01-07,222,269,False,Wells Fargo Center,Philadelphia,PA,Villanova,Milwaukee,F4 home game away from home arena/city,0.8534918714213457,0.8534918714213457
+400919680,2017,2017-01-14,2599,222,False,Madison Square Garden,New York,NY,Queens,Villanova,F4 home game away from home arena/city,-0.2017544824292532,-0.2017544824292532
+400919689,2017,2017-01-21,222,2507,False,Wells Fargo Center,Philadelphia,PA,Villanova,Providence,F4 home game away from home arena/city,-5.4061023074292365,-5.4061023074292365
+400916596,2017,2017-01-22,41,151,False,XL Center,Hartford,CT,Storrs,Greenville,F4 home game away from home arena/city,-4.199980962038055,-4.199980962038055
+400915408,2017,2017-01-29,222,258,False,Wells Fargo Center,Philadelphia,PA,Villanova,Charlottesville,F4 home game away from home arena/city,-0.6789275806150825,-0.6789275806150825
+400919701,2017,2017-01-29,2599,2752,False,Madison Square Garden,New York,NY,Queens,Cincinnati,F4 home game away from home arena/city,3.054388184165745,3.054388184165745
+400919705,2017,2017-02-01,2599,269,False,Madison Square Garden,New York,NY,Queens,Milwaukee,F4 home game away from home arena/city,19.51593122726693,19.51593122726693
+400919710,2017,2017-02-04,222,2599,False,Wells Fargo Center,Philadelphia,PA,Villanova,Queens,F4 home game away from home arena/city,-5.571786468672265,-5.571786468672265
+400941113,2017,2017-02-05,153,87,False,Greensboro Coliseum,Greensboro,NC,Chapel Hill,South Bend,F4 home game away from home arena/city,-3.2279573055404303,-3.2279573055404303
+400919715,2017,2017-02-11,2599,2550,False,Madison Square Garden,New York,NY,Queens,Newark,F4 home game away from home arena/city,9.558605568459125,9.558605568459125
+400917632,2017,2017-02-13,2217,2520,False,George Bisacca Court at Alumni Hall,Fairfield,CT,Bridgeport,Lawrenceville,F4 home game away from home arena/city,-0.9107575173042881,-0.9107575173042881
+400916632,2017,2017-02-16,41,235,False,XL Center,Hartford,CT,Storrs,Memphis,F4 home game away from home arena/city,-0.07523592742582697,-0.07523592742582697
+400919733,2017,2017-02-25,2599,46,False,Madison Square Garden,New York,NY,Queens,Washington,F4 home game away from home arena/city,7.10578544395095,7.10578544395095
+400916643,2017,2017-02-25,41,2567,False,XL Center,Hartford,CT,Storrs,Dallas,F4 home game away from home arena/city,-2.841047409949124,-2.841047409949124
+400944410,2017,2017-03-01,2546,2634,True,Nashville Municipal Auditorium,Nashville,TN,Cape Girardeau,Nashville,F3 neutral in a team's home city,7.715892756808947,-7.715892756808947
+400944545,2017,2017-03-03,2174,270,True,Joe Louis Arena,Detroit,MI,Detroit,Milwaukee,F3 neutral in a team's home city,-26.115907240206017,-26.115907240206017
+400945335,2017,2017-03-03,2057,55,True,Nashville Municipal Auditorium,Nashville,TN,Nashville,Jacksonville,F3 neutral in a team's home city,-13.831033697694991,-13.831033697694991
+400919743,2017,2017-03-04,2599,2507,False,Madison Square Garden,New York,NY,Queens,Providence,F4 home game away from home arena/city,-10.676393961948774,-10.676393961948774
+400944551,2017,2017-03-04,2561,2217,True,MVP Arena,Albany,NY,Albany,Bridgeport,F1 neutral at home team's arena,7.753626155397864,7.753626155397864
+400945422,2017,2017-03-04,232,256,True,North Charleston Coliseum,North Charleston,SC,Charleston,Harrisonburg,"F5 neutral, team name in venue",-3.0206580880962033,-3.0206580880962033
+400945624,2017,2017-03-05,2405,2561,True,MVP Arena,Albany,NY,West Long Branch,Albany,F2 neutral at away team's arena,-12.234529920023924,12.234529920023924
+400945589,2017,2017-03-05,232,119,True,North Charleston Coliseum,North Charleston,SC,Charleston,Towson,"F5 neutral, team name in venue",6.524897445869776,6.524897445869776
+400945702,2017,2017-03-06,350,232,True,North Charleston Coliseum,North Charleston,SC,Wilmington,Charleston,"F5 neutral, team name in venue",4.777784316296253,4.777784316296253
+400945704,2017,2017-03-06,314,2561,True,MVP Arena,Albany,NY,New Rochelle,Albany,F2 neutral at away team's arena,-0.7764427793271778,0.7764427793271778
+400945504,2017,2017-03-08,21,2439,False,Thomas & Mack Center,Las Vegas,NV,San Diego,Las Vegas,F4 home game away from home arena/city,-3.5764788634087274,-3.5764788634087274
+400945619,2017,2017-03-08,5,2429,True,Legacy Arena at BJCC,Birmingham,AL,Birmingham,Charlotte,F3 neutral in a team's home city,-4.038130949982357,-4.038130949982357
+400945585,2017,2017-03-08,139,2184,True,PPG Paints Arena,Pittsburgh,PA,St. Louis,Pittsburgh,F3 neutral in a team's home city,2.982488346271508,-2.982488346271508
+400946041,2017,2017-03-08,2450,2569,True,Norfolk Scope Arena,Norfolk,VA,Norfolk,Orangeburg,F3 neutral in a team's home city,-1.598064550859072,-1.598064550859072
+400946107,2017,2017-03-09,2348,5,True,Legacy Arena at BJCC,Birmingham,AL,Ruston,Birmingham,F3 neutral in a team's home city,4.5186478319386705,-4.5186478319386705
+400945592,2017,2017-03-09,238,245,True,Bridgestone Arena,Nashville,TN,Nashville,College Station,F3 neutral in a team's home city,23.760015005144915,23.760015005144915
+400945708,2017,2017-03-09,41,58,False,XL Center,Hartford,CT,Storrs,Tampa,F4 home game away from home arena/city,-2.9914384793959954,-2.9914384793959954
+400946044,2017,2017-03-10,2640,2755,True,Toyota Center (Houston),Houston,TX,Houston,Grambling,F3 neutral in a team's home city,-4.445356849178767,-4.445356849178767
+400945813,2017,2017-03-10,57,238,True,Bridgestone Arena,Nashville,TN,Gainesville,Nashville,F3 neutral in a team's home city,-19.03855439217873,19.03855439217873
+400946179,2017,2017-03-10,2450,47,True,Norfolk Scope Arena,Norfolk,VA,Norfolk,Washington,F3 neutral in a team's home city,10.042498616124375,10.042498616124375
+400945695,2017,2017-03-11,163,219,True,The Palestra,Philadelphia,PA,Princeton,Philadelphia,F2 neutral at away team's arena,-1.5049300207665333,1.5049300207665333
+400946216,2017,2017-03-11,2428,2450,True,Norfolk Scope Arena,Norfolk,VA,Durham,Norfolk,F3 neutral in a team's home city,0.6353553928609168,-0.6353553928609168
+400946268,2017,2017-03-11,8,238,True,Bridgestone Arena,Nashville,TN,Fayetteville,Nashville,F3 neutral in a team's home city,14.811684494959934,-14.811684494959934
+400946210,2017,2017-03-11,2640,2016,True,Toyota Center (Houston),Houston,TX,Houston,Lorman,F3 neutral in a team's home city,-4.226402108574775,-4.226402108574775
+400987941,2018,2017-11-14,41,2619,False,XL Center,Hartford,CT,Storrs,Stony Brook,F4 home game away from home arena/city,-5.904030672080493,-5.904030672080493
+400987955,2018,2017-11-19,41,104,False,XL Center,Hartford,CT,Storrs,Boston,F4 home game away from home arena/city,3.2281311276570985,3.2281311276570985
+400991812,2018,2017-11-20,2439,242,True,T-Mobile Arena,Las Vegas,NV,Las Vegas,Houston,F3 neutral in a team's home city,10.749458143490791,10.749458143490791
+400992507,2018,2017-11-21,302,16,True,Golden 1 Center,Sacramento,CA,Davis,Sacramento,F3 neutral in a team's home city,9.236009293355522,-9.236009293355522
+400986086,2018,2017-11-23,153,2501,True,Moda Center,Portland,OR,Chapel Hill,Portland,F3 neutral in a team's home city,-6.284006373005397,6.284006373005397
+400986088,2018,2017-11-23,150,2502,True,Veterans Memorial Coliseum,Portland,OR,Durham,Portland,F3 neutral in a team's home city,-9.437029806154424,9.437029806154424
+401001884,2018,2017-11-23,2439,254,True,T-Mobile Arena,Las Vegas,NV,Las Vegas,Salt Lake City,F3 neutral in a team's home city,31.165922455964406,31.165922455964406
+400986382,2018,2017-11-23,158,2116,True,HP Field House,Orlando,FL,Lincoln,Orlando,F3 neutral in a team's home city,-4.747660028475144,4.747660028475144
+400999721,2018,2017-11-24,2086,2502,True,Moda Center,Portland,OR,Indianapolis,Portland,F3 neutral in a team's home city,-13.096564629348183,13.096564629348183
+400999688,2018,2017-11-24,277,2116,True,HP Field House,Orlando,FL,Morgantown,Orlando,F3 neutral in a team's home city,26.543305795303603,-26.543305795303603
+400999746,2018,2017-11-24,201,2501,True,Veterans Memorial Coliseum,Portland,OR,Norman,Portland,F3 neutral in a team's home city,-3.96069276049818,3.96069276049818
+400999681,2018,2017-11-24,16,2239,True,Titan Gym,Fullerton,CA,Sacramento,Fullerton,F2 neutral at away team's arena,-2.596177883872115,2.596177883872115
+400999690,2018,2017-11-26,2116,2599,True,HP Field House,Orlando,FL,Orlando,Queens,F3 neutral in a team's home city,0.5635992476076952,0.5635992476076952
+401001000,2018,2017-11-26,24,2502,True,Veterans Memorial Coliseum,Portland,OR,Stanford,Portland,F3 neutral in a team's home city,-18.577080009879467,18.577080009879467
+401001004,2018,2017-11-26,305,2501,True,Veterans Memorial Coliseum,Portland,OR,Chicago,Portland,F3 neutral in a team's home city,-0.06650589649166072,0.06650589649166072
+400988503,2018,2017-11-29,222,219,False,Jake Nevin Field House,Villanova,PA,Philadelphia,Philadelphia,F4 home game away from home arena/city,6.439739489305499,6.439739489305499
+400986111,2018,2017-12-01,2184,221,True,PPG Paints Arena,Pittsburgh,PA,Pittsburgh,Pittsburgh,F3 neutral in a team's home city,-8.604897767598981,8.604897767598981
+400987985,2018,2017-12-02,41,2405,False,XL Center,Hartford,CT,Storrs,West Long Branch,F4 home game away from home arena/city,-4.999068802230631,-4.999068802230631
+400987991,2018,2017-12-03,45,218,True,Capital One Arena,Washington,DC,Washington,Philadelphia,F3 neutral in a team's home city,17.116252129671906,17.116252129671906
+400988514,2018,2017-12-05,2253,2599,True,Footprint Center,Phoenix,AZ,Phoenix,Queens,F3 neutral in a team's home city,0.8031122021762584,0.8031122021762584
+400989328,2018,2017-12-05,2439,198,True,MGM Grand Garden Arena,Las Vegas,NV,Las Vegas,Tulsa,F3 neutral in a team's home city,7.303578924199858,7.303578924199858
+400988249,2018,2017-12-06,2305,264,False,T-Mobile Center,Kansas City,MO,Lawrence,Seattle,F4 home game away from home arena/city,-35.60447734185796,-35.60447734185796
+400988256,2018,2017-12-08,30,201,True,crypto.com Arena,Los Angeles,CA,Los Angeles,Norman,F3 neutral in a team's home city,-2.0452026820480853,-2.0452026820480853
+400986421,2018,2017-12-09,2439,356,True,MGM Grand Garden Arena,Las Vegas,NV,Las Vegas,Champaign,F3 neutral in a team's home city,5.53623904112175,5.53623904112175
+400988257,2018,2017-12-09,254,328,True,Vivint Arena,Salt Lake City,UT,Salt Lake City,Logan,F3 neutral in a team's home city,3.1928441877836518,3.1928441877836518
+400988526,2018,2017-12-12,2550,2612,False,Walsh Gymnasium,South Orange,NJ,Newark,Jersey City,F4 home game away from home arena/city,1.5869111843294696,1.5869111843294696
+400986437,2018,2017-12-16,2174,130,True,Little Caesars Arena,Detroit,MI,Detroit,Ann Arbor,F3 neutral in a team's home city,-10.806630832669605,-10.806630832669605
+400986441,2018,2017-12-16,2086,2509,True,Gainbridge Fieldhouse,Indianapolis,IN,Indianapolis,West Lafayette,F3 neutral in a team's home city,-8.531209535307166,-8.531209535307166
+400986436,2018,2017-12-16,2181,2294,True,Wells Fargo Arena (IA),Des Moines,IA,Des Moines,Iowa City,F3 neutral in a team's home city,-19.92419664052605,-19.92419664052605
+400988272,2018,2017-12-16,204,139,False,Moda Center,Portland,OR,Corvallis,St. Louis,F4 home game away from home arena/city,-4.671734515406255,-4.671734515406255
+400991469,2018,2017-12-16,2229,256,False,Barry University Health & Sports Center,Miami Shores,FL,Miami,Harrisonburg,F4 home game away from home arena/city,-10.265784994504681,-10.265784994504681
+400991103,2018,2017-12-17,2217,295,False,George Bisacca Court at Alumni Hall,Fairfield,CT,Bridgeport,Norfolk,F4 home game away from home arena/city,3.348875356848712,3.348875356848712
+400988530,2018,2017-12-17,2599,314,False,Madison Square Garden,New York,NY,Queens,New Rochelle,F4 home game away from home arena/city,-1.4908024177979033,-1.4908024177979033
+400991827,2018,2017-12-21,70,300,True,Idaho Central Arena,Boise,ID,Moscow,Irvine,"F5 neutral, team name in venue",-13.545506600661927,-13.545506600661927
+400986981,2018,2017-12-21,16,2501,True,Golden 1 Center,Sacramento,CA,Sacramento,Portland,F3 neutral in a team's home city,-4.1514561959493435,-4.1514561959493435
+400987270,2018,2017-12-22,333,251,False,Legacy Arena at BJCC,Birmingham,AL,Tuscaloosa,Austin,F4 home game away from home arena/city,-17.97529054293379,-17.97529054293379
+400988040,2018,2017-12-30,41,2724,False,XL Center,Hartford,CT,Storrs,Wichita,F4 home game away from home arena/city,-1.1216010513554622,-1.1216010513554622
+400988052,2018,2018-01-06,41,151,False,XL Center,Hartford,CT,Storrs,Greenville,F4 home game away from home arena/city,-11.021873106640456,-11.021873106640456
+400988566,2018,2018-01-09,2599,46,False,Madison Square Garden,New York,NY,Queens,Washington,F4 home game away from home arena/city,-10.784859485007683,-10.784859485007683
+400988574,2018,2018-01-13,2599,222,False,Madison Square Garden,New York,NY,Queens,Philadelphia,F4 home game away from home arena/city,3.4637786605447864,3.4637786605447864
+400988073,2018,2018-01-20,41,222,False,XL Center,Hartford,CT,Storrs,Philadelphia,F4 home game away from home arena/city,-3.867327610956231,-3.867327610956231
+400986238,2018,2018-02-03,2599,150,False,Madison Square Garden,New York,NY,Queens,Durham,F4 home game away from home arena/city,15.389738418883054,15.389738418883054
+400988115,2018,2018-02-15,41,202,False,XL Center,Hartford,CT,Storrs,Tulsa,F4 home game away from home arena/city,-3.5347228180369754,-3.5347228180369754
+400988626,2018,2018-02-24,2599,2550,False,Madison Square Garden,New York,NY,Queens,Newark,F4 home game away from home arena/city,-6.320132067118156,-6.320132067118156
+401020176,2018,2018-03-01,2514,2561,True,MVP Arena,Albany,NY,Hamden,Albany,F2 neutral at away team's arena,6.49688302980137,-6.49688302980137
+401020085,2018,2018-03-02,2739,2174,True,Little Caesars Arena,Detroit,MI,Ashwaubenon,Detroit,F3 neutral in a team's home city,10.710652990250816,-10.710652990250816
+401022658,2018,2018-03-03,2117,2711,False,Riepma Arena,Midland,MI,Mount Pleasant,Kalamazoo,F4 home game away from home arena/city,11.62006311208882,11.62006311208882
+401020168,2018,2018-03-04,232,2182,True,North Charleston Coliseum,North Charleston,SC,Charleston,Philadelphia,"F5 neutral, team name in venue",-1.7569737568867456,-1.7569737568867456
+401020172,2018,2018-03-05,232,2729,True,North Charleston Coliseum,North Charleston,SC,Charleston,Williamsburg,"F5 neutral, team name in venue",4.885756222585573,4.885756222585573
+401020547,2018,2018-03-05,2450,2379,True,Norfolk Scope Arena,Norfolk,VA,Norfolk,Princess Anne,F3 neutral in a team's home city,-0.17843773306171862,-0.17843773306171862
+401020174,2018,2018-03-06,232,111,True,North Charleston Coliseum,North Charleston,SC,Charleston,Boston,"F5 neutral, team name in venue",6.843345121562669,6.843345121562669
+401020568,2018,2018-03-07,2439,2005,True,Thomas & Mack Center,Las Vegas,NV,Las Vegas,Colorado Springs,F1 neutral at home team's arena,-1.3577084435445066,-1.3577084435445066
+401020073,2018,2018-03-07,45,2230,True,Capital One Arena,Washington,DC,Washington,Bronx,F3 neutral in a team's home city,0.27984316227789385,0.27984316227789385
+401020571,2018,2018-03-08,2440,2439,True,Thomas & Mack Center,Las Vegas,NV,Reno,Las Vegas,F2 neutral at away team's arena,-3.632578533090907,3.632578533090907
+401019977,2018,2018-03-08,2116,151,True,Amway Center,Orlando,FL,Orlando,Greenville,F3 neutral in a team's home city,1.0478372537903997,1.0478372537903997
+401020553,2018,2018-03-08,2448,2450,True,Norfolk Scope Arena,Norfolk,VA,Greensboro,Norfolk,F3 neutral in a team's home city,6.117442920051054,-6.117442920051054
+401020077,2018,2018-03-08,139,45,True,Capital One Arena,Washington,DC,St. Louis,Washington,F3 neutral in a team's home city,2.730417341887537,-2.730417341887537
+401019981,2018,2018-03-09,248,2116,True,Amway Center,Orlando,FL,Houston,Orlando,F3 neutral in a team's home city,17.81367454557445,-17.81367454557445
+401022990,2018,2018-03-09,2504,2640,True,Delmar Fieldhouse,Houston,TX,Prairie View,Houston,F3 neutral in a team's home city,-13.595367273051039,13.595367273051039
+401020934,2018,2018-03-10,219,43,True,The Palestra,Philadelphia,PA,Philadelphia,New Haven,F1 neutral at home team's arena,20.06821833815617,20.06821833815617
+401025311,2018,2018-03-10,2029,2640,True,Delmar Fieldhouse,Houston,TX,Pine Bluff,Houston,F3 neutral in a team's home city,-7.571706083830948,7.571706083830948
+401020935,2018,2018-03-11,108,219,True,The Palestra,Philadelphia,PA,Cambridge,Philadelphia,F2 neutral at away team's arena,-2.761137178310677,2.761137178310677
+401083326,2019,2018-11-06,2550,2681,False,Walsh Gymnasium,South Orange,NJ,Newark,Staten Island,F4 home game away from home arena/city,19.631761046043188,19.631761046043188
+401089166,2019,2018-11-09,2739,282,False,Kress Events Center,Green Bay,WI,Ashwaubenon,Terre Haute,F4 home game away from home arena/city,-3.9600212397155876,-3.9600212397155876
+401083351,2019,2018-11-10,222,2514,False,Wells Fargo Center,Philadelphia,PA,Villanova,Hamden,F4 home game away from home arena/city,8.609301946899627,8.609301946899627
+401086078,2019,2018-11-11,2547,2803,False,ShoWare Center,Kent,WA,Seattle,Smithfield,F4 home game away from home arena/city,14.014079423757126,14.014079423757126
+401086039,2019,2018-11-13,2217,112358,False,Total Mortgage Arena,Bridgeport,CT,Fairfield,Brooklyn,F4 home game away from home arena/city,-4.872060313830943,-4.872060313830943
+401086083,2019,2018-11-14,2547,265,False,ShoWare Center,Kent,WA,Seattle,Pullman,F4 home game away from home arena/city,10.564258223267702,10.564258223267702
+401086040,2019,2018-11-17,2217,2681,False,Total Mortgage Arena,Bridgeport,CT,Fairfield,Staten Island,F4 home game away from home arena/city,-9.833226831603533,-9.833226831603533
+401083749,2019,2018-11-18,2539,112358,False,The Kelp Bed,Seaside,CA,San Francisco,Brooklyn,F4 home game away from home arena/city,15.019693043701782,15.019693043701782
+401086829,2019,2018-11-20,16,302,True,Golden 1 Center,Sacramento,CA,Sacramento,Davis,F3 neutral in a team's home city,5.008185703879425,5.008185703879425
+401086985,2019,2018-11-24,70,2540,True,Idaho Central Arena,Boise,ID,Moscow,Santa Barbara,"F5 neutral, team name in venue",-6.066707809063551,-6.066707809063551
+401089345,2019,2018-11-29,2010,5,False,Von Braun Center,Huntsville,AL,Normal,Birmingham,F4 home game away from home arena/city,3.839036270091796,3.839036270091796
+401082806,2019,2018-11-30,221,2184,True,PPG Paints Arena,Pittsburgh,PA,Pittsburgh,Pittsburgh,F3 neutral in a team's home city,18.12894309675221,-18.12894309675221
+401082496,2019,2018-11-30,135,197,True,U.S. Bank Stadium,Minneapolis,MN,Minneapolis,Stillwater,F3 neutral in a team's home city,5.159647003702892,5.159647003702892
+401083516,2019,2018-12-07,30,2628,True,crypto.com Arena,Los Angeles,CA,Los Angeles,Fort Worth,F3 neutral in a team's home city,-33.090676090744445,-33.090676090744445
+401083542,2019,2018-12-08,201,2724,False,Paycom Center,Oklahoma City,OK,Norman,Wichita,F4 home game away from home arena/city,22.887881906281557,22.887881906281557
+401085877,2019,2018-12-08,119,2415,True,Royal Farms Arena,Baltimore,MD,Towson,Baltimore,F3 neutral in a team's home city,-7.4310750168133595,7.4310750168133595
+401083607,2019,2018-12-08,254,252,True,Vivint Arena,Salt Lake City,UT,Salt Lake City,Provo,F3 neutral in a team's home city,-12.349583306100287,-12.349583306100287
+401083551,2019,2018-12-08,2305,166,False,T-Mobile Center,Kansas City,MO,Lawrence,Las Cruces,F4 home game away from home arena/city,-12.028781183332615,-12.028781183332615
+401085929,2019,2018-12-09,171,314,True,Madison Square Garden,New York,NY,New York,New Rochelle,F3 neutral in a team's home city,5.505787948427451,5.505787948427451
+401083342,2019,2018-12-09,2599,163,False,Madison Square Garden,New York,NY,Queens,Princeton,F4 home game away from home arena/city,1.508840501763519,1.508840501763519
+401086131,2019,2018-12-09,2253,2440,True,Footprint Center,Phoenix,AZ,Phoenix,Reno,F3 neutral in a team's home city,4.962497752396969,4.962497752396969
+401082372,2019,2018-12-15,2086,84,True,Gainbridge Fieldhouse,Indianapolis,IN,Indianapolis,Bloomington,F3 neutral in a team's home city,-3.6070675564032593,-3.6070675564032593
+401083408,2019,2018-12-15,2181,66,True,Wells Fargo Arena (IA),Des Moines,IA,Des Moines,Ames,F3 neutral in a team's home city,7.093680657822425,7.093680657822425
+401083609,2019,2018-12-15,2439,252,True,T-Mobile Arena,Las Vegas,NV,Las Vegas,Provo,F3 neutral in a team's home city,6.316246116375862,6.316246116375862
+401083543,2019,2018-12-15,201,30,False,BOK Center,Tulsa,OK,Norman,Los Angeles,F4 home game away from home arena/city,0.21191179046347663,0.21191179046347663
+401083170,2019,2018-12-15,5,2,True,Legacy Arena at BJCC,Birmingham,AL,Birmingham,Auburn,F3 neutral in a team's home city,19.04144765209624,19.04144765209624
+401082926,2019,2018-12-22,2306,238,False,T-Mobile Center,Kansas City,MO,Manhattan,Nashville,F4 home game away from home arena/city,3.8419070418118784,3.8419070418118784
+401094574,2019,2018-12-22,47,2261,True,Entertainment & Sports Arena,Washington,DC,Washington,Hampton,F3 neutral in a team's home city,-4.345189088453576,-4.345189088453576
+401086045,2019,2019-01-10,2217,2612,False,Total Mortgage Arena,Bridgeport,CT,Fairfield,Jersey City,F4 home game away from home arena/city,-1.8702313919530864,-1.8702313919530864
+401085727,2019,2019-01-12,179,2230,False,Blue Cross Arena,Rochester,NY,Saint Bonaventure,Bronx,F4 home game away from home arena/city,-0.2950080003526523,-0.2950080003526523
+401083360,2019,2019-01-18,222,2752,False,Wells Fargo Center,Philadelphia,PA,Villanova,Cincinnati,F4 home game away from home arena/city,0.45229831425279343,0.45229831425279343
+401086046,2019,2019-01-24,2217,2561,False,Total Mortgage Arena,Bridgeport,CT,Fairfield,Albany,F4 home game away from home arena/city,-12.867503576369083,-12.867503576369083
+401090117,2019,2019-01-24,2198,55,False,Seabury Center Arena,Berea,KY,Richmond,Jacksonville,F4 home game away from home arena/city,24.112599700902777,24.112599700902777
+401090118,2019,2019-01-26,2198,2635,False,Davis-Reid Alumni Gym,Georgetown,KY,Richmond,Cookeville,F4 home game away from home arena/city,-19.130454559945246,-19.130454559945246
+401085688,2019,2019-01-26,2603,219,True,The Palestra,Philadelphia,PA,Philadelphia,Philadelphia,F2 neutral at away team's arena,-5.127543784920723,5.127543784920723
+401083282,2019,2019-01-27,2599,46,False,Madison Square Garden,New York,NY,Queens,Washington,F4 home game away from home arena/city,-17.8793723670639,-17.8793723670639
+401083333,2019,2019-01-27,222,2550,False,Wells Fargo Center,Philadelphia,PA,Villanova,Newark,F4 home game away from home arena/city,19.97974481233139,19.97974481233139
+401089883,2019,2019-02-01,2739,270,False,Kress Events Center,Green Bay,WI,Ashwaubenon,Milwaukee,F4 home game away from home arena/city,9.201965734094534,9.201965734094534
+401083284,2019,2019-02-03,222,46,False,Wells Fargo Center,Philadelphia,PA,Villanova,Washington,F4 home game away from home arena/city,-0.10986467589562565,-0.10986467589562565
+401086025,2019,2019-02-09,2217,2405,False,Total Mortgage Arena,Bridgeport,CT,Fairfield,West Long Branch,F4 home game away from home arena/city,-13.146972985315465,-13.146972985315465
+401083322,2019,2019-02-09,2599,2507,False,Madison Square Garden,New York,NY,Queens,Providence,F4 home game away from home arena/city,-18.057371043089056,-18.057371043089056
+401083347,2019,2019-02-17,2599,222,False,Madison Square Garden,New York,NY,Queens,Villanova,F4 home game away from home arena/city,9.76041577007868,9.76041577007868
+401083335,2019,2019-02-23,2599,2550,False,Madison Square Garden,New York,NY,Queens,Newark,F4 home game away from home arena/city,5.650138171798089,5.650138171798089
+401083216,2019,2019-03-02,222,2086,False,Wells Fargo Center,Philadelphia,PA,Villanova,Indianapolis,F4 home game away from home arena/city,13.318268170726638,13.318268170726638
+401121803,2019,2019-03-09,2520,2561,True,MVP Arena,Albany,NY,Lawrenceville,Albany,F2 neutral at away team's arena,-10.510659568260607,10.510659568260607
+401121788,2019,2019-03-10,232,2182,False,North Charleston Coliseum,North Charleston,SC,Charleston,Philadelphia,F4 home game away from home arena/city,-0.4319938645950394,-0.4319938645950394
+401121801,2019,2019-03-10,314,2561,True,MVP Arena,Albany,NY,New Rochelle,Albany,F2 neutral at away team's arena,11.565950918027074,-11.565950918027074
+401121790,2019,2019-03-11,111,232,True,North Charleston Coliseum,North Charleston,SC,Boston,Charleston,"F5 neutral, team name in venue",0.8758798865182555,0.8758798865182555
+401121737,2019,2019-03-13,2450,2569,True,Norfolk Scope Arena,Norfolk,VA,Norfolk,Orangeburg,F3 neutral in a team's home city,-3.8662901209912217,-3.8662901209912217
+401121781,2019,2019-03-13,147,70,True,Idaho Central Arena,Boise,ID,Bozeman,Moscow,"F5 neutral, team name in venue",-9.879796260534757,-9.879796260534757
+401120741,2019,2019-03-13,2599,305,False,Madison Square Garden,New York,NY,Queens,Chicago,F4 home game away from home arena/city,3.706295460011278,3.706295460011278
+401119811,2019,2019-03-13,245,238,True,Bridgestone Arena,Nashville,TN,College Station,Nashville,F3 neutral in a team's home city,12.36026039683847,-12.36026039683847
+401121597,2019,2019-03-14,21,2439,True,Thomas & Mack Center,Las Vegas,NV,San Diego,Las Vegas,F2 neutral at away team's arena,4.495950923961733,-4.495950923961733
+401120723,2019,2019-03-14,2305,251,False,T-Mobile Center,Kansas City,MO,Lawrence,Austin,F4 home game away from home arena/city,3.1157051938493705,3.1157051938493705
+401121733,2019,2019-03-15,2450,47,True,Norfolk Scope Arena,Norfolk,VA,Norfolk,Washington,F3 neutral in a team's home city,1.185046815791054,1.185046815791054
+401120712,2019,2019-03-15,2116,235,True,FedExForum,Memphis,TN,Orlando,Memphis,F2 neutral at away team's arena,-29.574616829776073,29.574616829776073
+401120725,2019,2019-03-15,2305,277,False,T-Mobile Center,Kansas City,MO,Lawrence,Morgantown,F4 home game away from home arena/city,2.1329334393911115,2.1329334393911115
+401120715,2019,2019-03-16,248,235,True,FedExForum,Memphis,TN,Houston,Memphis,F2 neutral at away team's arena,-5.545761966483905,5.545761966483905
+401121732,2019,2019-03-16,2450,2428,True,Norfolk Scope Arena,Norfolk,VA,Norfolk,Durham,F3 neutral in a team's home city,-5.82572306831937,-5.82572306831937
+401120726,2019,2019-03-16,2305,66,False,T-Mobile Center,Kansas City,MO,Lawrence,Ames,F4 home game away from home arena/city,-16.201258326235024,-16.201258326235024
+401121630,2019,2019-03-17,108,43,True,John J. Lee Amphitheater,New Haven,CT,Cambridge,New Haven,F2 neutral at away team's arena,-11.13790606372269,11.13790606372269
+401124958,2019,2019-03-26,2739,2229,False,Kress Events Center,Green Bay,WI,Ashwaubenon,Miami,F4 home game away from home arena/city,28.413733278217254,28.413733278217254
+401125273,2019,2019-03-29,2739,2934,False,Kress Events Center,Green Bay,WI,Ashwaubenon,Bakersfield,F4 home game away from home arena/city,11.317246630045952,11.317246630045952
+401125493,2019,2019-04-02,2739,2640,False,Kress Events Center,Green Bay,WI,Ashwaubenon,Houston,F4 home game away from home arena/city,-4.333079416725538,-4.333079416725538
+401171954,2020,2019-11-05,2217,2083,False,Total Mortgage Arena,Bridgeport,CT,Fairfield,Lewisburg,F4 home game away from home arena/city,-4.687962810629604,-4.687962810629604
+401168441,2020,2019-11-05,2550,2681,False,Walsh Gymnasium,South Orange,NJ,Newark,Staten Island,F4 home game away from home arena/city,4.652782184466723,4.652782184466723
+401170109,2020,2019-11-09,2217,113,False,Total Mortgage Arena,Bridgeport,CT,Fairfield,Amherst,F4 home game away from home arena/city,-5.643335033501991,-5.643335033501991
+401168442,2020,2019-11-09,2550,2619,False,Walsh Gymnasium,South Orange,NJ,Newark,Stony Brook,F4 home game away from home arena/city,-5.391913949637985,-5.391913949637985
+401172339,2020,2019-11-09,2539,163,True,Chase Center,San Francisco,CA,San Francisco,Princeton,F3 neutral in a team's home city,5.6497279914792715,5.6497279914792715
+401169779,2020,2019-11-16,222,195,False,Wells Fargo Center,Philadelphia,PA,Villanova,Athens,F4 home game away from home arena/city,6.364140714737744,6.364140714737744
+401166440,2020,2019-11-20,302,16,True,Golden 1 Center,Sacramento,CA,Davis,Sacramento,F3 neutral in a team's home city,-4.715477561818513,4.715477561818513
+401182610,2020,2019-11-22,324,239,True,The HTC Center,Conway,SC,Conway,Waco,F1 neutral at home team's arena,1.5285812173394895,1.5285812173394895
+401185934,2020,2019-11-24,2193,253,True,Freedom Hall Civic Center,Johnson City,TN,Johnson City,Cedar City,F1 neutral at home team's arena,5.636701637494406,5.636701637494406
+401172511,2020,2019-11-25,2739,2463,False,Kress Events Center,Green Bay,WI,Ashwaubenon,Northridge,F4 home game away from home arena/city,-12.833035161226409,-12.833035161226409
+401172512,2020,2019-11-26,2739,2142,False,Kress Events Center,Green Bay,WI,Ashwaubenon,Hamilton,F4 home game away from home arena/city,-18.014731606666537,-18.014731606666537
+401169981,2020,2019-12-01,41,311,False,XL Center,Hartford,CT,Storrs,Bangor,F4 home game away from home arena/city,3.2076951193104755,3.2076951193104755
+401168463,2020,2019-12-07,2599,277,False,Madison Square Garden,New York,NY,Queens,Morgantown,F4 home game away from home arena/city,8.315036719799636,8.315036719799636
+401170087,2020,2019-12-08,2253,2335,True,Footprint Center,Phoenix,AZ,Phoenix,Lynchburg,F3 neutral in a team's home city,0.32789120192603427,0.32789120192603427
+401166486,2020,2019-12-14,254,2692,True,Vivint Arena,Salt Lake City,UT,Salt Lake City,Ogden,F3 neutral in a team's home city,-1.9818493243240756,-1.9818493243240756
+401169784,2020,2019-12-14,222,48,True,Prudential Center,Newark,NJ,Villanova,Newark,F3 neutral in a team's home city,-6.358507410820549,6.358507410820549
+401169657,2020,2019-12-14,2305,140,False,T-Mobile Center,Kansas City,MO,Lawrence,Kansas City,F4 home game away from home arena/city,13.60375813594392,13.60375813594392
+401169893,2020,2019-12-18,2535,333,False,Legacy Arena at BJCC,Birmingham,AL,Homewood,Tuscaloosa,F4 home game away from home arena/city,-8.974553563333783,-8.974553563333783
+401169983,2020,2019-12-18,41,2612,False,XL Center,Hartford,CT,Storrs,Jersey City,F4 home game away from home arena/city,-11.81285295341673,-11.81285295341673
+401166501,2020,2019-12-20,233,2458,False,Sanford Pentagon,Sioux Falls,SD,Vermillion,Greeley,F4 home game away from home arena/city,-20.634238949258638,-20.634238949258638
+401166124,2020,2019-12-21,2509,2086,True,Gainbridge Fieldhouse,Indianapolis,IN,West Lafayette,Indianapolis,F3 neutral in a team's home city,-11.22892180192322,11.22892180192322
+401169661,2020,2019-12-21,222,2305,False,Wells Fargo Center,Philadelphia,PA,Villanova,Lawrence,F4 home game away from home arena/city,4.631597004011899,4.631597004011899
+401169905,2020,2019-12-21,145,2545,True,University Center (LA),Hammond,LA,Oxford,Hammond,F2 neutral at away team's arena,-10.929079251285575,10.929079251285575
+401169902,2020,2019-12-21,30,99,True,crypto.com Arena,Los Angeles,CA,Los Angeles,Baton Rouge,F3 neutral in a team's home city,6.388992792243615,6.388992792243615
+401169984,2020,2019-12-22,41,160,False,XL Center,Hartford,CT,Storrs,Durham,F4 home game away from home arena/city,6.914456360585731,6.914456360585731
+401182618,2020,2019-12-23,62,264,True,Stan Sheriff Center,Honolulu,HI,Honolulu,Seattle,F1 neutral at home team's arena,-0.519694258527652,-0.519694258527652
+401169985,2020,2019-12-29,41,2885,False,XL Center,Hartford,CT,Storrs,Newark,F4 home game away from home arena/city,4.5841891132784305,4.5841891132784305
+401170212,2020,2020-01-02,2184,139,False,UPMC Events Center,Moon Township,PA,Pittsburgh,St. Louis,F4 home game away from home arena/city,8.927069847786573,8.927069847786573
+401170218,2020,2020-01-05,2184,2166,False,UPMC Events Center,Moon Township,PA,Pittsburgh,Davidson,F4 home game away from home arena/city,3.871330085973667,3.871330085973667
+401171961,2020,2020-01-08,2217,2368,False,Total Mortgage Arena,Bridgeport,CT,Fairfield,Poughkeepsie,F4 home game away from home arena/city,-24.740579625410227,-24.740579625410227
+401168396,2020,2020-01-11,222,46,False,Wells Fargo Center,Philadelphia,PA,Villanova,Washington,F4 home game away from home arena/city,7.6766508270964735,7.6766508270964735
+401168351,2020,2020-01-11,2599,305,False,Madison Square Garden,New York,NY,Queens,Chicago,F4 home game away from home arena/city,2.510233930412981,2.510233930412981
+401169530,2020,2020-01-12,41,2724,False,XL Center,Hartford,CT,Storrs,Wichita,F4 home game away from home arena/city,-0.806035137518831,-0.806035137518831
+401169470,2020,2020-01-18,222,41,False,Wells Fargo Center,Philadelphia,PA,Villanova,Storrs,F4 home game away from home arena/city,-3.289501614742589,-3.289501614742589
+401168450,2020,2020-01-18,2599,2550,False,Madison Square Garden,New York,NY,Queens,Newark,F4 home game away from home arena/city,1.7122674056242335,1.7122674056242335
+401169550,2020,2020-01-26,41,202,False,XL Center,Hartford,CT,Storrs,Tulsa,F4 home game away from home arena/city,-8.64036964769161,-8.64036964769161
+401168468,2020,2020-01-28,2599,222,False,Madison Square Garden,New York,NY,Queens,Villanova,F4 home game away from home arena/city,-17.81352839673612,-17.81352839673612
+401172524,2020,2020-01-31,2739,94,False,Kress Events Center,Green Bay,WI,Ashwaubenon,Highland Heights,F4 home game away from home arena/city,-6.85208352459566,-6.85208352459566
+401168331,2020,2020-02-01,222,156,False,Wells Fargo Center,Philadelphia,PA,Villanova,Omaha,F4 home game away from home arena/city,-20.5904307504441,-20.5904307504441
+401168399,2020,2020-02-02,2599,46,False,Madison Square Garden,New York,NY,Queens,Washington,F4 home game away from home arena/city,-1.3914524505379586,-1.3914524505379586
+401171967,2020,2020-02-04,2217,2405,False,Total Mortgage Arena,Bridgeport,CT,Fairfield,West Long Branch,F4 home game away from home arena/city,2.232604801636212,2.232604801636212
+401168452,2020,2020-02-08,222,2550,False,Wells Fargo Center,Philadelphia,PA,Villanova,Newark,F4 home game away from home arena/city,-8.478768778022399,-8.478768778022399
+401170282,2020,2020-02-08,2184,179,False,UPMC Events Center,Moon Township,PA,Pittsburgh,Saint Bonaventure,F4 home game away from home arena/city,-6.847812221108006,-6.847812221108006
+401171969,2020,2020-02-09,2217,314,False,Total Mortgage Arena,Bridgeport,CT,Fairfield,New Rochelle,F4 home game away from home arena/city,-26.929116971760454,-26.929116971760454
+401169476,2020,2020-02-16,41,235,False,XL Center,Hartford,CT,Storrs,Memphis,F4 home game away from home arena/city,-0.9220865061993142,-0.9220865061993142
+401168469,2020,2020-02-17,2599,2752,False,Madison Square Garden,New York,NY,Queens,Cincinnati,F4 home game away from home arena/city,-2.4679689680178694,-2.4679689680178694
+401166365,2020,2020-02-22,2579,99,True,Colonial Life Arena,Columbia,SC,Columbia,Baton Rouge,F1 neutral at home team's arena,-1.692577143931702,-1.692577143931702
+401169762,2020,2020-02-25,201,2641,False,Paycom Center,Oklahoma City,OK,Norman,Lubbock,F4 home game away from home arena/city,14.465051537585152,14.465051537585152
+401169492,2020,2020-02-26,41,2116,False,XL Center,Hartford,CT,Storrs,Orlando,F4 home game away from home arena/city,7.763260868629693,7.763260868629693
+401168439,2020,2020-02-29,222,2507,False,Wells Fargo Center,Philadelphia,PA,Villanova,Providence,F4 home game away from home arena/city,-10.255114995069219,-10.255114995069219
+401172483,2020,2020-02-29,2739,325,False,Kress Events Center,Green Bay,WI,Ashwaubenon,Cleveland,F4 home game away from home arena/city,-3.1263406675707834,-3.1263406675707834
+401170321,2020,2020-02-29,2184,2244,False,UPMC Events Center,Moon Township,PA,Pittsburgh,Fairfax,F4 home game away from home arena/city,-5.27147709164487,-5.27147709164487
+401168422,2020,2020-03-07,2599,269,False,Madison Square Garden,New York,NY,Queens,Milwaukee,F4 home game away from home arena/city,4.879364745974713,4.879364745974713
+401210974,2020,2020-03-11,253,70,True,Idaho Central Arena,Boise,ID,Cedar City,Moscow,"F5 neutral, team name in venue",-7.421474629839462,-7.421474629839462
+401211457,2020,2020-03-11,8,238,True,Bridgestone Arena,Nashville,TN,Fayetteville,Nashville,F3 neutral in a team's home city,3.1964098952206044,-3.1964098952206044
+401259243,2021,2020-11-26,47,2057,True,Walter E. Washington Convention Center,Washington,DC,Washington,Nashville,F3 neutral in a team's home city,-2.2853512178356272,-2.2853512178356272
+401265705,2021,2020-11-27,2511,47,True,Walter E. Washington Convention Center,Washington,DC,,Washington,F3 neutral in a team's home city,3.6103628002925934,-3.6103628002925934
+401259247,2021,2020-11-28,47,2244,True,Walter E. Washington Convention Center,Washington,DC,Washington,Fairfax,F3 neutral in a team's home city,-1.1427156616623364,-1.1427156616623364
+401265824,2021,2020-11-28,140,2546,True,Mabee Fieldhouse,Kansas City,MO,Kansas City,Cape Girardeau,F3 neutral in a team's home city,-9.782016750492144,-9.782016750492144
+401266620,2021,2020-12-02,2541,2934,False,Kaiser Permanente Arena,Santa Cruz,CA,Santa Clara,Bakersfield,F4 home game away from home arena/city,-3.162810816132625,-3.162810816132625
+401253912,2021,2020-12-12,2628,245,True,Dickies Arena,Fort Worth,TX,Fort Worth,College Station,F3 neutral in a team's home city,18.49038168191605,18.49038168191605
+401266893,2021,2020-12-12,85,2634,True,Indiana Farmers Coliseum,Indianapolis,IN,Indianapolis,Nashville,F1 neutral at home team's arena,1.4713735783504578,1.4713735783504578
+401262497,2021,2020-12-19,84,2086,True,Gainbridge Fieldhouse,Indianapolis,IN,Bloomington,Indianapolis,F3 neutral in a team's home city,1.054458479604932,-1.054458479604932
+401257446,2021,2020-12-19,24,12,False,Kaiser Permanente Arena,Santa Cruz,CA,Stanford,Tucson,F4 home game away from home arena/city,0.02368424906233635,0.02368424906233635
+401270595,2021,2020-12-21,24,2934,False,Kaiser Permanente Arena,Santa Cruz,CA,Stanford,Bakersfield,F4 home game away from home arena/city,-4.6845244170739235,-4.6845244170739235
+401261639,2021,2020-12-23,252,2692,False,Vivint Arena,Salt Lake City,UT,Provo,Ogden,F4 home game away from home arena/city,-9.448575906122532,-9.448575906122532
+401262566,2021,2020-12-31,167,2440,False,Rip Griffin Center,Lubbock,TX,Albuquerque,Reno,F4 home game away from home arena/city,-8.11916252120551,-8.11916252120551
+401262579,2021,2021-01-08,167,328,False,Rip Griffin Center,Lubbock,TX,Albuquerque,Logan,F4 home game away from home arena/city,-19.413577334523954,-19.413577334523954
+401278723,2021,2021-01-23,2184,179,True,Kerr Fitness Center,Pittsburgh,PA,Pittsburgh,Saint Bonaventure,F3 neutral in a team's home city,3.5917028491855083,3.5917028491855083
+401277815,2021,2021-02-07,2217,2514,False,Total Mortgage Arena,Bridgeport,CT,Fairfield,Hamden,F4 home game away from home arena/city,-14.37351384131859,-14.37351384131859
+401309516,2021,2021-03-02,166,292,True,Don Haskins Center,El Paso,TX,El Paso,Edinburg,F3 neutral in a team's home city,14.882800938560694,14.882800938560694
+401286910,2021,2021-03-04,2454,2453,True,Swisher Gymnasium,Jacksonville,FL,Jacksonville,Florence,F3 neutral in a team's home city,-5.4619457153845,-5.4619457153845
+401286891,2021,2021-03-04,257,2184,True,Stuart C. Siegel Center,Richmond,VA,Richmond,Pittsburgh,F3 neutral in a team's home city,-10.373156391372781,-10.373156391372781
+401296553,2021,2021-03-10,149,70,True,Idaho Central Arena,Boise,ID,Missoula,Moscow,"F5 neutral, team name in venue",-9.018101388304377,-9.018101388304377
+401286991,2021,2021-03-10,2439,2005,True,Thomas & Mack Center,Las Vegas,NV,Las Vegas,Colorado Springs,F1 neutral at home team's arena,15.899726266279808,15.899726266279808
+401287130,2021,2021-03-10,238,245,True,Bridgestone Arena,Nashville,TN,Nashville,College Station,F3 neutral in a team's home city,9.495818131964846,9.495818131964846
+401287132,2021,2021-03-11,57,238,True,Bridgestone Arena,Nashville,TN,Gainesville,Nashville,F3 neutral in a team's home city,-2.553005258877249,2.553005258877249
+401296133,2021,2021-03-11,2450,2428,True,Norfolk Scope Arena,Norfolk,VA,Norfolk,Durham,F3 neutral in a team's home city,22.7006848394044,22.7006848394044
+401286999,2021,2021-03-11,328,2439,True,Thomas & Mack Center,Las Vegas,NV,Logan,Las Vegas,F2 neutral at away team's arena,10.408504263405781,-10.408504263405781
+401301731,2021,2021-03-11,2305,201,False,T-Mobile Center,Kansas City,MO,Lawrence,Norman,F4 home game away from home arena/city,1.4230165924654337,1.4230165924654337
+401296193,2021,2021-03-13,2450,2415,True,Norfolk Scope Arena,Norfolk,VA,Norfolk,Baltimore,F3 neutral in a team's home city,3.841765525822894,3.841765525822894
+401372247,2022,2021-11-09,2739,282,False,Kress Events Center,Green Bay,WI,Ashwaubenon,Terre Haute,F4 home game away from home arena/city,-2.1128467916557634,-2.1128467916557634
+401372366,2022,2021-11-11,233,2005,False,Sanford Pentagon,Sioux Falls,SD,Vermillion,Colorado Springs,F4 home game away from home arena/city,-4.927374044425861,-4.927374044425861
+401370151,2022,2021-11-20,2439,130,True,T-Mobile Arena,Las Vegas,NV,Las Vegas,Ann Arbor,F3 neutral in a team's home city,2.1713494614937776,2.1713494614937776
+401372459,2022,2021-11-20,2065,2803,True,Ocean Center,Daytona Beach,FL,Daytona Beach,Smithfield,F3 neutral in a team's home city,21.576989001059673,21.576989001059673
+401376535,2022,2021-11-21,2065,2005,True,Ocean Center,Daytona Beach,FL,Daytona Beach,Colorado Springs,F3 neutral in a team's home city,0.2669804369556452,0.2669804369556452
+401377061,2022,2021-11-21,2439,2724,True,T-Mobile Arena,Las Vegas,NV,Las Vegas,Wichita,F3 neutral in a team's home city,6.915374961291218,6.915374961291218
+401369164,2022,2021-11-23,2335,2065,True,Ocean Center,Daytona Beach,FL,Lynchburg,Daytona Beach,F3 neutral in a team's home city,-10.020800052628395,10.020800052628395
+401365747,2022,2021-11-28,2325,222,True,The Palestra,Philadelphia,PA,Philadelphia,Villanova,F3 neutral in a team's home city,-7.551594789082355,-7.551594789082355
+401372016,2022,2021-12-03,2599,2305,False,UBS Arena,Elmont,NY,Queens,Lawrence,F4 home game away from home arena/city,-13.482975538315873,-13.482975538315873
+401368230,2022,2021-12-04,2739,2754,False,Kress Events Center,Green Bay,WI,Ashwaubenon,Youngstown,F4 home game away from home arena/city,-24.353791298659246,-24.353791298659246
+401372006,2022,2021-12-07,2305,2638,False,T-Mobile Center,Kansas City,MO,Lawrence,El Paso,F4 home game away from home arena/city,5.297179975746129,5.297179975746129
+401372266,2022,2021-12-08,2628,254,True,Dickies Arena,Fort Worth,TX,Fort Worth,Salt Lake City,F3 neutral in a team's home city,13.297876026446398,13.297876026446398
+401370062,2022,2021-12-17,2429,154,True,Spectrum Center,Charlotte,NC,Charlotte,Winston-Salem,F3 neutral in a team's home city,6.227292501132178,6.227292501132178
+401371950,2022,2021-12-18,2086,2509,True,Gainbridge Fieldhouse,Indianapolis,IN,Indianapolis,West Lafayette,F3 neutral in a team's home city,-13.923085238444177,-13.923085238444177
+401371173,2022,2021-12-18,2253,2539,True,Footprint Center,Phoenix,AZ,Phoenix,San Francisco,F3 neutral in a team's home city,6.1185560617453625,6.1185560617453625
+401365068,2022,2021-12-18,2099,2084,True,KeyBank Center,Buffalo,NY,Buffalo,Buffalo,F3 neutral in a team's home city,16.457157663348063,-16.457157663348063
+401365299,2022,2021-12-20,2127,2363,True,McAlister Field House,Charleston,SC,Charleston,Riverdale,F3 neutral in a team's home city,-19.361695865005995,-19.361695865005995
+401372724,2022,2021-12-21,2127,2569,True,McAlister Field House,Charleston,SC,Charleston,Orangeburg,F3 neutral in a team's home city,-10.896676631286963,-10.896676631286963
+401376709,2022,2021-12-22,2638,71,True,Don Haskins Center,El Paso,TX,El Paso,Peoria,F1 neutral at home team's arena,-6.429777241521128,-6.429777241521128
+401372379,2022,2021-12-22,265,68,False,Spokane Arena,Spokane,WA,Pullman,Boise,F4 home game away from home arena/city,-11.647825805714664,-11.647825805714664
+401373550,2022,2022-01-16,222,2086,False,Wells Fargo Center,Philadelphia,PA,Villanova,Indianapolis,F4 home game away from home arena/city,25.7719940350955,25.7719940350955
+401373549,2022,2022-01-16,2599,46,False,Madison Square Garden,New York,NY,Queens,Washington,F4 home game away from home arena/city,6.3126905309696095,6.3126905309696095
+401373556,2022,2022-01-22,2599,2550,False,Madison Square Garden,New York,NY,Queens,Newark,F4 home game away from home arena/city,-3.057012679272985,-3.057012679272985
+401398906,2022,2022-01-24,2550,2599,False,Walsh Gymnasium,South Orange,NJ,Newark,Queens,F4 home game away from home arena/city,-30.56990666397455,-30.56990666397455
+401373577,2022,2022-02-05,222,41,False,Wells Fargo Center,Philadelphia,PA,Villanova,Hartford,F4 home game away from home arena/city,6.461084038441508,6.461084038441508
+401373581,2022,2022-02-08,2599,222,False,Madison Square Garden,New York,NY,Queens,Villanova,F4 home game away from home arena/city,-1.3101094579881067,-1.3101094579881067
+401368318,2022,2022-02-11,2739,94,False,Kress Events Center,Green Bay,WI,Ashwaubenon,Highland Heights,F4 home game away from home arena/city,-1.8134881158994434,-1.8134881158994434
+401373587,2022,2022-02-12,222,2550,False,Wells Fargo Center,Philadelphia,PA,Villanova,Newark,F4 home game away from home arena/city,-2.712504948419829,-2.712504948419829
+401373590,2022,2022-02-13,2599,41,False,Madison Square Garden,New York,NY,Queens,Hartford,F4 home game away from home arena/city,0.9331521279902844,0.9331521279902844
+401368331,2022,2022-02-18,2739,2870,False,Kress Events Center,Green Bay,WI,Ashwaubenon,Fort Wayne,F4 home game away from home arena/city,-15.055295884422815,-15.055295884422815
+401368336,2022,2022-02-20,2739,325,False,Kress Events Center,Green Bay,WI,Ashwaubenon,Cleveland,F4 home game away from home arena/city,-3.830556340066062,-3.830556340066062
+401403310,2022,2022-03-09,16,70,True,Idaho Central Arena,Boise,ID,Sacramento,Moscow,"F5 neutral, team name in venue",0.11654571224891486,0.11654571224891486
+401403432,2022,2022-03-09,2450,2169,True,Norfolk Scope Arena,Norfolk,VA,Norfolk,Dover,F3 neutral in a team's home city,-8.653180397766228,-8.653180397766228
+401403349,2022,2022-03-09,2599,305,False,Madison Square Garden,New York,NY,Queens,Chicago,F4 home game away from home arena/city,11.389662763917247,11.389662763917247
+401405836,2022,2022-03-10,2305,277,False,T-Mobile Center,Kansas City,MO,Lawrence,Morgantown,F4 home game away from home arena/city,11.95808553086246,11.95808553086246
+401409368,2022,2022-03-10,2751,2439,True,Thomas & Mack Center,Las Vegas,NV,Laramie,Las Vegas,F2 neutral at away team's arena,1.236092354759714,-1.236092354759714
+401403376,2022,2022-03-10,45,113,True,Capital One Arena,Washington,DC,Washington,Amherst,F3 neutral in a team's home city,-7.869138757911758,-7.869138757911758
+401403428,2022,2022-03-11,2450,2415,True,Norfolk Scope Arena,Norfolk,VA,Norfolk,Baltimore,F3 neutral in a team's home city,3.113019466469348,3.113019466469348
+401405840,2022,2022-03-11,2305,2628,False,T-Mobile Center,Kansas City,MO,Lawrence,Fort Worth,F4 home game away from home arena/city,4.038973079677641,4.038973079677641
+401403427,2022,2022-03-12,2450,2154,True,Norfolk Scope Arena,Norfolk,VA,Norfolk,Baltimore,F3 neutral in a team's home city,6.397120710332445,6.397120710332445
+401405842,2022,2022-03-12,2305,2641,False,T-Mobile Center,Kansas City,MO,Lawrence,Lubbock,F4 home game away from home arena/city,6.651508198869719,6.651508198869719
+401408573,2022,2022-03-16,2750,2803,True,UD Arena,Dayton,OH,Dayton,Smithfield,F3 neutral in a team's home city,8.048520649130726,8.048520649130726
+401485098,2023,2022-11-07,41,284,False,XL Center,Hartford,CT,Storrs,South Easton,F4 home game away from home arena/city,-3.527359340855064,-3.527359340855064
+401492096,2023,2022-11-12,68,265,True,Idaho Central Arena,Boise,ID,Boise,Pullman,F3 neutral in a team's home city,12.110051673746156,12.110051673746156
+401485137,2023,2022-11-15,41,2084,False,XL Center,Hartford,CT,Storrs,Buffalo,F4 home game away from home arena/city,-2.093614020547232,-2.093614020547232
+401491662,2023,2022-11-18,311,171,False,The Pit in Memorial Gymnasium,Orono,ME,Bangor,New York,F4 home game away from home arena/city,17.48463840553195,17.48463840553195
+401485149,2023,2022-11-20,41,2169,False,XL Center,Hartford,CT,Storrs,Dover,F4 home game away from home arena/city,0.4518760592158344,0.4518760592158344
+401488202,2023,2022-11-22,302,16,True,Golden 1 Center,Sacramento,CA,Davis,Sacramento,F3 neutral in a team's home city,7.998756631477276,-7.998756631477276
+401482951,2023,2022-11-24,2501,153,True,Moda Center,Portland,OR,Portland,Chapel Hill,F3 neutral in a team's home city,5.748072205838993,5.748072205838993
+401486737,2023,2022-11-25,222,2501,True,Veterans Memorial Coliseum,Portland,OR,Villanova,Portland,F3 neutral in a team's home city,-20.677512486383172,20.677512486383172
+401483218,2023,2022-11-25,2579,2908,False,TD Arena,Charleston,SC,Columbia,Spartanburg,F4 home game away from home arena/city,0.8920014639790299,0.8920014639790299
+401484367,2023,2022-11-25,2250,2502,True,Veterans Memorial Coliseum,Portland,OR,Spokane,Portland,F3 neutral in a team's home city,-2.5631155754160844,2.5631155754160844
+401486747,2023,2022-11-25,2502,277,True,Moda Center,Portland,OR,Portland,Morgantown,F3 neutral in a team's home city,-1.4514902923734354,-1.4514902923734354
+401487367,2023,2022-11-25,2916,159,True,UTSA Convocation Center,San Antonio,TX,San Antonio,Hanover,F3 neutral in a team's home city,10.896026973716683,10.896026973716683
+401492425,2023,2022-11-26,2739,82,False,Kress Events Center,Green Bay,WI,Ashwaubenon,Chicago,F4 home game away from home arena/city,-9.299611289886226,-9.299611289886226
+401486749,2023,2022-11-27,2502,204,True,Chiles Center,Portland,OR,Portland,Corvallis,F3 neutral in a team's home city,11.426561573740443,11.426561573740443
+401488628,2023,2022-11-27,2755,2916,True,UTSA Convocation Center,San Antonio,TX,Grambling,San Antonio,F3 neutral in a team's home city,-7.99538990062941,7.99538990062941
+401486742,2023,2022-11-27,127,2501,True,Chiles Center,Portland,OR,East Lansing,Portland,F2 neutral at away team's arena,-7.7072013429892365,7.7072013429892365
+401487654,2023,2022-11-30,2325,218,True,The Palestra,Philadelphia,PA,Philadelphia,Philadelphia,F3 neutral in a team's home city,-11.033404403256279,11.033404403256279
+401479691,2023,2022-12-03,222,201,False,Wells Fargo Center,Philadelphia,PA,Villanova,Norman,F4 home game away from home arena/city,2.087086339313223,2.087086339313223
+401483304,2023,2022-12-10,2567,2628,True,Dickies Arena,Fort Worth,TX,Dallas,Fort Worth,F3 neutral in a team's home city,3.579799273689229,-3.579799273689229
+401487395,2023,2022-12-10,2439,265,True,MGM Grand Garden Arena,Las Vegas,NV,Las Vegas,Pullman,F3 neutral in a team's home city,5.5587363605224045,5.5587363605224045
+401486794,2023,2022-12-10,2253,249,True,Footprint Center,Phoenix,AZ,Phoenix,Denton,F3 neutral in a team's home city,0.663485864911384,0.663485864911384
+401497892,2023,2022-12-14,2296,344,True,Mississippi Coliseum,Jackson,MS,Jackson,Starkville,F3 neutral in a team's home city,9.867482291671756,9.867482291671756
+401483223,2023,2022-12-17,2579,151,True,Bon Secours Wellness Arena,Greenville,SC,Columbia,Greenville,F3 neutral in a team's home city,-9.563412104217415,9.563412104217415
+401483288,2023,2022-12-17,2306,158,False,T-Mobile Center,Kansas City,MO,Manhattan,Lincoln,F4 home game away from home arena/city,7.4232987569095386,7.4232987569095386
+401489009,2023,2022-12-17,8,71,False,Simmons Bank Arena,North Little Rock,AR,Fayetteville,Peoria,F4 home game away from home arena/city,6.047364892897839,6.047364892897839
+401485194,2023,2022-12-28,41,222,False,XL Center,Hartford,CT,Storrs,Villanova,F4 home game away from home arena/city,-4.972056372494585,-4.972056372494585
+401470085,2023,2022-12-29,2031,2630,False,Simmons Bank Arena,North Little Rock,AR,Little Rock,Martin,F4 home game away from home arena/city,12.966844284090303,12.966844284090303
+401492431,2023,2022-12-31,2099,2520,False,Gallagher Center,Niagara Falls,NY,Buffalo,Lawrenceville,F4 home game away from home arena/city,-0.2820905964317766,-0.2820905964317766
+401486970,2023,2023-01-02,2099,116,False,Gallagher Center,Niagara Falls,NY,Buffalo,Emmitsburg,F4 home game away from home arena/city,-5.714757829209837,-5.714757829209837
+401488240,2023,2023-01-08,311,2885,False,The Pit in Memorial Gymnasium,Orono,ME,Bangor,Newark,F4 home game away from home arena/city,-14.751330200787933,-14.751330200787933
+401485222,2023,2023-01-15,41,2599,False,XL Center,Hartford,CT,Storrs,Queens,F4 home game away from home arena/city,-23.92084264635902,-23.92084264635902
+401485228,2023,2023-01-20,2599,222,False,Madison Square Garden,New York,NY,Queens,Villanova,F4 home game away from home arena/city,-12.500283791852146,-12.500283791852146
+401485232,2023,2023-01-22,41,2086,False,XL Center,Hartford,CT,Storrs,Indianapolis,F4 home game away from home arena/city,14.990857833704142,14.990857833704142
+401485241,2023,2023-01-29,222,2507,False,Wells Fargo Center,Philadelphia,PA,Villanova,Providence,F4 home game away from home arena/city,-4.578336528974459,-4.578336528974459
+401485240,2023,2023-01-29,2599,46,False,Madison Square Garden,New York,NY,Queens,Washington,F4 home game away from home arena/city,-10.228604907044259,-10.228604907044259
+401488310,2023,2023-02-04,311,2378,False,The Pit in Memorial Gymnasium,Orono,ME,Bangor,Baltimore,F4 home game away from home arena/city,38.91228209566647,38.91228209566647
+401484931,2023,2023-02-04,164,127,False,Madison Square Garden,New York,NY,Piscataway,East Lansing,F4 home game away from home arena/city,-1.410825991154856,-1.410825991154856
+401485252,2023,2023-02-07,41,269,False,XL Center,Hartford,CT,Storrs,Milwaukee,F4 home game away from home arena/city,9.691661433136176,9.691661433136176
+401470053,2023,2023-02-09,2739,2473,False,Kress Events Center,Green Bay,WI,Ashwaubenon,Rochester,F4 home game away from home arena/city,-0.8042231696596147,-0.8042231696596147
+401485261,2023,2023-02-11,222,2550,False,Wells Fargo Center,Philadelphia,PA,Villanova,Newark,F4 home game away from home arena/city,1.0538424997545008,1.0538424997545008
+401470058,2023,2023-02-11,2739,2174,False,Kress Events Center,Green Bay,WI,Ashwaubenon,Detroit,F4 home game away from home arena/city,7.894385214432953,7.894385214432953
+401488326,2023,2023-02-18,311,399,False,The Pit in Memorial Gymnasium,Orono,ME,Bangor,Albany,F4 home game away from home arena/city,-3.8272855750739225,-3.8272855750739225
+401485278,2023,2023-02-25,222,156,False,Wells Fargo Center,Philadelphia,PA,Villanova,Omaha,F4 home game away from home arena/city,14.173898146965424,14.173898146965424
+401485279,2023,2023-02-25,2599,41,False,Madison Square Garden,New York,NY,Queens,Storrs,F4 home game away from home arena/city,-2.914215134582525,-2.914215134582525
+401488359,2023,2023-02-28,311,2803,False,The Pit in Memorial Gymnasium,Orono,ME,Bangor,Smithfield,F4 home game away from home arena/city,5.139162269021769,5.139162269021769
+401485285,2023,2023-03-01,41,305,False,XL Center,Hartford,CT,Storrs,Chicago,F4 home game away from home arena/city,11.329672380227386,11.329672380227386
+401514337,2023,2023-03-01,2565,88,True,Ford Center,Evansville,IN,Edwardsville,Evansville,F3 neutral in a team's home city,12.69712837647104,-12.69712837647104
+401485291,2023,2023-03-04,222,41,False,Wells Fargo Center,Philadelphia,PA,Villanova,Storrs,F4 home game away from home arena/city,-8.88968100878104,-8.88968100878104
+401523952,2023,2023-03-04,2464,70,True,Idaho Central Arena,Boise,ID,Flagstaff,Moscow,"F5 neutral, team name in venue",6.485087669650639,6.485087669650639
+401524230,2023,2023-03-05,2837,2377,True,Legacy Center,Lake Charles,LA,Commerce,Lake Charles,F2 neutral at away team's arena,-3.174985874323447,3.174985874323447
+401524232,2023,2023-03-06,2447,2377,True,Legacy Center,Lake Charles,LA,Thibodaux,Lake Charles,F2 neutral at away team's arena,-13.798595461493484,13.798595461493484
+401524234,2023,2023-03-07,357,2377,True,Legacy Center,Lake Charles,LA,Corpus Christi,Lake Charles,F2 neutral at away team's arena,7.085397839673176,-7.085397839673176
+401514974,2023,2023-03-08,2439,2005,True,Thomas & Mack Center,Las Vegas,NV,Las Vegas,Colorado Springs,F1 neutral at home team's arena,0.42939946767011783,0.42939946767011783
+401519351,2023,2023-03-09,238,99,True,Bridgestone Arena,Nashville,TN,Nashville,Baton Rouge,F3 neutral in a team's home city,3.550312283786342,3.550312283786342
+401514978,2023,2023-03-09,68,2439,True,Thomas & Mack Center,Las Vegas,NV,Boise,Las Vegas,F2 neutral at away team's arena,4.493149810666781,-4.493149810666781
+401514314,2023,2023-03-09,2450,2154,True,Norfolk Scope Arena,Norfolk,VA,Norfolk,Baltimore,F3 neutral in a team's home city,4.762426382007181,4.762426382007181
+401514316,2023,2023-03-10,2428,2450,True,Norfolk Scope Arena,Norfolk,VA,Durham,Norfolk,F3 neutral in a team's home city,-8.661893930180998,8.661893930180998
+401519355,2023,2023-03-10,96,238,True,Bridgestone Arena,Nashville,TN,Lexington,Nashville,F3 neutral in a team's home city,-15.448124306499928,15.448124306499928
+401514317,2023,2023-03-11,47,2450,True,Norfolk Scope Arena,Norfolk,VA,Washington,Norfolk,F3 neutral in a team's home city,3.50444479748824,-3.50444479748824
+401519357,2023,2023-03-11,245,238,True,Bridgestone Arena,Nashville,TN,College Station,Nashville,F3 neutral in a team's home city,4.586522972445518,-4.586522972445518
+401515352,2023,2023-03-12,43,163,True,Jadwin Gymnasium,Princeton,NJ,New Haven,Princeton,F2 neutral at away team's arena,-15.03150350268201,15.03150350268201
+401526879,2023,2023-03-15,2534,2541,True,Leavey Center,Santa Clara,CA,Huntsville,Santa Clara,F2 neutral at away team's arena,1.6772919970365894,-1.6772919970365894
+401597840,2024,2023-11-08,2350,2226,True,Wintrust Arena,Chicago,IL,Chicago,Boca Raton,F3 neutral in a team's home city,-7.87054525247863,-7.87054525247863
+401581589,2024,2023-11-10,2429,2335,True,Spectrum Center,Charlotte,NC,Charlotte,Lynchburg,F3 neutral in a team's home city,-6.729583459060643,-6.729583459060643
+401587127,2024,2023-11-11,2550,161,False,Walsh Gymnasium,South Orange,NJ,Newark,Hackensack,F4 home game away from home arena/city,10.748824817260683,10.748824817260683
+401582112,2024,2023-11-17,231,324,True,The HTC Center,Conway,SC,Greenview,Conway,F2 neutral at away team's arena,-2.8043052740839567,2.8043052740839567
+401577719,2024,2023-11-18,2529,2352,True,Chesapeake Employers Insurance Arena,Baltimore,MD,Fairfield,Baltimore,F3 neutral in a team's home city,15.362570647325764,-15.362570647325764
+401594213,2024,2023-11-18,85,2737,True,Indiana Farmers Coliseum,Indianapolis,IN,Indianapolis,Rock Hill,F1 neutral at home team's arena,-0.7978930490981035,-0.7978930490981035
+401600056,2024,2023-11-19,2737,2210,True,Rock Hill Sports & Event Center,Rock Hill,SC,Rock Hill,Elon,F3 neutral in a team's home city,-1.6903980770614915,-1.6903980770614915
+401598045,2024,2023-11-26,2539,135,True,Chase Center,San Francisco,CA,San Francisco,Minneapolis,F3 neutral in a team's home city,14.924768758303554,14.924768758303554
+401597431,2024,2023-11-26,2916,55,True,UTSA Convocation Center,San Antonio,TX,San Antonio,Jacksonville,F3 neutral in a team's home city,7.143821128576713,7.143821128576713
+401581777,2024,2023-11-28,264,28,True,Redhawk Center,Seattle,WA,Seattle,San Diego,F3 neutral in a team's home city,15.740326845919057,15.740326845919057
+401607331,2024,2023-11-30,254,62,True,Delta Center,Salt Lake City,UT,Salt Lake City,Honolulu,F3 neutral in a team's home city,3.5255961011316064,3.5255961011316064
+401604303,2024,2023-12-02,222,2182,True,Wells Fargo Center,Philadelphia,PA,Villanova,Philadelphia,F3 neutral in a team's home city,-11.283720594026057,11.283720594026057
+401604301,2024,2023-12-02,2603,218,True,Wells Fargo Center,Philadelphia,PA,Philadelphia,Philadelphia,F3 neutral in a team's home city,4.522844945606899,-4.522844945606899
+401604302,2024,2023-12-02,2325,219,True,Wells Fargo Center,Philadelphia,PA,Philadelphia,Philadelphia,F3 neutral in a team's home city,-0.7456064210887137,0.7456064210887137
+401588946,2024,2023-12-09,96,219,True,Wells Fargo Center,Philadelphia,PA,Lexington,Philadelphia,F3 neutral in a team's home city,-0.41865484106355133,0.41865484106355133
+401575804,2024,2023-12-09,222,26,False,Wells Fargo Center,Philadelphia,PA,Villanova,Los Angeles,F4 home game away from home arena/city,2.261807968248913,2.261807968248913
+401577588,2024,2023-12-09,2724,2571,True,INTRUST Bank Arena,Wichita,KS,Wichita,Brookings,F3 neutral in a team's home city,-12.57535730700095,-12.57535730700095
+401575440,2024,2023-12-16,248,245,True,Toyota Center (Houston),Houston,TX,Houston,College Station,F3 neutral in a team's home city,-3.0488042663710226,-3.0488042663710226
+401583846,2024,2023-12-16,2253,2501,True,Footprint Center,Phoenix,AZ,Phoenix,Portland,F3 neutral in a team's home city,17.460875229539887,17.460875229539887
+401607342,2024,2023-12-16,2628,9,True,Dickies Arena,Fort Worth,TX,Fort Worth,Tempe,F3 neutral in a team's home city,11.26205973399392,11.26205973399392
+401598901,2024,2023-12-16,2294,50,False,Wells Fargo Arena (IA),Des Moines,IA,Iowa City,Tallahassee,F4 home game away from home arena/city,12.319051015507746,12.319051015507746
+401577537,2024,2023-12-16,2132,2168,True,Heritage Bank Center,Cincinnati,OH,Cincinnati,Dayton,F3 neutral in a team's home city,-19.542162185621606,-19.542162185621606
+401576642,2024,2023-12-28,112358,399,True,Barclays Center,Brooklyn,NY,Brooklyn,Albany,F3 neutral in a team's home city,-4.729129051657088,-4.729129051657088
+401599498,2024,2024-01-20,222,41,False,Wells Fargo Center,Philadelphia,PA,Villanova,Hartford,F4 home game away from home arena/city,1.0562608331078196,1.0562608331078196
+401599517,2024,2024-02-04,222,2507,False,Wells Fargo Center,Philadelphia,PA,Villanova,Providence,F4 home game away from home arena/city,12.802807602764352,12.802807602764352
+401599518,2024,2024-02-06,2599,305,False,UBS Arena,Elmont,NY,New York,Chicago,F4 home game away from home arena/city,5.259518243222924,5.259518243222924
+401599527,2024,2024-02-11,222,2550,False,Wells Fargo Center,Philadelphia,PA,Villanova,Newark,F4 home game away from home arena/city,20.618132834973363,20.618132834973363
+401599537,2024,2024-02-18,2599,2550,False,UBS Arena,Elmont,NY,New York,Newark,F4 home game away from home arena/city,-11.654240721593403,-11.654240721593403
+401625573,2024,2024-03-06,2634,88,True,Ford Center,Evansville,IN,Nashville,Evansville,F3 neutral in a team's home city,9.697625198233851,-9.697625198233851
+401599565,2024,2024-03-09,222,156,False,Wells Fargo Center,Philadelphia,PA,Villanova,Omaha,F4 home game away from home arena/city,-2.288117547631089,-2.288117547631089
+401625519,2024,2024-03-09,2272,2344,True,Nido and Mariana Qubein Arena,High Point,NC,High Point,Farmville,F1 neutral at home team's arena,-4.437190516023181,-4.437190516023181
+401625609,2024,2024-03-09,70,16,True,Idaho Central Arena,Boise,ID,Moscow,Sacramento,"F5 neutral, team name in venue",-8.097087296313367,-8.097087296313367
+401625485,2024,2024-03-13,2534,2229,True,Propst Arena,Huntsville,AL,Huntsville,Miami,F3 neutral in a team's home city,11.328076412260714,11.328076412260714
+401625566,2024,2024-03-13,2450,2154,True,Norfolk Scope Arena,Norfolk,VA,Norfolk,Baltimore,F3 neutral in a team's home city,9.833939594067994,9.833939594067994
+401625447,2024,2024-03-13,8,238,True,Bridgestone Arena,Nashville,TN,Fayetteville,Nashville,F3 neutral in a team's home city,-0.07552946631132063,0.07552946631132063
+401625560,2024,2024-03-14,2550,2599,False,Madison Square Garden,New York,NY,Newark,New York,F4 home game away from home arena/city,-18.450014461529676,-18.450014461529676
+401625680,2024,2024-03-14,127,135,True,Target Center,Minneapolis,MN,East Lansing,Minneapolis,F3 neutral in a team's home city,1.8315283367855795,-1.8315283367855795
+401625570,2024,2024-03-15,2450,47,True,Norfolk Scope Arena,Norfolk,VA,Norfolk,Washington,F3 neutral in a team's home city,-12.16597534388666,-12.16597534388666
+401625563,2024,2024-03-15,41,2599,False,Madison Square Garden,New York,NY,Hartford,New York,F4 home game away from home arena/city,-5.252101250229185,-5.252101250229185
+401625489,2024,2024-03-15,2534,2638,True,Propst Arena,Huntsville,AL,Huntsville,El Paso,F3 neutral in a team's home city,-6.5070849896826894,-6.5070849896826894
+401641109,2024,2024-03-20,2550,2603,False,Walsh Gymnasium,South Orange,NJ,Newark,Philadelphia,F4 home game away from home arena/city,-4.3866845208605785,-4.3866845208605785
+401641081,2024,2024-03-23,2065,2032,True,Ocean Center,Daytona Beach,FL,Daytona Beach,Jonesboro,F3 neutral in a team's home city,9.623796271134061,9.623796271134061
+401641113,2024,2024-03-23,2550,249,False,Walsh Gymnasium,South Orange,NJ,Newark,Denton,F4 home game away from home arena/city,10.157878263888682,10.157878263888682
+401641121,2024,2024-03-27,2550,2439,False,Walsh Gymnasium,South Orange,NJ,Newark,Las Vegas,F4 home game away from home arena/city,18.543662371433598,18.543662371433598
+401706947,2025,2024-11-09,248,2,True,Toyota Center (Houston),Houston,TX,Houston,Auburn,F3 neutral in a team's home city,-6.6454550110814266,-6.6454550110814266
+401715652,2025,2024-11-09,242,52,True,Toyota Center (Houston),Houston,TX,Houston,Tallahassee,F3 neutral in a team's home city,2.0073491345027,2.0073491345027
+401715987,2025,2024-11-14,9,2253,True,Mortgage Matchup Center,Phoenix,AZ,Tempe,Phoenix,F3 neutral in a team's home city,11.808293011933557,-11.808293011933557
+401729757,2025,2024-12-07,2182,219,True,Xfinity Mobile Arena,Philadelphia,PA,Philadelphia,Philadelphia,F3 neutral in a team's home city,8.222022582100685,-8.222022582100685
+401729758,2025,2024-12-07,2325,2603,True,Xfinity Mobile Arena,Philadelphia,PA,Philadelphia,Philadelphia,F3 neutral in a team's home city,-9.308088137506104,9.308088137506104
+401729755,2025,2024-12-07,218,222,True,Xfinity Mobile Arena,Philadelphia,PA,Philadelphia,Villanova,F3 neutral in a team's home city,-19.35498104611998,-19.35498104611998
+401706987,2025,2024-12-08,2628,238,True,Dickies Arena,Fort Worth,TX,Fort Worth,Nashville,F3 neutral in a team's home city,-6.362963056033723,-6.362963056033723
+401713000,2025,2024-12-14,2086,275,True,Gainbridge Fieldhouse,Indianapolis,IN,Indianapolis,Madison,F3 neutral in a team's home city,-4.106523237917711,-4.106523237917711
+401725961,2025,2024-12-14,2198,2197,False,Seabury Center Arena,Berea,KY,Richmond,Charleston,F4 home game away from home arena/city,4.727315951186133,4.727315951186133
+401715893,2025,2024-12-15,270,2006,True,Fiserv Forum,Milwaukee,WI,Milwaukee,Akron,F3 neutral in a team's home city,18.575114853570533,18.575114853570533
+401715634,2025,2024-12-20,2168,2132,True,Heritage Bank Center,Cincinnati,OH,Dayton,Cincinnati,F3 neutral in a team's home city,-4.967413210309873,4.967413210309873
+401700405,2025,2024-12-21,2603,259,True,The Palestra,Philadelphia,PA,Philadelphia,Blacksburg,F3 neutral in a team's home city,16.051736500676746,16.051736500676746
+401726398,2025,2024-12-21,2198,55,False,Seabury Center Arena,Berea,KY,Richmond,Jacksonville,F4 home game away from home arena/city,-10.508643531413043,-10.508643531413043
+401721332,2025,2025-01-05,213,84,False,The Palestra,Philadelphia,PA,University Park,Bloomington,F4 home game away from home arena/city,-12.275422739730221,-12.275422739730221
+401721381,2025,2025-01-25,164,127,False,Madison Square Garden,New York,NY,Piscataway,East Lansing,F4 home game away from home arena/city,-1.4514978063866906,-1.4514978063866906
+401754722,2025,2025-02-01,2261,47,True,CareFirst Arena,Washington,DC,Hampton,Washington,F3 neutral in a team's home city,-3.88407127601503,3.88407127601503
+401722537,2025,2025-02-19,93,79,False,Banterra Center,Carbondale,IL,Murray,Carbondale,F4 home game away from home arena/city,-3.080068104498949,-3.080068104498949
+401719154,2025,2025-02-21,222,269,False,Xfinity Mobile Arena,Philadelphia,PA,Villanova,Milwaukee,F4 home game away from home arena/city,17.002897299838338,17.002897299838338
+401706757,2025,2025-03-01,2539,2250,True,Chase Center,San Francisco,CA,San Francisco,Spokane,F3 neutral in a team's home city,-8.47489642209783,-8.47489642209783
+401745793,2025,2025-03-10,2502,70,True,Idaho Central Arena,Boise,ID,Portland,Moscow,"F5 neutral, team name in venue",-13.896200113835278,-13.896200113835278
+401744545,2025,2025-03-11,2638,2534,True,Propst Arena,Huntsville,AL,El Paso,Huntsville,F3 neutral in a team's home city,11.95323253970651,-11.95323253970651
+401744249,2025,2025-03-11,253,3101,True,Burns Arena,St. George,UT,Cedar City,St. George,F2 neutral at away team's arena,-5.696613655126678,5.696613655126678
+401745795,2025,2025-03-11,149,70,True,Idaho Central Arena,Boise,ID,Missoula,Moscow,"F5 neutral, team name in venue",15.765274394141585,15.765274394141585
+401744154,2025,2025-03-12,238,251,True,Bridgestone Arena,Nashville,TN,Nashville,Austin,F3 neutral in a team's home city,-5.674912298266127,-5.674912298266127
+401744021,2025,2025-03-12,2450,2379,True,Norfolk Scope Arena,Norfolk,VA,Norfolk,Princess Anne,F3 neutral in a team's home city,-9.160955757822805,-9.160955757822805
+401744078,2025,2025-03-12,2439,2005,True,Thomas & Mack Center,Las Vegas,NV,Las Vegas,Colorado Springs,F1 neutral at home team's arena,-3.3212841404222164,-3.3212841404222164
+401743811,2025,2025-03-13,45,2230,True,Capital One Arena,Washington,DC,Washington,Bronx,F3 neutral in a team's home city,-0.46164190360109547,-0.46164190360109547
+401743878,2025,2025-03-13,2599,2086,True,Madison Square Garden,New York,NY,New York,Indianapolis,F3 neutral in a team's home city,7.629202462099647,7.629202462099647
+401744086,2025,2025-03-13,328,2439,True,Thomas & Mack Center,Las Vegas,NV,Logan,Las Vegas,F2 neutral at away team's arena,1.819085953119954,-1.819085953119954
+401743882,2025,2025-03-14,2599,269,True,Madison Square Garden,New York,NY,New York,Milwaukee,F3 neutral in a team's home city,12.966572768424456,12.966572768424456
+401744029,2025,2025-03-14,2450,2415,True,Norfolk Scope Arena,Norfolk,VA,Norfolk,Baltimore,F3 neutral in a team's home city,-8.812430017705733,-8.812430017705733
+401743815,2025,2025-03-14,2244,45,True,Capital One Arena,Washington,DC,Fairfax,Washington,F3 neutral in a team's home city,10.635748817567753,-10.635748817567753
+401744034,2025,2025-03-15,2450,2569,True,Norfolk Scope Arena,Norfolk,VA,Norfolk,Orangeburg,F3 neutral in a team's home city,0.052241997149299335,0.052241997149299335
+401751940,2025,2025-03-19,2168,2226,True,Eleanor R. Baldwin Arena,Boca Raton,FL,Dayton,Boca Raton,F2 neutral at away team's arena,3.6505496370581576,-3.6505496370581576
+401823449,2026,2025-11-03,2737,2511,True,Rock Hill Sports & Event Center,Rock Hill,SC,Rock Hill,Charlotte,F3 neutral in a team's home city,3.3435473537999205,3.3435473537999205
+401822757,2026,2025-11-03,120,2154,True,CFG Bank Arena,Baltimore,MD,College Park,Baltimore,F3 neutral in a team's home city,-5.249339353757392,5.249339353757392
+401820182,2026,2025-11-03,2352,119,True,CFG Bank Arena,Baltimore,MD,Baltimore,Towson,F3 neutral in a team's home city,-2.7902198249564503,-2.7902198249564503
+401812786,2026,2025-11-07,41,2349,False,PeoplesBank Arena,Hartford,CT,Storrs,Lowell,F4 home game away from home arena/city,30.70931095926568,30.70931095926568
+401826892,2026,2025-11-07,2550,2681,False,Walsh Gymnasium,South Orange,NJ,Newark,Staten Island,F4 home game away from home arena/city,-13.56180644362908,-13.56180644362908
+401823189,2026,2025-11-10,2550,2217,False,Walsh Gymnasium,South Orange,NJ,Newark,Fairfield,F4 home game away from home arena/city,8.684669149486206,8.684669149486206
+401817478,2026,2025-11-15,183,2182,True,Xfinity Mobile Arena,Philadelphia,PA,Syracuse,Philadelphia,F3 neutral in a team's home city,13.480327291926983,-13.480327291926983
+401822179,2026,2025-11-15,2325,213,True,Xfinity Mobile Arena,Philadelphia,PA,Philadelphia,University Park,F3 neutral in a team's home city,-4.024751237602063,-4.024751237602063
+401817243,2026,2025-11-21,2132,97,True,Heritage Bank Center,Cincinnati,OH,Cincinnati,Louisville,F3 neutral in a team's home city,-1.8319456989551774,-1.8319456989551774
+401819836,2026,2025-11-21,252,275,False,Delta Center,Salt Lake City,UT,Provo,Madison,F4 home game away from home arena/city,21.455927127401313,21.455927127401313
+401812790,2026,2025-11-23,41,2803,False,PeoplesBank Arena,Hartford,CT,Storrs,Smithfield,F4 home game away from home arena/city,-7.413476994173923,-7.413476994173923
+401823344,2026,2025-11-24,2065,294,True,Ocean Center,Daytona Beach,FL,Daytona Beach,Jacksonville,F3 neutral in a team's home city,-8.381045100635305,-8.381045100635305
+401820400,2026,2025-11-24,120,2439,True,MGM Grand Garden Arena,Las Vegas,NV,College Park,Las Vegas,F3 neutral in a team's home city,4.76387491122462,-4.76387491122462
+401831236,2026,2025-11-25,2065,2619,True,Ocean Center,Daytona Beach,FL,Daytona Beach,Stony Brook,F3 neutral in a team's home city,-10.338899671292223,-10.338899671292223
+401812264,2026,2025-11-25,333,2439,True,MGM Grand Garden Arena,Las Vegas,NV,Tuscaloosa,Las Vegas,F3 neutral in a team's home city,26.78166028348278,-26.78166028348278
+401823259,2026,2025-11-26,2463,70,True,Idaho Central Arena,Boise,ID,Northridge,Moscow,"F5 neutral, team name in venue",-13.22697804546236,-13.22697804546236
+401831222,2026,2025-11-27,164,2439,True,Michelob ULTRA Arena,Las Vegas,NV,Piscataway,Las Vegas,F3 neutral in a team's home city,17.129200106349888,-17.129200106349888
+401812276,2026,2025-11-27,77,197,False,United Center,Chicago,IL,Evanston,Stillwater,F4 home game away from home arena/city,-8.877093887452858,-8.877093887452858
+401828915,2026,2025-11-28,2016,282,True,Hulman Center,Terre Haute,IN,Lorman,Terre Haute,F2 neutral at away team's arena,17.613568376411628,-17.613568376411628
+401822182,2026,2025-11-28,2325,2275,True,The Palestra,Philadelphia,PA,Philadelphia,Hempstead,F3 neutral in a team's home city,-1.3306305846727473,-1.3306305846727473
+401823354,2026,2025-11-28,70,2534,True,Idaho Central Arena,Boise,ID,Moscow,Huntsville,"F5 neutral, team name in venue",-26.962378577122184,-26.962378577122184
+401826735,2026,2025-11-30,2427,2026,True,Harrah's Cherokee Center,Asheville,NC,Asheville,Boone,F3 neutral in a team's home city,11.193076245677105,11.193076245677105
+401822183,2026,2025-11-30,2325,2771,True,The Palestra,Philadelphia,PA,Philadelphia,North Andover,F3 neutral in a team's home city,-9.774511912838673,-9.774511912838673
+401823736,2026,2025-11-30,278,2934,True,Selland Arena,Fresno,CA,Fresno,Bakersfield,F3 neutral in a team's home city,-11.53560378884971,-11.53560378884971
+401830118,2026,2025-12-02,2427,2430,True,Harrah's Cherokee Center,Asheville,NC,Asheville,Greensboro,F3 neutral in a team's home city,1.360438321100594,1.360438321100594
+401812649,2026,2025-12-03,2550,2115,False,Walsh Gymnasium,South Orange,NJ,Newark,New Britain,F4 home game away from home arena/city,-1.1390214094806659,-1.1390214094806659
+401819837,2026,2025-12-03,252,2856,False,Delta Center,Salt Lake City,UT,Provo,Riverside,F4 home game away from home arena/city,10.043984704262527,10.043984704262527
+401813293,2026,2025-12-06,2253,197,True,Mortgage Matchup Center,Phoenix,AZ,Phoenix,Stillwater,F3 neutral in a team's home city,-1.6445990130626047,-1.6445990130626047
+401831240,2026,2025-12-06,222,219,False,Xfinity Mobile Arena,Philadelphia,PA,Villanova,Philadelphia,F4 home game away from home arena/city,3.5858290285904957,3.5858290285904957
+401824813,2026,2025-12-06,248,52,True,Toyota Center (Houston),Houston,TX,Houston,Tallahassee,F3 neutral in a team's home city,1.2648010822500293,1.2648010822500293
+401826791,2026,2025-12-06,8,278,False,Simmons Bank Arena,North Little Rock,AR,Fayetteville,Fresno,F4 home game away from home arena/city,1.0664867648301701,1.0664867648301701
+401831239,2026,2025-12-06,218,2603,True,Xfinity Mobile Arena,Philadelphia,PA,Philadelphia,Philadelphia,F3 neutral in a team's home city,-1.8068604262951207,1.8068604262951207
+401812255,2026,2025-12-07,249,2628,False,Dickies Arena,Fort Worth,TX,Denton,Fort Worth,F4 home game away from home arena/city,-3.596052135387211,-3.596052135387211
+401812794,2026,2025-12-12,41,251,False,PeoplesBank Arena,Hartford,CT,Storrs,Austin,F4 home game away from home arena/city,-4.106285768108082,-4.106285768108082
+401827524,2026,2025-12-13,47,2261,True,CareFirst Arena,Washington,DC,Washington,Hampton,F3 neutral in a team's home city,10.203651056632879,10.203651056632879
+401820401,2026,2025-12-13,2439,2634,False,Lee's Family Forum,Henderson,NV,Las Vegas,Nashville,F4 home game away from home arena/city,-15.03340856101317,-15.03340856101317
+401819912,2026,2025-12-13,254,344,True,Delta Center,Salt Lake City,UT,Salt Lake City,Starkville,F3 neutral in a team's home city,-3.0742565569943965,-3.0742565569943965
+401822868,2026,2025-12-16,41,2086,False,PeoplesBank Arena,Hartford,CT,Storrs,Indianapolis,F4 home game away from home arena/city,3.156646720487256,3.156646720487256
+401828479,2026,2025-12-17,2739,2540,False,Kress Center,Green Bay,WI,Ashwaubenon,Santa Barbara,F4 home game away from home arena/city,8.49215859944039,8.49215859944039
+401820829,2026,2025-12-20,2086,77,True,Gainbridge Fieldhouse,Indianapolis,IN,Indianapolis,Evanston,F3 neutral in a team's home city,3.0778834596789313,3.0778834596789313
+401809083,2026,2025-12-20,2294,2083,False,Casey's Center,Des Moines,IA,Iowa City,Lewisburg,F4 home game away from home arena/city,28.67521257834331,28.67521257834331
+401825416,2026,2026-01-03,213,356,False,The Palestra,Philadelphia,PA,University Park,Champaign,F4 home game away from home arena/city,7.088907577108872,7.088907577108872
+401822893,2026,2026-01-10,41,305,False,PeoplesBank Arena,Hartford,CT,Storrs,Chicago,F4 home game away from home arena/city,-7.249123437537875,-7.249123437537875
+401822905,2026,2026-01-17,222,2599,False,Xfinity Mobile Arena,Philadelphia,PA,Villanova,New York,F4 home game away from home arena/city,-5.960453978101104,-5.960453978101104
+401822913,2026,2026-01-24,41,222,False,PeoplesBank Arena,Hartford,CT,Storrs,Villanova,F4 home game away from home arena/city,-0.5941744298824947,-0.5941744298824947
+401822927,2026,2026-02-03,41,2752,False,PeoplesBank Arena,Hartford,CT,Storrs,Cincinnati,F4 home game away from home arena/city,14.064344498389342,14.064344498389342
+401822953,2026,2026-02-21,222,41,False,Xfinity Mobile Arena,Philadelphia,PA,Villanova,Storrs,F4 home game away from home arena/city,-7.310836515889426,-7.310836515889426
+401822959,2026,2026-02-25,41,2599,False,PeoplesBank Arena,Hartford,CT,Storrs,New York,F4 home game away from home arena/city,27.48650232228306,27.48650232228306
+401851430,2026,2026-03-03,2739,2870,False,Kress Center,Green Bay,WI,Ashwaubenon,Fort Wayne,F4 home game away from home arena/city,4.3602145684041105,4.3602145684041105
+401851238,2026,2026-03-04,91,294,True,UNF Arena,Jacksonville,FL,Louisville,Jacksonville,F3 neutral in a team's home city,3.374347534916777,-3.374347534916777
+401851243,2026,2026-03-04,2698,2454,True,Swisher Gymnasium,Jacksonville,FL,Carrollton,Jacksonville,F3 neutral in a team's home city,3.1176990633517354,-3.1176990633517354
+401851326,2026,2026-03-07,70,16,True,Idaho Central Arena,Boise,ID,Moscow,Sacramento,"F5 neutral, team name in venue",17.317362217050256,17.317362217050256
+401851331,2026,2026-03-08,147,70,True,Idaho Central Arena,Boise,ID,Bozeman,Moscow,"F5 neutral, team name in venue",-4.898775336413021,-4.898775336413021
+401851335,2026,2026-03-10,331,70,True,Idaho Central Arena,Boise,ID,Cheney,Moscow,"F5 neutral, team name in venue",-10.051427194523534,-10.051427194523534
+401851612,2026,2026-03-10,2377,292,True,Townsley Law Arena,Lake Charles,LA,Lake Charles,Edinburg,F1 neutral at home team's arena,-6.188486859095368,-6.188486859095368
+401851495,2026,2026-03-11,2439,2751,True,Thomas & Mack Center,Las Vegas,NV,Las Vegas,Laramie,F1 neutral at home team's arena,3.0326987840278345,3.0326987840278345
+401851614,2026,2026-03-11,2617,2377,True,Townsley Law Arena,Lake Charles,LA,Nacogdoches,Lake Charles,F2 neutral at away team's arena,-12.562759058450785,12.562759058450785
+401851336,2026,2026-03-11,149,70,True,Idaho Central Arena,Boise,ID,Missoula,Moscow,"F5 neutral, team name in venue",-7.366250901228009,-7.366250901228009
+401851408,2026,2026-03-11,2534,166,True,Propst Arena,Huntsville,AL,Huntsville,Las Cruces,F3 neutral in a team's home city,4.663576324251036,4.663576324251036
+401851499,2026,2026-03-12,328,2439,True,Thomas & Mack Center,Las Vegas,NV,Logan,Las Vegas,F2 neutral at away team's arena,8.634659200420657,-8.634659200420657
+401851473,2026,2026-03-12,2450,2569,True,Norfolk Scope Arena,Norfolk,VA,Norfolk,Orangeburg,F3 neutral in a team's home city,-13.094104590605959,-13.094104590605959
+401851266,2026,2026-03-12,2184,227,True,PPG Paints Arena,Pittsburgh,PA,Pittsburgh,Kingston,F3 neutral in a team's home city,5.4117128491103035,5.4117128491103035
+401851566,2026,2026-03-13,238,2633,True,Bridgestone Arena,Nashville,TN,Nashville,Knoxville,F3 neutral in a team's home city,6.645793861279867,6.645793861279867
+401851273,2026,2026-03-13,2670,2184,True,PPG Paints Arena,Pittsburgh,PA,Richmond,Pittsburgh,F3 neutral in a team's home city,-3.700249869019995,3.700249869019995
+401851225,2026,2026-03-13,5,2429,True,Legacy Arena at BJCC,Birmingham,AL,Birmingham,Charlotte,F3 neutral in a team's home city,-12.137218595118311,-12.137218595118311
+401851414,2026,2026-03-13,2534,338,True,Propst Arena,Huntsville,AL,Huntsville,Kennesaw,F3 neutral in a team's home city,-9.403294255252305,-9.403294255252305
+401851435,2026,2026-03-14,43,172,True,Newman Arena,Ithaca,NY,New Haven,Ithaca,F2 neutral at away team's arena,5.5088630210756815,-5.5088630210756815
+401851569,2026,2026-03-14,57,238,True,Bridgestone Arena,Nashville,TN,Gainesville,Nashville,F3 neutral in a team's home city,-25.297916152602873,25.297916152602873
+401851571,2026,2026-03-15,8,238,True,Bridgestone Arena,Nashville,TN,Fayetteville,Nashville,F3 neutral in a team's home city,12.683323853167778,-12.683323853167778
+401856566,2026,2026-03-26,248,356,True,Toyota Center (Houston),Houston,TX,Houston,Champaign,F3 neutral in a team's home city,-11.589869639947025,-11.589869639947025

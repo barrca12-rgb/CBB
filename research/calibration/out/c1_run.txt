@@ -1,0 +1,31 @@
+             check                               metric  value         interval  intercept   games  mean predicted edge  mean realized edge  win%
+  1 overall spread slope of actual on predicted 2020-26 0.9927 [0.9784, 1.0070]     -0.073     NaN                  NaN                 NaN   NaN
+ 1 spread vs close                           edge 0-2.5 0.2850   [0.157, 0.418]        NaN 31866.0                 1.01                0.29  51.0
+ 1 spread vs close                           edge 2.5-4 0.2990   [0.191, 0.410]        NaN  4368.0                 3.07                0.92  51.9
+ 1 spread vs close                             edge 4-6 0.1900   [0.042, 0.337]        NaN  1082.0                 4.69                0.89  53.0
+ 1 spread vs close                             edge 6-+ 0.2540  [-0.113, 0.620]        NaN   164.0                 6.78                1.73  54.0
+1 spread vs opener                           edge 0-2.5 0.5010   [0.380, 0.619]        NaN 27693.0                 1.02                0.51  51.8
+1 spread vs opener                           edge 2.5-4 0.5740   [0.457, 0.687]        NaN  3830.0                 3.07                1.76  56.2
+1 spread vs opener                             edge 4-6 0.4930   [0.335, 0.644]        NaN   936.0                 4.65                2.29  58.3
+1 spread vs opener                             edge 6-+ 0.7670   [0.562, 0.982]        NaN   171.0                 7.95                6.09  68.6
+   1 overall total slope of actual on predicted 2020-26 1.0027 [0.9839, 1.0215]     -0.943     NaN                  NaN                 NaN   NaN
+  1 total vs close                           edge 0-2.5 0.1660  [-0.008, 0.345]        NaN 23084.0                 1.18                0.20  50.4
+  1 total vs close                           edge 2.5-4 0.2850   [0.170, 0.400]        NaN  8368.0                 3.18                0.91  51.0
+  1 total vs close                             edge 4-6 0.2720   [0.177, 0.378]        NaN  4522.0                 4.80                1.31  51.9
+  1 total vs close                             edge 6-+ 0.2120   [0.095, 0.338]        NaN  1511.0                 7.47                1.59  53.1
+ 1 total vs opener                           edge 0-2.5 0.5880   [0.374, 0.795]        NaN 18205.0                 1.16                0.68  51.4
+ 1 total vs opener                           edge 2.5-4 0.6260   [0.476, 0.767]        NaN  5815.0                 3.15                1.97  54.4
+ 1 total vs opener                             edge 4-6 0.5090   [0.379, 0.633]        NaN  3180.0                 4.81                2.45  55.5
+ 1 total vs opener                             edge 6-+ 0.1660   [0.113, 0.225]        NaN  4522.0                10.66                1.77  55.8
+             games  realized win%  rule p (0.0255, cap 0.58)  refit p (2014-17 slope)
+b                                                                                    
+[2.5, 3.0)   978.0           56.0                       57.0                     55.0
+[3.0, 4.0)   868.0           58.4                       58.0                     56.3
+[4.0, 5.0)   283.0           59.4                       58.0                     58.1
+[5.0, 6.0)    79.0           59.5                       58.0                     59.9
+[6.0, 99.0)   60.0           66.7                       58.0                     64.7
+spread MAE change from walk-forward calibration: -0.001
+total MAE change from walk-forward calibration: 0.0815
+refit win-chance slope per point (2014-17, through 50%): 0.0183
+5+ edges at the opener, all opener seasons: realized win%: 66.2% of 394
+EV rule at -110 binds below edge: 1.34
