@@ -18,6 +18,7 @@ from . import report_html, tracker
 
 OUT = os.path.join(tracker.ROOT, "reports", "record.html")
 VERIFY = os.path.join(tracker.ROOT, "reports", "verify.html")      # published unlisted at record/verify.html
+CHARTS = os.path.join(tracker.ROOT, "site", "record", "charts.html")  # the Charts tab, published at record/charts.html
 WEEKLY = os.path.join(tracker.ROOT, "site", "record", "weekly")     # cbb/record_chart.py, published at record/weekly/
 LINKS = os.path.join(tracker.ROOT, "data", "record_links.json")
 BRANCH = "claude/college-basketball-model-nmztcl"
@@ -140,26 +141,54 @@ def _logo(team_id, px: int = 16) -> str:
 
 
 def weekly() -> str:
-    """The latest weekly charts (cbb/record_chart.py) at full width, then the last eight weeks as thumbnails."""
+    """The Charts tab body: the newest weekly pair (cbb/record_chart.py) full width, then every past week."""
     idx = os.path.join(WEEKLY, "index.json")
     weeks = json.load(open(idx))["weeks"] if os.path.exists(idx) else []
     if not weeks:
-        return ""
+        return ("<section class='panel'><div class='empty'>The first chart is drawn Monday morning, after the first "
+                "week of games.</div></section>")
+    lab = lambda w: f"{pd.Timestamp(w):%b} {pd.Timestamp(w).day}"
+    img = lambda w, k: (f"<a href='record/weekly/{w}-{k}.png'><img src='record/weekly/{w}-{k}.png' alt='Through {lab(w)}: "
+                        f"{'closing-line value' if k == 'clv' else 'units by week'}' width='1600' height='900' loading='lazy' "
+                        f"style='width:100%;height:auto;display:block;border-radius:8px;border:1px solid var(--line)'></a>")
     d = weeks[0]
-    t = pd.Timestamp(d)
-    img = lambda w, k, cls="": (f"<a href='record/weekly/{w}-{k}.png'><img{cls} src='record/weekly/{w}-{k}.png' alt='Week through {w}: "
-                                f"{'closing-line value' if k == 'clv' else 'units by week'}' width='1600' height='900' loading='lazy' "
-                                f"style='width:100%;height:auto;display:block;border-radius:8px;border:1px solid var(--line)'></a>")
-    thumbs = "".join(f"<div><div class='m' style='font-size:12px;margin-bottom:4px'>Through {pd.Timestamp(w):%b} {pd.Timestamp(w).day}</div>"
-                     f"{img(w, 'clv')}</div>" for w in weeks[:8])
-    return (f"<section class='panel'><div class='panel-h'><h2>This week</h2><span class='note'>Through Sunday {t:%b} {t.day}, "
-            f"season to date. Drawn every Monday from the bet log; every play counts.</span></div>"
-            f"<div style='padding:12px 16px;display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))'>"
-            f"{img(d, 'clv')}{img(d, 'units')}</div>"
-            + (f"<div style='padding:0 16px 14px'><div class='m' style='font-size:12px;font-weight:700;text-transform:uppercase;"
-               f"letter-spacing:.05em;margin:4px 0 8px'>Past weeks</div><div style='display:grid;gap:10px;"
-               f"grid-template-columns:repeat(auto-fill,minmax(150px,1fr))'>{thumbs}</div></div>" if len(weeks) > 1 else "")
-            + "</section>")
+    out = (f"<section class='panel'><div class='panel-h'><h2>This week</h2><span class='note'>Through Sunday {lab(d)}, season "
+           f"to date. Drawn every Monday from the bet log; every play counts. Tap an image to open it full size.</span></div>"
+           f"<div style='padding:12px 16px;display:grid;gap:14px'>{img(d, 'clv')}{img(d, 'units')}</div></section>")
+    if len(weeks) > 1:
+        cards = "".join(f"<div><div class='m' style='font-size:12px;font-weight:600;margin-bottom:4px'>Through {lab(w)}</div>"
+                        f"<div style='display:grid;gap:6px'>{img(w, 'clv')}{img(w, 'units')}</div></div>" for w in weeks[1:])
+        out += (f"<section class='panel'><div class='panel-h'><h2>Past weeks</h2></div><div style='padding:12px 16px;display:grid;"
+                f"gap:16px;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr))'>{cards}</div></section>")
+    return out
+
+
+def build_charts() -> str:
+    """The Charts tab (record/charts.html), next to Record on the card."""
+    style = report_html.TEMPLATE[report_html.TEMPLATE.index("<style>"):report_html.TEMPLATE.index("</style>") + 8]
+    return f"""<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="../">
+<title>Off The Glass · College Basketball Charts</title>
+<meta property="og:title" content="Off The Glass · College Basketball Charts">
+{report_html.HEAD}
+{style}
+<header class="top"><div class="wrap">
+  {report_html.BRAND}
+  <nav class="tabs" aria-label="Sport"><a href="{report_html.NFL_SITE}">NFL</a>{report_html.NBA_TAB}<a href="./" aria-current="page"><span class="hide-sm">College Basketball</span><span class="show-sm">CBB</span></a></nav>
+</div></header>
+<main class="wrap">
+  <div class="head"><div><h1>College Basketball Charts</h1>
+    <div class="sub">Closing-line value and units, season to date, every Monday.</div></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="pagebtn" href="./">&larr; Card</a><a class="pagebtn" href="record.html">Record</a></div></div>
+  {weekly()}
+  <footer>
+    <div><a class="follow" href="https://x.com/{report_html.X_HANDLE}" target="_blank" rel="noopener"><img src="assets/otg-logo-512.png" alt="">Follow @{report_html.X_HANDLE} on X for every play</a></div></footer>
+</main>
+</html>
+"""
 
 
 def build() -> str:
@@ -231,8 +260,8 @@ def build() -> str:
 <main class="wrap">
   <img class="hero" src="assets/otg-banner.webp" alt="Off The Glass Hoops" width="2000" height="667">
   <div class="head"><div><h1>College Basketball Record</h1>
-    <div class="sub">Bets placed on the model's plays, at the logged number and price. Updated {now:%b %-d, %-I:%M %p} ET.</div></div><a class="pagebtn" href="./">&larr; Card</a></div>
-  {weekly()}
+    <div class="sub">Bets placed on the model's plays, at the logged number and price. Updated {now:%b %-d, %-I:%M %p} ET.</div></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="pagebtn" href="./">&larr; Card</a><a class="pagebtn" href="record/charts.html">Charts</a></div></div>
   <div class="kpis">{kpis}</div>
   <section class="panel"><div class="panel-h"><h2>Summary</h2><span class="note">Settled bets placed. CLV = points the line moved our way from the logged number to the close. Break-even at -110 is 52.4%.</span></div>
     <div class="scroll"><table>{HEAD}<tbody>{''.join(rows)}</tbody></table></div>{_chart(s)}</section>
@@ -315,6 +344,9 @@ def write() -> str:
         fh.write(build())
     with open(VERIFY, "w") as fh:
         fh.write(build_verify())
+    os.makedirs(os.path.dirname(CHARTS), exist_ok=True)
+    with open(CHARTS, "w") as fh:
+        fh.write(build_charts())
     return OUT
 
 
