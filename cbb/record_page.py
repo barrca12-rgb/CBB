@@ -126,6 +126,17 @@ def cohorts(b: pd.DataFrame) -> tuple[str, str]:
     return head + "<tbody>" + rows + "</tbody>", note
 
 
+def _logo(team_id, px: int = 16) -> str:
+    """ESPN team logo (light and dark variants); removed by the browser if it fails to load."""
+    try:
+        i = int(float(team_id))
+    except (TypeError, ValueError):
+        return ""
+    u = "https://a.espncdn.com/i/teamlogos/ncaa/{}/" + f"{i}.png"
+    return (f"<picture class='tl'><source media='(prefers-color-scheme: dark)' srcset='{u.format('500-dark')}'>"
+            f"<img src='{u.format('500')}' alt='' loading='lazy' width='{px}' height='{px}' onerror=\"this.closest('picture').remove()\"></picture>")
+
+
 def build() -> str:
     b = tracker.load()
     # Every play counts as placed (Chad bets them all, Oct 27) unless marked placed = "no"; voids are out.
@@ -156,7 +167,7 @@ def build() -> str:
         units = _num(float(r["profit"])) if r["status"] == "settled" else "–"
         logged = pd.Timestamp(r["logged_at"]).tz_convert("America/New_York")
         plays.append(
-            f"<tr><td class='m'>{r['date']}</td><td>{html.escape(str(r['away']))} at {html.escape(str(r['home']))}</td>"
+            f"<tr><td class='m'>{r['date']}</td><td>{_logo(r['away_id'])}{html.escape(str(r['away']))} at {_logo(r['home_id'])}{html.escape(str(r['home']))}</td>"
             f"<td class='b'>{html.escape(str(r['pick']))}</td><td>{html.escape(str(r['book']))} "
             f"<span class='m'>{_num(r['odds'], '{:+.0f}')}</span></td><td class='r'>{_num(r['edge'], '{:.1f}')}</td>"
             f"<td class='r'>{_num(r['close_line'], '{:g}')}</td><td class='r'>{_num(r['clv_pts'], '{:+.1f}')}</td>"
@@ -199,14 +210,10 @@ def build() -> str:
   <div class="kpis">{kpis}</div>
   <section class="panel"><div class="panel-h"><h2>Summary</h2><span class="note">Settled bets placed. CLV = points the line moved our way from the logged number to the close. Break-even at -110 is 52.4%.</span></div>
     <div class="scroll"><table>{HEAD}<tbody>{''.join(rows)}</tbody></table></div>{_chart(s)}</section>
-  <section class="panel"><div class="panel-h"><h2>Signals, quotes and accepted bets</h2><span class="note">{html.escape(coh_note)}</span></div>
-    <div class="scroll"><table>{coh_table}</table></div></section>
   {f"<section class='panel'><div class='panel-h'><h2>By month</h2></div><div class='scroll'><table>{HEAD}<tbody>{months}</tbody></table></div></section>" if months else ""}
-  <section class="panel"><div class="panel-h"><h2>Bets placed</h2><span class="note">Newest first. Voided plays (cancelled before the game) are left out; they and their corrections are in the bet log and on Discord (below).</span></div>
+  <section class="panel"><div class="panel-h"><h2>Bets placed</h2><span class="note">Newest first.</span></div>
     <div class="scroll"><table>{plays_t}</table></div></section>
-  <section class="panel"><div class="panel-h"><h2>Check it</h2></div><ul style="margin:12px 0;padding:0 16px 0 34px;line-height:1.7">{verify}</ul></section>
-  {f"<section class='panel'><div class='panel-h'><h2>Model changes</h2><span class='note'>Announced the day each went live</span></div><ul style='margin:12px 0;padding:0 16px 0 34px;line-height:1.6'>{notes}</ul></section>" if notes else ""}
-  <footer>Plays come from the model's card, logged automatically at the posted number and price. Results are graded against final scores; closing lines are the median of the tracked books.
+  <footer>
     <div><a class="follow" href="https://x.com/{report_html.X_HANDLE}" target="_blank" rel="noopener"><img src="assets/otg-logo-512.png" alt="">Follow @{report_html.X_HANDLE} on X for every play</a></div></footer>
 </main>
 </html>

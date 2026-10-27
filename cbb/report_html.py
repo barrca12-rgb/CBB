@@ -191,6 +191,8 @@ details.panel[open] > summary { border-bottom: 1px solid var(--line) }
 footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 80ch }
 .follow { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; font-weight: 700; color: var(--text) }
 .follow img { width: 22px; height: 22px; border-radius: 5px }
+.tl img { width: auto; vertical-align: -3px; margin-right: 5px; object-fit: contain }
+.pick .tl img { vertical-align: -5px; margin-right: 6px }
 .hero { display: block; width: 100%; height: auto; border-radius: 12px; margin-top: 20px; border: 1px solid var(--line) }
 
 @media (max-width: 720px) {
@@ -255,10 +257,6 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   <details class="panel"><summary>Power ratings</summary><div class="scroll"><table id="t-rat"></table></div></details>
 
   <footer>
-    Projections combine opponent-adjusted efficiency ratings from every Division I box score this season with KenPom, Barttorvik,
-    Four Factor matchups, rest, home court and player availability. The line is never an input. In a 2014–2026 walk-forward
-    backtest the plays won 58.6% (spreads) and about 57.5% (totals) against opening lines, and broke even against closing lines,
-    so the value is in betting early. <a id="bt-link" href="#">Backtest details</a>.
     <div><a class="follow" href="https://x.com/__X__" target="_blank" rel="noopener"><img src="assets/otg-logo-512.png" alt="">Follow @__X__ on X for every play</a></div>
   </footer>
 </main>
@@ -281,11 +279,15 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   const day = new Date(D.date + "T12:00:00");
   const tip = (g) => g.start ? new Date(g.start).toLocaleTimeString("en-US", {hour: "numeric", minute: "2-digit", timeZone: "America/New_York"}) : "";
   const matchup = (g) => g.away + (g.neutral ? " vs " : " @ ") + g.home;
+  const logo = (id, px) => id == null ? "" : "<picture class='tl'><source media='(prefers-color-scheme: dark)' srcset='https://a.espncdn.com/i/teamlogos/ncaa/500-dark/" + Number(id) +
+    ".png'><img src='https://a.espncdn.com/i/teamlogos/ncaa/500/" + Number(id) + ".png' alt='' loading='lazy' width='" + px + "' height='" + px +
+    "' onerror=\"this.closest('picture').remove()\"></picture>";
+  const matchupL = (g) => logo(g.away_id, 14) + esc(g.away) + (g.neutral ? " vs " : " @ ") + logo(g.home_id, 14) + esc(g.home);
+  const pickId = (g, kind, side) => kind === "Spread" ? (side === "home" ? g.home_id : side === "away" ? g.away_id : null) : null;
   const BOOKS = ["FanDuel", "DraftKings", "BetMGM", "Caesars", "Fanatics", "bet365", "theScore Bet"];
   const bl = (g, bk) => (g.book_lines || []).find((x) => x.book === bk);
 
   $("nfl-link").href = D.nfl;
-  $("bt-link").href = "https://github.com/" + D.repo + "/blob/HEAD/BACKTEST.md";
   $("h1").textContent = day.toLocaleDateString("en-US", {weekday: "long", month: "long", day: "numeric"});
   const withLines = D.games.filter((g) => g.n_books > 0).length;
   $("sub").textContent = D.games.length + " games · " + withLines + " with lines · " + (D.season - 1) + "–" + String(D.season).slice(2) + " season";
@@ -313,7 +315,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     const placed = String(g[mk + "_logged_placed"] || "").toLowerCase() === "yes";
     const now = still ? "still a play now at " + cur + " (" + g[mk + "_book"] + ")"
       : "line now " + (cur ?? "–") + ", not a play today · your bet stands";
-    P.push({g, kind: mk === "spread" ? "Spread" : "Total", bet: pick, price: g[mk + "_logged_odds"], book: g[mk + "_logged_book"],
+    P.push({g, kind: mk === "spread" ? "Spread" : "Total", side, bet: pick, price: g[mk + "_logged_odds"], book: g[mk + "_logged_book"],
       link: still ? g[mk + "_link"] : null, warn: g[mk + "_warn"], edge: g[mk + "_now_edge"], p: g[mk + "_now_p"],
       ev: g[mk + "_now_ev"], model: mk === "spread" ? (side === "home" ? ln(-g.model_margin) : ln(g.model_margin)) : num(g.model_total),
       to: placed ? "Placed" : still ? (mk === "spread" ? ln(g.spread_good_to) : num(g.total_good_to)) : "–",
@@ -341,7 +343,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   };
   D.games.forEach((g) => {
     const ls = logged(g, "spread"), lt = logged(g, "total");
-    if (!ls && g.spread_verdict === "BET") P.push({g, kind: "Spread", bet: g.spread_pick + " " + ln(g.spread_line), price: g.spread_odds, book: g.spread_book,
+    if (!ls && g.spread_verdict === "BET") P.push({g, kind: "Spread", side: g.spread_side, bet: g.spread_pick + " " + ln(g.spread_line), price: g.spread_odds, book: g.spread_book,
       link: g.spread_link, warn: g.spread_warn, edge: g.spread_edge, p: g.spread_p, ev: g.spread_ev, model: g.spread_side === "home" ? ln(-g.model_margin) : ln(g.model_margin), to: ln(g.spread_good_to),
       open: g.open_home_spread == null ? null : ln(g.spread_side === "home" ? g.open_home_spread : -g.open_home_spread), units: g.spread_units,
       also: others(g, "spread", g.spread_side, g.spread_book)});
@@ -351,7 +353,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   });
   P.sort((a, b) => String(a.g.start).localeCompare(String(b.g.start)) || b.edge - a.edge);
   $("t-plays").innerHTML = P.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r hide-sm'>Model</th><th class='r'>Edge</th><th class='r hide-sm'>Win %</th><th class='r'>EV</th><th class='r'>Bet to</th><th class='r hide-sm'>Opened</th><th class='r hide-sm'>Units</th><th></th></tr></thead><tbody>" +
-    P.map((p) => "<tr><td><div class='b'>" + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + esc(matchup(p.g)) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
+    P.map((p) => "<tr><td><div class='b pick'>" + logo(pickId(p.g, p.kind, p.side), 20) + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
       (p.kind === "Total" && p.g.crew ? "<div class='f' style='font-size:11px'>Refs: " + esc(p.g.crew) + "</div>" : "") +
       (p.status ? "<div class='f' style='font-size:12px'>" + esc(p.status) + "</div>" : "") +
       (p.also ? "<div class='f' style='font-size:12px'>" + esc(p.also) + "</div>" : "") +
@@ -430,7 +432,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
           bookCells = BOOKS.map((bk, j) => { const x = bl(g, bk); return x && x[sd + "_ml"] != null ? cell(odds(x[sd + "_ml"]), null, x[sd + "_ml_link"], prices[j] === top && prices.filter((v) => v != null).length > 1) : cell(null); });
         }
         return "<tr>" + (i === 0 ? "<td class='tm' rowspan='2'>" + esc(tip(g)) + (g.state === "post" ? "<div class='f'>Final</div>" : "") + "</td>" : "") +
-          "<td class='team'>" + (i === 1 && !g.neutral ? "<span class='f'>@ </span>" : "") + esc(team) +
+          "<td class='team'>" + (i === 1 && !g.neutral ? "<span class='f'>@ </span>" : "") + logo(g[sd + "_id"], 18) + esc(team) +
           (g.state === "post" ? " <span class='m'>" + esc(g[sd + "_score"]) + "</span>" : "") +
           (g[sd + "_injuries"] ? "<div class='inj'>" + esc(g[sd + "_injuries"]) + "</div>" : "") + "</td><td class='r pts'>" + pts + "</td><td class='r b'>" + model + "</td>" +
           bookCells.map((c) => "<td class='bk'>" + c + "</td>").join("") + "<td class='r'>" + edge + "</td></tr>";
