@@ -188,3 +188,15 @@ The Jan 15 check runs `sha256sum -c` on this line in place of the v2.0 line for 
   fingerprinted file, selection, staking and grading of results.
 - Same day: the chart writes a fixed caption (`site/record/CAPTION.md`, `site/record/weekly/<date>-caption.txt`),
   and `site/record/PROFILE.md` holds the X bio and pinned-post drafts. Posting is by hand.
+
+## 2026-10-27: live card cadence recorded (Chad's cron-job.org schedule; in place before the first games)
+
+- **Live cadence:** a card run every 10 minutes around the clock, started by Chad's external cron-job.org job
+  (workflow dispatch of "Update CBB card"). The cron lines in `.github/workflows/update.yml` (12 runs a day) are a
+  backup only.
+- **Measured from card run times:** overnight (midnight to 8 am ET) every 30 minutes on the night of Oct 25-26, every
+  10 minutes from midnight Oct 27 on (50 runs that night, longest gap 19 minutes). Daytime has been every 10 minutes
+  since Oct 26.
+- **Status:** set by Chad before the first games (Nov 1); no play was logged under the 30-minute overnight schedule
+  after the protocol's start. The schedule is outside the repo, so it has no fingerprint: any later change to it gets a
+  dated entry here, and the weekly health line counts card runs, which shows a change within a week.
