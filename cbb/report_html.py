@@ -179,7 +179,6 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     <nav class="days" id="days" aria-label="Days"></nav>
   </div>
   <div class="notice" id="replay" hidden>Replay of a past day using ESPN's stored closing lines. Prices and bet links appear on live cards only.</div>
-  <div class="notice" id="tshift" hidden></div>
 
   <div class="kpis" id="kpis"></div>
 
@@ -253,11 +252,6 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   const withLines = D.games.filter((g) => g.n_books > 0).length;
   $("sub").textContent = D.games.length + " games · " + withLines + " with lines · " + (D.season - 1) + "–" + String(D.season).slice(2) + " season";
   $("replay").hidden = !D.replay;
-  const ts = (D.games.find(g => g.total_shift) || {}).total_shift;
-  if (ts) {
-    $("tshift").textContent = `Opening week: model totals shifted ${ts > 0 ? "+" : ""}${ts.toFixed(1)} pts to KenPom's scoring level, so totals plays come only from game-by-game differences. Ends after the season's first 7 days.`;
-    $("tshift").hidden = false;
-  }
 
   const navDays = (list, cur) => {
     $("days").innerHTML = list.slice(-7).map((d) => '<a href="cbb_' + d + '.html"' + (d === D.date ? ' aria-current="page"' : "") + ">" +
