@@ -186,3 +186,13 @@ Caesars +0.70%.
 | B: all 9 dates | 975 | 1 (near tip) | 19,500 |
 | C: 5 recent dates | 585 | 2 (game-day morning + near tip) | 23,400 (above the floor) |
 | D: all 9 dates | 975 | 2 | 39,000 (above the floor) |
+
+## 2026-10-27: first-half pilot (approved by Chad; `h1_pilot.py`, `research_h1_pilot.yml`)
+
+- **Games, fixed before the pull** (`data/h1_pilot_games.csv`, seed 20261027): from the 2025-26 Option B dates
+  (Nov 8, Jan 10, Mar 7), tip at or after 17:00 UTC. 10 with a power-conference team and 10 without, drawn at random.
+- **Moments:** game day 15:00 UTC, and tip - 15 minutes. Spreads_h1 and totals_h1, all US-region books.
+- **Guards:** at most 800 credits; stops before leaving fewer than 50,000.
+- **Purpose: coverage only, no betting test.** How many games have pregame first-half lines, at which books, and
+  whether they are up by the morning. That decides whether option A is worth pulling. The betting test will be
+  pre-registered before any larger pull.
