@@ -42,7 +42,7 @@
 .show-sm { display: none }
 body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.45 var(--font); font-feature-settings: "tnum" 1, "cv11" 1; -webkit-font-smoothing: antialiased }
 a { color: var(--accent); text-decoration: none } a:hover { text-decoration: underline }
-.wrap { max-width: 1200px; margin: 0 auto; padding: 0 16px }
+.wrap { max-width: 1320px; margin: 0 auto; padding: 0 16px }
 
 /* Top bar */
 .top { background: var(--bar); border-bottom: 3px solid var(--brand); position: sticky; top: 0; z-index: 5 }
@@ -114,12 +114,16 @@ label.chk { display: inline-flex; gap: 6px; align-items: center; color: var(--mu
 .board .team { font-weight: 500 }
 .inj { color: var(--warn); font-size: 11px; font-weight: 500; white-space: normal; max-width: 340px; margin-top: 1px } .board .tm { width: 72px; color: var(--muted); font-size: 12px }
 .board .pts { color: var(--muted); width: 40px }
-.odd { display: inline-flex; flex-direction: column; align-items: flex-end; min-width: 64px; padding: 3px 8px; border-radius: 6px; line-height: 1.25; color: var(--text); text-decoration: none }
+.odd { display: inline-flex; flex-direction: column; align-items: flex-end; min-width: 56px; padding: 3px 6px; border-radius: 6px; line-height: 1.25; color: var(--text); text-decoration: none }
 .odd small { color: var(--faint); font-size: 11px }
 a.odd:hover { background: var(--sunken); text-decoration: none }
 .odd.best { background: var(--pos-bg); color: var(--pos) } .odd.best small { color: var(--pos) }
 .na { color: var(--faint) }
-.board th.bk, .board td.bk { text-align: right; width: 96px }
+.board th.bk, .board td.bk { text-align: right; width: 84px; padding-left: 6px; padding-right: 6px }
+.board td.edge { white-space: normal; min-width: 110px; max-width: 170px } .tag { white-space: normal }
+.bestc { display: none; text-align: right } .tm-sm { display: none; color: var(--faint); font-size: 11px }
+@media (max-width: 1100px) { .bk-minor, .hide-md { display: none } .board .bestc { display: table-cell } }
+.bestc small { display: block; color: var(--faint); font-size: 11px }
 .board tbody.g.has-bet { background: linear-gradient(90deg, var(--brand) 0 3px, transparent 3px) }
 
 details.panel > summary { list-style: none; cursor: pointer; padding: 12px 16px; font-weight: 600; font-size: 15px; display: flex; justify-content: space-between }
@@ -134,7 +138,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
 .hero { display: block; height: 120px; width: auto; max-width: 100%; object-fit: contain; border-radius: 10px; margin-top: 18px; border: 1px solid var(--line) }
 @media (max-width: 720px) { .hero { height: auto; width: 100% } }
 
-@media (max-width: 720px) {
+@media (max-width: 860px) {
   .top .wrap { gap: 10px } .status span { display: none }
   .wordmark { display: none } .tabs a { padding: 0 8px; font-size: 12px }
   h1 { font-size: 21px }
@@ -142,6 +146,21 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   .hide-sm { display: none } .show-sm { display: inline }
   td, th { padding-left: 10px; padding-right: 10px }
   #t-plays td:first-child { white-space: normal; min-width: 150px }
+  .board .bk, .board .pts { display: none } .bestc { display: table-cell }
+  .board .tm { width: 52px; font-size: 11px } .board td.edge { min-width: 0; max-width: 104px }
+  .board td, .board th { padding-left: 6px; padding-right: 6px } .board .team { white-space: normal; min-width: 0 }
+  .board .tag { font-size: 10px; padding: 1px 4px } .board .tl img { width: 14px; height: 14px; margin-right: 4px }
+  .board .tm { display: none } .tm-sm { display: block } .board td.edge { max-width: 104px }
+  table.stack thead { display: none }
+  table.stack tbody tr { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 12px; padding: 12px; border-bottom: 1px solid var(--line) }
+  table.stack tbody tr:last-child { border-bottom: 0 }
+  table.stack td { display: block; border: 0; padding: 0; white-space: normal; text-align: left; min-width: 0 }
+  table.stack td:first-child { grid-column: 1 / -1; min-width: 0 }
+  table.stack td[data-l]::before { content: attr(data-l); display: block; font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .05em; color: var(--faint); margin-bottom: 1px }
+  table.stack td:first-child::before { display: none }
+  table.stack td.hide-sm, table.stack td:empty { display: none }
+  table.stack td.empty { grid-column: 1 / -1; text-align: center }
 }
 </style>
 <header class="top"><div class="wrap">
@@ -151,7 +170,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
 <main class="wrap">
   <img class="hero" src="assets/otg-banner.webp" alt="Off The Glass Hoops" width="2000" height="667">
   <div class="head"><div><h1>College Basketball Record</h1>
-    <div class="sub">Bets placed on the model's plays, at the logged number and price. Updated Oct 27, 2:30 PM ET.</div></div><a class="pagebtn" href="./">&larr; Card</a></div>
+    <div class="sub">Bets placed on the model's plays, at the logged number and price. Updated Oct 27, 2:33 PM ET.</div></div><a class="pagebtn" href="./">&larr; Card</a></div>
   <div class="kpis"><div class='kpi'><div class='k'>Record</div><div class='v'>0-0</div></div><div class='kpi'><div class='k'>Win %</div><div class='v'>–</div></div><div class='kpi'><div class='k'>Units</div><div class='v'>+0.00</div></div><div class='kpi'><div class='k'>ROI</div><div class='v'>–</div></div><div class='kpi'><div class='k'>Avg CLV</div><div class='v'>–</div></div><div class='kpi'><div class='k'>Open plays</div><div class='v'>7</div></div></div>
   <section class="panel"><div class="panel-h"><h2>Summary</h2><span class="note">Settled bets placed. CLV = points the line moved our way from the logged number to the close. Break-even at -110 is 52.4%.</span></div>
     <div class="scroll"><table><thead><tr><th></th><th class='r'>Plays</th><th class='r'>W-L</th><th class='r'>Win %</th><th class='r'>Units</th><th class='r'>ROI</th><th class='r'>CLV pts</th><th class='r'>Beat close</th></tr></thead><tbody><tr><td class='b'>All bets</td><td class='r'>0</td><td class='r'>0-0</td><td class='r'>–</td><td class='r '>+0.00</td><td class='r'>–</td><td class='r'>–</td><td class='r'>–</td></tr><tr><td class='b'>Spreads</td><td class='r'>0</td><td class='r'>0-0</td><td class='r'>–</td><td class='r '>+0.00</td><td class='r'>–</td><td class='r'>–</td><td class='r'>–</td></tr><tr><td class='b'>Totals</td><td class='r'>0</td><td class='r'>0-0</td><td class='r'>–</td><td class='r '>+0.00</td><td class='r'>–</td><td class='r'>–</td><td class='r'>–</td></tr></tbody></table></div></section>
@@ -161,4 +180,12 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   <footer>
     <div><a class="follow" href="https://x.com/OffTheGlassHQ" target="_blank" rel="noopener"><img src="assets/otg-logo-512.png" alt="">Follow @OffTheGlassHQ on X for every play</a></div></footer>
 </main>
+<script>
+// phones: each table row becomes a small card, each cell labeled with its column header (styles in report_html)
+document.querySelectorAll("main table").forEach((t) => {
+  const hs = [...t.querySelectorAll("thead th")].map((h) => h.textContent.trim());
+  t.classList.add("stack");
+  t.querySelectorAll("tbody tr").forEach((r) => [...r.children].forEach((c, k) => { if (hs[k]) c.dataset.l = hs[k]; }));
+});
+</script>
 </html>
