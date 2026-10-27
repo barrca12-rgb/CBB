@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="../">
+<meta name="robots" content="noindex">
+<title>Off The Glass · Verification</title>
+<meta name="description" content="Off The Glass: a college basketball betting model. Every play logged at the posted number, graded in public.">
+<meta name="theme-color" content="#0A2C49">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:site_name" content="Off The Glass">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://barrca12-rgb.github.io/CBB/assets/otg-social.jpg">
+<meta property="og:description" content="College basketball model: every play logged at the posted number, graded in public.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@OffTheGlassHQ">
+<meta name="twitter:image" content="https://barrca12-rgb.github.io/CBB/assets/otg-social.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Graduate&family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+:root {
+  --bg: #fbf6ea; --surface: #ffffff; --sunken: #f7f0e1; --line: #ebe1cd; --line-strong: #d9cbb0;
+  --text: #0a2c49; --muted: #56627a; --faint: #8a93a3;
+  --accent: #b84a08; --pos: #0f7b4b; --pos-bg: #e6f4ed; --neg: #c2352b; --warn: #8a5a00; --warn-bg: #fbf0d9;
+  --brand: #fd6c0f; --bar: #0a2c49; --bar-text: #fbf6ea; --bar-muted: #b7c3d3;
+  --font: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --display: "Graduate", "Rockwell", Georgia, serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #08090b; --surface: #12151a; --sunken: #181c22; --line: #242a33; --line-strong: #333b46;
+    --text: #f6eedd; --muted: #a8b0bc; --faint: #6f7886;
+    --accent: #ff8a3d; --pos: #3ccf8e; --pos-bg: #12301f; --neg: #ff6b5e; --warn: #f0b44a; --warn-bg: #33270f;
+    --brand: #fd6c0f; --bar: #000000; --bar-text: #f6eedd; --bar-muted: #9aa2ae;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box }
+.show-sm { display: none }
+body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.45 var(--font); font-feature-settings: "tnum" 1, "cv11" 1; -webkit-font-smoothing: antialiased }
+a { color: var(--accent); text-decoration: none } a:hover { text-decoration: underline }
+.wrap { max-width: 1320px; margin: 0 auto; padding: 0 16px }
+
+/* Top bar */
+.top { background: var(--bar); border-bottom: 3px solid var(--brand); position: sticky; top: 0; z-index: 5 }
+.top .wrap { display: flex; align-items: center; gap: 22px; height: 58px }
+.brand { display: flex; align-items: center; gap: 10px; white-space: nowrap; color: var(--bar-text); text-decoration: none }
+.brand:hover { text-decoration: none }
+.brand img { width: 34px; height: 34px; border-radius: 7px; display: block }
+.wordmark { font-family: var(--display); font-size: 19px; letter-spacing: .02em; text-transform: uppercase; color: var(--bar-text); line-height: 1 }
+.tabs { display: flex; gap: 2px; height: 100% }
+.tabs a { display: flex; align-items: center; padding: 0 12px; color: var(--bar-muted); font-weight: 600; font-size: 13px; letter-spacing: .04em;
+  text-transform: uppercase; border-bottom: 3px solid transparent; margin-bottom: -3px; text-decoration: none }
+.tabs a[hidden] { display: none }
+.tabs a:hover { color: var(--bar-text); text-decoration: none }
+.tabs a[aria-current="page"] { color: var(--bar-text); border-bottom-color: var(--brand) }
+.status { margin-left: auto; display: flex; align-items: center; gap: 12px; color: var(--bar-muted); font-size: 13px; min-width: 0 }
+.status a { color: var(--bar-text) }
+#upd-btn { background: transparent; color: var(--bar-text); border-color: rgba(251,246,234,.35) } #upd-btn:hover { background: rgba(251,246,234,.1) }
+.status span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+button { font: inherit; font-weight: 600; font-size: 13px; color: var(--text); background: var(--surface); border: 1px solid var(--line-strong);
+  border-radius: 6px; padding: 6px 12px; cursor: pointer } button:hover { background: var(--sunken) } button:disabled { opacity: .5; cursor: progress }
+
+/* Page head */
+.head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px; padding: 24px 0 16px }
+h1 { font-family: var(--display); font-weight: 400; font-size: 26px; letter-spacing: .01em; margin: 0; line-height: 1.15 }
+.sub { color: var(--muted); margin-top: 2px }
+.days { display: flex; gap: 4px; flex-wrap: wrap }
+.days a, .pagebtn { padding: 5px 12px; border-radius: 6px; color: var(--text); font-weight: 600; font-size: 13px; text-decoration: none;
+  border: 1px solid var(--line-strong); background: var(--surface); white-space: nowrap }
+.days a:hover, .pagebtn:hover { background: var(--sunken); text-decoration: none }
+.days a[aria-current="page"] { color: var(--surface); border-color: var(--text); background: var(--text) }
+.notice { border: 1px solid var(--line); background: var(--warn-bg); color: var(--warn); border-radius: 8px; padding: 10px 12px; margin-bottom: 16px; font-size: 13px }
+
+/* KPI strip */
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); border: 1px solid var(--line); border-top: 3px solid var(--text); border-radius: 10px; background: var(--surface); margin-bottom: 24px; overflow: hidden; box-shadow: 0 1px 2px rgba(10,44,73,.06) }
+.kpi { padding: 12px 16px; border-right: 1px solid var(--line) } .kpi:last-child { border-right: 0 }
+.kpi .k { color: var(--muted); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em } .kpi .v { font-size: 21px; font-weight: 800; margin-top: 3px; letter-spacing: -.01em }
+.kpi .v small { font-size: 12px; color: var(--muted); font-weight: 500; margin-left: 4px }
+
+/* Panels and tables */
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; margin-bottom: 24px; overflow: hidden; box-shadow: 0 1px 2px rgba(10,44,73,.06) }
+.panel-h { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--line) }
+.panel-h h2 { font-size: 13px; font-weight: 800; margin: 0; text-transform: uppercase; letter-spacing: .07em; display: flex; align-items: center; gap: 8px }
+.panel-h h2::before { content: ""; width: 4px; height: 14px; background: var(--brand); border-radius: 2px } .panel-h .note { color: var(--muted); font-size: 12px }
+.scroll { overflow-x: auto }
+table { width: 100%; border-collapse: collapse; font-size: 13px }
+th { text-align: left; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); padding: 8px 12px; border-bottom: 1px solid var(--line); background: var(--sunken); white-space: nowrap }
+td { padding: 9px 12px; border-bottom: 1px solid var(--line); white-space: nowrap; vertical-align: middle }
+tbody tr:last-child td { border-bottom: 0 }
+.r { text-align: right } .c { text-align: center } .m { color: var(--muted) } .f { color: var(--faint) }
+.pos { color: var(--pos) } .neg { color: var(--neg) } .b { font-weight: 600 }
+.empty { padding: 28px 16px; color: var(--muted); text-align: center }
+.betlink { font-weight: 600; font-size: 12px; border: 1px solid var(--line-strong); border-radius: 6px; padding: 4px 10px; color: var(--text); display: inline-block }
+.betlink:hover { background: var(--sunken); text-decoration: none }
+.tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 6px; border-radius: 4px; border: 1px solid var(--line-strong); color: var(--muted) }
+.tag.bet { color: #fff; border-color: var(--brand); background: var(--brand) }
+
+/* Segmented control */
+.seg { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 6px; overflow: hidden }
+.seg button { border: 0; border-radius: 0; padding: 5px 12px; color: var(--muted); font-weight: 500; background: transparent }
+.seg button + button { border-left: 1px solid var(--line-strong) }
+.seg button[aria-pressed="true"] { background: var(--text); color: var(--surface) }
+.ctrls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center }
+label.chk { display: inline-flex; gap: 6px; align-items: center; color: var(--muted); font-size: 13px; cursor: pointer }
+
+/* Odds board: two rows per game (away, home) */
+.board td { padding-top: 6px; padding-bottom: 6px }
+.board tbody.g tr:first-child td { padding-top: 10px } .board tbody.g tr:last-child td { padding-bottom: 10px; border-bottom: 1px solid var(--line) }
+.board tbody.g tr:first-child td { border-bottom: 0 }
+.board tbody.g:last-child tr:last-child td { border-bottom: 0 }
+.board .team { font-weight: 500 }
+.inj { color: var(--warn); font-size: 11px; font-weight: 500; white-space: normal; max-width: 340px; margin-top: 1px } .board .tm { width: 72px; color: var(--muted); font-size: 12px }
+.board .pts { color: var(--muted); width: 40px }
+.odd { display: inline-flex; flex-direction: column; align-items: flex-end; min-width: 56px; padding: 3px 6px; border-radius: 6px; line-height: 1.25; color: var(--text); text-decoration: none }
+.odd small { color: var(--faint); font-size: 11px }
+a.odd:hover { background: var(--sunken); text-decoration: none }
+.odd.best { background: var(--pos-bg); color: var(--pos) } .odd.best small { color: var(--pos) }
+.na { color: var(--faint) }
+.board th.bk, .board td.bk { text-align: right; width: 84px; padding-left: 6px; padding-right: 6px }
+.board td.edge { white-space: normal; min-width: 110px; max-width: 170px } .tag { white-space: normal }
+.bestc { display: none; text-align: right } .tm-sm { display: none; color: var(--faint); font-size: 11px }
+@media (max-width: 1100px) { .bk-minor, .hide-md { display: none } .board .bestc { display: table-cell } }
+.bestc small { display: block; color: var(--faint); font-size: 11px }
+.board tbody.g.has-bet { background: linear-gradient(90deg, var(--brand) 0 3px, transparent 3px) }
+
+details.panel > summary { list-style: none; cursor: pointer; padding: 12px 16px; font-weight: 600; font-size: 15px; display: flex; justify-content: space-between }
+details.panel > summary::after { content: "Show"; color: var(--accent); font-size: 13px; font-weight: 500 }
+details.panel[open] > summary::after { content: "Hide" }
+details.panel[open] > summary { border-bottom: 1px solid var(--line) }
+footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 80ch }
+.follow { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; font-weight: 700; color: var(--text) }
+.follow img { width: 22px; height: 22px; border-radius: 5px }
+.tl img { width: auto; vertical-align: -3px; margin-right: 5px; object-fit: contain }
+.pick .tl img { vertical-align: -5px; margin-right: 6px }
+.hero { display: block; height: 120px; width: auto; max-width: 100%; object-fit: contain; border-radius: 10px; margin-top: 18px; border: 1px solid var(--line) }
+@media (max-width: 720px) { .hero { height: auto; width: 100% } }
+
+@media (max-width: 860px) {
+  .top .wrap { gap: 10px } .status span { display: none }
+  .wordmark { display: none } .tabs a { padding: 0 8px; font-size: 12px }
+  h1 { font-size: 21px }
+  .kpi { border-right: 0; border-bottom: 1px solid var(--line) } .kpi:last-child { border-bottom: 0 }
+  .hide-sm { display: none } .show-sm { display: inline }
+  td, th { padding-left: 10px; padding-right: 10px }
+  #t-plays td:first-child { white-space: normal; min-width: 150px }
+  .board .bk, .board .pts { display: none } .bestc { display: table-cell }
+  .board .tm { width: 52px; font-size: 11px } .board td.edge { min-width: 0; max-width: 104px }
+  .board td, .board th { padding-left: 6px; padding-right: 6px } .board .team { white-space: normal; min-width: 0 }
+  .board .tag { font-size: 10px; padding: 1px 4px } .board .tl img { width: 14px; height: 14px; margin-right: 4px }
+  .board .tm { display: none } .tm-sm { display: block } .board td.edge { max-width: 104px }
+  table.stack thead { display: none }
+  table.stack tbody tr { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 12px; padding: 12px; border-bottom: 1px solid var(--line) }
+  table.stack tbody tr:last-child { border-bottom: 0 }
+  table.stack td { display: block; border: 0; padding: 0; white-space: normal; text-align: left; min-width: 0 }
+  table.stack td:first-child { grid-column: 1 / -1; min-width: 0 }
+  table.stack td[data-l]::before { content: attr(data-l); display: block; font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .05em; color: var(--faint); margin-bottom: 1px }
+  table.stack td:first-child::before { display: none }
+  table.stack td.hide-sm, table.stack td:empty { display: none }
+  table.stack td.empty { grid-column: 1 / -1; text-align: center }
+}
+</style>
+<header class="top"><div class="wrap">
+  <a class="brand" href="./" aria-label="Off The Glass home"><img src="assets/otg-logo-512.png" alt="" width="34" height="34"><span class="wordmark">Off The Glass</span></a>
+</div></header>
+<main class="wrap">
+  <div class="head"><div><h1>Verification</h1>
+    <div class="sub">How to check the College Basketball record yourself. Updated Oct 27, 4:32 PM ET.</div></div><a class="pagebtn" href="record.html">&larr; Record</a></div>
+  <section class="panel"><div class="panel-h"><h2>Forward-test cohorts</h2><span class="note">Units use the recorded price; 0 signal(s) without one are counted at -110 here and are left out of the forward test&#x27;s profitability figures. B excludes 6 signal(s) logged before quote timestamps were recorded or without one. C counts only bets confirmed with book, time, line, odds and stake (bets/accepted.csv); 0 of 7 signals matched.</span></div>
+    <div class="scroll"><table><thead><tr><th>Cohort</th><th class='r'>Signals</th><th class='r'>Settled</th><th class='r'>W-L-P</th><th class='r'>Win %</th><th class='r'>Units (logged price)</th><th class='r'>CLV pts</th></tr></thead><tbody><tr><td class='b'>A. Every signal</td><td class='r'>7</td><td class='r'>0</td><td class='r'>0-0-0</td><td class='r'>–</td><td class='r'>+0.00</td><td class='r'>–</td></tr><tr><td class='b'>B. Fresh quote at a named book</td><td class='r'>1</td><td class='r'>0</td><td class='r'>0-0-0</td><td class='r'>–</td><td class='r'>+0.00</td><td class='r'>–</td></tr><tr><td class='b'>C. Confirmed accepted bets</td><td class=r>0</td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div></section>
+  <section class="panel"><div class="panel-h"><h2>Check it</h2></div><ul style="margin:12px 16px 16px;padding-left:18px;line-height:1.7">
+    <li><a href='https://github.com/barrca12-rgb/CBB/blob/claude/college-basketball-model-nmztcl/bets/bets.csv'>The bet log</a> and <a href='https://github.com/barrca12-rgb/CBB/commits/claude/college-basketball-model-nmztcl/bets/bets.csv'>every change to it</a>, each with its time.</li>
+    <li><a href='https://github.com/barrca12-rgb/CBB/blob/claude/college-basketball-model-nmztcl/bets/bets.csv.ots'>OpenTimestamps proof</a>: anchors the current bet log to a Bitcoin block (check it at <a href='https://opentimestamps.org'>opentimestamps.org</a> with the log file).</li>
+    <li><a href='https://github.com/barrca12-rgb/CBB/commits/claude/college-basketball-model-nmztcl/site/record/weekly'>Every weekly chart</a>, committed by the Monday run with the data it was drawn from.</li>
+    <li><a href='https://github.com/barrca12-rgb/CBB/blob/claude/college-basketball-model-nmztcl/MODEL_FREEZE.md'>Model freeze</a>: frozen at commit <a href='https://github.com/barrca12-rgb/CBB/commit/dfb4bc7196d4f72cdeb933abdfcbc87c951122b5'><code>dfb4bc7</code></a>, with file fingerprints.</li></ul></section>
+  <section class="panel"><div class="panel-h"><h2>Model changes</h2><span class="note">Every change, as announced the day it went live.</span></div>
+    <ul style="margin:12px 16px 16px;padding-left:18px;line-height:1.6"><li><b>2026-10-26</b>: Model frozen from Oct 26, 2026 until a Jan 15, 2027 checkpoint: no changes to the ratings, the projection, the betting rules or the cutoffs (spreads 2.5+, totals 3+, +2% EV at the price). Team ratings keep updating from every result, as the frozen code does. Any exception will be announced here the day it goes live. Frozen version: commit dfb4bc7 in the repo (MODEL_FREEZE.md lists file fingerprints).</li><li><b>2026-10-26</b>: This channel posts every BET the model logs, at the time it is logged, whether or not it is bet, then its close, CLV and result. Posts are never edited; mistakes get a correction message. Bets logged before the channel opened are posted on its first day with their original logged time. The bet log is also timestamped with OpenTimestamps after every run (bets/bets.csv.ots in the repo).</li><li><b>2026-10-26</b>: Rule change, live Oct 26: for the first 7 days of each season, model totals are shifted so the day&#x27;s average matches KenPom&#x27;s scoring level. Before any games are played the model starts from last season&#x27;s scoring, which put every 2026-27 total about 3.6 points below KenPom and the market. Two unders logged before the rule and not bet were voided (corrections below); two that were bet stand.</li><li><b>2026-10-26</b>: Model change, live Oct 26: each season now starts from the average of KenPom&#x27;s and Barttorvik&#x27;s preseason ratings (was KenPom alone). Backtest, spread plays 2.5+ vs the opener: November line value +1.09 to +1.29 (2015-17) and +0.83 to +0.87 (2024-26); totals unchanged.</li></ul></section>
+</main>
+<script>
+document.querySelectorAll("main table").forEach((t) => {
+  const hs = [...t.querySelectorAll("thead th")].map((h) => h.textContent.trim());
+  t.classList.add("stack");
+  t.querySelectorAll("tbody tr").forEach((r) => [...r.children].forEach((c, k) => { if (hs[k]) c.dataset.l = hs[k]; }));
+});
+</script>
+</html>
