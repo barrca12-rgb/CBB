@@ -1,0 +1,4 @@
+bet_id,model,market,pick,game,date,game_id,start,side,book,line,odds,edge,ev,v1_margin,r1000_margin,v1_total,r1000_total,other_model_signal,lines_pulled_at,logged_at
+2026-11-02|401916313|spread|away|v1,v1,spread,Ohio State +1.5,Ohio State at BYU,2026-11-02,401916313,2026-11-03T02:00Z,away,DraftKings,1.5,-105.0,3.071,0.1291,-1.571,-1.475,159.927,159.94,True,2026-10-27T14:18:28+00:00,2026-10-27T14:19:16+00:00
+2026-11-02|401916313|spread|away|r1000,r1000,spread,Ohio State +1.5,Ohio State at BYU,2026-11-02,401916313,2026-11-03T02:00Z,away,DraftKings,1.5,-105.0,2.975,0.1243,-1.571,-1.475,159.927,159.94,True,2026-10-27T14:18:28+00:00,2026-10-27T14:19:16+00:00
+2026-11-02|401909771|total|over|r1000,r1000,total,Over 154,Memphis at Iowa State,2026-11-02,401909771,2026-11-03T00:00Z,over,Caesars,154.0,-110.0,3.017,0.0352,14.809,14.869,156.999,157.017,False,2026-10-27T14:18:28+00:00,2026-10-27T14:19:16+00:00
