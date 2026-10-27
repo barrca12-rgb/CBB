@@ -1,0 +1,3 @@
+target,fit 2014-19 coef,test 2020-26 coef,95% interval,out-of-sample R2,adjustment SD (pts),games (test),gate
+frozen model margin residual,0.389432037979421,0.4187380751727636,"[0.315, 0.522]",0.0013792506930615511,1.060591320332628,36139,FAIL (kill rule)
+frozen model total residual,0.6908533797533354,0.5649371748562365,"[0.378, 0.752]",-0.01466863585643563,0.899378486924046,36139,FAIL (kill rule)

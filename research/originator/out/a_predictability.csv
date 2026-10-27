@@ -1,0 +1,5 @@
+component,test rows,out-of-sample R2 (2020-26),coef on predictor,coef with line term,line term coef,predictor vs LINE residual
+possessions residual,72467,0.0027643435023751994,1.119 (0.079),0.920 (0.077),0.231 (0.013),0.724 (0.158)
+offence efficiency residual (points),71870,-0.019279134866882153,-0.124 (0.034),-0.234 (0.033),0.557 (0.022),-0.157 (0.037)
+personnel: absent share,66192,0.07137139267202774,,,,
+personnel: newly present share,66180,0.068548979025707,,,,

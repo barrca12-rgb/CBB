@@ -1,0 +1,57 @@
+inputs 2014
+inputs 2015
+inputs 2016
+inputs 2017
+inputs 2018
+inputs 2019
+inputs 2020
+inputs 2021
+inputs 2022
+inputs 2023
+inputs 2024
+inputs 2025
+inputs 2026
+forecaster group market  games    MAE  miss SD  possessions  home offence  away offence  of which overtime points (seasons with period scores)  personnel (R2, overlaps)  away offence (negative)
+     model   all  total  61450 13.411   17.036        0.318         0.343         0.339                                                  0.106                     0.002                      NaN
+     model   all margin  61450  8.760   11.112        0.002         0.500           NaN                                                  0.009                     0.012                    0.499
+      line   all  total  61450 13.151   16.703        0.321         0.341         0.338                                                  0.108                     0.003                      NaN
+      line   all margin  61450  8.723   11.088        0.002         0.498           NaN                                                  0.009                     0.012                    0.500
+forecaster          group market  games    MAE  miss SD  possessions  home offence  away offence  of which overtime points (seasons with period scores)  personnel (R2, overlaps)  away offence (negative)
+     model      month Nov  total  10832 13.959   17.802        0.330         0.337         0.333                                                  0.088                     0.003                      NaN
+     model      month Nov margin  10832  9.277   11.758        0.006         0.501           NaN                                                  0.006                     0.011                    0.493
+     model      month Dec  total  10651 13.255   16.674        0.302         0.357         0.341                                                  0.091                     0.002                      NaN
+     model      month Dec margin  10651  8.931   11.346        0.006         0.501           NaN                                                  0.006                     0.022                    0.493
+     model      month Jan  total  16421 13.374   16.987        0.316         0.344         0.340                                                  0.118                     0.002                      NaN
+     model      month Jan margin  16421  8.621   10.937       -0.001         0.504           NaN                                                  0.011                     0.013                    0.497
+     model      month Feb  total  15590 13.260   16.862        0.321         0.341         0.339                                                  0.121                     0.002                      NaN
+     model      month Feb margin  15590  8.549   10.797       -0.001         0.496           NaN                                                  0.012                     0.008                    0.505
+     model     month Mar+  total   7956 13.249   16.869        0.318         0.335         0.346                                                  0.108                     0.005                      NaN
+     model     month Mar+ margin   7956  8.531   10.847       -0.000         0.494           NaN                                                  0.011                     0.010                    0.507
+     model      tier high  total  12063 13.112   16.729        0.312         0.343         0.345                                                  0.096                     0.005                      NaN
+     model      tier high margin  12063  8.765   11.094       -0.001         0.500           NaN                                                  0.008                     0.007                    0.501
+     model tier mid/mixed  total  10181 13.359   17.013        0.315         0.346         0.339                                                  0.125                     0.004                      NaN
+     model tier mid/mixed margin  10181  8.722   11.098        0.001         0.503           NaN                                                  0.007                     0.009                    0.496
+     model       tier low  total  39206 13.517   17.135        0.320         0.342         0.338                                                  0.104                     0.001                      NaN
+     model       tier low margin  39206  8.769   11.118        0.003         0.498           NaN                                                  0.010                     0.015                    0.499
+      line      month Nov  total  10832 13.490   17.160        0.334         0.337         0.329                                                  0.090                     0.005                      NaN
+      line      month Nov margin  10832  9.256   11.782        0.007         0.497           NaN                                                  0.006                     0.009                    0.497
+      line      month Dec  total  10651 13.022   16.425        0.305         0.355         0.340                                                  0.091                     0.002                      NaN
+      line      month Dec margin  10651  8.880   11.305        0.006         0.500           NaN                                                  0.007                     0.022                    0.495
+      line      month Jan  total  16421 13.155   16.728        0.320         0.343         0.337                                                  0.119                     0.002                      NaN
+      line      month Jan margin  16421  8.572   10.882       -0.001         0.505           NaN                                                  0.011                     0.013                    0.496
+      line      month Feb  total  15590 13.123   16.656        0.325         0.338         0.337                                                  0.124                     0.003                      NaN
+      line      month Feb margin  15590  8.520   10.778       -0.001         0.495           NaN                                                  0.012                     0.008                    0.506
+      line     month Mar+  total   7956 12.910   16.463        0.322         0.331         0.347                                                  0.109                     0.005                      NaN
+      line     month Mar+ margin   7956  8.494   10.824       -0.001         0.491           NaN                                                  0.012                     0.010                    0.510
+      line      tier high  total  12063 12.877   16.400        0.319         0.339         0.342                                                  0.098                     0.006                      NaN
+      line      tier high margin  12063  8.719   11.073       -0.001         0.500           NaN                                                  0.008                     0.007                    0.501
+      line tier mid/mixed  total  10181 13.132   16.697        0.320         0.344         0.336                                                  0.127                     0.005                      NaN
+      line tier mid/mixed margin  10181  8.717   11.118        0.000         0.504           NaN                                                  0.007                     0.009                    0.496
+      line       tier low  total  39206 13.241   16.797        0.322         0.341         0.337                                                  0.106                     0.002                      NaN
+      line       tier low margin  39206  8.725   11.085        0.003         0.495           NaN                                                  0.010                     0.015                    0.501
+                           component  test rows  out-of-sample R2 (2020-26) coef on predictor coef with line term line term coef predictor vs LINE residual
+                possessions residual      72467                      0.0028     1.119 (0.079)       0.920 (0.077)  0.231 (0.013)              0.724 (0.158)
+offence efficiency residual (points)      71870                     -0.0193    -0.124 (0.034)      -0.234 (0.033)  0.557 (0.022)             -0.157 (0.037)
+             personnel: absent share      66192                      0.0714               NaN                 NaN            NaN                        NaN
+      personnel: newly present share      66180                      0.0685               NaN                 NaN            NaN                        NaN
+games: 61450 overtime games: 3747 | late-game fouling and garbage time: not decomposable (no play-by-play stored)
