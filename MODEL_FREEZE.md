@@ -143,3 +143,22 @@ The checkpoint check therefore runs:
   `cbb/placed.py`) sets `placed` in `bets/bets.csv` and records the accepted book, line, odds, stake and time in
   `bets/accepted.csv` (cohort C).
 - **Unchanged:** no fingerprinted file, selection rule, staking or grading.
+
+## 2026-10-27: `.github/workflows/update.yml` no longer matches its v2.0 fingerprint (recorded; re-fingerprinting is Chad's call)
+
+`update.yml` is on the v2.0 fingerprint list (run schedule). Since the freeze commit it has changed four times, none
+of them in the schedule, the selection, staking, the bet log or grading:
+- `fc454fb`: the save step retries the push up to 6 times (fails only if all fail);
+- `0484e63`: the card step runs `python -m cbb.card_features`, which calls `cbb.run_day.main()` unchanged and also
+  saves each day's stage-2 inputs for the ridge-1,000 shadow (the note above said "no fingerprinted file"; this
+  workflow file is one);
+- `bf2c6a8`: the site build copies `site/assets/` (Off The Glass brand files);
+- `f0d6e65`: the site build copies `site/record/` (weekly record charts) and `reports/verify.html`.
+The cron schedule is identical to the freeze commit. The Jan 15 `sha256sum -c` will flag this file; the full diff
+is `git diff dfb4bc7 -- .github/workflows/update.yml`.
+
+## 2026-10-27: weekly record chart (helper prompt; no effect on picks)
+
+`cbb/record_chart.py` and `.github/workflows/record_chart.yml` (Monday 8:00 ET) draw two PNGs from `bets/bets.csv`
+into `site/record/weekly/`; the record page shows them; `record/verify.html` (unlisted) carries the cohort table and
+the verification links. Reads and displays only: no selection, staking, logging or grading change.
