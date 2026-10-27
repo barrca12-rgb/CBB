@@ -1,0 +1,38 @@
+2014 {'season': 2014, 'V0': np.float64(1.045), 'p_or': np.float64(0.294), 'r_rim': 0.597, 'a_pts': 2.423, 'f_net': np.float64(0.278)}
+2015 {'season': 2015, 'V0': np.float64(1.021), 'p_or': np.float64(0.29), 'r_rim': 0.587, 'a_pts': 2.433, 'f_net': np.float64(0.267)}
+2016 {'season': 2016, 'V0': np.float64(1.037), 'p_or': np.float64(0.278), 'r_rim': 0.595, 'a_pts': 2.448, 'f_net': np.float64(0.266)}
+2017 {'season': 2017, 'V0': np.float64(1.036), 'p_or': np.float64(0.273), 'r_rim': 0.599, 'a_pts': 2.465, 'f_net': np.float64(0.268)}
+2018 {'season': 2018, 'V0': np.float64(1.042), 'p_or': np.float64(0.268), 'r_rim': 0.605, 'a_pts': 2.469, 'f_net': np.float64(0.274)}
+2019 {'season': 2019, 'V0': np.float64(1.031), 'p_or': np.float64(0.264), 'r_rim': 0.603, 'a_pts': 2.481, 'f_net': np.float64(0.27)}
+2020 {'season': 2020, 'V0': np.float64(1.007), 'p_or': np.float64(0.261), 'r_rim': 0.593, 'a_pts': 2.468, 'f_net': np.float64(0.281)}
+2021 {'season': 2021, 'V0': np.float64(1.014), 'p_or': np.float64(0.261), 'r_rim': 0.593, 'a_pts': 2.468, 'f_net': np.float64(0.277)}
+2022 {'season': 2022, 'V0': np.float64(1.02), 'p_or': np.float64(0.262), 'r_rim': 0.59, 'a_pts': 2.474, 'f_net': np.float64(0.279)}
+2023 {'season': 2023, 'V0': np.float64(1.032), 'p_or': np.float64(0.266), 'r_rim': 0.589, 'a_pts': 2.467, 'f_net': np.float64(0.279)}
+2024 {'season': 2024, 'V0': np.float64(1.051), 'p_or': np.float64(0.269), 'r_rim': 0.582, 'a_pts': 2.47, 'f_net': np.float64(0.289)}
+2025 {'season': 2025, 'V0': np.float64(1.062), 'p_or': np.float64(0.278), 'r_rim': 0.582, 'a_pts': 2.481, 'f_net': np.float64(0.287)}
+2026 {'season': 2026, 'V0': np.float64(1.085), 'p_or': np.float64(0.285), 'r_rim': 0.594, 'a_pts': 2.477, 'f_net': np.float64(0.288)}
+ season    V0  p_or  r_rim  a_pts  f_net
+   2014 1.045 0.294  0.597  2.423  0.278
+   2015 1.021 0.290  0.587  2.433  0.267
+   2016 1.037 0.278  0.595  2.448  0.266
+   2017 1.036 0.273  0.599  2.465  0.268
+   2018 1.042 0.268  0.605  2.469  0.274
+   2019 1.031 0.264  0.603  2.481  0.270
+   2020 1.007 0.261  0.593  2.468  0.281
+   2021 1.014 0.261  0.593  2.468  0.277
+   2022 1.020 0.262  0.590  2.474  0.279
+   2023 1.032 0.266  0.589  2.467  0.279
+   2024 1.051 0.269  0.582  2.470  0.289
+   2025 1.062 0.278  0.582  2.481  0.287
+   2026 1.085 0.285  0.594  2.477  0.288
+version                    GS (current) EV (possession values) v1 (no adjustment)
+beta 2026                         0.381                  0.611                NaN
+adj SD (pts, after beta)          0.392                  0.362                NaN
+OOS R2 2020-26                  0.00136                0.00118                NaN
+beyond-close coef (se)    0.849 (0.146)          0.871 (0.159)                NaN
+beyond-close t                     5.83                   5.49                NaN
+spread CLV 2015-17                1.346                  1.314              1.297
+spread CLV 2024-26                1.166                  1.165              1.127
+win% dev (n)               57.73 (2678)           57.93 (2681)       57.13 (2596)
+win% holdout (n)           57.47 (1667)           57.28 (1662)       57.66 (1599)
+verdict: KILL
