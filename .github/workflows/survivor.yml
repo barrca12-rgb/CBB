@@ -30,10 +30,6 @@ permissions:
   contents: write
   actions: write
 
-concurrency:
-  group: survivor
-  cancel-in-progress: false
-
 jobs:
   survivor:
     runs-on: ubuntu-latest
@@ -48,33 +44,31 @@ jobs:
           cache: pip
           cache-dependency-path: requirements.txt
       - run: pip install -r requirements.txt scipy
-      - name: Pick or refresh
+      - name: Pick or refresh, then save (re-applied on the latest branch if another run pushed first)
         env:
           ACTION: ${{ github.event.inputs.action || 'plan' }}
           ENTRY: ${{ github.event.inputs.entry }}
           DAY: ${{ github.event.inputs.date }}
           TEAM: ${{ github.event.inputs.team_id }}
         run: |
-          case "$ACTION" in
-            pick)   python -m cbb.survivor --pick "$ENTRY" "$DAY" "$TEAM" ;;
-            unpick) python -m cbb.survivor --unpick "$ENTRY" "$DAY" ;;
-            *)      python -m cbb.survivor ;;
-          esac
-      - name: Save
-        run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898+github-actions[bot]@users.noreply.github.com"
-          git add -A -- data/survivor site/record/survivor.html
-          git diff --cached --quiet || git commit -m "Survivor ${ACTION:-plan} ($(date -u +'%Y-%m-%d %H:%M') UTC)"
+          B=claude/college-basketball-model-nmztcl
           ok=0
-          for i in 1 2 3 4 5 6; do
-            if git pull --rebase -X theirs origin claude/college-basketball-model-nmztcl && git push origin HEAD:claude/college-basketball-model-nmztcl; then ok=1; break; fi
-            git rebase --abort 2>/dev/null || true
-            sleep $((i * 4))
+          for i in 1 2 3 4 5 6 7 8; do
+            git fetch -q origin "$B" && git reset -q --hard "origin/$B"
+            case "$ACTION" in
+              pick)   python -m cbb.survivor --pick "$ENTRY" "$DAY" "$TEAM" ;;
+              unpick) python -m cbb.survivor --unpick "$ENTRY" "$DAY" ;;
+              *)      python -m cbb.survivor ;;
+            esac
+            git add -A -- data/survivor site/record/survivor.html
+            git diff --cached --quiet && { ok=1; break; }
+            git commit -q -m "Survivor $ACTION ${ENTRY:+entry $ENTRY }($(date -u +'%Y-%m-%d %H:%M') UTC)"
+            if git push -q origin "HEAD:$B"; then ok=1; break; fi
+            sleep $((i * 3))
           done
           [ "$ok" = 1 ]
-        env:
-          ACTION: ${{ github.event.inputs.action || 'plan' }}
       - name: Publish (start a card run, which copies site/record/ into the site)
         if: ${{ github.event_name == 'workflow_dispatch' }}
         env:

@@ -349,8 +349,12 @@ def page(entries: list[dict], o: pd.DataFrame, p: pd.DataFrame) -> str:
                     f"<div class='scroll'><table class='opts'><thead><tr><th>Options {pd.Timestamp(d):%b} {pd.Timestamp(d).day} (unused teams)</th><th>Tip (ET)</th>"
                     f"<th class='r'>Win %</th><th class='r hide-sm'>Plan uses it later at</th><th></th></tr></thead><tbody>{rows}</tbody></table></div>"
                     f"<div class='f' style='padding:8px 16px 12px;font-size:12px'>Next in the plan: {ahead or '–'}</div>")
+        pend = used[~used["result"].isin(["W", "L", "void"])]
+        locked = "".join(f"<div class='lk'>&#10003; Picked {pd.Timestamp(r['date']):%a %b} {pd.Timestamp(r['date']).day}: {_logo(r['team_id'], 18)}"
+                         f"<b>{html.escape(str(r['team']))}</b> <span class='m'>vs {html.escape(str(r['opponent']))}</span></div>"
+                         for _, r in pend.iterrows())
         blocks.append(f"<section class='panel'><div class='panel-h'><h2>Entry {n}</h2><div class='ctrls'>{head}"
-                      f"<span class='chip zero'>{len(used)} used</span></div></div>{body}"
+                      f"<span class='chip zero'>{len(used)} used</span></div></div>{locked}{body}"
                       f"<details class='usedd'><summary>Picks so far ({len(used)})</summary><div class='scroll'><table><tbody>{hist}</tbody></table></div></details></section>")
     return f"""<!doctype html>
 <html lang="en">
@@ -370,6 +374,7 @@ def page(entries: list[dict], o: pd.DataFrame, p: pd.DataFrame) -> str:
 .lg {{ vertical-align: -4px; margin-right: 6px; object-fit: contain }}
 .opts tr.rec td {{ background: var(--sunken) }}
 .pk {{ font-size: 12px; padding: 4px 12px }}
+.lk {{ padding: 10px 16px; border-bottom: 1px solid var(--line); background: var(--pos-bg); color: var(--text); font-size: 14px }}
 .pk-main {{ margin-top: 10px; font-size: 14px; padding: 8px 16px; background: var(--brand); color: #fff; border-color: var(--brand) }}
 .pk-main:hover {{ background: var(--brand); opacity: .9 }}
 details.usedd > summary {{ cursor: pointer; padding: 10px 16px; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line) }}
@@ -403,13 +408,17 @@ details.usedd > summary {{ cursor: pointer; padding: 10px 16px; font-size: 13px;
     if (!confirm("Entry " + b.dataset.e + ": pick " + b.dataset.n + " for " + b.dataset.d + "?\\nEach team can be used once per entry.")) return;
     if (!store.get() && !askKey()) return;
     b.disabled = true; b.textContent = "Saving…";
-    const branch = (await (await fetch("https://api.github.com/repos/" + REPO)).json().catch(() => ({{}}))).default_branch || "main";
+    const branch = "claude/college-basketball-model-nmztcl";
     const r = await fetch("https://api.github.com/repos/" + REPO + "/actions/workflows/survivor.yml/dispatches", {{ method: "POST",
       headers: {{ Accept: "application/vnd.github+json", Authorization: "Bearer " + store.get(), "X-GitHub-Api-Version": "2022-11-28" }},
       body: JSON.stringify({{ ref: branch, inputs: {{ action: "pick", entry: b.dataset.e, date: b.dataset.d, team_id: b.dataset.t }} }}) }}).catch(() => null);
-    if (r && r.status === 204) {{ b.textContent = "Saved ✓ (page updates in ~10 min)"; }}
-    else if (r && [401, 403, 404].includes(r.status)) {{ store.set(""); b.disabled = false; b.textContent = "Token refused: try again"; }}
-    else {{ b.disabled = false; b.textContent = "Couldn't reach GitHub"; }}
+    if (r && r.status === 204) {{
+      b.textContent = "Saved ✓";
+      try {{ const k = "surv_saved"; const m = JSON.parse(localStorage.getItem(k) || "{{}}"); m[b.dataset.e + "|" + b.dataset.d] = b.dataset.n; localStorage.setItem(k, JSON.stringify(m)); }} catch (e) {{}}
+      alert("Entry " + b.dataset.e + ": " + b.dataset.n + " sent. It shows on this page in about 10 minutes.");
+    }}
+    else if (r && [401, 403, 404].includes(r.status)) {{ store.set(""); b.disabled = false; b.textContent = "Pick"; alert("GitHub refused the token (" + r.status + "). Press Pick again and paste a new token. Nothing was saved."); }}
+    else {{ b.disabled = false; b.textContent = "Pick"; alert("Couldn't reach GitHub" + (r ? " (" + r.status + ")" : "") + ". Nothing was saved: press Pick again."); }}
   }});
   document.querySelectorAll("main table").forEach((t) => {{
     const hs = [...t.querySelectorAll("thead th")].map((h) => h.textContent.trim());
