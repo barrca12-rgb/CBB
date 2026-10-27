@@ -1,0 +1,46 @@
+# Frontier tests, Part C1 (research/frontier/PLAN.md): a daily snapshot of Haslametrics' full ratings file and
+# EvanMiya's free team-ratings table, saved with the fetch time under research/frontier/snapshots/. Reads public
+# pages only. No alerts, posts or stakes; never touches the card, the bet log, the shadows or any frozen file.
+name: Frontier ratings snapshot
+
+on:
+  schedule:
+    - cron: "17 13 * * *"     # 9:17 ET (EDT) / 8:17 ET (EST): after both sites' overnight updates
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: frontier-snapshot
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: claude/college-basketball-model-nmztcl
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install pandas brotli
+      - name: Take the snapshot
+        run: python -m research.frontier.c1_snapshot
+      - name: Save the snapshot
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898+github-actions[bot]@users.noreply.github.com"
+          if [ -d research/frontier/snapshots ]; then git add -A -- research/frontier/snapshots; fi
+          git diff --cached --quiet || git commit -m "Frontier ratings snapshot ($(date -u +'%Y-%m-%d %H:%M') UTC)"
+          # retry: another job may push between this job's pull and push; fail only if every try fails
+          ok=0
+          for i in 1 2 3 4 5 6; do
+            if git pull --rebase -X theirs origin claude/college-basketball-model-nmztcl && git push origin HEAD:claude/college-basketball-model-nmztcl; then ok=1; break; fi
+            git rebase --abort 2>/dev/null || true
+            sleep $((i * 4))
+          done
+          [ "$ok" = 1 ]

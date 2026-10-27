@@ -58,3 +58,27 @@ Oct 26, 2026 and the first card games tip Nov 2-3. Definition fixed now, to run 
 If the model-to-close gap concentrates in late-news games, the doc's wording changes to "matches the market's final
 number using only what was public at the opener."
 
+## C1 ensemble breadth — snapshot started Oct 27; archive answer
+
+Hosts allowed by Chad on Oct 27.
+- Haslametrics: public. The current ratings file (ratings.xml) carries every team's full time-dependent ratings
+  (offense, defense, tempo, shooting splits); today it holds the 2026-27 preseason (365 teams). Archive: one file
+  per season 2015-2026 (351-365 teams), pulled to snapshots/haslametrics_archive/. Each has end-of-season ratings
+  (not usable for past games: look-ahead) and a daily rank history per team (overall, offense, defense ranks by
+  day), not daily rating values or game predictions. So a historical test is possible only on daily ranks; the
+  full test needs the forward snapshots.
+- EvanMiya: the team-ratings table is public (team, obpr, dbpr, bpr, tempo, opponent and pace adjustments, ranks;
+  365 teams). Game predictions and the past-games archive are subscriber-only ("Basic Subscription required"); not
+  fetched (no purchase or login without Chad's approval). No public dated archive of ratings found.
+- Snapshot: `c1_snapshot.py`, daily at 13:17 UTC by .github/workflows/frontier_snapshot.yml (reads only; writes
+  research/frontier/snapshots/). First day, Oct 27 20:15 UTC: Haslametrics 365 teams, EvanMiya 365 teams.
+- Plan unchanged: with one full season of snapshots, each system as a stage-2 input beside KenPom and Barttorvik,
+  plus equal-weight and fitted blends as a benchmark. Optional earlier read on the Haslametrics daily-rank
+  history (2015-2026) as a weaker, rank-only version; not run yet.
+
+## A. Prediction Tracker — blocked by a browser check
+
+thepredictiontracker.com (allowed host) answers every scripted request with a Cloudflare "Enable JavaScript and
+cookies" page (HTTP 403); www.thepredictiontracker.com is not on the allowed list. Not worked around. Ways forward:
+Chad saves ncaaresults.php and its per-season archive pages from a browser and uploads them, or Part A stays open.
+
