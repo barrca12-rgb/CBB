@@ -170,6 +170,13 @@ tbody tr:last-child td { border-bottom: 0 }
 .seg button + button { border-left: 1px solid var(--line-strong) }
 .seg button[aria-pressed="true"] { background: var(--text); color: var(--surface) }
 .ctrls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center }
+/* Plays header: a count chip and a Rules toggle, so it reads as a control bar like the odds board's */
+.chip { display: inline-flex; align-items: center; padding: 5px 12px; border-radius: 6px; font-size: 13px; font-weight: 700;
+  background: var(--brand); color: #fff; white-space: nowrap }
+.chip.zero { background: var(--sunken); color: var(--muted); border: 1px solid var(--line-strong) }
+.chipbtn { padding: 5px 12px; font-weight: 500; color: var(--muted) }
+.chipbtn[aria-expanded="true"] { background: var(--text); color: var(--surface); border-color: var(--text) }
+.rules { padding: 10px 16px; border-bottom: 1px solid var(--line); background: var(--sunken); color: var(--muted); font-size: 12px }
 label.chk { display: inline-flex; gap: 6px; align-items: center; color: var(--muted); font-size: 13px; cursor: pointer }
 
 /* Odds board: two rows per game (away, home) */
@@ -246,7 +253,10 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   <div class="kpis" id="kpis"></div>
 
   <section class="panel" aria-labelledby="plays-h">
-    <div class="panel-h"><h2 id="plays-h">Plays</h2><span class="note">Spread edge 2.5+ pts · total edge 3+ pts · +2% EV at the price · 1 unit each. Win % = backtest rate for that edge. Logged bets stay listed; their edge, win % and EV are at your number with today's model.</span></div>
+    <div class="panel-h"><h2 id="plays-h">Plays</h2>
+      <div class="ctrls"><span class="chip" id="plays-count"></span><button type="button" class="chipbtn" id="rules-btn" aria-expanded="false" aria-controls="plays-rules">Rules</button></div>
+    </div>
+    <div class="rules" id="plays-rules" hidden>Spread edge 2.5+ pts · total edge 3+ pts · +2% EV at the price · 1 unit each. Win % = backtest rate for that edge. Logged bets stay listed; their edge, win % and EV are at your number with today's model.</div>
     <div class="scroll"><table id="t-plays"></table></div>
   </section>
 
@@ -379,6 +389,10 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       also: others(g, "total", String(g.total_pick || "").toLowerCase(), g.total_book)});
   });
   P.sort((a, b) => String(a.g.start).localeCompare(String(b.g.start)) || b.edge - a.edge);
+  const pc = $("plays-count"), pUnits = P.reduce((s, p) => s + (p.units || 0), 0);
+  pc.textContent = P.length ? P.length + (P.length === 1 ? " play" : " plays") + " · " + pUnits.toFixed(1).replace(/\.0$/, "") + "u" : "No plays";
+  pc.classList.toggle("zero", !P.length);
+  $("rules-btn").onclick = () => { const r = $("plays-rules"), open = r.hidden; r.hidden = !open; $("rules-btn").setAttribute("aria-expanded", open); };
   $("t-plays").innerHTML = P.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r hide-sm hide-md'>Model</th><th class='r'>Edge</th><th class='r hide-sm'>Win %</th><th class='r'>EV</th><th class='r'>Bet to</th><th class='r hide-sm hide-md'>Opened</th><th class='r hide-sm hide-md'>Units</th><th></th></tr></thead><tbody>" +
     P.map((p) => "<tr><td><div class='b pick'>" + logo(pickId(p.g, p.kind, p.side), 20) + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
       (p.kind === "Total" && p.g.crew ? "<div class='f' style='font-size:11px'>Refs: " + esc(p.g.crew) + "</div>" : "") +
