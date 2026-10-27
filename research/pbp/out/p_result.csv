@@ -1,0 +1,18 @@
+,frozen,P1,P2,P1+P2
+margin MAE,8.8823,8.8816,8.8817,8.8812
+total MAE,13.1499,13.152,13.1444,13.1466
+spread CLV dev,1.25,1.253,1.254,1.253
+total CLV dev,0.646,0.64,0.648,0.644
+spread CLV conf,1.127,1.128,1.149,1.136
+total CLV conf,1.671,1.662,1.657,1.652
+spread win% dev,56.76,56.72,56.82,56.84
+spread win% holdout,57.66,57.92,58.13,58.06
+total win% dev,55.45,55.28,55.38,55.4
+total win% holdout,55.53,55.13,54.81,54.92
+spread n dev/hold,3270/1599,3288/1628,3247/1617,3260/1638
+total n dev/hold,8333/2602,8524/2652,8251/2607,8465/2655
+margin: adjustment coef (se),,3.505 (0.996),0.714 (0.477),0.980 (0.435)
+margin: adjustment SD,,0.05387236628554585,0.12059578893603637,0.12836255351740353
+total: adjustment coef (se),,0.768 (0.621),1.152 (0.396),0.949 (0.313)
+total: adjustment SD,,0.14411258978082284,0.2209105006412606,0.2766600193011891
+verdict,,KILL,KILL,KILL
