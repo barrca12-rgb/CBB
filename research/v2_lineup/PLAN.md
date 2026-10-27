@@ -66,3 +66,30 @@ shadow strategy. It is never alerted, posted, staked or logged in `bets/bets.csv
   bet.
 - **Decision:** no automatic switch. A v2 for live use needs Chad's approval at a checkpoint, per forward-test
   protocol section 8. v1 then continues as a shadow.
+
+## Amendment, Oct 27, 2026: the helpers' endpoints
+
+Added before any v2 signal with a non-zero adjustment (the first live runs had no 2026-27 box scores, so every
+adjustment was 0 and v2 = v1).
+
+**Subset:** games where either team's lineup adjustment is 2+ points in absolute value. It is flagged per game in
+`bets/shadow_v2/games_latest.csv`, which logs every card game's latest pregame v1 margin, adjustments and v2
+margin.
+
+**Primary endpoints, on the subset:**
+1. **Residual difference:** mean |result - v1 margin| minus mean |result - v2 margin|, with the date-clustered
+   interval.
+2. **Opener CLV:** on spread plays the two versions disagree on (v2-only and v1-only), separately. Openers come
+   from `lines/openers.csv` (first seen per book, median), the close from `lines/closing.csv`.
+
+The all-games comparison in the evaluation section above stays as the secondary read.
+
+**Reads:** Jan 15 descriptive; March 16 the decision read. If v2 clears it, it can replace v1 for 2027-28 by the
+normal approval path (protocol section 8); if not, it is closed with the others.
+
+**Form of the adjustment:** v2 adds beta x adjustment to v1's final margin, with beta fit walk-forward on the
+frozen model's residual in the backtest. That is equivalent to adding the adjustment as one more stage-2 input
+while holding the other stage-2 weights fixed. Live beta is frozen at 0.4022.
+
+**Discord:** not posted. Posting v2 signals to the record with a version tag (the helpers' suggestion) is a new
+external message, and waits for Chad's yes.

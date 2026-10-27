@@ -23,6 +23,7 @@ ROOT = os.path.join(os.path.dirname(__file__), "..")
 DIR = os.path.join(ROOT, "bets", "shadow_v2")
 SIGNALS = os.path.join(DIR, "signals.csv")
 RUNS = os.path.join(DIR, "runs.csv")
+GAMES = os.path.join(DIR, "games_latest.csv")   # every card game: the latest pregame v1, adjustment, v2 (one row per game)
 COLS = ["bet_id", "date", "game_id", "home_id", "away_id", "start", "side", "book", "line", "odds", "v1_margin",
         "home_adj", "away_adj", "adj_margin", "v2_margin", "edge", "ev", "v1_edge_at_quote", "v1_signal_at_quote",
         "lines_pulled_at", "logged_at"]
@@ -85,11 +86,16 @@ def main(now: pd.Timestamp | None = None) -> None:
             v = {}
             run["error"] = f"no adjustments: {str(e)[:150]}"
         run["teams_with_adjustment"] = len(v)
-        new = []
+        new, gl = [], []
         for _, g in games.iterrows():
             ha, aa = float(v.get(int(g["home_id"]), 0.0)), float(v.get(int(g["away_id"]), 0.0))
             m1 = float(g["model_margin"])
             m2 = m1 + lineup.BETA * (ha - aa)
+            if pd.to_datetime(g["start"], utc=True, errors="coerce") > now:
+                gl.append({"game_id": int(g["game_id"]), "date": g["date"], "start": g["start"], "home_id": int(g["home_id"]),
+                           "away_id": int(g["away_id"]), "v1_margin": round(m1, 3), "home_adj": round(ha, 3),
+                           "away_adj": round(aa, 3), "adj_margin": round(ha - aa, 3), "v2_margin": round(m2, 3),
+                           "subset": bool(abs(ha) >= 2 or abs(aa) >= 2), "updated_at": now.isoformat(timespec="seconds")})
             b2 = best_spread(lines, g, m2)
             if not b2:
                 continue
@@ -112,6 +118,10 @@ def main(now: pd.Timestamp | None = None) -> None:
                         "logged_at": now.isoformat(timespec="seconds")})
         if new:
             pd.DataFrame(new).reindex(columns=COLS).to_csv(SIGNALS, mode="a", header=not os.path.exists(SIGNALS), index=False)
+        if gl:   # keep each game's latest pregame row; games already started keep their last pregame row
+            old = pd.read_csv(GAMES) if os.path.exists(GAMES) else pd.DataFrame(columns=list(gl[0]))
+            cur = pd.DataFrame(gl)
+            pd.concat([old[~old["game_id"].isin(cur["game_id"])], cur], ignore_index=True).sort_values(["date", "game_id"]).to_csv(GAMES, index=False)
         run["signals"] = len(new)
     except Exception as e:      # the shadow never stops anything; failures are logged
         run["error"] = str(e)[:300]

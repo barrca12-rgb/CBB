@@ -82,6 +82,18 @@ def main(through: str | None = None) -> pd.DataFrame:
                      "ROI% (recorded prices)": 100 * roi, "ROI se": 100 * roi_se,
                      "line value vs closing.csv (pts)": lv, "lv se": lv_se, "close missing": int(d["close"].isna().sum())})
     t = pd.DataFrame(rows)
+    # primary endpoint 1 (PLAN amendment): residual difference on the 2+ point subset
+    gp = os.path.join(ROOT, "bets", "shadow_v2", "games_latest.csv")
+    if os.path.exists(gp):
+        gl = pd.read_csv(gp)
+        if through:
+            gl = gl[gl["date"] <= through]
+        gl = gl[gl["subset"].astype(bool)]
+        gl["res"] = gl["game_id"].map(score["home_pts"]) - gl["game_id"].map(score["away_pts"])
+        gl = gl.dropna(subset=["res"])
+        diff = (gl["res"] - gl["v1_margin"]).abs() - (gl["res"] - gl["v2_margin"]).abs()
+        m, se = boot(diff, gl["date"]) if len(gl) else (np.nan, np.nan)
+        print(f"subset games settled: {len(gl)}; residual gain v2 over v1 (pts): {m:.3f} (se {se:.3f})")
     pd.set_option("display.width", 200)
     print(t.round(3).to_string(index=False))
     return t

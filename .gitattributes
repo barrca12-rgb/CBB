@@ -7,3 +7,4 @@ lines/obs_targeted/*.csv merge=union
 bets/signal_log.csv merge=union
 bets/alert_log.csv merge=union
 bets/shadow_v2/*.csv merge=union
+bets/shadow_v2/games_latest.csv merge=text
