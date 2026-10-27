@@ -216,6 +216,14 @@ def build() -> str:
   <footer>
     <div><a class="follow" href="https://x.com/{report_html.X_HANDLE}" target="_blank" rel="noopener"><img src="assets/otg-logo-512.png" alt="">Follow @{report_html.X_HANDLE} on X for every play</a></div></footer>
 </main>
+<script>
+// phones: each table row becomes a small card, each cell labeled with its column header (styles in report_html)
+document.querySelectorAll("main table").forEach((t) => {{
+  const hs = [...t.querySelectorAll("thead th")].map((h) => h.textContent.trim());
+  t.classList.add("stack");
+  t.querySelectorAll("tbody tr").forEach((r) => [...r.children].forEach((c, k) => {{ if (hs[k]) c.dataset.l = hs[k]; }}));
+}});
+</script>
 </html>
 """
 
