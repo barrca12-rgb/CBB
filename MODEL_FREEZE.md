@@ -162,3 +162,14 @@ is `git diff dfb4bc7 -- .github/workflows/update.yml`.
 `cbb/record_chart.py` and `.github/workflows/record_chart.yml` (Monday 8:00 ET) draw two PNGs from `bets/bets.csv`
 into `site/record/weekly/`; the record page shows them; `record/verify.html` (unlisted) carries the cohort table and
 the verification links. Reads and displays only: no selection, staking, logging or grading change.
+
+**Oct 27, 2026: `update.yml` re-fingerprinted** (Chad: "use your judgement"). The four changes listed above are build,
+command-wrapper and push-retry steps; the cron schedule and everything that decides a play are as frozen. New
+fingerprint, as of commit `f0d6e65`:
+
+```
+f064ccda9a2464dd33b6b7fea18c3b45554e9b76c8e4184272dab84d536743bf  .github/workflows/update.yml
+```
+
+The Jan 15 check runs `sha256sum -c` on this line in place of the v2.0 line for `update.yml`. Any later edit to
+`update.yml` gets its own dated entry here with its new fingerprint, and a change to its schedule is a model change.
