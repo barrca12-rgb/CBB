@@ -1,5 +1,10 @@
 # Frontier tests: log
 
+**Bottom line (Oct 27):** no public system or layer tested beats the frozen model; every challenger run fails its
+pre-registered kill rule (opener CLV gains under 0.1, MAE changes under the 0.02 noise floor). The Prediction Tracker
+comparison could not be run (browser check), so the frontier claim is not yet confirmed against named systems. Best
+near-miss: a Poisson stage 1 for totals (+0.06, +0.05 opener CLV).
+
 Every specification run, in order, including failures. Pre-registration: PLAN.md (committed before any run).
 
 ## B1 rematch effects (run 1, Oct 27) — KILL
@@ -81,4 +86,53 @@ Hosts allowed by Chad on Oct 27.
 thepredictiontracker.com (allowed host) answers every scripted request with a Cloudflare "Enable JavaScript and
 cookies" page (HTTP 403); www.thepredictiontracker.com is not on the allowed list. Not worked around. Ways forward:
 Chad saves ncaaresults.php and its per-season archive pages from a browser and uploads them, or Part A stays open.
+
+## C2 stage-1 functional form (run 1, Oct 27) — KILL (Poisson totals noted as a near-miss)
+
+Spec as pre-registered (`c2_forms.py`, `c2_score.py`). The frozen stage-1 file reproduces exactly from
+cbb.backtest (2019: max difference 1e-13), so the alternatives differ only in the efficiency form; pace, Four
+Factors, half-life, prior strength and the 3-point luck regression are unchanged. Spec details fixed during the
+run: the multiplicative form carries a smearing correction (arithmetic, not geometric, mean level); the Poisson
+form uses a log(possessions) offset (a first attempt with log(possessions/100) diverged and was discarded), and its
+ridge pull is scaled by mean Fisher information so the prior is still worth 6 games. Dispersion 0.68-0.71 in every
+season (underdispersed after the luck regression), so the negative binomial variant does not apply.
+
+- Stage-1 MAE, 2020-26 (2014-26): additive margin 8.9014 (8.7544), total 13.1686 (13.3325); mult margin 8.9096
+  (8.7611), total 13.1580 (13.3262); Poisson margin 8.9065 (8.7590), total 13.1520 (13.3214). Every difference
+  within 0.02: margin +0.005 to +0.008 worse, total -0.006 to -0.017 better.
+- Through the unchanged stage 2: margin MAE 8.8823 -> 8.8870 (mult), 8.8849 (Poisson); total MAE 13.1499 ->
+  13.1362, 13.1332. Opener CLV gain (dev, conf): mult spread -0.055, -0.008, total +0.043, +0.037; Poisson spread
+  -0.019, +0.016, total +0.062, +0.053. Holdout win %: spread 57.66 -> 58.37 / 57.66; total 55.53 -> 54.83 /
+  55.23. Information beyond the close, total: mult 0.464 (0.144), Poisson 0.559 (0.153); margin near zero.
+- Verdict: KILL by the pre-registered rule (stage-1 MAE within 0.02 of the current form).
+- Near-miss for the March write-up, not a change: the Poisson form's totals are better in both CLV eras (+0.06,
+  +0.05) with information beyond the close that clears two standard errors; holdout total win % does not improve.
+  If anything is carried forward it is a totals-only question (Poisson total as a stage-2 input beside the
+  additive one), to be pre-registered separately.
+
+## C1-rank: Haslametrics daily ranks as a stage-2 input — pre-registration (written before the run, Oct 27)
+
+The only historical C1 test the archive allows (the full test waits for a season of snapshots).
+- Data: snapshots/haslametrics_archive/ratings15-26.xml (seasons 2015-2026): per team, the daily overall,
+  offense and defense rank. Team ids in the file are ESPN ids.
+- Timing: for a game on date D, the ranks of day D-1 (no same-day information). Days before the file's first day,
+  and seasons 2013-2014 (no file), get 0 (average).
+- Features: z = inverse-normal of the rank percentile, z = Phi^-1(1 - (rank - 0.5) / N), N = teams in that file.
+  Margin input `hs_net` = z_overall(home) - z_overall(away). Total input `hs_tot` = z_off(home) + z_off(away)
+  - z_def(home) - z_def(away).
+- Prior: positive coefficient on `hs_net` with an interval excluding zero (ranks carry some of the rating), but
+  most of it already in KenPom and Barttorvik; opener CLV gain under 0.1.
+- Kill rule (as C1): coefficient interval includes zero, or opener CLV gain under 0.1 in both eras.
+
+## C1-rank run 1 (Oct 27) — KILL
+
+Coverage: both teams' day-before ranks in 82-84% of games 2015-2020 (the daily history starts in late November)
+and 98% from 2021; 0 in 2013-2014 (no file).
+- Stage-2 coefficients: margin `hs_net` -0.097 [-0.263, +0.069] (includes zero); total `hs_tot` -0.500
+  [-0.697, -0.303] (a small correction against the rank-implied scoring, not an independent signal).
+- Scoreboard: margin MAE 8.8823 -> 8.8824, total 13.1499 -> 13.1478 (under the noise floor). Opener CLV gain
+  (dev, conf): spread -0.004, -0.011; total +0.008, -0.032. Holdout win %: spread 57.66 -> 57.80, total
+  55.53 -> 54.96.
+- Verdict: KILL. Daily ranks carry nothing beyond KenPom and Barttorvik. Says nothing yet about Haslametrics'
+  rating values or predictions; that waits for the forward snapshots.
 

@@ -1,0 +1,37 @@
+Share of games with both teams' day-before ranks:
+season
+2013    0.000
+2014    0.000
+2015    0.816
+2016    0.826
+2017    0.817
+2018    0.818
+2019    0.836
+2020    0.843
+2021    0.979
+2022    0.978
+2023    0.978
+2024    0.980
+2025    0.980
+2026    0.981
+Stage-2 margin coef hs_net: -0.097 (se 0.085) -> 95% CI [-0.263, +0.069]
+Stage-2 total coef hs_tot: -0.500 (se 0.101) -> 95% CI [-0.697, -0.303]
+Opener CLV gain (dev, conf): spread -0.004, -0.011; total +0.008, -0.032
+
+model                            frozen C1 Haslametrics ranks
+margin MAE                       8.8823                8.8824
+total MAE                       13.1499               13.1478
+spread CLV dev 2014-17             1.25                 1.246
+total CLV dev 2014-17             0.646                 0.654
+spread CLV conf 2024-26           1.127                 1.116
+total CLV conf 2024-26            1.671                 1.639
+spread win% dev                   56.76                  56.6
+spread win% holdout               57.66                  57.8
+total win% dev                    55.45                 55.63
+total win% holdout                55.53                 54.96
+spread n dev/hold             3270/1599             3279/1616
+total n dev/hold              8333/2602             8575/2813
+margin: adjustment coef (se)        NaN         0.797 (1.687)
+margin: adjustment SD               NaN              0.034977
+total: adjustment coef (se)         NaN         1.203 (0.323)
+total: adjustment SD                NaN              0.272168

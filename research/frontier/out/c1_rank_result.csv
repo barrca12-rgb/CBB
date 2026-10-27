@@ -1,0 +1,17 @@
+,frozen,C1 Haslametrics ranks
+margin MAE,8.8823,8.8824
+total MAE,13.1499,13.1478
+spread CLV dev 2014-17,1.25,1.246
+total CLV dev 2014-17,0.646,0.654
+spread CLV conf 2024-26,1.127,1.116
+total CLV conf 2024-26,1.671,1.639
+spread win% dev,56.76,56.6
+spread win% holdout,57.66,57.8
+total win% dev,55.45,55.63
+total win% holdout,55.53,54.96
+spread n dev/hold,3270/1599,3279/1616
+total n dev/hold,8333/2602,8575/2813
+margin: adjustment coef (se),,0.797 (1.687)
+margin: adjustment SD,,0.034976771134094156
+total: adjustment coef (se),,1.203 (0.323)
+total: adjustment SD,,0.27216777802442244
