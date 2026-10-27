@@ -1,0 +1,21 @@
+ season market  intercept  luck_margin  garbage_margin  lineup_margin  luck_total  garbage_total  lineup_total
+   2025  res_m     0.0841      -0.0379          0.0805         0.1577         NaN            NaN           NaN
+   2025  res_t     0.6635          NaN             NaN            NaN     -0.1020        -0.0245        0.4509
+   2026  res_m     0.0931      -0.0393          0.0690         0.1430         NaN            NaN           NaN
+   2026  res_t     0.6939          NaN             NaN            NaN     -0.0933        -0.0256        0.4243
+model                            frozen             R1
+spread CLV dev 2015-17            1.297          1.311
+total CLV dev 2015-17             1.358          1.331
+spread CLV conf 2024-26           1.127          1.116
+total CLV conf 2024-26            1.671          1.456
+spread win% dev                   57.13          57.25
+spread win% holdout               57.66          57.49
+total win% dev                    57.22          57.76
+total win% holdout                55.53          55.15
+spread n dev/hold             2596/1599      2732/1743
+total n dev/hold              4691/2602      5616/3416
+margin: adjustment coef (se)        NaN  1.445 (0.273)
+margin: adjustment SD               NaN       0.209714
+total: adjustment coef (se)         NaN  0.679 (0.124)
+total: adjustment SD                NaN       0.665999
+verdict                             NaN           KILL

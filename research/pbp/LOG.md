@@ -89,3 +89,47 @@ against the +0.05 needed in both eras.
 P1 margin 3.5). But the stage-2 ridge, fit to final scores, gives it almost no weight: the adjustments are
 0.05-0.28 points, too small to change which games we play. This motivates fitting such features to the market
 residual instead of the score. That would be a separate test, pre-registered before it is run.
+
+## 2026-10-27: R1 pre-registration, market-residual correction (written before it was run)
+
+**Idea:** the stage-2 ridge is fit to final scores, where these signals are small next to game noise, so it
+nearly ignores them. Fit them instead to what the market misses: the result minus the closing line.
+
+**Inputs (season-to-date, known before the opener; no line information):**
+- margin: `luck_margin`, `garbage_margin` (P1/P2 above), lineup adjustment margin `(h_off + h_def) - (a_off + a_def)`
+  (research/originator/b_rotation, `out/b_adjustments.csv.gz`);
+- total: `luck_total`, `garbage_total`, lineup adjustment total `(h_off + a_off) - (h_def + a_def)`.
+
+**Fit:** OLS with intercept, walk-forward by season. Season s is fit on seasons 2014..s-1, target (home margin +
+closing home spread) for the margin and (total points - closing total) for the total. Swapped records are excluded
+from fitting. First predicted season 2015.
+
+**Forecast:** frozen live-like margin + the predicted margin residual; the same for totals. The frozen play rule
+(spread edge 2.5+, total 3+) is applied at the opener.
+
+**Scorecards:**
+- opener CLV of the plays, dev 2015-17 and confirm 2024-26 (2014 has no fit);
+- opener win% dev (2015-17 + 2024) and holdout (2025-26);
+- for reference, the walk-forward beyond-close coefficient 2020-26.
+
+**Pass:** CLV gain +0.05 or more over frozen in both eras for a market, AND that market's holdout opener win% not
+below frozen. Otherwise killed. One specification, no tuning.
+
+**Prior:** low-moderate. The lineup part alone is what the v2 shadow already tracks.
+
+## 2026-10-27: R1 results (`out/r1_result.csv`, `out/r1_coefs.csv`, `out/r1_run.txt`): KILL
+
+| | frozen | R1 |
+|---|---|---|
+| spread CLV dev / conf | 1.297 / 1.127 | 1.311 / 1.116 |
+| total CLV dev / conf | 1.358 / 1.671 | 1.331 / 1.456 |
+| spread win% dev / holdout | 57.13 / 57.66 | 57.25 / 57.49 |
+| total win% dev / holdout | 57.22 / 55.53 | 57.76 / 55.15 |
+| plays, spread dev/hold | 2596 / 1599 | 2732 / 1743 |
+| plays, total dev/hold | 4691 / 2602 | 5616 / 3416 |
+
+Beyond-close coefficients 2020-26 are significant (margin 1.45, se 0.27; total 0.68, se 0.12). But the corrections
+are small (SD 0.21 margin, 0.67 total) and do not improve opener CLV in either era. Most of the total correction
+is the intercept: about +0.7 points, so games finish slightly over the close on average. That pushes more plays to
+the over and lowers CLV. Of the margin terms, only the lineup adjustment carries weight (0.14-0.16), and it is
+already in the v2 shadow.
