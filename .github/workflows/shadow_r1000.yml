@@ -1,0 +1,56 @@
+# Ridge-1,000 shadow (research/r1000/PLAN.md): runs after every "Update CBB card" run, prices the card's saved stage-2
+# inputs with the live and the ridge-1,000 coefficients under the card's own rule, and logs both versions' plays to
+# bets/shadow_r1000/. No alerts, posts or stakes; never touches bets/bets.csv, the card or any frozen file.
+name: Shadow ridge 1000
+
+on:
+  workflow_run:
+    workflows: ["Update CBB card"]
+    types: [completed]
+    branches: [claude/college-basketball-model-nmztcl]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shadow-r1000
+  cancel-in-progress: false
+
+jobs:
+  shadow:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: claude/college-basketball-model-nmztcl     # the card run's own commit is on the branch head
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - run: pip install -r requirements.txt
+      - uses: actions/cache@v4
+        with:
+          path: cbb/cache
+          key: shadow-r1000-${{ github.run_id }}
+          restore-keys: shadow-r1000-
+      - name: Run the shadow
+        run: python -m cbb.shadow_r1000
+      - name: Save the shadow log
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898+github-actions[bot]@users.noreply.github.com"
+          if [ -d bets/shadow_r1000 ]; then git add -A -- bets/shadow_r1000; fi
+          git diff --cached --quiet || git commit -m "Shadow r1000 ($(date -u +'%Y-%m-%d %H:%M') UTC)"
+          # retry: another job may push between this job's pull and push; fail only if every try fails
+          ok=0
+          for i in 1 2 3 4 5 6; do
+            if git pull --rebase -X theirs origin claude/college-basketball-model-nmztcl && git push origin HEAD:claude/college-basketball-model-nmztcl; then ok=1; break; fi
+            git rebase --abort 2>/dev/null || true
+            sleep $((i * 4))
+          done
+          [ "$ok" = 1 ]

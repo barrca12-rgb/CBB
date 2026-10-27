@@ -127,3 +127,12 @@ The checkpoint check therefore runs:
   v1 prediction, selection, alert or log changes.
 - **Logging:** v2's spread signals go only to `bets/shadow_v2/`.
 - **Status:** v2 is a shadow strategy. A switch would follow protocol section 8, with v1 continuing as a shadow.
+
+## 2026-10-27: ridge-1,000 shadow added (approved by Chad; no effect on v1)
+
+- **Card command:** the card workflow now runs `python -m cbb.card_features`. It calls `cbb.run_day.main()`
+  unchanged and copies each day's stage-2 inputs to `reports/features_<date>.csv`.
+- **Shadow:** `cbb/shadow_r1000.py` (`shadow_r1000.yml`) logs both versions' plays to `bets/shadow_r1000/`, behind
+  the scenes. Plan: `research/r1000/PLAN.md`.
+- **Unchanged:** no fingerprinted file, `data/projection.json`, the selection rules, staking, the bet log or the
+  forward-test protocol.

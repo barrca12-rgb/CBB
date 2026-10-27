@@ -71,8 +71,9 @@ jobs:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}     # phone alerts for new BETs (cbb/notify.py); optional
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}   # public record channel (cbb/record.py); optional
         run: |
-          if [ -n "${{ github.event.inputs.date }}" ]; then python -m cbb.run_day --date "${{ github.event.inputs.date }}"
-          else python -m cbb.run_day --auto; fi
+          # cbb.card_features runs cbb.run_day unchanged and also saves each day's stage-2 inputs for the ridge-1,000 shadow
+          if [ -n "${{ github.event.inputs.date }}" ]; then python -m cbb.card_features --date "${{ github.event.inputs.date }}"
+          else python -m cbb.card_features --auto; fi
           if [ "${{ github.event.inputs.test_alert }}" = "true" ]; then python -m cbb.notify; fi
 
       - name: Build site
