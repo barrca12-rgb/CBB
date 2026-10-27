@@ -1,0 +1,5 @@
+market,compare,picks,picks with EV (history match),avg big-four books quoting,pts gained vs one book,one-book EV %,best EV %,EV gain % per bet,EV gain 95% CI,win% one book (hist.),win% best (hist.),actual ROI gain %,actual 95% CI
+spreads,best of four,133,133,2.14,0.186,-5.82,-4.68,1.14,"[0.92, 1.37]",49.55,50.22,-0.29,"[-0.60, -0.01]"
+spreads,best of all books,133,133,2.14,0.258,-5.82,-3.42,2.41,"[2.05, 2.78]",49.55,50.51,0.43,"[0.01, 0.86]"
+totals,best of four,236,235,2.19,0.208,-4.16,-3.24,0.92,"[0.74, 1.11]",50.26,50.74,0.63,"[-0.13, 1.77]"
+totals,best of all books,236,235,2.19,0.329,-4.16,-2.48,1.68,"[1.46, 1.90]",50.26,51.04,1.69,"[0.40, 3.34]"

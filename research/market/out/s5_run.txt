@@ -1,0 +1,38 @@
+2022-11-12 done
+2023-01-14 done
+2023-03-04 done
+2023-11-11 done
+2024-01-13 done
+2024-03-02 done
+2024-11-09 done
+2025-01-11 done
+2025-03-01 done
+2025-11-08 done
+2026-01-10 done
+2026-03-07 done
+                                            0                  1              2                  3
+market                                spreads            spreads         totals             totals
+compare                          best of four  best of all books   best of four  best of all books
+picks                                     133                133            236                236
+picks with EV (history match)             133                133            235                235
+avg big-four books quoting               2.14               2.14           2.19               2.19
+pts gained vs one book                  0.186              0.258          0.208              0.329
+one-book EV %                           -5.82              -5.82          -4.16              -4.16
+best EV %                               -4.68              -3.42          -3.24              -2.48
+EV gain % per bet                        1.14               2.41           0.92               1.68
+EV gain 95% CI                   [0.92, 1.37]       [2.05, 2.78]   [0.74, 1.11]       [1.46, 1.90]
+win% one book (hist.)                   49.55              49.55          50.26              50.26
+win% best (hist.)                       50.22              50.51          50.74              51.04
+actual ROI gain %                       -0.29               0.43           0.63               1.69
+actual 95% CI                  [-0.60, -0.01]       [0.01, 0.86]  [-0.13, 1.77]       [0.40, 3.34]
+                    picks  pts_gain  ev_gain_pct
+market  book                                    
+spreads BetMGM         40     0.100        0.819
+        Caesars        45     0.178        0.696
+        DraftKings    117     0.226        1.389
+        FanDuel        83     0.181        1.197
+totals  BetMGM         87     0.121        0.485
+        Caesars        88     0.074        0.099
+        DraftKings    207     0.208        0.811
+        FanDuel       134     0.381        2.000
+spreads, pre-registered bar (+1.0% EV per bet, CI above 0): WORTH ACTING ON

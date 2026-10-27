@@ -99,3 +99,71 @@ windows on Jan 11 at 5-minute); results at the observed quote.
   number equal or better and payout at least as good, at the first snapshot in the window. Pregame only.
 - **s3_followups run 1** (`out/s3_run.txt`), reported as is. At 30-minute cadence the 5-10 and 15-25 minute
   windows have no snapshot except on Jan 11.
+
+## 2026-10-27: line-shopping test (pre-registered before running; `s5_shopping.py`)
+
+**Question:** with the same picks at the same moment, how much does taking the best of several books add over
+betting at one book? This isolates shopping from timing.
+
+**Sample:** the 12 Option B dates. Each book's state at a snapshot is its latest quote at or before the snapshot,
+unless marked absent. Pregame only.
+
+**Pick moment and side:**
+- For each game and market, the pick moment is the first snapshot at which at least two of the big four
+  (DraftKings, FanDuel, BetMGM, Caesars) quote the market.
+- The frozen live-like model's edge vs the median of those books' numbers must meet the rule (spread 2.5+,
+  total 3+).
+- One pick per game and market, on the model's side. No EV rule.
+
+**Compared at the pick moment, same side:**
+- **one book:** each quoting big-four book separately. The headline is the average over books, i.e. "you have one
+  account". Each named book is also shown.
+- **best of four:** the bettor's best number among the quoting big-four books; ties go to the better price.
+- **best of all:** the same over every book in the data (adds Bovada, BetRivers, BetOnline, LowVig, MyBookie,
+  BetUS). Secondary.
+
+**Measures, best vs one book:**
+1. mean points of number gained, and the share of picks where best beats the single book;
+2. **primary, expected value:** each quote is graded against the outcome distribution of historical games with
+   the same closing number (wf_live_approx 2014-2026; spreads keyed on the oriented closing spread, totals on the
+   closing total rounded to the nearest point, with ±2 points if fewer than 300 games). Win, push and loss
+   probabilities at the quote's number, then EV in units at its price. This measures the value of the number and
+   price alone, without the 12 dates' luck.
+3. actual paired results at recorded prices (noisy, 12 dates), with a game-level bootstrap interval.
+
+**Reported:** spreads and totals separately.
+
+**Worth acting on:** best-of-four EV gain of +1.0% per bet or more on spreads, with a game-level 95% interval
+excluding 0.
+- **Implementation note (before running):** for both markets, historical games are matched on the same closing
+  number (same half-point). If fewer than 300 match, the match widens to ±1 and then ±2 points in whole-point steps,
+  with the outcome shifted by the difference so pushes stay on whole numbers. This replaces "rounded to the nearest
+  point" for totals.
+- **Run 1 fix:** a few extreme totals had no historical games within ±2 points, which left their EV undefined and
+  the totals summary blank. Those picks are dropped from the EV measures only, and the count is shown. Spreads were
+  unaffected. Run 2 is the reported one.
+
+### Line-shopping results (run 2; `out/s5_result.csv`, `out/s5_by_book.csv`, `out/s5_run.txt`)
+
+| | spreads: best of 4 | spreads: best of all | totals: best of 4 | totals: best of all |
+|---|---|---|---|---|
+| picks | 133 | 133 | 236 (235 with EV) | 236 (235) |
+| points of number gained vs one book | 0.19 | 0.26 | 0.21 | 0.33 |
+| **EV gain per bet (primary)** | **+1.14%** [0.92, 1.37] | **+2.41%** [2.05, 2.78] | **+0.92%** [0.74, 1.11] | **+1.68%** [1.46, 1.90] |
+| win% at the number, historical (one book -> best) | 49.55 -> 50.22 | 49.55 -> 50.51 | 50.26 -> 50.74 | 50.26 -> 51.04 |
+| actual ROI gain on the 12 dates | -0.29% [-0.60, -0.01] | +0.43% [0.01, 0.86] | +0.63% [-0.13, 1.77] | +1.69% [0.40, 3.34] |
+
+**Pre-registered bar (spreads, best of four, +1.0% and CI above 0): met.**
+
+**Caveats:**
+- The EV interval reflects pick-to-pick variation only, not the fact that this is 12 dates.
+- At the pick moment only about 2.1 of the big four were quoting. Shopping later, with more books up, may gain
+  more, but that conflicts with betting at the open; not tested.
+- "All books" includes offshore books (Bovada, BetOnline, LowVig, MyBookie, BetUS) that may not be available.
+- On the 12 dates, the best-of-four number sometimes came with a worse price and results rarely landed in the gap,
+  so the actual gain is about 0. The EV measure is the pre-registered primary.
+- The one-book EV is negative because this measure prices the number only (vig included, no model edge). Only the
+  difference matters.
+
+Per book, best of four vs that book alone, spread EV gain: DraftKings +1.39%, FanDuel +1.20%, BetMGM +0.82%,
+Caesars +0.70%.
