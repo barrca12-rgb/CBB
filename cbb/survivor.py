@@ -325,7 +325,8 @@ def page(entries: list[dict], o: pd.DataFrame, p: pd.DataFrame) -> str:
             d = e["next"]
             g = e["plan"][d]
             usedset = set(used["team_id"].astype(int))
-            alts = o[(o["date"] == d) & ~o["team_id"].isin(usedset)].sort_values("p", ascending=False).head(12)
+            alts = o[(o["date"] == d) & ~o["team_id"].isin(usedset)].sort_values("p", ascending=False)
+            alts = pd.concat([alts[alts["team_id"] == int(g["team_id"])], alts[alts["team_id"] != int(g["team_id"])]]).head(12)  # the plan's team first
             later = {t: max((x["p"] for dd, x in e["plan"].items() if dd != d and int(x["team_id"]) == int(t)), default=None) for t in alts["team_id"]}
             rows = "".join(
                 f"<tr{' class=rec' if int(r['team_id']) == int(g['team_id']) else ''}><td>{_logo(r['team_id'])}<b>{html.escape(str(r['team']))}</b> "
@@ -342,7 +343,9 @@ def page(entries: list[dict], o: pd.DataFrame, p: pd.DataFrame) -> str:
                     f"<div class='big'>{_logo(g['team_id'], 26)}{html.escape(str(g['team']))} "
                     f"<span class='m' style='font-size:15px;font-weight:500'>{'vs' if g['where'] != 'away' else '@'} {html.escape(str(g['opp']))} · "
                     f"{_when(g['start'])}</span></div><div class='m'>Model win chance <b>{_pct(g['p'])}</b> · "
-                    f"{'full model (card)' if g['p_src'] == 'card' else 'from current ratings'}</div></div>"
+                    f"{'full model (card)' if g['p_src'] == 'card' else 'from current ratings'}</div>"
+                    f"<button type='button' class='pk pk-main' data-e='{n}' data-d='{d}' data-t='{int(g['team_id'])}' "
+                    f"data-n='{html.escape(str(g['team']))}'>Pick {html.escape(str(g['team']))} for entry {n}</button></div>"
                     f"<div class='scroll'><table class='opts'><thead><tr><th>Options {pd.Timestamp(d):%b} {pd.Timestamp(d).day} (unused teams)</th><th>Tip (ET)</th>"
                     f"<th class='r'>Win %</th><th class='r hide-sm'>Plan uses it later at</th><th></th></tr></thead><tbody>{rows}</tbody></table></div>"
                     f"<div class='f' style='padding:8px 16px 12px;font-size:12px'>Next in the plan: {ahead or '–'}</div>")
@@ -367,6 +370,8 @@ def page(entries: list[dict], o: pd.DataFrame, p: pd.DataFrame) -> str:
 .lg {{ vertical-align: -4px; margin-right: 6px; object-fit: contain }}
 .opts tr.rec td {{ background: var(--sunken) }}
 .pk {{ font-size: 12px; padding: 4px 12px }}
+.pk-main {{ margin-top: 10px; font-size: 14px; padding: 8px 16px; background: var(--brand); color: #fff; border-color: var(--brand) }}
+.pk-main:hover {{ background: var(--brand); opacity: .9 }}
 details.usedd > summary {{ cursor: pointer; padding: 10px 16px; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line) }}
 </style>
 <header class="top"><div class="wrap">
