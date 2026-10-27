@@ -17,6 +17,8 @@ import pandas as pd
 from . import report_html, tracker
 
 OUT = os.path.join(tracker.ROOT, "reports", "record.html")
+VERIFY = os.path.join(tracker.ROOT, "reports", "verify.html")      # published unlisted at record/verify.html
+WEEKLY = os.path.join(tracker.ROOT, "site", "record", "weekly")     # cbb/record_chart.py, published at record/weekly/
 LINKS = os.path.join(tracker.ROOT, "data", "record_links.json")
 BRANCH = "claude/college-basketball-model-nmztcl"
 GH = f"https://github.com/{report_html.REPO}"
@@ -137,6 +139,29 @@ def _logo(team_id, px: int = 16) -> str:
             f"<img src='{u.format('500')}' alt='' loading='lazy' width='{px}' height='{px}' onerror=\"this.closest('picture').remove()\"></picture>")
 
 
+def weekly() -> str:
+    """The latest weekly charts (cbb/record_chart.py) at full width, then the last eight weeks as thumbnails."""
+    idx = os.path.join(WEEKLY, "index.json")
+    weeks = json.load(open(idx))["weeks"] if os.path.exists(idx) else []
+    if not weeks:
+        return ""
+    d = weeks[0]
+    t = pd.Timestamp(d)
+    img = lambda w, k, cls="": (f"<a href='record/weekly/{w}-{k}.png'><img{cls} src='record/weekly/{w}-{k}.png' alt='Week through {w}: "
+                                f"{'closing-line value' if k == 'clv' else 'units by week'}' width='1600' height='900' loading='lazy' "
+                                f"style='width:100%;height:auto;display:block;border-radius:8px;border:1px solid var(--line)'></a>")
+    thumbs = "".join(f"<div><div class='m' style='font-size:12px;margin-bottom:4px'>Through {pd.Timestamp(w):%b} {pd.Timestamp(w).day}</div>"
+                     f"{img(w, 'clv')}</div>" for w in weeks[:8])
+    return (f"<section class='panel'><div class='panel-h'><h2>This week</h2><span class='note'>Through Sunday {t:%b} {t.day}, "
+            f"season to date. Drawn every Monday from the bet log; every play counts.</span></div>"
+            f"<div style='padding:12px 16px;display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))'>"
+            f"{img(d, 'clv')}{img(d, 'units')}</div>"
+            + (f"<div style='padding:0 16px 14px'><div class='m' style='font-size:12px;font-weight:700;text-transform:uppercase;"
+               f"letter-spacing:.05em;margin:4px 0 8px'>Past weeks</div><div style='display:grid;gap:10px;"
+               f"grid-template-columns:repeat(auto-fill,minmax(150px,1fr))'>{thumbs}</div></div>" if len(weeks) > 1 else "")
+            + "</section>")
+
+
 def build() -> str:
     b = tracker.load()
     # Every play counts as placed (Chad bets them all, Oct 27) unless marked placed = "no"; voids are out.
@@ -207,6 +232,7 @@ def build() -> str:
   <img class="hero" src="assets/otg-banner.webp" alt="Off The Glass Hoops" width="2000" height="667">
   <div class="head"><div><h1>College Basketball Record</h1>
     <div class="sub">Bets placed on the model's plays, at the logged number and price. Updated {now:%b %-d, %-I:%M %p} ET.</div></div><a class="pagebtn" href="./">&larr; Card</a></div>
+  {weekly()}
   <div class="kpis">{kpis}</div>
   <section class="panel"><div class="panel-h"><h2>Summary</h2><span class="note">Settled bets placed. CLV = points the line moved our way from the logged number to the close. Break-even at -110 is 52.4%.</span></div>
     <div class="scroll"><table>{HEAD}<tbody>{''.join(rows)}</tbody></table></div>{_chart(s)}</section>
@@ -214,7 +240,8 @@ def build() -> str:
   <section class="panel"><div class="panel-h"><h2>Bets placed</h2><span class="note">Newest first.</span></div>
     <div class="scroll"><table>{plays_t}</table></div></section>
   <footer>
-    <div><a class="follow" href="https://x.com/{report_html.X_HANDLE}" target="_blank" rel="noopener"><img src="assets/otg-logo-512.png" alt="">Follow @{report_html.X_HANDLE} on X for every play</a></div></footer>
+    <div><a class="follow" href="https://x.com/{report_html.X_HANDLE}" target="_blank" rel="noopener"><img src="assets/otg-logo-512.png" alt="">Follow @{report_html.X_HANDLE} on X for every play</a></div>
+    <div style="margin-top:10px"><a class="m" href="record/verify.html">verification</a></div></footer>
 </main>
 <script>
 // phones: each table row becomes a small card, each cell labeled with its column header (styles in report_html)
@@ -228,9 +255,66 @@ document.querySelectorAll("main table").forEach((t) => {{
 """
 
 
+def build_verify() -> str:
+    """The unlisted verification page (record/verify.html; linked only from the record page's footer): the
+    forward-test cohorts, the bet log and its history, the OpenTimestamps proof, and every model-change note."""
+    b = tracker.load()
+    links = json.load(open(LINKS)) if os.path.exists(LINKS) else {}
+    ap = os.path.join(tracker.ROOT, "bets", "announcements.json")
+    ann = json.load(open(ap)) if os.path.exists(ap) else []
+    coh_table, coh_note = cohorts(b)
+    disc = (f"<li><a href='{html.escape(links['discord_invite'])}'>Discord channel</a>: every play posted when it was "
+            f"logged, with its result and any correction. Posts are never edited.</li>") if links.get("discord_invite") else ""
+    notes = "".join(f"<li><b>{html.escape(a['date'])}</b>: {html.escape(a['text'])}</li>" for a in reversed(ann))
+    freeze = ""
+    mf = os.path.join(tracker.ROOT, "MODEL_FREEZE.md")
+    if os.path.exists(mf):
+        c = next((l.split(":", 1)[1].strip() for l in open(mf) if l.startswith("Frozen at commit:")), "")
+        freeze = (f"<li><a href='{GH}/blob/{BRANCH}/MODEL_FREEZE.md'>Model freeze</a>: frozen at commit "
+                  f"<a href='{GH}/commit/{c}'><code>{c[:7]}</code></a>, with file fingerprints.</li>") if c else ""
+    now = pd.Timestamp.now(tz="America/New_York")
+    style = report_html.TEMPLATE[report_html.TEMPLATE.index("<style>"):report_html.TEMPLATE.index("</style>") + 8]
+    return f"""<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="../">
+<meta name="robots" content="noindex">
+<title>Off The Glass · Verification</title>
+{report_html.HEAD}
+{style}
+<header class="top"><div class="wrap">
+  {report_html.BRAND}
+</div></header>
+<main class="wrap">
+  <div class="head"><div><h1>Verification</h1>
+    <div class="sub">How to check the College Basketball record yourself. Updated {now:%b %-d, %-I:%M %p} ET.</div></div><a class="pagebtn" href="record.html">&larr; Record</a></div>
+  <section class="panel"><div class="panel-h"><h2>Forward-test cohorts</h2><span class="note">{html.escape(coh_note)}</span></div>
+    <div class="scroll"><table>{coh_table}</table></div></section>
+  <section class="panel"><div class="panel-h"><h2>Check it</h2></div><ul style="margin:12px 16px 16px;padding-left:18px;line-height:1.7">
+    <li><a href='{GH}/blob/{BRANCH}/bets/bets.csv'>The bet log</a> and <a href='{GH}/commits/{BRANCH}/bets/bets.csv'>every change to it</a>, each with its time.</li>
+    <li><a href='{GH}/blob/{BRANCH}/bets/bets.csv.ots'>OpenTimestamps proof</a>: anchors the current bet log to a Bitcoin block (check it at <a href='https://opentimestamps.org'>opentimestamps.org</a> with the log file).</li>
+    <li><a href='{GH}/commits/{BRANCH}/site/record/weekly'>Every weekly chart</a>, committed by the Monday run with the data it was drawn from.</li>
+    {freeze}{disc}</ul></section>
+  <section class="panel"><div class="panel-h"><h2>Model changes</h2><span class="note">Every change, as announced the day it went live.</span></div>
+    <ul style="margin:12px 16px 16px;padding-left:18px;line-height:1.6">{notes or "<li>None.</li>"}</ul></section>
+</main>
+<script>
+document.querySelectorAll("main table").forEach((t) => {{
+  const hs = [...t.querySelectorAll("thead th")].map((h) => h.textContent.trim());
+  t.classList.add("stack");
+  t.querySelectorAll("tbody tr").forEach((r) => [...r.children].forEach((c, k) => {{ if (hs[k]) c.dataset.l = hs[k]; }}));
+}});
+</script>
+</html>
+"""
+
+
 def write() -> str:
     with open(OUT, "w") as fh:
         fh.write(build())
+    with open(VERIFY, "w") as fh:
+        fh.write(build_verify())
     return OUT
 
 

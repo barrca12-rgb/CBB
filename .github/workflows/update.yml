@@ -84,6 +84,8 @@ jobs:
           if [ -n "$CUR" ] && [ -f "reports/$CUR" ]; then cp "reports/$CUR" _site/index.html
           else echo '<!doctype html><meta charset="utf-8"><title>CBB card</title><p>No card yet.</p>' > _site/index.html; fi
           mkdir -p _site/assets && cp site/assets/* _site/assets/   # Off The Glass logo, banner, icons, link-preview image
+          mkdir -p _site/record && if [ -d site/record ]; then cp -r site/record/. _site/record/; fi   # weekly charts (cbb/record_chart.py)
+          if [ -f reports/verify.html ]; then cp reports/verify.html _site/record/verify.html; fi      # unlisted verification page
           touch _site/.nojekyll
 
       # Timestamp the bet log (OpenTimestamps, free, no account): a new proof whenever bets.csv changed, and each run

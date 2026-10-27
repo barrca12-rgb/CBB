@@ -1,0 +1,59 @@
+# Weekly record chart (cbb/record_chart.py): every Monday at 8:00 ET, two 1600x900 PNGs through the Sunday before,
+# drawn only from bets/bets.csv, committed to site/record/weekly/ with the bet log they came from, then the card
+# run is started so the record page shows them. Reads and displays only. Posting to X is manual (Chad).
+name: Weekly record chart
+
+on:
+  schedule:
+    - cron: "0 13 * * 1"      # Monday 8:00 ET (EST, Nov-Mar); 9:00 ET while daylight time lasts
+  workflow_dispatch:
+    inputs:
+      through:
+        description: "Sunday to chart through, YYYY-MM-DD (blank = the last Sunday)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: record-chart
+  cancel-in-progress: false
+
+jobs:
+  chart:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: claude/college-basketball-model-nmztcl
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - run: pip install -r requirements.txt matplotlib
+      - name: Draw the charts
+        run: |
+          if [ -n "${{ github.event.inputs.through }}" ]; then python -m cbb.record_chart --through "${{ github.event.inputs.through }}"
+          else python -m cbb.record_chart; fi
+      - name: Save the charts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898+github-actions[bot]@users.noreply.github.com"
+          git add -A -- site/record bets/bets.csv
+          git diff --cached --quiet || git commit -m "Weekly record chart ($(date -u +'%Y-%m-%d %H:%M') UTC)"
+          # retry: another job may push between this job's pull and push; fail only if every try fails
+          ok=0
+          for i in 1 2 3 4 5 6; do
+            if git pull --rebase -X theirs origin claude/college-basketball-model-nmztcl && git push origin HEAD:claude/college-basketball-model-nmztcl; then ok=1; break; fi
+            git rebase --abort 2>/dev/null || true
+            sleep $((i * 4))
+          done
+          [ "$ok" = 1 ]
+      - name: Publish (start a card run, which rebuilds the record page)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run update.yml --ref claude/college-basketball-model-nmztcl
