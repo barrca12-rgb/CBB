@@ -1,0 +1,17 @@
+,frozen,B2 public
+margin MAE,8.8823,8.8816
+total MAE,13.1499,13.1506
+spread CLV dev 2014-17,1.25,1.262
+total CLV dev 2014-17,0.646,0.626
+spread CLV conf 2024-26,1.127,1.139
+total CLV conf 2024-26,1.671,1.694
+spread win% dev,56.76,57.26
+spread win% holdout,57.66,57.04
+total win% dev,55.45,55.46
+total win% holdout,55.53,55.37
+spread n dev/hold,3270/1599,3264/1592
+total n dev/hold,8333/2602,8500/2626
+margin: adjustment coef (se),,0.715 (0.583)
+margin: adjustment SD,,0.0982575626424998
+total: adjustment coef (se),,-2.994 (1.271)
+total: adjustment SD,,0.07061145636610908

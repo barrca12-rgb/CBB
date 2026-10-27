@@ -1,0 +1,59 @@
+Coverage by season (share of frame games):
+        games  matched  with_broadcast  national_tv  broad_tv  any_ranked
+season                                                                   
+2014     5496      1.0             1.0        0.113     0.221       0.120
+2015     5498      1.0             1.0        0.117     0.250       0.119
+2016     5461      1.0             1.0        0.116     0.246       0.116
+2017     5486      1.0             1.0        0.118     0.256       0.109
+2018     5539      1.0             1.0        0.128     0.260       0.117
+2019     5603      1.0             1.0        0.130     0.263       0.115
+2020     5326      1.0             1.0        0.109     0.261       0.108
+2021     3946      1.0             1.0        0.166     0.317       0.129
+2022     5475      1.0             1.0        0.134     0.278       0.115
+2023     5714      1.0             1.0        0.134     0.278       0.111
+2024     5723      1.0             1.0        0.139     0.275       0.140
+2025     5759      1.0             1.0        0.131     0.273       0.136
+2026     5752      1.0             1.0        0.140     0.274       0.135
+
+Split (a): frozen-rule spread plays, exactly one team ranked
+  play ON the ranked side        at open :  58.5% (se 2.7), n = 342
+  play ON the ranked side        at close:  54.7% (se 2.7), n = 344
+  play AGAINST the ranked side   at open :  59.9% (se 2.7), n = 319
+  play AGAINST the ranked side   at close:  55.6% (se 2.8), n = 322
+  against minus on, at the opener: +1.4 pts of win % (se 3.8)
+  Line move open -> close toward the ranked side (all one-ranked games): +0.040 pts (se 0.026), n = 3584
+
+Split (b): frozen-rule spread plays on vs against the home side, national TV (primary) vs not
+  national TV      on home  at open :  58.3% (se 2.6), n = 357
+  national TV      on home  at close:  52.5% (se 2.6), n = 360
+  national TV      on away  at open :  55.4% (se 2.4), n = 415
+  national TV      on away  at close:  51.8% (se 2.5), n = 415
+  not national TV  on home  at open :  57.2% (se 1.1), n = 2163
+  not national TV  on home  at close:  52.5% (se 1.1), n = 2172
+  not national TV  on away  at open :  57.0% (se 1.1), n = 1934
+  not national TV  on away  at close:  53.5% (se 1.1), n = 1944
+  (away minus home) on national TV minus off it, at the opener: -2.7 (se 3.9)
+
+Stage-2 margin coef rk_diff: -0.069 (se 0.160) -> 95% CI [-0.383, +0.245]
+Stage-2 margin coef tv_nat: +0.348 (se 0.129) -> 95% CI [+0.095, +0.602]
+Stage-2 total coef rk_any: +0.332 (se 0.226) -> 95% CI [-0.111, +0.774]
+Stage-2 total coef tv_nat: -0.073 (se 0.229) -> 95% CI [-0.521, +0.375]
+Opener CLV gain (dev, conf): spread +0.012, +0.012; total -0.020, +0.023
+
+model                            frozen       B2 public
+margin MAE                       8.8823          8.8816
+total MAE                       13.1499         13.1506
+spread CLV dev 2014-17             1.25           1.262
+total CLV dev 2014-17             0.646           0.626
+spread CLV conf 2024-26           1.127           1.139
+total CLV conf 2024-26            1.671           1.694
+spread win% dev                   56.76           57.26
+spread win% holdout               57.66           57.04
+total win% dev                    55.45           55.46
+total win% holdout                55.53           55.37
+spread n dev/hold             3270/1599       3264/1592
+total n dev/hold              8333/2602       8500/2626
+margin: adjustment coef (se)        NaN   0.715 (0.583)
+margin: adjustment SD               NaN        0.098258
+total: adjustment coef (se)         NaN  -2.994 (1.271)
+total: adjustment SD                NaN        0.070611

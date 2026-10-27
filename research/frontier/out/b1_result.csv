@@ -1,0 +1,15 @@
+,frozen,B1 rematch
+margin MAE,8.8823,8.8822
+total MAE,13.1499,13.1454
+spread CLV dev 2014-17,1.25,1.229
+total CLV dev 2014-17,0.646,0.681
+spread CLV conf 2024-26,1.127,1.137
+total CLV conf 2024-26,1.671,1.716
+spread win% dev,56.76,56.72
+spread win% holdout,57.66,57.93
+total win% dev,55.45,55.58
+total win% holdout,55.53,55.47
+margin: adjustment coef (se),,0.545 (0.341)
+margin: adjustment SD,,0.1699676675832389
+total: adjustment coef (se),,0.338 (0.160)
+total: adjustment SD,,0.5140849887126964

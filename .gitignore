@@ -4,3 +4,5 @@ cbb/cache/
 .venv/
 cbb/output/
 research/frontier/out/espn_sb/
+research/frontier/out/c2_*/
+research/frontier/out/*.log
