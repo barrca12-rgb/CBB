@@ -53,6 +53,8 @@ def counts(a: pd.Timestamp, b: pd.Timestamp) -> dict:
     out["new bets logged"] = len(new)
     out["Discord posts (of new bets)"] = int(new["bet_id"].isin(list(posted)).sum())
     out["marked placed (of new bets)"] = int(new["placed"].fillna("").str.lower().eq("yes").sum())
+    acc = os.path.join(ROOT, "bets", "accepted.csv")
+    out["placed with the card button"] = int(_in(pd.read_csv(acc)["placed_at"], a, b).sum()) if os.path.exists(acc) else 0
     return out
 
 

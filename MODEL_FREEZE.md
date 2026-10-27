@@ -136,3 +136,10 @@ The checkpoint check therefore runs:
   the scenes. Plan: `research/r1000/PLAN.md`.
 - **Unchanged:** no fingerprinted file, `data/projection.json`, the selection rules, staking, the bet log or the
   forward-test protocol.
+
+## 2026-10-27: Placed button (approved by Chad; no effect on picks)
+
+- **What it does:** the card's Placed button (`cbb/report_html.py`, `.github/workflows/placed.yml`,
+  `cbb/placed.py`) sets `placed` in `bets/bets.csv` and records the accepted book, line, odds, stake and time in
+  `bets/accepted.csv` (cohort C).
+- **Unchanged:** no fingerprinted file, selection rule, staking or grading.

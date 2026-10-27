@@ -92,3 +92,18 @@ The proposed 15-unit daily cap and any staking change are not part of this work.
   before.
 - **Unchanged:** picks, edges, stakes, alerts and the bet log. `cbb/report_html.py` only; not a fingerprinted file.
 - **Approved by Chad, Oct 27.** Backed by `research/market/LOG.md` (best of four books: +1.1% ROI per spread bet).
+
+## 2026-10-27: Placed button on the card (approved by Chad)
+
+- **What it is:** each logged play on the card has a **Placed** button. It opens a short form pre-filled from the
+  bet log (book, line, odds, units); Chad edits what differs and saves.
+- **What happens on save:** the page starts `.github/workflows/placed.yml` with the browser's GitHub token (the same
+  one as Update). That runs `cbb/placed.py`, which:
+  - sets `placed` to yes on that row of `bets/bets.csv`;
+  - writes the book, line, odds, stake and time to `bets/accepted.csv` (cohort C, one row per bet; a second save
+    replaces it).
+- **Unchanged:** picks, lines, edges, stakes and grading in the bet log. Bad input (unknown bet, non-American odds,
+  stake outside 0-20 units) is refused.
+- **Health line:** the Monday line counts "placed with the card button".
+- **Tested:** in a browser with GitHub mocked (exact dispatch payload checked), and the script on a copy of the bet
+  log (only the `placed` column changed).
