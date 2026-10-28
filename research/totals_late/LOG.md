@@ -76,3 +76,23 @@ clears both eras, so nothing changes. Ready if needed:
 **Verdict after both rounds:** eight pre-registered adjustments, none clears both eras. No change. Ready if needed:
 fallback (d) late unders need a 4-point edge (holdout +1.2) and lead (f) recent form (both eras positive), both
 judged on 2026-27 data at Jan 29 / Mar 14 before anything goes to Chad for approval.
+
+## Run 3 (Oct 28): deep dive on (f) recent form (PLAN.md Part 4); fails the "real" bar, dropped
+
+`form_deep.py`; full output in `out/form_deep.txt`.
+
+| Pre-registered check | Result | Pass? |
+|---|---|---|
+| Beyond-close coefficient positive both eras (z >= 2 in one, >= 1 in the other) | dev -0.22 (z -1.96), holdout +0.08 (z 0.34) | No |
+| Same sign on full-season win % for windows 5 / 10 / 20, both eras | dev -0.07 / +0.47 / +0.26; holdout +0.01 / +0.52 / +0.18 | No (window 5, dev) |
+| Coefficient positive in every walk-forward fit | 0.09-0.19, every fit | Yes |
+
+Also: totals MAE worse in dev (13.89 -> 14.02), flat in holdout (13.22 -> 13.20). Per season (window 10), January-
+March win % rose in 6 of 7 seasons (2015 -1.5; 2017 +3.3; 2026 +2.1); in 2024-26, late unders went 52.8% -> 56.8%
+(464 -> 479 plays), but dev late unders were flat (53.4 -> 53.3).
+
+**Reading.** Recent form does not carry information beyond the closing total; in the dev era the games it moved
+did worse against the close. The small win-rate gain against the opener comes from anticipating the market's own
+recent-form adjustment (the close prices form), which shows up as CLV in 2024-26 (+0.19) and not at all in dev
+(+0.01). That is not a durable edge: as the opener gets sharper it disappears. By the rule written before the run,
+(f) is dropped as noise and comes off the March list; the Mar 14 read no longer scores it.

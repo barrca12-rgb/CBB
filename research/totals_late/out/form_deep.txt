@@ -1,0 +1,67 @@
+## Per season (window 10)
+ season    part  frozen plays  frozen win%  form plays  form win%  d win%  frozen CLV  form CLV
+   2014 Jan-Mar          2617        52.42        2628      52.47    0.05       -0.02     -0.03
+   2014     all          3694        53.19        3703      53.22    0.03       -0.05     -0.08
+   2015 Jan-Mar           888        59.40         907      57.91   -1.49        1.32      1.39
+   2015     all          1118        58.96        1114      58.49   -0.48        1.34      1.40
+   2016 Jan-Mar           765        58.54         747      60.03    1.48        1.32      1.46
+   2016     all          1260        56.63        1254      57.66    1.03        1.28      1.35
+   2017 Jan-Mar           836        55.92         845      59.22    3.30        1.62      1.63
+   2017     all          1245        57.65        1226      59.34    1.69        1.46      1.50
+   2024 Jan-Mar           653        53.31         586      54.22    0.90        1.02      1.23
+   2024     all          1115        55.62        1030      56.58    0.97        1.17      1.23
+   2025 Jan-Mar           736        55.84         646      56.97    1.12        1.03      1.22
+   2025     all          1185        56.29        1061      56.08   -0.21        1.54      1.71
+   2026 Jan-Mar           798        53.63         745      55.70    2.07        2.24      2.59
+   2026     all          1418        54.90        1335      56.03    1.13        2.18      2.36
+
+## Information beyond the close and accuracy
+ window     era  beyond-close coef    se      z  adjustment SD  MAE frozen  MAE form
+      5     dev             -0.143 0.124 -1.152          1.010      13.889    13.977
+      5 holdout             -0.100 0.196 -0.508          0.755      13.221    13.196
+     10     dev             -0.217 0.111 -1.958          1.137      13.889    14.015
+     10 holdout              0.082 0.240  0.340          0.695      13.221    13.199
+     20     dev             -0.352 0.145 -2.424          0.876      13.889    13.987
+     20 holdout             -0.021 0.328 -0.063          0.526      13.221    13.209
+
+## Window sensitivity
+ window     era    part  d win%  d CLV  plays
+      5     dev Jan-Mar    0.08   0.02   5698
+      5     dev     all   -0.07   0.00   8366
+      5 holdout Jan-Mar    0.92   0.31   1408
+      5 holdout     all    0.01   0.21   2408
+     10     dev Jan-Mar    0.59   0.04   5713
+     10     dev     all    0.47   0.01   8327
+     10 holdout Jan-Mar    1.60   0.30   1391
+     10 holdout     all    0.52   0.19   2396
+     20     dev Jan-Mar    0.29   0.02   5742
+     20     dev     all    0.26   0.01   8348
+     20 holdout Jan-Mar    0.71   0.20   1426
+     20 holdout     all    0.18   0.13   2432
+
+## form_sum coefficient by walk-forward fit (window 10)
+ predicting  form_sum coef
+       2014         0.1904
+       2015         0.1249
+       2016         0.1020
+       2017         0.0945
+       2018         0.1058
+       2019         0.1031
+       2020         0.1130
+       2021         0.1091
+       2022         0.1034
+       2023         0.1003
+       2024         0.0993
+       2025         0.0991
+       2026         0.1009
+
+## Side and half (window 10)
+    era    half  side  frozen plays  frozen win%  form plays  form win%
+    dev Nov-Dec  over          1160        57.74        1157      57.59
+    dev Nov-Dec under          1513        55.70        1457      56.19
+    dev Jan-Mar  over          2332        57.17        2504      58.35
+    dev Jan-Mar under          3427        53.38        3209      53.27
+holdout Nov-Dec  over           599        54.59         511      53.42
+holdout Nov-Dec under           470        59.49         494      58.10
+holdout Jan-Mar  over          1070        55.51         912      56.03
+holdout Jan-Mar under           464        52.80         479      56.78
