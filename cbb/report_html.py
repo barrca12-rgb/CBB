@@ -238,6 +238,7 @@ tbody tr:last-child td { border-bottom: 0 }
 .betlink:hover { background: var(--sunken); text-decoration: none }
 .tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 6px; border-radius: 4px; border: 1px solid var(--line-strong); color: var(--muted) }
 .tag.bet { color: #fff; border-color: var(--brand); background: var(--brand) }
+.tag.logged { color: var(--brand); border-color: var(--brand); background: transparent }
 
 /* Segmented control */
 .seg { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 6px; overflow: hidden }
@@ -486,7 +487,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   pc.classList.toggle("zero", !P.length);
   $("rules-btn").onclick = () => { const r = $("plays-rules"), open = r.hidden; r.hidden = !open; $("rules-btn").setAttribute("aria-expanded", open); };
   $("t-plays").innerHTML = P.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r hide-sm hide-md'>Model</th><th class='r'>Edge</th><th class='r hide-sm'>Win %</th><th class='r'>EV</th><th class='r'>Bet to</th><th class='r hide-sm hide-md'>Opened</th><th class='r hide-sm hide-md'>Units</th><th></th></tr></thead><tbody>" +
-    P.map((p) => "<tr><td><div class='b pick'>" + logo(pickId(p.g, p.kind, p.side), 20) + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
+    P.map((p) => "<tr data-gid='" + p.g.game_id + "' data-mk='" + p.kind.toLowerCase() + "'><td><div class='b pick'>" + logo(pickId(p.g, p.kind, p.side), 20) + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
       (p.kind === "Total" && p.g.crew ? "<div class='f' style='font-size:11px'>Refs: " + esc(p.g.crew) + "</div>" : "") +
       (p.status ? "<div class='f' style='font-size:12px'>" + esc(p.status) + "</div>" : "") +
       (p.also ? "<div class='f' style='font-size:12px'>" + esc(p.also) + "</div>" : "") +
@@ -542,9 +543,14 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     }
     return top ? esc(top.txt) + (market !== "ml" && top.pr != null ? " <span class='m'>" + esc(odds(top.pr)) + "</span>" : "") + "<small>" + esc(top.book) + "</small>" : "<span class='na'>–</span>";
   };
+  // the side of a market already logged as a play ("home"/"away"/"over"/"under"), or null; a logged side is shown
+  // as logged everywhere (Plays, board), never again as a new BET or a WATCH
+  const loggedSide = (g, mk) => g[mk + "_logged_pick"] ? String(g[mk + "_logged_side"] || "").toLowerCase() : null;
+  const loggedTag = (g, mk) => "<span class='tag logged'>Logged " + esc(g[mk + "_logged_pick"]) + "</span>";
   const board = () => {
     const only = $("only-plays").checked;
-    const G = D.games.filter((g) => !only || g.spread_verdict === "BET" || g.total_verdict === "BET")
+    const G = D.games.filter((g) => !only || g.spread_verdict === "BET" || g.total_verdict === "BET" ||
+      loggedSide(g, "spread") || loggedSide(g, "total"))
       .sort((a, b) => String(a.start).localeCompare(String(b.start)) || a.home.localeCompare(b.home));
     const mh = {spread: "Model", total: "Model", ml: "Win %"}[market];
     let h = "<thead><tr><th class='tm'>Time</th><th>Team</th><th class='r pts'>Proj</th><th class='r'>" + mh + "</th>" +
@@ -552,26 +558,29 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     if (!G.length) { $("t-board").innerHTML = h + "<tbody><tr><td class='empty' colspan='" + (BOOKS.length + 5) + "'>No games.</td></tr></tbody>"; return; }
     h += G.map((g) => {
       const sides = ["away", "home"];
-      const hasBet = (market === "spread" && g.spread_verdict === "BET") || (market === "total" && g.total_verdict === "BET");
+      const hasBet = (market === "spread" && (g.spread_verdict === "BET" || loggedSide(g, "spread"))) ||
+        (market === "total" && (g.total_verdict === "BET" || loggedSide(g, "total")));
       const rows = sides.map((sd, i) => {
         const team = g[sd], pts = Math.round(g["model_" + sd + "_pts"]);
         let model, bookCells, edge = "";
         if (market === "spread") {
           model = ln(sd === "home" ? g.model_home_spread : -g.model_home_spread);
-          const pick = g.spread_side === sd && ["BET", "WATCH"].includes(g.spread_verdict);
+          const pick = g.spread_side === sd && ["BET", "WATCH"].includes(g.spread_verdict) && loggedSide(g, "spread") !== sd;
           bookCells = BOOKS.map((bk) => { const x = bl(g, bk); if (!x || x.home_spread == null) return cell(null);
             const v = sd === "home" ? x.home_spread : -x.home_spread;
             return cell(ln(v), x[sd + "_spread_odds"], x[sd + "_spread_link"], pick && g.spread_book === bk && v === g.spread_line); });
-          if (pick && g.spread_verdict === "BET") edge = "<span class='tag bet'>BET " + sgn(g.spread_edge) + "</span>";
+          if (loggedSide(g, "spread") === sd) edge = loggedTag(g, "spread");
+          else if (pick && g.spread_verdict === "BET") edge = "<span class='tag bet'>BET " + sgn(g.spread_edge) + "</span>";
           else if (pick) { const at = playAt(g.spread_good_to, true);
             edge = watchTag(g.spread_line >= at ? "better price" : "bet at " + ln(at) + gp(g.spread_good_price)); }
         } else if (market === "total") {
           const ou = i === 0 ? "over" : "under";
           model = i === 0 ? num(g.model_total) : "";
-          const pick = (g.total_pick || "").toLowerCase() === ou && ["BET", "WATCH"].includes(g.total_verdict);
+          const pick = (g.total_pick || "").toLowerCase() === ou && ["BET", "WATCH"].includes(g.total_verdict) && loggedSide(g, "total") !== ou;
           bookCells = BOOKS.map((bk) => { const x = bl(g, bk); if (!x || x.total == null) return cell(null);
             return cell((i === 0 ? "o" : "u") + num(x.total), x[ou + "_odds"], x[ou + "_link"], pick && g.total_book === bk && x.total === g.total_line); });
-          if (pick && g.total_verdict === "BET") edge = "<span class='tag bet'>BET " + sgn(g.total_edge) + "</span>";
+          if (loggedSide(g, "total") === ou) edge = loggedTag(g, "total");
+          else if (pick && g.total_verdict === "BET") edge = "<span class='tag bet'>BET " + sgn(g.total_edge) + "</span>";
           else if (pick) { const at = playAt(g.total_good_to, ou === "under");
             edge = watchTag((ou === "under" ? g.total_line >= at : g.total_line <= at) ? "better price" : "bet at " + ou[0] + num(at) + gp(g.total_good_price)); }
         } else {
@@ -588,7 +597,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
           (g[sd + "_injuries"] ? "<div class='inj'>" + esc(g[sd + "_injuries"]) + "</div>" : "") + "</td><td class='r pts'>" + pts + "</td><td class='r b'>" + model + "</td>" +
           bookCells.map((c, j) => "<td class='bk" + (j >= 4 ? " bk-minor" : "") + "'>" + c + "</td>").join("") + "<td class='bestc'>" + best(g, sd, i) + "</td><td class='r edge'>" + edge + "</td></tr>";
       }).join("");
-      return "<tbody class='g" + (hasBet ? " has-bet" : "") + "'>" + rows + "</tbody>";
+      return "<tbody class='g" + (hasBet ? " has-bet" : "") + "' data-gid='" + g.game_id + "'>" + rows + "</tbody>";
     }).join("");
     $("t-board").innerHTML = h;
   };
@@ -599,14 +608,13 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
 
   // Watch list (a side already logged as a play is listed under Plays at its logged number, not here)
   const W = [];
-  const isLogged = (g, mk, side) => !!g[mk + "_logged_pick"] && String(g[mk + "_logged_side"] || "").toLowerCase() === side;
   D.games.forEach((g) => {
-    if (g.spread_verdict === "WATCH" && !isLogged(g, "spread", g.spread_side)) W.push([tip(g), matchup(g), g.spread_pick, ln(g.spread_line), ln(playAt(g.spread_good_to, true)) + gp(g.spread_good_price), sgn(g.spread_edge)]);
-    if (g.total_verdict === "WATCH" && !isLogged(g, "total", String(g.total_pick || "").toLowerCase())) W.push([tip(g), matchup(g), g.total_pick, num(g.total_line), num(playAt(g.total_good_to, g.total_pick === "Under")) + gp(g.total_good_price), sgn(g.total_edge)]);
+    if (g.spread_verdict === "WATCH" && loggedSide(g, "spread") !== g.spread_side) W.push([tip(g), matchup(g), g.spread_pick, g.game_id, "spread", ln(g.spread_line), ln(playAt(g.spread_good_to, true)) + gp(g.spread_good_price), sgn(g.spread_edge)]);
+    if (g.total_verdict === "WATCH" && loggedSide(g, "total") !== String(g.total_pick || "").toLowerCase()) W.push([tip(g), matchup(g), g.total_pick, g.game_id, "total", num(g.total_line), num(playAt(g.total_good_to, g.total_pick === "Under")) + gp(g.total_good_price), sgn(g.total_edge)]);
   });
   if (!W.length) $("watch-sec").hidden = true;
   else $("t-watch").innerHTML = "<thead><tr><th>Time</th><th>Game</th><th>Side</th><th class='r'>Now</th><th class='r'>Play at</th><th class='r'>Edge now</th></tr></thead><tbody>" +
-    W.map((r) => "<tr><td class='m'>" + esc(r[0]) + "</td><td>" + esc(r[1]) + "</td><td class='b'>" + esc(r[2]) + "</td><td class='r'>" + esc(r[3]) + "</td><td class='r'>" + esc(r[4]) + "</td><td class='r m'>" + esc(r[5]) + "</td></tr>").join("") + "</tbody>";
+    W.map((r) => "<tr data-gid='" + r[3] + "' data-mk='" + r[4] + "'><td class='m'>" + esc(r[0]) + "</td><td>" + esc(r[1]) + "</td><td class='b'>" + esc(r[2]) + "</td><td class='r'>" + esc(r[5]) + "</td><td class='r'>" + esc(r[6]) + "</td><td class='r m'>" + esc(r[7]) + "</td></tr>").join("") + "</tbody>";
 
   // Record
   if (st) {
