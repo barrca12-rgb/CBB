@@ -597,11 +597,12 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   $("only-plays").onchange = board;
   board();
 
-  // Watch list
+  // Watch list (a side already logged as a play is listed under Plays at its logged number, not here)
   const W = [];
+  const isLogged = (g, mk, side) => !!g[mk + "_logged_pick"] && String(g[mk + "_logged_side"] || "").toLowerCase() === side;
   D.games.forEach((g) => {
-    if (g.spread_verdict === "WATCH") W.push([tip(g), matchup(g), g.spread_pick, ln(g.spread_line), ln(playAt(g.spread_good_to, true)) + gp(g.spread_good_price), sgn(g.spread_edge)]);
-    if (g.total_verdict === "WATCH") W.push([tip(g), matchup(g), g.total_pick, num(g.total_line), num(playAt(g.total_good_to, g.total_pick === "Under")) + gp(g.total_good_price), sgn(g.total_edge)]);
+    if (g.spread_verdict === "WATCH" && !isLogged(g, "spread", g.spread_side)) W.push([tip(g), matchup(g), g.spread_pick, ln(g.spread_line), ln(playAt(g.spread_good_to, true)) + gp(g.spread_good_price), sgn(g.spread_edge)]);
+    if (g.total_verdict === "WATCH" && !isLogged(g, "total", String(g.total_pick || "").toLowerCase())) W.push([tip(g), matchup(g), g.total_pick, num(g.total_line), num(playAt(g.total_good_to, g.total_pick === "Under")) + gp(g.total_good_price), sgn(g.total_edge)]);
   });
   if (!W.length) $("watch-sec").hidden = true;
   else $("t-watch").innerHTML = "<thead><tr><th>Time</th><th>Game</th><th>Side</th><th class='r'>Now</th><th class='r'>Play at</th><th class='r'>Edge now</th></tr></thead><tbody>" +
