@@ -1,1 +1,1 @@
-2026-10-28 22:50 UTC  events 13  book-game rows 34 (8 SGO, 26 The Odds API)  unmatched teams: Bethesda Flames, Colorado Tigers, IUPUI Jaguars, Kentucky Christian Knights, La Verne Leopards, Miami-Middletown Thunderhawks, Midway Eagles, New College of Florida Mighty Banyans, Reinhardt Eagles, Rivier Raiders, St. Joseph's Golden Eagles, West Coast Baptist Eagles  SGO month: 12,210 of 100,000 entities  The Odds API credits left: 58114
+2026-10-28 22:56 UTC  events 0  book-game rows 34 (0 SGO, 34 The Odds API)  unmatched teams: none  The Odds API credits left: 58111
