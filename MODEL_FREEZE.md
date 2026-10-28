@@ -365,3 +365,15 @@ verified".
 ```
 9fe297f302dc0226f063930dad75106f864e9e5b01502aa4ee33b18581dddf08  cbb/odds_api.py
 ```
+
+## 2026-10-28: `.github/workflows/quotes.yml` re-fingerprinted (save-step retry; recorded at the pre-season check)
+
+The pre-season check found `quotes.yml` no longer matched its recorded fingerprint. The only change since that
+fingerprint is `fc454fb` (Oct 27): the save step retries pull-rebase-push up to 6 times with growing waits and
+fails only if every try fails (the old 3-try loop could report success when every push failed). The schedule, what
+is polled, what is logged and every rule are unchanged. Recorded so the Jan 15 `sha256sum -c` reflects it; no
+Discord note (no rule, pick, stake or displayed figure changes).
+
+```
+461900ea62b4eff539e1a3db615fe62e5ea500e3379cc0064ba1dcb08442089e  .github/workflows/quotes.yml
+```
