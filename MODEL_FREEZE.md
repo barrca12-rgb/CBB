@@ -313,3 +313,27 @@ grading and the primary-close definition are unchanged. VERIFICATION_STATUS stay
 ```
 f88f4a2728f9bda5ffc740d718bb20d30d1268855432e7504eb39d45ec359913  cbb/tracker.py
 ```
+
+## 2026-10-28: tip-time conflict polling and a diagnostic close at ESPN's start (Chad, option 2)
+
+Before any game. Predictions, bet selection, staking, the bet log, grading and the primary-close definition (cutoff =
+the feed's start carried by the latest pregame observation) are unchanged. VERIFICATION_STATUS stays "built, not
+verified".
+
+- **Polling (`cbb/quotelog.py`, fingerprinted):** when ESPN's scheduled start (reports/cbb_<date>.csv) differs from the
+  feed's latest start (lines/closing.csv) by 30 minutes or more on an open play, the 20 minutes before ESPN's start
+  are watched too (3-minute targeted polls). This adds logging to the watch windows described in
+  FORWARD_TEST_PROTOCOL.md section 5; the protocol's windows themselves are unchanged. Reason: Chad confirmed Memphis
+  vs Iowa State tips at 7:00 pm ET (ESPN's time); the feed says 6:00 pm ET and frozen polling would stop at it. Checked
+  on the real game: watched 5:40-6:00 pm ET (feed) and 6:40-7:00 pm ET (ESPN).
+- **Diagnostic close (`cbb/clv_primary.py`, not fingerprinted):** for a `tip_check = conflict` play,
+  `bets/clv_primary.csv` adds `close_espn_start`, `clv_espn_start` and `books_espn_start`: the same strict-close rule
+  with ESPN's start as the cutoff. Labeled "not the protocol's CLV" in the play's reason; no rule, page total, cap or
+  tripwire reads it. Uncaptured windows give no value.
+- **Tests:** 4 in `audit/test_tip_correction.py`. `python -m pytest -q audit/`: 55 passed.
+- **Discord note:** `bets/announcements.json`, id `2026-10-28-tip-conflict-polling`.
+- **New fingerprint:**
+
+```
+dbe854be36263f142ebc19171944a29eca5f00eede46c4d74b5f6bc59844e3aa  cbb/quotelog.py
+```

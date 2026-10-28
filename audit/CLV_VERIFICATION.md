@@ -112,8 +112,10 @@ matching ESPN's displayed times).
   rule the cutoff is the feed's start, and the frozen polling (`cbb/quotelog.py`) stops at it. If the feed does not
   correct before about 6:40 pm ET on Nov 2, the close is taken 5:45-6:00 pm ET, an hour before the real tip, and the
   real closing window gets only the 10-minute card polls. The play stays `tip_check = conflict`, alerted, on the card
-  and in the health line. Any change (polling the confirmed window, or CLV "unavailable (tip time conflict)") touches
-  frozen files and is Chad's decision.
+  and in the health line. **Chad chose option 2 (Oct 28):** for any conflict play the 20 minutes before ESPN's start
+  are polled as well (`cbb/quotelog.py`), and a diagnostic close at ESPN's start (`close_espn_start`,
+  `clv_espn_start`, `books_espn_start`; same strict rule) is shown beside the protocol's CLV, labeled as such. The
+  protocol's cutoff and CLV are unchanged; an uncaptured window gives no diagnostic value.
 
 **Two thresholds, two purposes.** Every play compares the protocol's cutoff with ESPN's scheduled start
 (`start_gap_min`) and with the feed's latest reported start in `closing.csv` (`feed_gap_min`), stored in

@@ -125,3 +125,50 @@ def test_polling_resumes_after_the_old_start_once_the_new_start_is_stored(world)
 def test_without_a_stored_correction_polling_stops_at_the_old_start(world):
     world(T0)
     assert not watched(T1 - pd.Timedelta(minutes=10))                # nothing is polled near an unknown new start
+
+
+# ---- tip-time conflict: polling and the diagnostic close at ESPN's start (Chad, Oct 28, option 2) ------------------
+def espn_says(tmp, start):
+    (tmp / "reports").mkdir(exist_ok=True)
+    pd.DataFrame([{"game_id": 1, "start": start.isoformat()}]).to_csv(tmp / "reports" / "cbb_2026-11-01.csv", index=False)
+
+
+@pytest.fixture
+def conflict(world, tmp_path):
+    world(T0)                                                        # the feed says T0
+    espn_says(tmp_path, T1)                                          # ESPN says an hour later
+    return tmp_path
+
+
+def test_conflict_polls_the_window_before_espns_start_as_well(conflict):
+    assert watched(T0 - pd.Timedelta(minutes=10))                    # the protocol's (feed) window, unchanged
+    assert not watched(T0 + pd.Timedelta(minutes=10))                # between the two windows
+    assert watched(T1 - pd.Timedelta(minutes=20)) and watched(T1 - pd.Timedelta(minutes=1))
+    assert not watched(T1)                                           # stops at ESPN's start
+
+
+def test_a_gap_under_30_minutes_adds_no_window(world, tmp_path):
+    world(T0)
+    espn_says(tmp_path, T0 + pd.Timedelta(minutes=20))
+    assert not watched(T0 + pd.Timedelta(minutes=10))
+
+
+def test_diagnostic_close_at_espns_start_leaves_the_protocol_close_unchanged(monkeypatch, tmp_path):
+    from audit import forward_eval as fe
+    espn_says(tmp_path, T1)
+    monkeypatch.setattr(fe, "ROOT", str(tmp_path))
+    obs = [at(-10, T0, 149.0), at(-4, T0, 149.0, "Caesars"),        # the feed's window (protocol close)
+           at(48, T0, 146.5), at(52, T0, 146.0, "Fanatics")]       # the real window; quotes still carry the feed's T0
+    r = close(obs)
+    assert pd.Timestamp(r["cutoff"]) == T0 and r["close_primary"] == 149.0 and r["clv_primary"] == 0.5
+    assert r["tip_check"] == "conflict" and r["books_espn_start"] == 2
+    assert r["close_espn_start"] == 146.25 and r["clv_espn_start"] == pytest.approx(3.25)
+    assert "diagnostic close at ESPN's start" in r["clv_reason"] and "not the protocol's CLV" in r["clv_reason"]
+
+
+def test_diagnostic_close_is_unavailable_when_the_real_window_was_not_captured(monkeypatch, tmp_path):
+    from audit import forward_eval as fe
+    espn_says(tmp_path, T1)
+    monkeypatch.setattr(fe, "ROOT", str(tmp_path))
+    r = close([at(-10, T0, 149.0), at(-4, T0, 149.0, "Caesars")])
+    assert r["close_primary"] == 149.0 and np.isnan(r["close_espn_start"]) and r["books_espn_start"] == 0

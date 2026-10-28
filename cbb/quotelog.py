@@ -36,6 +36,9 @@ SIGNALS = os.path.join(ROOT, "bets", "signal_log.csv")
 ALERTS = os.path.join(ROOT, "bets", "alert_log.csv")
 SIGNAL_WATCH = pd.Timedelta(minutes=95)     # from the actual alert: the 60-80 minute delay window plus a buffer
 TIP_WATCH = pd.Timedelta(minutes=20)        # games with an open signal: the last minutes before the scheduled tip
+# Tip-time conflict (Chad, Oct 28, option 2): when ESPN's scheduled start differs from the feed's by at least this much,
+# the TIP_WATCH before ESPN's start is polled as well. Logging only: the protocol's cutoff and close are unchanged.
+TIP_CONFLICT = pd.Timedelta(minutes=30)     # = clv_primary.START_GAP_CONFLICT_MIN
                                             # (the strict close is the last valid observation within 15 minutes)
 POLL_COLS = ["poll_id", "observed_at", "source", "status", "error", "events", "quotes", "cost", "remaining",
              "secs_since_prev_ok"]
@@ -120,7 +123,9 @@ def alert_times() -> pd.DataFrame:
 def watched_games(observed_at: pd.Timestamp) -> set:
     """game_keys inside a watch window: SIGNAL_WATCH after a signal's actual alert (its logged time when no alert
     was recorded), or TIP_WATCH before the scheduled tip of a game with an open signal. Both stop at the tip: the
-    feeds drop started games, and the evaluation rejects anything observed at or after the scheduled start."""
+    feeds drop started games, and the evaluation rejects anything observed at or after the scheduled start. When
+    ESPN's start differs from the feed's by TIP_CONFLICT or more, the TIP_WATCH before ESPN's start is watched too
+    (logging only; the protocol's cutoff stays the feed's start)."""
     keys: set = set()
     try:
         bets = os.path.join(ROOT, "bets", "bets.csv")
@@ -132,10 +137,15 @@ def watched_games(observed_at: pd.Timestamp) -> set:
             if len(al):
                 t = b["bet_id"].map(al).fillna(t)
             starts = _signal_starts()
+            espn = _espn_starts(b)
             for (_, r), ta in zip(b.iterrows(), t):
                 lo, hi = sorted((int(r["home_id"]), int(r["away_id"])))
                 gk = f"{r['date']}|{lo}|{hi}"
                 st = starts.get(gk)
+                es = espn.get(r["bet_id"])
+                if es is not None and st is not None and abs(es - st) >= TIP_CONFLICT and \
+                        es - TIP_WATCH <= observed_at < es:
+                    keys.add(gk)
                 if st is not None and observed_at >= st:
                     continue
                 if (pd.notna(ta) and ta <= observed_at <= ta + SIGNAL_WATCH) or \
@@ -144,6 +154,22 @@ def watched_games(observed_at: pd.Timestamp) -> set:
     except Exception as e:
         print(f"quotelog.watched_games failed ({e}); continuing.")
     return keys
+
+
+def _espn_starts(b: pd.DataFrame) -> dict:
+    """bet_id -> ESPN's scheduled start from the card files (reports/cbb_<date>.csv `start`)."""
+    out = {}
+    try:
+        for d, g in b.groupby("date"):
+            f = os.path.join(ROOT, "reports", f"cbb_{d}.csv")
+            if os.path.exists(f):
+                c = pd.read_csv(f, usecols=["game_id", "start"])
+                m = dict(zip(c["game_id"].astype(int), pd.to_datetime(c["start"], utc=True, errors="coerce", format="ISO8601")))
+                out.update({r["bet_id"]: m.get(int(r["game_id"])) for _, r in g.iterrows()
+                            if pd.notna(m.get(int(r["game_id"])))})
+    except Exception:
+        pass
+    return out
 
 
 def _signal_starts() -> dict:

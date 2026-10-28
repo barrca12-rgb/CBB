@@ -33,7 +33,8 @@ VERIFICATION_STATUS = "built, not verified"
 TABLE = os.path.join(os.path.dirname(__file__), "..", "bets", "clv_primary.csv")
 COLS = ["bet_id", "cohort", "cutoff", "cutoff_source", "espn_start", "start_gap_min", "feed_latest_start",
         "feed_gap_min", "tip_check", "close_primary", "clv_primary", "books_primary", "feed_age_s",
-        "obs_before_cutoff_s", "clv_status", "clv_reason", "price_vs_close"]
+        "obs_before_cutoff_s", "clv_status", "clv_reason", "price_vs_close", "close_espn_start", "clv_espn_start",
+        "books_espn_start"]
 # Tip-time diagnostics (never change the cutoff, which is the protocol's): the cutoff is compared with ESPN's scheduled
 # start and with the feed's latest reported start (lines/closing.csv). Over START_GAP_FLAG_MIN: "review" (shown per
 # play and sent for review before tip). At or over START_GAP_CONFLICT_MIN: "conflict" (escalated; a different rule
@@ -41,6 +42,8 @@ COLS = ["bet_id", "cohort", "cutoff", "cutoff_source", "espn_start", "start_gap_
 # protocol uses and the window around the other start do not overlap at all.
 START_GAP_FLAG_MIN = 10
 START_GAP_CONFLICT_MIN = 30
+# For a "conflict" play the same strict-close rule is also applied at ESPN's start (close_espn_start / clv_espn_start /
+# books_espn_start; Chad, Oct 28, option 2). Diagnostic only, always labeled: the protocol's CLV is clv_primary.
 _CACHE: dict = {}
 
 
@@ -150,6 +153,10 @@ def primary(b: pd.DataFrame, obs: pd.DataFrame | None = None, closing: pd.DataFr
         fgap = round((cutoff - fl).total_seconds() / 60) if fl is not None and cutoff is not None and pd.notna(cutoff) else None
         worst = max([abs(x) for x in (gap, fgap) if x is not None] or [0])
         tip = "conflict" if worst >= START_GAP_CONFLICT_MIN else "review" if worst > START_GAP_FLAG_MIN else "ok"
+        dg = {"close": np.nan, "books": 0}
+        if tip == "conflict" and es is not None and pd.notna(es):
+            dg = fe.strict_close(og.assign(st=es), r["market"], es)     # same rule, cutoff = ESPN's start
+        dclose = fe.to_side(r, dg["close"])
         if str(r.get("status")) == "void":
             st, why = "void", "void: excluded from every metric"
         elif np.isnan(close):
@@ -162,6 +169,9 @@ def primary(b: pd.DataFrame, obs: pd.DataFrame | None = None, closing: pd.DataFr
         if fgap is not None and abs(fgap) > START_GAP_FLAG_MIN:
             why += (f"; tip time {tip}: the cutoff is {abs(fgap)} min {'before' if fgap < 0 else 'after'} the feed's "
                     f"latest reported start (no observation carries the newer start)")
+        if tip == "conflict" and not np.isnan(dclose):
+            why += (f"; diagnostic close at ESPN's start: {dclose:g} ({dg['books']} book(s)), "
+                    f"CLV {fe.line_value(r, dclose):+.2f} (not the protocol's CLV)")
         rows.append({"bet_id": r["bet_id"], "cohort": cohort,
                      "cutoff": cutoff.isoformat() if cutoff is not None and pd.notna(cutoff) else None,
                      "cutoff_source": src, "espn_start": es.isoformat() if es is not None and pd.notna(es) else None,
@@ -170,7 +180,9 @@ def primary(b: pd.DataFrame, obs: pd.DataFrame | None = None, closing: pd.DataFr
                      "books_primary": sc["books"], "feed_age_s": json.dumps(sc.get("feed_age_s", [])),
                      "obs_before_cutoff_s": json.dumps(sc.get("obs_before_cutoff_s", [])),
                      "clv_status": st, "clv_reason": why,
-                     "price_vs_close": json.dumps(_price_vs_close(fe, r, og, cutoff))})
+                     "price_vs_close": json.dumps(_price_vs_close(fe, r, og, cutoff)),
+                     "close_espn_start": dclose, "clv_espn_start": fe.line_value(r, dclose),
+                     "books_espn_start": dg["books"]})
     return pd.DataFrame(rows, columns=COLS)
 
 
@@ -182,7 +194,7 @@ def attach(b: pd.DataFrame) -> pd.DataFrame:
     b = b.copy()
     b["close_same_book"], b["clv_same_book"] = b.get("close_line"), b.get("clv_pts")
     try:
-        p = primary(b).set_index("bet_id")
+        p = primary(b).set_index("bet_id").reindex(columns=COLS[1:])
     except Exception as e:                       # never stop a page; say so, and show no CLV
         print(f"Primary close unavailable ({e}).")
         b["close_line"], b["clv_pts"] = np.nan, np.nan
