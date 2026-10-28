@@ -74,34 +74,69 @@ The rules, each on one named timestamp:
 - Our `observed_at` is stamped after the response arrives, so it is a few seconds later than the provider's snapshot:
   a quote is never treated as earlier than it was.
 
-**Pregame validity gate (Oct 28; diagnostic now, rule change proposed below).** A value that matches the frozen
-calculation is a *computed protocol value*; it is a *verified pregame close* only if the quotes in it were pregame.
-The scheduled start cannot show that (a feed start 1-10 minutes late passes every scheduled-time check), so the gate
-uses an independent record of the actual tip: ESPN's play-by-play stamps each play with a wall-clock time, and the
-first play of period 1 (the jump ball) is the tip (`cbb/tipoff.py`, cached in `lines/tipoffs.csv`; e.g. Purdue vs
-UConn, Apr 8 2024: scheduled 01:20, jump ball 01:21:33 UTC). For each computed close, `bets/clv_primary.csv` stores
-`actual_tip`, `pregame_check` and `pregame_note`:
+**Pregame validity gate: diagnostic only (Chad, Oct 28).** A value that matches the frozen calculation is a
+*computed protocol value*. It is a *verified pregame close* only if the evidence shows its quotes were pregame and near
+the tip. The gate is shown beside every close and is **not** applied to official averages, the stake cap or the model
+check.
 
-| `pregame_check` | Condition |
-|---|---|
-| verified | the latest included quote was observed (our clock) at least 60 s before the actual tip, and the cutoff is within 30 min of it |
-| early | every included quote pregame, but the cutoff is more than 30 min before the actual tip (an early-market close; Memphis would be this if the feed stays at 6:00 pm ET) |
-| in-play risk | the latest included quote is within 60 s of, or after, the actual tip; or, with no actual tip, at or after the earliest scheduled start (feed or ESPN) |
-| unverified | no actual tip available (ESPN posted no timed plays); quotes before every scheduled start, which does not prove they were pregame |
-| n/a | no computed close |
+*The actual tip: what ESPN's timestamp is and how far it can be trusted* (`cbb/tipoff.py`, measured in
+`audit/tipoff_study.md` over 32,246 completed Division I games, 2020-21 to 2025-26, from the cached play-by-play):
+- **Meaning.** Each play in ESPN's play-by-play carries `wallclock`, a UTC time. ESPN does not document it; the
+  measurements below are consistent with "the time the play was recorded", which can lag the play itself. Since
+  2025-26 every game opens with a play stamped 20:00 on the game clock ("Start game"), followed by "Jump Ball won by";
+  the two stamps are a median 1 s apart (95th percentile 4 s). The tip is the **earliest period-1 stamp at 20:00**,
+  the earliest plausible tip in the record, so errors lean toward "not pregame".
+- **Reliability.** In usable games the tip falls a median 3.0 minutes after the scheduled start (1st-99th percentile
+  +0.2 to +26.5 min; before the scheduled start in 0.8%, more than 5 min before in 0.15%). Over the first 30 plays the
+  wall clock runs ahead of the game clock by at most 2 s in the median game and 23 s at the 1st percentile (entry lag).
+  Two failure modes were found and are rejected: stamps out of order by more than 5 s near the opening (6.7% of
+  2025-26 games; median jump back 53 s) and **whole-hour offsets** (a time-zone error: about one 2024-25 game in five
+  carries stamps 4-5 hours late).
+- **Missing or ambiguous openings** (`tipoff.classify`; never used as a tip, the close is "unverified"): no
+  play-by-play; no wall clock; no period-1 play at 20:00 (a later first play only bounds the tip from above, which
+  cannot show a quote was pregame; this was the format before 2025-26, so older seasons are mostly excluded); stamps
+  out of order by more than 5 s or more than 30 s faster than the game clock in the first 30 plays; no scheduled start;
+  a tip more than 30 min before or 60 min after ESPN's scheduled start (so a real delay of over an hour can never be
+  "verified"); a game shorter than 60 or longer than 300 minutes on the wall clock. Each case is a test.
+- **Coverage.** 2025-26: 91.9% of games usable (6.7% out-of-order openings, 0.8% stamps faster than the game clock,
+  0.2% no play-by-play, under 0.2% each for the rest). 2021-22 to 2024-25: 3-8% usable, because those seasons have no
+  20:00 opening stamp. Every excluded game and its reason: `audit/tipoff_study_games.csv.gz`.
 
-The 60 s margin covers the difference between ESPN's clock and ours; our `observed_at` is stamped after the response
-arrives, so a quote is never treated as earlier than it was. Shown beside every close ("pregame verified" etc.:
-Discord field "Pregame check", record page and card close cells); coverage lines count "pregame verified: n of m".
-**Nothing reads it for a rule:** averages, the stake cap and the tripwire still use every computed close.
+*Three separate questions*, each `yes` / `no` / `unknown`, stored per play in `bets/clv_primary.csv` (`q_pregame`,
+`q_buffer`, `q_near_tip`) with every included quote's seconds before the actual tip (`secs_before_tip`):
 
-**Proposed amendment (protocol v2.2; for Chad, not enacted).** Keep the frozen calculation unchanged and reproducible.
-Add: (1) the official Alert CLV average and every rule that reads it (stake cap, tripwire) count only closes with
-`pregame_check = verified`; (2) "in-play risk" closes are excluded and reported as "computed, not a valid pregame
-close"; (3) "early" and "unverified" closes are reported in their own rows, not pooled; (4) coverage is reported as
-verified / early / unverified / in-play risk / no close. Requires a dated MODEL_FREEZE.md entry with new fingerprints
-for `cbb/tracker.py` and `audit/forward_eval.py` (and the protocol text), a Discord note, and Chad's approval. Until
-then the gate is a label.
+| Question | Test | Threshold and why | Effect (usable 2021-26 games; last quote 0-180 s before the scheduled start) |
+|---|---|---|---|
+| Pregame? | every included quote observed (our clock) before the actual tip | none | 0.5% fail |
+| Within the buffer? | every included quote at least **60 s** before the actual tip | covers ESPN's entry lag (23 s at the 1st percentile), the 1-4 s between the opening and jump-ball stamps, and unmeasured clock difference between ESPN and us; our `observed_at` already errs late | 1.0% fail at 60 s (0.7% at 30 s, 4.2% at 120 s, 54% at 300 s) |
+| Near enough to represent a close? | cutoff no more than **30 min** before the actual tip | normal delays pass (99th percentile +26.5 min); an hour-wrong start (Memphis vs Iowa State) fails | 0.8% "early" at 30 min (3.6% at 15, 9.4% at 10, 0.15% at 45), among games whose tip passed the 60-minute plausibility limit; a real delay over an hour is "unverified" instead |
+
+`pregame_check` = `verified` (all three yes), `in-play risk` (pregame no), `buffer` (pregame yes, buffer no), `early`
+(near tip no), `unverified` (no usable actual tip; with none, a quote at or after the earliest scheduled start is
+`in-play risk`), `n/a` (no computed close). Shown beside every close (Discord "Pregame check", record page and card
+close cells); coverage lines count "pregame verified: n of m".
+
+*Proposed amendment, exact text (protocol v2.2; not enacted; for Chad's approval):*
+
+> **7.x Verified pregame close.** The primary close (section 7) is computed exactly as before and stored as the
+> *computed protocol value*. It is a *verified pregame close* only when ESPN's play-by-play gives a usable actual tip
+> (`cbb/tipoff.classify`) and every included quote was observed at least 60 seconds before that tip, and the cutoff is
+> no more than 30 minutes before it. The official Alert CLV average, the stake cap (cbb/tracker.py, 25 bets) and the
+> model-check tripwire (150 bets) count only verified pregame closes. Every other computed close is reported, never
+> pooled, in its own row: in-play risk, inside the buffer, early, unverified (no usable tip). Coverage is reported as
+> verified / in-play risk / buffer / early / unverified / no close.
+
+*Consequences if adopted* (estimates from 2025-26 coverage and the effects above; to be re-measured on live plays):
+- About **10% of computed closes would not count**: about 8% unverified (no usable ESPN tip), about 1% inside the
+  buffer, about 1% early. Plays like Memphis vs Iowa State with a wrong feed start would not count.
+- The **stake cap** would fire later: 25 verified closes needs about 28 settled plays with a close instead of 25. The
+  **tripwire** needs 150 verified closes, about 167 with a close.
+- Excluded plays could differ systematically (smaller games have more stamp problems), so the verified subset's CLV
+  could differ from all plays'; the separate rows keep that visible.
+- Every result post and page would show two figures until Chad retires one; the frozen calculation and every stored
+  value stay reproducible.
+- Requires: Chad's approval; a dated MODEL_FREEZE.md entry with new fingerprints for `cbb/tracker.py`,
+  `audit/forward_eval.py` (if the evaluator reports it) and FORWARD_TEST_PROTOCOL.md; a Discord note.
 
 **Freshness: what is and is not established.** The earlier wordings ("never adds an old number"; "the provider
 re-read this book") overstated the evidence and are withdrawn. The rule is stated only as what it checks:
@@ -352,8 +387,8 @@ UTC), so it is the first placed bet but not part of model v1 cohort A; it has no
   match?** (cutoff, book count, close and signed CLV recomputed from the raw files equal the stored values; no
   same-time ties) and **B. Were the selected quotes pregame and eligible?** (cutoff established from raw pregame
   observations, not `closing.csv`; every included quote from an eligible book, available, with a number, observed in
-  the window and before its own start, provider timestamp within 5 minutes; `pregame_check = verified`; tip times
-  consistent). C covers the operational items (entry, graded, 2+ books, every surface agrees). "First live capture
+  the window and before its own start, provider timestamp within 5 minutes; a usable actual tip; the
+  three gate questions, pregame, buffer and near tip, each answered yes; tip times consistent). C covers the operational items (entry, graded, 2+ books, every surface agrees). "First live capture
   verified" needs A, B and C.
 - **The closing-file fallback, exactly.** `lines/closing.csv` can supply one thing: a game's **scheduled start**,
   used as the cutoff only when no quote of the game was observed before its own start. It never supplies a quote, a

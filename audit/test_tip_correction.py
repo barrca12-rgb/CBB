@@ -193,7 +193,7 @@ def test_parser_passes_a_started_games_quotes_to_the_log_but_never_to_the_card()
 
 # ---- pregame validity gate (diagnostic; the protocol's value is unchanged) -------------------------------------------
 def _pg(before_s, tip, starts=None, cutoff=T0):
-    return clv_primary.pregame(147.0, cutoff, before_s, starts or [cutoff], tip)[0]
+    return clv_primary.pregame(147.0, cutoff, before_s, starts or [cutoff], tip)["check"]
 
 
 def test_pregame_verified_when_the_last_quote_precedes_the_actual_tip():
@@ -203,8 +203,18 @@ def test_pregame_verified_when_the_last_quote_precedes_the_actual_tip():
 def test_feed_start_a_few_minutes_late_is_caught_by_the_actual_tip():
     """Feed start T0, but the ball went up 5 minutes earlier: a quote 2 minutes before the feed's start is in play."""
     assert _pg([120, 600], T0 - pd.Timedelta(minutes=5)) == "in-play risk"
-    assert _pg([120], T0 - pd.Timedelta(seconds=150)) == "in-play risk"      # inside the 60 s margin
-    assert _pg([120], T0 - pd.Timedelta(seconds=59)) == "verified"       # last quote 61 s before the tip
+    assert _pg([120], T0 - pd.Timedelta(seconds=150)) == "in-play risk"      # 30 s after the tip
+    assert _pg([120], T0 - pd.Timedelta(seconds=90)) == "buffer"             # 30 s before: pregame, inside 60 s
+    assert _pg([120], T0 - pd.Timedelta(seconds=59)) == "verified"           # last quote 61 s before the tip
+
+
+def test_the_three_questions_are_answered_separately_with_each_quotes_time_before_tip():
+    g = clv_primary.pregame(147.0, T0, [120, 400], [T0], T0 + pd.Timedelta(minutes=3))
+    assert (g["pregame"], g["buffer"], g["near_tip"]) == ("yes", "yes", "yes") and g["secs_before_tip"] == [300, 580]
+    g = clv_primary.pregame(147.0, T0, [120], [T0], T0 + pd.Timedelta(minutes=62))
+    assert (g["pregame"], g["buffer"], g["near_tip"], g["check"]) == ("yes", "yes", "no", "early")
+    g = clv_primary.pregame(147.0, T0, [120], [T0], None)
+    assert (g["pregame"], g["buffer"], g["near_tip"], g["secs_before_tip"]) == ("unknown", "unknown", "unknown", [])
 
 
 def test_feed_start_an_hour_early_is_pregame_but_early():
@@ -217,16 +227,41 @@ def test_without_an_actual_tip_a_close_is_never_called_verified():
 
 
 def test_no_computed_close_is_not_checked():
-    assert clv_primary.pregame(np.nan, T0, [], [T0], None)[0] == "n/a"
+    assert clv_primary.pregame(np.nan, T0, [], [T0], None)["check"] == "n/a"
 
 
-def test_first_play_wallclock_is_the_actual_tip():
+def _plays(rows):
+    return pd.DataFrame([{"sequence_number": i, "period_number": p, "clock_display_value": c, "type_text": t,
+                          "text": x, "wallclock": w} for i, (p, c, t, x, w) in enumerate(rows)])
+
+
+SCHED = pd.Timestamp("2025-12-21T21:00:00Z")
+GOOD = [(1, "20:00", "Jumpball", "Start game", "2025-12-21T21:02:06Z"),
+        (1, "19:57", "Jumpball", "Jump Ball won by Sam Houston", "2025-12-21T21:02:09Z"),
+        (1, "19:44", "JumpShot", "makes three", "2025-12-21T21:02:26Z"),
+        (2, "0:00", "End", "End of game", "2025-12-21T23:05:00Z")]
+
+
+def test_actual_tip_is_the_earliest_period_one_stamp_at_twenty_minutes():
     from cbb import tipoff
-    s = {"plays": [{"wallclock": "2024-04-09T01:22:08Z", "period": {"number": 1}},
-                   {"wallclock": "2024-04-09T01:21:33Z", "period": {"number": 1}},
-                   {"wallclock": "2024-04-09T02:30:00Z", "period": {"number": 2}}]}
-    assert tipoff.first_play(s) == pd.Timestamp("2024-04-09T01:21:33Z")
-    assert tipoff.first_play({"plays": [{"period": {"number": 1}}]}) is None
+    r = tipoff.classify(_plays(GOOD), SCHED)
+    assert r["quality"] == "jump ball" and r["tip"] == pd.Timestamp("2025-12-21T21:02:06Z") and r["start_to_jump_s"] == 3
+
+
+@pytest.mark.parametrize("rows,sched,reason", [
+    ([], SCHED, "no play-by-play"),
+    ([(1, "20:00", "Jumpball", "Start game", None)] + GOOD[3:], SCHED, "no wall clock on period-1 plays"),
+    (GOOD[2:], SCHED, "no period-1 play stamped at 20:00"),
+    (GOOD[:2] + [(1, "19:44", "JumpShot", "x", "2025-12-21T21:01:00Z")] + GOOD[3:], SCHED, "wall clocks out of order"),
+    (GOOD[:2] + [(1, "18:00", "JumpShot", "x", "2025-12-21T21:02:20Z")] + GOOD[3:], SCHED, "faster than the game clock"),
+    (GOOD, SCHED - pd.Timedelta(hours=5), "whole-hour offset"),
+    (GOOD, None, "no scheduled start"),
+    (GOOD[:3] + [(2, "0:00", "End", "End", "2025-12-21T21:40:00Z")], SCHED, "game length"),
+])
+def test_missing_or_ambiguous_opening_records_are_never_used(rows, sched, reason):
+    from cbb import tipoff
+    r = tipoff.classify(_plays(rows) if rows else None, sched)
+    assert r["quality"] != "jump ball" and r["tip"] is None and reason in r["reason"]
 
 
 def test_closing_file_fallback_supplies_a_start_only_and_never_a_close(tmp_path):

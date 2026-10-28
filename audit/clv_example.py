@@ -297,8 +297,13 @@ def build(bet_id: str) -> str:
         ("Every included quote: provider timestamp within 5 minutes of our receipt (-60 s to +300 s)",
          len(inc) > 0 and bool(inc["age"].between(-fe.CLOCK_SKEW_S, fe.STRICT_MAX_AGE_S).all())),
         ("Included quotes match the stored book count", len(inc) == int(p["books_primary"] or 0)),
-        (f"Pregame verified against the actual tip (ESPN play-by-play): {p.get('pregame_check')}",
-         p.get("pregame_check") == "verified"),
+        (f"Usable actual tip from ESPN play-by-play (cbb/tipoff.classify): {p.get('actual_tip') or 'none'}",
+         bool(p.get("actual_tip"))),
+        (f"Pregame: every included quote observed before the actual tip ({p.get('q_pregame')})", p.get("q_pregame") == "yes"),
+        (f"Buffer: every included quote at least {clv_primary.TIP_MARGIN_S} s before the actual tip ({p.get('q_buffer')})",
+         p.get("q_buffer") == "yes"),
+        (f"Near tip: cutoff no more than {clv_primary.EARLY_MIN} min before the actual tip ({p.get('q_near_tip')})",
+         p.get("q_near_tip") == "yes"),
         ("Tip time consistent: cutoff within 10 min of ESPN's start and the feed's latest start", p["tip_check"] == "ok"),
     ]
     operational = [
@@ -309,7 +314,12 @@ def build(bet_id: str) -> str:
          len({val for k, val in rows if k != "Loss review reason" and val != "not settled"}) == 1),
     ]
     L.append("## 6. Evidence checklist\n")
-    L.append(f"Actual tip (ESPN play-by-play, first play): {p.get('actual_tip') or 'not available'}. "
+    from cbb import tipoff
+    tq = pd.read_csv(tipoff.CACHE) if os.path.exists(tipoff.CACHE) else pd.DataFrame(columns=tipoff.COLS)
+    tq = tq[tq["game_id"] == int(b["game_id"])]
+    L.append(f"Actual tip (ESPN play-by-play, earliest period-1 stamp at 20:00): {p.get('actual_tip') or 'not available'}"
+             + (f" (record quality: {tq.iloc[-1]['quality']}{'; ' + str(tq.iloc[-1]['reason']) if pd.notna(tq.iloc[-1]['reason']) and tq.iloc[-1]['reason'] else ''})" if len(tq) else " (not fetched)")
+             + f". Each included quote's seconds before the actual tip: {p.get('secs_before_tip')}. "
              f"Pregame check: **{p.get('pregame_check')}**: {p.get('pregame_note')}\n")
     verdicts = []
     for title, checks in (("A. Does the independent arithmetic match?", arithmetic),
@@ -325,7 +335,10 @@ def build(bet_id: str) -> str:
     if p["tip_check"] != "ok":
         open_items.append(f"tip time {p['tip_check']}: cutoff {p['cutoff']} vs ESPN {p['espn_start']} / feed latest {p['feed_latest_start']}")
     if p.get("pregame_check") != "verified":
-        open_items.append(f"pregame check {p.get('pregame_check')}: {p.get('pregame_note')}")
+        open_items.append(f"pregame check {p.get('pregame_check')} (pregame {p.get('q_pregame')}, buffer "
+                          f"{p.get('q_buffer')}, near tip {p.get('q_near_tip')}): {p.get('pregame_note')}")
+    open_items.append("ESPN wall-clock semantics: taken as the time the play was recorded; measured, not documented "
+                      "by ESPN (audit/tipoff_study.md)")
     if int(p["books_primary"] or 0) == 1:
         open_items.append("one-book close (valid under the frozen rule; flagged)")
     if outl:

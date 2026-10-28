@@ -34,7 +34,8 @@ TABLE = os.path.join(os.path.dirname(__file__), "..", "bets", "clv_primary.csv")
 COLS = ["bet_id", "cohort", "cutoff", "cutoff_source", "espn_start", "start_gap_min", "feed_latest_start",
         "feed_gap_min", "tip_check", "close_primary", "clv_primary", "books_primary", "feed_age_s",
         "obs_before_cutoff_s", "clv_status", "clv_reason", "price_vs_close", "close_espn_start", "clv_espn_start",
-        "books_espn_start", "actual_tip", "pregame_check", "pregame_note"]
+        "books_espn_start", "actual_tip", "pregame_check", "pregame_note", "q_pregame", "q_buffer", "q_near_tip",
+        "secs_before_tip"]
 # Tip-time diagnostics (never change the cutoff, which is the protocol's): the cutoff is compared with ESPN's scheduled
 # start and with the feed's latest reported start (lines/closing.csv). Over START_GAP_FLAG_MIN: "review" (shown per
 # play and sent for review before tip). At or over START_GAP_CONFLICT_MIN: "conflict" (escalated; a different rule
@@ -44,36 +45,52 @@ START_GAP_FLAG_MIN = 10
 START_GAP_CONFLICT_MIN = 30
 # For a "conflict" play the same strict-close rule is also applied at ESPN's start (close_espn_start / clv_espn_start /
 # books_espn_start; Chad, Oct 28, option 2). Diagnostic only, always labeled: the protocol's CLV is clv_primary.
-# Pregame validity (diagnostic; never changes the protocol's value): a computed close is "verified" only when the
-# latest quote in it was observed at least TIP_MARGIN_S before the actual tip (ESPN play-by-play, cbb/tipoff.py) and
-# the cutoff is within EARLY_MIN of that tip. Otherwise "in-play risk", "early", or "unverified" (actual tip unknown).
+# Pregame validity (diagnostic; never changes the protocol's value; audit/CLV_VERIFICATION.md, section 2). Three
+# separate questions against the actual tip (ESPN play-by-play, cbb/tipoff.py; measured in audit/tipoff_study.md):
+#   pregame   every included quote observed (our clock) before the actual tip
+#   buffer    every included quote at least TIP_MARGIN_S before it (ESPN's stamps lag the play by up to ~23 s at the
+#             1st percentile; the opening stamp and the jump-ball stamp are a median 1 s apart)
+#   near tip  the cutoff no more than EARLY_MIN before it (0.8% of usable 2021-26 games tipped more than 30 min after
+#             the scheduled start; an hour-wrong feed start, as Memphis vs Iowa State, fails)
+# "verified" only when all three hold; "unverified" when there is no usable actual tip.
 TIP_MARGIN_S = 60
 EARLY_MIN = 30
 _CACHE: dict = {}
 
 
-def pregame(close, cutoff, before_s, starts, tip) -> tuple[str, str]:
-    """(check, note) for one computed close. before_s: seconds each included quote was observed before the cutoff;
-    starts: every known scheduled start (feed cutoff, ESPN, feed latest); tip: the actual tip or None."""
+def pregame(close, cutoff, before_s, starts, tip) -> dict:
+    """The three answers for one computed close. before_s: seconds each included quote was observed before the
+    cutoff; starts: every known scheduled start (feed cutoff, ESPN, feed latest); tip: the usable actual tip or None.
+    Returns check (verified / early / in-play risk / buffer / unverified / n/a), note, pregame, buffer, near_tip
+    (yes / no / unknown) and secs_before_tip (each included quote, latest first; empty without a tip)."""
+    out = {"check": "n/a", "note": "no computed close", "pregame": "n/a", "buffer": "n/a", "near_tip": "n/a",
+           "secs_before_tip": []}
     if close is None or np.isnan(close) or cutoff is None or pd.isna(cutoff) or not before_s:
-        return "n/a", "no computed close"
+        return out
     last = cutoff - pd.Timedelta(seconds=min(before_s))         # the latest included quote, on our clock
     sched = min(s for s in starts if s is not None and pd.notna(s))
     if tip is None or pd.isna(tip):
-        if last >= sched:
-            return "in-play risk", (f"latest included quote {last:%H:%M:%S} UTC is at or after the earliest scheduled "
-                                    f"start {sched:%H:%M} UTC; actual tip unknown")
-        return "unverified", (f"actual tip unknown; latest included quote {last:%H:%M:%S} UTC is before every scheduled "
-                              f"start (earliest {sched:%H:%M} UTC), which does not prove it was pregame")
-    if last > tip - pd.Timedelta(seconds=TIP_MARGIN_S):
-        return "in-play risk", (f"latest included quote {last:%H:%M:%S} UTC is not at least {TIP_MARGIN_S} s before the "
-                                f"actual tip {tip:%H:%M:%S} UTC")
-    early = (tip - cutoff).total_seconds() / 60
-    if early > EARLY_MIN:
-        return "early", (f"every quote pregame, but the cutoff is {early:.0f} min before the actual tip "
-                         f"{tip:%H:%M:%S} UTC: an early-market close")
-    return "verified", (f"latest included quote {last:%H:%M:%S} UTC, {(tip - last).total_seconds():.0f} s before the "
-                        f"actual tip {tip:%H:%M:%S} UTC (ESPN play-by-play); cutoff {early:+.0f} min from it")
+        late = last >= sched
+        out.update(check="in-play risk" if late else "unverified", pregame="no" if late else "unknown",
+                   buffer="no" if late else "unknown", near_tip="unknown",
+                   note=(f"no usable actual tip; latest included quote {last:%H:%M:%S} UTC is "
+                         + (f"at or after the earliest scheduled start {sched:%H:%M} UTC" if late else
+                            f"before every scheduled start (earliest {sched:%H:%M} UTC), which does not prove it was pregame")))
+        return out
+    gap = (tip - cutoff).total_seconds()
+    secs = sorted(int(gap + x) for x in before_s)               # each included quote's seconds before the actual tip
+    early = gap / 60
+    out.update(secs_before_tip=secs, pregame="yes" if secs[0] > 0 else "no",
+               buffer="yes" if secs[0] >= TIP_MARGIN_S else "no", near_tip="yes" if early <= EARLY_MIN else "no")
+    if out["pregame"] == "no":
+        out.update(check="in-play risk", note=f"latest included quote {last:%H:%M:%S} UTC is {-secs[0]} s after the actual tip {tip:%H:%M:%S} UTC")
+    elif out["buffer"] == "no":
+        out.update(check="buffer", note=f"latest included quote only {secs[0]} s before the actual tip {tip:%H:%M:%S} UTC (buffer {TIP_MARGIN_S} s)")
+    elif out["near_tip"] == "no":
+        out.update(check="early", note=f"every quote pregame, but the cutoff is {early:.0f} min before the actual tip {tip:%H:%M:%S} UTC: an early-market close")
+    else:
+        out.update(check="verified", note=f"quotes {secs[0]}-{secs[-1]} s before the actual tip {tip:%H:%M:%S} UTC; cutoff {early:+.0f} min from it")
+    return out
 
 
 def _obs_key() -> tuple:
@@ -189,7 +206,7 @@ def primary(b: pd.DataFrame, obs: pd.DataFrame | None = None, closing: pd.DataFr
             dg = fe.strict_close(og.assign(st=es), r["market"], es)     # same rule, cutoff = ESPN's start
         dclose = fe.to_side(r, dg["close"])
         at = tips.get(int(r["game_id"]))
-        pc, pn = pregame(close, cutoff, sc.get("obs_before_cutoff_s", []), [cutoff, es, fl], at)
+        pg = pregame(close, cutoff, sc.get("obs_before_cutoff_s", []), [cutoff, es, fl], at)
         if str(r.get("status")) == "void":
             st, why = "void", "void: excluded from every metric"
         elif np.isnan(close):
@@ -216,7 +233,9 @@ def primary(b: pd.DataFrame, obs: pd.DataFrame | None = None, closing: pd.DataFr
                      "price_vs_close": json.dumps(_price_vs_close(fe, r, og, cutoff)),
                      "close_espn_start": dclose, "clv_espn_start": fe.line_value(r, dclose),
                      "books_espn_start": dg["books"], "actual_tip": at.isoformat() if at is not None else None,
-                     "pregame_check": pc, "pregame_note": pn})
+                     "pregame_check": pg["check"], "pregame_note": pg["note"], "q_pregame": pg["pregame"],
+                     "q_buffer": pg["buffer"], "q_near_tip": pg["near_tip"],
+                     "secs_before_tip": json.dumps(pg["secs_before_tip"])})
     return pd.DataFrame(rows, columns=COLS)
 
 
