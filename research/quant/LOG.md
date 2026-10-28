@@ -53,3 +53,11 @@ Nothing tested here improves spreads materially. Prior work (SUMMARY.md) found t
   win% at the fixed 3-point threshold not lower.
 - **If it passes:** a live change proposal for 2027-28 (Chad's approval, freeze entry, Discord note).
 - **Otherwise:** closed.
+
+## 2026-10-28: Chad kept v1 live; E2 runs as a shadow (scorer revised before any 2026-27 game was final)
+- No live change. E2 is scored after the fact from the card's saved inputs; coefficients stay frozen.
+- Scorer fixes, so v1 matches the card exactly:
+  - both versions get the live opening-week shift to KenPom (`run_day.opening_week_totals`);
+  - finals come from the ESPN schedule, and `conf_game` from the schedule's pre-game flag.
+- Check: v1 totals equal the card's `model_total` on all 121 priced Nov 1-2 games (max diff 3e-14).
+- The pass rule and the March 14 read are unchanged; the weekly health line also shows the running numbers.
