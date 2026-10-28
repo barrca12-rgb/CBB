@@ -65,3 +65,22 @@ Same benchmark, plays, scoring, dev / holdout split and kill rule as Part 2 (bot
   November-December unchanged. Plays at the scaled edge 3+.
 - **(h) Blowout term.** |stage-1 predicted margin| added to the stage-2 totals fit (found Oct 28 while looking:
   lopsided games ran about 0.9 over the model from January in 2023-26), spreads unchanged.
+
+## Part 4. Deep dive on (f) recent form (pre-registered Oct 28, before running; Chad asked)
+
+Robustness and mechanism only. The Part 3 verdict on (f) stands; nothing here is tuned to pass it.
+
+- **Per season** (2014, 2015, 2016, 2017, 2024, 2025, 2026): totals plays, win % vs opener, CLV, January-March and
+  full season, frozen vs (f).
+- **Information beyond the close** (d_common `info_beyond_close`, totals): OLS of (actual - close) on the (f)
+  adjustment (f total - frozen total) with the frozen edge vs the close as a control, date-clustered SE, per era.
+  This is the cleanest test: does form carry information the closing total does not have?
+- **Window sensitivity** (reported, not selected): last 5, 10 and 20 games.
+- **Stability:** the form_sum coefficient in each walk-forward fit (training through 2013..2025).
+- **Side and half:** (f) vs frozen by over/under, November-December vs January-March.
+- **Accuracy:** totals MAE, frozen vs (f), per era.
+
+**What counts as real (decided now):** the beyond-close coefficient is positive in both eras with z >= 2 in at
+least one and >= 1 in the other, all three windows give the same sign on full-season win % in both eras, and the
+coefficient is positive in every training fit. If it holds, (f) is written up as the leading March-list candidate
+(still judged on 2026-27 games at the Mar 14 read before it can go to Chad); if not, it is dropped as noise.
