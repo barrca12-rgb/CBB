@@ -216,3 +216,12 @@ e56a5bd377ced61f64ee7df2068b695e3faea3ce44c40cb93310db79aa2b2416  FORWARD_TEST_P
 4a63f6e6baa2e3f0a7f5ed385d07b9ada66e07524a58a9deaf917eba311a22f5  audit/forward_eval.py
 58e75584ee9efb986211b1f041b00be71eaa4ae8b50ba3f2286113685be63551  audit/test_forward_eval.py
 ```
+
+## 2026-10-28: Kalshi quote logger added (research only; approved by Chad; no effect on v1)
+
+- **What:** `research/kalshi/logger.py` and `.github/workflows/kalshi_quotes.yml` run after each card run and log
+  Kalshi's public spread and total quotes for the card's BET / WATCH games to `research/kalshi/data/`. Plan and the
+  pre-registered read (about Nov 23): `research/kalshi/PLAN.md`.
+- **Unchanged:** no fingerprinted file (Kalshi name aliases live in `research/kalshi/aliases.csv`, not the frozen
+  `data/team_aliases.csv`), the line feeds, selection, staking, the bet log and the protocol. Adding Kalshi to the
+  card's price shopping would be a separate change needing Chad's approval.
