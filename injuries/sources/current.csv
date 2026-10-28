@@ -1,6 +1,6 @@
 source,team,team_id,player,player_key,athlete_id,status,status_raw,comment,source_date,pulled_at
-rotowire,Gonzaga,2250.0,Davis Fogle,davisfogle,5196913.0,questionable,Game Time Decision,Leg,,2026-10-28T21:40:28+00:00
-rotowire,Wisconsin-Milwaukee,,Danilo Jovanovich,danilojovanovich,4838711.0,questionable,Game Time Decision,Shoulder,,2026-10-28T21:40:28+00:00
-rotowire,Kentucky,96.0,Jerone Morton,jeronemorton,5177358.0,questionable,Game Time Decision,Knee,,2026-10-28T21:40:28+00:00
-rotowire,Kentucky,96.0,Trent Noah,trentnoah,5175592.0,questionable,Game Time Decision,Hamstring,,2026-10-28T21:40:28+00:00
-rotowire,Tulane,2655.0,Dame Salane,damesalane,5311902.0,questionable,Game Time Decision,Undisclosed,,2026-10-28T21:40:28+00:00
+rotowire,Gonzaga,2250.0,Davis Fogle,davisfogle,5196913.0,questionable,Game Time Decision,Leg,,2026-10-28T21:50:38+00:00
+rotowire,Wisconsin-Milwaukee,,Danilo Jovanovich,danilojovanovich,4838711.0,questionable,Game Time Decision,Shoulder,,2026-10-28T21:50:38+00:00
+rotowire,Kentucky,96.0,Jerone Morton,jeronemorton,5177358.0,questionable,Game Time Decision,Knee,,2026-10-28T21:50:38+00:00
+rotowire,Kentucky,96.0,Trent Noah,trentnoah,5175592.0,questionable,Game Time Decision,Hamstring,,2026-10-28T21:50:38+00:00
+rotowire,Tulane,2655.0,Dame Salane,damesalane,5311902.0,questionable,Game Time Decision,Undisclosed,,2026-10-28T21:50:38+00:00
