@@ -1,0 +1,13 @@
+                         variant     era  Jan-Mar plays  Jan-Mar win%  Jan-Mar ROI%  Jan-Mar CLV  Jan-Mar CLV se  Nov-Dec plays  Nov-Dec win%  Nov-Dec CLV  d Jan-Mar win%  d Jan-Mar CLV  d Nov-Dec win%  d Nov-Dec CLV  late plays kept
+                          frozen     dev           5759        54.918         4.844        0.723           0.070           2673        56.586        0.698           0.000          0.000           0.000          0.000            1.000
+                          frozen holdout           1534        54.694         4.415        1.658           0.091           1069        56.742        2.216           0.000          0.000           0.000          0.000            1.000
+            (a) late threshold 4     dev           4337        55.002         5.004        0.692           0.081           2673        56.586        0.698           0.084         -0.031           0.000          0.000            0.753
+            (a) late threshold 4 holdout            755        55.364         5.695        2.053           0.124           1069        56.742        2.216           0.671          0.395           0.000          0.000            0.492
+       (b) two-regime totals fit     dev           5801        54.814         4.645        0.695           0.071           2779        57.674        0.802          -0.104         -0.028           1.088          0.105            1.007
+       (b) two-regime totals fit holdout           1523        54.235         3.540        1.671           0.091           1179        56.961        2.108          -0.459          0.013           0.219         -0.107            0.993
+(c) recency weights h=2 (totals)     dev           5844        55.159         5.303        0.727           0.069           2562        56.906        0.666           0.240          0.004           0.320         -0.031            1.015
+(c) recency weights h=2 (totals) holdout           1639        54.545         4.132        1.664           0.088            983        56.517        2.316          -0.148          0.007          -0.224          0.101            1.068
+     (d) late unders threshold 4     dev           5361        55.140         5.267        0.715           0.070           2673        56.586        0.698           0.222         -0.008           0.000          0.000            0.931
+     (d) late unders threshold 4 holdout           1295        55.907         6.732        1.682           0.097           1069        56.742        2.216           1.214          0.024           0.000          0.000            0.844
+
+Verdicts: (a) late threshold 4: KILL; (b) two-regime totals fit: KILL; (c) recency weights h=2 (totals): KILL; (d) late unders threshold 4: KILL

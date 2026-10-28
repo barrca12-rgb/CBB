@@ -7,3 +7,5 @@ research/frontier/out/espn_sb/
 research/frontier/out/c2_*/
 research/frontier/out/*.log
 site/record/charts.html
+research/totals_late/out/*.pkl
+research/totals_late/out/plays.csv
