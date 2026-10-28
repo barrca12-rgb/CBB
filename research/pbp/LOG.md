@@ -133,3 +133,19 @@ are small (SD 0.21 margin, 0.67 total) and do not improve opener CLV in either e
 is the intercept: about +0.7 points, so games finish slightly over the close on average. That pushes more plays to
 the over and lowers CLV. Of the margin terms, only the lineup adjustment carries weight (0.14-0.16), and it is
 already in the v2 shadow.
+
+## 2026-10-28: R2 pre-registration, luck-only totals correction (written and committed before it was run)
+
+**Why:** in R1 the one stable shot-quality weight was `luck_total` (about -0.10 every season: games where teams have
+been shooting luckily finish slightly under the close), but the total correction was dominated by the intercept
+(+0.7), which pushed plays to the over and cut CLV. R2 isolates the luck term. Asked for by Chad, Oct 28.
+
+**Input:** `luck_total` only (P1, season-to-date, known before the opener; no line information).
+**Fit:** OLS **without an intercept**, walk-forward by season: season s fit on 2014..s-1, target (total points -
+closing total), swapped records excluded. First predicted season 2015. Spreads are not touched.
+**Forecast:** frozen live-like total + coefficient x `luck_total`; the frozen play rule (total edge 3+) at the opener.
+**Scorecards:** total opener CLV, dev 2015-17 and confirm 2024-26; total opener win% dev (2015-17 + 2024) and
+holdout (2025-26); for reference the beyond-close coefficient 2020-26 and the correction's SD.
+**Pass:** total CLV gain +0.05 or more over frozen in both eras AND holdout total win% not below frozen. Otherwise
+killed. One specification, no tuning.
+**Prior:** low (the correction's SD will be small, about 0.1 x the luck spread).
