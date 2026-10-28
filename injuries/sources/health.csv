@@ -1587,3 +1587,7 @@ pulled_at,source,ok,rows,teams_matched,players_matched,unmatched_teams,error,sec
 2026-10-28T18:50:32+00:00,rotowire,True,5,0.8,1.0,Wisconsin-Milwaukee,,13.6,1275.0
 2026-10-28T18:50:32+00:00,covers,True,0,,,,,1.1,1271378.0
 2026-10-28T18:50:32+00:00,cbs,True,0,,,,,0.3,442039.0
+2026-10-28T19:00:36+00:00,espn,True,0,,,,,1.1,144.0
+2026-10-28T19:00:36+00:00,rotowire,True,5,0.8,1.0,Wisconsin-Milwaukee,,3.9,1275.0
+2026-10-28T19:00:36+00:00,covers,True,0,,,,,1.0,1271378.0
+2026-10-28T19:00:36+00:00,cbs,True,0,,,,,0.5,442012.0
