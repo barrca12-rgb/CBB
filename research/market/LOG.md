@@ -297,3 +297,24 @@ game-level bootstrap interval.
   they list college basketball spreads and totals) are the route, to be checked against Chad's location.
 - Adding a book to the live feed changes the line feeds, which the forward-test protocol freezes: it needs Chad's
   approval, a MODEL_FREEZE entry and a Discord note before it goes live.
+
+## 2026-10-28: Kalshi college basketball markets (public market-data API; read only, no account)
+
+- **What exists:** men's college basketball game winner (`KXNCAAMBGAME`), spread (`KXNCAAMBSPREAD`) and total
+  (`KXNCAAMBTOTAL`) series. 2025-26: about 4,900 games with spreads and totals, November through the title game
+  (essentially every D-I game). 2026-27: winner markets open for 155 games; spreads and totals not yet listed.
+- **Structure:** a ladder of about 11 numbers per game ("Team wins by over 4.5", "Over 155.5"), alternating sides
+  at half-points; median 50,000-60,000 contracts traded per game in a 30-game January-February sample.
+- **Timing:** the first lines open about 24 hours before tip (median; mostly 6 pm ET the evening before), later
+  than the sportsbook openers the card bets.
+- **Price, about 3 hours before tip, the number nearest 50/50 (30 spread and 30 total games):** bid-ask 2 cents
+  (median). Per-side hold with the taker fee (7% x p x (1 - p) per contract) is 2.75%, vs 2.38% for a -110/-110
+  book: about -112 equivalent, slightly worse than -110. Without the fee the hold is 1.0% (about -104); the fee
+  takes the advantage. Taker hold was below -110 in 30% of games. A resting limit order at the bid (maker fee much
+  smaller) prices near -102 to -104, but fills only if someone takes it, and fills are likeliest when the line
+  moves against the order.
+- **Reading:** Kalshi is not a reduced-juice book for someone taking the posted price. Its value for us would come
+  from its number or price disagreeing with the sportsbooks on our side (shopping), or from limit orders. Neither
+  can be measured from this sample; it needs Kalshi quotes logged next to our seven books at the moment of each
+  play. Proposed (needs Chad's go-ahead): a research-only Kalshi quote logger from the first games, read after about
+  three weeks of plays; no change to the card, the line feeds or the protocol until then.
