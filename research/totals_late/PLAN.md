@@ -46,3 +46,22 @@ is why".
 
 **Prior:** moderate that diagnostics find a structural cause (late-season market sharper, or the model lagging
 rising scoring); low that a candidate clears both eras (late-season totals still win 53-54%, above break-even).
+
+## Part 3. Round 2 candidates (pre-registered Oct 28, after Part 2; Chad asked for tests 1-4)
+
+Same benchmark, plays, scoring, dev / holdout split and kill rule as Part 2 (both eras: January-April totals win %
++1.0 or more, CLV not worse by 0.1 or more, November-December not worse by 0.1 CLV or 1.0 win-% point). Candidates
+1, 2 and 4 change totals all season, so the full-season totals line is also reported.
+
+- **(e) League scoring-drift correction.** For each game date, b = mean(actual total - model total) over every D-I
+  game in the same season in the previous 14 days (0 if under 100 games). Corrected total = model total + k x b,
+  k in {0.5, 1}, chosen on dev January-April totals win %, then confirmed on holdout.
+- **(f) Recent form for totals.** For each team, mean over its last 10 games this season (before the game) of
+  (actual total - stage-1 predicted total); 0 under 3 games. Feature = home + away, added to the stage-2 totals
+  fit (walk-forward, same ridge), spreads unchanged.
+- **(g) Market-anchored totals by month.** For each season, from all earlier seasons (2013 on, closing lines),
+  regress (actual - close) on (model - close) without intercept separately for November-December and for each of
+  January, February, March: k_month. Late totals edge vs the opener is scaled by k_month / k_NovDec (capped at 1);
+  November-December unchanged. Plays at the scaled edge 3+.
+- **(h) Blowout term.** |stage-1 predicted margin| added to the stage-2 totals fit (found Oct 28 while looking:
+  lopsided games ran about 0.9 over the model from January in 2023-26), spreads unchanged.
