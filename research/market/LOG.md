@@ -274,3 +274,26 @@ Low-moderate. The pilot showed lines move toward tip, and the hold is about 7% a
   softer than full games, and the extra hold makes them worse.
 - **Not tested:** early first-half lines (game-day morning). That needs another pull of about 11,700 credits,
   which would take the balance below the 50,000 floor until the plan renews.
+
+## 2026-10-28: what each extra book adds over the best of the big four (descriptive; s5 quotes, no new data)
+
+Chad asked where a +0.5% EV/CLV gain could come from. Post-hoc read of `out/s5_quotes.csv.gz` (the line-shopping
+picks above, 2024-25 Option B dates): for each book outside the big four, EV gain per bet of best-of-(four + that
+book) over best-of-four, same EV measure (historical outcome distribution at the number, at the quote's price),
+game-level bootstrap interval.
+
+| Book added to the big four | Spreads: beats best-of-4 | Spreads EV gain | Totals: beats best-of-4 | Totals EV gain |
+|---|---|---|---|---|
+| LowVig (reduced juice, offshore) | 39.8% | **+1.03%** [0.75, 1.33] | 48.1% | **+0.65%** [0.52, 0.78] |
+| BetOnline (offshore) | 17.3% | +0.42% [0.23, 0.64] | 23.4% | +0.25% |
+| BetRivers (US licensed) | 9.0% | +0.17% [0.05, 0.33] | 6.4% | +0.07% |
+| Unibet / SugarHouse / Barstool / Fanatics / PointsBet (US, several since closed or renamed) | 2-5% | 0.00-0.07% | 3-6% | 0.01-0.07% |
+
+- **The lever is price, not more ordinary books.** Another standard -110 book adds 0.0-0.2%; a reduced-juice book
+  adds 0.65-1.0% by itself. At a 55.6% win rate, -105 instead of -110 is worth about +2.4% EV per bet, -108 about
+  +0.9%.
+- Offshore books are not licensed in the US and are not a recommendation; the measurement shows what reduced pricing
+  is worth. US options with lower effective juice (licensed exchanges and prediction markets, where legal and where
+  they list college basketball spreads and totals) are the route, to be checked against Chad's location.
+- Adding a book to the live feed changes the line feeds, which the forward-test protocol freezes: it needs Chad's
+  approval, a MODEL_FREEZE entry and a Discord note before it goes live.
