@@ -92,7 +92,7 @@ def _clv_view() -> dict:
     """The card's CLV figures from the protocol's primary close (cbb/clv_primary.py), the same calculation as the
     record page, the charts, Discord and the tripwire: per market and overall, mean CLV over decided plays with a
     primary close plus coverage, and the recent settled plays with the same-book CLV as a labeled diagnostic.
-    Display only; the stake multiplier keeps using tracker.status() unchanged."""
+    Display only; the stake multiplier and its cap come from tracker.status(), which uses the same primary close."""
     from . import clv_primary, tracker
     try:
         a = clv_primary.attach(tracker.load())
@@ -361,6 +361,9 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   const $ = (id) => document.getElementById(id);
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
   const sgn = (x, d = 1) => x == null ? "–" : (x > 0 ? "+" : x < 0 ? "−" : "") + Math.abs(x).toFixed(d).replace(/\.0+$/, "");
+  // stake cap (cbb/tracker.py): held at 50% when primary-close CLV averages below 0 after 25 bets with a close
+  const capText = (c) => !c ? "" : "<small>" + (c.state === "held" ? "cap held (closes unreadable)"
+    : "cap " + c.state + " (primary CLV " + clvf(c.clv) + " on " + c.n + " of " + c.settled + " plays)") + "</small>";
   // CLV: always 2 decimals, the same figure Discord, the record page and the charts show (cbb/clv_primary.py)
   const clvf = (x) => x == null ? "–" : (x > 0 ? "+" : x < 0 ? "−" : "") + Math.abs(x).toFixed(2);
   const ln = (x) => x == null ? "–" : Math.abs(x) < 0.05 ? "PK" : sgn(x);
@@ -595,7 +598,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
         return "<tr><td>" + mk[0].toUpperCase() + mk.slice(1) + "</td><td class='r'>" + rec(s) + "</td><td class='r'>" + pct(s.win) + "</td><td class='r " +
         (s.units > 0 ? "pos" : s.units < 0 ? "neg" : "") + "'>" + sgn(s.units, 2) + "</td><td class='r'>" + pct(s.roi) + "</td><td class='r'>" + clvf(c.clv) +
         "</td><td class='r'>" + pct(c.beat) + "</td><td class='r'>" + (c.decided ? c.with_close + "/" + c.decided : "–") +
-        "</td><td class='r'>" + Math.round(100 * s.multiplier) + "%</td><td class='r m'>" + s.open + "</td></tr>"; }).join("") + "</tbody>" +
+        "</td><td class='r'>" + Math.round(100 * s.multiplier) + "%" + capText(s.cap) + "</td><td class='r m'>" + s.open + "</td></tr>"; }).join("") + "</tbody>" +
       "<caption class='f' style='caption-side:bottom;text-align:left;padding:8px 12px;font-size:12px'>CLV: points better than the consensus close (median of each book's last fresh quote in the 15 minutes before tip), decided plays with a close; close coverage = decided plays with one. CLV tracking: " + esc((D.record.clv && D.record.clv.status) || "") + ".</caption>";
     const R = D.record.recent || [];
     if (R.length) {
@@ -636,7 +639,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     }
     const MM = RV.model_misses || [];
     if (MM.length) $("t-misses").innerHTML = "<thead><tr><th>Market disagreed: biggest misses</th><th class='r'>Bet</th><th class='r'>Close</th><th class='r'>CLV</th><th class='r'>Model (home margin)</th><th class='r'>Final</th></tr></thead><tbody>" +
-      MM.map((x) => "<tr><td>" + esc(x.date + " · " + x.away + " @ " + x.home) + "</td><td class='r b'>" + esc(x.pick) + "</td><td class='r'>" + num(x.close_line) + "</td><td class='r neg'>" + sgn(x.clv_pts) +
+      MM.map((x) => "<tr><td>" + esc(x.date + " · " + x.away + " @ " + x.home) + "</td><td class='r b'>" + esc(x.pick) + "</td><td class='r'>" + num(x.close_line) + "</td><td class='r neg'>" + clvf(x.clv_pts) +
         "</td><td class='r m'>" + num(x.model) + "</td><td class='r m'>" + esc(x.away_score) + "–" + esc(x.home_score) + "</td></tr>").join("") + "</tbody>";
   }
 

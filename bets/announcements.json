@@ -33,5 +33,10 @@
   "id": "2026-10-28-clv-definition",
   "date": "2026-10-28",
   "text": "Record note, recorded Oct 28, before the first games: closing-line value (CLV) now has one definition everywhere, the forward test's primary close. For each sportsbook, its last fresh quote (no more than 5 minutes old) in the 15 minutes before tip; the close is the median across books. Result posts, the card, the record page, the weekly charts and the model-check alert all use it. A play with no fresh closing quote shows CLV as unavailable, with the reason, and is left out of averages; it is never counted as zero. Averages show how many decided plays have a close. The same-book CLV shown before is kept as a diagnostic only. No result had been posted yet, so nothing earlier changes. No change to the model, the plays, the betting rules or staking. CLV tracking is built, and will be marked verified only after it is checked on the first game. Recorded in MODEL_FREEZE.md."
+ },
+ {
+  "id": "2026-10-28-stake-cap",
+  "date": "2026-10-28",
+  "text": "Staking note, recorded Oct 28, before the first games: the stake cap (a market's stake held at half when its closing-line value averages below zero after 25 bets) now uses the same closing-line value the record shows, the median of each book's last fresh quote in the 15 minutes before tip. Bets without a fresh closing quote are left out and counted, so the cap waits for 25 bets that have one. The thresholds are unchanged and no current stake changes. No change to the model, the plays or the betting rules. Recorded in MODEL_FREEZE.md."
  }
 ]

@@ -64,6 +64,14 @@ def counts(a: pd.Timestamp, b: pd.Timestamp) -> dict:
         out["_missing reasons"] = "; ".join(sorted(set(cs.loc[cs["clv_pts"].isna(), "clv_reason"].astype(str))))
     except Exception as e:
         out["missing primary close"], out["_missing reasons"] = -1, f"CLV check failed: {e}"
+    try:   # the stake cap (cbb/tracker.py), on the primary close: on / off / held, with its CLV and counts
+        from cbb import tracker as tr
+        for mk, st_ in tr.status().items():
+            c = st_["cap"]
+            out[f"stake cap {mk}s"] = ("held (closes unreadable)" if c["state"] == "held" else
+                                      f"{c['state']} (primary CLV {'–' if c['clv'] is None else format(c['clv'], '+.2f')} on {c['n']} of {c['settled']})")
+    except Exception as e:
+        out["stake cap"] = f"check failed: {e}"
     acc = os.path.join(ROOT, "bets", "accepted.csv")
     out["placed with the card button"] = int(_in(pd.read_csv(acc)["placed_at"], a, b).sum()) if os.path.exists(acc) else 0
     return out

@@ -261,3 +261,30 @@ primary-close definition (`audit/forward_eval.py` strict_close and its window, f
 58e75584ee9efb986211b1f041b00be71eaa4ae8b50ba3f2286113685be63551  audit/test_forward_eval.py
 e56a5bd377ced61f64ee7df2068b695e3faea3ce44c40cb93310db79aa2b2416  FORWARD_TEST_PROTOCOL.md
 ```
+
+## 2026-10-28: stake cap moved to the primary close (Chad's decision); tip-time check (no change)
+
+Before any game. Predictions, bet selection, the win-chance rule, the bet log, grading and the primary-close
+definition are unchanged.
+
+- **Stake cap (`cbb/tracker.py`, fingerprinted):** the cap that holds a market's stake multiplier at 0.5 when its
+  CLV averages below 0 after 25 bets now reads the protocol's primary-close CLV (`cbb/clv_primary.py`), the same
+  figure the pages, Discord and the model-check tripwire use. Its numbers are unchanged (25 bets, below 0, 0.5); only
+  the input changes. Bets without a primary close are excluded from the average and counted, and the 25 counts only
+  bets with one; if the closes cannot be read the cap keeps its last state (`bets/stake_cap.json`, state "held").
+  **Consequence:** the cap can fire later than before, because it waits for 25 bets with a primary close rather than
+  25 settled bets. `status()`'s same-book CLV fields are renamed `clv_same_book` / `clv_prob_same_book`
+  (diagnostic; no rule reads them). The card's record table shows the cap next to the stake multiplier ("cap off
+  (primary CLV +x.xx on n of N plays)" / "cap on" / "cap held"), and the weekly health line reports the same.
+  No open play's stake changes: no bet has settled, so both multipliers are 1.0 under either input.
+- **Tip-time check (no change):** the 60-minute feed/ESPN start gap on Memphis vs Iowa State and Ohio State vs BYU
+  is not a daylight-saving error. Of the 7 games with both times (all after the Nov 1 change), 4 agree, 2 differ by
+  60 minutes and 1 has placeholder times on both sides; the two official times found (Las Vegas, 4:30 and 7:00 pm
+  Pacific) match both sources. Both disputed games have no announced tip time ("TBD" on both schools' schedules), so
+  both sources carry provisional times. They stay flagged per play (`start_gap_min`); protocol v2.1 is unchanged.
+- **Discord note:** `bets/announcements.json`, id `2026-10-28-stake-cap`.
+- **New fingerprint:**
+
+```
+6d206caaa739a9fda0da87dd32c086d797d9a068c9d916721bc44610fdbb89f0  cbb/tracker.py
+```

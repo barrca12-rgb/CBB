@@ -71,6 +71,24 @@ targeted poll (`quotes.yml`, every 3 minutes via cron-job.org; Odds API, 2 credi
 | Moved to another date | The game key includes the bet's date, so quotes under the new date do not match: "no quotes logged for this game", counted as missing (the protocol's rule). | As designed. |
 | A book removes the market early | The book's later polls show `absent` (excluded). Its last valid quote counts only if it falls inside the 15-minute window and is fresh. A stale number is never carried forward (unlike the grader's same-book close, which keeps a book's last number however old). | As designed. |
 
+**Tip-time check (Oct 28): not daylight saving.** All 7 games with both a feed and an ESPN start are after the Nov 1
+clock change (no lined D-I games on Oct 31; Nov 3-8 not yet listed by the feed):
+
+| Difference, ESPN minus feed | Games |
+|---|---|
+| 0 min | 4: Notre Dame vs Villanova (Rome), Miami vs Florida, Gonzaga vs Purdue, Arizona vs UCLA |
+| 60 min | 2: Memphis vs Iowa State (Sioux Falls), Ohio State vs BYU (Salt Lake City); feed earlier |
+| other | 1: Liberty vs High Point; placeholder times on both sides (ESPN 11:59 pm, feed 2:00 am ET) |
+
+A pre-change offset would shift every post-change game; four of six real times agree. Third-source check: the Hall
+of Fame Series (Las Vegas) lists Gonzaga vs Purdue at 4:30 pm and Arizona vs UCLA at 7:00 pm Pacific (00:30 and
+03:00 UTC), matching both sources; Ohio State and BYU, and Iowa State and Memphis, list their games' times as TBD,
+so neither source's time is confirmed for the disputed pair. Verdict: provisional times, not a feed, parsing or
+ESPN offset error; no protocol change. The two plays stay flagged (`start_gap_min` = -60), and the cutoff moves
+when the feed updates its start. Notre Dame vs Villanova is unaffected (both sources 14:30 UTC): its pre-tip polls
+run 14:10-14:30 UTC (9:10-9:30 am ET) and the first-game check stays at 17:15 UTC (12:15 pm ET). Re-checked on
+Nov 2 before the games.
+
 **Coverage today:** only DraftKings, Caesars and Fanatics are quoting the Nov 1–2 games (FanDuel, BetMGM, bet365,
 theScore Bet not yet posted); SGO returned no events. With 3 books, a primary close needs at least one of them fresh
 in the window. The Nov 4 books check covers the other four.
@@ -144,9 +162,13 @@ verified"; record table "+2.00 · 1/2"; recent table "+2.00", same-book "+1.00",
 
 - **Same-book CLV** stays in `bets/bets.csv` (`close_line`, `clv_pts`) as a diagnostic only.
 - **Already-posted Discord results:** none existed (no game has been played); the Oct 28 note explains the definition.
-- **One remaining use of same-book CLV, not changed (staking):** `tracker.status()` caps a market's stake multiplier
-  at 0.5 when its same-book CLV averages below 0 after 25 bets. Moving it to the primary close changes staking, which
-  was out of scope. **Decision for Chad.**
+- **Stake cap, moved to the primary close (Chad's decision, Oct 28):** `tracker.status()` holds a market's stake
+  multiplier at 0.5 when its **primary-close** CLV averages below 0 after 25 bets with a primary close (numbers
+  unchanged; only the input). Missing closes are excluded and counted; unreadable closes keep the last state
+  ("held"). Consequence: the cap can fire later than before, since it waits for 25 bets with a primary close rather
+  than 25 settled bets. Shown on the card next to the stake multiplier and in the health line. Tested both ways
+  (`test_stake_cap_fires_on_negative_primary_clv_despite_positive_same_book` and its reverse, the 25-with-a-close
+  minimum, and the held state). No rule reads the same-book CLV any more.
 
 ## 6. Evidence
 

@@ -186,3 +186,55 @@ def test_every_surface_shows_the_same_primary_clv(monkeypatch, tmp_path):
     assert cl["2026-11-01|1|total|under"] == "Beat the close" and cl["2026-11-01|2|total|over"] == "No primary close"
     t = tracker.tripwires(bets)["model"]
     assert t["clv"] == pytest.approx(2.0) and t["with_close"] == 1 and t["missing"] == 1 and t["state"] == "collecting"
+
+
+def _cap_world(monkeypatch, tmp_path, n, primary_close, same_book_clv, missing=0, result="W"):
+    """n settled unders at 149.5; each game's books close at primary_close (so primary CLV = 149.5 - close);
+    the grader's same-book CLV is same_book_clv. `missing` extra settled bets have no closing quotes."""
+    from cbb import tracker
+    (tmp_path / "lines").mkdir(exist_ok=True)
+    (tmp_path / "reports").mkdir(exist_ok=True)
+    EMPTY_CLOSING.to_csv(tmp_path / "lines" / "closing.csv", index=False)
+    rows, obs = [], []
+    for i in range(n + missing):
+        home, away = 1000 + 2 * i, 1001 + 2 * i
+        rows.append(dict(bet(home=home, away=away), bet_id=f"2026-11-01|{i}|total|under", game_id=i, result=result,
+                         close_line=149.5 - same_book_clv, clv_pts=same_book_clv, clv_prob=0.0, stake=1.0,
+                         profit=0.91 if result == "W" else -1.0, home="H", away="A", pick="Under 149.5"))
+        if i < n:
+            obs += [ob(bk, "under", primary_close, -110, 5, 30, home=home, away=away) for bk in ("DraftKings", "Caesars")]
+    o = fe.load_obs(pd.DataFrame(obs))
+    monkeypatch.setattr(fe, "ROOT", str(tmp_path))
+    monkeypatch.setattr(clv_primary, "_load_obs", lambda x: o)
+    monkeypatch.setattr(tracker, "STAKE_CAP_STATE", str(tmp_path / "stake_cap.json"))
+    return tracker, pd.DataFrame(rows)
+
+
+def test_stake_cap_fires_on_negative_primary_clv_despite_positive_same_book(monkeypatch, tmp_path):
+    tracker, b = _cap_world(monkeypatch, tmp_path, 25, primary_close=150.5, same_book_clv=+1.0)   # primary -1.0
+    st = tracker.status(b)["total"]
+    assert st["cap"]["on"] and st["cap"]["clv"] == -1.0 and st["cap"]["n"] == 25
+    assert st["multiplier"] <= tracker.CAP_MULT
+
+
+def test_stake_cap_stays_off_on_positive_primary_clv_despite_negative_same_book(monkeypatch, tmp_path):
+    tracker, b = _cap_world(monkeypatch, tmp_path, 25, primary_close=148.5, same_book_clv=-1.0)   # primary +1.0
+    st = tracker.status(b)["total"]
+    assert not st["cap"]["on"] and st["cap"]["clv"] == 1.0
+    assert st["multiplier"] == 1.0                     # 25 wins: the record multiplier itself is 1.0
+
+
+def test_stake_cap_minimum_counts_only_bets_with_a_primary_close(monkeypatch, tmp_path):
+    tracker, b = _cap_world(monkeypatch, tmp_path, 24, primary_close=150.5, same_book_clv=-1.0, missing=3)
+    c = tracker.status(b)["total"]["cap"]
+    assert not c["on"] and c["n"] == 24 and c["missing"] == 3 and c["settled"] == 27
+
+
+def test_stake_cap_keeps_its_last_state_when_closes_cannot_be_read(monkeypatch, tmp_path):
+    tracker, b = _cap_world(monkeypatch, tmp_path, 25, primary_close=150.5, same_book_clv=+1.0)
+    assert tracker.status(b)["total"]["cap"]["on"]
+    def boom(x):
+        raise OSError("obs unreadable")
+    monkeypatch.setattr(clv_primary, "_load_obs", boom)
+    c = tracker.status(b)["total"]["cap"]
+    assert c["state"] == "held" and c["on"]           # kept on, not reset by missing data

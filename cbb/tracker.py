@@ -18,7 +18,10 @@ what an edge looks like long before the win rate can show it.
 Shutoff: each market starts from its backtested win rate (against the opener, 2024-2026) as a prior worth 100 bets;
 the stake multiplier is how far the live-updated win rate still sits above break-even relative to the backtest:
     multiplier = clip((posterior - 0.524) / (backtest - 0.524), 0, 1)
-and it's capped at 0.5 if a market averages negative CLV after 25 bets.
+and it's capped at 0.5 if a market averages negative CLV after 25 bets. That CLV is the forward-test protocol's primary
+close (cbb/clv_primary.py), the figure every page shows (changed Oct 28, MODEL_FREEZE.md): bets without a primary
+close are excluded and counted, the 25 counts only bets with one, and if the closes cannot be read the cap keeps its
+last state (bets/stake_cap.json).
 """
 from __future__ import annotations
 
@@ -38,6 +41,8 @@ BREAKEVEN = 110 / 210
 PRIOR_BETS = 100
 MIN_CLV_BETS = 25
 CLV_TARGET = 0.5 * (2 * BREAKEVEN - 1)
+CAP_MULT = 0.5                    # the stake cap: multiplier held at this when primary-close CLV averages below 0 ...
+STAKE_CAP_STATE = os.path.join(ROOT, "bets", "stake_cap.json")   # ... after MIN_CLV_BETS bets with a primary close
 COLS = ["bet_id", "date", "game_id", "market", "pick", "side", "home_id", "away_id", "home", "away", "line", "alert_line", "odds",
         "book", "edge", "model", "stake", "placed", "logged_at", "close_line", "clv_pts", "clv_prob", "home_score",
         "away_score", "result", "profit", "status"]
@@ -181,27 +186,58 @@ def alert_voided() -> int:
     return sent
 
 
+def _cap(s: pd.DataFrame, mk: str, last: dict) -> dict:
+    """The stake cap for one market from the primary-close CLV of its settled bets s: on when at least MIN_CLV_BETS
+    bets have a primary close and their mean is below 0. Missing closes are excluded and counted. If the closes
+    cannot be read, the last recorded state is kept (state "held")."""
+    try:
+        from . import clv_primary
+        p = clv_primary.primary(s).set_index("bet_id") if len(s) else None
+        v = pd.to_numeric(s["bet_id"].map(p["clv_primary"]), errors="coerce") if p is not None else pd.Series(dtype=float)
+    except Exception as e:
+        on = bool(last.get(mk, {}).get("on", False))
+        return {"on": on, "state": "held", "clv": None, "n": None, "settled": int(len(s)), "missing": None,
+                "reason": f"primary closes could not be read ({e}); last state kept"}
+    have = v.dropna()
+    m = float(have.mean()) if len(have) else None
+    on = bool(len(have) >= MIN_CLV_BETS and m < 0)
+    return {"on": on, "state": "on" if on else "off", "clv": round(m, 2) if m is not None else None, "n": int(len(have)),
+            "settled": int(len(s)), "missing": int(v.isna().sum()), "reason": ""}
+
+
 def status(b: pd.DataFrame | None = None) -> dict:
-    """Per market: record, ROI, CLV and stake multiplier."""
+    """Per market: record, ROI, same-book CLV (diagnostic), the stake cap (primary-close CLV) and stake multiplier."""
     b = load() if b is None else b
-    out = {}
+    try:
+        last = json.load(open(STAKE_CAP_STATE)) if os.path.exists(STAKE_CAP_STATE) else {}
+    except Exception:
+        last = {}
+    out, caps = {}, {}
     for mk, cfg in MARKETS.items():
         s = b[(b["market"] == mk) & (b["status"] == "settled")]
         w, l, p = (s["result"] == "W").sum(), (s["result"] == "L").sum(), (s["result"] == "P").sum()
         n = w + l
         post = (cfg["backtest"] * PRIOR_BETS + w) / (PRIOR_BETS + n)
         mult = float(np.clip((post - BREAKEVEN) / (cfg["backtest"] - BREAKEVEN), 0, 1))
-        clv = s["clv_pts"].dropna()
-        if len(clv) >= MIN_CLV_BETS and clv.mean() < 0:
-            mult = min(mult, 0.5)
+        cap = _cap(s, mk, last)
+        if cap["on"]:
+            mult = min(mult, CAP_MULT)
+        caps[mk] = {"on": cap["on"]}
+        clv = s["clv_pts"].dropna()   # the grader's same-book CLV: diagnostic only, not used by any rule
         staked = s["stake"].astype(float).sum()
         out[mk] = {"bets": int(len(s)), "w": int(w), "l": int(l), "p": int(p), "win": (w / n) if n else None,
                    "units": round(float(s["profit"].astype(float).sum()), 2),
                    "roi": round(float(s["profit"].astype(float).sum() / staked), 4) if staked else None,
-                   "clv_pts": round(float(clv.mean()), 2) if len(clv) else None,
-                   "clv_prob": round(float(s["clv_prob"].dropna().mean()), 4) if s["clv_prob"].notna().any() else None,
-                   "beat_close": round(float((clv > 0).mean()), 3) if len(clv) else None,
-                   "multiplier": round(mult, 2), "open": int(((b["market"] == mk) & (b["status"] == "open")).sum())}
+                   "clv_same_book": round(float(clv.mean()), 2) if len(clv) else None,
+                   "clv_prob_same_book": round(float(s["clv_prob"].dropna().mean()), 4) if s["clv_prob"].notna().any() else None,
+                   "cap": cap, "multiplier": round(mult, 2),
+                   "open": int(((b["market"] == mk) & (b["status"] == "open")).sum())}
+    if all(c["state"] != "held" for c in (out[mk]["cap"] for mk in out)) or not os.path.exists(STAKE_CAP_STATE):
+        try:
+            with open(STAKE_CAP_STATE, "w") as fh:
+                json.dump(caps, fh)
+        except OSError:
+            pass
     return out
 
 
