@@ -23,5 +23,10 @@
   "id": "2026-10-27-cadence",
   "date": "2026-10-27",
   "text": "Schedule note, recorded Oct 27: the card checks lines every 10 minutes around the clock. Overnight checks moved from every 30 minutes to every 10 minutes at midnight Oct 27, before the first games on Nov 1. No change to the ratings, the projection, the betting rules, the cutoffs or staking; plays may simply be alerted sooner after a line posts overnight. Recorded in MODEL_FREEZE.md."
+ },
+ {
+  "id": "2026-10-28-final-read",
+  "date": "2026-10-28",
+  "text": "Protocol note, recorded Oct 28: the season's final forward-test read moves from March 16 to Sunday, March 14 (Selection Sunday), after every game through that day is graded, so the verdict lands before the NCAA tournament starts. Same games (Nov 1 through Mar 14), same measures and thresholds; no game had been played. No change to the model, the betting rules or staking. Protocol v2.1, recorded in MODEL_FREEZE.md."
  }
 ]
