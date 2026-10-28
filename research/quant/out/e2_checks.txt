@@ -1,0 +1,29 @@
+E2 (neutral + conf_game): MAE gain 2020-26 +0.0114
+neutral only: MAE gain 2020-26 +0.0107
+conf_game only: MAE gain 2020-26 -0.0007
+
+Where the E2 gain comes from (2020-26):
+  neutral, Nov-Dec             n   2357  MAE gain +0.0960  baseline mean residual -1.50
+  neutral, Jan-Feb             n     51  MAE gain -0.0223  baseline mean residual -1.36
+  neutral, Mar-Apr             n   2163  MAE gain +0.2118  baseline mean residual -2.61
+  home/away, conference        n  22572  MAE gain -0.0044  baseline mean residual -0.24
+  home/away, non-conference    n  10552  MAE gain -0.0145  baseline mean residual -0.59
+
+Opener totals 2024-26: baseline 3718 plays, E2 3772; shared 3306 (side flips 0); baseline-only 412 win% 47.9; E2-only 466 win% 54.7
+Win% difference E2 - baseline: +0.73 points, 95% [+0.02, +1.50]
+Simulated ROI at -110 (not executable evidence; opener prices only sampled on 12 dates): baseline +6.1% on 3706 plays
+Simulated ROI at -110 (not executable evidence; opener prices only sampled on 12 dates): E2 +7.5% on 3763 plays
+
+By season, totals at the fixed threshold (baseline -> E2):
+  2015 vs open :  1100 plays 59.0% ->  1110 plays 59.8%
+  2016 vs open :  1245 plays 56.6% ->  1260 plays 56.2%
+  2017 vs open :  1242 plays 57.6% ->  1246 plays 58.2%
+  2018 vs close:  1184 plays 51.2% ->  1148 plays 52.0%
+  2019 vs close:  1928 plays 49.9% ->  1903 plays 50.1%
+  2020 vs close:  2116 plays 52.5% ->  2107 plays 52.6%
+  2021 vs close:  1357 plays 50.8% ->  1326 plays 51.5%
+  2022 vs close:  1897 plays 53.9% ->  1877 plays 54.0%
+  2023 vs close:  1501 plays 53.6% ->  1491 plays 53.9%
+  2024 vs open :  1104 plays 55.6% ->  1139 plays 56.5%
+  2025 vs open :  1185 plays 56.3% ->  1163 plays 56.1%
+  2026 vs open :  1417 plays 54.9% ->  1461 plays 56.3%
