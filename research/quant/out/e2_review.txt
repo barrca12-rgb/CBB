@@ -1,0 +1,28 @@
+1. Deployable coefficients (projection.ridge, 2013-26, 17 total features) vs frozen out/e2_coefficients.json: max diff 9.0e-14
+   Walk-forward with projection.ridge: 2020-26 totals MAE 13.1499 -> 13.1385 (gain +0.0114); by season 2020 +0.0108, 2021 +0.0066, 2022 +0.0044, 2023 +0.0133, 2024 +0.0149, 2025 +0.0114, 2026 +0.0166
+   v1 totals refit vs live projection.json: max diff 0.0e+00
+2. Inputs at prediction time: training uses the ESPN schedule's neutral_site and conference_competition (cbb/data.py); the live card reads the same ESPN scoreboard fields, neutralSite and conferenceCompetition (cbb/run_day.slate), before tip. Both reach the stage-2 frame (run_day.project joins the slate).
+3. Double counting:
+   stage-1 pred_total: the home edge enters +/- for the two teams and cancels in the total; altitude is 0 at neutral sites (context.py); E2's neutral coefficient -1.69 is fit with every v1 input present.
+   2020-26 mean residual, v1: neutral -2.02 (n 4571), home/away -0.35; March neutral -2.74
+   2020-26 mean residual, E2: neutral -0.66 (n 4571), home/away -0.51; March neutral -1.30
+   With the live opening-week rule, opening-week games 2020-26 (n 2183): MAE v1 14.006, E2 13.997 (without the rule: v1 14.058, E2 14.051); all 2020-26 with the rule: v1 13.1469, E2 13.1353
+4. Current cards (2026-11-01: opening-week shift v1 +3.30, E2 +4.88; 2026-11-02: opening-week shift v1 +3.52, E2 +3.61)
+   v1 total reproduces the card's model_total: max diff 0.000; v1 verdict reproduces the card: 7 of 7
+   Change E2 - v1: neutral games mean -1.30 (n 15), home/away mean +0.18 (n 106), range -1.54 to +0.23
+   Games with a priced total on the cards: 7
+   Games whose total pick or verdict changes (5):
+      date                  game  neutral  v1_total  e2_total  change                        v1_pick  v1_edge v1_verdict                         e2_pick  e2_edge e2_verdict      logged
+2026-11-02      Miami vs Florida        1    162.51    160.99   -1.52   Over 159.5 (Fanatics -110.0)     3.01        BET    Over 159.5 (Fanatics -110.0)     1.49       PASS  Over 159.5
+2026-11-02 Memphis vs Iowa State        1    157.00    155.50   -1.50      Over 154 (Caesars -110.0)     3.00      WATCH       Over 154 (Caesars -110.0)     1.50       PASS  Over 152.5
+2026-11-02     Gonzaga vs Purdue        1    155.47    153.97   -1.50    Over 154.5 (Caesars -110.0)     0.97       PASS Under 155.5 (DraftKings -110.0)     1.53       PASS Under 156.5
+2026-11-02     Ohio State vs BYU        1    159.93    158.41   -1.52   Under 160.5 (FanDuel -110.0)     0.57       PASS    Under 160.5 (FanDuel -110.0)     2.09      WATCH         NaN
+2026-11-02       Arizona vs UCLA        1    152.58    151.09   -1.49 Over 150.5 (DraftKings -110.0)     2.08      WATCH  Over 150.5 (DraftKings -110.0)     0.59       PASS         NaN
+   Every game with a logged total, a BET or a WATCH under either version:
+      date                    game  neutral  v1_total  e2_total  change                        v1_pick  v1_edge v1_verdict                         e2_pick  e2_edge e2_verdict      logged
+2026-11-01 Notre Dame vs Villanova        1    148.73    148.74    0.01    Over 147.5 (Caesars -110.0)     1.23       PASS     Over 147.5 (Caesars -110.0)     1.24       PASS Under 149.5
+2026-11-02        Miami vs Florida        1    162.51    160.99   -1.52   Over 159.5 (Fanatics -110.0)     3.01        BET    Over 159.5 (Fanatics -110.0)     1.49       PASS  Over 159.5
+2026-11-02   Memphis vs Iowa State        1    157.00    155.50   -1.50      Over 154 (Caesars -110.0)     3.00      WATCH       Over 154 (Caesars -110.0)     1.50       PASS  Over 152.5
+2026-11-02       Gonzaga vs Purdue        1    155.47    153.97   -1.50    Over 154.5 (Caesars -110.0)     0.97       PASS Under 155.5 (DraftKings -110.0)     1.53       PASS Under 156.5
+2026-11-02       Ohio State vs BYU        1    159.93    158.41   -1.52   Under 160.5 (FanDuel -110.0)     0.57       PASS    Under 160.5 (FanDuel -110.0)     2.09      WATCH         NaN
+2026-11-02         Arizona vs UCLA        1    152.58    151.09   -1.49 Over 150.5 (DraftKings -110.0)     2.08      WATCH  Over 150.5 (DraftKings -110.0)     0.59       PASS         NaN
