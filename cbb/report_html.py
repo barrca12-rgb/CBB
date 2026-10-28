@@ -377,9 +377,13 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     const side = String(g[mk + "_logged_side"] || "").toLowerCase();
     const curSide = mk === "spread" ? g.spread_side : String(g.total_pick || "").toLowerCase();
     const still = g[mk + "_verdict"] === "BET" && curSide === side;
-    // current line from the bet's side (the card's pick may now be the other team)
-    const cur = mk === "spread" ? (g.spread_line == null ? null : ln(curSide === side ? g.spread_line : -g.spread_line))
-      : (g.total_line == null ? null : num(g.total_line));
+    // best current number on the bet's own side across books (the card's pick may now be the other side)
+    const sideBest = (g.book_lines || []).map((x) => mk === "spread"
+      ? (x.home_spread == null ? null : {book: x.book, key: side === "home" ? x.home_spread : -x.home_spread})
+      : (x.total == null ? null : {book: x.book, key: side === "over" ? -x.total : x.total}))
+      .filter(Boolean).sort((p, q) => q.key - p.key)[0];
+    const cur = still ? (mk === "spread" ? ln(g.spread_line) : num(g.total_line))
+      : sideBest ? (mk === "spread" ? ln(sideBest.key) : (side === "over" ? "o" : "u") + num(Math.abs(sideBest.key))) + " (" + sideBest.book + ")" : null;
     const placed = String(g[mk + "_logged_placed"] || "").toLowerCase() === "yes";
     const pre = !!g[mk + "_logged_pre"];
     // a logged play stays a play at its logged number; this only says where the market is now
