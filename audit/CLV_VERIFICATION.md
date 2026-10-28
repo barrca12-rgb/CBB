@@ -81,7 +81,7 @@ targeted poll (`quotes.yml`, every 3 minutes via cron-job.org; Odds API, 2 credi
 
 | Case | Handling | Finding |
 |---|---|---|
-| Changed start time | The cutoff moves to the start carried by the latest pregame observation; polling follows `closing.csv`'s latest start. Tested for corrections before, during and after the window (below). | **Open:** two unresolved start times (below). |
+| Changed start time | The cutoff moves to the start carried by the latest pregame observation; polling follows `closing.csv`'s latest start. Tested for corrections before, during and after the window (below). | **Open:** Memphis vs Iowa State (feed an hour early; below). |
 | Postponed or cancelled | Protocol: void. The grader grades only games ESPN marks final, so a postponed game's bet stays `open` (excluded from every CLV average) until voided. | **Open:** no code voids postponed games automatically; the two voids so far were set by hand. A last-minute postponement could still produce a primary close from pre-start quotes, but the bet is never settled, so the close is never averaged. |
 | Moved to another date | The game key includes the bet's date, so quotes under the new date do not match: "no quotes logged for this game", counted as missing (the protocol's rule). | As designed. |
 | A book removes the market early | The book's later polls show `absent` (excluded). Its last valid quote counts only if it falls inside the 15-minute window and is fresh. A stale number is never carried forward (unlike the grader's same-book close, which keeps a book's last number however old). | As designed. |
@@ -102,14 +102,18 @@ agree to the minute, and the two officially announced times found (Hall of Fame 
 4:30 pm and Arizona vs UCLA 7:00 pm Pacific, 00:30 and 03:00 UTC) match both sources. Limits: 7 games, one day; no
 pre-change comparison exists, so a shift confined to some other date range is not excluded by this sample.
 
-*(b) Two start times remain unresolved.* Ohio State vs BYU (feed 8:00, ESPN 9:00 pm ET) and Memphis vs Iowa State
-(feed 6:00, ESPN 7:00 pm ET) have no announced tip time: Ohio State's and BYU's schedules list "TBD"; Iowa State and
-Memphis say the time will be announced; the Sanford Pentagon shows a 5:00-8:00 pm window with tipoff TBD. Neither
-source is confirmed and neither can be called wrong. Under the frozen rule the close for these plays is taken in the
-15 minutes before the feed's start. Both plays are `tip_check = conflict`, alerted before tip, shown on the card and
-listed in the health line until the times agree or are confirmed. A re-check runs Nov 2 at 10:00 am ET against the
-announced times; any change of rule (e.g. ESPN's start when the two differ, or CLV "unavailable (tip time conflict)")
-would be protocol v2.2 and needs Chad's approval.
+*(b) Two start times were unresolved on Oct 28.* Ohio State vs BYU (feed 8:00, ESPN 9:00 pm ET) and Memphis vs Iowa
+State (feed 6:00, ESPN 7:00 pm ET) had no announced tip time on the schools' schedules ("TBD"; the Sanford Pentagon
+showed a 5:00-8:00 pm window). **Update, Oct 28 (Chad):** Ohio State tips at 9:00 pm and Memphis at 7:00 pm (Eastern,
+matching ESPN's displayed times).
+- **Ohio State +1.5:** resolved. The feed has since moved its start to 9:00 pm ET; cutoff, ESPN and the feed agree
+  (`tip_check = ok`).
+- **Memphis Over 152.5:** still open. ESPN is right; the feed still says 6:00 pm ET, an hour early. Under the frozen
+  rule the cutoff is the feed's start, and the frozen polling (`cbb/quotelog.py`) stops at it. If the feed does not
+  correct before about 6:40 pm ET on Nov 2, the close is taken 5:45-6:00 pm ET, an hour before the real tip, and the
+  real closing window gets only the 10-minute card polls. The play stays `tip_check = conflict`, alerted, on the card
+  and in the health line. Any change (polling the confirmed window, or CLV "unavailable (tip time conflict)") touches
+  frozen files and is Chad's decision.
 
 **Two thresholds, two purposes.** Every play compares the protocol's cutoff with ESPN's scheduled start
 (`start_gap_min`) and with the feed's latest reported start in `closing.csv` (`feed_gap_min`), stored in
