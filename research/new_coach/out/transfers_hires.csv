@@ -1,0 +1,329 @@
+season,team_id,coach,old_team_id,followers,follower_share_first5,team,old_team,tier,A,A_sens
+2022,12,Tommy Lloyd,,0,0.0,Arizona Wildcats,,high,False,False
+2022,16,Brandon Laird,,0,0.0,Sacramento State Hornets,,low,False,False
+2022,23,Tim Miles,,0,0.0,San José State Spartans,,mid,False,False
+2022,66,T.J. Otzelberger,2439.0,1,0.119,Iowa State Cyclones,UNLV Rebels,high,False,False
+2022,84,Mike Woodson,,0,0.0,Indiana Hoosiers,,high,False,False
+2022,85,Matt Crenshaw,,0,0.0,IU Indianapolis Jaguars,,low,False,False
+2022,103,Earl Grant,232.0,1,0.02,Boston College Eagles,Charleston Cougars,high,False,False
+2022,120,Danny Manning,,0,0.0,Maryland Terrapins,,high,False,False
+2022,135,Ben Johnson,,0,0.0,Minnesota Golden Gophers,,high,False,False
+2022,153,Hubert Davis,,0,0.0,North Carolina Tar Heels,,high,False,False
+2022,167,Richard Pitino,135.0,1,0.177,New Mexico Lobos,Minnesota Golden Gophers,mid,False,False
+2022,201,Porter Moser,2350.0,0,0.0,Oklahoma Sooners,Loyola Chicago Ramblers,high,False,False
+2022,213,Micah Shrewsberry,,0,0.0,Penn State Nittany Lions,,high,False,False
+2022,232,Pat Kelsey,2737.0,0,0.0,Charleston Cougars,Winthrop Eagles,low,False,False
+2022,250,Greg Young,,0,0.0,UT Arlington Mavericks,,low,False,False
+2022,251,Chris Beard,2641.0,1,0.022,Texas Longhorns,Texas Tech Red Raiders,high,False,False
+2022,254,Craig Smith,328.0,2,0.27,Utah Utes,Utah State Aggies,high,True,True
+2022,269,Shaka Smart,251.0,0,0.0,Marquette Golden Eagles,Texas Longhorns,high,False,False
+2022,279,Leonard Perry,,0,0.0,Pacific Tigers,,mid,False,False
+2022,282,Josh Schertz,,0,0.0,Indiana State Sycamores,,mid,False,False
+2022,292,Matt Figger,2046.0,0,0.0,UT Rio Grande Valley Vaqueros,Austin Peay Governors,low,False,False
+2022,294,Jordan Mincy,,0,0.0,Jacksonville Dolphins,,low,False,False
+2022,305,Tony Stubblefield,,0,0.0,DePaul Blue Demons,,high,False,False
+2022,328,Ryan Odom,2378.0,2,0.279,Utah State Aggies,UMBC Retrievers,mid,False,False
+2022,331,David Riley,,0,0.0,Eastern Washington Eagles,,low,False,False
+2022,357,Steve Lutz,,0,0.0,Texas A&M-Corpus Christi Islanders,,low,False,False
+2022,399,Dwayne Killings,,0,0.0,UAlbany Great Danes,,low,False,False
+2022,2000,Brette Tanner,,0,0.0,Abilene Christian Wildcats,,low,False,False
+2022,2029,Solomon Bozeman,,0,0.0,Arkansas-Pine Bluff Golden Lions,,low,False,False
+2022,2046,Nate James,,0,0.0,Austin Peay Governors,,low,False,False
+2022,2065,Reggie Theus,,0,0.0,Bethune-Cookman Wildcats,,low,False,False
+2022,2066,Levell Sanders,,0,0.0,Binghamton Bearcats,,low,False,False
+2022,2115,Patrick Sellers,,0,0.0,Central Connecticut Blue Devils,,low,False,False
+2022,2117,Tony Barbee,,0,0.0,Central Michigan Chippewas,,low,False,False
+2022,2130,Gerald Gillion,,0,0.0,Chicago State Cougars,,low,False,False
+2022,2132,Wes Miller,2430.0,3,0.111,Cincinnati Bearcats,UNC Greensboro Spartans,high,False,True
+2022,2169,Stan Waterman,,0,0.0,Delaware State Hornets,,low,False,False
+2022,2172,Jeff Wulbrun,,0,0.0,Denver Pioneers,,low,False,False
+2022,2193,Desmond Oliver,,0,0.0,East Tennessee State Buccaneers,,low,False,False
+2022,2197,Marty Simmons,,0,0.0,Eastern Illinois Panthers,,low,False,False
+2022,2199,Stan Heath,,0,0.0,Eastern Michigan Eagles,,low,False,False
+2022,2230,Kyle Neptune,,0,0.0,Fordham Rams,,mid,False,False
+2022,2244,Kim English,,0,0.0,George Mason Patriots,,mid,False,False
+2022,2275,Speedy Claxton,,0,0.0,Hofstra Pride,,low,False,False
+2022,2320,Alvin Brooks,,0,0.0,Lamar Cardinals,,low,False,False
+2022,2350,Drew Valentine,,0,0.0,Loyola Chicago Ramblers,,mid,False,False
+2022,2377,John Aiken,,0,0.0,McNeese Cowboys,,low,False,False
+2022,2378,Jim Ferry,213.0,0,0.0,UMBC Retrievers,Penn State Nittany Lions,low,False,False
+2022,2430,Mike R. Jones,2515.0,1,0.017,UNC Greensboro Spartans,Radford Highlanders,low,False,False
+2022,2439,Kevin Kruger,,0,0.0,UNLV Rebels,,mid,False,False
+2022,2459,Rashon Burno,,0,0.0,Northern Illinois Huskies,,low,False,False
+2022,2463,Trent Johnson,,0,0.0,Cal State Northridge Matadors,,low,False,False
+2022,2501,Shantay Legans,331.0,3,0.444,Portland Pilots,Eastern Washington Eagles,mid,False,False
+2022,2502,Jase Coburn,,0,0.0,Portland State Vikings,,low,False,False
+2022,2515,Darris Nichols,,0,0.0,Radford Highlanders,,low,False,False
+2022,2547,Chris Victor,,0,0.0,Seattle U Redhawks,,mid,False,False
+2022,2569,Tony Madlock,,0,0.0,South Carolina State Bulldogs,,low,False,False
+2022,2630,Ryan Ridder,2065.0,0,0.0,UT Martin Skyhawks,Bethune-Cookman Wildcats,low,False,False
+2022,2638,Joe Golding,2000.0,0,0.0,UTEP Miners,Abilene Christian Wildcats,low,False,False
+2022,2641,Mark Adams,,0,0.0,Texas Tech Red Raiders,,high,False,False
+2022,2717,Justin Gray,,0,0.0,Western Carolina Catamounts,,low,False,False
+2022,2737,Mark Prosser,2717.0,2,0.157,Winthrop Eagles,Western Carolina Catamounts,low,False,False
+2022,2900,Johnny Tauer,,0,0.0,St. Thomas Tommies,,low,False,False
+2023,16,David Patrick,,0,0.0,Sacramento State Hornets,,low,False,False
+2023,42,Tom Devitt,,0,0.0,,,low,False,False
+2023,45,Chris Caputo,,0,0.0,George Washington Revolutionaries,,mid,False,False
+2023,57,Todd Golden,2539.0,0,0.0,Florida Gators,San Francisco Dons,high,False,False
+2023,61,Mike White,57.0,0,0.0,Georgia Bulldogs,Florida Gators,high,False,False
+2023,88,Stan Gouard,,0,0.0,Southern Indiana Screaming Eagles,,low,False,False
+2023,93,Steve Prohm,,0,0.0,Murray State Racers,,mid,False,False
+2023,97,Kenny Payne,,0,0.0,Louisville Cardinals,,high,False,False
+2023,99,Matt McMahon,93.0,3,0.38,LSU Tigers,Murray State Racers,high,True,True
+2023,113,Frank Martin,2579.0,2,0.185,Massachusetts Minutemen,South Carolina Gamecocks,low,False,False
+2023,120,Kevin Willard,2550.0,1,0.072,Maryland Terrapins,Seton Hall Pirates,high,False,False
+2023,140,Marvin Menzies,,0,0.0,Kansas City Roos,,low,False,False
+2023,142,Dennis Gates,325.0,4,0.237,Missouri Tigers,Cleveland State Vikings,high,True,True
+2023,150,Jon Scheyer,,0,0.0,Duke Blue Devils,,high,False,False
+2023,151,Mike Schwartz,,0,0.0,East Carolina Pirates,,mid,False,False
+2023,161,Tobin Anderson,,0,0.0,Fairleigh Dickinson Knights,,low,False,False
+2023,166,Greg Heiar,,0,0.0,New Mexico State Aggies,,low,False,False
+2023,193,Travis Steele,2752.0,0,0.0,Miami (OH) RedHawks,Xavier Musketeers,low,False,False
+2023,202,Eric Konkol,2348.0,0,0.0,Tulsa Golden Hurricane,Louisiana Tech Bulldogs,mid,False,False
+2023,222,Kyle Neptune,2230.0,0,0.0,Villanova Wildcats,Fordham Rams,high,False,False
+2023,227,Archie Miller,,0,0.0,Rhode Island Rams,,mid,False,False
+2023,233,Eric Peterson,,0,0.0,South Dakota Coyotes,,low,False,False
+2023,236,Dan Earl,2678.0,1,0.174,Chattanooga Mocs,VMI Keydets,low,False,False
+2023,251,Rodney Terry,,0,0.0,Texas Longhorns,,high,False,False
+2023,270,Bart Lundy,,0,0.0,Milwaukee Panthers,,low,False,False
+2023,284,Chris Kraus,,0,0.0,Stonehill Skyhawks,,low,False,False
+2023,301,Steve Lavin,,0,0.0,San Diego Toreros,,mid,False,False
+2023,311,Chris Markwood,,0,0.0,Maine Black Bears,,low,False,False
+2023,322,Mike Jordan,,0,0.0,Lafayette Leopards,,low,False,False
+2023,325,Daniyal Robinson,,0,0.0,Cleveland State Vikings,,low,False,False
+2023,339,David Ragland,,0,0.0,Evansville Purple Aces,,mid,False,False
+2023,344,Chris Jans,166.0,1,0.067,Mississippi State Bulldogs,New Mexico State Aggies,high,False,False
+2023,526,Pat Chambers,,0,0.0,Florida Gulf Coast Eagles,,low,False,False
+2023,2010,Otis Hughley,,0,0.0,Alabama A&M Bulldogs,,low,False,False
+2023,2011,Tony Madlock,2569.0,1,0.153,Alabama State Hornets,South Carolina State Bulldogs,low,False,False
+2023,2050,Mike Lewis,,0,0.0,Ball State Cardinals,,low,False,False
+2023,2086,Thad Matta,,0,0.0,Butler Bulldogs,,high,False,False
+2023,2166,Matt McKillop,,0,0.0,Davidson Wildcats,,mid,False,False
+2023,2210,Billy Taylor,,0,0.0,Elon Phoenix,,low,False,False
+2023,2230,Keith Urgo,,0,0.0,Fordham Rams,,mid,False,False
+2023,2247,Jonas Hayes,,0,0.0,Georgia State Panthers,,low,False,False
+2023,2272,G.G. Smith,,0,0.0,High Point Panthers,,low,False,False
+2023,2287,Ryan Pedon,,0,0.0,Illinois State Redbirds,,mid,False,False
+2023,2296,Mo Williams,2011.0,2,0.171,Jackson State Tigers,Alabama State Hornets,low,False,False
+2023,2306,Jerome Tang,,0,0.0,Kansas State Wildcats,,high,False,False
+2023,2325,Fran Dunphy,,0,0.0,La Salle Explorers,,mid,False,False
+2023,2348,Talvin Hester,,0,0.0,Louisiana Tech Bulldogs,,low,False,False
+2023,2363,RaShawn Stores,,0,0.0,Manhattan Jaspers,,low,False,False
+2023,2400,George Ivory,,0,0.0,Mississippi Valley State Delta Devils,,low,False,False
+2023,2437,Chris Crutchfield,,0,0.0,Omaha Mavericks,,low,False,False
+2023,2448,Phillip Shumpert,,0,0.0,North Carolina A&T Aggies,,low,False,False
+2023,2466,Corey Gipson,,0,0.0,Northwestern State Demons,,low,False,False
+2023,2511,Grant Leonard,,0,0.0,Queens University Royals,,low,False,False
+2023,2539,Chris Gerlufsen,,0,0.0,San Francisco Dons,,mid,False,False
+2023,2550,Shaheen Holloway,2612.0,1,0.108,Seton Hall Pirates,Saint Peter's Peacocks,high,False,False
+2023,2567,Rob Lanier,2247.0,0,0.0,SMU Mustangs,Georgia State Panthers,high,False,False
+2023,2569,Erik Martin,,0,0.0,South Carolina State Bulldogs,,low,False,False
+2023,2579,Lamont Paris,236.0,0,0.0,South Carolina Gamecocks,Chattanooga Mocs,high,False,False
+2023,2612,Bashir Mason,2681.0,0,0.0,Saint Peter's Peacocks,Wagner Seahawks,low,False,False
+2023,2643,Ed Conroy,,0,0.0,The Citadel Bulldogs,,low,False,False
+2023,2678,Andrew Wilson,,0,0.0,VMI Keydets,,low,False,False
+2023,2681,Donald Copeland,,0,0.0,Wagner Seahawks,,low,False,False
+2023,2692,Eric Duft,,0,0.0,Weber State Wildcats,,low,False,False
+2023,2711,Dwayne Stephens,,0,0.0,Western Michigan Broncos,,low,False,False
+2023,2752,Sean Miller,,0,0.0,Xavier Musketeers,,high,False,False
+2023,2815,Kyle Gerdeman,,0,0.0,Lindenwood Lions,,low,False,False
+2023,2837,Jaret Von Rosenberg,,0,0.0,East Texas A&M Lions,,low,False,False
+2023,112358,Rod Strickland,,0,0.0,Long Island University Sharks,,low,False,False
+2024,25,Mark Madsen,3084.0,0,0.0,California Golden Bears,Utah Valley Wolverines,high,False,False
+2024,44,Duane Simpkins,,0,0.0,American University Eagles,,low,False,False
+2024,46,Ed Cooley,2507.0,0,0.0,Georgetown Hoyas,Providence Friars,high,False,False
+2024,58,Amir Abdur-Rahim,338.0,2,0.2,South Florida Bulls,Kennesaw State Owls,mid,False,False
+2024,59,Damon Stoudamire,,0,0.0,Georgia Tech Yellow Jackets,,high,False,False
+2024,70,Alex Pribble,,0,0.0,Idaho Vandals,,low,False,False
+2024,87,Micah Shrewsberry,213.0,1,0.015,Notre Dame Fighting Irish,Penn State Nittany Lions,high,False,False
+2024,98,Steve Lutz,357.0,1,0.075,Western Kentucky Hilltoppers,Texas A&M-Corpus Christi Islanders,low,False,False
+2024,107,Dave Paulsen,,0,0.0,Holy Cross Crusaders,,low,False,False
+2024,145,Chris Beard,,0,0.0,Ole Miss Rebels,,high,False,False
+2024,147,Matt Logie,,0,0.0,Montana State Bobcats,,low,False,False
+2024,160,Nathan Davis,2083.0,0,0.0,New Hampshire Wildcats,Bucknell Bison,low,False,False
+2024,161,Jack Castleberry,,0,0.0,Fairleigh Dickinson Knights,,low,False,False
+2024,166,Jason Hooten,2534.0,1,0.103,New Mexico State Aggies,Sam Houston Bearkats,low,False,False
+2024,183,Adrian Autry,,0,0.0,Syracuse Orange,,high,False,False
+2024,189,Todd Simon,253.0,1,0.133,Bowling Green Falcons,Southern Utah Thunderbirds,low,False,False
+2024,198,Russell Springmann,,0,0.0,Oral Roberts Golden Eagles,,low,False,False
+2024,213,Mike Rhoades,2670.0,2,0.272,Penn State Nittany Lions,VCU Rams,high,True,True
+2024,218,Adam Fisher,,0,0.0,Temple Owls,,mid,False,False
+2024,249,Ross Hodge,,0,0.0,North Texas Mean Green,,mid,False,False
+2024,250,K.T. Turner,,0,0.0,UT Arlington Mavericks,,low,False,False
+2024,253,Rob Jeter,2710.0,1,0.007,Southern Utah Thunderbirds,Western Illinois Leathernecks,low,False,False
+2024,277,Josh Eilert,,0,0.0,West Virginia Mountaineers,,high,False,False
+2024,290,Charlie Henry,,0,0.0,Georgia Southern Eagles,,low,False,False
+2024,314,Tobin Anderson,161.0,0,0.0,Iona Gaels,Fairleigh Dickinson Knights,low,False,False
+2024,322,Mike McGarvey,,0,0.0,Lafayette Leopards,,low,False,False
+2024,328,Danny Sprinkle,147.0,2,0.357,Utah State Aggies,Montana State Bobcats,mid,False,False
+2024,338,Antoine Pettway,,0,0.0,Kennesaw State Owls,,low,False,False
+2024,349,Kevin Kuwik,,0,0.0,Army Black Knights,,low,False,False
+2024,357,Jim Shaw,,0,0.0,Texas A&M-Corpus Christi Islanders,,low,False,False
+2024,2032,Bryan Hodgson,,0,0.0,Arkansas State Red Wolves,,low,False,False
+2024,2046,Corey Gipson,2466.0,6,0.439,Austin Peay Governors,Northwestern State Demons,low,False,False
+2024,2083,John Griffin,,0,0.0,Bucknell Bison,,low,False,False
+2024,2084,George Halcovage,,0,0.0,Buffalo Bulls,,low,False,False
+2024,2154,Larry Stewart,,0,0.0,Coppin State Eagles,,low,False,False
+2024,2193,Brooks Savage,,0,0.0,East Tennessee State Buccaneers,,low,False,False
+2024,2217,Chris Casey,,0,0.0,Fairfield Stags,,low,False,False
+2024,2244,Tony Skinn,,0,0.0,George Mason Patriots,,mid,False,False
+2024,2272,Alan Huss,,0,0.0,High Point Panthers,,low,False,False
+2024,2330,Nate Champion,,0,0.0,Le Moyne Dolphins,,low,False,False
+2024,2363,John Gallagher,,0,0.0,Manhattan Jaspers,,low,False,False
+2024,2377,Will Wade,,0,0.0,McNeese Cowboys,,low,False,False
+2024,2429,Aaron Fearne,,0,0.0,Charlotte 49ers,,mid,False,False
+2024,2447,Tevon Saddler,,0,0.0,Nicholls Colonels,,low,False,False
+2024,2448,Monte Ross,,0,0.0,North Carolina A&T Aggies,,low,False,False
+2024,2463,Andy Newman,,0,0.0,Cal State Northridge Matadors,,low,False,False
+2024,2466,Rick Cabrera,,0,0.0,Northwestern State Demons,,low,False,False
+2024,2507,Kim English,2244.0,2,0.271,Providence Friars,George Mason Patriots,high,True,True
+2024,2514,Tom Pecora,,0,0.0,Quinnipiac Bobcats,,low,False,False
+2024,2534,Chris Mudge,,0,0.0,Sam Houston Bearkats,,low,False,False
+2024,2582,Kevin Johnson,,0,0.0,Southern Jaguars,,low,False,False
+2024,2599,Rick Pitino,314.0,3,0.187,St. John's Red Storm,Iona Gaels,high,False,True
+2024,2641,Grant McCasland,249.0,0,0.0,Texas Tech Red Raiders,North Texas Mean Green,high,False,False
+2024,2670,Ryan Odom,328.0,3,0.163,VCU Rams,Utah State Aggies,mid,False,False
+2024,2674,Roger Powell,,0,0.0,Valparaiso Beacons,,mid,False,False
+2024,2710,Chad Boudreau,,0,0.0,Western Illinois Leathernecks,,low,False,False
+2024,2724,Paul Mills,198.0,0,0.0,Wichita State Shockers,Oral Roberts Golden Eagles,mid,False,False
+2024,2739,Sundance Wicks,,0,0.0,Green Bay Phoenix,,low,False,False
+2024,2747,Dwight Perry,,0,0.0,Wofford Terriers,,low,False,False
+2024,2803,Phil Martelli Jr.,,0,0.0,Bryant Bulldogs,,low,False,False
+2024,2885,Grant Billmeier,,0,0.0,NJIT Highlanders,,low,False,False
+2024,2916,Shane Heirman,,0,0.0,Incarnate Word Cardinals,,low,False,False
+2024,3084,Todd Phillips,,0,0.0,Utah Valley Wolverines,,low,False,False
+2025,8,John Calipari,96.0,4,0.434,Arkansas Razorbacks,Kentucky Wildcats,high,True,True
+2025,13,Mike DeGeorge,,0,0.0,Cal Poly Mustangs,,low,False,False
+2025,16,Michael Czepil,,0,0.0,Sacramento State Hornets,,low,False,False
+2025,24,Kyle Smith,265.0,0,0.0,Stanford Cardinal,Washington State Cougars,high,False,False
+2025,30,Eric Musselman,8.0,0,0.0,USC Trojans,Arkansas Razorbacks,high,False,False
+2025,50,Patrick Crarey,,0,0.0,Florida A&M Rattlers,,low,False,False
+2025,58,Ben Fletcher,,0,0.0,South Florida Bulls,,mid,False,False
+2025,79,Scott Nagy,2750.0,0,0.0,Southern Illinois Salukis,Wright State Raiders,mid,False,False
+2025,82,Rob Ehsan,,0,0.0,UIC Flames,,mid,False,False
+2025,85,Paul Corsaro,,0,0.0,IU Indianapolis Jaguars,,low,False,False
+2025,96,Mark Pope,252.0,1,0.116,Kentucky Wildcats,BYU Cougars,high,False,False
+2025,97,Pat Kelsey,232.0,3,0.219,Louisville Cardinals,Charleston Cougars,high,True,True
+2025,98,Hank Plona,,0,0.0,Western Kentucky Hilltoppers,,low,False,False
+2025,116,Donny Lind,,0,0.0,Mount St. Mary's Mountaineers,,low,False,False
+2025,130,Dusty May,2226.0,1,0.114,Michigan Wolverines,Florida Atlantic Owls,high,False,False
+2025,139,Josh Schertz,282.0,3,0.275,Saint Louis Billikens,Indiana State Sycamores,mid,False,False
+2025,172,Jon Jaques,,0,0.0,Cornell Big Red,,low,False,False
+2025,194,Jake Diebler,,0,0.0,Ohio State Buckeyes,,high,False,False
+2025,197,Steve Lutz,98.0,1,0.097,Oklahoma State Cowboys,Western Kentucky Hilltoppers,high,False,False
+2025,232,Chris Mack,,0,0.0,Charleston Cougars,,low,False,False
+2025,238,Mark Byington,256.0,2,0.107,Vanderbilt Commodores,James Madison Dukes,high,False,True
+2025,242,Rob Lanier,2567.0,1,0.082,Rice Owls,SMU Mustangs,mid,False,False
+2025,252,Kevin Young,,0,0.0,BYU Cougars,,high,False,False
+2025,256,Preston Spradlin,2413.0,1,0.12,James Madison Dukes,Morehead State Eagles,low,False,False
+2025,258,Ron Sanchez,,0,0.0,Virginia Cavaliers,,high,False,False
+2025,264,Danny Sprinkle,328.0,1,0.164,Washington Huskies,Utah State Aggies,high,False,False
+2025,265,David Riley,331.0,4,0.593,Washington State Cougars,Eastern Washington Eagles,mid,False,False
+2025,276,Cornelius Jackson,,0,0.0,Marshall Thundering Herd,,low,False,False
+2025,277,Darian DeVries,2181.0,1,0.167,West Virginia Mountaineers,Drake Bulldogs,high,False,False
+2025,278,Vance Walberg,,0,0.0,Fresno State Bulldogs,,mid,False,False
+2025,279,Dave Smart,,0,0.0,Pacific Tigers,,mid,False,False
+2025,282,Matthew Graves,,0,0.0,Indiana State Sycamores,,mid,False,False
+2025,292,Kahil Fennell,,0,0.0,UT Rio Grande Valley Vaqueros,,low,False,False
+2025,295,Mike K. Jones,,0,0.0,Old Dominion Monarchs,,low,False,False
+2025,299,Chris Acker,,0,0.0,Long Beach State Beach,,low,False,False
+2025,305,Chris Holtmann,194.0,0,0.0,DePaul Blue Demons,Ohio State Buckeyes,high,False,False
+2025,324,Justin Gray,2717.0,1,0.07,Coastal Carolina Chanticleers,Western Carolina Catamounts,low,False,False
+2025,328,Jerrod Calhoun,2754.0,0,0.0,Utah State Aggies,Youngstown State Penguins,mid,False,False
+2025,331,Dan Monson,299.0,0,0.0,Eastern Washington Eagles,Long Beach State Beach,low,False,False
+2025,2099,Jim Christian,,0,0.0,Canisius Golden Griffins,,low,False,False
+2025,2110,John Shulman,,0,0.0,Central Arkansas Bears,,low,False,False
+2025,2127,Saah Nimley,,0,0.0,Charleston Southern Buccaneers,,low,False,False
+2025,2130,Scott Spinelli,,0,0.0,Chicago State Cougars,,low,False,False
+2025,2174,Mark Montgomery,,0,0.0,Detroit Mercy Titans,,low,False,False
+2025,2181,Ben McCollum,,0,0.0,Drake Bulldogs,,mid,False,False
+2025,2184,Dru Joyce,,0,0.0,Duquesne Dukes,,mid,False,False
+2025,2226,John Jakus,,0,0.0,Florida Atlantic Owls,,mid,False,False
+2025,2241,Jeremy Luther,,0,0.0,Gardner-Webb Runnin' Bulldogs,,low,False,False
+2025,2261,Ivan Thomas,,0,0.0,Hampton Pirates,,low,False,False
+2025,2277,Craig Doty,,0,0.0,Houston Christian Huskies,,low,False,False
+2025,2352,Josh Loeffler,,0,0.0,Loyola Maryland Greyhounds,,low,False,False
+2025,2379,Cleo Hill,,0,0.0,Maryland Eastern Shore Hawks,,low,False,False
+2025,2382,Ryan Ridder,2630.0,0,0.0,Mercer Bears,UT Martin Skyhawks,low,False,False
+2025,2385,Gary Manchel,,0,0.0,Mercyhurst Lakers,,low,False,False
+2025,2413,Jonathan Mattox,,0,0.0,Morehead State Eagles,,low,False,False
+2025,2443,Stacy Hollowell,,0,0.0,LSU New Orleans Privateers,,low,False,False
+2025,2492,Ed Schilling,,0,0.0,Pepperdine Waves,,mid,False,False
+2025,2561,Gerry McNamara,,0,0.0,Siena Saints,,low,False,False
+2025,2567,Andy Enfield,30.0,0,0.0,SMU Mustangs,USC Trojans,high,False,False
+2025,2623,Cuonzo Martin,,0,0.0,Missouri State Bears,,low,False,False
+2025,2630,Jeremy Shulman,,0,0.0,UT Martin Skyhawks,,low,False,False
+2025,2636,Austin Claunch,,0,0.0,UTSA Roadrunners,,mid,False,False
+2025,2698,Dave Moore,,0,0.0,West Georgia Wolves,,low,False,False
+2025,2717,Tim Craft,2241.0,0,0.0,Western Carolina Catamounts,Gardner-Webb Runnin' Bulldogs,low,False,False
+2025,2729,Brian Earl,172.0,1,0.133,William & Mary Tribe,Cornell Big Red,low,False,False
+2025,2739,Doug Gottlieb,,0,0.0,Green Bay Phoenix,,low,False,False
+2025,2750,Clint Sargent,,0,0.0,Wright State Raiders,,low,False,False
+2025,2751,Sundance Wicks,2739.0,0,0.0,Wyoming Cowboys,Green Bay Phoenix,mid,False,False
+2025,2754,Ethan Faulkner,,0,0.0,Youngstown State Penguins,,low,False,False
+2025,2908,Marty Richter,,0,0.0,South Carolina Upstate Spartans,,low,False,False
+2026,2,Steven Pearl,,0,0.0,Auburn Tigers,,high,False,False
+2026,16,Mike Bibby,,0,0.0,Sacramento State Hornets,,low,False,False
+2026,27,Gus Argenal,,0,0.0,UC Riverside Highlanders,,low,False,False
+2026,28,Clint Allard,,0,0.0,UC San Diego Tritons,,low,False,False
+2026,36,Ali Farokhmanesh,,0,0.0,Colorado State Rams,,mid,False,False
+2026,50,Charlie Ward,,0,0.0,Florida A&M Rattlers,,low,False,False
+2026,52,Luke Loucks,,0,0.0,Florida State Seminoles,,high,False,False
+2026,58,Bryan Hodgson,2032.0,2,0.25,South Florida Bulls,Arkansas State Red Wolves,mid,False,False
+2026,84,Darian DeVries,277.0,1,0.164,Indiana Hoosiers,West Virginia Mountaineers,high,False,False
+2026,85,Ben Howlett,,0,0.0,IU Indianapolis Jaguars,,low,False,False
+2026,91,Doug Davenport,,0,0.0,Bellarmine Knights,,low,False,False
+2026,93,Ryan Miller,,0,0.0,Murray State Racers,,mid,False,False
+2026,120,Buzz Williams,245.0,2,0.11,Maryland Terrapins,Texas A&M Aggies,high,False,True
+2026,135,Niko Medved,36.0,1,0.155,Minnesota Golden Gophers,Colorado State Rams,high,False,False
+2026,152,Will Wade,2377.0,2,0.164,NC State Wolfpack,McNeese Cowboys,high,False,True
+2026,167,Eric Olen,28.0,2,0.162,New Mexico Lobos,UC San Diego Tritons,mid,False,False
+2026,171,Kevin Hovde,,0,0.0,Columbia Lions,,low,False,False
+2026,198,Kory Barnett,,0,0.0,Oral Roberts Golden Eagles,,low,False,False
+2026,219,Fran McCaffery,2294.0,0,0.0,Pennsylvania Quakers,Iowa Hawkeyes,low,False,False
+2026,222,Kevin Willard,120.0,3,0.15,Villanova Wildcats,Maryland Terrapins,high,False,True
+2026,245,Bucky McMillan,2535.0,1,0.09,Texas A&M Aggies,Samford Bulldogs,high,False,False
+2026,249,Daniyal Robinson,325.0,4,0.442,North Texas Mean Green,Cleveland State Vikings,mid,False,False
+2026,251,Sean Miller,2752.0,1,0.138,Texas Longhorns,Xavier Musketeers,high,False,False
+2026,254,Alex Jensen,,0,0.0,Utah Utes,,high,False,False
+2026,258,Ryan Odom,2670.0,0,0.0,Virginia Cavaliers,VCU Rams,high,False,False
+2026,277,Ross Hodge,249.0,2,0.295,West Virginia Mountaineers,North Texas Mean Green,high,True,True
+2026,288,Kevin Carroll,,0,0.0,Lipscomb Bisons,,low,False,False
+2026,309,Quannas White,,0,0.0,Louisiana Ragin' Cajuns,,low,False,False
+2026,314,Dan Geriot,,0,0.0,Iona Gaels,,low,False,False
+2026,325,Rob Summers,,0,0.0,Cleveland State Vikings,,low,False,False
+2026,2010,Donte Jackson,2755.0,5,0.409,Alabama A&M Bulldogs,Grambling Tigers,low,False,False
+2026,2016,Jake Morton,,0,0.0,Alcorn State Braves,,low,False,False
+2026,2032,Ryan Pannone,,0,0.0,Arkansas State Red Wolves,,low,False,False
+2026,2097,John Andrzejek,,0,0.0,Campbell Fighting Camels,,low,False,False
+2026,2117,Andy Bronkema,,0,0.0,Central Michigan Chippewas,,low,False,False
+2026,2130,Landon Bussie,2016.0,1,0.163,Chicago State Cougars,Alcorn State Braves,low,False,False
+2026,2172,Tim Bergstraser,,0,0.0,Denver Pioneers,,low,False,False
+2026,2181,Eric Henderson,2571.0,1,0.0,Drake Bulldogs,South Dakota State Jackrabbits,mid,False,False
+2026,2230,Mike Magpayo,27.0,2,0.147,Fordham Rams,UC Riverside Highlanders,mid,False,False
+2026,2272,Flynn Clayman,,0,0.0,High Point Panthers,,low,False,False
+2026,2294,Ben McCollum,2181.0,5,0.569,Iowa Hawkeyes,Drake Bulldogs,high,True,True
+2026,2325,Darris Nichols,2515.0,2,0.083,La Salle Explorers,Radford Highlanders,mid,False,False
+2026,2344,Ronnie Thomas,,0,0.0,Longwood Lancers,,low,False,False
+2026,2377,Bill Armstrong,,0,0.0,McNeese Cowboys,,low,False,False
+2026,2390,Jai Lucas,,0,0.0,Miami Hurricanes,,high,False,False
+2026,2426,Jon Perry,,0,0.0,Navy Midshipmen,,low,False,False
+2026,2433,Phil Cunningham,,0,0.0,UL Monroe Warhawks,,low,False,False
+2026,2439,Josh Pastner,,0,0.0,UNLV Rebels,,mid,False,False
+2026,2441,Ted Hotaling,,0,0.0,New Haven Chargers,,low,False,False
+2026,2454,Bobby Kennen,,0,0.0,North Florida Ospreys,,low,False,False
+2026,2515,Zach Chu,,0,0.0,Radford Highlanders,,low,False,False
+2026,2535,Lennie Acuff,288.0,2,0.121,Samford Bulldogs,Lipscomb Bisons,low,False,False
+2026,2571,Bryan Petersen,,0,0.0,South Dakota State Jackrabbits,,low,False,False
+2026,2598,Luke McConnell,,0,0.0,Saint Francis Red Wolves,,low,False,False
+2026,2603,Steve Donahue,219.0,0,0.0,Saint Joseph's Hawks,Pennsylvania Quakers,mid,False,False
+2026,2617,Matt Braeuer,,0,0.0,Stephen F. Austin Lumberjacks,,low,False,False
+2026,2634,Nolan Smith,,0,0.0,Tennessee State Tigers,,low,False,False
+2026,2670,Phil Martelli Jr.,2803.0,2,0.164,VCU Rams,Bryant Bulldogs,mid,False,False
+2026,2681,Dwan McMillan,,0,0.0,Wagner Seahawks,,low,False,False
+2026,2747,Kevin Giltner,,0,0.0,Wofford Terriers,,low,False,False
+2026,2752,Richard Pitino,167.0,2,0.224,Xavier Musketeers,New Mexico Lobos,high,True,True
+2026,2755,Patrick Crarey,50.0,1,0.156,Grambling Tigers,Florida A&M Rattlers,low,False,False
+2026,2803,Jamion Christian,,0,0.0,Bryant Bulldogs,,low,False,False
+2026,2934,Mike Scott,,0,0.0,Cal State Bakersfield Roadrunners,,low,False,False

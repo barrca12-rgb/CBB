@@ -1,0 +1,64 @@
+   pool window              compare  outcome  n_new  teams  new_mean  rest_mean  diff    lo   hi
+2021-26   1-10               A vs C vs_model     74   10.0     -0.23      -0.12 -0.11 -2.68 2.64
+2021-26   1-10               A vs C vs_close     74   10.0     -0.75      -0.09 -0.66 -3.25 2.11
+2021-26   1-10               A vs C  vs_open     54    7.0     -0.07      -0.06 -0.01 -3.05 3.01
+2021-26   1-10               A vs B vs_model     74   10.0     -0.23       0.45 -0.69 -3.53 2.23
+2021-26   1-10               A vs B vs_close     74   10.0     -0.75       0.23 -0.99 -3.76 1.82
+2021-26   1-10               A vs B  vs_open     54    7.0     -0.07       0.13 -0.20 -3.58 3.17
+2021-26   1-10 A(2+ followers) vs C vs_model    120   16.0      0.11      -0.12  0.22 -1.91 2.39
+2021-26   1-10 A(2+ followers) vs C vs_close    120   16.0     -0.29      -0.09 -0.20 -2.27 1.98
+2021-26    1-5               A vs C vs_model     35   10.0      1.39      -0.10  1.49 -2.37 5.69
+2021-26    1-5               A vs C vs_close     35   10.0      0.56      -0.07  0.64 -3.01 4.77
+2021-26    1-5               A vs C  vs_open     29    7.0      0.97       0.05  0.91 -3.56 5.35
+2021-26    1-5               A vs B vs_model     35   10.0      1.39       0.38  1.01 -3.32 5.81
+2021-26    1-5               A vs B vs_close     35   10.0      0.56       0.28  0.28 -3.85 4.88
+2021-26    1-5               A vs B  vs_open     29    7.0      0.97      -0.30  1.27 -3.81 6.45
+2021-26    1-5 A(2+ followers) vs C vs_model     60   16.0      1.58      -0.10  1.67 -1.42 4.79
+2021-26    1-5 A(2+ followers) vs C vs_close     60   16.0      1.01      -0.07  1.08 -1.86 4.18
+2021-26   6-10               A vs C vs_model     39   10.0     -1.69      -0.14 -1.55 -4.98 1.96
+2021-26   6-10               A vs C vs_close     39   10.0     -1.94      -0.11 -1.82 -5.26 1.62
+2021-26   6-10               A vs C  vs_open     25    7.0     -1.28      -0.17 -1.11 -5.60 2.73
+2021-26   6-10               A vs B vs_model     39   10.0     -1.69       0.53 -2.22 -5.61 1.57
+2021-26   6-10               A vs B vs_close     39   10.0     -1.94       0.19 -2.12 -5.56 1.60
+2021-26   6-10               A vs B  vs_open     25    7.0     -1.28       0.61 -1.89 -5.88 2.19
+2021-26   6-10 A(2+ followers) vs C vs_model     60   16.0     -1.37      -0.14 -1.23 -4.14 1.69
+2021-26   6-10 A(2+ followers) vs C vs_close     60   16.0     -1.59      -0.11 -1.48 -4.55 1.52
+2025-26   1-10               A vs C vs_model     22    3.0      1.43       0.07  1.36 -3.66 6.52
+2025-26   1-10               A vs C vs_close     22    3.0      0.95       0.07  0.89 -3.94 5.64
+2025-26   1-10               A vs C  vs_open     22    3.0      1.27       0.09  1.19 -3.58 5.83
+2025-26   1-10               A vs B vs_model     22    3.0      1.43      -0.58  2.02 -3.70 8.01
+2025-26   1-10               A vs B vs_close     22    3.0      0.95      -1.06  2.02 -3.22 7.73
+2025-26   1-10               A vs B  vs_open     22    3.0      1.27      -0.66  1.93 -3.34 7.54
+2025-26   1-10 A(2+ followers) vs C vs_model     43    6.0      0.24       0.07  0.17 -3.65 3.96
+2025-26   1-10 A(2+ followers) vs C vs_close     43    6.0      0.17       0.07  0.11 -3.83 3.83
+2025-26    1-5               A vs C vs_model     11    NaN       NaN        NaN   NaN   NaN  NaN
+2025-26    1-5               A vs C vs_close     11    NaN       NaN        NaN   NaN   NaN  NaN
+2025-26    1-5               A vs C  vs_open     11    NaN       NaN        NaN   NaN   NaN  NaN
+2025-26    1-5               A vs B vs_model     11    NaN       NaN        NaN   NaN   NaN  NaN
+2025-26    1-5               A vs B vs_close     11    NaN       NaN        NaN   NaN   NaN  NaN
+2025-26    1-5               A vs B  vs_open     11    NaN       NaN        NaN   NaN   NaN  NaN
+2025-26    1-5 A(2+ followers) vs C vs_model     23    6.0      0.19       0.04  0.14 -5.48 5.14
+2025-26    1-5 A(2+ followers) vs C vs_close     23    6.0      0.37       0.02  0.35 -5.17 4.91
+2025-26   6-10               A vs C vs_model     11    NaN       NaN        NaN   NaN   NaN  NaN
+2025-26   6-10               A vs C vs_close     11    NaN       NaN        NaN   NaN   NaN  NaN
+2025-26   6-10               A vs C  vs_open     11    NaN       NaN        NaN   NaN   NaN  NaN
+2025-26   6-10               A vs B vs_model     11    NaN       NaN        NaN   NaN   NaN  NaN
+2025-26   6-10               A vs B vs_close     11    NaN       NaN        NaN   NaN   NaN  NaN
+2025-26   6-10               A vs B  vs_open     11    NaN       NaN        NaN   NaN   NaN  NaN
+2025-26   6-10 A(2+ followers) vs C vs_model     20    6.0      0.31       0.10  0.20 -4.68 6.03
+2025-26   6-10 A(2+ followers) vs C vs_close     20    6.0     -0.05       0.11 -0.16 -5.43 5.83
+
+Group A team-seasons, first 10 games:
+ season                       team          coach                old_team  followers  follower_share_first5  games  vs_model  vs_close
+   2022                  Utah Utes    Craig Smith       Utah State Aggies          2                   0.27      6     -0.52     -1.42
+   2023                 LSU Tigers   Matt McMahon     Murray State Racers          3                   0.38      7     -2.34     -2.64
+   2023            Missouri Tigers   Dennis Gates Cleveland State Vikings          4                   0.24      7     -1.47     -0.75
+   2024   Penn State Nittany Lions   Mike Rhoades                VCU Rams          2                   0.27      8      3.75      1.50
+   2024          Providence Friars    Kim English   George Mason Patriots          2                   0.27     10      0.18      0.65
+   2025        Arkansas Razorbacks  John Calipari       Kentucky Wildcats          4                   0.43      6     -2.98     -3.00
+   2025       Louisville Cardinals     Pat Kelsey      Charleston Cougars          3                   0.22      8     -4.10     -5.62
+   2026 West Virginia Mountaineers     Ross Hodge  North Texas Mean Green          2                   0.30      8      4.12      3.25
+   2026              Iowa Hawkeyes   Ben McCollum          Drake Bulldogs          5                   0.57      7      1.97      0.36
+   2026          Xavier Musketeers Richard Pitino        New Mexico Lobos          2                   0.22      7     -2.18     -1.07
+
+High-major new-coach team-seasons: 72; group A: 10; 2+ followers: 16

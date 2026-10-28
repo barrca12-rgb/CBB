@@ -1,0 +1,11 @@
+season,team_id,vs_model,games,vs_close,coach,old_team_id,followers,follower_share_first5,team,old_team,tier,A,A_sens
+2022,254,-0.515876360028912,6,-1.4166666666666667,Craig Smith,328.0,2,0.27,Utah Utes,Utah State Aggies,high,True,True
+2023,99,-2.3357427712676135,7,-2.642857142857143,Matt McMahon,93.0,3,0.38,LSU Tigers,Murray State Racers,high,True,True
+2023,142,-1.472310192346967,7,-0.75,Dennis Gates,325.0,4,0.237,Missouri Tigers,Cleveland State Vikings,high,True,True
+2024,213,3.752640922561972,8,1.5,Mike Rhoades,2670.0,2,0.272,Penn State Nittany Lions,VCU Rams,high,True,True
+2024,2507,0.1813734174733435,10,0.65,Kim English,2244.0,2,0.271,Providence Friars,George Mason Patriots,high,True,True
+2025,8,-2.9803060301008615,6,-3.0,John Calipari,96.0,4,0.434,Arkansas Razorbacks,Kentucky Wildcats,high,True,True
+2025,97,-4.101884302785944,8,-5.625,Pat Kelsey,232.0,3,0.219,Louisville Cardinals,Charleston Cougars,high,True,True
+2026,277,4.1247116314753995,8,3.25,Ross Hodge,249.0,2,0.295,West Virginia Mountaineers,North Texas Mean Green,high,True,True
+2026,2294,1.9722925722470988,7,0.35714285714285715,Ben McCollum,2181.0,5,0.569,Iowa Hawkeyes,Drake Bulldogs,high,True,True
+2026,2752,-2.181697507112973,7,-1.0714285714285714,Richard Pitino,167.0,2,0.224,Xavier Musketeers,New Mexico Lobos,high,True,True
