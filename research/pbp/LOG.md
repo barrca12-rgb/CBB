@@ -149,3 +149,17 @@ holdout (2025-26); for reference the beyond-close coefficient 2020-26 and the co
 **Pass:** total CLV gain +0.05 or more over frozen in both eras AND holdout total win% not below frozen. Otherwise
 killed. One specification, no tuning.
 **Prior:** low (the correction's SD will be small, about 0.1 x the luck spread).
+
+## 2026-10-28: R2 results (`out/r2_result.csv`, `out/r2_coefs.csv`, `out/r2_run.txt`): KILL
+
+| | frozen | R2 (luck only, no intercept) |
+|---|---|---|
+| total CLV dev 2015-17 / conf 2024-26 | 1.358 / 1.671 | 1.299 / 1.585 |
+| total win% dev / holdout | 57.22 / 55.53 | 57.61 / 54.98 |
+| total plays dev / holdout | 4691 / 2602 | 5242 / 3025 |
+
+The luck weight is stable at -0.09 to -0.12 every season (correction SD about 0.5 points), and it carries real
+information beyond the close (coefficient 0.59, se 0.16, 2020-26). But adding it to the model's totals lowers
+opener CLV in both eras (-0.06, -0.09) and the holdout win%: it adds about 16% more total plays, mostly marginal
+ones near the 3-point threshold, and those are worse than the plays it already makes. Shot-quality luck stays out
+of the model; this line of tests (P1, R1, R2) is closed.

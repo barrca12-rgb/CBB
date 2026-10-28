@@ -1,0 +1,9 @@
+,frozen,R2
+total CLV dev 2015-17,1.358,1.299
+total CLV conf 2024-26,1.671,1.585
+total win% dev,57.22,57.61
+total win% holdout,55.53,54.98
+total n dev/hold,4691/2602,5242/3025
+total: adjustment coef (se),,0.592 (0.158)
+total: adjustment SD,,0.546
+verdict,,KILL

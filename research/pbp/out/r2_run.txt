@@ -1,0 +1,23 @@
+ season  luck_total  correction_sd
+   2015     -0.0909          0.486
+   2016     -0.1107          0.575
+   2017     -0.1158          0.597
+   2018     -0.0990          0.459
+   2019     -0.1048          0.501
+   2020     -0.1116          0.562
+   2021     -0.1089          0.515
+   2022     -0.1087          0.540
+   2023     -0.1104          0.561
+   2024     -0.1090          0.540
+   2025     -0.1143          0.552
+   2026     -0.1062          0.523
+
+model                           frozen             R2
+total CLV dev 2015-17            1.358          1.299
+total CLV conf 2024-26           1.671          1.585
+total win% dev                   57.22          57.61
+total win% holdout               55.53          54.98
+total n dev/hold             4691/2602      5242/3025
+total: adjustment coef (se)        NaN  0.592 (0.158)
+total: adjustment SD               NaN          0.546
+verdict                            NaN           KILL
