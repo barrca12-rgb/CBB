@@ -34,7 +34,7 @@ TABLE = os.path.join(os.path.dirname(__file__), "..", "bets", "clv_primary.csv")
 COLS = ["bet_id", "cohort", "cutoff", "cutoff_source", "espn_start", "start_gap_min", "feed_latest_start",
         "feed_gap_min", "tip_check", "close_primary", "clv_primary", "books_primary", "feed_age_s",
         "obs_before_cutoff_s", "clv_status", "clv_reason", "price_vs_close", "close_espn_start", "clv_espn_start",
-        "books_espn_start"]
+        "books_espn_start", "actual_tip", "pregame_check", "pregame_note"]
 # Tip-time diagnostics (never change the cutoff, which is the protocol's): the cutoff is compared with ESPN's scheduled
 # start and with the feed's latest reported start (lines/closing.csv). Over START_GAP_FLAG_MIN: "review" (shown per
 # play and sent for review before tip). At or over START_GAP_CONFLICT_MIN: "conflict" (escalated; a different rule
@@ -44,7 +44,36 @@ START_GAP_FLAG_MIN = 10
 START_GAP_CONFLICT_MIN = 30
 # For a "conflict" play the same strict-close rule is also applied at ESPN's start (close_espn_start / clv_espn_start /
 # books_espn_start; Chad, Oct 28, option 2). Diagnostic only, always labeled: the protocol's CLV is clv_primary.
+# Pregame validity (diagnostic; never changes the protocol's value): a computed close is "verified" only when the
+# latest quote in it was observed at least TIP_MARGIN_S before the actual tip (ESPN play-by-play, cbb/tipoff.py) and
+# the cutoff is within EARLY_MIN of that tip. Otherwise "in-play risk", "early", or "unverified" (actual tip unknown).
+TIP_MARGIN_S = 60
+EARLY_MIN = 30
 _CACHE: dict = {}
+
+
+def pregame(close, cutoff, before_s, starts, tip) -> tuple[str, str]:
+    """(check, note) for one computed close. before_s: seconds each included quote was observed before the cutoff;
+    starts: every known scheduled start (feed cutoff, ESPN, feed latest); tip: the actual tip or None."""
+    if close is None or np.isnan(close) or cutoff is None or pd.isna(cutoff) or not before_s:
+        return "n/a", "no computed close"
+    last = cutoff - pd.Timedelta(seconds=min(before_s))         # the latest included quote, on our clock
+    sched = min(s for s in starts if s is not None and pd.notna(s))
+    if tip is None or pd.isna(tip):
+        if last >= sched:
+            return "in-play risk", (f"latest included quote {last:%H:%M:%S} UTC is at or after the earliest scheduled "
+                                    f"start {sched:%H:%M} UTC; actual tip unknown")
+        return "unverified", (f"actual tip unknown; latest included quote {last:%H:%M:%S} UTC is before every scheduled "
+                              f"start (earliest {sched:%H:%M} UTC), which does not prove it was pregame")
+    if last > tip - pd.Timedelta(seconds=TIP_MARGIN_S):
+        return "in-play risk", (f"latest included quote {last:%H:%M:%S} UTC is not at least {TIP_MARGIN_S} s before the "
+                                f"actual tip {tip:%H:%M:%S} UTC")
+    early = (tip - cutoff).total_seconds() / 60
+    if early > EARLY_MIN:
+        return "early", (f"every quote pregame, but the cutoff is {early:.0f} min before the actual tip "
+                         f"{tip:%H:%M:%S} UTC: an early-market close")
+    return "verified", (f"latest included quote {last:%H:%M:%S} UTC, {(tip - last).total_seconds():.0f} s before the "
+                        f"actual tip {tip:%H:%M:%S} UTC (ESPN play-by-play); cutoff {early:+.0f} min from it")
 
 
 def _obs_key() -> tuple:
@@ -132,6 +161,8 @@ def primary(b: pd.DataFrame, obs: pd.DataFrame | None = None, closing: pd.DataFr
     o = _load_obs(obs)
     by_game = dict(tuple(o.groupby("game_key", sort=False))) if len(o) and "game_key" in o else {}
     espn = _espn_starts(b["date"]) if len(b) else {}
+    from . import tipoff
+    tips = tipoff.load()
     cl = closing.assign(_st=pd.to_datetime(closing["start"], utc=True, errors="coerce", format="ISO8601")) if len(closing) else closing
     rows = []
     for _, r in b.iterrows():
@@ -157,6 +188,8 @@ def primary(b: pd.DataFrame, obs: pd.DataFrame | None = None, closing: pd.DataFr
         if tip == "conflict" and es is not None and pd.notna(es):
             dg = fe.strict_close(og.assign(st=es), r["market"], es)     # same rule, cutoff = ESPN's start
         dclose = fe.to_side(r, dg["close"])
+        at = tips.get(int(r["game_id"]))
+        pc, pn = pregame(close, cutoff, sc.get("obs_before_cutoff_s", []), [cutoff, es, fl], at)
         if str(r.get("status")) == "void":
             st, why = "void", "void: excluded from every metric"
         elif np.isnan(close):
@@ -182,7 +215,8 @@ def primary(b: pd.DataFrame, obs: pd.DataFrame | None = None, closing: pd.DataFr
                      "clv_status": st, "clv_reason": why,
                      "price_vs_close": json.dumps(_price_vs_close(fe, r, og, cutoff)),
                      "close_espn_start": dclose, "clv_espn_start": fe.line_value(r, dclose),
-                     "books_espn_start": dg["books"]})
+                     "books_espn_start": dg["books"], "actual_tip": at.isoformat() if at is not None else None,
+                     "pregame_check": pc, "pregame_note": pn})
     return pd.DataFrame(rows, columns=COLS)
 
 
@@ -220,6 +254,7 @@ def coverage(s: pd.DataFrame) -> dict:
     return {"decided": n, "with_close": int(len(c)), "missing": n - int(len(c)),
             "one_book": int(len(c) - len(c2)) if known else None, "two_plus": int(len(c2)) if known else None,
             "clv_two_plus": float(c2.mean()) if len(c2) else None,
+            "pregame_verified": int((d.loc[c.index, "pregame_check"] == "verified").sum()) if "pregame_check" in d else None,
             "share": (len(c) / n) if n else None, "clv": float(c.mean()) if len(c) else None,
             "beat": float((c > 0).mean()) if len(c) else None}
 
@@ -233,6 +268,8 @@ def coverage_text(cv: dict) -> str:
     if cv["with_close"] and cv.get("two_plus") is not None:
         two = f"{cv['clv_two_plus']:+.2f}" if cv.get("clv_two_plus") is not None else "n/a"
         t += f"; 2+ books: {cv['two_plus']} ({two}), 1 book: {cv['one_book']}"
+    if cv["with_close"] and cv.get("pregame_verified") is not None:
+        t += f"; pregame verified: {cv['pregame_verified']} of {cv['with_close']}"
     return t
 
 
@@ -253,6 +290,8 @@ def write(b: pd.DataFrame | None = None) -> pd.DataFrame:
     if b is None:
         from cbb import tracker
         b = tracker.load()
+    from . import tipoff
+    tipoff.refresh(b)
     p = primary(b)
     p.to_csv(TABLE, index=False)
     return p

@@ -110,9 +110,10 @@ def _settled(b: pd.Series) -> dict:
     ok = pd.notna(b["clv_pts"])
     nb = int(b["books_primary"]) if pd.notna(b.get("books_primary")) else 0
     fields = [("Final", f"{b['away']} {b['away_score']:.0f}, {b['home']} {b['home_score']:.0f}"),
-              ("Close (consensus)", (f"{b['close_line']:g} ({nb} book{'s' if nb != 1 else ''}"
-                                     f"{': one-book close' if nb == 1 else ''})") if ok else "unavailable"),
+              ("Close (consensus, computed)", (f"{b['close_line']:g} ({nb} book{'s' if nb != 1 else ''}"
+                                               f"{': one-book close' if nb == 1 else ''})") if ok else "unavailable"),
               ("Alert CLV (points)", f"{b['clv_pts']:+.2f} pts" if ok else "unavailable"),
+              ("Pregame check", (str(b.get("pregame_check") or "not checked") if ok else "n/a")),
               ("Prices at close", _close_prices(b) or "none recorded"),
               ("Units", f"{b['profit']:+.2f}" if pd.notna(b["profit"]) else "–"), ("Bet", placed)]
     if not ok:
@@ -160,6 +161,8 @@ def _sync(url: str) -> int:
                                                             "description": a["text"], "color": GRAY}]}, url):
             done("notes", a["id"])
     from . import clv_primary
+    from . import tipoff
+    tipoff.refresh(tracker.load())                                     # actual tips for the pregame check (cached)
     b = clv_primary.attach(tracker.load()).sort_values("logged_at")   # results post the primary-close CLV
     for _, r in b.iterrows():
         i = r["bet_id"]

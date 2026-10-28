@@ -189,3 +189,55 @@ def test_parser_passes_a_started_games_quotes_to_the_log_but_never_to_the_card()
     assert list(rows["sgo_event"]) == ["oa:pre"]                    # the card: pregame only, as before
     assert {o["event_id"] for o in odds_api.parse.observations} == {"oa:pre", "oa:live"}
     assert not unmatched
+
+
+# ---- pregame validity gate (diagnostic; the protocol's value is unchanged) -------------------------------------------
+def _pg(before_s, tip, starts=None, cutoff=T0):
+    return clv_primary.pregame(147.0, cutoff, before_s, starts or [cutoff], tip)[0]
+
+
+def test_pregame_verified_when_the_last_quote_precedes_the_actual_tip():
+    assert _pg([120, 300], T0 + pd.Timedelta(minutes=4)) == "verified"
+
+
+def test_feed_start_a_few_minutes_late_is_caught_by_the_actual_tip():
+    """Feed start T0, but the ball went up 5 minutes earlier: a quote 2 minutes before the feed's start is in play."""
+    assert _pg([120, 600], T0 - pd.Timedelta(minutes=5)) == "in-play risk"
+    assert _pg([120], T0 - pd.Timedelta(seconds=150)) == "in-play risk"      # inside the 60 s margin
+    assert _pg([120], T0 - pd.Timedelta(seconds=59)) == "verified"       # last quote 61 s before the tip
+
+
+def test_feed_start_an_hour_early_is_pregame_but_early():
+    assert _pg([120], T0 + pd.Timedelta(minutes=62)) == "early"
+
+
+def test_without_an_actual_tip_a_close_is_never_called_verified():
+    assert _pg([120], None) == "unverified"
+    assert _pg([120], None, starts=[T0, T0 - pd.Timedelta(minutes=5)]) == "in-play risk"   # ESPN 5 min earlier
+
+
+def test_no_computed_close_is_not_checked():
+    assert clv_primary.pregame(np.nan, T0, [], [T0], None)[0] == "n/a"
+
+
+def test_first_play_wallclock_is_the_actual_tip():
+    from cbb import tipoff
+    s = {"plays": [{"wallclock": "2024-04-09T01:22:08Z", "period": {"number": 1}},
+                   {"wallclock": "2024-04-09T01:21:33Z", "period": {"number": 1}},
+                   {"wallclock": "2024-04-09T02:30:00Z", "period": {"number": 2}}]}
+    assert tipoff.first_play(s) == pd.Timestamp("2024-04-09T01:21:33Z")
+    assert tipoff.first_play({"plays": [{"period": {"number": 1}}]}) is None
+
+
+def test_closing_file_fallback_supplies_a_start_only_and_never_a_close(tmp_path):
+    """When no quote was observed before its own start, the independent trace takes the cutoff from closing.csv; no
+    quote can then pass the in-play rule, so neither the trace nor the protocol has a close."""
+    from audit import clv_example
+    obs = pd.DataFrame([at(5, T0, 149.0), at(8, T0, 149.0, "Caesars")])          # all observed after T0
+    (tmp_path / "obs").mkdir()
+    obs.to_csv(tmp_path / "obs" / "2026-11-01.csv", index=False)
+    closing_with(T0).to_csv(tmp_path / "closing.csv", index=False)
+    rc = clv_example.recompute(bet(), KEY, lines_dir=str(tmp_path))
+    assert rc["cutoff_source"].startswith("closing.csv") and rc["close"] is None and rc["books"] == 0
+    r = close(obs.to_dict("records"), closing=closing_with(T0))
+    assert np.isnan(r["close_primary"]) and r["cutoff_source"] == "closing.csv start"

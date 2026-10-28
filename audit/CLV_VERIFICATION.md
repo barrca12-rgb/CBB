@@ -74,25 +74,53 @@ The rules, each on one named timestamp:
 - Our `observed_at` is stamped after the response arrives, so it is a few seconds later than the provider's snapshot:
   a quote is never treated as earlier than it was.
 
-**Freshness: what is and is not established.** The earlier wording ("never adds an old number") was too strong and is
-withdrawn.
+**Pregame validity gate (Oct 28; diagnostic now, rule change proposed below).** A value that matches the frozen
+calculation is a *computed protocol value*; it is a *verified pregame close* only if the quotes in it were pregame.
+The scheduled start cannot show that (a feed start 1-10 minutes late passes every scheduled-time check), so the gate
+uses an independent record of the actual tip: ESPN's play-by-play stamps each play with a wall-clock time, and the
+first play of period 1 (the jump ball) is the tip (`cbb/tipoff.py`, cached in `lines/tipoffs.csv`; e.g. Purdue vs
+UConn, Apr 8 2024: scheduled 01:20, jump ball 01:21:33 UTC). For each computed close, `bets/clv_primary.csv` stores
+`actual_tip`, `pregame_check` and `pregame_note`:
+
+| `pregame_check` | Condition |
+|---|---|
+| verified | the latest included quote was observed (our clock) at least 60 s before the actual tip, and the cutoff is within 30 min of it |
+| early | every included quote pregame, but the cutoff is more than 30 min before the actual tip (an early-market close; Memphis would be this if the feed stays at 6:00 pm ET) |
+| in-play risk | the latest included quote is within 60 s of, or after, the actual tip; or, with no actual tip, at or after the earliest scheduled start (feed or ESPN) |
+| unverified | no actual tip available (ESPN posted no timed plays); quotes before every scheduled start, which does not prove they were pregame |
+| n/a | no computed close |
+
+The 60 s margin covers the difference between ESPN's clock and ours; our `observed_at` is stamped after the response
+arrives, so a quote is never treated as earlier than it was. Shown beside every close ("pregame verified" etc.:
+Discord field "Pregame check", record page and card close cells); coverage lines count "pregame verified: n of m".
+**Nothing reads it for a rule:** averages, the stake cap and the tripwire still use every computed close.
+
+**Proposed amendment (protocol v2.2; for Chad, not enacted).** Keep the frozen calculation unchanged and reproducible.
+Add: (1) the official Alert CLV average and every rule that reads it (stake cap, tripwire) count only closes with
+`pregame_check = verified`; (2) "in-play risk" closes are excluded and reported as "computed, not a valid pregame
+close"; (3) "early" and "unverified" closes are reported in their own rows, not pooled; (4) coverage is reported as
+verified / early / unverified / in-play risk / no close. Requires a dated MODEL_FREEZE.md entry with new fingerprints
+for `cbb/tracker.py` and `audit/forward_eval.py` (and the protocol text), a Discord note, and Chad's approval. Until
+then the gate is a label.
+
+**Freshness: what is and is not established.** The earlier wordings ("never adds an old number"; "the provider
+re-read this book") overstated the evidence and are withdrawn. The rule is stated only as what it checks:
+**the provider timestamp is within five minutes of our receipt.** What that timestamp means is unresolved.
 - *Measured* (the-odds-api.com documentation is outside the network allowlist, so not quoted): in 504 consecutive
   observations of the same book, game, market and side (polls a median 169 s apart) the line and price never changed,
-  yet `last_update` advanced in 396 (79%). Within a poll a book's markets share one stamp (129 of 129). So the stamp is
-  **not the last price change**; it behaves as the time the provider last refreshed that book. Median age: Fanatics
+  yet `last_update` advanced in 396 (79%). Within a poll a book's markets share one stamp (129 of 129). This
+  establishes only that the stamp is **not exclusively a price-change time**. It does not establish that the provider
+  re-read the sportsbook, or that the book still offered the price, when the stamp advanced. Median age: Fanatics
   39 s, DraftKings 42 s, Caesars 111 s (90th percentile 375 s).
-- *Consequence one, an unchanged but live quote excluded:* not from the stamp's meaning (it advances without a price
-  change), but a slow-refreshing book is excluded whenever its refresh is over 5 minutes old (Caesars often), which
-  lowers the book count.
-- *Consequence two, an old price looking fresh:* **not ruled out.** If the provider re-stamps a book without
-  re-confirming its price (a cached or failed scrape), a stale price passes the 5-minute filter. Nothing in our data
-  can tell a refreshed-and-unchanged price from a re-stamped stale one: SGO's 24 observations of the same books
-  carry no numbers (all `absent`), so there is no second source to compare. What the filter establishes is "the
-  provider re-read this book within 5 minutes", not "the book's price was current".
-- *Diagnostics (no rule change):* the traced example flags any closing book 1+ point away from the other books'
-  median (a stale price usually shows as an outlier after a move), lists every book's stamp and age, and always
-  carries this open item. Establishing the meaning needs the provider's documentation (Chad to read
-  https://the-odds-api.com docs on `last_update`) or a second priced source.
+- *An unchanged but live quote excluded:* happens whenever a book's provider timestamp is over 5 minutes old
+  (Caesars often), whatever the stamp means; it lowers the book count.
+- *An old price passing the filter:* **not ruled out.** If the stamp can advance without the book's price being
+  re-confirmed, a stale price passes. Our data cannot tell the cases apart: SGO's 24 observations of the same books
+  carry no numbers (all `absent`), so there is no second priced source.
+- *Diagnostics (no rule change):* the traced example lists every book's stamp and age, flags any closing book 1+ point
+  away from the other books' median, and always carries "provider timestamp meaning unconfirmed" as an open item.
+  Resolving it needs the provider's documentation on `last_update` (Chad to read; the site is blocked here) or a
+  second priced source.
 
 **Selection.** Window [cutoff - 15 min, cutoff). Only the 7 books. All observations sit in one deterministic order
 (observation time; card log before targeted log; The Odds API before SGO; feed timestamp, number, price). Per book,
@@ -320,6 +348,18 @@ UTC), so it is the first placed bet but not part of model v1 cohort A; it has no
   the book count, cutoff and cutoff source; the signed CLV; whether the 3-minute pre-tip polls captured at least two
   fresh books; whether both CLV columns were written (`bets.csv` same-book, `bets/clv_primary.csv` primary); what is
   missing; and whether every surface agrees to the decimal. It writes the traced example and adds the result below.
+- **Two conclusions, reported separately** (`audit/clv_example.py`, section 6): **A. Does the independent arithmetic
+  match?** (cutoff, book count, close and signed CLV recomputed from the raw files equal the stored values; no
+  same-time ties) and **B. Were the selected quotes pregame and eligible?** (cutoff established from raw pregame
+  observations, not `closing.csv`; every included quote from an eligible book, available, with a number, observed in
+  the window and before its own start, provider timestamp within 5 minutes; `pregame_check = verified`; tip times
+  consistent). C covers the operational items (entry, graded, 2+ books, every surface agrees). "First live capture
+  verified" needs A, B and C.
+- **The closing-file fallback, exactly.** `lines/closing.csv` can supply one thing: a game's **scheduled start**,
+  used as the cutoff only when no quote of the game was observed before its own start. It never supplies a quote, a
+  number or a close. In that case no quote can pass the in-play rule, so neither the protocol nor the trace produces
+  a close (`test_closing_file_fallback_supplies_a_start_only_and_never_a_close`), and check B fails ("cutoff not
+  established from raw pregame observations"). Missing raw quotes are never replaced by an aggregate close.
 - **Consistency is not correctness.** Agreement across pages shows one number is shown everywhere; it does not show
   the number is right. The trace therefore also recomputes the cutoff, the per-book quotes, the close and the alert
   CLV straight from the raw `lines/obs*/` files with the standard library only (`clv_example.recompute`; no

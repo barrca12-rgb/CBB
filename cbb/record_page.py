@@ -59,7 +59,8 @@ def _close_cell(r) -> str:
     except (TypeError, ValueError):
         px = ""
     return (f"<span title='{nb} book(s), quote ages {html.escape(ages)}{html.escape(px)}'>{r['close_line']:g}"
-            f"<small> ({nb}{' book: one-book close' if nb == 1 else ''})</small></span>")
+            f"<small> ({nb}{' book: one-book close' if nb == 1 else ''}; pregame "
+            f"{html.escape(str(r.get('pregame_check') or 'not checked'))})</small></span>")
 
 
 def _row(label: str, s: dict) -> str:

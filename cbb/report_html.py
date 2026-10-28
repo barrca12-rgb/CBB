@@ -121,7 +121,7 @@ def _clv_view() -> dict:
     out["all"]["text"] = clv_primary.coverage_text(out["all"])
     out["status"] = clv_primary.VERIFICATION_STATUS
     cols = ["date", "home", "away", "market", "pick", "book", "odds", "close_line", "clv_pts", "home_score",
-            "away_score", "result", "profit", "books_primary", "clv_reason", "clv_same_book"]
+            "away_score", "result", "profit", "books_primary", "clv_reason", "clv_same_book", "pregame_check"]
     out["recent"] = s.sort_values(["date", "logged_at"], ascending=False).head(30)[cols].to_dict("records")
     return out
 
@@ -623,7 +623,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       $("recent-sec").hidden = false;
       $("t-recent").innerHTML = "<thead><tr><th>Date</th><th>Game</th><th>Bet</th><th>Book</th><th class='r'>Close</th><th class='r'>Alert CLV (pts)</th><th class='r hide-sm'>Same-book CLV (diagnostic)</th><th class='r'>Final</th><th class='r'>Result</th><th class='r'>Units</th></tr></thead><tbody>" +
         R.map((x) => "<tr><td class='m'>" + esc(x.date) + "</td><td>" + esc(x.away + " @ " + x.home) + "</td><td class='b'>" + esc(x.pick) + "</td><td>" + esc(x.book || "–") +
-          "</td><td class='r'>" + (x.close_line == null ? "<span title='" + esc(x.clv_reason || "") + "'>n/a</span>" : num(x.close_line) + "<small> (" + x.books_primary + (x.books_primary === 1 ? " book: one-book close" : "") + ")</small>") +
+          "</td><td class='r'>" + (x.close_line == null ? "<span title='" + esc(x.clv_reason || "") + "'>n/a</span>" : num(x.close_line) + "<small> (" + x.books_primary + (x.books_primary === 1 ? " book: one-book close" : "") + "; pregame " + esc(x.pregame_check || "not checked") + ")</small>") +
           "</td><td class='r'>" + (x.clv_pts == null ? "<span title='" + esc(x.clv_reason || "") + "'>n/a</span>" : clvf(x.clv_pts)) +
           "</td><td class='r m hide-sm'>" + clvf(x.clv_same_book) + "</td><td class='r m'>" + esc(x.away_score) + "–" + esc(x.home_score) +
           "</td><td class='r b " + (x.result === "W" ? "pos" : x.result === "L" ? "neg" : "") + "'>" + esc(x.result) + "</td><td class='r'>" + sgn(x.profit, 2) + "</td></tr>").join("") + "</tbody>";

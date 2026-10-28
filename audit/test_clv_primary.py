@@ -134,7 +134,7 @@ def test_attach_keeps_the_graders_value_as_diagnostic_and_never_substitutes_it(m
 def test_coverage_counts_missing_and_never_averages_them_as_zero():
     s = pd.DataFrame({"result": ["W", "L", "W", "P"], "clv_pts": [2.0, np.nan, 1.0, 5.0], "books_primary": [3, 0, 1, 2]})
     cv = clv_primary.coverage(s)
-    assert cv == {"decided": 3, "with_close": 2, "missing": 1, "one_book": 1, "two_plus": 1, "clv_two_plus": 2.0,
+    assert cv == {"decided": 3, "with_close": 2, "missing": 1, "one_book": 1, "two_plus": 1, "clv_two_plus": 2.0, "pregame_verified": None,
                   "share": 2 / 3, "clv": 1.5, "beat": 1.0}
     assert clv_primary.coverage_text(cv) == ("primary close for 2 of 3 decided plays (67%); 2+ books: 1 (+2.00), "
                                              "1 book: 1")
@@ -168,7 +168,7 @@ def test_every_surface_shows_the_same_primary_clv(monkeypatch, tmp_path):
     # Discord
     f1 = {f["name"]: f["value"] for f in record._settled(r1)["embeds"][0]["fields"]}
     f2 = {f["name"]: f["value"] for f in record._settled(r2)["embeds"][0]["fields"]}
-    assert f1["Alert CLV (points)"] == "+2.00 pts" and f1["Close (consensus)"] == "147.5 (3 books)"
+    assert f1["Alert CLV (points)"] == "+2.00 pts" and f1["Close (consensus, computed)"] == "147.5 (3 books)"
     assert f1["Same-book CLV (diagnostic)"] == "+1.00 pts"
     assert sorted(f1["Prices at close"].split(", ")) == ["Caesars 147.5 -110", "DraftKings 147.5 -110", "Fanatics 148.5 -110"]
     assert f2["Alert CLV (points)"] == "unavailable" and f2["Why no alert CLV"].startswith("tip time unknown")

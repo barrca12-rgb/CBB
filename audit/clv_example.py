@@ -45,13 +45,17 @@ def recompute(bet: dict, game_key: str, lines_dir: str | None = None) -> dict:
     # cutoff: the start carried by the latest observation (any market) made before its own reported start
     pre = sorted((r for r in rows if r["_t"] and r["_st"] and r["_t"] < r["_st"]), key=lambda r: r["_t"])
     cutoff = pre[-1]["_st"] if pre else None
+    source = "raw observation" if cutoff is not None else None
+    # closing.csv supplies a scheduled START only (never a quote or a close), and only when no quote of the game was
+    # observed before its own start; in that case no quote can pass the in-play rule, so no close can follow from it
     if cutoff is None and os.path.exists(os.path.join(lines_dir, "closing.csv")):   # never observed pregame
         with open(os.path.join(lines_dir, "closing.csv"), newline="") as fh:
             ids = {int(x) for x in game_key.split("|")[1:]}
             st = [ts(r["start"]) for r in csv.DictReader(fh) if r["date"] == game_key.split("|")[0] and r["start"]
                   and {int(float(r["home_id"])), int(float(r["away_id"]))} == ids]
             cutoff = max(st) if st else None
-    out = {"cutoff": cutoff.isoformat() if cutoff else None, "books": 0, "close": None, "clv": None, "ties": []}
+            source = "closing.csv start (no raw pregame observation)" if cutoff is not None else None
+    out = {"cutoff": cutoff.isoformat() if cutoff else None, "cutoff_source": source, "books": 0, "close": None, "clv": None, "ties": []}
     if cutoff is None:
         return out
     per = {}
@@ -231,7 +235,7 @@ def build(bet_id: str) -> str:
                  f"({p.get('books_espn_start')} book(s)), CLV {_fmt(p.get('clv_espn_start'))}")
     rc = recompute(b.to_dict(), key)
     L.append("\n### Independent recomputation from the raw files (standard library only)\n")
-    L.append(f"- Cutoff {rc['cutoff']}; books {rc['books']}; per book (home/total number) {rc.get('per_book', {})}; "
+    L.append(f"- Cutoff {rc['cutoff']} (from {rc['cutoff_source']}); books {rc['books']}; per book (home/total number) {rc.get('per_book', {})}; "
              f"close {_fmt(rc['close'], '{:g}')}; alert CLV {_fmt(rc['clv'])}"
              + (f"; same-time ties with different numbers at {sorted(set(rc['ties']))}" if rc["ties"] else ""))
     nums = rc.get("per_book", {})
@@ -272,45 +276,71 @@ def build(bet_id: str) -> str:
     cv = clv_primary.coverage(a[(a["status"] == "settled")])
     L.append(f"\nClosing-data coverage, all decided plays: {clv_primary.coverage_text(cv)}.\n")
 
-    # evidence checklist: "first live capture verified" only when every check passes
+    # evidence checklist, three separate conclusions; "first live capture verified" only when all three pass
     inc = w[w["role"].str.startswith("INCLUDED")] if len(w) else pd.DataFrame()
-    checks = [
+    have = pd.notna(p["close_primary"]) and rc["close"] is not None
+    arithmetic = [
+        ("Independent cutoff equals the stored cutoff", rc["cutoff"] is not None and bool(p["cutoff"]) and
+         pd.Timestamp(rc["cutoff"]) == pd.Timestamp(p["cutoff"])),
+        ("Independent book count equals the stored count", have and rc["books"] == int(p["books_primary"] or 0)),
+        ("Independent close equals the stored close", have and abs(rc["close"] - float(p["close_primary"])) < 1e-9),
+        ("Independent alert CLV equals the stored CLV (signed)", have and abs(rc["clv"] - float(p["clv_primary"])) < 1e-9),
+        ("No same-time ties with different numbers", not rc["ties"]),
+    ]
+    eligibility = [
+        ("Cutoff established from raw pregame observations (not the closing.csv start)",
+         rc["cutoff_source"] == "raw observation" and p["cutoff_source"] == "latest pregame report"),
+        ("Every included quote: eligible book, status available, a number",
+         len(inc) > 0 and bool(inc["book"].isin(fe.BOOKS).all() and (inc["status"] == "available").all() and inc["line"].notna().all())),
+        ("Every included quote observed (our clock) in [cutoff - 15 min, cutoff) and before its own reported start",
+         len(inc) > 0 and bool(((inc["t"] >= cutoff - fe.STRICT_WINDOW) & (inc["t"] < cutoff) & (inc["t"] < inc["st"])).all())),
+        ("Every included quote: provider timestamp within 5 minutes of our receipt (-60 s to +300 s)",
+         len(inc) > 0 and bool(inc["age"].between(-fe.CLOCK_SKEW_S, fe.STRICT_MAX_AGE_S).all())),
+        ("Included quotes match the stored book count", len(inc) == int(p["books_primary"] or 0)),
+        (f"Pregame verified against the actual tip (ESPN play-by-play): {p.get('pregame_check')}",
+         p.get("pregame_check") == "verified"),
+        ("Tip time consistent: cutoff within 10 min of ESPN's start and the feed's latest start", p["tip_check"] == "ok"),
+    ]
+    operational = [
         ("Original entry present (line, odds, book, logged time)", all(pd.notna(b.get(k)) for k in ("line", "odds", "book", "logged_at"))),
         ("Game settled (final score graded)", r["status"] == "settled"),
-        ("Cutoff known and its source stated", bool(p["cutoff"]) and bool(p["cutoff_source"])),
-        ("Tip time consistent: cutoff within 10 min of ESPN's start and the feed's latest start", p["tip_check"] == "ok"),
-        ("At least 2 eligible books with a fresh quote in the window", int(p["books_primary"] or 0) >= 2),
-        ("Every included quote: observed in the window, before the cutoff and its own start, age <= 300 s",
-         len(inc) > 0 and bool(((inc["t"] >= cutoff - fe.STRICT_WINDOW) & (inc["t"] < cutoff) & (inc["t"] < inc["st"]) &
-                                inc["age"].between(-fe.CLOCK_SKEW_S, fe.STRICT_MAX_AGE_S)).all())),
-        ("Included books match the stored book count", len(inc) == int(p["books_primary"] or 0)),
-        ("Signed CLV equals the protocol's line value at the stored close",
-         pd.notna(p["clv_primary"]) and abs(float(p["clv_primary"]) - fe.line_value(b, float(p["close_primary"]))) < 1e-9),
-        ("Independent recomputation from the raw files gives the same cutoff, books, close and CLV",
-         rc["close"] is not None and pd.notna(p["close_primary"]) and rc["books"] == int(p["books_primary"] or 0) and
-         abs(rc["close"] - float(p["close_primary"])) < 1e-9 and abs(rc["clv"] - float(p["clv_primary"])) < 1e-9 and
-         pd.Timestamp(rc["cutoff"]) == pd.Timestamp(p["cutoff"]) and not rc["ties"]),
-        ("Every surface shows the same CLV", len({val for k, val in rows if k != "Loss review reason" and val != "not settled"}) == 1),
+        ("At least 2 eligible books in the close", int(p["books_primary"] or 0) >= 2),
+        ("Every surface shows the same CLV (consistency only)",
+         len({val for k, val in rows if k != "Loss review reason" and val != "not settled"}) == 1),
     ]
     L.append("## 6. Evidence checklist\n")
-    L.append("| Check | Result |\n|---|---|")
-    L += [f"| {k} | {'pass' if ok else 'FAIL'} |" for k, ok in checks]
+    L.append(f"Actual tip (ESPN play-by-play, first play): {p.get('actual_tip') or 'not available'}. "
+             f"Pregame check: **{p.get('pregame_check')}**: {p.get('pregame_note')}\n")
+    verdicts = []
+    for title, checks in (("A. Does the independent arithmetic match?", arithmetic),
+                          ("B. Were the selected quotes pregame and eligible under the documented rules?", eligibility),
+                          ("C. Operational", operational)):
+        ok_all = all(ok for _, ok in checks)
+        verdicts.append((title, ok_all, [k for k, ok in checks if not ok]))
+        L.append(f"### {title} {'YES' if ok_all else 'NO'}\n")
+        L.append("| Check | Result |\n|---|---|")
+        L += [f"| {k} | {'pass' if ok else 'FAIL'} |" for k, ok in checks]
+        L.append("")
     open_items = []
     if p["tip_check"] != "ok":
         open_items.append(f"tip time {p['tip_check']}: cutoff {p['cutoff']} vs ESPN {p['espn_start']} / feed latest {p['feed_latest_start']}")
+    if p.get("pregame_check") != "verified":
+        open_items.append(f"pregame check {p.get('pregame_check')}: {p.get('pregame_note')}")
     if int(p["books_primary"] or 0) == 1:
         open_items.append("one-book close (valid under the frozen rule; flagged)")
     if outl:
         open_items.append(f"closing book(s) 1+ point off the others: {', '.join(outl)}")
-    open_items.append("feed timestamp = provider refresh time (inferred, not confirmed by the provider); a refreshed "
-                      "but unchanged book price cannot be told apart from a live one")
+    open_items.append("provider timestamp meaning unconfirmed: the filter checks only that the provider timestamp is "
+                      "within 5 minutes; it does not show the book's price was re-confirmed")
     if 0 < int(p["books_primary"] or 0) < 7:
         open_items.append(f"{p['books_primary']} of 7 books in the close")
     if not len(c):
-        open_items.append("no confirmed fill (cohort C); CLV is the alert price's")
-    L.append("\n**Open items (stay visible whatever the verdict):** " + ("; ".join(open_items) if open_items else "none") + ".")
-    verdict = all(ok for _, ok in checks)
-    L.append(f"\n**Verdict: {'first live capture verified' if verdict else 'first live capture NOT verified: ' + '; '.join(k for k, ok in checks if not ok)}.** "
+        open_items.append("no confirmed fill (cohort C); CLV is the alert number's")
+    L.append("**Open items (stay visible whatever the verdict):** " + ("; ".join(open_items) if open_items else "none") + ".")
+    verdict = all(ok for _, ok, _ in verdicts)
+    L.append("\n" + "\n".join(f"- {t} **{'YES' if ok else 'NO'}**" + (f" (failed: {'; '.join(f)})" if f else "")
+                               for t, ok, f in verdicts))
+    L.append(f"\n**Verdict: {'first live capture verified' if verdict else 'first live capture NOT verified'}.** "
              f"The overall CLV tracking status stays \"{clv_primary.VERIFICATION_STATUS}\" until Chad changes it.\n")
     return "\n".join(L) + "\n"
 
