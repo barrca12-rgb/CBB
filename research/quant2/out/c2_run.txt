@@ -1,0 +1,15 @@
+spread: MAE 2020-26 8.8823 -> 8.8802, gain +0.0021 95% [-0.0003, +0.0046], 99.4% [-0.0015, +0.0055]; seasons better 5 of 7; RMSE 11.2574 -> 11.2589; mean shift of the forecast -0.078, SD of the change 0.206
+   opener 2024-26: 2268 plays 57.76% -> 2196 plays 57.83%; dropped 250 (56.8%), added 178 (57.3%)
+   opener 2015-17: 1927 plays 56.82% -> 1880 plays 56.01%; dropped 252 (57.1%), added 205 (49.8%)
+   close 2020-26: 5561 plays 52.22% -> 5371 plays 52.47%; dropped 587 (50.9%), added 397 (53.7%)
+   slope of (result - close) on (model - close): 0.262 -> 0.250
+total: MAE 2020-26 13.1499 -> 13.1254, gain +0.0245 95% [+0.0166, +0.0324], 99.4% [+0.0134, +0.0351]; seasons better 6 of 7; RMSE 16.6649 -> 16.6570; mean shift of the forecast -0.634, SD of the change 0.227
+   opener 2024-26: 3706 plays 55.56% -> 3376 plays 56.31%; dropped 937 (53.4%), added 607 (56.3%); overs share 71% -> 51%
+   opener 2015-17: 3587 plays 57.71% -> 3385 plays 57.70%; dropped 573 (54.5%), added 371 (52.6%); overs share 69% -> 56%
+   close 2020-26: 11059 plays 51.61% -> 9105 plays 52.10%; dropped 2876 (51.3%), added 922 (55.4%); overs share 84% -> 70%
+   slope of (result - close) on (model - close): 0.143 -> 0.141
+
+MAE gain by season (+ = LAD better):
+market   2020   2021   2022   2023    2024    2025    2026
+spread 0.0070 0.0051 0.0082 0.0029 -0.0059 -0.0019  0.0005
+ total 0.0607 0.0492 0.0434 0.0107  0.0160  0.0063 -0.0039

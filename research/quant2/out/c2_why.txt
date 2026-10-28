@@ -1,0 +1,14 @@
+C2 LAD: totals MAE gain 2020-26 +0.0245 [+0.0166, +0.0324]; by season 2020 +0.0607, 2021 +0.0492, 2022 +0.0434, 2023 +0.0107, 2024 +0.0160, 2025 +0.0063, 2026 -0.0039
+A1 median-centered OLS: totals MAE gain 2020-26 +0.0246 [+0.0178, +0.0316]; by season 2020 +0.0554, 2021 +0.0562, 2022 +0.0463, 2023 +0.0095, 2024 +0.0152, 2025 +0.0070, 2026 -0.0044
+A1 intercept shift by season (training median residual): 2020 -0.60, 2021 -0.63, 2022 -0.61, 2023 -0.60, 2024 -0.59, 2025 -0.60, 2026 -0.61
+A2 training 2013-25: overtime games 6.1%, their mean residual +17.7; mean - median of residuals: all games +0.61, regulation only +0.31; skewness all 0.30, regulation 0.12
+A3 v1 mean total residual by season (result - forecast): 2020 -1.63, 2021 -1.58, 2022 -1.25, 2023 -0.19, 2024 -0.19, 2025 -0.05, 2026 +0.60
+A4 v1: share of 2020-26 games over the forecast 47.2%
+A4 C2 LAD: share of 2020-26 games over the forecast 48.8%
+A4 A1: share of 2020-26 games over the forecast 48.7%
+A5 E2 -> E2 median-centered: totals MAE gain 2020-26 +0.0243 [+0.0178, +0.0311]
+   v1: opener 2024-26 3706 plays 55.56% (overs 71%); close 2020-26 11059 plays 51.61%; MAE 2020-26 13.1499
+   E2: opener 2024-26 3763 plays 56.28% (overs 71%); close 2020-26 10885 plays 51.83%; MAE 2020-26 13.1385
+   C2 LAD: opener 2024-26 3376 plays 56.31% (overs 51%); close 2020-26 9105 plays 52.10%; MAE 2020-26 13.1254
+   A1: opener 2024-26 3405 plays 55.95% (overs 53%); close 2020-26 9170 plays 52.22%; MAE 2020-26 13.1253
+   E2 centered: opener 2024-26 3370 plays 56.38% (overs 52%); close 2020-26 9016 plays 52.55%; MAE 2020-26 13.1141
