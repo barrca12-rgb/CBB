@@ -48,3 +48,31 @@ clears both eras, so nothing changes. Ready if needed:
 - **Forward checks (2026-27, live):** at Jan 15 (descriptive) and the Mar 14 read, report totals by half, side and
   opener level, win % against the opener and the close. The 150+ hypothesis gets its first clean test on 2026-27
   January-March games.
+
+## Run 2 (Oct 28): round 2 candidates (PLAN.md Part 3); all killed, recent form the one lead
+
+`round2.py`; full table in `out/round2.txt`.
+
+| Candidate | Jan-Mar win % change, dev / holdout | Jan-Mar CLV change | Nov-Dec win % change | Full-season win % change | Verdict |
+|---|---|---|---|---|---|
+| (e) drift correction, k = 1 (chosen on dev) | +1.6 / **-1.2** | +0.68 / -0.03 | +1.1 / -2.7 | +1.5 / -1.8 | KILL |
+| (f) recent form (last-10 residual) | +0.6 / **+1.6** | +0.04 / +0.30 | +0.2 / -1.0 | **+0.5 / +0.5** | KILL (dev short of +1.0; holdout Nov-Dec -1.02) |
+| (g) market anchor by month | -0.6 / +0.7 | -0.08 / +0.06 | 0 / 0 | -0.3 / +0.5 | KILL |
+| (h) blowout term | +0.0 / -0.0 | 0.00 / 0.00 | -0.1 / -0.1 | 0.0 / 0.0 | KILL |
+
+- **(e) drift** helps only where the model itself was biased: the dev-era walk-forward ran 2.5-4.6 points low (few
+  training seasons), and the correction fixed that. In 2024-26 the model was close to unbiased, so the correction
+  mostly adds noise and loses. Not a fix for a well-trained model; the January check watches the bias directly.
+- **(f) recent form** is the only candidate positive in both eras on late totals and on the full season (+0.5
+  win-% points each, late CLV +0.04 / +0.30). It failed the pre-registered bar (dev +0.6, needed +1.0; holdout
+  November-December -1.02, limit -1.0). Lead for the March list: evaluate it on 2026-27 games at the Mar 14 read
+  from the card's saved stage-2 inputs (reports/features_<date>.csv), which is fresh, out-of-sample data. That is a
+  research read after the fact, not a third live shadow.
+- **(g) month ratios:** the model's information beyond the close is not lower in January-February than in
+  November-December in 2024-26 (ratio 1.0); it drops only in March (0.66-0.78). Late totals plays lose to the
+  close because the close moves onto our opener edge, not because the model knows less in January.
+- **(h) blowout term:** no effect (the 0.9-point gap in lopsided games was already captured or is noise).
+
+**Verdict after both rounds:** eight pre-registered adjustments, none clears both eras. No change. Ready if needed:
+fallback (d) late unders need a 4-point edge (holdout +1.2) and lead (f) recent form (both eras positive), both
+judged on 2026-27 data at Jan 29 / Mar 14 before anything goes to Chad for approval.
