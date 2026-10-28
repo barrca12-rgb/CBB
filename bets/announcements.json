@@ -28,5 +28,10 @@
   "id": "2026-10-28-final-read",
   "date": "2026-10-28",
   "text": "Protocol note, recorded Oct 28: the season's final forward-test read moves from March 16 to Sunday, March 14 (Selection Sunday), after every game through that day is graded, so the verdict lands before the NCAA tournament starts. Same games (Nov 1 through Mar 14), same measures and thresholds; no game had been played. No change to the model, the betting rules or staking. Protocol v2.1, recorded in MODEL_FREEZE.md."
+ },
+ {
+  "id": "2026-10-28-clv-definition",
+  "date": "2026-10-28",
+  "text": "Record note, recorded Oct 28, before the first games: closing-line value (CLV) now has one definition everywhere, the forward test's primary close. For each sportsbook, its last fresh quote (no more than 5 minutes old) in the 15 minutes before tip; the close is the median across books. Result posts, the card, the record page, the weekly charts and the model-check alert all use it. A play with no fresh closing quote shows CLV as unavailable, with the reason, and is left out of averages; it is never counted as zero. Averages show how many decided plays have a close. The same-book CLV shown before is kept as a diagnostic only. No result had been posted yet, so nothing earlier changes. No change to the model, the plays, the betting rules or staking. CLV tracking is built, and will be marked verified only after it is checked on the first game. Recorded in MODEL_FREEZE.md."
  }
 ]

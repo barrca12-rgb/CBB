@@ -35,7 +35,7 @@ def _label(payload: dict) -> str:
     """What a post was about, for the alert log: the bet id in its footer, or its title or first words."""
     e = (payload.get("embeds") or [{}])[0]
     foot = (e.get("footer") or {}).get("text", "")
-    return foot.replace("bet id ", "") if foot.startswith("bet id ") else (e.get("title") or payload.get("content", ""))[:120]
+    return foot.replace("bet id ", "").split(" · ")[0] if foot.startswith("bet id ") else (e.get("title") or payload.get("content", ""))[:120]
 
 
 def url_shape(url: str) -> str:
@@ -94,13 +94,23 @@ def _settled(b: pd.Series) -> dict:
     res = {"W": "WIN", "L": "LOSS", "P": "PUSH"}.get(str(b["result"]), str(b["result"]))
     color = GREEN if res == "WIN" else RED if res == "LOSS" else GRAY
     placed = "not placed" if str(b.get("placed", "")).lower() == "no" else "placed"
+    # b is clv_primary.attach()ed: close_line / clv_pts are the protocol's primary (consensus) close; the grader's
+    # same-book values are clv_same_book / close_same_book, shown as a diagnostic only
+    ok = pd.notna(b["clv_pts"])
+    nb = int(b["books_primary"]) if pd.notna(b.get("books_primary")) else 0
     fields = [("Final", f"{b['away']} {b['away_score']:.0f}, {b['home']} {b['home_score']:.0f}"),
-              ("Close", f"{b['close_line']:g}" if pd.notna(b["close_line"]) else "–"),
-              ("CLV", f"{b['clv_pts']:+.1f} pts" if pd.notna(b["clv_pts"]) else "–"),
+              ("Close (consensus)", f"{b['close_line']:g} ({nb} book{'s' if nb != 1 else ''})" if ok else "unavailable"),
+              ("CLV", f"{b['clv_pts']:+.2f} pts" if ok else "unavailable"),
               ("Units", f"{b['profit']:+.2f}" if pd.notna(b["profit"]) else "–"), ("Bet", placed)]
+    if not ok:
+        fields.append(("Why no CLV", str(b.get("clv_reason") or "no primary close")[:1000]))
+    if pd.notna(b.get("clv_same_book")):
+        fields.append(("Same-book CLV (diagnostic)", f"{b['clv_same_book']:+.2f} pts"))
+    from .clv_primary import VERIFICATION_STATUS
     return {"embeds": [{"title": f"{res}: {b['pick']} {_price(b['odds'])}", "color": color,
                         "fields": [{"name": k, "value": v, "inline": True} for k, v in fields],
-                        "footer": {"text": f"bet id {b['bet_id']}"}}]}
+                        "footer": {"text": f"bet id {b['bet_id']} · CLV vs the consensus close of fresh quotes in the "
+                                           f"last 15 min before tip · CLV tracking: {VERIFICATION_STATUS}"}}]}
 
 
 def sync(url: str | None = None) -> int:
@@ -135,7 +145,8 @@ def _sync(url: str) -> int:
         if a["id"] not in st["notes"] and post({"embeds": [{"title": f"Model note · {a['date']}",
                                                             "description": a["text"], "color": GRAY}]}, url):
             done("notes", a["id"])
-    b = tracker.load().sort_values("logged_at")
+    from . import clv_primary
+    b = clv_primary.attach(tracker.load()).sort_values("logged_at")   # results post the primary-close CLV
     for _, r in b.iterrows():
         i = r["bet_id"]
         if i not in st["bets"]:
@@ -152,6 +163,9 @@ def _sync(url: str) -> int:
             if post({"content": f"CORRECTION: {r['pick']} ({r['away']} at {r['home']}, {r['date']}) is reinstated "
                                 f"and graded. bet id {i}"}, url):
                 done("reinstated", i)
+        # posts are never edited: a result waits for the next run if the closing observations could not be read
+        if r["status"] == "settled" and str(r.get("clv_reason", "")).startswith("observations could not be read"):
+            continue
         if r["status"] == "settled" and i not in st["settled"] and post(_settled(r), url):
             done("settled", i)
     return n

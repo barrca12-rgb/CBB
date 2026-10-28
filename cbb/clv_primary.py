@@ -1,54 +1,217 @@
-"""Closing-line value at the forward-test protocol's primary close (FORWARD_TEST_PROTOCOL.md section 7), for display:
-the record page and the weekly chart show this, so they agree with the protocol's reads to the decimal.
+"""Closing-line value at the forward-test protocol's primary close (FORWARD_TEST_PROTOCOL.md section 7): the one CLV
+calculation every surface uses (Discord results, the card's CLV tile and record table, the record page, the
+verification page, the weekly charts and the model-check tripwire).
 
-The close is computed by the protocol's own code (audit/forward_eval.py: tip_cutoff, strict_close, to_side,
-line_value), imported read-only: per eligible book, the last valid observation (available, feed timestamp at most
-300 seconds old) made within 15 minutes before the tip cutoff; consensus = median across books. A play with no
-valid observation in that window has no primary close (NaN), as in the protocol, and is counted as missing.
+The close is computed by the protocol's own code (audit/forward_eval.py: load_obs, tip_cutoff, fallback_start,
+strict_close, to_side, line_value, assess), imported read-only and never re-implemented: per eligible book, the last
+valid observation (available, feed timestamp at most 300 seconds old, up to 60 seconds ahead accepted) made within
+the 15 minutes before the tip cutoff and before the quote's own reported start; consensus = median across books. A
+play with no valid observation in that window has no primary close: it is reported as unavailable with a reason and
+counted, never filled with the grader's close or with zero.
 
-Read only: bets/bets.csv (and its grader's clv_pts, the per-book benchmark close) is never changed here.
+The grader's same-book close (bets/bets.csv close_line / clv_pts, written by cbb/tracker.py) is kept as a diagnostic
+column only (close_same_book / clv_same_book here) and is labeled as such wherever it is shown.
+
+Price: the protocol compares a quote with the entry by number and payout, without converting points or prices into
+probabilities (forward_eval.assess, measure A). The same comparison is reported for each closing book's quote on the
+play's side; no new conversion is introduced.
+
+Read only: bets/bets.csv is never changed here. write() saves a per-play table, bets/clv_primary.csv (derived; safe
+to delete and rebuild).
 """
 from __future__ import annotations
+
+import json
+import os
 
 import numpy as np
 import pandas as pd
 
+# Shown next to every CLV figure until the first-game report (audit/CLV_VERIFICATION.md, section 7) confirms the
+# pipeline on a real game. Changed only by that report.
+VERIFICATION_STATUS = "built, not verified"
+TABLE = os.path.join(os.path.dirname(__file__), "..", "bets", "clv_primary.csv")
+COLS = ["bet_id", "cohort", "cutoff", "cutoff_source", "espn_start", "start_gap_min", "close_primary", "clv_primary",
+        "books_primary", "feed_age_s", "obs_before_cutoff_s", "clv_status", "clv_reason", "price_vs_close"]
+START_GAP_FLAG_MIN = 10   # diagnostic: the cutoff (the feed's reported start) differs from ESPN's scheduled start
+_CACHE: dict = {}
 
-def primary(b: pd.DataFrame, obs: pd.DataFrame | None = None, closing: pd.DataFrame | None = None) -> pd.DataFrame:
-    """bet_id, close_primary (signal's side), clv_primary (points, + = beat the close), books_primary."""
+
+def _obs_key() -> tuple:
+    from cbb import quotelog
+    out = []
+    for d in ("obs", "obs_targeted"):
+        p = os.path.join(quotelog.LINES, d)
+        for f in sorted(os.listdir(p)) if os.path.isdir(p) else []:
+            st = os.stat(os.path.join(p, f))
+            out.append((d, f, st.st_size, st.st_mtime_ns))
+    return tuple(out)
+
+
+def _load_obs(obs):
+    """The protocol's typed observations, cached per process while the log files are unchanged."""
     from audit import forward_eval as fe
-    import os
+    if obs is not None:
+        return fe.load_obs(obs)
+    k = _obs_key()
+    if _CACHE.get("key") != k:
+        _CACHE.update(key=k, obs=fe.load_obs(None))
+    return _CACHE["obs"]
+
+
+def _reason(fe, og: pd.DataFrame, market: str, cutoff, now: pd.Timestamp) -> tuple[str, str]:
+    """Why a play has no primary close. Diagnostic only: the close itself always comes from fe.strict_close."""
+    if cutoff is None or pd.isna(cutoff):
+        return "unavailable", "tip time unknown (no pregame observation and no scheduled start in closing.csv)"
+    if now < cutoff:
+        return "pending", "game has not reached its tip cutoff"
+    if not len(og):
+        return "unavailable", "no quotes logged for this game"
+    w = og[(og["market"] == market) & og["book"].isin(fe.BOOKS) & (og["t"] >= cutoff - fe.STRICT_WINDOW) &
+           (og["t"] < cutoff) & ~(og["t"] >= og["st"])]
+    if not len(w):
+        return "unavailable", "no quote observed in the 15 minutes before the tip cutoff"
+    unav = int((w["status"] != "available").sum())
+    stale = int(((w["status"] == "available") & ~w["age"].between(-fe.CLOCK_SKEW_S, fe.STRICT_MAX_AGE_S)).sum())
+    noline = int(((w["status"] == "available") & w["age"].between(-fe.CLOCK_SKEW_S, fe.STRICT_MAX_AGE_S) &
+                  w["line"].isna()).sum())
+    return "unavailable", (f"{len(w)} quote(s) in the 15-minute window, none valid: {unav} unavailable or absent, "
+                           f"{stale} with a feed timestamp older than {fe.STRICT_MAX_AGE_S} s or missing, {noline} without a number")
+
+
+def _price_vs_close(fe, b: pd.Series, og: pd.DataFrame, cutoff) -> list[dict]:
+    """Per eligible book, its last valid quote on the play's own side in the closing window, compared with the
+    entry by the protocol's measure A (number, then payout; no conversion)."""
+    if cutoff is None or pd.isna(cutoff) or not len(og):
+        return []
+    w = og[(og["market"] == b["market"]) & og["book"].isin(fe.BOOKS) & (og["t"] >= cutoff - fe.STRICT_WINDOW) &
+           (og["t"] < cutoff) & ~(og["t"] >= og["st"]) & (og["side"] == b["side"])]
+    w = w[(w["status"] == "available") & w["age"].between(-fe.CLOCK_SKEW_S, fe.STRICT_MAX_AGE_S) & w["line"].notna()]
+    out = []
+    for _, r in w.groupby("book", sort=True).tail(1).iterrows():
+        a = fe.assess(b, r)
+        out.append({"book": r["book"], "line": float(r["line"]),
+                    "price": float(r["price"]) if fe.has_price(r["price"]) else None, "age_s": int(r["age"]),
+                    "observed_at": r["t"].isoformat(), "vs_entry": a["A"]})
+    return out
+
+
+def _espn_starts(dates) -> dict:
+    """game_id -> ESPN's scheduled start from the card files (reports/cbb_<date>.csv `start`). Diagnostic only: the
+    protocol's cutoff is the feed's reported start and is not changed by this."""
+    from audit import forward_eval as fe
+    out = {}
+    for d in set(dates):
+        f = os.path.join(fe.ROOT, "reports", f"cbb_{d}.csv")
+        if os.path.exists(f):
+            c = pd.read_csv(f, usecols=["game_id", "start"])
+            out.update(dict(zip(c["game_id"].astype(int), pd.to_datetime(c["start"], utc=True, errors="coerce", format="ISO8601"))))
+    return out
+
+
+def primary(b: pd.DataFrame, obs: pd.DataFrame | None = None, closing: pd.DataFrame | None = None,
+            now: pd.Timestamp | None = None) -> pd.DataFrame:
+    """One row per bet: the primary close and CLV (points, + = beat the close) from the signal's side, the books and
+    their quote ages, the status (ok / pending / unavailable / void) with a reason, and the price comparison."""
+    from audit import forward_eval as fe
     if closing is None:
         p = os.path.join(fe.ROOT, "lines", "closing.csv")
         closing = pd.read_csv(p) if os.path.exists(p) else pd.DataFrame(
             columns=["date", "home_id", "away_id", "book", "home_spread", "total", "start", "pulled_at"])
-    o = fe.load_obs(obs)
+    now = now or pd.Timestamp.now(tz="UTC")
+    o = _load_obs(obs)
     by_game = dict(tuple(o.groupby("game_key", sort=False))) if len(o) and "game_key" in o else {}
+    espn = _espn_starts(b["date"]) if len(b) else {}
     rows = []
     for _, r in b.iterrows():
         key = f"{r['date']}|{min(int(r['home_id']), int(r['away_id']))}|{max(int(r['home_id']), int(r['away_id']))}"
         og = by_game.get(key, o.iloc[0:0])
-        cutoff, _ = fe.tip_cutoff(og, fe.fallback_start(closing, r))
+        cutoff, src = fe.tip_cutoff(og, fe.fallback_start(closing, r))
         sc = fe.strict_close(og, r["market"], cutoff)
         close = fe.to_side(r, sc["close"])
-        rows.append({"bet_id": r["bet_id"], "close_primary": close, "clv_primary": fe.line_value(r, close),
-                     "books_primary": sc["books"]})
-    return pd.DataFrame(rows, columns=["bet_id", "close_primary", "clv_primary", "books_primary"])
+        clv = fe.line_value(r, close)
+        cohort = "v1" if pd.Timestamp(r["logged_at"]) >= fe.PROTOCOL_START else "pre-freeze"
+        es = espn.get(int(r["game_id"]))
+        gap = round((cutoff - es).total_seconds() / 60) if es is not None and pd.notna(es) and cutoff is not None \
+            and pd.notna(cutoff) else None
+        if str(r.get("status")) == "void":
+            st, why = "void", "void: excluded from every metric"
+        elif np.isnan(close):
+            st, why = _reason(fe, og, r["market"], cutoff, now)
+        else:
+            st, why = "ok", f"{sc['books']} book(s)"
+        if gap is not None and abs(gap) > START_GAP_FLAG_MIN:
+            why += (f"; flag: the cutoff (the feed's reported start) is {abs(gap)} min "
+                    f"{'before' if gap < 0 else 'after'} ESPN's scheduled start")
+        rows.append({"bet_id": r["bet_id"], "cohort": cohort,
+                     "cutoff": cutoff.isoformat() if cutoff is not None and pd.notna(cutoff) else None,
+                     "cutoff_source": src, "espn_start": es.isoformat() if es is not None and pd.notna(es) else None,
+                     "start_gap_min": gap, "close_primary": close, "clv_primary": clv,
+                     "books_primary": sc["books"], "feed_age_s": json.dumps(sc.get("feed_age_s", [])),
+                     "obs_before_cutoff_s": json.dumps(sc.get("obs_before_cutoff_s", [])),
+                     "clv_status": st, "clv_reason": why,
+                     "price_vs_close": json.dumps(_price_vs_close(fe, r, og, cutoff))})
+    return pd.DataFrame(rows, columns=COLS)
 
 
 def attach(b: pd.DataFrame) -> pd.DataFrame:
-    """The bet log with clv_pts and close_line replaced by the primary-close values (display copy only). Settled
-    plays without a primary close show none. If the observations cannot be read, the copy is returned unchanged
-    and marked, so a page never fails on it."""
+    """The bet log with close_line and clv_pts replaced by the primary-close values (display copy only); the
+    grader's same-book values move to close_same_book / clv_same_book (diagnostic). Plays without a primary close
+    show none, with clv_status and clv_reason saying why. If the observations cannot be read, every CLV shows as
+    unavailable with that reason (never the grader's close)."""
     b = b.copy()
+    b["close_same_book"], b["clv_same_book"] = b.get("close_line"), b.get("clv_pts")
     try:
         p = primary(b).set_index("bet_id")
-    except Exception as e:                       # never stop a page; say so
-        print(f"Primary close unavailable ({e}); showing the grader's close.")
-        b.attrs["clv_source"] = "grader"
+    except Exception as e:                       # never stop a page; say so, and show no CLV
+        print(f"Primary close unavailable ({e}).")
+        b["close_line"], b["clv_pts"] = np.nan, np.nan
+        b["clv_status"], b["clv_reason"], b["books_primary"] = "unavailable", f"observations could not be read: {e}", 0
+        b.attrs["clv_source"] = "unavailable"
         return b
-    b["close_line"] = b["bet_id"].map(p["close_primary"])
-    b["clv_pts"] = b["bet_id"].map(p["clv_primary"])
+    for c in COLS[1:]:
+        b[c] = b["bet_id"].map(p[c])
+    b["close_line"], b["clv_pts"] = b["close_primary"], b["clv_primary"]
     b.loc[b["status"] != "settled", ["close_line", "clv_pts"]] = np.nan
     b.attrs["clv_source"] = "primary"
     return b
+
+
+def coverage(s: pd.DataFrame) -> dict:
+    """For settled plays s (attach()ed): decided plays (W or L), how many have a primary close, mean CLV over those,
+    and the share. Missing closes are excluded from the mean and counted, never treated as zero."""
+    d = s[s["result"].isin(["W", "L"])] if "result" in s else s.iloc[0:0]
+    c = pd.to_numeric(d["clv_pts"], errors="coerce").dropna() if len(d) else pd.Series(dtype=float)
+    n = int(len(d))
+    return {"decided": n, "with_close": int(len(c)), "missing": n - int(len(c)),
+            "share": (len(c) / n) if n else None, "clv": float(c.mean()) if len(c) else None,
+            "beat": float((c > 0).mean()) if len(c) else None}
+
+
+def coverage_text(cv: dict) -> str:
+    """'close for 7 of 8 decided plays (88%)', or 'no decided plays yet'."""
+    if not cv["decided"]:
+        return "no decided plays yet"
+    return f"primary close for {cv['with_close']} of {cv['decided']} decided plays ({cv['share']:.0%})"
+
+
+def accepted_clv(b: pd.DataFrame, acc: pd.DataFrame) -> pd.Series:
+    """Cohort C: CLV of the accepted bet's own number against the same primary close (b attach()ed). Indexed like
+    acc. A play without a primary close has none."""
+    from audit import forward_eval as fe
+    m = acc.merge(b[["bet_id", "market", "side", "close_primary", "status"]], on="bet_id", how="left")
+    out = [fe.line_value(pd.Series({"market": r["market"], "side": r["side"], "line": r["line"]}), float(r["close_primary"]))
+           if r["status"] == "settled" and pd.notna(r["close_primary"]) and pd.notna(r["line"]) else np.nan
+           for _, r in m.iterrows()]
+    return pd.Series(out, index=acc.index, dtype=float)
+
+
+def write(b: pd.DataFrame | None = None) -> pd.DataFrame:
+    """Save the per-play table (bets/clv_primary.csv): every play's primary close, books, quote ages, status and
+    reason, and the price comparison. Derived from the logs; rebuilt on every card run."""
+    if b is None:
+        from cbb import tracker
+        b = tracker.load()
+    p = primary(b)
+    p.to_csv(TABLE, index=False)
+    return p

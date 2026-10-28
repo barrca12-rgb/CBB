@@ -34,10 +34,26 @@ def summary(s: pd.DataFrame) -> dict:
     w, l, p = (s["result"] == "W").sum(), (s["result"] == "L").sum(), (s["result"] == "P").sum()
     staked = s["stake"].astype(float).sum()
     units = float(s["profit"].astype(float).sum())
-    clv = s["clv_pts"].astype(float).dropna()
+    cv = clv_primary.coverage(s)   # primary close; decided plays with a close; missing counted, never zero
     return {"bets": int(len(s)), "rec": f"{w}-{l}" + (f"-{p}" if p else ""), "win": w / (w + l) if w + l else None,
-            "units": units, "roi": units / staked if staked else None, "clv": float(clv.mean()) if len(clv) else None,
-            "beat": float((clv > 0).mean()) if len(clv) else None}
+            "units": units, "roi": units / staked if staked else None, "clv": cv["clv"], "beat": cv["beat"],
+            "cov": f"{cv['with_close']}/{cv['decided']}" if cv["decided"] else "–", "cv": cv}
+
+
+def _na(r) -> str:
+    """'n/a' with the reason a settled play has no primary close (open plays show a dash)."""
+    if r.get("status") != "settled":
+        return "–"
+    return f"<span title='{html.escape(str(r.get('clv_reason') or 'no primary close'))}'>n/a</span>"
+
+
+def _close_cell(r) -> str:
+    """The primary (consensus) close with its book count and quote ages, or n/a with the reason."""
+    if r.get("status") != "settled" or pd.isna(r.get("close_line")):
+        return _na(r)
+    ages = ", ".join(f"{a} s" for a in json.loads(r.get("feed_age_s") or "[]"))
+    return (f"<span title='{int(r['books_primary'])} book(s), quote ages {html.escape(ages)}'>{r['close_line']:g}"
+            f"<small> ({int(r['books_primary'])})</small></span>")
 
 
 def _row(label: str, s: dict) -> str:
@@ -45,11 +61,11 @@ def _row(label: str, s: dict) -> str:
     return (f"<tr><td class='b'>{html.escape(label)}</td><td class='r'>{s['bets']}</td><td class='r'>{s['rec']}</td>"
             f"<td class='r'>{_num(s['win'], '{:.1%}')}</td><td class='r {cls}'>{_num(s['units'])}</td>"
             f"<td class='r'>{_num(s['roi'], '{:+.1%}')}</td><td class='r'>{_num(s['clv'])}</td>"
-            f"<td class='r'>{_num(s['beat'], '{:.0%}')}</td></tr>")
+            f"<td class='r'>{_num(s['beat'], '{:.0%}')}</td><td class='r'>{s['cov']}</td></tr>")
 
 
 HEAD = ("<thead><tr><th></th><th class='r'>Plays</th><th class='r'>W-L</th><th class='r'>Win %</th><th class='r'>Units</th>"
-        "<th class='r'>ROI</th><th class='r'>CLV pts</th><th class='r'>Beat close</th></tr></thead>")
+        "<th class='r'>ROI</th><th class='r'>CLV pts</th><th class='r'>Beat close</th><th class='r'>Close coverage</th></tr></thead>")
 
 
 def _chart(s: pd.DataFrame) -> str:
@@ -78,6 +94,9 @@ ACCEPTED = os.path.join(tracker.ROOT, "bets", "accepted.csv")
 FRESH_S = 600   # cohort B: quote observed at the generating pull, source timestamp no older than this
 
 
+FE_START = pd.Timestamp("2026-10-26T19:20:50Z")   # audit/forward_eval.PROTOCOL_START (model v1 cohort start)
+
+
 def cohorts(b: pd.DataFrame) -> tuple[str, str]:
     """Cohorts A (every logged signal), B (signal backed by a fresh observed quote at a named book at the logged
     number) and C (confirmed accepted bets, bets/accepted.csv, matched to A) side by side, and C's deterioration
@@ -100,18 +119,29 @@ def cohorts(b: pd.DataFrame) -> tuple[str, str]:
         s_ = d[d["status"] == "settled"]
         w, l, p = (s_[res_col] == "W").sum(), (s_[res_col] == "L").sum(), (s_[res_col] == "P").sum()
         u = s_["profit"].astype(float).sum() if profit is None else profit
-        clv = s_["clv_pts"].astype(float).dropna()
+        cv = clv_primary.coverage(s_)   # primary close; for C the accepted number is graded against it (clv_pts set below)
         return (f"<td class='r'>{len(d)}</td><td class='r'>{len(s_)}</td><td class='r'>{w}-{l}-{p}</td>"
                 f"<td class='r'>{_num(w / (w + l) if w + l else None, '{:.1%}')}</td><td class='r'>{_num(u)}</td>"
-                f"<td class='r'>{_num(clv.mean() if len(clv) else None)}</td>")
+                f"<td class='r'>{_num(cv['clv'])}</td><td class='r'>{cv['with_close']}/{cv['decided']}</td>")
 
-    rows = (f"<tr><td class='b'>A. Every signal</td>{col(a)}</tr>"
-            f"<tr><td class='b'>B. Fresh quote at a named book</td>{col(a[fresh])}</tr>"
-            f"<tr><td class='b'>C. Confirmed accepted bets</td>{col(c) if len(c) else '<td class=r>0</td>' + '<td></td>' * 5}</tr>")
+    v1 = a["cohort"] == "v1" if "cohort" in a else pd.Series(True, index=a.index)
+    if len(c):   # cohort C: the accepted number against the same primary close (alert CLV is cohort A's)
+        c = c.assign(clv_pts=clv_primary.accepted_clv(
+            b, pd.DataFrame({"bet_id": c["bet_id"], "line": c["line_acc"]}, index=c.index)).to_numpy())
+    cv1 = c[c["bet_id"].isin(a.loc[v1, "bet_id"])] if len(c) else c
+    empty = "<td class=r>0</td>" + "<td></td>" * 6
+    rows = (f"<tr><td class='b'>A. Every model v1 signal (alert number)</td>{col(a[v1])}</tr>"
+            f"<tr><td class='b'>B. v1, fresh observed quote at the logged book and number</td>{col(a[v1 & fresh])}</tr>"
+            f"<tr><td class='b'>C. v1, confirmed accepted bets (accepted number)</td>{col(cv1) if len(cv1) else empty}</tr>"
+            f"<tr><td class='b'>Pre-freeze signals (reported separately, never pooled)</td>{col(a[~v1])}</tr>")
     head = ("<thead><tr><th>Cohort</th><th class='r'>Signals</th><th class='r'>Settled</th><th class='r'>W-L-P</th>"
-            "<th class='r'>Win %</th><th class='r'>Units (logged price)</th><th class='r'>CLV pts</th></tr></thead>")
+            "<th class='r'>Win %</th><th class='r'>Units (logged price)</th><th class='r'>CLV pts</th>"
+            "<th class='r'>Close coverage</th></tr></thead>")
     nop = int(pd.to_numeric(a["odds"], errors="coerce").isna().sum())
-    note = (f"Units use the recorded price; {nop} signal(s) without one are counted at -110 here and are left out of "
+    note = (f"A, B and C are model v1 signals (logged from {FE_START:%b %-d, %H:%M} UTC); {int((~v1).sum())} pre-freeze "
+            f"signal(s) are shown on their own row. CLV is against the protocol's primary close for every row (A and B at "
+            f"the alert number, C at the accepted number); close coverage = decided plays with a primary close. "
+            f"Units use the recorded price; {nop} signal(s) without one are counted at -110 here and are left out of "
             f"the forward test's profitability figures. "
             f"B excludes {int(unknown.sum())} signal(s) logged before quote timestamps were recorded or without one. "
             f"C counts only bets confirmed with book, time, line, odds and stake (bets/accepted.csv); "
@@ -203,7 +233,9 @@ def build() -> str:
         if os.path.exists(os.path.join(tracker.ROOT, "bets", "announcements.json")) else []
 
     kp = [("Record", tot["rec"]), ("Win %", _num(tot["win"], "{:.1%}")), ("Units", _num(tot["units"])),
-          ("ROI", _num(tot["roi"], "{:+.1%}")), ("Avg CLV", _num(tot["clv"], "{:+.2f} pts")),
+          ("ROI", _num(tot["roi"], "{:+.1%}")),
+          ("Avg CLV", _num(tot["clv"], "{:+.2f} pts") + f"<small>{html.escape(clv_primary.coverage_text(tot['cv']))} · "
+                      f"{html.escape(clv_primary.VERIFICATION_STATUS)}</small>"),
           ("Open plays", str(int((live["status"] == "open").sum())))]
     kpis = "".join(f"<div class='kpi'><div class='k'>{k}</div><div class='v'>{v}</div></div>" for k, v in kp)
 
@@ -225,11 +257,12 @@ def build() -> str:
             f"<tr><td class='m'>{r['date']}</td><td>{_logo(r['away_id'])}{html.escape(str(r['away']))} at {_logo(r['home_id'])}{html.escape(str(r['home']))}</td>"
             f"<td class='b'>{html.escape(str(r['pick']))}</td><td>{html.escape(str(r['book']))} "
             f"<span class='m'>{_num(r['odds'], '{:+.0f}')}</span></td><td class='r'>{_num(r['edge'], '{:.1f}')}</td>"
-            f"<td class='r'>{_num(r['close_line'], '{:g}')}</td><td class='r'>{_num(r['clv_pts'], '{:+.1f}')}</td>"
+            f"<td class='r'>{_close_cell(r)}</td><td class='r'>{_num(r['clv_pts'], '{:+.2f}', _na(r))}</td>"
+            f"<td class='r m hide-sm'>{_num(r.get('clv_same_book'), '{:+.2f}')}</td>"
             f"<td>{res}</td><td class='r'>{units}</td>"
             f"<td class='m hide-sm'>{logged:%b %-d %-I:%M %p} ET</td></tr>")
     plays_t = ("<thead><tr><th>Date</th><th>Game</th><th>Play</th><th>Book</th><th class='r'>Edge</th><th class='r'>Close</th>"
-               "<th class='r'>CLV</th><th>Result</th><th class='r'>Units</th>"
+               "<th class='r'>CLV</th><th class='r hide-sm'>Same-book CLV (diagnostic)</th><th>Result</th><th class='r'>Units</th>"
                "<th class='hide-sm'>Logged</th></tr></thead><tbody>" + "".join(plays) + "</tbody>") if plays else \
         "<tbody><tr><td class='empty'>No placed bets yet.</td></tr></tbody>"
 
@@ -341,6 +374,10 @@ document.querySelectorAll("main table").forEach((t) => {{
 
 
 def write() -> str:
+    try:   # the per-play primary-close table (books, quote ages, status and reason): bets/clv_primary.csv
+        clv_primary.write()
+    except Exception as e:
+        print(f"CLV table failed ({e}); continuing.")
     with open(OUT, "w") as fh:
         fh.write(build())
     with open(VERIFY, "w") as fh:

@@ -53,6 +53,17 @@ def counts(a: pd.Timestamp, b: pd.Timestamp) -> dict:
     out["new bets logged"] = len(new)
     out["Discord posts (of new bets)"] = int(new["bet_id"].isin(list(posted)).sum())
     out["marked placed (of new bets)"] = int(new["placed"].fillna("").str.lower().eq("yes").sum())
+    try:   # CLV coverage: settled plays dated in the window, with and without a primary close (cbb/clv_primary.py)
+        from cbb import clv_primary, tracker
+        cb = clv_primary.attach(tracker.load())
+        d = pd.to_datetime(cb["date"]).dt.tz_localize("America/New_York")
+        cs = cb[(cb["status"] == "settled") & (d >= a.tz_convert("America/New_York").normalize()) & (d < b.tz_convert("America/New_York"))]
+        out["settled plays"] = len(cs)
+        out["with primary close"] = int(cs["clv_pts"].notna().sum())
+        out["missing primary close"] = int(cs["clv_pts"].isna().sum())
+        out["_missing reasons"] = "; ".join(sorted(set(cs.loc[cs["clv_pts"].isna(), "clv_reason"].astype(str))))
+    except Exception as e:
+        out["missing primary close"], out["_missing reasons"] = -1, f"CLV check failed: {e}"
     acc = os.path.join(ROOT, "bets", "accepted.csv")
     out["placed with the card button"] = int(_in(pd.read_csv(acc)["placed_at"], a, b).sum()) if os.path.exists(acc) else 0
     return out
@@ -74,6 +85,9 @@ def flags(c: dict, prev: dict, end: pd.Timestamp) -> list[str]:
             f.append(f"{k}: {c[k]}")
     if c.get("ridge input check (max diff)", 0) > 1e-6:
         f.append(f"ridge input check off by {c['ridge input check (max diff)']:.3g} (card inputs no longer match)")
+    if c.get("missing primary close", 0):
+        f.append(f"{c['missing primary close']} settled play(s) without a primary close: {c.get('_missing reasons', '')}"
+                 if c["missing primary close"] > 0 else c.get("_missing reasons", "CLV check failed"))
     if c.get("new bets logged", 0) and c["Discord posts (of new bets)"] < c["new bets logged"]:
         f.append(f"{c['new bets logged'] - c['Discord posts (of new bets)']} new bet(s) not posted to Discord")
     return f
@@ -86,7 +100,7 @@ def main() -> None:
     b = pd.Timestamp(x.end, tz="America/New_York").tz_convert("UTC") if x.end else pd.Timestamp.now(tz="UTC")
     a = b - pd.Timedelta(days=7)
     c, prev = counts(a, b), counts(a - pd.Timedelta(days=7), a)
-    line = " · ".join(f"{k} {v:g}" if isinstance(v, float) else f"{k} {v}" for k, v in c.items())
+    line = " · ".join(f"{k} {v:g}" if isinstance(v, float) else f"{k} {v}" for k, v in c.items() if not k.startswith("_"))
     print(f"Health, {a.tz_convert('America/New_York'):%b %d} to {b.tz_convert('America/New_York'):%b %d}: {line}")
     fl = flags(c, prev, b)
     print("Flags: " + ("; ".join(fl) if fl else "none"))

@@ -206,13 +206,19 @@ def status(b: pd.DataFrame | None = None) -> dict:
 
 
 # Tripwires (helpers' Round 4 answer, adopted Oct 2026): judged on CLV, never on win rate.
-#   model:      trailing 150 settled bets, mean CLV under +0.4 points -> review the projection; under 0 -> pause
+#   model:      trailing 150 settled bets with a primary close, mean CLV under +0.4 points -> review the projection;
+#               under 0 -> pause. CLV is the forward-test protocol's primary close (cbb/clv_primary.py), the same
+#               figure every page and Discord show (changed Oct 28, MODEL_FREEZE.md). Bets without a primary close
+#               are excluded from the 150 and counted, never treated as zero; the tripwire cannot fire until
+#               TRIP_MIN_CLOSES bets have one; if the closes cannot be read it reports "unavailable" and keeps its
+#               last state.
 #               (historical opener plays averaged about +1.0 to +1.3 with a standard error near 0.12 at 150 bets)
 #   execution:  trailing 50 placed bets, the number you got averages 0.5+ points worse than the alerted number ->
 #               review alerts and book coverage (needs `line` edited to the number actually bet; `alert_line` keeps
 #               the alerted one)
 # They only alert (phone + card); nothing stops automatically.
 TRIP_MODEL_N, TRIP_REVIEW, TRIP_PAUSE = 150, 0.4, 0.0
+TRIP_MIN_CLOSES = TRIP_MODEL_N   # bets with a primary close needed before the model tripwire can fire
 TRIP_EXEC_N, TRIP_SLIP = 50, 0.5
 TRIP_STATE = os.path.join(ROOT, "bets", "tripwire.json")
 
@@ -227,10 +233,19 @@ def _slippage(b: pd.DataFrame) -> pd.Series:
 def tripwires(b: pd.DataFrame | None = None) -> dict:
     b = load() if b is None else b
     s = b[b["status"] == "settled"].sort_values(["date", "logged_at"])
-    clv = pd.to_numeric(s["clv_pts"], errors="coerce").dropna().tail(TRIP_MODEL_N)
-    m = {"n": int(len(clv)), "clv": round(float(clv.mean()), 2) if len(clv) else None}
-    m["state"] = ("collecting" if len(clv) < TRIP_MODEL_N else "pause" if clv.mean() < TRIP_PAUSE
-                  else "review" if clv.mean() < TRIP_REVIEW else "ok")
+    try:
+        from . import clv_primary
+        p = clv_primary.primary(s).set_index("bet_id") if len(s) else None
+        all_clv = pd.to_numeric(s["bet_id"].map(p["clv_primary"]), errors="coerce") if p is not None else s["bet_id"].map(float)
+        source = "primary"
+    except Exception as e:
+        all_clv, source = pd.Series(np.nan, index=s.index), f"unavailable: {e}"
+    have = all_clv.dropna()
+    clv = have.tail(TRIP_MODEL_N)
+    m = {"n": int(len(clv)), "clv": round(float(clv.mean()), 2) if len(clv) else None,
+         "with_close": int(len(have)), "missing": int(all_clv.isna().sum()), "min": TRIP_MIN_CLOSES, "source": source}
+    m["state"] = ("unavailable" if source != "primary" else "collecting" if len(have) < TRIP_MIN_CLOSES
+                  else "pause" if clv.mean() < TRIP_PAUSE else "review" if clv.mean() < TRIP_REVIEW else "ok")
     p = b[(b["placed"].astype(str).str.lower() != "no") & b.get("alert_line", pd.Series(dtype=float)).notna()]
     p = p.sort_values(["date", "logged_at"]).tail(TRIP_EXEC_N)
     slip = pd.Series(_slippage(p)).dropna() if len(p) else pd.Series(dtype=float)
@@ -261,8 +276,9 @@ def check_tripwires() -> dict:
         from . import notify
         notify.message("CBB: tripwire", " ".join(msgs))
         print("Tripwire:", " ".join(msgs))
-    with open(TRIP_STATE, "w") as fh:
-        json.dump({"model": t["model"]["state"], "execution": t["execution"]["state"]}, fh)
+    with open(TRIP_STATE, "w") as fh:   # an unreadable close keeps the last model state (no false change)
+        json.dump({"model": t["model"]["state"] if t["model"]["state"] != "unavailable" else old.get("model"),
+                   "execution": t["execution"]["state"]}, fh)
     return t
 
 

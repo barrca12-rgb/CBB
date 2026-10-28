@@ -225,3 +225,39 @@ e56a5bd377ced61f64ee7df2068b695e3faea3ce44c40cb93310db79aa2b2416  FORWARD_TEST_P
 - **Unchanged:** no fingerprinted file (Kalshi name aliases live in `research/kalshi/aliases.csv`, not the frozen
   `data/team_aliases.csv`), the line feeds, selection, staking, the bet log and the protocol. Adding Kalshi to the
   card's price shopping would be a separate change needing Chad's approval.
+
+## 2026-10-28: one CLV everywhere, the protocol's primary close; model-check tripwire moved to it (Chad approved A and B)
+
+Before any game (first tip Nov 1, 14:30 UTC). Predictions, bet selection, staking, the bet log and the frozen
+primary-close definition (`audit/forward_eval.py` strict_close and its window, freshness and book rules) are unchanged.
+
+- **A, display only (no fingerprinted file):** the Discord result posts (`cbb/record.py`), the card's Avg CLV tile, its
+  record table and its recent-results table (`cbb/report_html.py`), the loss review (`cbb/review.py`), the record and
+  verification pages (`cbb/record_page.py`) and the weekly charts and caption (`cbb/record_chart.py`,
+  `site/record/CAPTION.md`) all take CLV from `cbb/clv_primary.py`, which calls the protocol's own close. Averages are
+  over decided plays with a primary close, shown with coverage ("close for n of N decided"); a play without one shows
+  "n/a" / "unavailable" with the reason and is never given the grader's close or zero. The grader's same-book CLV stays
+  in `bets/bets.csv` and is shown only as "Same-book CLV (diagnostic)". `bets/clv_primary.csv` (derived, rebuilt every
+  run) stores each play's close, book count, quote ages, status and reason. CLV is shown to 2 decimals everywhere. The
+  verification page now reports model v1 cohorts A, B and C separately from the pre-freeze signals, and grades cohort C
+  at the accepted number. Every CLV figure carries the status "built, not verified" until the first-game report
+  (`audit/CLV_VERIFICATION.md`).
+- **B, the model-check tripwire (`cbb/tracker.py`, fingerprinted):** judged on the primary-close CLV. Bets without a
+  primary close are excluded from the trailing 150 and counted, never treated as zero; it cannot fire until 150 bets
+  have a primary close (`TRIP_MIN_CLOSES = 150`); if the closes cannot be read it reports "unavailable" and keeps its
+  last state. The execution tripwire is unchanged. The weekly health line reports settled plays, with and without a
+  primary close, and flags any missing one with its reason.
+- **Not changed (staking):** `tracker.status()` still caps a market's stake multiplier at 0.5 when its same-book CLV
+  averages below 0 after 25 bets. Moving that input to the primary close would change staking, so it waits for Chad's
+  decision (listed in `audit/CLV_VERIFICATION.md`).
+- **Label fix:** `audit/forward_eval.py` `PROTOCOL_VERSION` read "2.0" after the Oct 28 v2.1 amendment; it now reads
+  "2.1". Output label only.
+- **Discord note:** `bets/announcements.json`, id `2026-10-28-clv-definition`.
+- **New fingerprints:**
+
+```
+020fa36910e1d22a6b480ff6aa6901a35b5a6b3429171b8b2406d32c635f8c16  cbb/tracker.py
+9624e9c612f01bea7f40e801d799936e2fca211ce2423fbf0a3ff1d539fdabda  audit/forward_eval.py
+58e75584ee9efb986211b1f041b00be71eaa4ae8b50ba3f2286113685be63551  audit/test_forward_eval.py
+e56a5bd377ced61f64ee7df2068b695e3faea3ce44c40cb93310db79aa2b2416  FORWARD_TEST_PROTOCOL.md
+```

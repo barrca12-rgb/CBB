@@ -63,17 +63,20 @@ def _late_news(bets: pd.DataFrame) -> pd.Series:
 
 
 def classify(b: pd.DataFrame | None = None) -> pd.DataFrame:
-    b = tracker.load() if b is None else b
+    if b is None:   # CLV from the protocol's primary close, as every other surface (cbb/clv_primary.py)
+        from . import clv_primary
+        b = clv_primary.attach(tracker.load())
     s = b[b["status"] == "settled"].copy()
     if not len(s):
         return s.assign(reason=[], luck=[])
     s["luck"] = _three_luck(s)
     s["news"] = _late_news(s)
     clv = s["clv_pts"].astype(float)
-    reason = np.where(clv > 0, "Beat the close",
+    reason = np.where(clv.isna(), "No primary close",
+             np.where(clv > 0, "Beat the close",
              np.where(s["luck"] <= -SHOOTING_SWING, "Shooting luck",
              np.where((clv < 0) & s["news"], "Late injury news",
-             np.where(clv < 0, "Market disagreed", "Closed at our number"))))
+             np.where(clv < 0, "Market disagreed", "Closed at our number")))))
     s["reason"] = reason
     return s
 

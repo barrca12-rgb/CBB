@@ -88,9 +88,36 @@ def _logged_view(card: pd.DataFrame) -> pd.DataFrame:
     return card
 
 
+def _clv_view() -> dict:
+    """The card's CLV figures from the protocol's primary close (cbb/clv_primary.py), the same calculation as the
+    record page, the charts, Discord and the tripwire: per market and overall, mean CLV over decided plays with a
+    primary close plus coverage, and the recent settled plays with the same-book CLV as a labeled diagnostic.
+    Display only; the stake multiplier keeps using tracker.status() unchanged."""
+    from . import clv_primary, tracker
+    try:
+        a = clv_primary.attach(tracker.load())
+    except Exception as e:
+        return {"status": clv_primary.VERIFICATION_STATUS, "error": str(e), "recent": None}
+    a = a[a["status"] != "void"]
+    s = a[a["status"] == "settled"]
+    out = {mk: clv_primary.coverage(s[s["market"] == mk]) for mk in ("spread", "total")}
+    out["all"] = clv_primary.coverage(s)
+    out["all"]["text"] = clv_primary.coverage_text(out["all"])
+    out["status"] = clv_primary.VERIFICATION_STATUS
+    cols = ["date", "home", "away", "market", "pick", "book", "odds", "close_line", "clv_pts", "home_score",
+            "away_score", "result", "profit", "books_primary", "clv_reason", "clv_same_book"]
+    out["recent"] = s.sort_values(["date", "logged_at"], ascending=False).head(30)[cols].to_dict("records")
+    return out
+
+
 def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, replay: bool = False,
           record: dict | None = None) -> str:
     card = _logged_view(card)
+    clv = _clv_view() if record else None
+    clv_recent = clv.pop("recent", None) if clv else None
+    if record and clv_recent is None:   # primary close unreadable: show no CLV, never the grader's as CLV
+        clv_recent = [dict(r, close_line=None, clv_pts=None, clv_same_book=r.get("clv_pts"),
+                           clv_reason="primary close unavailable this run") for r in record["recent"]]
     games = [{k: _clean(v) for k, v in r.items()} for r in card.to_dict("records")]
     t = rt.reset_index(names="espn_id")
     t["rank"] = range(1, len(t) + 1)
@@ -98,8 +125,9 @@ def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, 
            t[["rank", "team", "net", "adj_oe", "adj_de", "adj_tempo"]].to_dict("records")]
     data = {"date": f"{day:%Y-%m-%d}", "season": season, "replay": replay, "repo": REPO, "nfl": NFL_SITE,
             "generated_at": pd.Timestamp.now(tz="UTC").isoformat(timespec="seconds"), "games": games, "ratings": rat,
-            "record": {"status": record["status"], "tripwire": record.get("tripwire"),
-                       "recent": [{k: _clean(v) for k, v in r.items()} for r in record["recent"]],
+            "record": {"status": record["status"], "tripwire": record.get("tripwire"), "clv": clv,
+                       "recent": [{k: _clean(v) for k, v in r.items()} for r in
+                                  (clv_recent if clv_recent is not None else record["recent"])],
                        "review": json.loads(json.dumps(record.get("review") or {}, default=_clean))}
             if record else None}
     payload = json.dumps(data).replace("</", "<\\/")
@@ -333,6 +361,8 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   const $ = (id) => document.getElementById(id);
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
   const sgn = (x, d = 1) => x == null ? "–" : (x > 0 ? "+" : x < 0 ? "−" : "") + Math.abs(x).toFixed(d).replace(/\.0+$/, "");
+  // CLV: always 2 decimals, the same figure Discord, the record page and the charts show (cbb/clv_primary.py)
+  const clvf = (x) => x == null ? "–" : (x > 0 ? "+" : x < 0 ? "−" : "") + Math.abs(x).toFixed(2);
   const ln = (x) => x == null ? "–" : Math.abs(x) < 0.05 ? "PK" : sgn(x);
   const num = (x, d = 1) => x == null ? "–" : Number(x).toFixed(d).replace(/\.0$/, "");
   // The half-point line a WATCH becomes a BET at (good_to is the exact number; books post halves).
@@ -456,17 +486,21 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   const st = D.record ? D.record.status : null;
   const rec = (s) => s && s.bets ? s.w + "–" + s.l + (s.p ? "–" + s.p : "") : "0–0";
   const units = st ? (st.spread.units || 0) + (st.total.units || 0) : 0;
-  const clvs = st ? [st.spread, st.total].filter((s) => s.clv_pts != null) : [];
   const kp = [["Plays today", P.length + "<small>" + P.reduce((s, p) => s + (p.units || 0), 0).toFixed(1).replace(/\.0$/, "") + "u</small>"],
     ["Spreads", rec(st && st.spread) + "<small>" + (st && st.spread.win != null ? pct(st.spread.win) : "") + "</small>"],
     ["Totals", rec(st && st.total) + "<small>" + (st && st.total.win != null ? pct(st.total.win) : "") + "</small>"],
     ["Units", "<span class='" + (units > 0 ? "pos" : units < 0 ? "neg" : "") + "'>" + sgn(units, 2) + "</span>"],
     ["Model check", (() => { const t = D.record && D.record.tripwire; if (!t) return "–";
       const m = t.model, e = t.execution;
-      const lab = m.state === "collecting" ? "Collecting<small>" + m.n + "/150 bets</small>"
-        : "<span class='" + (m.state === "ok" ? "pos" : "neg") + "'>" + {ok: "OK", review: "Review", pause: "Pause"}[m.state] + "</span><small>CLV " + sgn(m.clv, 2) + "</small>";
+      // primary-close CLV; bets without a close are excluded and counted (cbb/tracker.py, Oct 28)
+      const miss = m.missing ? " · " + m.missing + " without a close" : "";
+      const lab = m.state === "unavailable" ? "Unavailable<small>closes could not be read</small>"
+        : m.state === "collecting" ? "Collecting<small>" + (m.with_close != null ? m.with_close : m.n) + "/" + (m.min || 150) + " bets with a close" + miss + "</small>"
+        : "<span class='" + (m.state === "ok" ? "pos" : "neg") + "'>" + {ok: "OK", review: "Review", pause: "Pause"}[m.state] + "</span><small>CLV " + clvf(m.clv) + " · last " + m.n + miss + "</small>";
       return lab + (e.state === "review" ? "<small class='neg'> · slippage " + sgn(e.slip, 2) + "</small>" : ""); })()],
-    ["Avg CLV", clvs.length ? sgn(clvs.reduce((s, x) => s + x.clv_pts * x.bets, 0) / clvs.reduce((s, x) => s + x.bets, 0), 2) + "<small>pts</small>" : "–"]];
+    ["Avg CLV", (() => { const c = D.record && D.record.clv; if (!c || c.error || !c.all) return "–<small>CLV unavailable</small>";
+      // primary (consensus) close, decided plays with a close; coverage and status always shown beside it
+      return (c.all.clv != null ? clvf(c.all.clv) + "<small>pts</small>" : "–") + "<small>" + esc(c.all.text) + " · " + esc(c.status) + "</small>"; })()]];
   $("kpis").innerHTML = kp.map(([k, v]) => "<div class='kpi'><div class='k'>" + k + "</div><div class='v'>" + v + "</div></div>").join("");
 
   // Odds board
@@ -556,16 +590,21 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   // Record
   if (st) {
     $("rec-sec").hidden = false;
-    $("t-rec").innerHTML = "<thead><tr><th>Market</th><th class='r'>Record</th><th class='r'>Win %</th><th class='r'>Units</th><th class='r'>ROI</th><th class='r'>Avg CLV</th><th class='r'>Beat close</th><th class='r'>Stake</th><th class='r'>Open</th></tr></thead><tbody>" +
-      Object.entries(st).map(([mk, s]) => "<tr><td>" + mk[0].toUpperCase() + mk.slice(1) + "</td><td class='r'>" + rec(s) + "</td><td class='r'>" + pct(s.win) + "</td><td class='r " +
-        (s.units > 0 ? "pos" : s.units < 0 ? "neg" : "") + "'>" + sgn(s.units, 2) + "</td><td class='r'>" + pct(s.roi) + "</td><td class='r'>" + (s.clv_pts == null ? "–" : sgn(s.clv_pts, 2)) +
-        "</td><td class='r'>" + pct(s.beat_close) + "</td><td class='r'>" + Math.round(100 * s.multiplier) + "%</td><td class='r m'>" + s.open + "</td></tr>").join("") + "</tbody>";
+    $("t-rec").innerHTML = "<thead><tr><th>Market</th><th class='r'>Record</th><th class='r'>Win %</th><th class='r'>Units</th><th class='r'>ROI</th><th class='r'>Avg CLV</th><th class='r'>Beat close</th><th class='r'>Close coverage</th><th class='r'>Stake</th><th class='r'>Open</th></tr></thead><tbody>" +
+      Object.entries(st).map(([mk, s]) => { const c = (D.record.clv && D.record.clv[mk]) || {};
+        return "<tr><td>" + mk[0].toUpperCase() + mk.slice(1) + "</td><td class='r'>" + rec(s) + "</td><td class='r'>" + pct(s.win) + "</td><td class='r " +
+        (s.units > 0 ? "pos" : s.units < 0 ? "neg" : "") + "'>" + sgn(s.units, 2) + "</td><td class='r'>" + pct(s.roi) + "</td><td class='r'>" + clvf(c.clv) +
+        "</td><td class='r'>" + pct(c.beat) + "</td><td class='r'>" + (c.decided ? c.with_close + "/" + c.decided : "–") +
+        "</td><td class='r'>" + Math.round(100 * s.multiplier) + "%</td><td class='r m'>" + s.open + "</td></tr>"; }).join("") + "</tbody>" +
+      "<caption class='f' style='caption-side:bottom;text-align:left;padding:8px 12px;font-size:12px'>CLV: points better than the consensus close (median of each book's last fresh quote in the 15 minutes before tip), decided plays with a close; close coverage = decided plays with one. CLV tracking: " + esc((D.record.clv && D.record.clv.status) || "") + ".</caption>";
     const R = D.record.recent || [];
     if (R.length) {
       $("recent-sec").hidden = false;
-      $("t-recent").innerHTML = "<thead><tr><th>Date</th><th>Game</th><th>Bet</th><th>Book</th><th class='r'>Close</th><th class='r'>CLV</th><th class='r'>Final</th><th class='r'>Result</th><th class='r'>Units</th></tr></thead><tbody>" +
+      $("t-recent").innerHTML = "<thead><tr><th>Date</th><th>Game</th><th>Bet</th><th>Book</th><th class='r'>Close</th><th class='r'>CLV</th><th class='r hide-sm'>Same-book CLV (diagnostic)</th><th class='r'>Final</th><th class='r'>Result</th><th class='r'>Units</th></tr></thead><tbody>" +
         R.map((x) => "<tr><td class='m'>" + esc(x.date) + "</td><td>" + esc(x.away + " @ " + x.home) + "</td><td class='b'>" + esc(x.pick) + "</td><td>" + esc(x.book || "–") +
-          "</td><td class='r'>" + num(x.close_line) + "</td><td class='r'>" + sgn(x.clv_pts) + "</td><td class='r m'>" + esc(x.away_score) + "–" + esc(x.home_score) +
+          "</td><td class='r'>" + (x.close_line == null ? "<span title='" + esc(x.clv_reason || "") + "'>n/a</span>" : num(x.close_line) + "<small> (" + x.books_primary + ")</small>") +
+          "</td><td class='r'>" + (x.clv_pts == null ? "<span title='" + esc(x.clv_reason || "") + "'>n/a</span>" : clvf(x.clv_pts)) +
+          "</td><td class='r m hide-sm'>" + clvf(x.clv_same_book) + "</td><td class='r m'>" + esc(x.away_score) + "–" + esc(x.home_score) +
           "</td><td class='r b " + (x.result === "W" ? "pos" : x.result === "L" ? "neg" : "") + "'>" + esc(x.result) + "</td><td class='r'>" + sgn(x.profit, 2) + "</td></tr>").join("") + "</tbody>";
     }
   }

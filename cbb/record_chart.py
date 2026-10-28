@@ -74,11 +74,13 @@ def stats(b: pd.DataFrame, through: pd.Timestamp) -> dict:
     flat = (s["profit"].astype(float) / s["stake"].astype(float).replace(0, np.nan).fillna(1.0)).fillna(0.0)
     out = {"through": through, "logged": len(a), "voids": voids, "settled": len(s), "w": w, "l": l, "p": p,
            "units": float(flat.sum()), "series": {}, "tiles": {}}
-    c = s.dropna(subset=["clv_pts"])
+    # decided plays with a primary close (clv_primary.coverage's rule); missing closes counted, never zero
+    c = s[s["result"].isin(["W", "L"])].dropna(subset=["clv_pts"])
     for mk in ("spread", "total"):
         x = c[c["market"] == mk]
         m, se = clustered_mean(x["clv_pts"], x["date"])
-        out["tiles"][mk] = {"mean": m, "se": se, "n": len(x)}
+        cv = clv_primary.coverage(s[s["market"] == mk])
+        out["tiles"][mk] = {"mean": m, "se": se, "n": len(x), "decided": cv["decided"]}
         out["series"][mk] = np.r_[0.0, x["clv_pts"].astype(float).cumsum().to_numpy()]
     v = c["clv_pts"].astype(float)
     out["moved"] = {"for": int((v > 0).sum()), "flat": int((v == 0).sum()), "against": int((v < 0).sum()), "n": len(v)}
@@ -125,7 +127,7 @@ def tiles(st: dict) -> list[tuple[str, str, str]]:
     wl = st["w"] + st["l"]
     winline = f"n {st['settled']} settled · n too small" if st["settled"] < SMALL_N else f"n {st['settled']} · {st['w'] / wl:.1%}"
     sp, to, mv = st["tiles"]["spread"], st["tiles"]["total"], st["moved"]
-    se = lambda t: f"± {t['se']:.2f} · n {t['n']}" if np.isfinite(t["se"]) else f"n {t['n']}"
+    se = lambda t: (f"± {t['se']:.2f} · " if np.isfinite(t["se"]) else "") + f"close {t['n']} of {t.get('decided', t['n'])}"
     share = f"{mv['for'] / mv['n']:.0%}" if mv["n"] else "–"
     return [("PLAYS LOGGED", str(st["logged"]), "every signal, bet or not"),
             ("RECORD", rec, winline),
@@ -237,7 +239,8 @@ def caption(st: dict) -> str:
     clv = lambda x: _fmt(x["mean"]) if x["n"] else "–"
     return (f"Week {n}, through Sun {t:%b} {t.day}.\n"
             f"Plays logged: {st['logged']}. Record: {st['w']}-{st['l']}-{st['p']}. Units (flat 1u): {_fmt(st['units'])}.\n"
-            f"CLV spreads: {clv(sp)} pts (n {sp['n']}). CLV totals: {clv(to)} pts (n {to['n']}).\n"
+            f"CLV spreads: {clv(sp)} pts (close for {sp['n']} of {sp.get('decided', sp['n'])} decided). "
+            f"CLV totals: {clv(to)} pts (close for {to['n']} of {to.get('decided', to['n'])} decided).\n"
             f"Every play alerted and timestamped before tip. Record and verification: {RECORD_URL}\n")
 
 
