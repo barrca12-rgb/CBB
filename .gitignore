@@ -9,3 +9,4 @@ research/frontier/out/*.log
 site/record/charts.html
 research/totals_late/out/*.pkl
 research/totals_late/out/plays.csv
+research/quant/out/*.pkl
