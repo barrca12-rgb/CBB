@@ -215,16 +215,25 @@ def coverage(s: pd.DataFrame) -> dict:
     d = s[s["result"].isin(["W", "L"])] if "result" in s else s.iloc[0:0]
     c = pd.to_numeric(d["clv_pts"], errors="coerce").dropna() if len(d) else pd.Series(dtype=float)
     n = int(len(d))
+    known = "books_primary" in d     # book counts are on attach()ed tables; without them the split is unknown
+    c2 = c[pd.to_numeric(d.loc[c.index, "books_primary"], errors="coerce") >= 2] if known else c.iloc[0:0]
     return {"decided": n, "with_close": int(len(c)), "missing": n - int(len(c)),
+            "one_book": int(len(c) - len(c2)) if known else None, "two_plus": int(len(c2)) if known else None,
+            "clv_two_plus": float(c2.mean()) if len(c2) else None,
             "share": (len(c) / n) if n else None, "clv": float(c.mean()) if len(c) else None,
             "beat": float((c > 0).mean()) if len(c) else None}
 
 
 def coverage_text(cv: dict) -> str:
-    """'close for 7 of 8 decided plays (88%)', or 'no decided plays yet'."""
+    """'primary close for 7 of 8 decided plays (88%); 2+ books: 6 (+0.41), 1 book: 1', or 'no decided plays yet'.
+    A one-book close is a valid primary close (the frozen rule) and is flagged, never dropped."""
     if not cv["decided"]:
         return "no decided plays yet"
-    return f"primary close for {cv['with_close']} of {cv['decided']} decided plays ({cv['share']:.0%})"
+    t = f"primary close for {cv['with_close']} of {cv['decided']} decided plays ({cv['share']:.0%})"
+    if cv["with_close"] and cv.get("two_plus") is not None:
+        two = f"{cv['clv_two_plus']:+.2f}" if cv.get("clv_two_plus") is not None else "n/a"
+        t += f"; 2+ books: {cv['two_plus']} ({two}), 1 book: {cv['one_book']}"
+    return t
 
 
 def accepted_clv(b: pd.DataFrame, acc: pd.DataFrame) -> pd.Series:

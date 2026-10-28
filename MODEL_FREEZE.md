@@ -337,3 +337,31 @@ verified".
 ```
 dbe854be36263f142ebc19171944a29eca5f00eede46c4d74b5f6bc59844e3aa  cbb/quotelog.py
 ```
+
+## 2026-10-28: CLV inputs tightened (Chad's review): timestamps documented, labels, one-book flag, raw-quote trace; parser fix
+
+Before any game. Predictions, bet selection, staking, the bet log, grading, the frozen minimum book count and the
+primary-close definition are unchanged. No price conversion is introduced. VERIFICATION_STATUS stays "built, not
+verified".
+
+- **Parser (`cbb/odds_api.py`, fingerprinted; logging only):** `parse` dropped every event whose `commence_time` had
+  passed, so the extra polling approved earlier today (option 2) would have logged nothing for Memphis vs Iowa State
+  after the feed's 6:00 pm ET start. A started game's quotes are now passed to the quote log (kept only inside a
+  watch window; excluded from the protocol's close as observed after their own start). The card's line rows and the
+  unmatched-name report skip started games exactly as before. Test: `test_parser_passes_a_started_games_quotes_to_the_log_but_never_to_the_card`.
+- **Labels (display):** the CLV figure is "Alert CLV (points)" on Discord, the card and the record page; prices at the
+  close are shown beside it (Discord "Prices at close", record-page tooltip), never converted. One-book closes are
+  flagged; coverage lines add "2+ books: n (avg), 1 book: n".
+- **Trace (`audit/clv_example.py`):** independent recomputation of cutoff, books, close and CLV from the raw files
+  (standard library only) is a checklist item; books 1+ point off the others are flagged; accepted CLV shown when a
+  fill is confirmed. Tests: selected-side formula table and the recomputation-vs-protocol match.
+- **Documentation:** `audit/CLV_VERIFICATION.md` defines `observed_at`, `source_updated_at`, `start` and the cutoff,
+  states which timestamp each rule uses, and withdraws "never adds an old number" (a re-stamped stale price is not
+  ruled out).
+- **Tests:** `python -m pytest -q audit/`: 61 passed.
+- **Discord note:** `bets/announcements.json`, id `2026-10-28-alert-clv-label`.
+- **New fingerprint:**
+
+```
+9fe297f302dc0226f063930dad75106f864e9e5b01502aa4ee33b18581dddf08  cbb/odds_api.py
+```

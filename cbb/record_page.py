@@ -52,8 +52,14 @@ def _close_cell(r) -> str:
     if r.get("status") != "settled" or pd.isna(r.get("close_line")):
         return _na(r)
     ages = ", ".join(f"{a} s" for a in json.loads(r.get("feed_age_s") or "[]"))
-    return (f"<span title='{int(r['books_primary'])} book(s), quote ages {html.escape(ages)}'>{r['close_line']:g}"
-            f"<small> ({int(r['books_primary'])})</small></span>")
+    nb = int(r["books_primary"])
+    try:
+        px = "; prices " + ", ".join(f"{q['book']} {q['line']:g} {q['price']:+.0f}" if q.get("price") is not None
+                                    else f"{q['book']} {q['line']:g}" for q in json.loads(r.get("price_vs_close") or "[]"))
+    except (TypeError, ValueError):
+        px = ""
+    return (f"<span title='{nb} book(s), quote ages {html.escape(ages)}{html.escape(px)}'>{r['close_line']:g}"
+            f"<small> ({nb}{' book: one-book close' if nb == 1 else ''})</small></span>")
 
 
 def _row(label: str, s: dict) -> str:
@@ -65,7 +71,7 @@ def _row(label: str, s: dict) -> str:
 
 
 HEAD = ("<thead><tr><th></th><th class='r'>Plays</th><th class='r'>W-L</th><th class='r'>Win %</th><th class='r'>Units</th>"
-        "<th class='r'>ROI</th><th class='r'>CLV pts</th><th class='r'>Beat close</th><th class='r'>Close coverage</th></tr></thead>")
+        "<th class='r'>ROI</th><th class='r'>Alert CLV pts</th><th class='r'>Beat close</th><th class='r'>Close coverage</th></tr></thead>")
 
 
 def _chart(s: pd.DataFrame) -> str:
@@ -135,7 +141,7 @@ def cohorts(b: pd.DataFrame) -> tuple[str, str]:
             f"<tr><td class='b'>C. v1, confirmed accepted bets (accepted number)</td>{col(cv1) if len(cv1) else empty}</tr>"
             f"<tr><td class='b'>Pre-freeze signals (reported separately, never pooled)</td>{col(a[~v1])}</tr>")
     head = ("<thead><tr><th>Cohort</th><th class='r'>Signals</th><th class='r'>Settled</th><th class='r'>W-L-P</th>"
-            "<th class='r'>Win %</th><th class='r'>Units (logged price)</th><th class='r'>CLV pts</th>"
+            "<th class='r'>Win %</th><th class='r'>Units (logged price)</th><th class='r'>CLV pts (A, B: alert; C: accepted)</th>"
             "<th class='r'>Close coverage</th></tr></thead>")
     nop = int(pd.to_numeric(a["odds"], errors="coerce").isna().sum())
     note = (f"A, B and C are model v1 signals (logged from {FE_START:%b %-d, %H:%M} UTC); {int((~v1).sum())} pre-freeze "
@@ -234,7 +240,7 @@ def build() -> str:
 
     kp = [("Record", tot["rec"]), ("Win %", _num(tot["win"], "{:.1%}")), ("Units", _num(tot["units"])),
           ("ROI", _num(tot["roi"], "{:+.1%}")),
-          ("Avg CLV", _num(tot["clv"], "{:+.2f} pts") + f"<small>{html.escape(clv_primary.coverage_text(tot['cv']))} · "
+          ("Alert CLV", _num(tot["clv"], "{:+.2f} pts") + f"<small>{html.escape(clv_primary.coverage_text(tot['cv']))} · "
                       f"{html.escape(clv_primary.VERIFICATION_STATUS)}</small>"),
           ("Open plays", str(int((live["status"] == "open").sum())))]
     kpis = "".join(f"<div class='kpi'><div class='k'>{k}</div><div class='v'>{v}</div></div>" for k, v in kp)
@@ -262,7 +268,7 @@ def build() -> str:
             f"<td>{res}</td><td class='r'>{units}</td>"
             f"<td class='m hide-sm'>{logged:%b %-d %-I:%M %p} ET</td></tr>")
     plays_t = ("<thead><tr><th>Date</th><th>Game</th><th>Play</th><th>Book</th><th class='r'>Edge</th><th class='r'>Close</th>"
-               "<th class='r'>CLV</th><th class='r hide-sm'>Same-book CLV (diagnostic)</th><th>Result</th><th class='r'>Units</th>"
+               "<th class='r'>Alert CLV (pts)</th><th class='r hide-sm'>Same-book CLV (diagnostic)</th><th>Result</th><th class='r'>Units</th>"
                "<th class='hide-sm'>Logged</th></tr></thead><tbody>" + "".join(plays) + "</tbody>") if plays else \
         "<tbody><tr><td class='empty'>No placed bets yet.</td></tr></tbody>"
 
@@ -297,7 +303,7 @@ def build() -> str:
     <div class="sub">Bets placed on the model's plays, at the logged number and price. Updated {now:%b %-d, %-I:%M %p} ET.</div></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="pagebtn" href="./">&larr; Card</a><a class="pagebtn" href="record/charts.html">Charts</a><a class="pagebtn" href="record/survivor.html">Survivor</a></div></div>
   <div class="kpis">{kpis}</div>
-  <section class="panel"><div class="panel-h"><h2>Summary</h2><span class="note">Settled bets placed. CLV = points the line moved our way from the logged number to the close (the forward test's primary close: each book's last fresh quote in the 15 minutes before tip, median). Break-even at -110 is 52.4%.</span></div>
+  <section class="panel"><div class="panel-h"><h2>Summary</h2><span class="note">Settled bets placed. Alert CLV = points the line moved our way from the alert (logged) number to the close; prices are shown separately and not converted (the forward test's primary close: each book's last fresh quote in the 15 minutes before tip, median). Break-even at -110 is 52.4%.</span></div>
     <div class="scroll"><table>{HEAD}<tbody>{''.join(rows)}</tbody></table></div>{_chart(s)}</section>
   {f"<section class='panel'><div class='panel-h'><h2>By month</h2></div><div class='scroll'><table>{HEAD}<tbody>{months}</tbody></table></div></section>" if months else ""}
   <section class="panel"><div class="panel-h"><h2>Bets placed</h2><span class="note">Newest first.</span></div>

@@ -172,3 +172,20 @@ def test_diagnostic_close_is_unavailable_when_the_real_window_was_not_captured(m
     monkeypatch.setattr(fe, "ROOT", str(tmp_path))
     r = close([at(-10, T0, 149.0), at(-4, T0, 149.0, "Caesars")])
     assert r["close_primary"] == 149.0 and np.isnan(r["close_espn_start"]) and r["books_espn_start"] == 0
+
+
+def test_parser_passes_a_started_games_quotes_to_the_log_but_never_to_the_card():
+    """The Odds API keeps listing a game after the feed's start; the card never prices it, and the log receives its
+    quotes (kept only inside a watch window; the protocol's close excludes them as observed after their own start)."""
+    from cbb import odds_api
+    now = pd.Timestamp.now(tz="UTC")
+    def ev(i, start):
+        return {"id": i, "commence_time": start.isoformat(), "home_team": "H", "away_team": "A",
+                "bookmakers": [{"key": "draftkings", "last_update": now.isoformat(), "markets": [
+                    {"key": "totals", "last_update": now.isoformat(), "outcomes": [
+                        {"name": "Over", "point": 154.0, "price": -110}, {"name": "Under", "point": 154.0, "price": -110}]}]}]}
+    rows, unmatched = odds_api.parse([ev("pre", now + pd.Timedelta(hours=1)), ev("live", now - pd.Timedelta(minutes=5))],
+                                     lookup={"h": 1, "a": 2})
+    assert list(rows["sgo_event"]) == ["oa:pre"]                    # the card: pregame only, as before
+    assert {o["event_id"] for o in odds_api.parse.observations} == {"oa:pre", "oa:live"}
+    assert not unmatched

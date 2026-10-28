@@ -68,12 +68,15 @@ def parse(events: list, lookup: dict | None = None) -> tuple[pd.DataFrame, list]
     rows, unmatched = [], set()
     obs = []   # forward-test log (quotelog.py): every quote seen at our books, stale ones included
     for ev in events:
-        if pd.to_datetime(ev.get("commence_time"), utc=True) <= now:
-            continue
+        # a game past the feed's start is never priced on the card; its quotes are still passed to the forward-test
+        # log, which keeps them only inside a watch window (a tip-time conflict's window before ESPN's start) and
+        # which the protocol's close excludes (observed at or after the quote's own reported start)
+        started = pd.to_datetime(ev.get("commence_time"), utc=True) <= now
         hn, an = ev.get("home_team"), ev.get("away_team")
         h, a = lookup.get(teams.norm(hn or "")), lookup.get(teams.norm(an or ""))
         if h is None or a is None:
-            unmatched.update(n for n, i in ((hn, h), (an, a)) if i is None)
+            if not started:
+                unmatched.update(n for n, i in ((hn, h), (an, a)) if i is None)
             continue
         for bk in ev.get("bookmakers") or []:
             if bk.get("key") not in BOOKS:
@@ -92,7 +95,7 @@ def parse(events: list, lookup: dict | None = None) -> tuple[pd.DataFrame, list]
                                                         BOOKS[bk["key"]], "spread" if m["key"] == "spreads" else "total",
                                                         side, o.get("point"), o.get("price"), mu, now, status))
             upd = pd.to_datetime(bk.get("last_update"), utc=True, errors="coerce")
-            if pd.notna(upd) and now - upd > MAX_AGE:
+            if started or (pd.notna(upd) and now - upd > MAX_AGE):
                 continue
             r = {"book": BOOKS[bk["key"]], "sgo_event": f"oa:{ev.get('id')}", "start": ev.get("commence_time"),
                  "home_id": h, "away_id": a}

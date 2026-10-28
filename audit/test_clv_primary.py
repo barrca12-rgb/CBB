@@ -132,9 +132,12 @@ def test_attach_keeps_the_graders_value_as_diagnostic_and_never_substitutes_it(m
 
 
 def test_coverage_counts_missing_and_never_averages_them_as_zero():
-    s = pd.DataFrame({"result": ["W", "L", "W", "P"], "clv_pts": [2.0, np.nan, 1.0, 5.0]})
+    s = pd.DataFrame({"result": ["W", "L", "W", "P"], "clv_pts": [2.0, np.nan, 1.0, 5.0], "books_primary": [3, 0, 1, 2]})
     cv = clv_primary.coverage(s)
-    assert cv == {"decided": 3, "with_close": 2, "missing": 1, "share": 2 / 3, "clv": 1.5, "beat": 1.0}
+    assert cv == {"decided": 3, "with_close": 2, "missing": 1, "one_book": 1, "two_plus": 1, "clv_two_plus": 2.0,
+                  "share": 2 / 3, "clv": 1.5, "beat": 1.0}
+    assert clv_primary.coverage_text(cv) == ("primary close for 2 of 3 decided plays (67%); 2+ books: 1 (+2.00), "
+                                             "1 book: 1")
 
 
 def test_every_surface_shows_the_same_primary_clv(monkeypatch, tmp_path):
@@ -165,8 +168,10 @@ def test_every_surface_shows_the_same_primary_clv(monkeypatch, tmp_path):
     # Discord
     f1 = {f["name"]: f["value"] for f in record._settled(r1)["embeds"][0]["fields"]}
     f2 = {f["name"]: f["value"] for f in record._settled(r2)["embeds"][0]["fields"]}
-    assert f1["CLV"] == "+2.00 pts" and f1["Close (consensus)"] == "147.5 (3 books)" and f1["Same-book CLV (diagnostic)"] == "+1.00 pts"
-    assert f2["CLV"] == "unavailable" and f2["Why no CLV"].startswith("tip time unknown")
+    assert f1["Alert CLV (points)"] == "+2.00 pts" and f1["Close (consensus)"] == "147.5 (3 books)"
+    assert f1["Same-book CLV (diagnostic)"] == "+1.00 pts"
+    assert sorted(f1["Prices at close"].split(", ")) == ["Caesars 147.5 -110", "DraftKings 147.5 -110", "Fanatics 148.5 -110"]
+    assert f2["Alert CLV (points)"] == "unavailable" and f2["Why no alert CLV"].startswith("tip time unknown")
     # card: tile, record table, recent table
     v = report_html._clv_view()
     assert v["all"]["clv"] == pytest.approx(2.0) and (v["all"]["with_close"], v["all"]["decided"]) == (1, 2)
@@ -249,3 +254,39 @@ def test_stake_cap_records_its_last_successful_refresh_and_keeps_it_while_held(m
     monkeypatch.setattr(clv_primary, "_load_obs", boom)
     c = tracker.status(b)["total"]["cap"]
     assert c["state"] == "held" and c["refreshed_at"] == first      # the stale time stays visible while held
+
+
+@pytest.mark.parametrize("market,side,entry,home_close,clv", [
+    ("spread", "home", -12.0, -12.5, 0.5),     # favorite: entry -12, close -12.5
+    ("spread", "away", 12.0, -11.5, 0.5),      # underdog: entry +12, close +11.5 (home -11.5)
+    ("total", "over", 152.5, 154.0, 1.5),
+    ("total", "under", 149.5, 148.0, 1.5),
+])
+def test_points_clv_is_measured_on_the_selected_side(market, side, entry, home_close, clv):
+    """Chad's table (Oct 28): both spread numbers refer to the selected team; + = the alert beat the close."""
+    b = pd.DataFrame([dict(bet(market=market, side=side, line=entry))])
+    if market == "spread":
+        obs = [ob(bk, sd, home_close if sd == "home" else -home_close, -110, m, 30, market="spread")
+               for bk, m in (("DraftKings", 3), ("Caesars", 5)) for sd in ("home", "away")]
+    else:
+        obs = [ob(bk, sd, home_close, -110, m, 30) for bk, m in (("DraftKings", 3), ("Caesars", 5)) for sd in ("over", "under")]
+    r = clv_primary.primary(b, obs=pd.DataFrame(obs), closing=EMPTY_CLOSING).iloc[0]
+    assert r["books_primary"] == 2 and r["clv_primary"] == pytest.approx(clv)
+    sel = home_close if market == "total" or side == "home" else -home_close
+    assert r["close_primary"] == pytest.approx(sel)
+
+
+def test_independent_recomputation_from_raw_files_matches_the_protocol(tmp_path):
+    """audit/clv_example.recompute reads the raw CSVs with the standard library only; on the same quotes it must give
+    the protocol's cutoff, book count, close and alert CLV (stale, out-of-window and in-play quotes included)."""
+    from audit import clv_example
+    obs = pd.DataFrame([ob("DraftKings", "under", 147.5, -110, 3, 40), ob("Caesars", "under", 147.0, -110, 5, 60),
+                        ob("Fanatics", "under", 148.5, -110, 4, 20), ob("Fanatics", "under", 151.0, -110, 2, 900),
+                        ob("FanDuel", "under", 146.0, -110, 20, 20), ob("BetMGM", "under", 140.0, -110, -2, 20)])
+    (tmp_path / "obs").mkdir()
+    obs.to_csv(tmp_path / "obs" / "2026-11-01.csv", index=False)
+    b = bet()
+    r = clv_primary.primary(pd.DataFrame([b]), obs=obs, closing=EMPTY_CLOSING).iloc[0]
+    rc = clv_example.recompute(b, obs["game_key"].iloc[0], lines_dir=str(tmp_path))
+    assert rc["books"] == r["books_primary"] == 3 and rc["close"] == r["close_primary"] == 147.5
+    assert rc["clv"] == pytest.approx(r["clv_primary"]) and pd.Timestamp(rc["cutoff"]) == pd.Timestamp(r["cutoff"])

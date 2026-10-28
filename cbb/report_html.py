@@ -351,7 +351,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   </section>
 
   <section class="panel" aria-labelledby="rec-h" id="rec-sec" hidden>
-    <div class="panel-h"><h2 id="rec-h">Record</h2><span class="note">Every play graded at the number it first appeared. CLV = points better than the closing line.</span></div>
+    <div class="panel-h"><h2 id="rec-h">Record</h2><span class="note">Every play graded at the number it first appeared. Alert CLV = points from the alert number to the consensus close; prices shown separately.</span></div>
     <div class="scroll"><table id="t-rec"></table></div>
   </section>
 
@@ -518,7 +518,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
         : m.state === "collecting" ? "Collecting<small>" + (m.with_close != null ? m.with_close : m.n) + "/" + (m.min || 150) + " bets with a close" + miss + "</small>"
         : "<span class='" + (m.state === "ok" ? "pos" : "neg") + "'>" + {ok: "OK", review: "Review", pause: "Pause"}[m.state] + "</span><small>CLV " + clvf(m.clv) + " · last " + m.n + miss + "</small>";
       return lab + (e.state === "review" ? "<small class='neg'> · slippage " + sgn(e.slip, 2) + "</small>" : ""); })()],
-    ["Avg CLV", (() => { const c = D.record && D.record.clv; if (!c || c.error || !c.all) return "–<small>CLV unavailable</small>";
+    ["Alert CLV", (() => { const c = D.record && D.record.clv; if (!c || c.error || !c.all) return "–<small>CLV unavailable</small>";
       // primary (consensus) close, decided plays with a close; coverage and status always shown beside it
       return (c.all.clv != null ? clvf(c.all.clv) + "<small>pts</small>" : "–") + "<small>" + esc(c.all.text) + " · " + esc(c.status) + "</small>"; })()]];
   $("kpis").innerHTML = kp.map(([k, v]) => "<div class='kpi'><div class='k'>" + k + "</div><div class='v'>" + v + "</div></div>").join("");
@@ -617,13 +617,13 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
         (s.units > 0 ? "pos" : s.units < 0 ? "neg" : "") + "'>" + sgn(s.units, 2) + "</td><td class='r'>" + pct(s.roi) + "</td><td class='r'>" + clvf(c.clv) +
         "</td><td class='r'>" + pct(c.beat) + "</td><td class='r'>" + (c.decided ? c.with_close + "/" + c.decided : "–") +
         "</td><td class='r'>" + Math.round(100 * s.multiplier) + "%" + capText(s.cap) + "</td><td class='r m'>" + s.open + "</td></tr>"; }).join("") + "</tbody>" +
-      "<caption class='f' style='caption-side:bottom;text-align:left;padding:8px 12px;font-size:12px'>CLV: points better than the consensus close (median of each book's last fresh quote in the 15 minutes before tip), decided plays with a close; close coverage = decided plays with one. CLV tracking: " + esc((D.record.clv && D.record.clv.status) || "") + ".</caption>";
+      "<caption class='f' style='caption-side:bottom;text-align:left;padding:8px 12px;font-size:12px'>Alert CLV (points): the alert number against the consensus close (median of each book's last fresh quote in the 15 minutes before tip), decided plays with a close; close coverage = decided plays with one. CLV tracking: " + esc((D.record.clv && D.record.clv.status) || "") + ".</caption>";
     const R = D.record.recent || [];
     if (R.length) {
       $("recent-sec").hidden = false;
-      $("t-recent").innerHTML = "<thead><tr><th>Date</th><th>Game</th><th>Bet</th><th>Book</th><th class='r'>Close</th><th class='r'>CLV</th><th class='r hide-sm'>Same-book CLV (diagnostic)</th><th class='r'>Final</th><th class='r'>Result</th><th class='r'>Units</th></tr></thead><tbody>" +
+      $("t-recent").innerHTML = "<thead><tr><th>Date</th><th>Game</th><th>Bet</th><th>Book</th><th class='r'>Close</th><th class='r'>Alert CLV (pts)</th><th class='r hide-sm'>Same-book CLV (diagnostic)</th><th class='r'>Final</th><th class='r'>Result</th><th class='r'>Units</th></tr></thead><tbody>" +
         R.map((x) => "<tr><td class='m'>" + esc(x.date) + "</td><td>" + esc(x.away + " @ " + x.home) + "</td><td class='b'>" + esc(x.pick) + "</td><td>" + esc(x.book || "–") +
-          "</td><td class='r'>" + (x.close_line == null ? "<span title='" + esc(x.clv_reason || "") + "'>n/a</span>" : num(x.close_line) + "<small> (" + x.books_primary + ")</small>") +
+          "</td><td class='r'>" + (x.close_line == null ? "<span title='" + esc(x.clv_reason || "") + "'>n/a</span>" : num(x.close_line) + "<small> (" + x.books_primary + (x.books_primary === 1 ? " book: one-book close" : "") + ")</small>") +
           "</td><td class='r'>" + (x.clv_pts == null ? "<span title='" + esc(x.clv_reason || "") + "'>n/a</span>" : clvf(x.clv_pts)) +
           "</td><td class='r m hide-sm'>" + clvf(x.clv_same_book) + "</td><td class='r m'>" + esc(x.away_score) + "–" + esc(x.home_score) +
           "</td><td class='r b " + (x.result === "W" ? "pos" : x.result === "L" ? "neg" : "") + "'>" + esc(x.result) + "</td><td class='r'>" + sgn(x.profit, 2) + "</td></tr>").join("") + "</tbody>";

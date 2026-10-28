@@ -18,6 +18,68 @@ from audit import forward_eval as fe
 OUT = os.path.join(os.path.dirname(__file__), "examples")
 
 
+def recompute(bet: dict, game_key: str, lines_dir: str | None = None) -> dict:
+    """The close and alert CLV recomputed straight from the raw observation files (lines/obs*/), with the standard
+    library only: no forward_eval or clv_primary function is called, so a fault in the shared code cannot hide here.
+    Rules as written in FORWARD_TEST_PROTOCOL.md section 7 and audit/CLV_VERIFICATION.md (timestamps section)."""
+    import csv
+    import gzip
+    import statistics
+    from datetime import datetime, timedelta
+    lines_dir = lines_dir or os.path.join(os.path.dirname(__file__), "..", "lines")
+    books = {"DraftKings", "FanDuel", "BetMGM", "Caesars", "Fanatics", "bet365", "theScore Bet"}
+
+    def ts(x):
+        return datetime.fromisoformat(x.replace("Z", "+00:00")) if x else None
+
+    rows = []
+    for d in ("obs", "obs_targeted"):
+        p = os.path.join(lines_dir, d)
+        for f in sorted(os.listdir(p)) if os.path.isdir(p) else []:
+            op = gzip.open if f.endswith(".gz") else open
+            if f.endswith((".csv", ".csv.gz")):
+                with op(os.path.join(p, f), "rt", newline="") as fh:
+                    rows += [r for r in csv.DictReader(fh) if r["game_key"] == game_key]
+    for r in rows:
+        r["_t"], r["_st"], r["_upd"] = ts(r["observed_at"]), ts(r["start"]), ts(r.get("source_updated_at"))
+    # cutoff: the start carried by the latest observation (any market) made before its own reported start
+    pre = sorted((r for r in rows if r["_t"] and r["_st"] and r["_t"] < r["_st"]), key=lambda r: r["_t"])
+    cutoff = pre[-1]["_st"] if pre else None
+    if cutoff is None and os.path.exists(os.path.join(lines_dir, "closing.csv")):   # never observed pregame
+        with open(os.path.join(lines_dir, "closing.csv"), newline="") as fh:
+            ids = {int(x) for x in game_key.split("|")[1:]}
+            st = [ts(r["start"]) for r in csv.DictReader(fh) if r["date"] == game_key.split("|")[0] and r["start"]
+                  and {int(float(r["home_id"])), int(float(r["away_id"]))} == ids]
+            cutoff = max(st) if st else None
+    out = {"cutoff": cutoff.isoformat() if cutoff else None, "books": 0, "close": None, "clv": None, "ties": []}
+    if cutoff is None:
+        return out
+    per = {}
+    for r in rows:
+        if r["market"] != bet["market"] or r["book"] not in books or r["status"] != "available" or not r["line"]:
+            continue
+        if not (cutoff - timedelta(minutes=15) <= r["_t"] < cutoff) or r["_t"] >= r["_st"] or r["_upd"] is None:
+            continue
+        age = (r["_t"] - r["_upd"]).total_seconds()
+        if not -60 <= age <= 300:
+            continue
+        num = float(r["line"])
+        home = -num if (bet["market"] == "spread" and r["side"] == "away") else num
+        k = (r["_t"], r["_upd"])
+        if r["book"] not in per or k > per[r["book"]][0]:
+            per[r["book"]] = (k, home)
+        elif k == per[r["book"]][0] and home != per[r["book"]][1]:
+            out["ties"].append(r["book"])
+    if not per:
+        return out
+    home_close = statistics.median(v for _, v in per.values())
+    close = -home_close if (bet["market"] == "spread" and bet["side"] == "away") else home_close
+    line = float(bet["line"])
+    clv = (line - close) if bet["market"] == "spread" or bet["side"] == "under" else (close - line)
+    out.update(books=len(per), close=close, clv=clv, per_book={b: v for b, (_, v) in per.items()})
+    return out
+
+
 def _fmt(x, f="{:+.2f}"):
     return "n/a" if x is None or (isinstance(x, float) and np.isnan(x)) else f.format(x)
 
@@ -146,7 +208,7 @@ def build(bet_id: str) -> str:
     L.append(f"- Status: **{p['clv_status']}**: {p['clv_reason']}")
     L.append(f"- Books: {p['books_primary']}; quote ages (s): {p['feed_age_s']}; observed before cutoff (s): {p['obs_before_cutoff_s']}")
     L.append(f"- Consensus close (median, from the play's side): **{_fmt(p['close_primary'], '{:g}')}**")
-    L.append(f"- CLV, points (`forward_eval.line_value`, + = better entry than the close): **{_fmt(p['clv_primary'])}**")
+    L.append(f"- Alert CLV, points (`forward_eval.line_value`, + = the alert number beat the close): **{_fmt(p['clv_primary'])}**")
     pv = json.loads(p["price_vs_close"] or "[]")
     if pv:
         L.append("- Price, each closing book on the play's side vs the entry (protocol measure A: number, then payout; no "
@@ -157,14 +219,33 @@ def build(bet_id: str) -> str:
                  "number); \"yes: ...\" = a bettor at the close could match or beat the entry; \"ambiguous\" = a better number at a "
                  "worse price, which the protocol does not convert.")
     L.append(f"- Same-book close (grader, `bets/bets.csv`, diagnostic only): {_fmt(b['close_line'], '{:g}')}; "
-             f"same-book CLV {_fmt(b['clv_pts'])}\n")
+             f"same-book CLV {_fmt(b['clv_pts'])}")
+    if len(c):
+        acv = fe.line_value(pd.Series({"market": b["market"], "side": b["side"], "line": float(c.iloc[0]["line"])}),
+                            float(p["close_primary"])) if pd.notna(p["close_primary"]) else np.nan
+        L.append(f"- Accepted CLV, points (cohort C: the accepted number {c.iloc[0]['line']} at {c.iloc[0]['odds']}): {_fmt(acv)}")
+    else:
+        L.append("- Accepted CLV: none (no confirmed fill in bets/accepted.csv); the figure above is the alert number's")
+    if p.get("tip_check") == "conflict":
+        L.append(f"- Diagnostic close at ESPN's start (not the protocol's): {_fmt(p.get('close_espn_start'), '{:g}')} "
+                 f"({p.get('books_espn_start')} book(s)), CLV {_fmt(p.get('clv_espn_start'))}")
+    rc = recompute(b.to_dict(), key)
+    L.append("\n### Independent recomputation from the raw files (standard library only)\n")
+    L.append(f"- Cutoff {rc['cutoff']}; books {rc['books']}; per book (home/total number) {rc.get('per_book', {})}; "
+             f"close {_fmt(rc['close'], '{:g}')}; alert CLV {_fmt(rc['clv'])}"
+             + (f"; same-time ties with different numbers at {sorted(set(rc['ties']))}" if rc["ties"] else ""))
+    nums = rc.get("per_book", {})
+    outl = [bk for bk, v in nums.items() if len(nums) >= 3 and
+            abs(v - float(np.median([x for k2, x in nums.items() if k2 != bk]))) >= 1.0]
+    L.append(f"- Books 1+ point away from the other books' median (possible stale price the feed timestamp cannot "
+             f"reveal): {outl or 'none'}\n")
 
     L.append("## 5. What every surface shows\n")
     rows = []
     rows.append(("bets/clv_primary.csv (stored)", _fmt(p["clv_primary"])))
     if r["status"] == "settled":
         f = {x["name"]: x["value"] for x in record._settled(r)["embeds"][0]["fields"]}
-        rows.append(("Discord result post (payload)", f.get("CLV", "").replace(" pts", "")))
+        rows.append(("Discord result post (payload)", f.get("Alert CLV (points)", "").replace(" pts", "")))
     v = report_html._clv_view()
     rec = {x["bet_id"] if "bet_id" in x else x["pick"]: x for x in (v.get("recent") or [])}
     rr = next((x for x in (v.get("recent") or []) if x["pick"] == b["pick"] and x["date"] == b["date"]), None)
@@ -205,6 +286,10 @@ def build(bet_id: str) -> str:
         ("Included books match the stored book count", len(inc) == int(p["books_primary"] or 0)),
         ("Signed CLV equals the protocol's line value at the stored close",
          pd.notna(p["clv_primary"]) and abs(float(p["clv_primary"]) - fe.line_value(b, float(p["close_primary"]))) < 1e-9),
+        ("Independent recomputation from the raw files gives the same cutoff, books, close and CLV",
+         rc["close"] is not None and pd.notna(p["close_primary"]) and rc["books"] == int(p["books_primary"] or 0) and
+         abs(rc["close"] - float(p["close_primary"])) < 1e-9 and abs(rc["clv"] - float(p["clv_primary"])) < 1e-9 and
+         pd.Timestamp(rc["cutoff"]) == pd.Timestamp(p["cutoff"]) and not rc["ties"]),
         ("Every surface shows the same CLV", len({val for k, val in rows if k != "Loss review reason" and val != "not settled"}) == 1),
     ]
     L.append("## 6. Evidence checklist\n")
@@ -213,6 +298,12 @@ def build(bet_id: str) -> str:
     open_items = []
     if p["tip_check"] != "ok":
         open_items.append(f"tip time {p['tip_check']}: cutoff {p['cutoff']} vs ESPN {p['espn_start']} / feed latest {p['feed_latest_start']}")
+    if int(p["books_primary"] or 0) == 1:
+        open_items.append("one-book close (valid under the frozen rule; flagged)")
+    if outl:
+        open_items.append(f"closing book(s) 1+ point off the others: {', '.join(outl)}")
+    open_items.append("feed timestamp = provider refresh time (inferred, not confirmed by the provider); a refreshed "
+                      "but unchanged book price cannot be told apart from a live one")
     if 0 < int(p["books_primary"] or 0) < 7:
         open_items.append(f"{p['books_primary']} of 7 books in the close")
     if not len(c):

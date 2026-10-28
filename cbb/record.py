@@ -31,6 +31,17 @@ class Refused(Exception):
     """Discord refused the webhook itself (bad or deleted URL): stop this run's posting."""
 
 
+def _close_prices(b) -> str:
+    """Each closing book's number and price on the play's side ('DraftKings 154 -110, Caesars 154 -115'): shown
+    beside the points CLV, never converted into it."""
+    try:
+        q = json.loads(b.get("price_vs_close") or "[]")
+    except (TypeError, ValueError):
+        return ""
+    return ", ".join(f"{x['book']} {x['line']:g} {_price(x['price']) if x.get('price') is not None else '(no price)'}"
+                     for x in q)[:1000]
+
+
 def _label(payload: dict) -> str:
     """What a post was about, for the alert log: the bet id in its footer, or its title or first words."""
     e = (payload.get("embeds") or [{}])[0]
@@ -99,18 +110,21 @@ def _settled(b: pd.Series) -> dict:
     ok = pd.notna(b["clv_pts"])
     nb = int(b["books_primary"]) if pd.notna(b.get("books_primary")) else 0
     fields = [("Final", f"{b['away']} {b['away_score']:.0f}, {b['home']} {b['home_score']:.0f}"),
-              ("Close (consensus)", f"{b['close_line']:g} ({nb} book{'s' if nb != 1 else ''})" if ok else "unavailable"),
-              ("CLV", f"{b['clv_pts']:+.2f} pts" if ok else "unavailable"),
+              ("Close (consensus)", (f"{b['close_line']:g} ({nb} book{'s' if nb != 1 else ''}"
+                                     f"{': one-book close' if nb == 1 else ''})") if ok else "unavailable"),
+              ("Alert CLV (points)", f"{b['clv_pts']:+.2f} pts" if ok else "unavailable"),
+              ("Prices at close", _close_prices(b) or "none recorded"),
               ("Units", f"{b['profit']:+.2f}" if pd.notna(b["profit"]) else "–"), ("Bet", placed)]
     if not ok:
-        fields.append(("Why no CLV", str(b.get("clv_reason") or "no primary close")[:1000]))
+        fields.append(("Why no alert CLV", str(b.get("clv_reason") or "no primary close")[:1000]))
     if pd.notna(b.get("clv_same_book")):
         fields.append(("Same-book CLV (diagnostic)", f"{b['clv_same_book']:+.2f} pts"))
     from .clv_primary import VERIFICATION_STATUS
     return {"embeds": [{"title": f"{res}: {b['pick']} {_price(b['odds'])}", "color": color,
                         "fields": [{"name": k, "value": v, "inline": True} for k, v in fields],
-                        "footer": {"text": f"bet id {b['bet_id']} · CLV vs the consensus close of fresh quotes in the "
-                                           f"last 15 min before tip · CLV tracking: {VERIFICATION_STATUS}"}}]}
+                        "footer": {"text": f"bet id {b['bet_id']} · Alert CLV = points from the alert number to the "
+                                           f"consensus close of fresh quotes in the last 15 min before tip; prices are "
+                                           f"shown separately, not converted · CLV tracking: {VERIFICATION_STATUS}"}}]}
 
 
 def sync(url: str | None = None) -> int:
