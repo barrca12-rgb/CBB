@@ -209,7 +209,7 @@ class Inference(unittest.TestCase):
 
     def test_final_read_not_before_the_fixed_date(self):
         b, obs = self.season()
-        out = self.run_eval(b, obs, today="2027-03-15")
+        out = self.run_eval(b, obs, today="2027-03-13")
         self.assertTrue(out["read"].startswith("descriptive"))
 
     def test_z_is_bootstrap_mean_over_bootstrap_se(self):

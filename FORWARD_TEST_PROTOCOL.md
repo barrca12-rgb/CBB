@@ -1,4 +1,4 @@
-# Forward-test protocol, v2.0 (declared Oct 26, 2026, before the season's first games on Nov 1)
+# Forward-test protocol, v2.1 (declared Oct 26, 2026, before the season's first games on Nov 1; v2.1 Oct 28)
 
 This file fixes how the 2026-27 live record is collected and judged. It is fingerprinted in `MODEL_FREEZE.md`
 together with its evaluation code, `audit/forward_eval.py`, and that code's tests, `audit/test_forward_eval.py`.
@@ -261,7 +261,8 @@ A point is not treated as equally valuable across markets, and points are never 
 **Reads:**
 - **January 15, 2027:** descriptive only. Estimates, counts and descriptive intervals; no z, no test, no verdict.
   No interim stopping rule or boundary exists.
-- **Final read:** run on or after **2027-03-16** with games through 2027-03-14. The only formal conclusions.
+- **Final read:** run on **2027-03-14** (Selection Sunday), after every game through 2027-03-14 is graded, and in
+  any case before the first NCAA tournament game on 2027-03-16. Games through 2027-03-14. The only formal conclusions.
 
 **Primary endpoints, per market (spreads and totals separately), on model v1 cohort A:**
 - **E1:** mean line value against the strict close (points).
@@ -343,3 +344,7 @@ The output goes to the helpers' doc and to Chad with:
   - The frozen definition covers injury-source choice and line feeds.
   - Same day, operational fix after the first scheduled targeted poll and still before any forward data: idle
     targeted polls write no row, and the workflow saves its log correctly before the first quote is logged.
+- v2.1 (2026-10-28, before any game was played or graded; Chad's request): the final read moves from on or after
+  March 16 to March 14, after the last regular-season and conference-tournament games are graded, so the decision is
+  made before the NCAA tournament starts on March 16. The game window (through March 14), the endpoints, the tests
+  and every threshold are unchanged. No result had been computed.

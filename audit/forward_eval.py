@@ -30,7 +30,7 @@ VERSIONS = {"v1": {"start": PROTOCOL_START, "end": None, "shadow_log": os.path.j
 
 # --- season and reads (section 9) --------------------------------------------------------------------------------
 FIRST_GAME, LAST_GAME = "2026-11-01", "2027-03-14"      # regular season through Selection Sunday
-FINAL_READ_ON = "2027-03-16"                            # the fixed evaluation date: formal conclusions only here
+FINAL_READ_ON = "2027-03-14"                            # the fixed evaluation date (v2.1): formal conclusions only here
 DESCRIPTIVE_READS = ["2027-01-15"]                      # descriptive only: no verdict, no test
 
 # --- frozen model v1 selection constants (run_day.py at the freeze). Delayed EV uses these with the signal's own

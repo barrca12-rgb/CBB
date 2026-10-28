@@ -45,6 +45,6 @@ the current model at Jan 15.
 ## Reads
 - **Jan 15 (descriptive):** `python -m research.r1000.evaluate`: record by market and version, and for plays only
   one version made.
-- **March 16:** the same, with the full season.
+- **March 14:** the same, with the full season (moved from March 16 on Oct 28, Chad: before the NCAA tournament).
 - **Caveat:** at about 400 spread plays by Jan 15, a 1-point win% difference is well inside noise (±5 points). Jan 15
   shows direction only.

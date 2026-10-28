@@ -200,3 +200,19 @@ The Jan 15 check runs `sha256sum -c` on this line in place of the v2.0 line for 
 - **Status:** set by Chad before the first games (Nov 1); no play was logged under the 30-minute overnight schedule
   after the protocol's start. The schedule is outside the repo, so it has no fingerprint: any later change to it gets a
   dated entry here, and the weekly health line counts card runs, which shows a change within a week.
+
+## 2026-10-28: forward-test protocol v2.1, final read moved to March 14 (Chad's request; before any game)
+
+- **Change:** the final read runs on 2027-03-14 (Selection Sunday), after every game through that day is graded and
+  before the NCAA tournament starts on 2027-03-16; it was "on or after 2027-03-16". `audit/forward_eval.py`
+  `FINAL_READ_ON` is now "2027-03-14", and the test that the final read cannot run early now uses March 13.
+- **Unchanged:** the game window (Nov 1 through Mar 14), endpoints, tests, thresholds, the model, selection, staking,
+  the bet log and grading. No game had been played or graded and no result computed.
+- **Shadow plans:** `research/v2_lineup/PLAN.md` and `research/r1000/PLAN.md` decision reads move to March 14 too.
+- **New protocol fingerprints (v2.1);** the v2.0 lines above are kept for the record:
+
+```
+e56a5bd377ced61f64ee7df2068b695e3faea3ce44c40cb93310db79aa2b2416  FORWARD_TEST_PROTOCOL.md
+4a63f6e6baa2e3f0a7f5ed385d07b9ada66e07524a58a9deaf917eba311a22f5  audit/forward_eval.py
+58e75584ee9efb986211b1f041b00be71eaa4ae8b50ba3f2286113685be63551  audit/test_forward_eval.py
+```

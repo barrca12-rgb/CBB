@@ -84,7 +84,7 @@ margin.
 
 The all-games comparison in the evaluation section above stays as the secondary read.
 
-**Reads:** Jan 15 descriptive; March 16 the decision read. If v2 clears it, it can replace v1 for 2027-28 by the
+**Reads:** Jan 15 descriptive; March 14 the decision read (moved from March 16 on Oct 28, Chad: before the NCAA tournament). If v2 clears it, it can replace v1 for 2027-28 by the
 normal approval path (protocol section 8); if not, it is closed with the others.
 
 **Form of the adjustment:** v2 adds beta x adjustment to v1's final margin, with beta fit walk-forward on the
@@ -95,4 +95,4 @@ while holding the other stage-2 weights fixed. Live beta is frozen at 0.4022.
 - **Not posted:** v2 signals never go to Discord. The posting code exists in `cbb/shadow_v2.py` but stays off
   (`SHADOW_V2_DISCORD` is not set).
 - **Not on the site:** v2 is never part of the site's record or play tracking, which read `bets/bets.csv` only.
-- **Where it lives:** `bets/shadow_v2/`, for the Jan 15 and March 16 evaluations.
+- **Where it lives:** `bets/shadow_v2/`, for the Jan 15 and March 14 evaluations.

@@ -1,5 +1,5 @@
 """Grade the ridge-1,000 shadow's logged plays (bets/shadow_r1000/signals.csv) against final scores, live (v1)
-vs ridge 1,000, at the logged line and price. For the Jan 15 read (descriptive) and March 16 (research/r1000/PLAN.md).
+vs ridge 1,000, at the logged line and price. For the Jan 15 read (descriptive) and March 14 (research/r1000/PLAN.md).
 
     python -m research.r1000.evaluate
 """
