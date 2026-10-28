@@ -288,3 +288,28 @@ definition are unchanged.
 ```
 6d206caaa739a9fda0da87dd32c086d797d9a068c9d916721bc44610fdbb89f0  cbb/tracker.py
 ```
+
+## 2026-10-28: CLV audit gaps closed (metadata, alerts and diagnostics only; no rule change)
+
+Before any game. Predictions, bet selection, staking (the cap's input, numbers, cohort and window), the bet log,
+grading and the primary-close definition are unchanged. VERIFICATION_STATUS stays "built, not verified".
+
+- **Stake cap refresh time (`cbb/tracker.py`, fingerprinted):** `bets/stake_cap.json` now records `refreshed_at`, the
+  time of the last successful refresh of the persisted state, and `status()` returns it in each market's `cap`. A
+  "held" state keeps the earlier time. Metadata only: the cap's decision is computed exactly as before.
+- **Tip-time review before tip (`cbb/tipcheck.py`, new; not fingerprinted):** on each card run, an open play whose
+  protocol cutoff differs from ESPN's start or from the feed's latest start by more than 10 minutes ("review") or by
+  30 minutes or more ("conflict") sends one phone alert per distinct set of times and is logged to
+  `bets/tip_review.csv`; the card shows the warning beside the play. Reads and alerts only; the cutoff is not moved.
+- **Diagnostics (`cbb/clv_primary.py`, `audit/health.py`, `audit/clv_example.py`):** `bets/clv_primary.csv` adds
+  `feed_latest_start`, `feed_gap_min` and `tip_check`; the health line counts open tip-time reviews and shows the
+  cap's refresh time; the first-game example ends in an evidence checklist and reports "first live capture
+  verified" only when every item passes.
+- **Tests:** `audit/test_tip_correction.py` (start-time correction before, during and after the closing window;
+  polling) and a cap refresh test. `python -m pytest -q audit/`: 51 passed.
+- **Discord note:** none. No rule, pick, stake or displayed CLV changes.
+- **New fingerprint:**
+
+```
+f88f4a2728f9bda5ffc740d718bb20d30d1268855432e7504eb39d45ec359913  cbb/tracker.py
+```

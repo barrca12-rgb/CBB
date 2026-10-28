@@ -220,6 +220,7 @@ def status(b: pd.DataFrame | None = None) -> dict:
         post = (cfg["backtest"] * PRIOR_BETS + w) / (PRIOR_BETS + n)
         mult = float(np.clip((post - BREAKEVEN) / (cfg["backtest"] - BREAKEVEN), 0, 1))
         cap = _cap(s, mk, last)
+        cap["refreshed_at"] = last.get("refreshed_at")   # last successful refresh of the persisted state
         if cap["on"]:
             mult = min(mult, CAP_MULT)
         caps[mk] = {"on": cap["on"]}
@@ -233,9 +234,12 @@ def status(b: pd.DataFrame | None = None) -> dict:
                    "cap": cap, "multiplier": round(mult, 2),
                    "open": int(((b["market"] == mk) & (b["status"] == "open")).sum())}
     if all(c["state"] != "held" for c in (out[mk]["cap"] for mk in out)) or not os.path.exists(STAKE_CAP_STATE):
+        caps["refreshed_at"] = pd.Timestamp.now(tz="UTC").isoformat(timespec="seconds")
         try:
             with open(STAKE_CAP_STATE, "w") as fh:
                 json.dump(caps, fh)
+            for mk in out:
+                out[mk]["cap"]["refreshed_at"] = caps["refreshed_at"]
         except OSError:
             pass
     return out

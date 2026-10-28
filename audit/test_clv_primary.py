@@ -124,7 +124,7 @@ def test_attach_keeps_the_graders_value_as_diagnostic_and_never_substitutes_it(m
     b = pd.DataFrame([dict(bet(), close_line=147.0, clv_pts=2.5)])
     monkeypatch.setattr(clv_primary, "primary", lambda b: pd.DataFrame([{
         "bet_id": b["bet_id"].iloc[0], "cohort": "pre-freeze", "cutoff": None, "cutoff_source": "", "espn_start": None,
-        "start_gap_min": None, "close_primary": np.nan,
+        "start_gap_min": None, "feed_latest_start": None, "feed_gap_min": None, "tip_check": "ok", "close_primary": np.nan,
         "clv_primary": np.nan, "books_primary": 0, "feed_age_s": "[]", "obs_before_cutoff_s": "[]",
         "clv_status": "unavailable", "clv_reason": "no quotes logged for this game", "price_vs_close": "[]"}]))
     a = clv_primary.attach(b).iloc[0]
@@ -238,3 +238,14 @@ def test_stake_cap_keeps_its_last_state_when_closes_cannot_be_read(monkeypatch, 
     monkeypatch.setattr(clv_primary, "_load_obs", boom)
     c = tracker.status(b)["total"]["cap"]
     assert c["state"] == "held" and c["on"]           # kept on, not reset by missing data
+
+
+def test_stake_cap_records_its_last_successful_refresh_and_keeps_it_while_held(monkeypatch, tmp_path):
+    tracker, b = _cap_world(monkeypatch, tmp_path, 25, primary_close=150.5, same_book_clv=+1.0)
+    first = tracker.status(b)["total"]["cap"]["refreshed_at"]
+    assert first is not None
+    def boom(x):
+        raise OSError("obs unreadable")
+    monkeypatch.setattr(clv_primary, "_load_obs", boom)
+    c = tracker.status(b)["total"]["cap"]
+    assert c["state"] == "held" and c["refreshed_at"] == first      # the stale time stays visible while held

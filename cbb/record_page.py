@@ -378,6 +378,11 @@ def write() -> str:
         clv_primary.write()
     except Exception as e:
         print(f"CLV table failed ({e}); continuing.")
+    try:   # tip-time review before tip: open bets whose cutoff and ESPN / latest feed start differ by over 10 min
+        from . import tipcheck
+        tipcheck.check()
+    except Exception as e:
+        print(f"Tip-time check failed ({e}); continuing.")
     with open(OUT, "w") as fh:
         fh.write(build())
     with open(VERIFY, "w") as fh:

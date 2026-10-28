@@ -85,6 +85,22 @@ def _logged_view(card: pd.DataFrame) -> pd.DataFrame:
             m = b[b["market"] == mk].drop_duplicates("game_id", keep="last").set_index("game_id")
             t = pd.to_datetime(card["game_id"].map(m["logged_at"]), utc=True, errors="coerce", format="ISO8601")
             card[f"{mk}_logged_pre"] = (t < REVISION).fillna(False).to_numpy()
+    # tip-time review (cbb/clv_primary.py tip_check): shown on the logged play before tip, display only
+    try:
+        from . import clv_primary, tipcheck
+        if b is not None and len(b):
+            o = b[b["status"] == "open"]
+            p = clv_primary.primary(o).merge(o[["bet_id", "game_id", "market", "pick", "home", "away"]], on="bet_id")
+            p = p[p["tip_check"].isin(["review", "conflict"])]
+            for mk in ("spread", "total"):
+                m = p[p["market"] == mk].set_index("game_id")
+                if len(m):
+                    msg = card["game_id"].map(m.apply(tipcheck.message, axis=1))
+                    old = card[f"{mk}_warn"] if f"{mk}_warn" in card else pd.Series(None, index=card.index)
+                    card[f"{mk}_warn"] = [("; ".join(x for x in (a_, m_) if isinstance(x, str) and x)) or a_
+                                          for a_, m_ in zip(old, msg)]
+    except Exception as e:
+        print(f"Tip-time warning failed ({e}); continuing.")
     return card
 
 
@@ -363,7 +379,8 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   const sgn = (x, d = 1) => x == null ? "–" : (x > 0 ? "+" : x < 0 ? "−" : "") + Math.abs(x).toFixed(d).replace(/\.0+$/, "");
   // stake cap (cbb/tracker.py): held at 50% when primary-close CLV averages below 0 after 25 bets with a close
   const capText = (c) => !c ? "" : "<small>" + (c.state === "held" ? "cap held (closes unreadable)"
-    : "cap " + c.state + " (primary CLV " + clvf(c.clv) + " on " + c.n + " of " + c.settled + " plays)") + "</small>";
+    : "cap " + c.state + " (primary CLV " + clvf(c.clv) + " on " + c.n + " of " + c.settled + " plays)") +
+    (c.refreshed_at ? " · refreshed " + new Date(c.refreshed_at).toLocaleString("en-US", {timeZone: "America/New_York", month: "short", day: "numeric", hour: "numeric", minute: "2-digit"}) + " ET" : "") + "</small>";
   // CLV: always 2 decimals, the same figure Discord, the record page and the charts show (cbb/clv_primary.py)
   const clvf = (x) => x == null ? "–" : (x > 0 ? "+" : x < 0 ? "−" : "") + Math.abs(x).toFixed(2);
   const ln = (x) => x == null ? "–" : Math.abs(x) < 0.05 ? "PK" : sgn(x);

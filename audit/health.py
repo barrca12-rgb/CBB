@@ -64,12 +64,23 @@ def counts(a: pd.Timestamp, b: pd.Timestamp) -> dict:
         out["_missing reasons"] = "; ".join(sorted(set(cs.loc[cs["clv_pts"].isna(), "clv_reason"].astype(str))))
     except Exception as e:
         out["missing primary close"], out["_missing reasons"] = -1, f"CLV check failed: {e}"
+    try:   # tip-time reviews still open: open bets whose cutoff differs from ESPN / the latest feed start by over 10 min
+        from cbb import clv_primary as cp, tracker as tr0
+        ob_ = tr0.load()
+        ob_ = ob_[ob_["status"] == "open"]
+        tp = cp.primary(ob_) if len(ob_) else pd.DataFrame(columns=["tip_check", "bet_id"])
+        out["tip-time reviews open"] = int(tp["tip_check"].isin(["review", "conflict"]).sum())
+        out["_tip reviews"] = "; ".join(f"{r.bet_id} {r.tip_check} ({r.start_gap_min} min vs ESPN)"
+                                        for r in tp[tp["tip_check"].isin(["review", "conflict"])].itertuples())
+    except Exception as e:
+        out["tip-time reviews open"], out["_tip reviews"] = -1, f"tip check failed: {e}"
     try:   # the stake cap (cbb/tracker.py), on the primary close: on / off / held, with its CLV and counts
         from cbb import tracker as tr
         for mk, st_ in tr.status().items():
             c = st_["cap"]
             out[f"stake cap {mk}s"] = ("held (closes unreadable)" if c["state"] == "held" else
-                                      f"{c['state']} (primary CLV {'–' if c['clv'] is None else format(c['clv'], '+.2f')} on {c['n']} of {c['settled']})")
+                                      f"{c['state']} (primary CLV {'–' if c['clv'] is None else format(c['clv'], '+.2f')} on {c['n']} of {c['settled']})") + \
+                f", refreshed {c.get('refreshed_at') or 'never'}"
     except Exception as e:
         out["stake cap"] = f"check failed: {e}"
     acc = os.path.join(ROOT, "bets", "accepted.csv")
@@ -96,6 +107,8 @@ def flags(c: dict, prev: dict, end: pd.Timestamp) -> list[str]:
     if c.get("missing primary close", 0):
         f.append(f"{c['missing primary close']} settled play(s) without a primary close: {c.get('_missing reasons', '')}"
                  if c["missing primary close"] > 0 else c.get("_missing reasons", "CLV check failed"))
+    if c.get("tip-time reviews open", 0):
+        f.append(f"tip-time review open: {c.get('_tip reviews', '')}")
     if c.get("new bets logged", 0) and c["Discord posts (of new bets)"] < c["new bets logged"]:
         f.append(f"{c['new bets logged'] - c['Discord posts (of new bets)']} new bet(s) not posted to Discord")
     return f

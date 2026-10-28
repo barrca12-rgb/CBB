@@ -1,8 +1,10 @@
 # CLV verification (audit of Oct 28, 2026; first-game report to follow)
 
 **Status: built, not verified.** The pipeline is built and tested on synthetic data; it has not yet been run on a
-real closing window. It is marked verified only by the first-game report (section 7), not because polling jobs are
-running. Every CLV figure on every surface carries this status until then (`cbb/clv_primary.VERIFICATION_STATUS`).
+real closing window. Chad's instruction (Oct 28): the status stays "built, not verified" on every surface
+(`cbb/clv_primary.VERIFICATION_STATUS`) until he changes it. The first-game check reports "first live capture
+verified" only when its evidence checklist passes (section 7); that finding does not change the status, and running
+polling jobs is never evidence of verification.
 
 Scope: Chad's Oct 28 instruction. A (display only) and B (the model-check tripwire) are implemented under change
 control (MODEL_FREEZE.md, "2026-10-28: one CLV everywhere"; Discord note `2026-10-28-clv-definition`, posted
@@ -12,8 +14,8 @@ Code audited: `audit/forward_eval.py` (frozen protocol code), `cbb/clv_primary.p
 `cbb/odds_api.py`, `cbb/tracker.py`, `cbb/record.py`, `cbb/report_html.py`, `cbb/record_page.py`,
 `cbb/record_chart.py`, `cbb/review.py`, `audit/health.py`, `.github/workflows/update.yml`, `quotes.yml`. Records
 audited: `bets/bets.csv`, `bets/signal_log.csv`, `bets/accepted.csv`, `bets/alert_log.csv`, `lines/closing.csv`,
-`lines/obs/`, `lines/obs_targeted/`, `lines/polls*.csv`, `reports/cbb_*.csv`. Tests: `audit/test_clv_primary.py` (14)
-and `audit/test_forward_eval.py` (23), all passing.
+`lines/obs/`, `lines/obs_targeted/`, `lines/polls*.csv`, `reports/cbb_*.csv`. Tests: `audit/test_clv_primary.py` (19),
+`audit/test_tip_correction.py` (9) and `audit/test_forward_eval.py` (23), 51 passing.
 
 ## 1. Entry
 
@@ -46,9 +48,22 @@ reported start are eligible. The feeds also stop listing a game once it starts (
 stops watching at the scheduled start.
 
 **Freshness.** Quote age = our `observed_at` minus the feed's own timestamp (`source_updated_at`: the Odds API
-bookmaker/market `last_update`, SGO `lastUpdatedAt`). Valid for the close: status available, age between -60 s and
-+300 s. In the 540 observations logged so far, 95% of available quotes were 300 s old or less (Caesars' 90th
-percentile is 375 s, so Caesars will sometimes drop out).
+market `last_update`, falling back to the bookmaker `last_update`; SGO `lastUpdatedAt`). Valid for the close: status
+available, age between -60 s and +300 s (frozen).
+
+**What the feed's timestamp means (checked Oct 28).** The provider's documentation could not be retrieved (the-odds-api.com
+is outside this session's network allowlist), so this is measured, not quoted. In 504 consecutive observations of the
+same book, game, market and side (polls a median 169 s apart), the line and price **never changed**, yet the timestamp
+**advanced in 396 (79%)** and stayed put in 108. Within a poll, a book's markets share one timestamp (129 of 129). So
+`last_update` is **not the last price change**: it behaves as the time the provider last refreshed that book's markets
+(a scrape or feed update), every few minutes, at a book-specific pace (median age: Fanatics 39 s, DraftKings 42 s,
+Caesars 111 s; Caesars' 90th percentile 375 s). It is also **not a confirmation that the book still offers the
+market**: a market the book pulls drops out of the provider's response, which the logger records as `absent`.
+Effect on the frozen filter: "age at most 300 s" means "the provider re-read this book's market within 5 minutes";
+an unchanged line therefore passes (correct: a stable number is still a valid close), while a slow-refreshing book
+(Caesars) is excluded more often even when its line is live, which can reduce the book count but never adds an old
+number. If the provider ever reports the time of the last price change instead, a stable line would age out and books
+would drop from the close; the age distribution in the health of each first-game report is the check for that.
 
 **Selection.** Window [cutoff - 15 min, cutoff). Only the 7 books. All observations sit in one deterministic order
 (observation time; card log before targeted log; The Odds API before SGO; feed timestamp, number, price). Per book,
@@ -66,13 +81,15 @@ targeted poll (`quotes.yml`, every 3 minutes via cron-job.org; Odds API, 2 credi
 
 | Case | Handling | Finding |
 |---|---|---|
-| Changed start time | The cutoff moves with the latest pregame report; the watch window follows `closing.csv`'s latest start. Tested (`test_a_moved_start_moves_the_cutoff`). | **Open:** for two current bets the feed's start is 60 min before ESPN's: Memphis at Iowa State (feed 23:00, ESPN 00:00 UTC; Over 152.5) and Ohio State at BYU (feed 01:00, ESPN 02:00 UTC; Ohio State +1.5). If the feed is wrong, their close is taken about an hour before the real tip, and the Odds API stops listing the game at its own start. The protocol defines the cutoff by the feed, so this is not changed; each play now carries `espn_start` and `start_gap_min`, and a gap over 10 min is flagged in its reason. |
+| Changed start time | The cutoff moves to the start carried by the latest pregame observation; polling follows `closing.csv`'s latest start. Tested for corrections before, during and after the window (below). | **Open:** two unresolved start times (below). |
 | Postponed or cancelled | Protocol: void. The grader grades only games ESPN marks final, so a postponed game's bet stays `open` (excluded from every CLV average) until voided. | **Open:** no code voids postponed games automatically; the two voids so far were set by hand. A last-minute postponement could still produce a primary close from pre-start quotes, but the bet is never settled, so the close is never averaged. |
 | Moved to another date | The game key includes the bet's date, so quotes under the new date do not match: "no quotes logged for this game", counted as missing (the protocol's rule). | As designed. |
 | A book removes the market early | The book's later polls show `absent` (excluded). Its last valid quote counts only if it falls inside the 15-minute window and is fresh. A stale number is never carried forward (unlike the grader's same-book close, which keeps a book's last number however old). | As designed. |
 
-**Tip-time check (Oct 28): not daylight saving.** All 7 games with both a feed and an ESPN start are after the Nov 1
-clock change (no lined D-I games on Oct 31; Nov 3-8 not yet listed by the feed):
+**Tip-time check (Oct 28): two separate conclusions.**
+
+*(a) No systematic daylight-saving shift found.* All 7 games with both a feed start and an ESPN start are after the
+Nov 1 clock change (no lined D-I games on Oct 31; Nov 3-8 not yet listed by the feed):
 
 | Difference, ESPN minus feed | Games |
 |---|---|
@@ -80,14 +97,46 @@ clock change (no lined D-I games on Oct 31; Nov 3-8 not yet listed by the feed):
 | 60 min | 2: Memphis vs Iowa State (Sioux Falls), Ohio State vs BYU (Salt Lake City); feed earlier |
 | other | 1: Liberty vs High Point; placeholder times on both sides (ESPN 11:59 pm, feed 2:00 am ET) |
 
-A pre-change offset would shift every post-change game; four of six real times agree. Third-source check: the Hall
-of Fame Series (Las Vegas) lists Gonzaga vs Purdue at 4:30 pm and Arizona vs UCLA at 7:00 pm Pacific (00:30 and
-03:00 UTC), matching both sources; Ohio State and BYU, and Iowa State and Memphis, list their games' times as TBD,
-so neither source's time is confirmed for the disputed pair. Verdict: provisional times, not a feed, parsing or
-ESPN offset error; no protocol change. The two plays stay flagged (`start_gap_min` = -60), and the cutoff moves
-when the feed updates its start. Notre Dame vs Villanova is unaffected (both sources 14:30 UTC): its pre-tip polls
-run 14:10-14:30 UTC (9:10-9:30 am ET) and the first-game check stays at 17:15 UTC (12:15 pm ET). Re-checked on
-Nov 2 before the games.
+A pre-change offset in either source would shift every post-change game by 60 minutes; four of the six real times
+agree to the minute, and the two officially announced times found (Hall of Fame Series, Las Vegas: Gonzaga vs Purdue
+4:30 pm and Arizona vs UCLA 7:00 pm Pacific, 00:30 and 03:00 UTC) match both sources. Limits: 7 games, one day; no
+pre-change comparison exists, so a shift confined to some other date range is not excluded by this sample.
+
+*(b) Two start times remain unresolved.* Ohio State vs BYU (feed 8:00, ESPN 9:00 pm ET) and Memphis vs Iowa State
+(feed 6:00, ESPN 7:00 pm ET) have no announced tip time: Ohio State's and BYU's schedules list "TBD"; Iowa State and
+Memphis say the time will be announced; the Sanford Pentagon shows a 5:00-8:00 pm window with tipoff TBD. Neither
+source is confirmed and neither can be called wrong. Under the frozen rule the close for these plays is taken in the
+15 minutes before the feed's start. Both plays are `tip_check = conflict`, alerted before tip, shown on the card and
+listed in the health line until the times agree or are confirmed. A re-check runs Nov 2 at 10:00 am ET against the
+announced times; any change of rule (e.g. ESPN's start when the two differ, or CLV "unavailable (tip time conflict)")
+would be protocol v2.2 and needs Chad's approval.
+
+**Two thresholds, two purposes.** Every play compares the protocol's cutoff with ESPN's scheduled start
+(`start_gap_min`) and with the feed's latest reported start in `closing.csv` (`feed_gap_min`), stored in
+`bets/clv_primary.csv` as `tip_check`:
+- **over 10 minutes: "review" (diagnostic).** Set below the 15-minute closing window: a gap over 15 minutes means the
+  protocol's window and a window around the other start do not overlap at all, so anything over 10 is worth a look.
+  Placeholder times (ESPN's 11:59 pm) and real moves show up here first.
+- **30 minutes or more: "conflict" (escalation).** Large enough that the close is plainly taken at a different time
+  from the other source's tip; the case for a rule change, which only Chad can approve.
+
+Both levels are visible and reviewed before tip, never only after: the play's reason text carries the flag; the card
+shows a warning line on the logged play; `cbb/tipcheck.py` runs on every card run and sends one phone alert per bet
+and per distinct set of times (logging every finding to `bets/tip_review.csv`); the weekly health line counts open
+reviews and flags each. Nothing in this changes the cutoff or the close.
+
+**Start-time corrections (tested, `audit/test_tip_correction.py`; old start T0, corrected start T1 = T0 + 60 min):**
+
+| Correction arrives | Protocol cutoff and close | Polling (`quotelog.watched_games`) |
+|---|---|---|
+| Before the window (observed 60 min before T0) | Cutoff T1; the close uses quotes in [T1-15, T1). | Follows T1 once the card pull stores it: the old window is not polled; [T1-20, T1) is. |
+| During the window (observed 5 min before T0) | Cutoff T1. Quotes already captured in the old window are **not** used. With nothing captured in [T1-15, T1): **unavailable**, "no quote observed in the 15 minutes before the tip cutoff". With quotes there: a normal close. | Pauses after the correction is stored and resumes at T1-20. |
+| After the old start, seen by a later observation (feed relists the game) | Cutoff T1; nothing captured in the new window -> **unavailable**, no close from the old window and no implied quotes. | Treated as started at T0, resumes once a card pull stores T1. |
+| After the old start, only in `closing.csv` (no observation carries T1) | The frozen rule keeps the cutoff at T0 (the start of the latest pregame observation): the close is taken in the old window. Flagged `conflict` (`feed_gap_min` = -60) and alerted. | If T1 is stored, polling covers [T1-20, T1); the first observation there moves the cutoff to T1. |
+| Never stored | Cutoff T0. | Stops at T0; nothing is polled near an unknown new start. |
+
+A corrected cutoff never implies quotes that were not captured: the close only ever uses logged observations, and a
+window with none is reported unavailable with its reason.
 
 **Coverage today:** only DraftKings, Caesars and Fanatics are quoting the Nov 1–2 games (FanDuel, BetMGM, bet365,
 theScore Bet not yet posted); SGO returned no events. With 3 books, a primary close needs at least one of them fresh
@@ -169,6 +218,17 @@ verified"; record table "+2.00 · 1/2"; recent table "+2.00", same-book "+1.00",
   than 25 settled bets. Shown on the card next to the stake multiplier and in the health line. Tested both ways
   (`test_stake_cap_fires_on_negative_primary_clv_despite_positive_same_book` and its reverse, the 25-with-a-close
   minimum, and the held state). No rule reads the same-book CLV any more.
+- **Stake cap, confirmed (code read, Oct 28):**
+  - *Eligible cohort:* every settled bet in the market (`status == "settled"`): model v1 **and pre-freeze** bets, placed
+    or not; open and void bets excluded. Pre-freeze plays are **not** excluded; that is the population the cap has
+    always used, and excluding them would be a staking change (not made; Chad's call).
+  - *Ordering and window:* none. The cap is a season-to-date mean over every eligible bet with a primary close (no
+    trailing window, so order does not matter), with the minimum of 25 counting only bets with a close. (The model-check
+    tripwire is different: the trailing 150 bets with a close, ordered by game date then logged time, same cohort.)
+  - *Refresh:* each successful run writes `bets/stake_cap.json` with `refreshed_at` (UTC). While the closes cannot be
+    read the state is "held" and `refreshed_at` keeps the last successful time, so a stale cap is visible. Shown on
+    the card ("cap off ... · refreshed <time> ET") and in the health line. Last successful refresh: written by each
+    card run from Oct 28 on; tested (`test_stake_cap_records_its_last_successful_refresh_and_keeps_it_while_held`).
 
 ## 6. Evidence
 
@@ -177,8 +237,14 @@ sends, the cohort B and C records), the tip cutoff and its source with ESPN's st
 minutes before to 10 minutes after the cutoff (book, side, line, price, feed timestamp, observation time, age,
 status, reported start) labeled INCLUDED, superseded or excluded with the reason, the consensus close, the signed
 CLV, the price comparison per book, the same-book diagnostic, and every surface's figure with an explicit agreement
-check and coverage beside every average. Tested on synthetic quotes (3 books included; a stale, an absent, an early
-and an in-play quote excluded; all surfaces +2.00).
+check and coverage beside every average. It also lists every poll in the 20 minutes before the cutoff (card pulls and
+targeted polls, with the longest gap) and ends with an **evidence checklist**: entry present; game graded; cutoff and
+its source; tip time consistent (`tip_check` ok); at least 2 eligible books fresh in the window; every included quote
+in the window, before the cutoff and its own start, age at most 300 s; included books equal the stored count; signed
+CLV equals the protocol's line value; every surface agrees. The verdict reads "first live capture verified" only if
+every check passes, otherwise "NOT verified" with the failed checks; open timing and coverage items are listed either
+way. Tested on synthetic quotes: 3 fresh books -> verified (open items: 3 of 7 books, no confirmed fill); 1 book with an
+ESPN time 60 min later -> NOT verified (book count, tip time).
 
 The required example, **Notre Dame–Villanova Under 149.5 (Nov 1)**, is generated by the first-game check after the
 game: `audit/examples/clv_2026-11-01_401920982_total_under.md`. It is a **pre-freeze** signal (logged Oct 25, 22:32
@@ -192,10 +258,12 @@ UTC), so it is the first placed bet but not part of model v1 cohort A; it has no
   45 minutes (17:15 UTC); it then reads the game's verified cutoff from the observations and ESPN's status. If the
   game is not final or the bet not yet graded, it re-arms itself 30 minutes later (up to 8 times), and if the cutoff
   moved, from the new cutoff plus 2 hours 45 minutes.
-- **It reports:** whether the 3-minute pre-tip polls captured at least two fresh books; whether a primary close was
-  computed; whether both CLV columns were written (`bets.csv` same-book, `bets/clv_primary.csv` primary); what is
+- **It reports:** the original entry; the raw closing observations with timestamps, quote ages and every exclusion;
+  the book count, cutoff and cutoff source; the signed CLV; whether the 3-minute pre-tip polls captured at least two
+  fresh books; whether both CLV columns were written (`bets.csv` same-book, `bets/clv_primary.csv` primary); what is
   missing; and whether every surface agrees to the decimal. It writes the traced example and adds the result below.
-- **Until that report exists, the status everywhere is "built, not verified".**
+- **Verdict wording:** "first live capture verified" only when the example's evidence checklist passes; unresolved
+  timing and coverage items stay listed. The status everywhere stays **"built, not verified"** until Chad changes it.
 
 ### First-game report
 

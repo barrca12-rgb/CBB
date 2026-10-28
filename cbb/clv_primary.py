@@ -31,9 +31,16 @@ import pandas as pd
 # pipeline on a real game. Changed only by that report.
 VERIFICATION_STATUS = "built, not verified"
 TABLE = os.path.join(os.path.dirname(__file__), "..", "bets", "clv_primary.csv")
-COLS = ["bet_id", "cohort", "cutoff", "cutoff_source", "espn_start", "start_gap_min", "close_primary", "clv_primary",
-        "books_primary", "feed_age_s", "obs_before_cutoff_s", "clv_status", "clv_reason", "price_vs_close"]
-START_GAP_FLAG_MIN = 10   # diagnostic: the cutoff (the feed's reported start) differs from ESPN's scheduled start
+COLS = ["bet_id", "cohort", "cutoff", "cutoff_source", "espn_start", "start_gap_min", "feed_latest_start",
+        "feed_gap_min", "tip_check", "close_primary", "clv_primary", "books_primary", "feed_age_s",
+        "obs_before_cutoff_s", "clv_status", "clv_reason", "price_vs_close"]
+# Tip-time diagnostics (never change the cutoff, which is the protocol's): the cutoff is compared with ESPN's scheduled
+# start and with the feed's latest reported start (lines/closing.csv). Over START_GAP_FLAG_MIN: "review" (shown per
+# play and sent for review before tip). At or over START_GAP_CONFLICT_MIN: "conflict" (escalated; a different rule
+# would be a protocol change). 10 sits below the 15-minute closing window: a gap over 15 minutes means the window the
+# protocol uses and the window around the other start do not overlap at all.
+START_GAP_FLAG_MIN = 10
+START_GAP_CONFLICT_MIN = 30
 _CACHE: dict = {}
 
 
@@ -122,6 +129,7 @@ def primary(b: pd.DataFrame, obs: pd.DataFrame | None = None, closing: pd.DataFr
     o = _load_obs(obs)
     by_game = dict(tuple(o.groupby("game_key", sort=False))) if len(o) and "game_key" in o else {}
     espn = _espn_starts(b["date"]) if len(b) else {}
+    cl = closing.assign(_st=pd.to_datetime(closing["start"], utc=True, errors="coerce", format="ISO8601")) if len(closing) else closing
     rows = []
     for _, r in b.iterrows():
         key = f"{r['date']}|{min(int(r['home_id']), int(r['away_id']))}|{max(int(r['home_id']), int(r['away_id']))}"
@@ -134,6 +142,14 @@ def primary(b: pd.DataFrame, obs: pd.DataFrame | None = None, closing: pd.DataFr
         es = espn.get(int(r["game_id"]))
         gap = round((cutoff - es).total_seconds() / 60) if es is not None and pd.notna(es) and cutoff is not None \
             and pd.notna(cutoff) else None
+        fl = None
+        if len(cl):
+            m = cl[(cl["date"] == r["date"]) & (((cl["home_id"] == r["home_id"]) & (cl["away_id"] == r["away_id"])) |
+                                                ((cl["home_id"] == r["away_id"]) & (cl["away_id"] == r["home_id"])))]
+            fl = m["_st"].max() if len(m) and m["_st"].notna().any() else None
+        fgap = round((cutoff - fl).total_seconds() / 60) if fl is not None and cutoff is not None and pd.notna(cutoff) else None
+        worst = max([abs(x) for x in (gap, fgap) if x is not None] or [0])
+        tip = "conflict" if worst >= START_GAP_CONFLICT_MIN else "review" if worst > START_GAP_FLAG_MIN else "ok"
         if str(r.get("status")) == "void":
             st, why = "void", "void: excluded from every metric"
         elif np.isnan(close):
@@ -141,12 +157,16 @@ def primary(b: pd.DataFrame, obs: pd.DataFrame | None = None, closing: pd.DataFr
         else:
             st, why = "ok", f"{sc['books']} book(s)"
         if gap is not None and abs(gap) > START_GAP_FLAG_MIN:
-            why += (f"; flag: the cutoff (the feed's reported start) is {abs(gap)} min "
+            why += (f"; tip time {tip}: the cutoff (the feed's reported start) is {abs(gap)} min "
                     f"{'before' if gap < 0 else 'after'} ESPN's scheduled start")
+        if fgap is not None and abs(fgap) > START_GAP_FLAG_MIN:
+            why += (f"; tip time {tip}: the cutoff is {abs(fgap)} min {'before' if fgap < 0 else 'after'} the feed's "
+                    f"latest reported start (no observation carries the newer start)")
         rows.append({"bet_id": r["bet_id"], "cohort": cohort,
                      "cutoff": cutoff.isoformat() if cutoff is not None and pd.notna(cutoff) else None,
                      "cutoff_source": src, "espn_start": es.isoformat() if es is not None and pd.notna(es) else None,
-                     "start_gap_min": gap, "close_primary": close, "clv_primary": clv,
+                     "start_gap_min": gap, "feed_latest_start": fl.isoformat() if fl is not None else None,
+                     "feed_gap_min": fgap, "tip_check": tip, "close_primary": close, "clv_primary": clv,
                      "books_primary": sc["books"], "feed_age_s": json.dumps(sc.get("feed_age_s", [])),
                      "obs_before_cutoff_s": json.dumps(sc.get("obs_before_cutoff_s", [])),
                      "clv_status": st, "clv_reason": why,

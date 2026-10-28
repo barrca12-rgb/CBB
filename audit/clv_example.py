@@ -22,6 +22,22 @@ def _fmt(x, f="{:+.2f}"):
     return "n/a" if x is None or (isinstance(x, float) and np.isnan(x)) else f.format(x)
 
 
+def poll_timeline(cutoff) -> pd.DataFrame:
+    """Every poll attempt (card pulls and targeted polls) in the 20 minutes before the cutoff."""
+    if cutoff is None:
+        return pd.DataFrame()
+    parts = []
+    for name in ("polls.csv", "polls_targeted.csv"):
+        f = os.path.join(fe.ROOT, "lines", name)
+        if os.path.exists(f):
+            parts.append(pd.read_csv(f).assign(log=name.replace(".csv", "")))
+    if not parts:
+        return pd.DataFrame()
+    p = pd.concat(parts, ignore_index=True)
+    p["t"] = pd.to_datetime(p["observed_at"], utc=True, errors="coerce", format="ISO8601")
+    return p[(p["t"] >= cutoff - pd.Timedelta(minutes=20)) & (p["t"] < cutoff)].sort_values("t")
+
+
 def window_rows(og: pd.DataFrame, b: pd.Series, cutoff) -> pd.DataFrame:
     """Every observation of the play's market from 20 minutes before the cutoff to 10 minutes after, each labeled
     with what the protocol does with it (the selection itself is fe.strict_close's; this only explains it)."""
@@ -106,13 +122,24 @@ def build(bet_id: str) -> str:
     L.append("## 3. Every quote observed around the window\n")
     w = window_rows(og, b, cutoff)
     if len(w):
-        L.append("| Observed (UTC) | Log | Feed | Book | Side | Line | Price | Feed timestamp | Age (s) | Status | Reported start | Role |")
-        L.append("|---|---|---|---|---|---|---|---|---|---|---|---|")
+        L.append("| Observed (UTC) | Poll | Log | Feed | Book | Side | Line | Price | Feed timestamp | Age (s) | Status | Reported start | Role |")
+        L.append("|---|---|---|---|---|---|---|---|---|---|---|---|---|")
         for _, x in w.iterrows():
-            L.append(f"| {x['t']:%H:%M:%S} | {x['log']} | {x['source']} | {x['book']} | {x['side']} | {x['line']} | {x['price']} | "
+            L.append(f"| {x['t']:%H:%M:%S} | {x.get('poll_id', '')} | {x['log']} | {x['source']} | {x['book']} | {x['side']} | {x['line']} | {x['price']} | "
                      f"{x['source_updated_at']} | {'' if pd.isna(x['age']) else int(x['age'])} | {x['status']} | {x['start']} | {x['role']} |")
     else:
         L.append("No observations of this game's market around the window.")
+    L.append("")
+    polls = poll_timeline(cutoff)
+    L.append("### Polls in the 20 minutes before the cutoff (lines/polls.csv, lines/polls_targeted.csv)\n")
+    if len(polls):
+        L.append("| Poll (UTC) | Log | Source | Status | Quotes | Note |\n|---|---|---|---|---|---|")
+        L += [f"| {r['t']:%H:%M:%S} | {r['log']} | {r['source']} | {r['status']} | {r.get('quotes', '')} | {r.get('error', '') if pd.notna(r.get('error')) else ''} |"
+              for _, r in polls.iterrows()]
+        gaps = polls[polls["status"] == "ok"]["t"].sort_values().diff().dt.total_seconds().dropna()
+        L.append(f"\nLongest gap between successful polls: {int(gaps.max()) if len(gaps) else 'n/a'} s.")
+    else:
+        L.append("No poll recorded in that window.")
     L.append("")
 
     L.append("## 4. Consensus close and CLV\n")
@@ -163,6 +190,37 @@ def build(bet_id: str) -> str:
     L.append(f"| Model-check tripwire | {_fmt(t['clv'])} | {t['with_close']} with a close, {t['missing']} missing; state {t['state']} (fires from {t['min']}) |")
     cv = clv_primary.coverage(a[(a["status"] == "settled")])
     L.append(f"\nClosing-data coverage, all decided plays: {clv_primary.coverage_text(cv)}.\n")
+
+    # evidence checklist: "first live capture verified" only when every check passes
+    inc = w[w["role"].str.startswith("INCLUDED")] if len(w) else pd.DataFrame()
+    checks = [
+        ("Original entry present (line, odds, book, logged time)", all(pd.notna(b.get(k)) for k in ("line", "odds", "book", "logged_at"))),
+        ("Game settled (final score graded)", r["status"] == "settled"),
+        ("Cutoff known and its source stated", bool(p["cutoff"]) and bool(p["cutoff_source"])),
+        ("Tip time consistent: cutoff within 10 min of ESPN's start and the feed's latest start", p["tip_check"] == "ok"),
+        ("At least 2 eligible books with a fresh quote in the window", int(p["books_primary"] or 0) >= 2),
+        ("Every included quote: observed in the window, before the cutoff and its own start, age <= 300 s",
+         len(inc) > 0 and bool(((inc["t"] >= cutoff - fe.STRICT_WINDOW) & (inc["t"] < cutoff) & (inc["t"] < inc["st"]) &
+                                inc["age"].between(-fe.CLOCK_SKEW_S, fe.STRICT_MAX_AGE_S)).all())),
+        ("Included books match the stored book count", len(inc) == int(p["books_primary"] or 0)),
+        ("Signed CLV equals the protocol's line value at the stored close",
+         pd.notna(p["clv_primary"]) and abs(float(p["clv_primary"]) - fe.line_value(b, float(p["close_primary"]))) < 1e-9),
+        ("Every surface shows the same CLV", len({val for k, val in rows if k != "Loss review reason" and val != "not settled"}) == 1),
+    ]
+    L.append("## 6. Evidence checklist\n")
+    L.append("| Check | Result |\n|---|---|")
+    L += [f"| {k} | {'pass' if ok else 'FAIL'} |" for k, ok in checks]
+    open_items = []
+    if p["tip_check"] != "ok":
+        open_items.append(f"tip time {p['tip_check']}: cutoff {p['cutoff']} vs ESPN {p['espn_start']} / feed latest {p['feed_latest_start']}")
+    if 0 < int(p["books_primary"] or 0) < 7:
+        open_items.append(f"{p['books_primary']} of 7 books in the close")
+    if not len(c):
+        open_items.append("no confirmed fill (cohort C); CLV is the alert price's")
+    L.append("\n**Open items (stay visible whatever the verdict):** " + ("; ".join(open_items) if open_items else "none") + ".")
+    verdict = all(ok for _, ok in checks)
+    L.append(f"\n**Verdict: {'first live capture verified' if verdict else 'first live capture NOT verified: ' + '; '.join(k for k, ok in checks if not ok)}.** "
+             f"The overall CLV tracking status stays \"{clv_primary.VERIFICATION_STATUS}\" until Chad changes it.\n")
     return "\n".join(L) + "\n"
 
 
