@@ -1,0 +1,7 @@
+frozen: {"choice": "rapm", "lam": 500.0, "rho": 0.5, "gamma": 0.0515782597934367, "val_mse": 126.97267776743996, "none_mse": 126.97680837001502, "gamma_fit_seasons": [2024, 2025]}
+load: {"2024": {"games_schedule": 5723, "games_with_stints": 5637, "final_exact": 4829, "final_within_3": 5579, "final_flipped": 4, "final_mismatch": 54}, "2025": {"games_schedule": 5759, "games_with_stints": 5640, "final_exact": 4534, "final_within_3": 5475, "final_flipped": 6, "final_mismatch": 159}, "2026": {"games_schedule": 5752, "games_with_stints": 5709, "final_exact": 3241, "final_within_3": 5010, "final_flipped": 11, "final_mismatch": 688}}
+lineup v2 frame's v1 margin vs baseline, max difference 2.13e-14
+opportunities: A closing spreads: 5742, B ESPN opener spreads: 5742, C DraftKings first observed spreads: 272
+coverage share: A 0.726, B 0.726, C 0.702
+J: sd 0.964, nonzero 0.775; gamma +0.052
+predictions.csv sha256 aebc6c6c88b950c095df8c042fc2b400088daf1413fbc35967813fcc6f464727
