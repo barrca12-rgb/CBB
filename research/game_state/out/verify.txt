@@ -1,0 +1,33 @@
+1. hashes and order
+  [ok] predictions.csv matches the hash written before grading
+  [ok] PLAN committed, then frozen.json committed, then 2025-26 adjusted stage 1 computed, then predictions committed
+  [ok] validation.csv records all 10 variants in both families
+
+2. possession accounting (independent recomputation from the stored possessions and raw play-by-play)
+  [ok] 240 games: margin before every possession equals the signed sum of earlier possessions' points (no later information)
+  [ok] periods start at 20:00 (5:00 in overtime), possession start clocks never increase, tau defined from the start clock
+  [ok] possession points (plus technical-free-throw strays) sum to each team's final
+  [ok] possessions vs per-team event-count estimate: mean ratio 1.0101, SD 0.0301
+
+3. feature timing and stage-1 arithmetic (production cbb/ratings.fit, which filters date < asof)
+  [ok] 9 sampled days x 3 variants: stored forecasts equal production ratings.fit on adjusted targets with every game on or after the cutoff set to absurd values (max diff 1.2e-11)
+  [ok] alpha = 0 reproduces production stage 1 for 2025-26 (max diff 1.3e-12)
+  [ok] lag-1 alpha = 0 reproduces the audit's lag-1 stage-1 file (max diff 4.2e-13)
+  [ok] A-spr: frozen F variant 'none' gives the baseline forecast exactly
+  [ok] B-spr: frozen F variant 'none' gives the baseline forecast exactly
+  [ok] C-spr: frozen F variant 'none' gives the baseline forecast exactly
+
+4. reconciliation (independent baseline code: research/persistent_disagreement)
+  [ok] A-tot baseline forecasts equal persistent_disagreement.baseline()
+  [ok] A-tot: 1478 plays at 48.71%
+
+5. grading recomputed (plain loop)
+  [ok] 46 pool x price basis x strategy results recomputed and matched exactly
+
+6. production and shadows untouched
+  files changed outside the folder since the study began: ['.gitignore']
+  [ok] only change outside the folder is one .gitignore line for this study's large parquet caches
+  [ok] no uncommitted change outside the folder
+  [ok] cbb/, bets/, .github/ and MODEL_FREEZE.md unchanged
+
+ALL CHECKS PASSED
