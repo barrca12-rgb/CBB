@@ -1,0 +1,13 @@
+decisions by day relative to the game (ET): {-1: 565, 0: 32}
+rows rebuilt with D-2 KenPom / D-3 Torvik: 565; KenPom total change mean |0.47| pts
+base: bets 129 -> 134; games whose decision changed: 19
+cand: bets 139 -> 142; games whose decision changed: 15
+predictions_A_strict.csv sha256 fa870e4343e8c5a7171e93ebe67b748c2f4fafa19e9647e7cd9ed14f4fb40df6
+verification of the strict build:
+  2024-11-09: day-before decisions use KenPom archive 2024-11-07 (ratings at the start of that day) and Torvik file 2024-11-06; earliest decision 11-08 11:55 ET
+  2025-01-11: day-before decisions use KenPom archive 2025-01-09 (ratings at the start of that day) and Torvik file 2025-01-08; earliest decision 01-10 14:35 ET
+  2025-03-01: day-before decisions use KenPom archive 2025-02-27 (ratings at the start of that day) and Torvik file 2025-02-26; earliest decision 02-28 12:25 ET
+  2025-11-08: day-before decisions use KenPom archive 2025-11-06 (ratings at the start of that day) and Torvik file 2025-11-05; earliest decision 11-07 11:55 ET
+  2026-01-10: day-before decisions use KenPom archive 2026-01-08 (ratings at the start of that day) and Torvik file 2026-01-07; earliest decision 01-09 13:55 ET
+  2026-03-07: day-before decisions use KenPom archive 2026-03-05 (ratings at the start of that day) and Torvik file 2026-03-04; earliest decision 03-06 11:55 ET
+  payout arithmetic recomputed exactly: 276 of 276 bets agree

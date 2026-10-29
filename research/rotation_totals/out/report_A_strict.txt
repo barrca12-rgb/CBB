@@ -1,0 +1,51 @@
+predictions_A_strict.csv sha256 verified: fa870e4343e8c5a7171e93ebe67b748c2f4fafa19e9647e7cd9ed14f4fb40df6
+
+Results at first-observed DraftKings quotes (1 unit risked per bet, recorded prices, pushes 0)
+
+2024-25, all eligible: 325 games on 3 dates
+  baseline (current model, historical)   bets  70  W-L-P 39-31-0   win%  55.71  units   +4.63  ROI  +6.61%  max drawdown 7.18
+  candidate (rotation classifier)        bets  87  W-L-P 52-35-0   win%  59.77  units  +12.59  ROI +14.47%  max drawdown 4.16
+  incremental (candidate - baseline) +7.96 units; date-clustered 95% [+0.55, +16.20] (3 dates); game-level 95% (ignores date dependence) [-8.52, +24.36]
+
+2024-25, excluding left-censored: 323 games on 3 dates
+  baseline (current model, historical)   bets  69  W-L-P 38-31-0   win%  55.07  units   +3.72  ROI  +5.39%  max drawdown 6.30
+  candidate (rotation classifier)        bets  85  W-L-P 50-35-0   win%  58.82  units  +10.77  ROI +12.68%  max drawdown 4.16
+  incremental (candidate - baseline) +7.05 units; date-clustered 95% [+0.55, +16.20] (3 dates); game-level 95% (ignores date dependence) [-9.27, +23.39]
+
+2025-26, all eligible: 272 games on 3 dates
+  baseline (current model, historical)   bets  64  W-L-P 38-26-0   win%  59.38  units   +8.56  ROI +13.38%  max drawdown 8.39
+  candidate (rotation classifier)        bets  55  W-L-P 33-22-0   win%   60.0  units   +8.45  ROI +15.37%  max drawdown 4.29
+  incremental (candidate - baseline) -0.11 units; date-clustered 95% [-16.70, +30.37] (3 dates); game-level 95% (ignores date dependence) [-16.74, +16.45]
+
+2025-26, excluding left-censored: 255 games on 3 dates
+  baseline (current model, historical)   bets  58  W-L-P 34-24-0   win%  58.62  units   +6.92  ROI +11.94%  max drawdown 7.37
+  candidate (rotation classifier)        bets  54  W-L-P 32-22-0   win%  59.26  units   +7.55  ROI +13.97%  max drawdown 4.29
+  incremental (candidate - baseline) +0.62 units; date-clustered 95% [-17.25, +30.37] (3 dates); game-level 95% (ignores date dependence) [-15.45, +16.82]
+
+pooled, all eligible: 597 games on 6 dates
+  baseline (current model, historical)   bets 134  W-L-P 77-57-0   win%  57.46  units  +13.19  ROI  +9.84%  max drawdown 8.52
+  candidate (rotation classifier)        bets 142  W-L-P 85-57-0   win%  59.86  units  +21.05  ROI +14.82%  max drawdown 7.11
+  incremental (candidate - baseline) +7.86 units; date-clustered 95% [-13.05, +36.13] (6 dates); game-level 95% (ignores date dependence) [-15.74, +30.80]
+
+pooled, excluding left-censored: 578 games on 6 dates
+  baseline (current model, historical)   bets 127  W-L-P 72-55-0   win%  56.69  units  +10.64  ROI  +8.38%  max drawdown 7.26
+  candidate (rotation classifier)        bets 139  W-L-P 82-57-0   win%  58.99  units  +18.32  ROI +13.18%  max drawdown 5.23
+  incremental (candidate - baseline) +7.68 units; date-clustered 95% [-13.42, +36.13] (6 dates); game-level 95% (ignores date dependence) [-15.25, +30.70]
+
+Selection changes vs baseline (units: candidate's for shared/added/flipped, baseline's for dropped)
+  2024-25: shared (same side): n 39, candidate +1.14u, baseline +1.14u, net +0.00u; flipped (opposite side): n 0, candidate +0.00u, baseline +0.00u, net +0.00u; added (candidate only): n 48, candidate +11.45u, baseline +0.00u, net +11.45u; dropped (baseline only): n 31, candidate +0.00u, baseline +3.49u, net -3.49u
+  2025-26: shared (same side): n 20, candidate +6.93u, baseline +6.93u, net +0.00u; flipped (opposite side): n 0, candidate +0.00u, baseline +0.00u, net +0.00u; added (candidate only): n 35, candidate +1.52u, baseline +0.00u, net +1.52u; dropped (baseline only): n 44, candidate +0.00u, baseline +1.63u, net -1.63u
+  pooled: shared (same side): n 59, candidate +8.07u, baseline +8.07u, net +0.00u; flipped (opposite side): n 0, candidate +0.00u, baseline +0.00u, net +0.00u; added (candidate only): n 83, candidate +12.97u, baseline +0.00u, net +12.97u; dropped (baseline only): n 75, candidate +0.00u, baseline +5.12u, net -5.12u
+
+By date (units): baseline / candidate / incremental; games; left-censored
+  2024-11-09 (2024-25): +3.49 / +5.87 / +2.38; 52 games; 2 left-censored
+  2025-01-11 (2024-25): +2.56 / +2.74 / +0.18; 143 games; 0 left-censored
+  2025-03-01 (2024-25): -1.41 / +3.99 / +5.40; 130 games; 0 left-censored
+  2025-11-08 (2025-26): +3.07 / -1.59 / -4.66; 56 games; 3 left-censored
+  2026-01-10 (2025-26): -3.33 / +6.79 / +10.12; 149 games; 0 left-censored
+  2026-03-07 (2025-26): +8.82 / +3.25 / -5.57; 67 games; 14 left-censored
+  pooled incremental without the best date (2026-01-10, +10.12): -2.27
+  2024-25 incremental without its best date (2025-03-01): +2.56
+  2025-26 incremental without its best date (2026-01-10): -10.23
+
+Decision rule: incremental 2024-25 +7.96, 2025-26 -0.11; pooled candidate units +21.05; pooled incremental +7.86 [date-clustered 95% -13.05, +36.13] -> INCONCLUSIVE (Stage A_strict)

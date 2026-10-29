@@ -1,4 +1,5 @@
 # Rotation-adjusted totals classifier vs the current model at first-observed DraftKings quotes
+# **A close-trained classifier tested at early quotes. It is not the opener-trained test originally requested.**
 # (pre-registered Oct 29, 2026, before any evaluation-date prediction or outcome was computed)
 
 Research only (`research/rotation_totals/`). Frozen v1, E2, C2, ridge 1,000, lineup v2 and every schedule, threshold,
@@ -151,3 +152,24 @@ are no earlier than 17:00 UTC that day.
 - **Failed:** pooled incremental units ≤ 0, or pooled candidate units ≤ 0.
 - **Inconclusive:** anything else.
 - No tuning of features, thresholds, staking or books after results. Even "supported" is a proposal only.
+
+## Amendment 1 (Oct 29, 2026, after Stage A was graded; prompted by Chad's review of input timing, not by results)
+- **Finding:** every input was checked against the actual decision timestamp, not the game date (`strict.py`,
+  `out/strict_A.txt`).
+  - 565 of 597 Stage A decisions were made on the day before the game; the earliest was 11:55 ET.
+  - **Safe:** stage-1 ratings, Four Factors, season average, rotation and market closes stop at games of D-2. The
+    last D-2 tip was at least 11.9 h before the earliest decision.
+  - **Not safe:** KenPom's archive dated D-1 is the ratings at the start of D-1 (verified: the opening-day archive
+    equals the preseason ratings), but its publication time on D-1 cannot be verified. The same holds for Torvik's
+    file dated D-2.
+- **Rule from now on (both models):**
+  - **Decisions made on the day before:** KenPom archive dated D-2 and the latest Torvik file dated D-3 or earlier.
+  - **Decisions made on game day:** keep the D-1 archive and the D-2 file, both published the day before.
+- **Stage A:**
+  - The strict rebuild (`predictions_A_strict.csv`) is the primary Stage A result.
+  - The original grading is kept and reported as a sensitivity analysis.
+  - The candidate's coefficients and the baseline's stage-2 weights are unchanged; only these decision-time inputs
+    and the opening-week day mean move.
+  - Training rows keep their original inputs. Training needs no decision time, and the candidate stays frozen.
+- **Stage B:** the same strict rule, built with `strict.py`'s inputs. The 20 dates are unchanged.
+- **Credit guard for Stage B:** the pull aborts if it would leave fewer than 50,000 credits. Hard cap 28,800.
