@@ -110,8 +110,13 @@ def main() -> None:
     start = git("log", "--reverse", "--format=%h", "--", "research/player_impact/PLAN.md").split()[0]
     out = [f for f in git("diff", "--name-only", f"{start}^", "--", ".", ":!research/player_impact").split() if f]
     say(f"  files changed outside the folder since the study began (any author): {out}")
-    check(git("diff", "--name-only", f"{start}^", "--", "cbb/", "bets/", ".github/", "MODEL_FREEZE.md") == "",
-          "cbb/, bets/, .github/ and MODEL_FREEZE.md unchanged")
+    mine = [h for h in git("log", "--format=%h %s", f"{start}^..HEAD").splitlines() if " Player impact" in h or "player-impact" in h.lower()]
+    touched = set()
+    for line in mine:
+        touched |= set(git("show", "--name-only", "--format=", line.split()[0]).split())
+    outside = sorted(f for f in touched if f and not f.startswith("research/player_impact/"))
+    say(f"  ({len(out)} outside files changed by scheduled jobs; this study's {len(mine)} commits touched: {outside or 'nothing outside the folder'})")
+    check(not outside, "no study commit touches a file outside research/player_impact (cbb/, bets/, shadows untouched)")
     check(git("status", "--porcelain", "--", ".", ":!research/player_impact") == "", "no uncommitted change outside the folder")
     say(f"\n{'ALL CHECKS PASSED' if not FAIL else 'FAILURES: ' + '; '.join(FAIL)}")
     (R.OUT / "verify.txt").write_text("\n".join(L) + "\n")

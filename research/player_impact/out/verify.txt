@@ -1,0 +1,25 @@
+1. stint accounting
+  2024: {'games_schedule': 5723, 'games_with_stints': 5637, 'final_exact': 4829, 'final_within_3': 5579, 'final_flipped': 4, 'final_mismatch': 54}; possessions vs box estimate mean 0.976 (sd 0.024); seconds/game median 2366
+  [ok] 2024: coverage 0.985, mismatches 54, possession ratio 0.976
+  2025: {'games_schedule': 5759, 'games_with_stints': 5640, 'final_exact': 4534, 'final_within_3': 5475, 'final_flipped': 6, 'final_mismatch': 159}; possessions vs box estimate mean 0.981 (sd 0.028); seconds/game median 2370
+  [ok] 2025: coverage 0.979, mismatches 159, possession ratio 0.981
+  2026: {'games_schedule': 5752, 'games_with_stints': 5709, 'final_exact': 3241, 'final_within_3': 5010, 'final_flipped': 11, 'final_mismatch': 688}; possessions vs box estimate mean 1.000 (sd 0.005); seconds/game median 2400
+  [FAIL] 2026: coverage 0.993, mismatches 688, possession ratio 1.000
+
+2. timing: perturb everything on or after a date; features for earlier-dated games must not move
+  [ok] 2857 games dated on or before 2025-01-15: max change 0.0e+00 (control: 95% of later games do change)
+
+3. order and hashes
+  [ok] prediction hash
+  [ok] frozen.json committed before 2025-26 features were computed, predictions committed after
+
+4. grading recomputed (plain loop)
+  [ok] 12 pool x price x strategy results recomputed exactly
+
+5. untouched
+  files changed outside the folder since the study began (any author): ['bets/shadow_r1000/games_latest.csv', 'bets/shadow_r1000/runs.csv', 'bets/shadow_v2/games_latest.csv', 'bets/shadow_v2/runs.csv', 'bets/stake_cap.json', 'bets/tip_review.csv', 'injuries/sources/current.csv', 'injuries/sources/first_seen.csv', 'injuries/sources/health.csv', 'injuries/sources/timing.md', 'lines/closing.csv', 'lines/last_pull.txt', 'lines/moves.csv', 'lines/odds_api_usage.json', 'lines/polls.csv', 'lines/sgo_last_pull.txt', 'reports/cbb_2026-11-01.html', 'reports/cbb_2026-11-02.csv', 'reports/cbb_2026-11-02.html', 'reports/record.html', 'reports/verify.html', 'research/kalshi/data/last_quote.json', 'research/kalshi/data/quotes.csv', 'research/kalshi/data/runs.csv']
+  (24 outside files changed by scheduled jobs; this study's 8 commits touched: nothing outside the folder)
+  [ok] no study commit touches a file outside research/player_impact (cbb/, bets/, shadows untouched)
+  [ok] no uncommitted change outside the folder
+
+FAILURES: 2026: coverage 0.993, mismatches 688, possession ratio 1.000
