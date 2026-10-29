@@ -1,0 +1,78 @@
+
+====================================================================================================
+SPREADS at the opener, development 2014-15..2016-17 + 2023-24
+noise of v1's own bets:
+                 measure  bets  mean     SD      t  bets needed vs units
+                   units  2653 0.089  0.935  4.884                 1.000
+result vs bet line (pts)  2653 2.145 11.072  9.979                 0.240
+               CLV (pts)  2653 1.128  1.580 36.758                 0.018
+strategy  bets  CLV/bet  CLV lo  CLV hi  CLV SD  cover/bet  win %   units  ROI %
+      v1  2653    1.128   1.045   1.203   1.580      2.145 57.126 235.182  8.865
+      v2  2739    1.185   1.106   1.260   1.555      2.241 57.724 273.364  9.980
+paired vs baseline (totals over all games; 95% date-clustered bootstrap):
+candidate  games where picks differ  total CLV diff (pts)  CLV lo  CLV hi  units diff  units lo  units hi  CLV diff per changed game  SD per changed game
+       v2                       658                254.75 169.744   345.5      38.182   -12.364    89.014                      0.387                1.556
+all games, result vs the CLOSE regressed on (forecast - close); incremental = on (candidate - v1) given v1:
+strategy  games  slope on (fc - close)    SE  incremental slope on (fc - baseline)  incremental SE
+      v1  17288                  0.325 0.044                                   NaN             NaN
+      v2  17288                  0.345 0.045                                 0.541           0.207
+
+====================================================================================================
+TOTALS at the opener, development 2014-15..2016-17 + 2023-24
+noise of v1's own bets:
+                 measure  bets  mean     SD      t  bets needed vs units
+                   units  4694 0.091  0.939  6.645                 1.000
+result vs bet line (pts)  4694 3.105 17.075 12.458                 0.284
+               CLV (pts)  4694 1.279  2.340 37.439                 0.031
+strategy  bets  CLV/bet  CLV lo  CLV hi  CLV SD  cover/bet  win %   units  ROI %
+      v1  4694    1.279   1.171   1.386   2.340      3.105 57.207 427.636  9.110
+      E2  4743    1.310   1.207   1.416   2.343      3.235 57.664 473.091  9.975
+      C2  4292    1.318   1.203   1.425   2.400      3.092 57.722 432.455 10.076
+paired vs baseline (totals over all games; 95% date-clustered bootstrap):
+candidate  games where picks differ  total CLV diff (pts)   CLV lo   CLV hi  units diff  units lo  units hi  CLV diff per changed game  SD per changed game
+       E2                       785                 209.0   66.238  345.506      45.455    -8.186   101.002                      0.266                2.301
+       C2                      1516                -347.0 -545.781 -148.231       4.818   -63.464    73.639                     -0.229                2.263
+all games, result vs the CLOSE regressed on (forecast - close); incremental = on (candidate - v1) given v1:
+strategy  games  slope on (fc - close)   SE  incremental slope on (fc - baseline)  incremental SE
+      v1  16473                  0.366 0.06                                   NaN             NaN
+      E2  16473                  0.379 0.06                                  0.56           0.331
+      C2  16473                  0.366 0.06                                 -0.21           0.067
+
+====================================================================================================
+SPREADS at the opener, holdout 2024-25 + 2025-26
+noise of v1's own bets:
+                 measure  bets  mean     SD      t  bets needed vs units
+                   units  1599 0.101  0.944  4.272                 1.000
+result vs bet line (pts)  1599 1.848 11.352  6.510                 0.431
+               CLV (pts)  1599 1.336  2.012 26.553                 0.026
+strategy  bets  CLV/bet  CLV lo  CLV hi  CLV SD  cover/bet  win %   units  ROI %
+      v1  1599    1.336   1.221   1.448   2.012      1.848 57.661 161.182 10.080
+      v2  1667    1.355   1.243   1.467   1.989      1.846 57.469 161.909  9.713
+paired vs baseline (totals over all games; 95% date-clustered bootstrap):
+candidate  games where picks differ  total CLV diff (pts)  CLV lo  CLV hi  units diff  units lo  units hi  CLV diff per changed game  SD per changed game
+       v2                       398                 122.0  54.988   191.0       0.727    -34.28    35.909                      0.307                1.654
+all games, result vs the CLOSE regressed on (forecast - close); incremental = on (candidate - v1) given v1:
+strategy  games  slope on (fc - close)    SE  incremental slope on (fc - baseline)  incremental SE
+      v1  11496                  0.176 0.058                                   NaN             NaN
+      v2  11496                  0.212 0.059                                 0.699           0.209
+
+====================================================================================================
+TOTALS at the opener, holdout 2024-25 + 2025-26
+noise of v1's own bets:
+                 measure  bets  mean     SD      t  bets needed vs units
+                   units  2579 0.064  0.948  3.434                 1.000
+result vs bet line (pts)  2579 2.364 17.029  7.051                 0.237
+               CLV (pts)  2579 1.876  2.835 33.597                 0.010
+strategy  bets  CLV/bet  CLV lo  CLV hi  CLV SD  cover/bet  win %   units  ROI %
+      v1  2579    1.876   1.673   2.068   2.835      2.364 55.741 165.364  6.412
+      E2  2595    1.922   1.724   2.114   2.830      2.585 56.399 199.000  7.669
+      C2  2488    1.877   1.677   2.075   2.905      2.012 55.489 147.545  5.930
+paired vs baseline (totals over all games; 95% date-clustered bootstrap):
+candidate  games where picks differ  total CLV diff (pts)  CLV lo  CLV hi  units diff  units lo  units hi  CLV diff per changed game  SD per changed game
+       E2                       562                 151.0    36.0 271.013      33.636   -11.091    77.548                      0.269                2.586
+       C2                       995                -168.5  -341.5   9.013     -17.818   -74.641    37.636                     -0.169                2.494
+all games, result vs the CLOSE regressed on (forecast - close); incremental = on (candidate - v1) given v1:
+strategy  games  slope on (fc - close)    SE  incremental slope on (fc - baseline)  incremental SE
+      v1  11500                 -0.026 0.058                                   NaN             NaN
+      E2  11500                 -0.012 0.058                                 0.381           0.325
+      C2  11500                 -0.026 0.058                                -0.275           0.075

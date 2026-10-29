@@ -55,7 +55,10 @@ def main(through: str | None = None) -> pd.DataFrame:
     v1 = b[["bet_id", "date", "game_id", "home_id", "away_id", "side", "line", "odds"]].copy()
     if through:
         v1, v2 = v1[v1["date"] <= through], v2[v2["date"] <= through]
-    closing = pd.read_csv(os.path.join(ROOT, "lines", "closing.csv"))
+    # every committed pull of lines/closing.csv (the working-tree file holds only the latest pull; plumbing fix,
+    # Oct 29, research/power/SEQUENTIAL_PLAN.md: same close rule, complete quote history)
+    from research.power.closing_history import load as closing_history
+    closing = closing_history()
     parts = []
     for season in sorted({int(d[:4]) + (1 if int(d[5:7]) >= 8 else 0) for d in pd.concat([v1["date"], v2["date"]])}):
         try:
