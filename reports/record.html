@@ -87,6 +87,9 @@ h1 { font-family: var(--display); font-weight: 400; font-size: 26px; letter-spac
 .panel-h h2 { font-size: 13px; font-weight: 800; margin: 0; text-transform: uppercase; letter-spacing: .07em; display: flex; align-items: center; gap: 8px }
 .panel-h h2::before { content: ""; width: 4px; height: 14px; background: var(--brand); border-radius: 2px } .panel-h .note { color: var(--muted); font-size: 12px }
 .scroll { overflow-x: auto }
+/* long notes wrap instead of widening the table (no sideways scrolling) */
+#t-plays td:first-child, #t-watch td:first-child { white-space: normal; min-width: 240px }
+#t-rec td { white-space: normal }
 table { width: 100%; border-collapse: collapse; font-size: 13px }
 th { text-align: left; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); padding: 8px 12px; border-bottom: 1px solid var(--line); background: var(--sunken); white-space: nowrap }
 td { padding: 9px 12px; border-bottom: 1px solid var(--line); white-space: nowrap; vertical-align: middle }
@@ -147,6 +150,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
 .hero { display: block; height: 120px; width: auto; max-width: 100%; object-fit: contain; border-radius: 10px; margin-top: 18px; border: 1px solid var(--line) }
 @media (max-width: 720px) { .hero { height: auto; width: 100% } }
 
+@media (max-width: 380px) { #t-rat th:nth-child(6), #t-rat td:nth-child(6) { display: none } }
 @media (max-width: 860px) {
   .top .wrap { gap: 10px } .status span { display: none }
   .wordmark { display: none } .tabs a { padding: 0 8px; font-size: 12px }
@@ -155,6 +159,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   .hide-sm { display: none } .show-sm { display: inline }
   td, th { padding-left: 10px; padding-right: 10px }
   #t-plays td:first-child { white-space: normal; min-width: 150px }
+  #t-rat td, #t-rat th { padding-left: 4px; padding-right: 4px; font-size: 12px } #t-rat th { letter-spacing: 0 } #t-rat td { white-space: normal }
   .board .bk, .board .pts { display: none } .bestc { display: table-cell }
   .board .tm { width: 52px; font-size: 11px } .board td.edge { min-width: 0; max-width: 104px }
   .board td, .board th { padding-left: 6px; padding-right: 6px } .board .team { white-space: normal; min-width: 0 }
@@ -179,7 +184,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
 <main class="wrap">
   <img class="hero" src="assets/otg-banner.webp" alt="Off The Glass Hoops" width="2000" height="667">
   <div class="head"><div><h1>College Basketball Record</h1>
-    <div class="sub">Bets placed on the model's plays, at the logged number and price. Updated Oct 29, 9:00 AM ET.</div></div>
+    <div class="sub">Bets placed on the model's plays, at the logged number and price. Updated Oct 29, 9:06 AM ET.</div></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="pagebtn" href="./">&larr; Card</a><a class="pagebtn" href="record/charts.html">Charts</a><a class="pagebtn" href="record/survivor.html">Survivor</a></div></div>
   <div class="kpis"><div class='kpi'><div class='k'>Record</div><div class='v'>0-0</div></div><div class='kpi'><div class='k'>Win %</div><div class='v'>–</div></div><div class='kpi'><div class='k'>Units</div><div class='v'>+0.00</div></div><div class='kpi'><div class='k'>ROI</div><div class='v'>–</div></div><div class='kpi'><div class='k'>Alert CLV</div><div class='v'>–<small>no decided plays yet · built, not verified</small></div></div><div class='kpi'><div class='k'>Open plays</div><div class='v'>7</div></div></div>
   <section class="panel"><div class="panel-h"><h2>Summary</h2><span class="note">Settled bets placed. Alert CLV = points the line moved our way from the alert (logged) number to the close; prices are shown separately and not converted (the forward test's primary close: each book's last fresh quote in the 15 minutes before tip, median). Break-even at -110 is 52.4%.</span></div>
