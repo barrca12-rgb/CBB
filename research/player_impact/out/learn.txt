@@ -1,0 +1,10 @@
+lambda 500 rho 0.0: gamma(2023-24) +0.030; 2024-25 MSE 126.9731 vs none 126.9768; J sd 1.034; coverage 0.809
+lambda 500 rho 0.5: gamma(2023-24) +0.030; 2024-25 MSE 126.9727 vs none 126.9768; J sd 1.119; coverage 0.809
+lambda 1000 rho 0.0: gamma(2023-24) +0.040; 2024-25 MSE 126.9756 vs none 126.9768; J sd 0.748; coverage 0.809
+lambda 1000 rho 0.5: gamma(2023-24) +0.040; 2024-25 MSE 126.9754 vs none 126.9768; J sd 0.832; coverage 0.809
+lambda 2000 rho 0.0: gamma(2023-24) +0.042; 2024-25 MSE 126.9778 vs none 126.9768; J sd 0.527; coverage 0.809
+lambda 2000 rho 0.5: gamma(2023-24) +0.042; 2024-25 MSE 126.9779 vs none 126.9768; J sd 0.604; coverage 0.809
+lambda 4000 rho 0.0: gamma(2023-24) +0.025; 2024-25 MSE 126.9778 vs none 126.9768; J sd 0.356; coverage 0.809
+lambda 4000 rho 0.5: gamma(2023-24) +0.025; 2024-25 MSE 126.9780 vs none 126.9768; J sd 0.420; coverage 0.809
+
+frozen: {"choice": "rapm", "lam": 500.0, "rho": 0.5, "gamma": 0.0515782597934367, "val_mse": 126.97267776743996, "none_mse": 126.97680837001502, "gamma_fit_seasons": [2024, 2025]}
