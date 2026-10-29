@@ -1,0 +1,223 @@
+predictions.csv sha256 verified 088048d027450aef5b43493943e75a31e7da312536b7f72e5f6eb81196bf8183
+results joined: missing 0
+reconciliation A: baseline 1478 plays at 48.71% (target 1,478 at 48.71%)
+reconciliation B: baseline 462-335-0 (target 462-335-0)
+
+====================================================================================================
+A closing totals  |  prices: assumed -110  |  opportunities 5747  |  dates 147  |  2025-11-03 to 2026-04-06
+strongest existing candidate: E2 specification
+  strategy  bets     W-L-P  win %   units  ROI %
+  baseline  1478 720-758-0  48.71 -103.45  -7.00
+comparator    30   15-15-0  50.00   -1.36  -4.55
+ candidate    36   20-16-0  55.56    2.18   6.06
+  existing  1459 719-740-0  49.28  -86.36  -5.92
+        C2  1482 737-745-0  49.73  -75.00  -5.06
+
+incremental units of the candidate, date-clustered paired bootstrap 95% (10,000 draws):
+            candidate minus  units  lo95   hi95
+                   baseline 105.64 32.27 178.64
+                 comparator   3.55 -5.91  14.91
+                   existing  88.55 16.82 158.00
+                         C2  77.18 -2.45 155.09
+(comparator minus baseline) 102.09 30.73 173.18
+
+candidate bets relative to baseline (n, units under baseline, units under candidate):
+               n  ref_units  new_units
+kind                                  
+retained    36.0       2.18       2.18
+added        0.0       0.00       0.00
+dropped   1442.0    -105.64       0.00
+reversed     0.0       0.00       0.00
+
+candidate bets relative to comparator (n, units under comparator, units under candidate):
+             n  ref_units  new_units
+kind                                
+retained  21.0       3.82       3.82
+added     15.0       0.00      -1.64
+dropped    9.0      -5.18       0.00
+reversed   0.0       0.00       0.00
+
+candidate bets relative to existing (n, units under existing, units under candidate):
+               n  ref_units  new_units
+kind                                  
+retained    36.0       2.18       2.18
+added        0.0       0.00       0.00
+dropped   1423.0     -88.55       0.00
+reversed     0.0       0.00       0.00
+
+monthly units:
+         candidate bets  baseline  comparator  candidate  existing     C2
+date                                                                     
+2025-11              25    -10.64       -3.00      -0.18      2.00  -7.45
+2025-12               8    -24.45        2.73       1.55    -20.82 -29.82
+2026-01               1    -38.82        0.00       0.91    -33.27 -18.82
+2026-02               1    -19.00       -0.09       0.91    -19.55  -7.55
+2026-03               1     -8.36       -1.00      -1.00    -14.36 -10.09
+2026-04               0     -2.18        0.00       0.00     -0.36  -1.27
+
+concentration (candidate): top 5 dates by |units|: 2025-11-07 -2.00, 2025-11-23 -2.00, 2025-11-13 -1.00, 2025-11-16 -1.00, 2025-12-16 -1.00
+candidate units without its best date: +1.27 (best 2025-11-06 +0.91); without its worst date: +4.18
+candidate minus comparator without its best date: -0.45 (best 2025-11-03 +4.00)
+
+====================================================================================================
+B early spreads (ESPN opener)  |  prices: assumed -110  |  opportunities 5742  |  dates 147  |  2025-11-03 to 2026-04-06
+strongest existing candidate: lineup v2
+  strategy  bets     W-L-P  win %  units  ROI %
+  baseline   797 462-335-0  57.97  85.00  10.66
+comparator   117   72-45-0  61.54  20.45  17.48
+ candidate   160   91-69-0  56.88  13.73   8.58
+  existing   836 485-351-0  58.01  89.91  10.75
+
+incremental units of the candidate, date-clustered paired bootstrap 95% (10,000 draws):
+            candidate minus  units    lo95   hi95
+                   baseline -71.27 -123.09 -23.18
+                 comparator  -6.73  -30.09  16.82
+                   existing -76.18 -127.82 -26.64
+(comparator minus baseline) -64.55 -116.45 -14.45
+
+candidate bets relative to baseline (n, units under baseline, units under candidate):
+              n  ref_units  new_units
+kind                                 
+retained  157.0      14.82      14.82
+added       3.0       0.00      -1.09
+dropped   640.0      70.18       0.00
+reversed    0.0       0.00       0.00
+
+candidate bets relative to comparator (n, units under comparator, units under candidate):
+             n  ref_units  new_units
+kind                                
+retained  67.0      13.18      13.18
+added     93.0       0.00       0.55
+dropped   50.0       7.27       0.00
+reversed   0.0       0.00       0.00
+
+candidate bets relative to existing (n, units under existing, units under candidate):
+              n  ref_units  new_units
+kind                                 
+retained  152.0      14.09      14.09
+added       8.0       0.00      -0.36
+dropped   684.0      75.82       0.00
+reversed    0.0       0.00       0.00
+
+monthly units:
+         candidate bets  baseline  comparator  candidate  existing
+date                                                              
+2025-11              84     -6.09        3.82      -5.73     -6.82
+2025-12              25     37.73        5.45       9.36     39.73
+2026-01              23     20.64        5.18       1.82     21.91
+2026-02               6      6.09       -0.09      -0.27      3.36
+2026-03              22     24.91        6.09       8.55     30.91
+2026-04               0      1.73        0.00       0.00      0.82
+
+concentration (candidate): top 5 dates by |units|: 2025-11-07 -3.09, 2025-11-23 -3.00, 2025-11-19 +2.73, 2026-03-07 +2.73, 2026-01-17 +2.73
+candidate units without its best date: +11.00 (best 2025-11-19 +2.73); without its worst date: +16.82
+candidate minus comparator without its best date: -11.36 (best 2025-11-29 +4.64)
+
+====================================================================================================
+C early spreads (DraftKings first observed)  |  prices: recorded DraftKings  |  opportunities 272  |  dates 3  |  2025-11-08 to 2026-03-07
+strongest existing candidate: lineup v2
+  strategy  bets   W-L-P  win %  units  ROI %
+  baseline    43 27-16-0  62.79   7.89  18.35
+comparator     8   5-3-0  62.50   1.50  18.72
+ candidate     8   5-3-0  62.50   1.51  18.92
+  existing    42 27-15-0  64.29   8.82  20.99
+
+incremental units of the candidate, date-clustered paired bootstrap 95% (10,000 draws):
+            candidate minus  units   lo95  hi95
+                   baseline  -6.38 -11.23 -2.14
+                 comparator   0.02  -2.68  2.73
+                   existing  -7.30 -14.51 -1.65
+(comparator minus baseline)  -6.39  -8.56 -2.14
+
+candidate bets relative to baseline (n, units under baseline, units under candidate):
+             n  ref_units  new_units
+kind                                
+retained   8.0       1.51       1.51
+added      0.0       0.00       0.00
+dropped   35.0       6.38       0.00
+reversed   0.0       0.00       0.00
+
+candidate bets relative to comparator (n, units under comparator, units under candidate):
+            n  ref_units  new_units
+kind                               
+retained  5.0       0.71       0.71
+added     3.0       0.00       0.80
+dropped   3.0       0.79       0.00
+reversed  0.0       0.00       0.00
+
+candidate bets relative to existing (n, units under existing, units under candidate):
+             n  ref_units  new_units
+kind                                
+retained   8.0       1.51       1.51
+added      0.0       0.00       0.00
+dropped   34.0       7.30       0.00
+reversed   0.0       0.00       0.00
+
+monthly units:
+         candidate bets  baseline  comparator  candidate  existing
+date                                                              
+2025-11               7      2.60       -0.23       0.68      2.60
+2026-01               0      3.74        0.89       0.00      4.84
+2026-03               1      1.55        0.83       0.83      1.38
+
+concentration (candidate): top 5 dates by |units|: 2026-03-07 +0.83, 2025-11-08 +0.68, 2026-01-10 +0.00
+candidate units without its best date: +0.68 (best 2026-03-07 +0.83); without its worst date: +1.51
+candidate minus comparator without its best date: -0.89 (best 2025-11-08 +0.91)
+
+(pool C sensitivity: the same games graded at an assumed -110 instead of the recorded prices)
+
+====================================================================================================
+C early spreads (DraftKings first observed)  |  prices: assumed -110  |  opportunities 272  |  dates 3  |  2025-11-08 to 2026-03-07
+strongest existing candidate: lineup v2
+  strategy  bets   W-L-P  win %  units  ROI %
+  baseline    43 27-16-0  62.79   8.55  19.87
+comparator     8   5-3-0  62.50   1.55  19.32
+ candidate     8   5-3-0  62.50   1.55  19.32
+  existing    42 27-15-0  64.29   9.55  22.73
+
+incremental units of the candidate, date-clustered paired bootstrap 95% (10,000 draws):
+            candidate minus  units   lo95  hi95
+                   baseline   -7.0 -12.00 -2.45
+                 comparator    0.0  -2.73  2.73
+                   existing   -8.0 -15.27 -2.18
+(comparator minus baseline)   -7.0  -9.27 -2.45
+
+candidate bets relative to baseline (n, units under baseline, units under candidate):
+             n  ref_units  new_units
+kind                                
+retained   8.0       1.55       1.55
+added      0.0       0.00       0.00
+dropped   35.0       7.00       0.00
+reversed   0.0       0.00       0.00
+
+candidate bets relative to comparator (n, units under comparator, units under candidate):
+            n  ref_units  new_units
+kind                               
+retained  5.0       0.73       0.73
+added     3.0       0.00       0.82
+dropped   3.0       0.82       0.00
+reversed  0.0       0.00       0.00
+
+candidate bets relative to existing (n, units under existing, units under candidate):
+             n  ref_units  new_units
+kind                                
+retained   8.0       1.55       1.55
+added      0.0       0.00       0.00
+dropped   34.0       8.00       0.00
+reversed   0.0       0.00       0.00
+
+monthly units:
+         candidate bets  baseline  comparator  candidate  existing
+date                                                              
+2025-11               7      2.82       -0.27       0.64      2.82
+2026-01               0      4.00        0.91       0.00      5.09
+2026-03               1      1.73        0.91       0.91      1.64
+
+concentration (candidate): top 5 dates by |units|: 2026-03-07 +0.91, 2025-11-08 +0.64, 2026-01-10 +0.00
+candidate units without its best date: +0.64 (best 2026-03-07 +0.91); without its worst date: +1.55
+candidate minus comparator without its best date: -0.91 (best 2025-11-08 +0.91)
+
+====================================================================================================
+VERDICT (frozen rule, PLAN.md): primary pools A (totals) and B (spreads)
+closing totals: candidate - comparator +3.55 [-5.91, +14.91] -> fail; candidate - baseline +105.64 -> pass; candidate - existing +88.55 -> pass  =>  NO
+early spreads: candidate - comparator -6.73 [-30.09, +16.82] -> fail; candidate - baseline -71.27 -> fail; candidate - existing -76.18 -> fail  =>  NO

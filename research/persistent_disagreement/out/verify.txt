@@ -1,0 +1,49 @@
+1. predictions hash
+  [ok] predictions.csv matches the hash written before grading
+  [ok] frozen fits use seasons <= 2025 only
+  commit order (newest first): 4f25a7a Persistent disagreement: score 2025-26 pools A/B/C from the frozen fit, predictions hashed before grading | 0724f21 Persistent disagreement: learning on earlier seasons, settings frozen before 2025-26 scoring
+
+2. feature timing (brute force on a random sample, both lags)
+  [ok] 400 games x 2 lags: cached history sums equal brute force (max abs diff 4.55e-13)
+  [ok] every prior game used is dated before the cutoff (D for totals, D-1 for spreads)
+  (41 of the first 3,000 2025-26 games are rematches; covered by the brute-force union above, which de-duplicates by game)
+  [ok] pool A: S and V in predictions.csv recomputed from the sums
+  [ok] pool B: S and V in predictions.csv recomputed from the sums
+
+3. pool C quote timing (DraftKings rows rebuilt independently)
+  [ok] pool C games = the 272 eligible dated-sample games
+  [ok] every decision snapshot is before tip
+  [ok] pool C: home spread and price equal the latest DraftKings row at or before the decision snapshot (0 mismatches)
+  decision day relative to game day: {0: 31, 1: 241} (1 = day before; strict KenPom D-2 / Torvik D-3 inputs)
+
+4. baseline reconciliation (from the frame, not from predictions.csv)
+  [ok] A: 1478 plays at 48.71% (target 1,478 at 48.71%, quant3 variants.csv row v1)
+  [ok] B: 462-335-0 (target 462-335-0, stage2_stability compare.txt R0)
+  [ok] baseline edges in predictions.csv equal the frame's
+
+5. grading recomputed (plain loop, results joined fresh)
+  [ok] A  assumed  baseline    1478 bets  -103.45 units
+  [ok] A  assumed  comparator    30 bets    -1.36 units
+  [ok] A  assumed  candidate     36 bets    +2.18 units
+  [ok] A  assumed  existing    1459 bets   -86.36 units
+  [ok] A  assumed  C2          1482 bets   -75.00 units
+  [ok] B  assumed  baseline     797 bets   +85.00 units
+  [ok] B  assumed  comparator   117 bets   +20.45 units
+  [ok] B  assumed  candidate    160 bets   +13.73 units
+  [ok] B  assumed  existing     836 bets   +89.91 units
+  [ok] C  recorded baseline      43 bets    +7.89 units
+  [ok] C  recorded comparator     8 bets    +1.50 units
+  [ok] C  recorded candidate      8 bets    +1.51 units
+  [ok] C  recorded existing      42 bets    +8.82 units
+  [ok] C  assumed  baseline      43 bets    +8.55 units
+  [ok] C  assumed  comparator     8 bets    +1.55 units
+  [ok] C  assumed  candidate      8 bets    +1.55 units
+  [ok] C  assumed  existing      42 bets    +9.55 units
+
+6. production and shadows untouched
+  files changed outside the folder since the study began (any author): ['.gitignore']
+  [ok] only change outside the folder is one .gitignore line for this study's feature caches
+  [ok] no uncommitted change outside the folder
+  [ok] cbb/, bets/, shadow/, .github/ and MODEL_FREEZE.md unchanged since the study began
+
+ALL CHECKS PASSED
