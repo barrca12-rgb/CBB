@@ -1,0 +1,4 @@
+pool B: lineup v2 frame's v1 margin vs ours, max difference 2.13e-14; v2 beta 2025-26 0.3800
+pool C: 272 eligible games from the dated sample; excluded 0 (no DraftKings spread pair at the snapshot or no model row)
+opportunities: A closing totals: 5747, B early spreads (ESPN opener): 5742, C early spreads (DraftKings first observed): 272
+predictions.csv sha256 088048d027450aef5b43493943e75a31e7da312536b7f72e5f6eb81196bf8183
