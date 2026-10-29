@@ -1,3 +1,9 @@
-sequential CLV read through today (2026-10-29 23:00 UTC)
-closing history: 631 pulls
-no finished games where v1 and v2 picks differ yet
+sequential CLV reads through today (2026-10-29 23:21 UTC); closing history: 633 pulls
+
+lineup v2 vs v1, spreads
+  no finished games where the picks differ yet
+
+E2 vs v1, totals
+  no finished games where the picks differ yet
+
+a crossing is a proposal only (Amendment 3 / research/e2_shadow/PLAN.md): Chad's approval, a MODEL_FREEZE entry and a Discord note; nothing live changes by itself.

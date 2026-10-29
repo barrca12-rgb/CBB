@@ -61,3 +61,12 @@ Nothing tested here improves spreads materially. Prior work (SUMMARY.md) found t
   - finals come from the ESPN schedule, and `conf_game` from the schedule's pre-game flag.
 - Check: v1 totals equal the card's `model_total` on all 121 priced Nov 1-2 games (max diff 3e-14).
 - The pass rule and the March 14 read are unchanged; the weekly health line also shows the running numbers.
+
+## 2026-10-29: E2 decision endpoint moved to paired CLV (Chad approved, before any 2026-27 game)
+- **The live shadow:** E2 now runs as a live shadow (`cbb/shadow_e2.py`, `research/e2_shadow/PLAN.md`) with these
+  same frozen coefficients.
+- **The decision rule:** the weekly paired-CLV sequential read (`research/power/sequential.py`): |z| ≥ 3.29 at
+  interim looks, 1.96 at the Mar 14 final.
+- **The MAE pass rule above:** becomes secondary, still scored and reported on Mar 14.
+- **Why:** on the opener backtest, paired CLV separated E2 from v1 in both eras (+209 and +151 points). The MAE
+  rule could not in one season.

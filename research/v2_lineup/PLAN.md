@@ -114,3 +114,25 @@ box scores), so no v2 result has been seen.
   - **v1 continues** as a shadow, so the forward test of v1 stays clean through March 14.
 - **Sample warning:** about 280 subset games a season, so by Jan 10 perhaps 100-150. Only a large effect can pass on
   Jan 15. A non-pass there is not evidence against v2; it goes to March 14.
+
+## Amendment 3, Oct 29, 2026 (approved by Chad before any 2026-27 game): paired-CLV sequential read is the decision endpoint
+- **New primary endpoint:** the weekly paired closing-line-value read (`research/power/SEQUENTIAL_PLAN.md`,
+  `research/power/sequential.py`).
+  - **What it measures:** CLV of v2's spread pick minus v1's on games where they differ, against the same close for
+    both.
+  - **The close:** median across books of each book's last quote in the 60 minutes before the start, rebuilt from
+    `lines/closing.csv`'s git history.
+- **Boundaries:**
+  - **Weekly interim looks:** |z| ≥ 3.29.
+  - **Mar 14, 2027 final:** |z| ≥ 1.96.
+  - **A crossing:** a proposal, through the same approval path (Chad, MODEL_FREEZE, Discord), with v1 continuing as
+    a shadow.
+- **Endpoints 1 and 2 above** (subset residual difference; v2-only vs v1-only opener CLV) become **secondary**.
+  They are reported at Jan 15 and Mar 14, not decisive.
+- **Why:**
+  - On the backtest, paired CLV separated v2 from v1 in both eras: +255 points (+170, +346) in development and
+    +122 (+55, +191) in the holdout.
+  - Units and endpoint 1 could not, and would need several seasons.
+  - Expected power for the new read is about 80% by about 230 differing games.
+- **Plumbing fix, same day:** `evaluate.py` reads closes from every committed pull
+  (`research/power/closing_history.py`). The working-tree `lines/closing.csv` keeps only the latest pull.

@@ -377,3 +377,16 @@ Discord note (no rule, pick, stake or displayed figure changes).
 ```
 461900ea62b4eff539e1a3db615fe62e5ea500e3379cc0064ba1dcb08442089e  .github/workflows/quotes.yml
 ```
+
+## 2026-10-29: E2 totals shadow added (approved by Chad; no effect on v1)
+
+- **Shadow:** `cbb/shadow_e2.py` (`.github/workflows/shadow_e2.yml`, after each card run) logs E2's totals signals
+  to `bets/shadow_e2/`, behind the scenes. Plan: `research/e2_shadow/PLAN.md`.
+- **What E2 is:** v1's stage-2 totals plus neutral-site and conference-game terms. It uses the coefficients frozen
+  Oct 28 in `research/quant/out/e2_coefficients.json`, never refit.
+  - **Check:** a fresh fit reproduces them exactly, and v1's live totals coefficients to 9e-12.
+- **How it's applied:** it adds its difference from v1's stage-2 total to the card's v1 total, then applies v1's
+  totals rule unchanged.
+- **Unchanged:** no fingerprinted file, `data/projection.json`, the selection rules, staking, the bet log, alerts
+  or the forward-test protocol. The card imports nothing from the shadow.
+- **Status:** E2 is a shadow strategy. A switch would follow protocol section 8, with v1 continuing as a shadow.

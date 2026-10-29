@@ -1,7 +1,7 @@
 # Sequential CLV read: lineup v2 vs v1 spreads, 2026-27 (pre-registered Oct 29, 2026, before any 2026-27 game)
 
-Research monitor. Nothing live changes, and no decision is taken from this read unless Chad approves the drafted
-Amendment 3 below. Chad approved setting up weekly sequential CLV reads on Oct 29.
+Decision read for the lineup v2 and E2 shadows (Amendment 3 approved Oct 29). Nothing live changes by itself: a
+crossing is a proposal that needs Chad's approval, a MODEL_FREEZE entry and a Discord note. Chad approved setting up weekly sequential CLV reads on Oct 29.
 
 ## Why
 **Noise:** paired closing-line value separates v2 from v1 far faster than units.
@@ -49,7 +49,7 @@ Amendment 3 below. Chad approved setting up weekly sequential CLV reads on Oct 2
   season's end.
 - **Speed:** this is still years faster than units. On units the same difference would need several seasons.
 
-## Drafted Amendment 3 to `research/v2_lineup/PLAN.md` (NOT active; Chad's approval required)
+## Amendment 3 to `research/v2_lineup/PLAN.md`: APPROVED by Chad on Oct 29, before any 2026-27 game (now active; text in that plan)
 - **What changes:** this paired-CLV sequential read replaces v2's endpoint 1 (subset residual difference) as the
   primary decision endpoint.
   - **Interim proposal:** v2 may be proposed when |z| ≥ 3.29 at any weekly look.
@@ -69,3 +69,8 @@ Amendment 3 below. Chad approved setting up weekly sequential CLV reads on Oct 2
 ## Schedule
 - **Weekly:** Mondays from Nov 9, 2026 through Mar 15, 2027, plus the Mar 14 final.
 - **Each read:** commits `out/sequential_<date>.txt` and reports z and the boundary to Chad.
+
+## E2 totals (added Oct 29 with the E2 shadow, before any 2026-27 game)
+- **Same read, applied to totals:** E2's total picks (`bets/shadow_e2/signals.csv`) against v1's total plays
+  (`bets/bets.csv`). Same close rule (median total), boundaries and approval path.
+- **The plan:** `research/e2_shadow/PLAN.md`.
