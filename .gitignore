@@ -13,3 +13,4 @@ research/quant/out/*.pkl
 research/quant2/out/*.pkl
 research/quant3/out/*.pkl
 research/stage2_stability/out/*.pkl
+research/persistent_disagreement/out/*.pkl

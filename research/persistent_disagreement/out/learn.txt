@@ -1,0 +1,26 @@
+
+=== total (history lag 0 days)
+  N     k      lam  val_mse  comparator_mse  baseline_mse  val_units_candidate  val_units_comparator  val_units_baseline
+all  25.0 100000.0 272.8075        272.8272      277.6605             -22.8182              -16.4545              -123.0
+all 100.0 100000.0 272.8079        272.8272      277.6605             -29.3636              -16.4545              -123.0
+all  25.0  10000.0 272.8126        272.8272      277.6605             -33.6364              -16.4545              -123.0
+all 100.0  10000.0 272.8147        272.8272      277.6605             -37.2727              -16.4545              -123.0
+all  25.0   1000.0 272.8149        272.8272      277.6605             -37.8182              -16.4545              -123.0
+  8 100.0 100000.0 272.8152        272.8272      277.6605             -25.3636              -16.4545              -123.0
+all  25.0    100.0 272.8156        272.8272      277.6605             -38.1818              -16.4545              -123.0
+all  25.0     10.0 272.8157        272.8272      277.6605             -38.1818              -16.4545              -123.0
+chosen by validation MSE: N=all, k=25.0, lambda=100000.0 (MSE 272.8075 vs comparator 272.8272 vs baseline 277.6605; validation units at -110, descriptive: candidate -22.8, comparator -16.5, baseline -123.0)
+final fit on [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]: 48668 games; candidate coefficients [0.2907, 0.0482, 0.0516, -0.0187]; comparator c 0.3013
+
+=== spread (history lag 1 day)
+  N     k     lam  val_mse  comparator_mse  baseline_mse  val_units_candidate  val_units_comparator  val_units_baseline
+all  25.0 10000.0 125.2200        125.3169      126.0119              54.7273               33.7273            189.1818
+all  25.0  1000.0 125.2238        125.3169      126.0119              64.5455               33.7273            189.1818
+all 100.0 10000.0 125.2275        125.3169      126.0119              60.5455               33.7273            189.1818
+all  25.0   100.0 125.2302        125.3169      126.0119              68.0000               33.7273            189.1818
+all  25.0    10.0 125.2313        125.3169      126.0119              67.0000               33.7273            189.1818
+all 100.0  1000.0 125.2323        125.3169      126.0119              59.4545               33.7273            189.1818
+  8  25.0 10000.0 125.2329        125.3169      126.0119              63.3636               33.7273            189.1818
+  8 100.0 10000.0 125.2381        125.3169      126.0119              69.6364               33.7273            189.1818
+chosen by validation MSE: N=all, k=25.0, lambda=10000.0 (MSE 125.2200 vs comparator 125.3169 vs baseline 126.0119; validation units at -110, descriptive: candidate +54.7, comparator +33.7, baseline +189.2)
+final fit on [2015, 2016, 2017, 2024, 2025]: 23042 games; candidate coefficients [0.6282, 0.0529, -0.1042, -0.1741]; comparator c 0.5643
