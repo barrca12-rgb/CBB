@@ -1,0 +1,704 @@
+predictions.csv sha256 verified 5a42f39ba2c291bd2480f84a79cc0eb34583514666c023de377111d7604b6bd5
+results joined: missing 0
+
+RECONCILIATION
+  A-tot baseline: 1478 plays at 48.71% (target 1,478 at 48.71%)
+  live-like opener spreads: 462-335-0 (57.967%, n 797) (target 462-335-0)
+  live-like opener totals (opening-week rule): 781-626-1 (55.508%, n 1407) (target 1,407 at 55.51%)
+  without the opening-week rule: close totals 720-765-0 (48.485%, n 1485) (target 1,485 at 48.485%); close spreads 439-422-0 (50.987%, n 861) (target 861 at 50.987%); opener totals 778-639-1 (54.905%, n 1417) (target 1,417)
+  C-spr baseline at recorded prices: 43 bets 27-16-0, +7.89 (target 43 bets 27-16-0, +7.89)
+  C-tot baseline at recorded prices: 64 bets 38-26-0, +8.56 (target 64 bets 38-26-0, +8.56)
+  C-tot rotation classifier: 55 bets 33-22-0, +8.45 (target 55 bets, +8.45)
+
+==============================================================================================================
+A-spr closing spreads | prices: assumed -110 | opportunities 5742 (coverage pool 5484) | dates 147 | 2025-11-03 to 2026-04-06
+F (fixed stage 2) = none; R (refit) = k2.0_a0.25; decision family F
+
+-- full pool (5742 opportunities)
+strategy  bets     W-L-P  win %  units  ROI %
+baseline   861 439-422-0  50.99 -22.91  -2.66
+       F   861 439-422-0  50.99 -22.91  -2.66
+   Rctrl   843 429-414-0  50.89 -24.00  -2.85
+       R   878 447-431-0  50.91 -24.64  -2.81
+      v2   826 431-395-0  52.18  -3.18  -0.39
+strongest existing comparator on this pool: v2 (-3.18)
+date-clustered paired bootstrap 95% (10,000 draws):
+      difference  units   lo95  hi95
+    F - baseline   0.00   0.00  0.00
+       R - Rctrl  -0.64 -27.37 25.91
+    R - baseline  -1.73 -30.18 26.45
+Rctrl - baseline  -1.09 -13.27 11.27
+          F - v2 -19.73 -43.64  3.91
+          R - v2 -21.45 -55.64 14.09
+
+F bets relative to baseline (n, units under baseline, units under F):
+              n  ref_units  new_units
+kind                                 
+retained  861.0     -22.91     -22.91
+added       0.0       0.00       0.00
+dropped     0.0       0.00       0.00
+reversed    0.0       0.00       0.00
+
+R bets relative to Rctrl (n, units under Rctrl, units under R):
+              n  ref_units  new_units
+kind                                 
+retained  757.0     -29.64     -29.64
+added     121.0       0.00       5.00
+dropped    86.0       5.64       0.00
+reversed    0.0       0.00       0.00
+
+monthly units:
+         F bets  baseline bets  baseline      F  Rctrl      R     v2
+date                                                                
+2025-11     361            361    -40.27 -40.27 -39.00 -44.64 -36.27
+2025-12     212            212     15.18  15.18  14.27  11.36  10.55
+2026-01     141            141    -11.18 -11.18  -9.00   1.36  -6.09
+2026-02      88             88      1.73   1.73   1.82  -0.45  16.91
+2026-03      58             58     10.73  10.73   7.00   6.82   9.91
+2026-04       1              1      0.91   0.91   0.91   0.91   1.82
+concentration, F - baseline: 0 dates differ; top: 
+concentration, R - Rctrl: 82 dates differ; top: 2025-12-10 -3.00, 2025-12-02 -3.00, 2026-02-10 -3.00, 2025-12-05 +2.82, 2025-12-20 +2.82; without its best date -3.45
+
+-- coverage pool (5484 opportunities)
+strategy  bets     W-L-P  win %  units  ROI %
+baseline   807 414-393-0  51.30 -16.64  -2.06
+       F   807 414-393-0  51.30 -16.64  -2.06
+   Rctrl   791 404-387-0  51.07 -19.73  -2.49
+       R   821 419-402-0  51.04 -21.09  -2.57
+      v2   775 406-369-0  52.39   0.09   0.01
+strongest existing comparator on this pool: v2 (+0.09)
+date-clustered paired bootstrap 95% (10,000 draws):
+      difference  units   lo95  hi95
+    F - baseline   0.00   0.00  0.00
+       R - Rctrl  -1.36 -26.91 24.55
+    R - baseline  -4.45 -31.64 23.00
+Rctrl - baseline  -3.09 -14.82  8.73
+          F - v2 -16.73 -40.09  6.27
+          R - v2 -21.18 -54.46 13.18
+
+accuracy and bias vs the settled result (supporting diagnostics; result - forecast):
+                                 0       1       2       3       4            5
+forecast                  baseline       F   Rctrl       R      v2  market line
+all n                       5742.0  5742.0  5742.0  5742.0  5742.0          NaN
+all MAE                      8.992   8.992   8.992   8.989   8.977         8.94
+all bias                    -0.271  -0.271  -0.293  -0.302  -0.262       -0.185
+overtime games n             325.0   325.0   325.0   325.0   325.0          NaN
+overtime games MAE           6.484   6.484   6.492   6.531   6.492        6.595
+overtime games bias          -2.06   -2.06  -2.073  -2.081  -2.063       -1.792
+|pred margin| < 5 n         2364.0  2364.0  2364.0  2364.0  2364.0          NaN
+|pred margin| < 5 MAE        8.989   8.989   8.989   8.982   8.966        8.892
+|pred margin| < 5 bias      -0.375  -0.375  -0.389  -0.388  -0.356       -0.136
+|pred margin| 5-15 n        2482.0  2482.0  2482.0  2482.0  2482.0          NaN
+|pred margin| 5-15 MAE       8.696   8.696   8.697   8.697   8.683        8.706
+|pred margin| 5-15 bias     -0.547  -0.547  -0.565  -0.577  -0.535       -0.327
+|pred margin| >= 15 n        896.0   896.0   896.0   896.0   896.0          NaN
+|pred margin| >= 15 MAE      9.821   9.821   9.816   9.818   9.817        9.712
+|pred margin| >= 15 bias     0.765   0.765   0.715   0.688    0.74        0.076
+RMSE                        11.371  11.371   11.37  11.366  11.351       11.268
+
+==============================================================================================================
+A-tot closing totals | prices: assumed -110 | opportunities 5747 (coverage pool 5488) | dates 147 | 2025-11-03 to 2026-04-06
+F (fixed stage 2) = foul; R (refit) = k8.0_a0.25; decision family F
+
+-- full pool (5747 opportunities)
+strategy  bets     W-L-P  win %   units  ROI %
+baseline  1478 720-758-0  48.71 -103.45  -7.00
+       F  1498 736-762-0  49.13  -92.91  -6.20
+   Rctrl  1471 727-744-0  49.42  -83.09  -5.65
+       R  1478 731-747-0  49.46  -82.45  -5.58
+      E2  1459 719-740-0  49.28  -86.36  -5.92
+      C2  1482 737-745-0  49.73  -75.00  -5.06
+strongest existing comparator on this pool: C2 (-75.00)
+date-clustered paired bootstrap 95% (10,000 draws):
+      difference  units   lo95  hi95
+    F - baseline  10.55 -11.36 32.91
+       R - Rctrl   0.64 -28.73 29.09
+    R - baseline  21.00 -11.82 53.55
+Rctrl - baseline  20.36  -1.73 43.55
+          F - C2 -17.91 -62.18 25.73
+          R - C2  -7.45 -42.55 27.27
+
+F bets relative to baseline (n, units under baseline, units under F):
+               n  ref_units  new_units
+kind                                  
+retained  1417.0     -92.09     -92.09
+added       81.0       0.00      -0.82
+dropped     61.0     -11.36       0.00
+reversed     0.0       0.00       0.00
+
+R bets relative to Rctrl (n, units under Rctrl, units under R):
+               n  ref_units  new_units
+kind                                  
+retained  1363.0     -82.00     -82.00
+added      115.0       0.00      -0.45
+dropped    108.0      -1.09       0.00
+reversed     0.0       0.00       0.00
+
+monthly units:
+         F bets  baseline bets  baseline      F  Rctrl      R     E2     C2
+date                                                                       
+2025-11     467            465    -10.64 -12.64 -11.36  -3.64   2.00  -7.45
+2025-12     264            265    -24.45 -25.36 -27.09 -25.64 -20.82 -29.82
+2026-01     349            350    -38.82 -26.36 -27.82 -15.64 -33.27 -18.82
+2026-02     236            229    -19.00  -8.82  -6.09 -18.91 -19.55  -7.55
+2026-03     176            163     -8.36 -17.55  -8.55 -17.36 -14.36 -10.09
+2026-04       6              6     -2.18  -2.18  -2.18  -1.27  -0.36  -1.27
+concentration, F - baseline: 64 dates differ; top: 2026-02-07 +4.64, 2026-01-31 +3.82, 2025-12-02 +2.91, 2026-03-04 -2.82, 2026-01-19 +2.00; without its best date +5.91
+concentration, R - Rctrl: 91 dates differ; top: 2026-01-07 +4.73, 2026-02-28 -3.82, 2025-11-24 +3.73, 2026-01-31 -3.64, 2025-12-06 +3.09; without its best date -4.09
+
+-- coverage pool (5488 opportunities)
+strategy  bets     W-L-P  win %   units  ROI %
+baseline  1405 683-722-0  48.61 -101.09  -7.20
+       F  1423 700-723-0  49.19  -86.64  -6.09
+   Rctrl  1396 691-705-0  49.50  -76.82  -5.50
+       R  1405 694-711-0  49.40  -80.09  -5.70
+      E2  1389 682-707-0  49.10  -87.00  -6.26
+      C2  1408 701-707-0  49.79  -69.73  -4.95
+strongest existing comparator on this pool: C2 (-69.73)
+date-clustered paired bootstrap 95% (10,000 draws):
+      difference  units   lo95  hi95
+    F - baseline  14.45  -7.82 37.45
+       R - Rctrl  -3.27 -31.27 23.91
+    R - baseline  21.00 -11.36 53.27
+Rctrl - baseline  24.27   2.36 47.00
+          F - C2 -16.91 -60.00 25.73
+          R - C2 -10.36 -44.82 24.18
+
+accuracy and bias vs the settled result (supporting diagnostics; result - forecast):
+                                   0       1       2       3       4       5            6
+forecast                    baseline       F   Rctrl       R      E2      C2  market line
+all n                         5747.0  5747.0  5747.0  5747.0  5747.0  5747.0          NaN
+all MAE                       13.592  13.587  13.588  13.586  13.575  13.596       13.379
+all bias                        0.58   0.579   0.737   0.756   0.582    1.19        0.581
+overtime games n               325.0   325.0   325.0   325.0   325.0   325.0          NaN
+overtime games MAE            22.254  22.258  22.371  22.394  22.281  22.697       22.405
+overtime games bias           19.863  19.868  20.026  20.037  19.878  20.473       20.029
+|pred - median| < 5 n         2420.0  2420.0  2420.0  2420.0  2420.0  2420.0          NaN
+|pred - median| < 5 MAE       13.441  13.435  13.431  13.418  13.416   13.43       13.147
+|pred - median| < 5 bias       0.283   0.283   0.444   0.467   0.275   0.893        0.487
+|pred - median| 5-10 n        1789.0  1789.0  1789.0  1789.0  1789.0  1789.0          NaN
+|pred - median| 5-10 MAE      13.924  13.925  13.927  13.934  13.911  13.938       13.778
+|pred - median| 5-10 bias      1.105   1.103    1.27   1.287   1.112   1.715        1.208
+|pred - median| >= 10 n       1538.0  1538.0  1538.0  1538.0  1538.0  1538.0          NaN
+|pred - median| >= 10 MAE     13.442  13.434  13.443  13.444  13.433   13.46       13.281
+|pred - median| >= 10 bias     0.438   0.435   0.578   0.594    0.45   1.048       -0.002
+RMSE                          17.146  17.143  17.149  17.145  17.133  17.178       16.893
+
+==============================================================================================================
+B-spr ESPN opener spreads | prices: assumed -110 | opportunities 5742 (coverage pool 5487) | dates 147 | 2025-11-03 to 2026-04-06
+F (fixed stage 2) = none; R (refit) = k2.0_a0.25; decision family F
+
+-- full pool (5742 opportunities)
+strategy  bets     W-L-P  win %  units  ROI %
+baseline   844 493-351-0  58.41  97.18  11.51
+       F   844 493-351-0  58.41  97.18  11.51
+   Rctrl   840 490-350-0  58.33  95.45  11.36
+       R   880 504-376-0  57.27  82.18   9.34
+      v2   874 511-363-0  58.47 101.55  11.62
+strongest existing comparator on this pool: v2 (+101.55)
+date-clustered paired bootstrap 95% (10,000 draws):
+      difference  units   lo95  hi95
+    F - baseline   0.00   0.00  0.00
+       R - Rctrl -13.27 -38.64 11.09
+    R - baseline -15.00 -42.09 11.55
+Rctrl - baseline  -1.73 -13.73 10.00
+          F - v2  -4.36 -29.27 20.09
+          R - v2 -19.36 -50.18 10.82
+
+F bets relative to baseline (n, units under baseline, units under F):
+              n  ref_units  new_units
+kind                                 
+retained  844.0      97.18      97.18
+added       0.0       0.00       0.00
+dropped     0.0       0.00       0.00
+reversed    0.0       0.00       0.00
+
+R bets relative to Rctrl (n, units under Rctrl, units under R):
+              n  ref_units  new_units
+kind                                 
+retained  764.0      79.82      79.82
+added     116.0       0.00       2.36
+dropped    76.0      15.64       0.00
+reversed    0.0       0.00       0.00
+
+monthly units:
+         F bets  baseline bets  baseline      F  Rctrl      R     v2
+date                                                                
+2025-11     355            355      5.82   5.82   2.18  -4.18   8.91
+2025-12     160            160     38.55  38.55  36.64  33.45  35.82
+2026-01     136            136     20.55  20.55  18.64  25.45  16.09
+2026-02      99             99      6.00   6.00   8.82   1.27   6.27
+2026-03      90             90     24.55  24.55  27.45  24.45  33.64
+2026-04       4              4      1.73   1.73   1.73   1.73   0.82
+concentration, F - baseline: 0 dates differ; top: 
+concentration, R - Rctrl: 84 dates differ; top: 2026-02-11 -4.91, 2025-11-18 -3.73, 2025-12-06 -2.91, 2025-12-13 -2.91, 2026-01-31 +2.82; without its best date -16.09
+
+-- coverage pool (5487 opportunities)
+strategy  bets     W-L-P  win %  units  ROI %
+baseline   796 467-329-0  58.67  95.55  12.00
+       F   796 467-329-0  58.67  95.55  12.00
+   Rctrl   792 464-328-0  58.59  93.82  11.85
+       R   833 477-356-0  57.26  77.64   9.32
+      v2   828 486-342-0  58.70  99.82  12.06
+strongest existing comparator on this pool: v2 (+99.82)
+date-clustered paired bootstrap 95% (10,000 draws):
+      difference  units   lo95  hi95
+    F - baseline   0.00   0.00  0.00
+       R - Rctrl -16.18 -41.18  7.91
+    R - baseline -17.91 -45.18  8.55
+Rctrl - baseline  -1.73 -13.64  9.91
+          F - v2  -4.27 -28.09 19.45
+          R - v2 -22.18 -52.91  7.45
+
+accuracy and bias vs the settled result (supporting diagnostics; result - forecast):
+                                 0       1       2       3       4            5
+forecast                  baseline       F   Rctrl       R      v2  market line
+all n                       5742.0  5742.0  5742.0  5742.0  5742.0          NaN
+all MAE                      8.997   8.997   8.997   8.996   8.982        9.017
+all bias                    -0.294  -0.294  -0.319  -0.321  -0.285       -0.095
+overtime games n             325.0   325.0   325.0   325.0   325.0          NaN
+overtime games MAE           6.506   6.506   6.516   6.551   6.515        6.548
+overtime games bias         -2.076  -2.076  -2.093  -2.096   -2.08       -1.732
+|pred margin| < 5 n         2359.0  2359.0  2359.0  2359.0  2359.0          NaN
+|pred margin| < 5 MAE        8.976   8.976   8.976   8.969   8.956        9.014
+|pred margin| < 5 bias      -0.371  -0.371  -0.386  -0.383  -0.353        -0.17
+|pred margin| 5-15 n        2482.0  2482.0  2482.0  2482.0  2482.0          NaN
+|pred margin| 5-15 MAE       8.718   8.718    8.72   8.722   8.704        8.741
+|pred margin| 5-15 bias       -0.6    -0.6  -0.621  -0.629  -0.588       -0.315
+|pred margin| >= 15 n        901.0   901.0   901.0   901.0   901.0          NaN
+|pred margin| >= 15 MAE      9.818   9.818   9.813   9.819   9.816        9.783
+|pred margin| >= 15 bias     0.753   0.753    0.69   0.689   0.728        0.706
+RMSE                        11.376  11.376  11.375  11.372  11.356       11.365
+
+==============================================================================================================
+B-tot ESPN opener totals | prices: assumed -110 | opportunities 5747 (coverage pool 5491) | dates 147 | 2025-11-03 to 2026-04-06
+F (fixed stage 2) = foul; R (refit) = k8.0_a0.25; decision family F
+
+-- full pool (5747 opportunities)
+strategy  bets     W-L-P  win %  units  ROI %
+baseline  1417 778-639-0  54.90  68.27   4.82
+       F  1438 788-650-0  54.80  66.36   4.61
+   Rctrl  1447 791-655-1  54.70  64.09   4.43
+       R  1465 801-664-0  54.68  64.18   4.38
+      E2  1433 808-624-1  56.42 110.55   7.71
+      C2  1490 818-671-1  54.94  72.64   4.87
+strongest existing comparator on this pool: E2 (+110.55)
+date-clustered paired bootstrap 95% (10,000 draws):
+      difference  units   lo95  hi95
+    F - baseline  -1.91 -24.36 20.18
+       R - Rctrl   0.09 -32.00 32.91
+    R - baseline  -4.09 -32.00 23.64
+Rctrl - baseline  -4.18 -28.18 19.09
+          F - E2 -44.18 -84.45 -5.45
+          R - E2 -46.36 -91.09 -3.91
+
+F bets relative to baseline (n, units under baseline, units under F):
+               n  ref_units  new_units
+kind                                  
+retained  1351.0      59.82      59.82
+added       87.0       0.00       6.55
+dropped     66.0       8.45       0.00
+reversed     0.0       0.00       0.00
+
+R bets relative to Rctrl (n, units under Rctrl, units under R):
+               n  ref_units  new_units
+kind                                  
+retained  1332.0      48.27      48.27
+added      133.0       0.00      15.91
+dropped    115.0      15.82       0.00
+reversed     0.0       0.00       0.00
+
+monthly units:
+         F bets  baseline bets  baseline      F  Rctrl      R     E2     C2
+date                                                                       
+2025-11     393            393     36.55  44.18  33.27  28.82  59.82  30.64
+2025-12     228            219      4.36  -0.82  -2.91   5.27   9.45   4.45
+2026-01     379            374      9.73  12.36  17.55  15.55   6.09  20.27
+2026-02     276            275     17.09   8.45  17.73  15.73  12.82  11.73
+2026-03     158            152      2.64   4.27   0.55  -0.00  25.55   6.73
+2026-04       4              4     -2.09  -2.09  -2.09  -1.18  -3.18  -1.18
+concentration, F - baseline: 75 dates differ; top: 2026-02-21 -2.91, 2025-12-21 -2.00, 2025-11-20 +2.00, 2026-01-24 -2.00, 2026-02-07 -2.00; without its best date -3.91
+concentration, R - Rctrl: 88 dates differ; top: 2026-02-07 -4.82, 2025-12-22 +4.82, 2026-02-11 +4.73, 2026-03-07 +4.45, 2026-01-31 -3.73; without its best date -4.73
+
+-- coverage pool (5491 opportunities)
+strategy  bets     W-L-P  win %  units  ROI %
+baseline  1354 740-614-0  54.65  58.73   4.34
+       F  1375 751-624-0  54.62  58.73   4.27
+   Rctrl  1384 754-629-1  54.52  56.45   4.08
+       R  1400 763-637-0  54.50  56.64   4.05
+      E2  1367 765-601-1  56.00  94.45   6.91
+      C2  1423 779-643-1  54.78  65.18   4.58
+strongest existing comparator on this pool: E2 (+94.45)
+date-clustered paired bootstrap 95% (10,000 draws):
+      difference  units   lo95  hi95
+    F - baseline   0.00 -21.64 21.73
+       R - Rctrl   0.18 -30.64 31.55
+    R - baseline  -2.09 -29.55 25.36
+Rctrl - baseline  -2.27 -25.73 20.27
+          F - E2 -35.73 -71.91 -0.82
+          R - E2 -37.82 -79.00  2.00
+
+accuracy and bias vs the settled result (supporting diagnostics; result - forecast):
+                                   0       1       2       3       4       5            6
+forecast                    baseline       F   Rctrl       R      E2      C2  market line
+all n                         5747.0  5747.0  5747.0  5747.0  5747.0  5747.0          NaN
+all MAE                       13.601  13.597  13.597  13.594  13.582  13.605       13.621
+all bias                       0.611    0.61   0.775   0.794   0.612   1.221        0.653
+overtime games n               325.0   325.0   325.0   325.0   325.0   325.0          NaN
+overtime games MAE            22.273  22.278  22.395  22.419    22.3  22.713       22.406
+overtime games bias           19.897  19.904  20.067  20.075  19.912  20.507       20.138
+|pred - median| < 5 n         2420.0  2420.0  2420.0  2420.0  2420.0  2420.0          NaN
+|pred - median| < 5 MAE       13.477  13.472  13.466  13.453  13.445  13.467        13.51
+|pred - median| < 5 bias       0.241   0.243    0.41   0.433   0.231   0.851        0.376
+|pred - median| 5-10 n        1794.0  1794.0  1794.0  1794.0  1794.0  1794.0          NaN
+|pred - median| 5-10 MAE      13.897  13.897    13.9  13.908  13.887  13.913       13.963
+|pred - median| 5-10 bias      1.328   1.323   1.501   1.515   1.338   1.938        1.499
+|pred - median| >= 10 n       1533.0  1533.0  1533.0  1533.0  1533.0  1533.0          NaN
+|pred - median| >= 10 MAE      13.45  13.442   13.45  13.449   13.44  13.464       13.396
+|pred - median| >= 10 bias     0.355   0.355   0.502   0.519   0.362   0.965        0.101
+RMSE                          17.155  17.153  17.159  17.154  17.141  17.188        17.19
+
+==============================================================================================================
+C-spr DraftKings first observed spreads | prices: recorded DraftKings | opportunities 272 (coverage pool 268) | dates 3 | 2025-11-08 to 2026-03-07
+F (fixed stage 2) = none; R (refit) = k2.0_a0.25; decision family F
+
+-- full pool (272 opportunities)
+strategy  bets   W-L-P  win %  units  ROI %
+baseline    43 27-16-0  62.79   7.89  18.35
+       F    43 27-16-0  62.79   7.89  18.35
+   Rctrl    42 26-16-0  61.90   7.00  16.66
+       R    45 29-16-0  64.44   9.67  21.49
+      v2    42 27-15-0  64.29   8.82  20.99
+strongest existing comparator on this pool: v2 (+8.82)
+date-clustered paired bootstrap 95% (10,000 draws):
+      difference  units  lo95  hi95
+    F - baseline   0.00  0.00  0.00
+       R - Rctrl   2.67  0.00  7.65
+    R - baseline   1.78  0.00  4.97
+Rctrl - baseline  -0.89 -2.68  0.00
+          F - v2  -0.93 -3.27  0.49
+          R - v2   0.85 -2.91  5.46
+
+F bets relative to baseline (n, units under baseline, units under F):
+             n  ref_units  new_units
+kind                                
+retained  43.0       7.89       7.89
+added      0.0       0.00       0.00
+dropped    0.0       0.00       0.00
+reversed   0.0       0.00       0.00
+
+R bets relative to Rctrl (n, units under Rctrl, units under R):
+             n  ref_units  new_units
+kind                                
+retained  40.0       5.24       5.24
+added      5.0       0.00       4.43
+dropped    2.0       1.76       0.00
+reversed   0.0       0.00       0.00
+
+monthly units:
+         F bets  baseline bets  baseline     F  Rctrl     R    v2
+date                                                             
+2025-11      22             22      2.60  2.60   2.60  2.60  2.60
+2026-01      17             17      3.74  3.74   3.74  3.87  4.84
+2026-03       4              4      1.55  1.55   0.65  3.20  1.38
+concentration, F - baseline: 0 dates differ; top: 
+concentration, R - Rctrl: 2 dates differ; top: 2026-03-07 +2.55, 2026-01-10 +0.12; without its best date +0.12
+
+-- coverage pool (268 opportunities)
+strategy  bets   W-L-P  win %  units  ROI %
+baseline    43 27-16-0  62.79   7.89  18.35
+       F    43 27-16-0  62.79   7.89  18.35
+   Rctrl    42 26-16-0  61.90   7.00  16.66
+       R    45 29-16-0  64.44   9.67  21.49
+      v2    42 27-15-0  64.29   8.82  20.99
+strongest existing comparator on this pool: v2 (+8.82)
+date-clustered paired bootstrap 95% (10,000 draws):
+      difference  units  lo95  hi95
+    F - baseline   0.00  0.00  0.00
+       R - Rctrl   2.67  0.00  7.65
+    R - baseline   1.78  0.00  4.97
+Rctrl - baseline  -0.89 -2.68  0.00
+          F - v2  -0.93 -3.27  0.49
+          R - v2   0.85 -2.91  5.46
+
+accuracy and bias vs the settled result (supporting diagnostics; result - forecast):
+                                 0       1       2       3       4            5
+forecast                  baseline       F   Rctrl       R      v2  market line
+all n                        272.0   272.0   272.0   272.0   272.0          NaN
+all MAE                      9.058   9.058   9.054   9.061   9.042        9.107
+all bias                    -0.764  -0.764  -0.774   -0.75  -0.788       -0.375
+overtime games n              16.0    16.0    16.0    16.0    16.0          NaN
+overtime games MAE           6.196   6.196   6.212   6.211   6.165        5.875
+overtime games bias         -2.592  -2.592   -2.61  -2.531  -2.577       -2.562
+|pred margin| < 5 n          116.0   116.0   116.0   116.0   116.0          NaN
+|pred margin| < 5 MAE        8.755   8.755   8.755   8.749   8.713        8.879
+|pred margin| < 5 bias      -0.961  -0.961  -0.969  -0.943  -0.922       -0.586
+|pred margin| 5-15 n         118.0   118.0   118.0   118.0   118.0          NaN
+|pred margin| 5-15 MAE       8.973   8.973   8.973   8.998   8.989        8.932
+|pred margin| 5-15 bias     -0.191  -0.191  -0.199   -0.19  -0.236        0.059
+|pred margin| >= 15 n         38.0    38.0    38.0    38.0    38.0          NaN
+|pred margin| >= 15 MAE     10.242  10.242   10.22   10.21   10.21       10.342
+|pred margin| >= 15 bias    -1.941  -1.941  -1.966  -1.901  -2.092       -1.079
+RMSE                        11.658  11.658  11.654  11.681  11.645       11.696
+
+==============================================================================================================
+C-spr DraftKings first observed spreads | prices: assumed -110 | opportunities 272 (coverage pool 268) | dates 3 | 2025-11-08 to 2026-03-07
+F (fixed stage 2) = none; R (refit) = k2.0_a0.25; decision family F
+
+-- full pool (272 opportunities)
+strategy  bets   W-L-P  win %  units  ROI %
+baseline    43 27-16-0  62.79   8.55  19.87
+       F    43 27-16-0  62.79   8.55  19.87
+   Rctrl    42 26-16-0  61.90   7.64  18.18
+       R    45 29-16-0  64.44  10.36  23.03
+      v2    42 27-15-0  64.29   9.55  22.73
+strongest existing comparator on this pool: v2 (+9.55)
+date-clustered paired bootstrap 95% (10,000 draws):
+      difference  units  lo95  hi95
+    F - baseline   0.00  0.00  0.00
+       R - Rctrl   2.73  0.00  8.18
+    R - baseline   1.82  0.00  5.45
+Rctrl - baseline  -0.91 -2.73  0.00
+          F - v2  -1.00 -3.27  0.27
+          R - v2   0.82 -3.27  5.73
+
+F bets relative to baseline (n, units under baseline, units under F):
+             n  ref_units  new_units
+kind                                
+retained  43.0       8.55       8.55
+added      0.0       0.00       0.00
+dropped    0.0       0.00       0.00
+reversed   0.0       0.00       0.00
+
+R bets relative to Rctrl (n, units under Rctrl, units under R):
+             n  ref_units  new_units
+kind                                
+retained  40.0       5.82       5.82
+added      5.0       0.00       4.55
+dropped    2.0       1.82       0.00
+reversed   0.0       0.00       0.00
+
+monthly units:
+         F bets  baseline bets  baseline     F  Rctrl     R    v2
+date                                                             
+2025-11      22             22      2.82  2.82   2.82  2.82  2.82
+2026-01      17             17      4.00  4.00   4.00  4.00  5.09
+2026-03       4              4      1.73  1.73   0.82  3.55  1.64
+concentration, F - baseline: 0 dates differ; top: 
+concentration, R - Rctrl: 1 dates differ; top: 2026-03-07 +2.73; without its best date +0.00
+
+-- coverage pool (268 opportunities)
+strategy  bets   W-L-P  win %  units  ROI %
+baseline    43 27-16-0  62.79   8.55  19.87
+       F    43 27-16-0  62.79   8.55  19.87
+   Rctrl    42 26-16-0  61.90   7.64  18.18
+       R    45 29-16-0  64.44  10.36  23.03
+      v2    42 27-15-0  64.29   9.55  22.73
+strongest existing comparator on this pool: v2 (+9.55)
+date-clustered paired bootstrap 95% (10,000 draws):
+      difference  units  lo95  hi95
+    F - baseline   0.00  0.00  0.00
+       R - Rctrl   2.73  0.00  8.18
+    R - baseline   1.82  0.00  5.45
+Rctrl - baseline  -0.91 -2.73  0.00
+          F - v2  -1.00 -3.27  0.27
+          R - v2   0.82 -3.27  5.73
+
+accuracy and bias vs the settled result (supporting diagnostics; result - forecast):
+                                 0       1       2       3       4            5
+forecast                  baseline       F   Rctrl       R      v2  market line
+all n                        272.0   272.0   272.0   272.0   272.0          NaN
+all MAE                      9.058   9.058   9.054   9.061   9.042        9.107
+all bias                    -0.764  -0.764  -0.774   -0.75  -0.788       -0.375
+overtime games n              16.0    16.0    16.0    16.0    16.0          NaN
+overtime games MAE           6.196   6.196   6.212   6.211   6.165        5.875
+overtime games bias         -2.592  -2.592   -2.61  -2.531  -2.577       -2.562
+|pred margin| < 5 n          116.0   116.0   116.0   116.0   116.0          NaN
+|pred margin| < 5 MAE        8.755   8.755   8.755   8.749   8.713        8.879
+|pred margin| < 5 bias      -0.961  -0.961  -0.969  -0.943  -0.922       -0.586
+|pred margin| 5-15 n         118.0   118.0   118.0   118.0   118.0          NaN
+|pred margin| 5-15 MAE       8.973   8.973   8.973   8.998   8.989        8.932
+|pred margin| 5-15 bias     -0.191  -0.191  -0.199   -0.19  -0.236        0.059
+|pred margin| >= 15 n         38.0    38.0    38.0    38.0    38.0          NaN
+|pred margin| >= 15 MAE     10.242  10.242   10.22   10.21   10.21       10.342
+|pred margin| >= 15 bias    -1.941  -1.941  -1.966  -1.901  -2.092       -1.079
+RMSE                        11.658  11.658  11.654  11.681  11.645       11.696
+
+==============================================================================================================
+C-tot DraftKings first observed totals | prices: recorded DraftKings | opportunities 272 (coverage pool 268) | dates 3 | 2025-11-08 to 2026-03-07
+F (fixed stage 2) = foul; R (refit) = k8.0_a0.25; decision family F
+
+-- full pool (272 opportunities)
+strategy  bets   W-L-P  win %  units  ROI %
+baseline    64 38-26-0  59.38   8.56  13.38
+       F    67 41-26-0  61.19  11.17  16.67
+   Rctrl    62 37-25-0  59.68   8.59  13.86
+       R    66 41-25-0  62.12  12.23  18.52
+      E2    62 39-23-0  62.90  12.37  19.95
+      C2    59 34-25-0  57.63   5.89   9.98
+     rot    55 33-22-0  60.00   8.45  15.37
+strongest existing comparator on this pool: E2 (+12.37)
+date-clustered paired bootstrap 95% (10,000 draws):
+      difference  units  lo95  hi95
+    F - baseline   2.61  0.00  7.83
+       R - Rctrl   3.63 -0.39 11.11
+    R - baseline   3.67 -3.39  8.61
+Rctrl - baseline   0.03 -3.00  5.61
+          F - E2  -1.20 -3.85  3.00
+          R - E2  -0.14 -6.14  8.78
+
+F bets relative to baseline (n, units under baseline, units under F):
+             n  ref_units  new_units
+kind                                
+retained  64.0       8.56       8.56
+added      3.0       0.00       2.61
+dropped    0.0       0.00       0.00
+reversed   0.0       0.00       0.00
+
+R bets relative to Rctrl (n, units under Rctrl, units under R):
+             n  ref_units  new_units
+kind                                
+retained  58.0       8.83       8.83
+added      8.0       0.00       3.39
+dropped    4.0      -0.24       0.00
+reversed   0.0       0.00       0.00
+
+monthly units:
+         F bets  baseline bets  baseline     F  Rctrl     R    E2    C2   rot
+date                                                                         
+2025-11      16             16      3.07  3.07   4.94  5.00  2.07  2.21 -1.59
+2026-01      33             30     -3.33 -0.72  -4.17 -0.46  0.56 -2.28  6.79
+2026-03      18             18      8.82  8.82   7.82  7.69  9.74  5.96  3.25
+concentration, F - baseline: 1 dates differ; top: 2026-01-10 +2.61; without its best date +0.00
+concentration, R - Rctrl: 3 dates differ; top: 2026-01-10 +3.70, 2026-03-07 -0.13, 2025-11-08 +0.06; without its best date -0.07
+
+-- coverage pool (268 opportunities)
+strategy  bets   W-L-P  win %  units  ROI %
+baseline    64 38-26-0  59.38   8.56  13.38
+       F    67 41-26-0  61.19  11.17  16.67
+   Rctrl    62 37-25-0  59.68   8.59  13.86
+       R    66 41-25-0  62.12  12.23  18.52
+      E2    62 39-23-0  62.90  12.37  19.95
+      C2    58 34-24-0  58.62   6.89  11.88
+     rot    55 33-22-0  60.00   8.45  15.37
+strongest existing comparator on this pool: E2 (+12.37)
+date-clustered paired bootstrap 95% (10,000 draws):
+      difference  units  lo95  hi95
+    F - baseline   2.61  0.00  7.83
+       R - Rctrl   3.63 -0.39 11.11
+    R - baseline   3.67 -3.39  8.61
+Rctrl - baseline   0.03 -3.00  5.61
+          F - E2  -1.20 -3.85  3.00
+          R - E2  -0.14 -6.14  8.78
+
+accuracy and bias vs the settled result (supporting diagnostics; result - forecast):
+                                   0       1       2       3       4       5            6
+forecast                    baseline       F   Rctrl       R      E2      C2  market line
+all n                          272.0   272.0   272.0   272.0   272.0   272.0          NaN
+all MAE                       13.844  13.842  13.853  13.843   13.82  13.941       13.875
+all bias                       3.118   3.105   3.248   3.259   3.028   3.728        3.143
+overtime games n                16.0    16.0    16.0    16.0    16.0    16.0          NaN
+overtime games MAE            22.582  22.559  22.668  22.673  22.595  22.963       23.062
+overtime games bias           18.925  18.945  19.064  19.076  18.858  19.535       19.375
+|pred - median| < 5 n          117.0   117.0   117.0   117.0   117.0   117.0          NaN
+|pred - median| < 5 MAE       12.887  12.889  12.908  12.874  12.877  12.993       12.833
+|pred - median| < 5 bias        1.41   1.378   1.554   1.546   1.281    2.02        1.953
+|pred - median| 5-10 n          77.0    77.0    77.0    77.0    77.0    77.0          NaN
+|pred - median| 5-10 MAE      16.821  16.809  16.869   16.89  16.797  17.002       17.006
+|pred - median| 5-10 bias      8.365   8.378   8.486   8.473   8.292   8.975        8.448
+|pred - median| >= 10 n         78.0    78.0    78.0    78.0    78.0    78.0          NaN
+|pred - median| >= 10 MAE      12.34  12.342  12.294   12.29  12.296   12.34       12.346
+|pred - median| >= 10 bias     0.503   0.491   0.619   0.681    0.45   1.113       -0.308
+RMSE                          17.475  17.472  17.489  17.466  17.463  17.594       17.606
+
+==============================================================================================================
+C-tot DraftKings first observed totals | prices: assumed -110 | opportunities 272 (coverage pool 268) | dates 3 | 2025-11-08 to 2026-03-07
+F (fixed stage 2) = foul; R (refit) = k8.0_a0.25; decision family F
+
+-- full pool (272 opportunities)
+strategy  bets   W-L-P  win %  units  ROI %
+baseline    68 41-27-0  60.29  10.27  15.11
+       F    68 41-27-0  60.29  10.27  15.11
+   Rctrl    67 40-27-0  59.70   9.36  13.98
+       R    70 44-26-0  62.86  14.00  20.00
+      E2    66 41-25-0  62.12  12.27  18.60
+      C2    62 36-26-0  58.06   6.73  10.85
+     rot    55 33-22-0  60.00   8.00  14.55
+strongest existing comparator on this pool: E2 (+12.27)
+date-clustered paired bootstrap 95% (10,000 draws):
+      difference  units  lo95  hi95
+    F - baseline   0.00 -2.73  2.73
+       R - Rctrl   4.64 -3.00 11.18
+    R - baseline   3.73 -3.27 11.73
+Rctrl - baseline  -0.91 -3.00  0.55
+          F - E2  -2.00 -3.27  0.27
+          R - E2   1.73 -6.27  5.73
+
+F bets relative to baseline (n, units under baseline, units under F):
+             n  ref_units  new_units
+kind                                
+retained  67.0       9.36       9.36
+added      1.0       0.00       0.91
+dropped    1.0       0.91       0.00
+reversed   0.0       0.00       0.00
+
+R bets relative to Rctrl (n, units under Rctrl, units under R):
+             n  ref_units  new_units
+kind                                
+retained  62.0      10.55      10.55
+added      8.0       0.00       3.45
+dropped    5.0      -1.18       0.00
+reversed   0.0       0.00       0.00
+
+monthly units:
+         F bets  baseline bets  baseline     F  Rctrl     R    E2    C2   rot
+date                                                                         
+2025-11      16             17      4.00  3.09   3.00  4.91  3.00  2.18 -1.64
+2026-01      34             33     -2.45 -1.55  -2.27  1.45 -0.45 -2.18  6.64
+2026-03      18             18      8.73  8.73   8.64  7.64  9.73  6.73  3.00
+concentration, F - baseline: 2 dates differ; top: 2025-11-08 -0.91, 2026-01-10 +0.91; without its best date -0.91
+concentration, R - Rctrl: 3 dates differ; top: 2026-01-10 +3.73, 2025-11-08 +1.91, 2026-03-07 -1.00; without its best date +0.91
+
+-- coverage pool (268 opportunities)
+strategy  bets   W-L-P  win %  units  ROI %
+baseline    68 41-27-0  60.29  10.27  15.11
+       F    68 41-27-0  60.29  10.27  15.11
+   Rctrl    67 40-27-0  59.70   9.36  13.98
+       R    70 44-26-0  62.86  14.00  20.00
+      E2    66 41-25-0  62.12  12.27  18.60
+      C2    61 36-25-0  59.02   7.73  12.67
+     rot    55 33-22-0  60.00   8.00  14.55
+strongest existing comparator on this pool: E2 (+12.27)
+date-clustered paired bootstrap 95% (10,000 draws):
+      difference  units  lo95  hi95
+    F - baseline   0.00 -2.73  2.73
+       R - Rctrl   4.64 -3.00 11.18
+    R - baseline   3.73 -3.27 11.73
+Rctrl - baseline  -0.91 -3.00  0.55
+          F - E2  -2.00 -3.27  0.27
+          R - E2   1.73 -6.27  5.73
+
+accuracy and bias vs the settled result (supporting diagnostics; result - forecast):
+                                   0       1       2       3       4       5            6
+forecast                    baseline       F   Rctrl       R      E2      C2  market line
+all n                          272.0   272.0   272.0   272.0   272.0   272.0          NaN
+all MAE                       13.844  13.842  13.853  13.843   13.82  13.941       13.875
+all bias                       3.118   3.105   3.248   3.259   3.028   3.728        3.143
+overtime games n                16.0    16.0    16.0    16.0    16.0    16.0          NaN
+overtime games MAE            22.582  22.559  22.668  22.673  22.595  22.963       23.062
+overtime games bias           18.925  18.945  19.064  19.076  18.858  19.535       19.375
+|pred - median| < 5 n          117.0   117.0   117.0   117.0   117.0   117.0          NaN
+|pred - median| < 5 MAE       12.887  12.889  12.908  12.874  12.877  12.993       12.833
+|pred - median| < 5 bias        1.41   1.378   1.554   1.546   1.281    2.02        1.953
+|pred - median| 5-10 n          77.0    77.0    77.0    77.0    77.0    77.0          NaN
+|pred - median| 5-10 MAE      16.821  16.809  16.869   16.89  16.797  17.002       17.006
+|pred - median| 5-10 bias      8.365   8.378   8.486   8.473   8.292   8.975        8.448
+|pred - median| >= 10 n         78.0    78.0    78.0    78.0    78.0    78.0          NaN
+|pred - median| >= 10 MAE      12.34  12.342  12.294   12.29  12.296   12.34       12.346
+|pred - median| >= 10 bias     0.503   0.491   0.619   0.681    0.45   1.113       -0.308
+RMSE                          17.475  17.472  17.489  17.466  17.463  17.594       17.606
+
+==============================================================================================================
+VERDICT (frozen rule, PLAN.md): primary closing pools, decision family per market
+totals: family F, variant foul -> (1) not 'none': True; (2) F - baseline +10.55 [-11.36, +32.91]: False; (3) coverage pool +14.45: True; (4) - baseline +10.55: True; (5) F - C2 -17.91: False  =>  NO
+spreads: family F, variant none -> (1) not 'none': False; (2) F - baseline +0.00 [+0.00, +0.00]: False; (3) coverage pool +0.00: False; (4) - baseline +0.00: False; (5) F - v2 -19.73: False  =>  NO
