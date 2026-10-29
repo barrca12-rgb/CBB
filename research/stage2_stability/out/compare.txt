@@ -1,0 +1,118 @@
+
+=== total: forecast accuracy (gain = R0 error minus model error; + = better than R0)
+  R-frozen (reference)       2024               n   5723 bias -0.114 MAE 13.0298 RMSE 16.5856 | MAE gain -0.0010 [-0.0017, -0.0004] (98.3% [-0.0019, -0.0003], SE 0.0003); MSE gain -0.011 [-0.031, +0.006]
+  R-frozen (reference)       2025               n   5759 bias -0.022 MAE 12.8557 RMSE 16.4537 | MAE gain -0.0009 [-0.0015, -0.0002] (98.3% [-0.0017, -0.0001], SE 0.0003); MSE gain -0.017 [-0.044, +0.008]
+  R-frozen (reference)       2026               n   5752 bias +0.575 MAE 13.5898 RMSE 17.1438 | MAE gain -0.0006 [-0.0017, +0.0005] (98.3% [-0.0019, +0.0008], SE 0.0005); MSE gain +0.024 [-0.010, +0.057]
+  R-frozen (reference)       2024-26            n  17234 bias +0.147 MAE 13.1585 RMSE 16.7305 | MAE gain -0.0008 [-0.0013, -0.0004] (98.3% [-0.0014, -0.0003], SE 0.0002); MSE gain -0.002 [-0.017, +0.014]
+  R-frozen (reference)       2020-23 (context)  n  20461 bias -1.019 MAE 13.1371 RMSE 16.6077 | MAE gain +0.0002 [-0.0000, +0.0004] (98.3% [-0.0001, +0.0005], SE 0.0001); MSE gain +0.006 [-0.002, +0.014]
+  R0 (baseline)              2024               n   5723 bias -0.094 MAE 13.0288 RMSE 16.5853 | MAE gain +0.0000 [+0.0000, +0.0000] (98.3% [+0.0000, +0.0000], SE 0.0000); MSE gain +0.000 [+0.000, +0.000]
+  R0 (baseline)              2025               n   5759 bias -0.001 MAE 12.8549 RMSE 16.4531 | MAE gain +0.0000 [+0.0000, +0.0000] (98.3% [+0.0000, +0.0000], SE 0.0000); MSE gain +0.000 [+0.000, +0.000]
+  R0 (baseline)              2026               n   5752 bias +0.611 MAE 13.5893 RMSE 17.1445 | MAE gain +0.0000 [+0.0000, +0.0000] (98.3% [+0.0000, +0.0000], SE 0.0000); MSE gain +0.000 [+0.000, +0.000]
+  R0 (baseline)              2024-26            n  17234 bias +0.172 MAE 13.1577 RMSE 16.7304 | MAE gain +0.0000 [+0.0000, +0.0000] (98.3% [+0.0000, +0.0000], SE 0.0000); MSE gain +0.000 [+0.000, +0.000]
+  R0 (baseline)              2020-23 (context)  n  20461 bias -1.021 MAE 13.1373 RMSE 16.6079 | MAE gain +0.0000 [+0.0000, +0.0000] (98.3% [+0.0000, +0.0000], SE 0.0000); MSE gain +0.000 [+0.000, +0.000]
+  ridge 1,000                2024               n   5723 bias -0.087 MAE 13.0296 RMSE 16.5858 | MAE gain -0.0008 [-0.0029, +0.0014] (98.3% [-0.0034, +0.0019], SE 0.0011); MSE gain -0.017 [-0.093, +0.058]
+  ridge 1,000                2025               n   5759 bias +0.004 MAE 12.8548 RMSE 16.4530 | MAE gain +0.0000 [-0.0024, +0.0025] (98.3% [-0.0031, +0.0029], SE 0.0013); MSE gain +0.003 [-0.071, +0.077]
+  ridge 1,000                2026               n   5752 bias +0.614 MAE 13.5915 RMSE 17.1469 | MAE gain -0.0023 [-0.0050, +0.0004] (98.3% [-0.0056, +0.0009], SE 0.0014); MSE gain -0.082 [-0.171, +0.007]
+  ridge 1,000                2024-26            n  17234 bias +0.177 MAE 13.1587 RMSE 16.7314 | MAE gain -0.0010 [-0.0025, +0.0004] (98.3% [-0.0028, +0.0007], SE 0.0007); MSE gain -0.032 [-0.079, +0.013]
+  ridge 1,000                2020-23 (context)  n  20461 bias -1.008 MAE 13.1384 RMSE 16.6074 | MAE gain -0.0011 [-0.0031, +0.0009] (98.3% [-0.0035, +0.0013], SE 0.0010); MSE gain +0.014 [-0.046, +0.075]
+  S1 centered four factors   2024               n   5723 bias +0.387 MAE 13.0117 RMSE 16.5831 | MAE gain +0.0171 [+0.0037, +0.0321] (98.3% [+0.0009, +0.0347], SE 0.0071); MSE gain +0.073 [-0.379, +0.531]
+  S1 centered four factors   2025               n   5759 bias -0.132 MAE 12.8569 RMSE 16.4526 | MAE gain -0.0020 [-0.0096, +0.0054] (98.3% [-0.0111, +0.0073], SE 0.0038); MSE gain +0.018 [-0.233, +0.258]
+  S1 centered four factors   2026               n   5752 bias -0.018 MAE 13.6111 RMSE 17.1433 | MAE gain -0.0218 [-0.0400, -0.0046] (98.3% [-0.0435, -0.0013], SE 0.0088); MSE gain +0.041 [-0.571, +0.661]
+  S1 centered four factors   2024-26            n  17234 bias +0.078 MAE 13.1600 RMSE 16.7291 | MAE gain -0.0023 [-0.0106, +0.0051] (98.3% [-0.0123, +0.0075], SE 0.0040); MSE gain +0.044 [-0.239, +0.311]
+  S1 centered four factors   2020-23 (context)  n  20461 bias +0.225 MAE 13.0697 RMSE 16.5636 | MAE gain +0.0676 [+0.0489, +0.0882] (98.3% [+0.0443, +0.0926], SE 0.0100); MSE gain +1.468 [+0.791, +2.177]
+  S2 referee imputation      2024               n   5723 bias +0.350 MAE 13.0138 RMSE 16.5843 | MAE gain +0.0150 [+0.0044, +0.0274] (98.3% [+0.0018, +0.0310], SE 0.0058); MSE gain +0.031 [-0.337, +0.440]
+  S2 referee imputation      2025               n   5759 bias +0.401 MAE 12.8457 RMSE 16.4549 | MAE gain +0.0091 [-0.0006, +0.0198] (98.3% [-0.0026, +0.0225], SE 0.0054); MSE gain -0.059 [-0.419, +0.324]
+  S2 referee imputation      2026               n   5752 bias +0.971 MAE 13.5871 RMSE 17.1574 | MAE gain +0.0021 [-0.0073, +0.0120] (98.3% [-0.0092, +0.0143], SE 0.0048); MSE gain -0.441 [-0.750, -0.117]
+  S2 referee imputation      2024-26            n  17234 bias +0.574 MAE 13.1490 RMSE 16.7351 | MAE gain +0.0087 [+0.0030, +0.0150] (98.3% [+0.0015, +0.0163], SE 0.0031); MSE gain -0.156 [-0.368, +0.048]
+  S2 referee imputation      2020-23 (context)  n  20461 bias -0.569 MAE 13.1073 RMSE 16.5844 | MAE gain +0.0300 [+0.0230, +0.0374] (98.3% [+0.0214, +0.0391], SE 0.0037); MSE gain +0.780 [+0.544, +1.037]
+
+=== spread: forecast accuracy (gain = R0 error minus model error; + = better than R0)
+  R-frozen (reference)       2024               n   5723 bias -0.110 MAE 8.8683 RMSE 11.2108 | MAE gain +0.0000 [+0.0000, +0.0000] (98.3% [+0.0000, +0.0000], SE 0.0000); MSE gain +0.000 [+0.000, +0.000]
+  R-frozen (reference)       2025               n   5759 bias +0.028 MAE 8.8543 RMSE 11.2684 | MAE gain +0.0000 [+0.0000, +0.0000] (98.3% [+0.0000, +0.0000], SE 0.0000); MSE gain +0.000 [+0.000, +0.000]
+  R-frozen (reference)       2026               n   5752 bias -0.268 MAE 8.9910 RMSE 11.3687 | MAE gain +0.0000 [+0.0000, +0.0000] (98.3% [+0.0000, +0.0000], SE 0.0000); MSE gain +0.000 [+0.000, +0.000]
+  R-frozen (reference)       2024-26            n  17234 bias -0.117 MAE 8.9045 RMSE 11.2829 | MAE gain +0.0000 [+0.0000, +0.0000] (98.3% [+0.0000, +0.0000], SE 0.0000); MSE gain +0.000 [+0.000, +0.000]
+  R-frozen (reference)       2020-23 (context)  n  20461 bias -0.105 MAE 8.8636 RMSE 11.2358 | MAE gain +0.0000 [+0.0000, +0.0000] (98.3% [+0.0000, +0.0000], SE 0.0000); MSE gain +0.000 [+0.000, +0.000]
+  R0 (baseline)              2024               n   5723 bias -0.110 MAE 8.8683 RMSE 11.2108 | MAE gain +0.0000 [+0.0000, +0.0000] (98.3% [+0.0000, +0.0000], SE 0.0000); MSE gain +0.000 [+0.000, +0.000]
+  R0 (baseline)              2025               n   5759 bias +0.028 MAE 8.8543 RMSE 11.2684 | MAE gain +0.0000 [+0.0000, +0.0000] (98.3% [+0.0000, +0.0000], SE 0.0000); MSE gain +0.000 [+0.000, +0.000]
+  R0 (baseline)              2026               n   5752 bias -0.268 MAE 8.9910 RMSE 11.3687 | MAE gain +0.0000 [+0.0000, +0.0000] (98.3% [+0.0000, +0.0000], SE 0.0000); MSE gain +0.000 [+0.000, +0.000]
+  R0 (baseline)              2024-26            n  17234 bias -0.117 MAE 8.9045 RMSE 11.2829 | MAE gain +0.0000 [+0.0000, +0.0000] (98.3% [+0.0000, +0.0000], SE 0.0000); MSE gain +0.000 [+0.000, +0.000]
+  R0 (baseline)              2020-23 (context)  n  20461 bias -0.105 MAE 8.8636 RMSE 11.2358 | MAE gain +0.0000 [+0.0000, +0.0000] (98.3% [+0.0000, +0.0000], SE 0.0000); MSE gain +0.000 [+0.000, +0.000]
+  ridge 1,000                2024               n   5723 bias -0.113 MAE 8.8743 RMSE 11.2181 | MAE gain -0.0060 [-0.0157, +0.0040] (98.3% [-0.0178, +0.0059], SE 0.0050); MSE gain -0.163 [-0.382, +0.079]
+  ridge 1,000                2025               n   5759 bias +0.043 MAE 8.8603 RMSE 11.2766 | MAE gain -0.0061 [-0.0163, +0.0040] (98.3% [-0.0186, +0.0058], SE 0.0052); MSE gain -0.184 [-0.416, +0.050]
+  ridge 1,000                2026               n   5752 bias -0.271 MAE 8.9964 RMSE 11.3756 | MAE gain -0.0054 [-0.0151, +0.0041] (98.3% [-0.0170, +0.0060], SE 0.0048); MSE gain -0.158 [-0.380, +0.051]
+  ridge 1,000                2024-26            n  17234 bias -0.114 MAE 8.9104 RMSE 11.2904 | MAE gain -0.0058 [-0.0117, -0.0002] (98.3% [-0.0128, +0.0012], SE 0.0029); MSE gain -0.168 [-0.298, -0.044]
+  ridge 1,000                2020-23 (context)  n  20461 bias -0.096 MAE 8.8681 RMSE 11.2440 | MAE gain -0.0045 [-0.0107, +0.0014] (98.3% [-0.0122, +0.0025], SE 0.0032); MSE gain -0.184 [-0.322, -0.049]
+  S1 centered four factors: margins identical to R0 (max difference 0.0e+00)
+  S2 referee imputation: margins identical to R0 (max difference 0.0e+00)
+
+=== total: opener plays at the frozen threshold (3+); W-L-P, simulated -110 returns (pushes 0), opener-to-close CLV in points
+  2024: games 5723, with an opener 5721 (100.0% coverage)
+    R-frozen (reference)       all 591-467-8 (55.86%, sim +70.3u, ROI +6.6%), CLV +1.17 | overs 515-405-6 (55.98%, sim +63.2u, ROI +6.8%) | unders 76-62-2 (55.07%, sim +7.1u, ROI +5.1%)
+      vs R0: shared 583-457-8 (56.06%, sim +73.0u, ROI +7.0%); added 8-10-0 (44.44%, sim -2.7u, ROI -15.2%) CLV +1.29; dropped 0-2-0 (0.00%, sim -2.0u, ROI -100.0%) CLV +3.12
+    R0 (baseline)              all 583-459-8 (55.95%, sim +71.0u, ROI +6.8%), CLV +1.17 | overs 507-396-6 (56.15%, sim +64.9u, ROI +7.1%) | unders 76-63-2 (54.68%, sim +6.1u, ROI +4.3%)
+    ridge 1,000                all 575-452-8 (55.99%, sim +70.7u, ROI +6.8%), CLV +1.19 | overs 500-390-6 (56.18%, sim +64.6u, ROI +7.2%) | unders 75-62-2 (54.74%, sim +6.2u, ROI +4.4%)
+      vs R0: shared 572-448-8 (56.08%, sim +72.0u, ROI +7.0%); added 3-4-0 (42.86%, sim -1.3u, ROI -18.2%) CLV +0.54; dropped 11-11-0 (50.00%, sim -1.0u, ROI -4.5%) CLV +0.16
+    S1 centered four factors   all 524-402-6 (56.59%, sim +74.4u, ROI +8.0%), CLV +1.36 | overs 380-284-4 (57.23%, sim +61.5u, ROI +9.2%) | unders 144-118-2 (54.96%, sim +12.9u, ROI +4.9%)
+      vs R0: shared 453-341-5 (57.05%, sim +70.8u, ROI +8.9%); added 71-61-1 (53.79%, sim +3.5u, ROI +2.7%) CLV +1.47; dropped 130-118-3 (52.42%, sim +0.2u, ROI +0.1%) CLV +0.62
+    S2 referee imputation      all 505-378-5 (57.19%, sim +81.1u, ROI +9.1%), CLV +1.35 | overs 378-274-3 (57.98%, sim +69.6u, ROI +10.6%) | unders 127-104-2 (54.98%, sim +11.5u, ROI +4.9%)
+      vs R0: shared 454-337-5 (57.40%, sim +75.7u, ROI +9.5%); added 51-41-0 (55.43%, sim +5.4u, ROI +5.8%) CLV +1.37; dropped 129-122-3 (51.39%, sim -4.7u, ROI -1.9%) CLV +0.60
+  2025: games 5755, with an opener 5753 (100.0% coverage)
+    R-frozen (reference)       all 656-515-0 (56.02%, sim +81.4u, ROI +6.9%), CLV +1.52 | overs 509-403-0 (55.81%, sim +59.7u, ROI +6.5%) | unders 147-112-0 (56.76%, sim +21.6u, ROI +8.4%)
+      vs R0: shared 651-511-0 (56.02%, sim +80.8u, ROI +7.0%); added 5-4-0 (55.56%, sim +0.5u, ROI +6.1%) CLV +0.11; dropped 3-2-0 (60.00%, sim +0.7u, ROI +14.5%) CLV +0.20
+    R0 (baseline)              all 654-513-0 (56.04%, sim +81.6u, ROI +7.0%), CLV +1.53 | overs 504-399-0 (55.81%, sim +59.2u, ROI +6.6%) | unders 150-114-0 (56.82%, sim +22.4u, ROI +8.5%)
+    ridge 1,000                all 644-515-0 (55.57%, sim +70.5u, ROI +6.1%), CLV +1.51 | overs 495-401-0 (55.25%, sim +49.0u, ROI +5.5%) | unders 149-114-0 (56.65%, sim +21.5u, ROI +8.2%)
+      vs R0: shared 641-510-0 (55.69%, sim +72.7u, ROI +6.3%); added 3-5-0 (37.50%, sim -2.3u, ROI -28.4%) CLV -0.75; dropped 13-3-0 (81.25%, sim +8.8u, ROI +55.1%) CLV +1.69
+    S1 centered four factors   all 699-564-0 (55.34%, sim +71.5u, ROI +5.7%), CLV +1.51 | overs 548-459-0 (54.42%, sim +39.2u, ROI +3.9%) | unders 151-105-0 (58.98%, sim +32.3u, ROI +12.6%)
+      vs R0: shared 633-492-0 (56.27%, sim +83.5u, ROI +7.4%); added 66-72-0 (47.83%, sim -12.0u, ROI -8.7%) CLV +1.07; dropped 21-21-0 (50.00%, sim -1.9u, ROI -4.5%) CLV +0.62
+    S2 referee imputation      all 579-458-0 (55.83%, sim +68.4u, ROI +6.6%), CLV +1.59 | overs 386-302-0 (56.10%, sim +48.9u, ROI +7.1%) | unders 193-156-0 (55.30%, sim +19.5u, ROI +5.6%)
+      vs R0: shared 536-416-0 (56.30%, sim +71.3u, ROI +7.5%); added 43-42-0 (50.59%, sim -2.9u, ROI -3.4%) CLV +0.87; dropped 118-97-0 (54.88%, sim +10.3u, ROI +4.8%) CLV +0.94
+  2026: games 5750, with an opener 5747 (99.9% coverage)
+    R-frozen (reference)       all 781-626-1 (55.51%, sim +84.0u, ROI +6.0%), CLV +2.17 | overs 407-334-0 (54.93%, sim +36.0u, ROI +4.9%) | unders 374-292-1 (56.16%, sim +48.0u, ROI +7.2%)
+      vs R0: shared 773-619-1 (55.53%, sim +83.7u, ROI +6.0%); added 8-7-0 (53.33%, sim +0.3u, ROI +1.8%) CLV +1.27; dropped 10-6-0 (62.50%, sim +3.1u, ROI +19.3%) CLV +2.25
+    R0 (baseline)              all 783-625-1 (55.61%, sim +86.8u, ROI +6.2%), CLV +2.18 | overs 399-327-0 (54.96%, sim +35.7u, ROI +4.9%) | unders 384-298-1 (56.30%, sim +51.1u, ROI +7.5%)
+    ridge 1,000                all 777-619-1 (55.66%, sim +87.4u, ROI +6.3%), CLV +2.18 | overs 395-324-0 (54.94%, sim +35.1u, ROI +4.9%) | unders 382-295-1 (56.43%, sim +52.3u, ROI +7.7%)
+      vs R0: shared 772-617-1 (55.58%, sim +84.8u, ROI +6.1%); added 5-2-0 (71.43%, sim +2.5u, ROI +36.4%) CLV +1.57; dropped 11-8-0 (57.89%, sim +2.0u, ROI +10.5%) CLV +1.84
+    S1 centered four factors   all 912-746-1 (55.01%, sim +83.1u, ROI +5.0%), CLV +2.04 | overs 627-513-0 (55.00%, sim +57.0u, ROI +5.0%) | unders 285-233-1 (55.02%, sim +26.1u, ROI +5.0%)
+      vs R0: shared 681-558-1 (54.96%, sim +61.1u, ROI +4.9%); added 231-188-0 (55.13%, sim +22.0u, ROI +5.3%) CLV +1.36; dropped 102-67-0 (60.36%, sim +25.7u, ROI +15.2%) CLV +1.52
+    S2 referee imputation      all 787-631-1 (55.50%, sim +84.5u, ROI +6.0%), CLV +2.10 | overs 320-266-0 (54.61%, sim +24.9u, ROI +4.3%) | unders 467-365-1 (56.13%, sim +59.5u, ROI +7.1%)
+      vs R0: shared 704-564-1 (55.52%, sim +76.0u, ROI +6.0%); added 83-67-0 (55.33%, sim +8.5u, ROI +5.6%) CLV +1.17; dropped 79-61-0 (56.43%, sim +10.8u, ROI +7.7%) CLV +1.90
+  2024-26: games 17228, with an opener 17221 (100.0% coverage)
+    R-frozen (reference)       all 2028-1608-9 (55.78%, sim +235.7u, ROI +6.5%), CLV +1.67 | overs 1431-1142-6 (55.62%, sim +158.9u, ROI +6.2%) | unders 597-466-3 (56.16%, sim +76.7u, ROI +7.2%)
+      vs R0: shared 2007-1587-9 (55.84%, sim +237.6u, ROI +6.6%); added 21-21-0 (50.00%, sim -1.9u, ROI -4.5%) CLV +1.03; dropped 13-10-0 (56.52%, sim +1.8u, ROI +7.9%) CLV +1.88
+    R0 (baseline)              all 2020-1597-9 (55.85%, sim +239.4u, ROI +6.6%), CLV +1.68 | overs 1410-1122-6 (55.69%, sim +159.8u, ROI +6.3%) | unders 610-475-3 (56.22%, sim +79.6u, ROI +7.3%)
+    ridge 1,000                all 1996-1586-9 (55.72%, sim +228.6u, ROI +6.4%), CLV +1.68 | overs 1390-1115-6 (55.49%, sim +148.6u, ROI +5.9%) | unders 606-471-3 (56.27%, sim +79.9u, ROI +7.4%)
+      vs R0: shared 1985-1575-9 (55.76%, sim +229.6u, ROI +6.4%); added 11-11-0 (50.00%, sim -1.0u, ROI -4.5%) CLV +0.40; dropped 35-22-0 (61.40%, sim +9.8u, ROI +17.2%) CLV +1.15
+    S1 centered four factors   all 2135-1712-7 (55.50%, sim +228.9u, ROI +5.9%), CLV +1.70 | overs 1555-1256-4 (55.32%, sim +157.7u, ROI +5.6%) | unders 580-456-3 (55.98%, sim +71.3u, ROI +6.9%)
+      vs R0: shared 1767-1391-6 (55.95%, sim +215.4u, ROI +6.8%); added 368-321-1 (53.41%, sim +13.5u, ROI +2.0%) CLV +1.32; dropped 253-206-3 (55.12%, sim +24.0u, ROI +5.2%) CLV +0.95
+    S2 referee imputation      all 1871-1467-6 (56.05%, sim +233.9u, ROI +7.0%), CLV +1.75 | overs 1084-842-3 (56.28%, sim +143.5u, ROI +7.4%) | unders 787-625-3 (55.74%, sim +90.5u, ROI +6.4%)
+      vs R0: shared 1694-1317-6 (56.26%, sim +223.0u, ROI +7.4%); added 177-150-0 (54.13%, sim +10.9u, ROI +3.3%) CLV +1.15; dropped 326-280-3 (53.80%, sim +16.4u, ROI +2.7%) CLV +1.02
+
+=== spread: opener plays at the frozen threshold (2.5+); W-L-P, simulated -110 returns (pushes 0), opener-to-close CLV in points
+  2024: games 5723, with an opener 5721 (100.0% coverage)
+    R-frozen (reference)       all 388-281-8 (58.00%, sim +71.7u, ROI +10.6%), CLV +0.63 | homes 246-173-5 (58.71%, sim +50.6u, ROI +11.9%) | aways 142-108-3 (56.80%, sim +21.1u, ROI +8.3%)
+      vs R0: shared 388-281-8 (58.00%, sim +71.7u, ROI +10.6%); added 0-0-0 CLV +nan; dropped 0-0-0 CLV +nan
+    R0 (baseline)              all 388-281-8 (58.00%, sim +71.7u, ROI +10.6%), CLV +0.63 | homes 246-173-5 (58.71%, sim +50.6u, ROI +11.9%) | aways 142-108-3 (56.80%, sim +21.1u, ROI +8.3%)
+    ridge 1,000                all 325-267-7 (54.90%, sim +28.5u, ROI +4.8%), CLV +0.56 | homes 222-171-5 (56.49%, sim +30.8u, ROI +7.7%) | aways 103-96-2 (51.76%, sim -2.4u, ROI -1.2%)
+      vs R0: shared 289-217-5 (57.11%, sim +45.7u, ROI +8.9%); added 36-50-2 (41.86%, sim -17.3u, ROI -19.6%) CLV +0.21; dropped 99-64-3 (60.74%, sim +26.0u, ROI +15.7%) CLV +0.68
+  2025: games 5755, with an opener 5754 (100.0% coverage)
+    R-frozen (reference)       all 460-342-0 (57.36%, sim +76.2u, ROI +9.5%), CLV +1.37 | homes 280-209-0 (57.26%, sim +45.5u, ROI +9.3%) | aways 180-133-0 (57.51%, sim +30.6u, ROI +9.8%)
+      vs R0: shared 460-342-0 (57.36%, sim +76.2u, ROI +9.5%); added 0-0-0 CLV +nan; dropped 0-0-0 CLV +nan
+    R0 (baseline)              all 460-342-0 (57.36%, sim +76.2u, ROI +9.5%), CLV +1.37 | homes 280-209-0 (57.26%, sim +45.5u, ROI +9.3%) | aways 180-133-0 (57.51%, sim +30.6u, ROI +9.8%)
+    ridge 1,000                all 416-290-0 (58.92%, sim +88.2u, ROI +12.5%), CLV +1.38 | homes 261-184-0 (58.65%, sim +53.3u, ROI +12.0%) | aways 155-106-0 (59.39%, sim +34.9u, ROI +13.4%)
+      vs R0: shared 368-262-0 (58.41%, sim +72.5u, ROI +11.5%); added 48-28-0 (63.16%, sim +15.6u, ROI +20.6%) CLV +0.34; dropped 92-80-0 (53.49%, sim +3.6u, ROI +2.1%) CLV +0.88
+  2026: games 5750, with an opener 5742 (99.9% coverage)
+    R-frozen (reference)       all 462-335-0 (57.97%, sim +85.0u, ROI +10.7%), CLV +1.30 | homes 267-200-0 (57.17%, sim +42.7u, ROI +9.1%) | aways 195-135-0 (59.09%, sim +42.3u, ROI +12.8%)
+      vs R0: shared 462-335-0 (57.97%, sim +85.0u, ROI +10.7%); added 0-0-0 CLV +nan; dropped 0-0-0 CLV +nan
+    R0 (baseline)              all 462-335-0 (57.97%, sim +85.0u, ROI +10.7%), CLV +1.30 | homes 267-200-0 (57.17%, sim +42.7u, ROI +9.1%) | aways 195-135-0 (59.09%, sim +42.3u, ROI +12.8%)
+    ridge 1,000                all 428-301-0 (58.71%, sim +88.1u, ROI +12.1%), CLV +1.32 | homes 251-183-0 (57.83%, sim +45.2u, ROI +10.4%) | aways 177-118-0 (60.00%, sim +42.9u, ROI +14.5%)
+      vs R0: shared 381-271-0 (58.44%, sim +75.4u, ROI +11.6%); added 47-30-0 (61.04%, sim +12.7u, ROI +16.5%) CLV +0.88; dropped 81-64-0 (55.86%, sim +9.6u, ROI +6.6%) CLV +0.98
+  2024-26: games 17228, with an opener 17217 (99.9% coverage)
+    R-frozen (reference)       all 1310-958-8 (57.76%, sim +232.9u, ROI +10.2%), CLV +1.13 | homes 793-582-5 (57.67%, sim +138.9u, ROI +10.1%) | aways 517-376-3 (57.89%, sim +94.0u, ROI +10.5%)
+      vs R0: shared 1310-958-8 (57.76%, sim +232.9u, ROI +10.2%); added 0-0-0 CLV +nan; dropped 0-0-0 CLV +nan
+    R0 (baseline)              all 1310-958-8 (57.76%, sim +232.9u, ROI +10.2%), CLV +1.13 | homes 793-582-5 (57.67%, sim +138.9u, ROI +10.1%) | aways 517-376-3 (57.89%, sim +94.0u, ROI +10.5%)
+    ridge 1,000                all 1169-858-7 (57.67%, sim +204.7u, ROI +10.1%), CLV +1.12 | homes 734-538-5 (57.70%, sim +129.3u, ROI +10.1%) | aways 435-320-2 (57.62%, sim +75.5u, ROI +10.0%)
+      vs R0: shared 1038-750-5 (58.05%, sim +193.6u, ROI +10.8%); added 131-108-2 (54.81%, sim +11.1u, ROI +4.6%) CLV +0.46; dropped 272-208-3 (56.67%, sim +39.3u, ROI +8.1%) CLV +0.84
+
+=== Decision (PLAN.md addendum): pooled 2024-26 totals
+  S1 centered four factors: gain -0.0023; gain >= +0.010 NO; 98.3% interval above 0 NO; no season below -1 SE NO; beats ridge 1,000 NO; opener win% not lower NO -> KILLED
+  S2 referee imputation: gain +0.0087; gain >= +0.010 NO; 98.3% interval above 0 yes; no season below -1 SE yes; beats ridge 1,000 yes; opener win% not lower yes -> KILLED
