@@ -74,3 +74,21 @@ crossing is a proposal that needs Chad's approval, a MODEL_FREEZE entry and a Di
 - **Same read, applied to totals:** E2's total picks (`bets/shadow_e2/signals.csv`) against v1's total plays
   (`bets/bets.csv`). Same close rule (median total), boundaries and approval path.
 - **The plan:** `research/e2_shadow/PLAN.md`.
+
+### Conditions added Oct 29, before any 2026-27 game (helper doc review; Chad approved Amendment 3 the same day)
+1. **The close-record check, guarding against "looks like the close".** At a decision read, a crossing counts only
+   if, on the differing games, the shadow's side is **no worse than v1's against the closing number**. The point
+   estimate of the per-game (result − close) difference must be ≥ 0, with its date-clustered interval reported.
+   - **Why:** a feature that only tracks what the market will price earns CLV without predicting the score; that is
+     how recent form failed.
+   - **Backtest (`research/power/out/close_record_check.csv`):** v2 +0.29 points (development) and 0.00 (holdout);
+     E2 +0.71 and +0.82.
+2. **Per-game statistic, with counts.** The rule is written on the mean CLV difference per differing game, not
+   totals.
+   - **Reported each read:** the number of differing games and the shadow-only share.
+   - **Backtest per differing game:** v2 +0.39 / +0.31, E2 +0.27 / +0.27, all intervals above 0.
+3. **Named sequential design.** Haybittle-Peto:
+   - **Interim:** |z| ≥ 3.29 at most 18 weekly interim looks (Mondays, Nov 9, 2026 to Mar 8, 2027).
+   - **Final:** |z| ≥ 1.96 at the Mar 14 read.
+   - **Overall false-positive rate:** about 5%, at most 6.8% by the union bound.
+   - **No other looks count**, and the boundaries do not change.

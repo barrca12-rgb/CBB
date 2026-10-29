@@ -26,6 +26,18 @@ READS = {"spread": ("lineup v2", os.path.join("bets", "shadow_v2", "signals.csv"
          "total": ("E2", os.path.join("bets", "shadow_e2", "signals.csv"))}
 
 
+def _scores() -> pd.DataFrame:
+    try:
+        from cbb import data
+        g = data.season_games(2027)[0]
+        return g.drop_duplicates("game_id").set_index("game_id")[["home_pts", "away_pts"]].astype(float)
+    except Exception:
+        return pd.DataFrame(columns=["home_pts", "away_pts"])
+
+
+SCORES = pd.DataFrame(columns=["home_pts", "away_pts"])
+
+
 def picks(market: str) -> tuple[pd.DataFrame, pd.DataFrame]:
     v1 = pd.read_csv(os.path.join(ROOT, "bets", "bets.csv"))
     # same v1 set as research/v2_lineup/evaluate.py: logged after the freeze, voids excluded
@@ -69,7 +81,15 @@ def read(market: str, hist: pd.DataFrame, through: str | None) -> list[str]:
             continue                                            # same pick: no paired difference
         a = clv(s1, r["line_v1"], home, away, hist, st, market) if pd.notna(s1) else 0.0
         b = clv(s2, r["line_sh"], home, away, hist, st, market) if pd.notna(s2) else 0.0
-        rows.append({"date": date, "v1": s1, "sh": s2, "diff": b - a})
+        rc = np.nan                                             # result vs the same close (condition 1)
+        if r["game_id"] in SCORES.index:
+            hp, ap = SCORES.loc[r["game_id"]]
+            c = close_line(hist, int(home), int(away), st, market)
+            if not np.isnan(c):
+                y = (hp - ap) + c if market == "spread" else (hp + ap) - c      # home/over side vs the close
+                sgn = lambda s: 0.0 if pd.isna(s) else (1.0 if s in ("home", "over") else -1.0)
+                rc = sgn(s2) * y - sgn(s1) * y
+        rows.append({"date": date, "v1": s1, "sh": s2, "diff": b - a, "close_rec": rc})
     d = pd.DataFrame(rows)
     out = [f"\n{name} vs v1, {market}s"]
     if not len(d):
@@ -86,15 +106,21 @@ def read(market: str, hist: pd.DataFrame, through: str | None) -> list[str]:
     z = mean / se if se and se > 0 else np.nan
     final = (through or pd.Timestamp.now().strftime("%Y-%m-%d")) >= FINAL_DATE
     bound = FINAL_Z if final else INTERIM_Z
+    cr = ok.dropna(subset=["close_rec"])
+    crs = (f"{cr['close_rec'].mean():+.2f} pts over {len(cr)} settled games (condition 1: must be >= 0 at a decision read)"
+           if len(cr) else "no settled games yet")
+    out.append(f"  result vs the close, {name} side minus v1 side per differing game: {crs}")
     return out + [f"  {name} minus v1 CLV per differing game: {mean:+.3f} pts (date-clustered SE {se:.3f}); z = {z:+.2f}; "
-                  f"{'final' if final else 'interim'} boundary |z| >= {bound}: {'CROSSED' if abs(z) >= bound else 'not crossed'}",
+                  f"{'final' if final else 'interim'} boundary |z| >= {bound} (Haybittle-Peto, max 18 interim looks): {'CROSSED' if abs(z) >= bound else 'not crossed'}",
                   f"  {name}-only picks {int(ok['v1'].isna().sum())}, v1-only {int(ok['sh'].isna().sum())}, opposite sides "
                   f"{int((ok['v1'].notna() & ok['sh'].notna()).sum())}; dates {len(by)}"]
 
 
 def main(through: str | None = None) -> None:
     os.makedirs(OUT, exist_ok=True)
+    global SCORES
     hist = load()
+    SCORES = _scores()
     lines = [f"sequential CLV reads through {through or 'today'} ({pd.Timestamp.now(tz='UTC'):%Y-%m-%d %H:%M} UTC); "
              f"closing history: {hist['commit'].nunique() if len(hist) else 0} pulls"]
     for market in ("spread", "total"):

@@ -1,4 +1,4 @@
-sequential CLV reads through today (2026-10-29 23:21 UTC); closing history: 633 pulls
+sequential CLV reads through today (2026-10-29 23:27 UTC); closing history: 635 pulls
 
 lineup v2 vs v1, spreads
   no finished games where the picks differ yet
