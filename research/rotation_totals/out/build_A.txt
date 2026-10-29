@@ -1,0 +1,13 @@
+season 2025: trained on 2022-2024, 16710 games, over rate 0.510, rotation missing 3.9%; converged True (Newton refinement), grad norm 7.63e-07
+  standardized coefficients: intercept +0.040, edge_model +0.032, edge_s1 +0.053, edge_kp +0.032, edge_bt -0.056, poss -0.003, q +0.042, abs_spread +0.020, log_gp -0.015, neutral -0.043, early -0.072, rest_sum +0.007, efg_sum -0.056, tov_rate_sum +0.019, orb_rate_sum -0.016, ft_rate_sum -0.058, altitude +0.019, edge_x_log_gp +0.057, edge_x_poss -0.021, edge_x_neutral +0.008, edge_x_early +0.064, rot_off +0.044, rot_def -0.038
+season 2026: trained on 2023-2025, 17098 games, over rate 0.509, rotation missing 3.8%; converged True (Newton refinement), grad norm 3.34e-13
+  standardized coefficients: intercept +0.036, edge_model +0.034, edge_s1 +0.020, edge_kp +0.003, edge_bt -0.016, poss -0.053, q +0.096, abs_spread +0.018, log_gp -0.092, neutral -0.023, early -0.112, rest_sum -0.008, efg_sum -0.067, tov_rate_sum +0.038, orb_rate_sum -0.032, ft_rate_sum -0.047, altitude +0.021, edge_x_log_gp +0.054, edge_x_poss -0.007, edge_x_neutral -0.010, edge_x_early +0.070, rot_off +0.038, rot_def -0.039
+
+predictions_A.csv sha256 17df7b0f76ba490bbce3f95424f28183ea09f931c5eb0625737d59003cb99968
+eligibility by season:
+status  eligible  no complete DraftKings market  not in the quote feed  team played the day before (rotation timing)
+season                                                                                                              
+2025         325                              0                     11                                             3
+2026         272                              9                      9                                            19
+eligible games 597; left-censored 19; rotation missing 45; KenPom fallback 0; Torvik fallback 0; total number differs Over/Under 0
+bets: baseline 129, candidate 139
