@@ -1,0 +1,152 @@
+Step 0. Leak fix (season_avg_total from earlier dates only): R0 vs R-frozen, totals
+  2024: bias frozen -0.114 R0 -0.094; MAE 13.0298 -> 13.0288 (gain +0.0010 [+0.0004, +0.0017]); RMSE 16.5856 -> 16.5853; forecast change RMS 0.025
+  2025: bias frozen -0.022 R0 -0.001; MAE 12.8557 -> 12.8549 (gain +0.0009 [+0.0002, +0.0015]); RMSE 16.4537 -> 16.4531; forecast change RMS 0.027
+  2026: bias frozen +0.575 R0 +0.611; MAE 13.5898 -> 13.5893 (gain +0.0006 [-0.0005, +0.0017]); RMSE 17.1438 -> 17.1445; forecast change RMS 0.040
+  2024-26: bias frozen +0.147 R0 +0.172; MAE 13.1585 -> 13.1577 (gain +0.0008 [+0.0004, +0.0013]); RMSE 16.7305 -> 16.7304; forecast change RMS 0.031
+  2020-23: bias frozen -1.019 R0 -1.021; MAE 13.1371 -> 13.1373 (gain -0.0002 [-0.0004, +0.0000]); RMSE 16.6077 -> 16.6079; forecast change RMS 0.018
+
+1. Standardized totals coefficients (coef x training SD, points per 1 SD), fits for 2015..2026
+fit_for              2015  2018  2020  2022  2023  2024  2025  2026
+feature                                                            
+pred_total           8.64  9.13  9.04  8.80  8.69  8.71  8.67  8.68
+pred_total_x_early  10.65  6.11  6.34  5.22  4.00  3.49  2.72  2.15
+kp_total             3.60  2.83  3.50  2.95  3.06  2.90  2.91  2.93
+kp_total_x_early   -10.69 -6.48 -6.64 -5.62 -4.43 -3.99 -3.21 -2.66
+bt_total            -1.63 -0.28 -0.88 -0.56 -0.80 -0.75 -0.78 -0.84
+rest_sum             0.53  0.63  0.54  0.52  0.52  0.50  0.51  0.49
+season_avg_total    -0.25 -0.18 -0.26 -0.13 -0.11 -0.12 -0.12 -0.14
+efg_sum             -0.68 -1.10 -1.22 -1.17 -1.16 -1.18 -1.23 -1.20
+tov_rate_sum         0.06  0.25  0.22  0.09  0.09  0.12  0.13  0.13
+orb_rate_sum        -0.48 -0.69 -0.59 -0.37 -0.37 -0.40 -0.39 -0.39
+ft_rate_sum         -0.68 -1.08 -1.11 -1.00 -0.97 -1.02 -1.03 -1.01
+mkt_t                0.11  0.06 -0.08 -0.17 -0.15 -0.16 -0.14 -0.17
+altitude             0.37  0.38  0.33  0.35  0.31  0.29  0.28  0.27
+ref_fouls            1.23  0.68  0.66  0.76  0.73  0.74  0.71  0.68
+ref_pts              0.37  0.64  0.70  0.64  0.65  0.64  0.67  0.70
+  level pass-through (sum of pred_total, kp_total, bt_total, season_avg_total raw coefs): 2015 0.914, 2016 0.871, 2017 0.977, 2018 0.999, 2019 1.000, 2020 0.990, 2021 0.999, 2022 1.004, 2023 1.007, 2024 1.011, 2025 1.013, 2026 1.011
+
+2. Prediction-level sensitivity, totals (season-s forecasts; RMS in points)
+  season  churn(s-1 vs s-2 fit) by group: total | level | four factors | referees | other ;  LOSO: forecast RMS change max, MAE range, bias range
+  2015  2.019 | 1.789 | 0.502 | 0.154 | 0.194 ;  4.087, MAE +0.0095..+0.5486, bias -4.26..+0.22 (base -0.30)
+  2016  0.339 | 0.384 | 0.189 | 0.195 | 0.132 ;  1.980, MAE -0.0185..+0.1098, bias +0.86..+2.94 (base +1.02)
+  2017  1.185 | 1.119 | 0.412 | 0.143 | 0.062 ;  1.185, MAE -0.0079..+0.0147, bias -0.68..+0.73 (base -0.38)
+  2018  0.221 | 0.242 | 0.203 | 0.080 | 0.073 ;  0.379, MAE -0.0171..+0.0152, bias -0.60..-0.35 (base -0.47)
+  2019  0.134 | 0.092 | 0.082 | 0.026 | 0.128 ;  0.312, MAE -0.0080..+0.0122, bias -1.73..-1.53 (base -1.63)
+  2020  0.420 | 0.179 | 0.260 | 0.018 | 0.092 ;  0.585, MAE -0.0261..+0.0655, bias -2.15..-1.45 (base -1.64)
+  2021  0.345 | 0.107 | 0.287 | 0.083 | 0.116 ;  0.345, MAE -0.0128..+0.0253, bias -1.86..-1.43 (base -1.58)
+  2022  0.232 | 0.092 | 0.115 | 0.008 | 0.038 ;  0.247, MAE -0.0115..+0.0185, bias -1.45..-1.13 (base -1.26)
+  2023  0.182 | 0.070 | 0.064 | 0.036 | 0.046 ;  0.182, MAE -0.0024..+0.0052, bias -0.35..-0.09 (base -0.19)
+  2024  0.081 | 0.090 | 0.062 | 0.002 | 0.032 ;  0.163, MAE -0.0080..+0.0084, bias -0.27..-0.05 (base -0.17)
+  2025  0.067 | 0.033 | 0.056 | 0.039 | 0.023 ;  0.154, MAE -0.0022..+0.0048, bias -0.11..+0.08 (base -0.03)
+  2026  0.043 | 0.037 | 0.025 | 0.038 | 0.037 ;  0.244, MAE -0.0043..+0.0055, bias +0.43..+0.80 (base +0.63)
+
+  Date-clustered bootstrap of the training set (200 resamples), totals: SD across resamples
+  season  bias SD | mean-contribution SD by group (level, four factors, referees, other) | MAE SD
+  2024  0.138 | 0.103, 0.089, 0.076, 0.008 | 0.0075
+  2025  0.145 | 0.126, 0.102, 0.073, 0.005 | 0.0047
+  2026  0.184 | 0.200, 0.148, 0.079, 0.005 | 0.0068
+  2020  0.207 | 0.046, 0.152, 0.094, 0.009 | 0.0274
+  2022  0.154 | 0.036, 0.094, 0.087, 0.009 | 0.0143
+
+3. Drivers
+  VIF (2026 training set): pred_total 33.4, pred_total_x_early 1998.0, kp_total 45.6, kp_total_x_early 1993.7, bt_total 28.5, rest_sum 1.0, season_avg_total 1.7, efg_sum 1.9, tov_rate_sum 1.5, orb_rate_sum 1.4, ft_rate_sum 1.2, mkt_t 2.5, altitude 1.0, ref_fouls 1.5, ref_pts 1.4
+  correlations, four factors + Torvik + level: 
+                  pred_total  kp_total  bt_total  efg_sum  tov_rate_sum  orb_rate_sum  ft_rate_sum  season_avg_total
+pred_total              1.00      0.96      0.96     0.51         -0.34          0.04         0.08              0.40
+kp_total                0.96      1.00      0.98     0.56         -0.35          0.00         0.06              0.36
+bt_total                0.96      0.98      1.00     0.55         -0.33          0.02         0.07              0.34
+efg_sum                 0.51      0.56      0.55     1.00         -0.29         -0.31        -0.13              0.30
+tov_rate_sum           -0.34     -0.35     -0.33    -0.29          1.00          0.32         0.22             -0.32
+orb_rate_sum            0.04      0.00      0.02    -0.31          0.32          1.00         0.34             -0.21
+ft_rate_sum             0.08      0.06      0.07    -0.13          0.22          0.34         1.00             -0.02
+season_avg_total        0.40      0.36      0.34     0.30         -0.32         -0.21        -0.02              1.00
+  standardized input shift (season mean - training mean) / training SD:
+      pred_total  kp_total  bt_total  season_avg_total  efg_sum  tov_rate_sum  orb_rate_sum  ft_rate_sum  mkt_t  ref_fouls  ref_pts
+2015       -0.39     -0.33     -0.27             -0.88    -0.07          0.04         -0.29        -0.24  -0.01       0.53    -0.04
+2016        0.74      0.64      0.64              1.80     0.35         -0.62         -0.72        -0.22   0.02       0.62     0.03
+2017        0.63      0.54      0.60              1.37     0.56         -0.17         -0.68        -0.42   0.01       0.69    -0.01
+2018        0.57      0.48      0.54              1.23     0.75         -0.15         -0.78        -0.58   0.01       0.74    -0.05
+2019        0.33      0.24      0.32              0.68     0.50         -0.11         -0.76        -0.66   0.01       0.77    -0.10
+2020       -0.13     -0.07     -0.10             -0.25    -0.17          0.15         -0.83        -0.90  -0.01       0.79    -0.13
+2021        0.07      0.04      0.02              0.11     0.12          0.10         -0.76        -0.74   0.01       0.80    -0.15
+2022       -0.14     -0.08     -0.11             -0.30     0.05         -0.19         -0.60        -1.04   0.00       0.81    -0.16
+2023       -0.04      0.01     -0.01             -0.12     0.22         -0.25         -0.42        -0.64  -0.01       0.81    -0.18
+2024        0.38      0.35      0.31              0.86     0.22         -0.98         -0.14        -0.22   0.00       0.80    -0.20
+2025        0.43      0.36      0.32              1.01     0.46         -0.84          0.14        -0.10   0.01       0.81    -0.23
+2026        0.81      0.68      0.63              1.92     0.67         -0.95          0.52         0.44   0.02       0.82    -0.25
+  referee offset in prediction (crews 0 instead of the training mean): forecast shift = sum coef x (0 - train mean)
+    2015: ref_fouls coef +1.979 (train mean -0.33), ref_pts coef +0.385 (train mean +0.04); offset +0.63 points
+    2016: ref_fouls coef +1.406 (train mean -0.43), ref_pts coef +0.593 (train mean -0.03); offset +0.61 points
+    2017: ref_fouls coef +1.063 (train mean -0.50), ref_pts coef +0.711 (train mean +0.01); offset +0.52 points
+    2018: ref_fouls coef +0.903 (train mean -0.55), ref_pts coef +0.675 (train mean +0.05); offset +0.46 points
+    2019: ref_fouls coef +0.860 (train mean -0.60), ref_pts coef +0.720 (train mean +0.09); offset +0.45 points
+    2020: ref_fouls coef +0.838 (train mean -0.62), ref_pts coef +0.767 (train mean +0.12); offset +0.43 points
+    2021: ref_fouls coef +0.967 (train mean -0.64), ref_pts coef +0.749 (train mean +0.13); offset +0.52 points
+    2022: ref_fouls coef +0.943 (train mean -0.65), ref_pts coef +0.699 (train mean +0.15); offset +0.51 points
+    2023: ref_fouls coef +0.893 (train mean -0.66), ref_pts coef +0.721 (train mean +0.16); offset +0.47 points
+    2024: ref_fouls coef +0.895 (train mean -0.67), ref_pts coef +0.712 (train mean +0.18); offset +0.47 points
+    2025: ref_fouls coef +0.849 (train mean -0.68), ref_pts coef +0.756 (train mean +0.20); offset +0.42 points
+    2026: ref_fouls coef +0.803 (train mean -0.69), ref_pts coef +0.794 (train mean +0.22); offset +0.38 points
+
+4. Do the inputs explain R0's 2024-26 totals residuals after the other inputs? (standardized, within-season de-meaned, date-clustered)
+  2024: level Wald p 0.006; four factors Wald p 0.321; other Wald p 0.988 | partial (pts per SD, t): efg_sum -0.54 (-1.6), ft_rate_sum -0.24 (-1.0), orb_rate_sum +0.08 (+0.3), tov_rate_sum +0.14 (+0.6), bt_total -0.78 (-0.7), kp_total +0.94 (+0.5), pred_total -0.02 (-0.0)
+       recorded crews (training frame, same games): ref_fouls +0.44 (+1.7), ref_pts +0.97 (+3.5); joint p 0.000
+  2025: level Wald p 0.000; four factors Wald p 0.698; other Wald p 0.176 | partial (pts per SD, t): efg_sum +0.12 (+0.4), ft_rate_sum -0.01 (-0.0), orb_rate_sum -0.23 (-0.9), tov_rate_sum +0.24 (+1.0), bt_total +0.08 (+0.1), kp_total +0.24 (+0.1), pred_total +0.11 (+0.1)
+       recorded crews (training frame, same games): ref_fouls +0.30 (+1.2), ref_pts +0.97 (+4.3); joint p 0.000
+  2026: level Wald p 0.000; four factors Wald p 0.958; other Wald p 0.274 | partial (pts per SD, t): efg_sum -0.04 (-0.1), ft_rate_sum +0.09 (+0.4), orb_rate_sum -0.13 (-0.6), tov_rate_sum -0.13 (-0.5), bt_total +3.40 (+3.3), kp_total -4.07 (-2.4), pred_total -0.09 (-0.1)
+       recorded crews (training frame, same games): ref_fouls +1.02 (+3.6), ref_pts +0.70 (+2.5); joint p 0.000
+  2024-26: level Wald p 0.000; four factors Wald p 0.912; other Wald p 0.451 | partial (pts per SD, t): efg_sum -0.15 (-0.9), ft_rate_sum -0.04 (-0.3), orb_rate_sum -0.09 (-0.6), tov_rate_sum +0.08 (+0.5), bt_total +1.41 (+2.0), kp_total -1.26 (-1.2), pred_total -0.19 (-0.3)
+       recorded crews (training frame, same games): ref_fouls +0.56 (+3.6), ref_pts +0.91 (+6.1); joint p 0.000
+  2019-22: level Wald p 0.095; four factors Wald p 0.506; other Wald p 0.398 | partial (pts per SD, t): efg_sum -0.17 (-1.0), ft_rate_sum +0.04 (+0.3), orb_rate_sum +0.16 (+1.0), tov_rate_sum -0.10 (-0.7), bt_total -0.01 (-0.0), kp_total +0.72 (+0.8), pred_total -0.75 (-1.1)
+       recorded crews (training frame, same games): ref_fouls +0.75 (+5.3), ref_pts +0.76 (+5.5); joint p 0.000
+
+5. Cross-fitted oracle: MAE gain over R0 from refitting within the season (odd/even dates), totals
+   and 6a. ex-ante: the same refits on Nov-Dec games applied to Jan-Mar (Jan-Mar MAE gain)
+  total:
+       market  base_mae  (i) intercept  exante (i) intercept  (ii) level  exante (ii) level  (iii) adjustments  exante (iii) adjustments  (iv) all  exante (iv) all
+season                                                                                                                                                             
+2015    total   13.3218         0.0074               -0.0119     -0.0209            -0.1333             0.0021                   -0.0066   -0.0149          -0.2238
+2016    total   13.6544        -0.0049               -0.0049      0.0567            -0.0221            -0.0215                   -0.6098    0.0552          -0.4491
+2017    total   13.3801         0.0050                0.0023     -0.0021            -0.1718            -0.0058                   -0.4268    0.0069          -0.6385
+2018    total   13.5548         0.0134                0.0285      0.0009            -0.0689            -0.0080                   -0.0119   -0.0064          -0.0791
+2019    total   13.5722         0.1204                0.1210      0.1022             0.1218             0.1157                    0.0875    0.0821           0.0662
+2020    total   13.2715         0.1037                0.0744      0.0791             0.0247             0.1190                    0.0831    0.0835          -0.0884
+2021    total   13.2857         0.0823                0.0666      0.0615            -0.5054             0.0931                   -0.2549    0.0697          -0.6798
+2022    total   13.0564         0.0601                0.0541      0.0745            -0.1159             0.0506                   -0.0298    0.0608          -0.2164
+2023    total   12.9873        -0.0024               -0.0170     -0.0137            -0.2762             0.0007                   -0.1016   -0.0043          -0.3413
+2024    total   13.0288         0.0029               -0.0068      0.0090            -0.0082            -0.0178                   -0.0588   -0.0124          -0.0529
+2025    total   12.8549        -0.0022                0.0031      0.0372            -0.0214            -0.0093                   -0.1826    0.0410          -0.1501
+2026    total   13.5893        -0.0227               -0.0423      0.0096            -0.0607            -0.0243                   -0.1076    0.0096          -0.1265
+  total pooled 2024-26 (season mean): oracle (iv)-(i) = +0.0201; ex-ante (iv)-(i) = -0.0945
+  margin:
+        market  base_mae  (i) intercept  exante (i) intercept  (ii) level  exante (ii) level  (iii) adjustments  exante (iii) adjustments  (iv) all  exante (iv) all
+season                                                                                                                                                              
+2015    margin    8.3885         0.0067                0.0064      0.0136            -0.2781            -0.0149                   -0.0601   -0.0003          -0.2286
+2016    margin    8.5107        -0.0004               -0.0034      0.0030            -0.0307            -0.0048                   -0.0315    0.0115          -0.0877
+2017    margin    8.6393         0.0031               -0.0117     -0.0278            -0.0836            -0.0139                   -0.0294   -0.0420          -0.1060
+2018    margin    8.7243        -0.0011               -0.0000     -0.0052            -0.1067            -0.0095                   -0.0120   -0.0121          -0.1769
+2019    margin    8.8026        -0.0055               -0.0018     -0.0063            -0.0147            -0.0411                   -0.0756   -0.0340          -0.1115
+2020    margin    8.8624        -0.0027               -0.0030      0.0215            -0.1451            -0.0083                   -0.0124    0.0159          -0.1299
+2021    margin    9.1163         0.0037               -0.0032     -0.0202            -1.3620             0.0121                   -0.0730   -0.0106          -1.3903
+2022    margin    8.7171         0.0096                0.0104     -0.0139            -0.0053             0.0018                   -0.0498   -0.0078          -0.0948
+2023    margin    8.8305         0.0000                0.0003      0.0028            -0.0515            -0.0496                   -0.0335   -0.0479          -0.0668
+2024    margin    8.8683        -0.0010               -0.0048     -0.0059            -0.0050            -0.0338                   -0.0415   -0.0400          -0.0415
+2025    margin    8.8543        -0.0078               -0.0048     -0.0260            -0.0529            -0.0150                    0.0047   -0.0401          -0.0130
+2026    margin    8.9910         0.0004               -0.0002      0.0009            -0.0934            -0.0408                   -0.0375   -0.0216          -0.0852
+  margin pooled 2024-26 (season mean): oracle (iv)-(i) = -0.0311; ex-ante (iv)-(i) = -0.0433
+
+6a. Within-season persistence: partial slope of R0 residual on each standardized feature, Nov-Dec vs Jan-Mar, totals
+  correlation of Nov-Dec and Jan-Mar partial slopes across features x seasons: +0.20 [-0.63, +0.74] (bootstrap over seasons)
+    efg_sum: corr -0.10; 2024-26 early/late: 2024 -2.02/+0.17, 2025 -1.22/+0.60, 2026 -0.22/+0.46
+    ft_rate_sum: corr +0.31; 2024-26 early/late: 2024 -0.38/-0.22, 2025 -0.90/+0.19, 2026 -0.66/+0.55
+    orb_rate_sum: corr +0.13; 2024-26 early/late: 2024 -0.36/+0.33, 2025 -0.85/+0.02, 2026 +0.80/-0.19
+    bt_total: corr -0.06; 2024-26 early/late: 2024 -1.06/-4.96, 2025 +0.28/-3.99, 2026 +5.01/-2.48
+    kp_total: corr -0.04; 2024-26 early/late: 2024 +3.52/+3.09, 2025 -3.84/+3.39, 2026 -6.50/+0.61
+    pred_total: corr -0.01; 2024-26 early/late: 2024 -1.84/+2.72, 2025 +3.43/+2.07, 2026 +0.83/-0.08
+    season_avg_total: corr +0.09; 2024-26 early/late: 2024 -0.85/-4.17, 2025 -1.53/-4.89, 2026 -0.47/+0.03
+
+6b. Early warning (12 seasons, Spearman, descriptive):
+  fit-to-fit churn vs |season bias|: rho +0.30 (p 0.34)
+  fit-to-fit churn vs oracle (iv)-(i): rho -0.27 (p 0.40)
+  max standardized input shift vs |season bias|: rho -0.06 (p 0.86)
+  max standardized input shift vs oracle (iv)-(i): rho +0.61 (p 0.04)

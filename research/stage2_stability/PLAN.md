@@ -129,3 +129,59 @@ walk-forward refit; frozen E2 untouched). The question is whether neutral-site c
 - 2026 is examined explicitly. Nothing is re-tuned after seeing it.
 - Every variant tried, including failures, goes in `LOG.md`.
 - **Recommendation:** one next step. If nothing shows credible incremental value, the study closes.
+
+## Addendum: challengers (pre-registered Oct 29, 2026, after the diagnostics in `out/diag.txt`, before either is fit)
+
+**Diagnostic evidence behind the choice:**
+- **No coefficient instability.** The standardized totals coefficients have been stable since the 2018 fit (eFG%
+  -1.1 to -1.2 per SD, FT rate -1.0, ORB -0.4, Torvik -0.8; level pass-through 1.00-1.01). The only drifting pair
+  is the two early-season interactions (variance inflation about 2,000). They trade off with a small net effect.
+- **Prediction churn is small.** Fit-to-fit churn on 2024-26 forecasts is 0.04-0.08 points RMS. Training-window
+  perturbations move MAE by 0.008 or less. The bootstrap MAE SD is 0.005-0.0075.
+- **Within-season deviations do not persist.** Nov-Dec vs Jan-Mar partial slopes correlate +0.20 [-0.63, +0.74],
+  and Nov-Dec refits applied to Jan-Mar lose 0.05-0.15 MAE.
+- **Not worth an instability challenger.** Shrinking, grouping or adapting coefficients has no evidential basis
+  here, so none is pre-registered.
+- **What does move the bias is input drift priced by stable coefficients.**
+  - In 2015-2023 (mechanism seasons), the four-factor group's drift contribution correlates -0.72 with season bias
+    (slope -1.28). The four-factor coefficients come mostly from within-season, game-to-game variation, but they
+    are also applied to league-wide drift between seasons.
+  - The referee terms add a constant +0.38 to +0.63 points in prediction, because unknown crews are set to 0
+    instead of their training mean (a missing-data mismatch).
+
+### S1: season-centered four factors (totals)
+- **Mechanism:** league-wide drift in the four-factor sums should not move the forecast level. The level inputs
+  carry level.
+- **Definition:** for efg_sum, tov_rate_sum, orb_rate_sum and ft_rate_sum, x' = x - m.
+  - **m** = that season's mean of x over games on earlier dates, once there are 200 such games.
+  - **Earlier in the season:** last season's mean of x.
+  - **First season (2013, training only):** the season's mean of x.
+- **Fit:** the same construction is used in the training and prediction frames; then R0's walk-forward with
+  penalty 1. Margins are unchanged. There are no settings.
+- **Difference from ridge 1,000:** ridge 1,000 penalizes raw-scale coefficients uniformly. For totals it
+  effectively shrinks only altitude, so it cannot remove level drift entering through the four factors. S1 keeps
+  every coefficient free and changes what the four factors are allowed to carry.
+- **Stated risk:** the descriptive contribution arithmetic for 2024-26 (in `diag.txt`; quant3) points the other way
+  there. It is not causal, because a refit changes the other coefficients; S1 is the controlled test.
+
+### S2: referee missing-data imputation (totals)
+- **Definition:** in prediction (crews unknown at the opener), ref_fouls and ref_pts are set to their mean over the
+  training seasons 2013..s-1, instead of 0. Training is unchanged; margins do not use referees. There are no
+  settings.
+- **Difference from ridge 1,000:** ridge 1,000 shrinks the referee coefficients by about 2% and leaves the
+  imputation untouched.
+- **Stated expectation:** in 2024-26 it is close to a constant shift of -0.38 to -0.47 points. quant3's shift grid
+  suggests about +0.005 MAE, likely below the bar. It is run because the mismatch is a verified specification
+  error, and the test settles whether it matters.
+
+### Rules for both
+- **Primary metric:** pooled 2024-26 totals MAE gain vs R0 (identical games, opening-week rule).
+- **Minimum useful improvement:** +0.010.
+- **Pass requires all of:**
+  - pooled gain ≥ +0.010;
+  - pooled 98.3% date-clustered interval above 0;
+  - no primary season worse than minus one of its own SEs;
+  - pooled gain larger than ridge 1,000's;
+  - pooled opener totals win% (edge 3+) not lower than R0's (guard).
+- **Stopping rule:** one fit each, no variants or re-tuning. A failure is logged and killed. If both fail, the
+  study closes and the E2 secondary check is not run.
