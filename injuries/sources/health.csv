@@ -2147,3 +2147,7 @@ pulled_at,source,ok,rows,teams_matched,players_matched,unmatched_teams,error,sec
 2026-10-29T17:20:28+00:00,rotowire,True,5,0.4,0.8,Arkansas-Little Rock; Southern Mississippi; Wisconsin-Milwaukee,,0.5,1336.0
 2026-10-29T17:20:28+00:00,covers,True,0,,,,,0.9,1271540.0
 2026-10-29T17:20:28+00:00,cbs,True,0,,,,,0.7,439063.0
+2026-10-29T17:30:33+00:00,espn,True,0,,,,,1.1,144.0
+2026-10-29T17:30:33+00:00,rotowire,True,5,0.4,0.8,Arkansas-Little Rock; Southern Mississippi; Wisconsin-Milwaukee,,0.5,1333.0
+2026-10-29T17:30:33+00:00,covers,True,0,,,,,1.1,1271540.0
+2026-10-29T17:30:33+00:00,cbs,True,0,,,,,0.9,439063.0
