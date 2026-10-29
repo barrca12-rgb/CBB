@@ -1,0 +1,10 @@
+frozen: spreads F=none, R=k2.0_a0.25; totals F=foul, R=k8.0_a0.25; decision families F/F
+coverage pool (>=90% valid play-by-play for both teams' earlier games): lag 0 0.9550, lag 1 0.9555 of 2025-26 games
+pool A: lineup v2 frame's v1 margin vs baseline, max difference 2.13e-14
+pool B: conservative baseline totals vs rotation_totals.baseline_forecast, max difference 0.00e+00
+lineup v2 beta 2025-26 0.3800
+pool C totals: baseline vs rotation_totals strict model_total, max difference 2.84e-14
+pool C spreads: baseline margin vs persistent_disagreement pool C strict margin, max difference 8.88e-16
+opportunities: A-spr closing spreads: 5742, A-tot closing totals: 5747, B-spr ESPN opener spreads: 5742, B-tot ESPN opener totals: 5747, C-spr DraftKings first observed spreads: 272, C-tot DraftKings first observed totals: 272
+coverage-pool share: A-spr 0.955, A-tot 0.955, B-spr 0.956, B-tot 0.955, C-spr 0.985, C-tot 0.985
+predictions.csv sha256 5a42f39ba2c291bd2480f84a79cc0eb34583514666c023de377111d7604b6bd5
