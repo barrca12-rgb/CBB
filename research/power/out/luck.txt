@@ -1,0 +1,17 @@
+games with valid play-by-play and a baseline row: 64458; pbp home = frame home and points match: 55960
+
+Q1 noise: SD of (result - closing line)
+             era  games (spread)  spread actual  spread luck-adj  games (total)  total actual  total luck-adj  mean(la - actual) margin  mean(la - actual) total
+2014-15..2018-19           18043         10.905            8.650          17407        16.947          12.947                    -2.723                   -0.887
+2019-20..2022-23           15835         11.271            8.756          15833        16.321          12.109                    -2.587                   -1.178
+2023-24..2025-26           12126         11.315            8.901          12130        16.441          12.273                    -3.184                   -0.827
+
+Q2 validity: beyond-close slopes with actual vs luck-adjusted outcomes (date-clustered SEs), all eras pooled 2014-15..2025-26
+market          slope  games  actual  SE actual  luck-adj  SE luck-adj  SE ratio  agree within 2 SE
+spread             v1  49387   0.438      0.068     0.396        0.059     0.870               True
+spread v2 incremental  46004   0.562      0.134    -0.256        0.105     0.785              False
+ total             v1  48668   0.178      0.020     0.159        0.018     0.905               True
+ total E2 incremental  48668   0.694      0.154    -0.385        0.136     0.884              False
+ total C2 incremental  48668  -0.186      0.036     0.242        0.034     0.922              False
+
+Q3 adoption rule: SE of v1's slope falls >= 20% in both markets (spread ratio 0.870, total ratio 0.905) and every pair agrees (False)  =>  NOT ADOPTED
