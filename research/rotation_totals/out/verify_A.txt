@@ -1,0 +1,14 @@
+1. quote selection re-derived: 597 of 597 games identical (decision snapshot, total, both prices, left-censoring)
+   every decision snapshot before tip: True
+2a. season average recomputed from games up to D-2 (or last season's average under 200 games): max difference 0.00e+00
+2b. KenPom total = prediction from the archive dated D-1, max abs difference per date: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+2c. stage-1 fit size (league games) for eval games vs the production fit before D-1 and before D:
+   2024-11-09: [168] = before D-1 [168] (before D would be [231])
+   2025-01-11: [2574] = before D-1 [2574] (before D would be [2588])
+   2025-03-01: [4953] = before D-1 [4953] (before D would be [4976])
+   2025-11-08: [167] = before D-1 [167] (before D would be [224])
+   2026-01-10: [2597] = before D-1 [2597] (before D would be [2611])
+   2026-03-07: [5306] = before D-1 [5306] (before D would be [5343])
+2d. eligible games where a team played on D-1 (rest <= 1): 0
+3. payout arithmetic recomputed exactly: 268 of 268 bets agree
+4. files outside research/rotation_totals in this study's commits: none; uncommitted changes elsewhere: none
