@@ -1,0 +1,170 @@
+predictions.csv hash verified
+results joined: missing 0
+reconciliation: live-like opener spreads baseline 462-335-0 (target 462-335-0)
+reconciliation: pool C baseline 43 bets 27-16-0 +7.89 (target 43, 27-16-0, +7.89)
+
+====================================================================================================
+A closing spreads | assumed -110 | opportunities 5742 (coverage pool 4168) | dates 147
+-- full pool
+ strategy  bets     W-L-P  win %  units  ROI %
+ baseline   861 439-422-0  50.99 -22.91  -2.66
+candidate   859 438-421-0  50.99 -22.82  -2.66
+       v2   826 431-395-0  52.18  -3.18  -0.39
+                      units   lo95   hi95
+difference                               
+candidate - baseline   0.09  -6.91   7.18
+candidate - v2       -19.64 -44.73   5.37
+v2 - baseline         19.73  -3.91  43.64
+candidate vs baseline bets:
+              n  ref_units  new_units
+kind                                 
+retained  851.0     -18.64     -18.64
+added       8.0       0.00      -4.18
+dropped    10.0      -4.27       0.00
+reversed    0.0       0.00       0.00
+monthly units:
+         baseline  candidate     v2
+date                               
+2025-11    -40.27     -40.27 -36.27
+2025-12     15.18      16.09  10.55
+2026-01    -11.18     -12.09  -6.09
+2026-02      1.73      -0.18  16.91
+2026-03     10.73      11.82   9.91
+2026-04      0.91       1.82   1.82
+concentration: 15 dates differ; best 2025-12-22 +1.00; without it -0.91
+-- coverage pool
+ strategy  bets     W-L-P  win %  units  ROI %
+ baseline   522 284-238-0  54.41  20.18   3.87
+candidate   519 282-237-0  54.34  19.36   3.73
+       v2   483 269-214-0  55.69  30.55   6.32
+                      units   lo95   hi95
+difference                               
+candidate - baseline  -0.82  -7.73   6.09
+candidate - v2       -11.18 -32.00  10.00
+v2 - baseline         10.36  -9.27  29.82
+accuracy (result - forecast): baseline MAE 8.992 bias -0.271; candidate MAE 8.992 bias -0.270; v2 MAE 8.977 bias -0.262
+beyond-the-line coefficient of the adjustment (result vs this pool's line): -0.64 (date-clustered SE 3.09); adjustment SD 0.050, nonzero 0.775
+
+====================================================================================================
+B ESPN opener spreads | assumed -110 | opportunities 5742 (coverage pool 4168) | dates 147
+-- full pool
+ strategy  bets     W-L-P  win %  units  ROI %
+ baseline   797 462-335-0  57.97  85.00  10.66
+candidate   798 469-329-0  58.77  97.36  12.20
+       v2   836 485-351-0  58.01  89.91  10.75
+                      units   lo95   hi95
+difference                               
+candidate - baseline  12.36   4.73  20.73
+candidate - v2         7.45 -17.64  33.36
+v2 - baseline          4.91 -19.00  28.45
+candidate vs baseline bets:
+              n  ref_units  new_units
+kind                                 
+retained  788.0      92.09      92.09
+added      10.0       0.00       5.27
+dropped     9.0      -7.09       0.00
+reversed    0.0       0.00       0.00
+monthly units:
+         baseline  candidate     v2
+date                               
+2025-11     -6.09      -6.09  -6.82
+2025-12     37.73      41.45  39.73
+2026-01     20.64      25.55  21.91
+2026-02      6.09       8.00   3.36
+2026-03     24.91      25.82  30.91
+2026-04      1.73       2.64   0.82
+concentration: 16 dates differ; best 2025-12-18 +1.91; without it +10.45
+-- coverage pool
+ strategy  bets     W-L-P  win %  units  ROI %
+ baseline   501 296-205-0  59.08  64.09  12.79
+candidate   502 303-199-0  60.36  76.45  15.23
+       v2   528 313-215-0  59.28  69.55  13.17
+                      units   lo95   hi95
+difference                               
+candidate - baseline  12.36   5.64  19.55
+candidate - v2         6.91 -15.45  30.73
+v2 - baseline          5.45 -16.46  26.64
+accuracy (result - forecast): baseline MAE 8.992 bias -0.271; candidate MAE 8.992 bias -0.270; v2 MAE 8.977 bias -0.262
+beyond-the-line coefficient of the adjustment (result vs this pool's line): +0.95 (date-clustered SE 3.05); adjustment SD 0.050, nonzero 0.775
+
+====================================================================================================
+C DraftKings first observed spreads | recorded prices | opportunities 272 (coverage pool 191) | dates 3
+-- full pool
+ strategy  bets   W-L-P  win %  units  ROI %
+ baseline    43 27-16-0  62.79   7.89  18.35
+candidate    43 27-16-0  62.79   7.89  18.35
+       v2    42 27-15-0  64.29   8.82  20.99
+                      units  lo95  hi95
+difference                             
+candidate - baseline   0.00  0.00  0.00
+candidate - v2        -0.93 -3.27  0.49
+v2 - baseline          0.93 -0.49  3.27
+candidate vs baseline bets:
+             n  ref_units  new_units
+kind                                
+retained  43.0       7.89       7.89
+added      0.0       0.00       0.00
+dropped    0.0       0.00       0.00
+reversed   0.0       0.00       0.00
+monthly units:
+         baseline  candidate    v2
+date                              
+2025-11      2.60       2.60  2.60
+2026-01      3.74       3.74  4.84
+2026-03      1.55       1.55  1.38
+concentration: 0 dates differ
+-- coverage pool
+ strategy  bets  W-L-P  win %  units  ROI %
+ baseline    20 13-7-0  65.00   4.44  22.21
+candidate    20 13-7-0  65.00   4.44  22.21
+       v2    19 13-6-0  68.42   5.37  28.26
+                      units  lo95  hi95
+difference                             
+candidate - baseline   0.00  0.00  0.00
+candidate - v2        -0.93 -2.18  0.33
+v2 - baseline          0.93 -0.33  2.18
+accuracy (result - forecast): baseline MAE 9.058 bias -0.764; candidate MAE 9.056 bias -0.766; v2 MAE 9.042 bias -0.788
+beyond-the-line coefficient of the adjustment (result vs this pool's line): +26.22 (date-clustered SE 0.63); adjustment SD 0.050, nonzero 0.790
+
+====================================================================================================
+C DraftKings first observed spreads | assumed -110 | opportunities 272 (coverage pool 191) | dates 3
+-- full pool
+ strategy  bets   W-L-P  win %  units  ROI %
+ baseline    43 27-16-0  62.79   8.55  19.87
+candidate    43 27-16-0  62.79   8.55  19.87
+       v2    42 27-15-0  64.29   9.55  22.73
+                      units  lo95  hi95
+difference                             
+candidate - baseline    0.0  0.00  0.00
+candidate - v2         -1.0 -3.27  0.27
+v2 - baseline           1.0 -0.27  3.27
+candidate vs baseline bets:
+             n  ref_units  new_units
+kind                                
+retained  43.0       8.55       8.55
+added      0.0       0.00       0.00
+dropped    0.0       0.00       0.00
+reversed   0.0       0.00       0.00
+monthly units:
+         baseline  candidate    v2
+date                              
+2025-11      2.82       2.82  2.82
+2026-01      4.00       4.00  5.09
+2026-03      1.73       1.73  1.64
+concentration: 0 dates differ
+-- coverage pool
+ strategy  bets  W-L-P  win %  units  ROI %
+ baseline    20 13-7-0  65.00   4.82  24.09
+candidate    20 13-7-0  65.00   4.82  24.09
+       v2    19 13-6-0  68.42   5.82  30.62
+                      units  lo95  hi95
+difference                             
+candidate - baseline    0.0  0.00  0.00
+candidate - v2         -1.0 -2.18  0.18
+v2 - baseline           1.0 -0.18  2.18
+accuracy (result - forecast): baseline MAE 9.058 bias -0.764; candidate MAE 9.056 bias -0.766; v2 MAE 9.042 bias -0.788
+beyond-the-line coefficient of the adjustment (result vs this pool's line): +26.22 (date-clustered SE 0.63); adjustment SD 0.050, nonzero 0.790
+
+totals (descriptive): (points - closing total) on the absence total term: slope -0.16 (SE 0.28), n 5742
+
+VERDICT (frozen rule): (1) choice not 'none': True; (2) candidate - baseline +0.09 [-6.91, +7.18]: False; (3) coverage pool -0.82: False; (4) candidate - lineup v2 -19.64: False  =>  NO
