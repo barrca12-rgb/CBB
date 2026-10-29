@@ -1,0 +1,106 @@
+
+2024-26: totals edges 2.0+ dropped by the +2% EV rule at -110: 1726 (all under 2.45); spreads dropped: 0
+2024-26: reconciliation, v1 plays W-L-P spreads 1310-958-8, totals 2028-1608-9 (stage2_stability compare.txt, R-frozen (reference) 2024-26: spreads 1310-958-8, totals 2028-1608-9)
+
+==============================================================================================================
+2024-26: 2023-11-06 to 2026-04-06 | candidate plays 9113 (spreads 3801, totals 5312) | assumed -110
+
+  [all]  schedule                      plays   risked      won  won/risk   win%    CLV   maxDD DD/avg stake
+  [all]  (a) flat 1, v1 only            5921   5921.0   +468.5    +7.91%  56.54  +1.46    21.8         21.8
+  [all]  (b) flat 1, v1 + band B        9113   9113.0   +529.2    +5.81%  55.43  +1.23    49.5         49.5
+  [all]  (b') v1 1 + band B 0.5         9113   7517.0   +498.9    +6.64%  55.43  +1.23    35.2         42.7
+  [all]  (c) schedule                   9113   8074.8   +549.2    +6.80%  55.43  +1.23    36.3         41.0
+  [all]  (d) schedule + drawdown        9113   8004.8   +543.5    +6.79%  55.43  +1.23    36.3         41.3
+
+  [spread]  schedule                      plays   risked      won  won/risk   win%    CLV   maxDD DD/avg stake
+  [spread]  (a) flat 1, v1 only            2276   2276.0   +232.9   +10.23%  57.76  +1.13    17.6         17.6
+  [spread]  (b) flat 1, v1 + band B        3801   3801.0   +281.2    +7.40%  56.27  +0.95    32.2         32.2
+  [spread]  (b') v1 1 + band B 0.5         3801   3038.5   +257.0    +8.46%  56.27  +0.95    22.2         27.8
+  [spread]  (c) schedule                   3801   3144.0   +273.2    +8.69%  56.27  +0.95    23.0         27.8
+  [spread]  (d) schedule + drawdown        3801   3113.4   +274.5    +8.82%  56.27  +0.95    23.0         28.0
+
+  [total]  schedule                      plays   risked      won  won/risk   win%    CLV   maxDD DD/avg stake
+  [total]  (a) flat 1, v1 only            3645   3645.0   +235.6    +6.46%  55.78  +1.67    20.1         20.1
+  [total]  (b) flat 1, v1 + band B        5312   5312.0   +248.0    +4.67%  54.83  +1.43    35.8         35.8
+  [total]  (b') v1 1 + band B 0.5         5312   4478.5   +241.8    +5.40%  54.83  +1.43    24.5         29.1
+  [total]  (c) schedule                   5312   4930.8   +275.9    +5.60%  54.83  +1.43    27.5         29.6
+  [total]  (d) schedule + drawdown        5312   4891.4   +269.0    +5.50%  54.83  +1.43    27.5         29.8
+
+  drawdown rule: 1.5% of plays at half stake; 2 state changes
+    half from 2025-11-08 to 2025-11-11 (140 plays)
+  (c) minus (b') v1 1 + band B 0.5   [all   ] won/risked +0.16 pts, 95% -0.06 to +0.39 (date-clustered)
+  (c) minus (b) flat 1, v1 + band B  [all   ] won/risked +0.99 pts, 95% +0.35 to +1.65 (date-clustered)
+  (c) minus (b') v1 1 + band B 0.5   [spread] won/risked +0.23 pts, 95% -0.09 to +0.55 (date-clustered)
+  (c) minus (b) flat 1, v1 + band B  [spread] won/risked +1.29 pts, 95% +0.25 to +2.35 (date-clustered)
+  (c) minus (b') v1 1 + band B 0.5   [total ] won/risked +0.20 pts, 95% -0.10 to +0.48 (date-clustered)
+  (c) minus (b) flat 1, v1 + band B  [total ] won/risked +0.93 pts, 95% +0.13 to +1.72 (date-clustered)
+
+  by band (2024-26, 1 unit each):
+  market band  plays   win%  roi_1u%  clv_mean  clv_sd  clv_n
+  spread    B   1525 54.043    3.165     0.683   1.424   1525
+  spread core   1854 57.151    9.066     0.965   1.580   1854
+  spread  top    422 60.427   15.360     1.840   2.736    422
+   total    B   1667 52.771    0.742     0.910   2.151   1667
+   total core   1836 55.221    5.402     1.230   2.204   1836
+   total  top   1809 56.336    7.543     2.115   2.980   1809
+
+==============================================================================================================
+Band-B plays from season start to Jan 14, by season (live pace check):
+  2024: before Jan 15 560 (spreads 273, totals 287); season 1061
+  2025: before Jan 15 546 (spreads 294, totals 252); season 1058
+  2026: before Jan 15 565 (spreads 287, totals 278); season 1073
+
+2014-17: totals edges 2.0+ dropped by the +2% EV rule at -110: 959 (all under 2.45); spreads dropped: 0
+2014-17: reconciliation, v1 plays W-L-P spreads 1468-1133-60, totals 4017-3196-97 (no stored reference for this period)
+
+==============================================================================================================
+2014-17: 2013-11-08 to 2017-04-03 | candidate plays 12565 (spreads 4140, totals 8425) | assumed -110
+
+  [all]  schedule                      plays   risked      won  won/risk   win%    CLV   maxDD DD/avg stake
+  [all]  (a) flat 1, v1 only            9971   9971.0   +657.4    +6.59%  55.89  +0.86    49.8         49.8
+  [all]  (b) flat 1, v1 + band B       12565  12565.0   +771.9    +6.14%  55.65  +0.84    44.3         44.3
+  [all]  (b') v1 1 + band B 0.5        12565  11268.0   +714.6    +6.34%  55.65  +0.84    45.9         51.2
+  [all]  (c) schedule                  12565  12890.8   +831.6    +6.45%  55.65  +0.84    58.5         57.1
+  [all]  (d) schedule + drawdown       12565  10702.8   +765.5    +7.15%  55.65  +0.84    37.3         43.8
+
+  [spread]  schedule                      plays   risked      won  won/risk   win%    CLV   maxDD DD/avg stake
+  [spread]  (a) flat 1, v1 only            2661   2661.0   +201.5    +7.57%  56.44  +1.25    15.8         15.8
+  [spread]  (b) flat 1, v1 + band B        4140   4140.0   +287.0    +6.93%  56.10  +1.11    23.1         23.1
+  [spread]  (b') v1 1 + band B 0.5         4140   3400.5   +244.3    +7.18%  56.10  +1.11    18.3         22.3
+  [spread]  (c) schedule                   4140   3571.8   +267.4    +7.49%  56.10  +1.11    19.4         22.5
+  [spread]  (d) schedule + drawdown        4140   3178.6   +247.4    +7.78%  56.10  +1.11    17.9         23.3
+
+  [total]  schedule                      plays   risked      won  won/risk   win%    CLV   maxDD DD/avg stake
+  [total]  (a) flat 1, v1 only            7310   7310.0   +455.8    +6.24%  55.69  +0.72    58.3         58.3
+  [total]  (b) flat 1, v1 + band B        8425   8425.0   +484.9    +5.76%  55.44  +0.70    57.5         57.5
+  [total]  (b') v1 1 + band B 0.5         8425   7867.5   +470.4    +5.98%  55.44  +0.70    57.9         62.0
+  [total]  (c) schedule                   8425   9319.0   +564.2    +6.05%  55.44  +0.70    70.3         63.6
+  [total]  (d) schedule + drawdown        8425   7524.1   +518.1    +6.89%  55.44  +0.70    46.1         51.7
+
+  drawdown rule: 30.4% of plays at half stake; 6 state changes
+    half from 2013-11-22 to 2013-12-30 (1047 plays)
+    half from 2014-01-19 to 2014-11-18 (2624 plays)
+    half from 2016-11-15 to 2016-11-21 (155 plays)
+  (c) minus (b') v1 1 + band B 0.5   [all   ] won/risked +0.11 pts, 95% -0.08 to +0.31 (date-clustered)
+  (c) minus (b) flat 1, v1 + band B  [all   ] won/risked +0.31 pts, 95% -0.14 to +0.79 (date-clustered)
+  (c) minus (b') v1 1 + band B 0.5   [spread] won/risked +0.30 pts, 95% +0.04 to +0.57 (date-clustered)
+  (c) minus (b) flat 1, v1 + band B  [spread] won/risked +0.55 pts, 95% -0.36 to +1.48 (date-clustered)
+  (c) minus (b') v1 1 + band B 0.5   [total ] won/risked +0.08 pts, 95% -0.11 to +0.27 (date-clustered)
+  (c) minus (b) flat 1, v1 + band B  [total ] won/risked +0.30 pts, 95% -0.18 to +0.80 (date-clustered)
+
+  by band (2014-17, 1 unit each):
+  market band  plays   win%  roi_1u%  clv_mean  clv_sd  clv_n
+  spread    B   1479 55.494    5.778     0.854   1.369   1479
+  spread core   1976 55.342    5.516     1.126   1.489   1976
+  spread  top    685 59.584   13.510     1.610   1.901    685
+   total    B   1115 53.762    2.609     0.564   2.298   1112
+   total core   1504 55.212    5.343     0.822   2.229   1498
+   total  top   5806 55.816    6.467     0.699   2.656   5804
+
+==============================================================================================================
+Recorded-price size check: DraftKings first-observed spreads, 2025-11-08 / 2026-01-10 / 2026-03-07 (pool C, strict pre-quote inputs). Totals not in the sample.
+  games 272; plays 62 (band B 19, core 34, top 9)
+  (a)   plays  43 risked  43.00 won  +7.89 won/risked  +18.4%
+  (b)   plays  62 risked  62.00 won +13.42 won/risked  +21.6%
+  (b')  plays  62 risked  52.50 won +10.66 won/risked  +20.3%
+  (c)   plays  62 risked  54.75 won +11.25 won/risked  +20.5%

@@ -15,3 +15,6 @@ research/quant3/out/*.pkl
 research/stage2_stability/out/*.pkl
 research/persistent_disagreement/out/*.pkl
 research/game_state/out/*.parquet
+research/winprob/out/recorded_*.csv
+research/speed/out/pulls.parquet
+research/stake_bands/out/plays.csv

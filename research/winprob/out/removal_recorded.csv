@@ -1,0 +1,7 @@
+market,set,plays,W,L,P,win%,units,ROI%,CLV pts,median price,per season (scaled)
+spread,v1 plays,102,59,43,0,57.8,10.05,9.9,0.87,-110.0,634.2
+spread,removed,3,1,2,0,33.3,-1.18,-39.3,0.67,-122.0,18.7
+spread,kept,99,58,41,0,58.6,11.23,11.3,0.87,-110.0,615.6
+total,v1 plays,175,102,72,1,58.6,20.87,11.9,1.38,-110.0,1088.4
+total,removed,0,0,0,0,,0.0,,,,0.0
+total,kept,175,102,72,1,58.6,20.87,11.9,1.38,-110.0,1088.4
