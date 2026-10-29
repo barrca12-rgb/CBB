@@ -98,3 +98,18 @@ Otherwise the answer is **no**. There is no re-specification after scoring.
 - **Reconciliation:** the baseline is reconciled to earlier studies.
 - **Grading:** recomputed independently.
 - **Untouched:** no change outside this folder.
+
+## Amendment 1 (Oct 29, before any rating was fit to evaluate anything): data-handling fixes found in plumbing tests
+1. **Irregular listings:** plays where the source lists fewer than 4 or more than 6 players for a side are now
+   credited to the stint in progress, instead of being dropped with their points. The first partial pull was
+   discarded and re-pulled, about 23 calls.
+2. **Duplicate games:** a game returned by two consecutive date pulls is kept from one pull only. Before this
+   fix, its points were doubled.
+3. **Final-score tolerance:** stint totals may differ from the official final by up to ±3 points (play-by-play vs
+   box score). Games outside that are excluded from fitting and counted.
+4. **Absence status:** status needs the team's actual last game before the date, against D-I or non-D-I
+   opponents, in the full ESPN schedule. That game must be present in the play-by-play data; otherwise the team
+   is "unknown" and gets no value.
+5. **Totals, descriptive:** offense and defense absence components are also stored (not excess-adjusted).
+
+None of these changes the model, the grid, the selection rule or the verdict rule.

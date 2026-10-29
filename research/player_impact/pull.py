@@ -4,7 +4,8 @@ player-game seconds are saved, to the private data repo (../cbb-data/research/pl
 
 A stint is a run of consecutive plays in one game with the same players on the floor. The source sometimes lists
 4 or 6 for a side (substitution logging errors); sides with 4-6 are kept with their count (nh, na) so the model can
-weight each listed player 5/n; plays with fewer than 4 or more than 6 on a side are dropped and counted. Per stint: seconds, each side's points (score changes) and
+weight each listed player 5/n; plays with fewer than 4 or more than 6 on a side are counted and credited to the
+stint in progress (their points, seconds and events are kept), so a game's stints add up to its final score. Per stint: seconds, each side's points (score changes) and
 possessions (FGA - ORB + TOV + 0.475 FTA from the side's own events).
 
     python -m research.player_impact.pull 2024 2025 2026     # seasons by end year; resumes, skips saved dates
@@ -62,6 +63,8 @@ def reduce(plays: list, season: int) -> tuple[pd.DataFrame, pd.DataFrame, dict]:
             if key is None:
                 bad += 1
             per, sec = p["period"], p.get("secondsRemaining")
+            if key is None and acc is not None:
+                key = cur                      # irregular listing: keep crediting the current stint
             if key != cur:
                 flush()
                 cur = key
