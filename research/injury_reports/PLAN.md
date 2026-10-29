@@ -100,3 +100,22 @@ The analysis is scored after the fact from files the card already writes.
   listed.
 - The evaluation script (`research/injury_reports/evaluate.py`) is written and committed **before Dec 15**, run once
   on November data for plumbing only, without reading results.
+
+## Addendum, Oct 29: historical proxy for Q3 (run before any 2026-27 game; exploratory)
+- **Data:** the only historical injury signal is "sat out the team's last game" (`home_missing` + `away_missing`,
+  combined excess missing-minutes share).
+- **Method:** regressed against the leak-fixed walk-forward totals residual and the closing-total residual, with
+  date-clustered SEs.
+- **Results** (per one starter missing, about 0.17 of a team's minutes):
+
+  | Era | vs model | vs close |
+  |---|---|---|
+  | 2015-19 | **−1.22** (SE 0.31) | −0.09 (SE 0.27) |
+  | 2020-23 | **−0.59** (SE 0.27) | +0.06 (SE 0.24) |
+  | 2024-26 | **−1.14** (SE 0.32) | **−0.61** (SE 0.27) |
+
+- **Reading:**
+  - Games with missing players score less than v1's total says, in every era. v1's totals ignore absences.
+  - The closing total priced this fully through 2023 but not in 2024-26.
+  - This is the backtest support Q3 requires. The live Q3 test is now a confirmation of a known pattern, not a
+    discovery. It keeps its pre-registered rule unchanged.

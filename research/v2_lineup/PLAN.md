@@ -96,3 +96,21 @@ while holding the other stage-2 weights fixed. Live beta is frozen at 0.4022.
   (`SHADOW_V2_DISCORD` is not set).
 - **Not on the site:** v2 is never part of the site's record or play tracking, which read `bets/bets.csv` only.
 - **Where it lives:** `bets/shadow_v2/`, for the Jan 15 and March 14 evaluations.
+
+## Amendment 2, Oct 29, 2026: a Jan 15 decision point (Chad: "if something is working we need to know before the end of the season")
+
+Added before any non-zero v2 adjustment existed. Every shadow run so far shows "no adjustments: HTTP 404" (no 2026-27
+box scores), so no v2 result has been seen.
+
+- **Jan 15 read (games through Jan 10): now a decision point, not only descriptive.**
+  - **Endpoint 1 (subset residual difference):** v2 may be proposed for the rest of the season only if the
+    date-clustered **99.5%** interval is above 0.
+  - **Endpoint 2 (opener CLV):** the v2-only plays' opener CLV must also be above the v1-only plays' (point
+    estimate) in the subset.
+  - **Why 99.5%:** this is a two-look sequential design, so the final read keeps an overall error near 5%.
+- **March 14 read:** unchanged, the 95% interval on endpoint 1 with endpoint 2 as stated.
+- **A Jan 15 pass is a proposal, not a switch.**
+  - **Approval path:** Chad's approval, a MODEL_FREEZE entry and a Discord note, as in protocol section 8.
+  - **v1 continues** as a shadow, so the forward test of v1 stays clean through March 14.
+- **Sample warning:** about 280 subset games a season, so by Jan 10 perhaps 100-150. Only a large effect can pass on
+  Jan 15. A non-pass there is not evidence against v2; it goes to March 14.
