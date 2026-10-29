@@ -1,6 +1,6 @@
 # Injury sources: who reports first
 
-Updated 2026-10-29 19:30 UTC by `cbb/injury_sources.py`. Logging since 2026-10-26; 0 game day(s) so far. Model's injury input: **espn** (recommendation after 7 game days with 30+ line-matched injuries, or 14 game days; the switch needs Chad's approval).
+Updated 2026-10-29 19:40 UTC by `cbb/injury_sources.py`. Logging since 2026-10-26; 0 game day(s) so far. Model's injury input: **espn** (recommendation after 7 game days with 30+ line-matched injuries, or 14 game days; the switch needs Chad's approval).
 
 Material injuries: Out / Doubtful / Questionable, player with 10%+ of team minutes, first reported after logging began and before the team's next game. A line move is the spread moving 1+ point against the team at any book. Times are poll times (one run = 30 minutes).
 
@@ -18,6 +18,6 @@ Last pull per source:
 | Source | OK | Rows | Teams matched | Unmatched teams | Error |
 |---|---|---:|---:|---|---|
 | espn | yes | 0 |  |  |  |
-| rotowire | yes | 5 | 40% | Arkansas-Little Rock; Southern Mississippi; Wisconsin-Milwaukee |  |
+| rotowire | yes | 5 | 60% | Southern Mississippi; Wisconsin-Milwaukee |  |
 | covers | yes | 0 |  |  |  |
 | cbs | yes | 0 |  |  |  |

@@ -1,1 +1,1 @@
-2026-10-29 19:30 UTC  events 10  book-game rows 34 (8 SGO, 26 The Odds API)  unmatched teams: Bethesda Flames, Colorado Tigers, Dallas Christian Crusaders, Kentucky Christian Knights, La Verne Leopards, Mount Marty Lancers, New College of Florida Mighty Banyans, Rivier Raiders  SGO month: 13,547 of 100,000 entities  The Odds API credits left: 57727
+2026-10-29 19:40 UTC  events 0  book-game rows 34 (0 SGO, 34 The Odds API)  unmatched teams: none  The Odds API credits left: 57724
