@@ -1,4 +1,4 @@
-# Forward-test protocol, v2.1 (declared Oct 26, 2026, before the season's first games on Nov 1; v2.1 Oct 28)
+# Forward-test protocol, v2.2 (declared Oct 26, 2026, before the season's first games on Nov 1; v2.1 Oct 28; v2.2 Oct 29)
 
 This file fixes how the 2026-27 live record is collected and judged. It is fingerprinted in `MODEL_FREEZE.md`
 together with its evaluation code, `audit/forward_eval.py`, and that code's tests, `audit/test_forward_eval.py`.
@@ -325,6 +325,47 @@ The output goes to the helpers' doc and to Chad with:
 - the pre-freeze signals separately;
 - the version status (running, shadow, interrupted).
 
+## Appendix B. Band B (written Oct 29, 2026, before any band B play was logged and before any game)
+
+Approved by Chad on Oct 29. Band B is a separate, tagged bet type beside v1, not a change to v1. Every v1 rule,
+endpoint, test and threshold in sections 1-10 is unchanged, and v1's signals exclude band B.
+
+**What it is.** A play is band B when it meets all of these:
+- the frozen v1 projection's edge against the best book's number is 2.0 to 2.49 points on a spread;
+- it passes v1's +2% EV rule at that book's price, with v1's win-probability rule;
+- it is not a v1 play.
+
+The same best-book choice, opening-week rule and accepted-price flow apply.
+- **Totals:** a totals band B (2.0 to 2.99) is built but switched off. Chad chose spreads only on Oct 29 because
+  the replay on inputs known at the opener did not support totals (`research/band_b/out/replay.txt`). Switching it
+  on is a new approval and a `MODEL_FREEZE.md` entry.
+- **Stake:** 0.5 unit flat. The live-record multiplier and the stake cap do not apply.
+- **Logging:** in `bets/bets.csv` with `bet_type` = "bandB" and a bet id ending in `|bandB`. Each play is alerted
+  and posted with the tag.
+- **One bet per game and market:** a game and market that v1 has already bet is never logged as band B. If a game
+  logged as band B later reaches v1's cutoff, v1 logs it as usual and the band B play stands. That play counts in
+  band B only, and each read reports how many such games there were.
+
+**Cohorts and measures.** Every band B play is cohort A. It gets the same primary close (section 7), delay windows
+(section 6), accepted-price fields (section 4) and immutability check as a v1 play. It is read with the same code as
+its own version, `python -m audit.forward_eval --version bandB`, and never pooled with v1.
+
+**Decision rule** (fixed now; measured on settled band B plays at the primary close, at recorded prices):
+- **Jan 15:** descriptive only.
+- **Decision read:** at 300 settled band B plays, or on Mar 14, whichever comes first.
+  - Mean primary CLV above +0.3 points **and** win rate above 52.4%: keep band B and move it to 1 unit.
+  - Mean primary CLV from 0 to +0.3: keep it at 0.5 unit. This also covers CLV above +0.3 with a win rate at or
+    below 52.4%.
+  - Mean primary CLV below 0: end band B.
+- **Per market:** if a market reaches 150 settled plays by itself, it is judged on its own by the same rule. With
+  totals off, this concerns spreads.
+- **Approval:** any change of stake, or ending band B, is a `MODEL_FREEZE.md` entry and a Discord note. It goes to
+  Chad with the numbers.
+
+**Tripwires.** Band B is excluded from v1's trailing-150 model check and from v1's stake cap. The Monday health
+report (`audit/health.py`) carries its own trailing-100 primary-CLV line, flagged when below 0. The flag is a report
+to Chad, not an automatic pause.
+
 ## Changelog
 
 - v1.0 (2026-10-26): declared.
@@ -348,3 +389,9 @@ The output goes to the helpers' doc and to Chad with:
   March 16 to March 14, after the last regular-season and conference-tournament games are graded, so the decision is
   made before the NCAA tournament starts on March 16. The game window (through March 14), the endpoints, the tests
   and every threshold are unchanged. No result had been computed.
+- v2.2 (2026-10-29, before any game was played and before any band B play was logged; Chad's approval): Appendix B
+  adds band B as a separate, tagged bet type with its own pre-set decision rule.
+  - `audit/forward_eval.py` excludes band B from v1's signals and reads band B as its own version
+    (`--version bandB`). In the delayed check, B_rule uses band B's 2.0-point floor for band B plays.
+  - v1's endpoints, tests, thresholds, games and every v1 number are unchanged. The test is
+    `audit/test_band_b.py`.

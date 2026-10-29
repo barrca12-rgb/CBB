@@ -390,3 +390,63 @@ Discord note (no rule, pick, stake or displayed figure changes).
 - **Unchanged:** no fingerprinted file, `data/projection.json`, the selection rules, staking, the bet log, alerts
   or the forward-test protocol. The card imports nothing from the shadow.
 - **Status:** E2 is a shadow strategy. A switch would follow protocol section 8, with v1 continuing as a shadow.
+
+## 2026-10-29: Band B added, a separate 0.5-unit bet type (approved by Chad; v1 unchanged)
+
+Approved by Chad on Oct 29, before any game and before any band B play was logged. Band B is a new, tagged bet
+type beside v1, modeled on the Oct 26 neutral-site rule. It is not a change to v1: v1's projection, cutoffs (2.5 /
+3), +2% EV rule, win-chance table, book selection, stakes, multiplier, stake cap, tripwires, log entries, grading,
+record, alerts and posts are unchanged.
+
+- **The rule (`cbb/run_day.py` `_band_b`; `cbb/tracker.py` `BAND_B_*`, `log_band_b`):** a band B play has all of
+  these:
+  - the card's best play (best book by EV) has an edge of 2.0 to 2.49 points on a spread;
+  - it passes v1's +2% EV rule at that price, with v1's win-chance table;
+  - it is not a v1 play.
+- **Stake:** 0.5 unit flat, with no live-record multiplier and no stake cap.
+- **Totals:** a totals band B (2.0 to 2.99) is built but switched off (`BAND_B_ON`). Chad chose spreads only on
+  Oct 29 because the replay on inputs known at the opener did not support it.
+- **Logging:** `bets/bets.csv` gets a new last column, `bet_type`. It is "bandB" for band B and empty for v1. A
+  band B bet id ends in `|bandB`. A game and market v1 has already bet is never logged as band B.
+- **What reads what:**
+  - `tracker.load()` returns v1's rows only, so every v1 figure is computed exactly as before.
+  - Grading, voids, the tip-time check, the Discord sync, the weekly chart and the quote logger read all rows.
+- **Alerts and display:**
+  - The phone alert title is "CBB BAND B (0.5u):" and the Discord title is "BAND B (0.5u) BET/WIN/...".
+  - The card has its own block, "Band B (2-2.5 spreads, 2-3 totals, 0.5 u)", with a Placed button.
+  - The record page has its own section. It appears only once a band B play exists.
+  - The weekly CLV chart gets a seventh tile and a dashed line, also only once band B exists.
+  - The X caption is unchanged. The per-play close table is `bets/clv_primary_bandB.csv`.
+- **Forward test:** protocol v2.2, Appendix B, holds the pre-set decision rule. `audit/forward_eval.py` excludes
+  band B from v1 and reads it with `--version bandB`. Band B plays are cohort A, with the same primary close, delay
+  windows and accepted-price fields.
+- **Monitoring:** `audit/health.py` reports band B's own counts and its trailing-100 primary-CLV line, flagged below
+  0. It is never part of v1's tripwire.
+- **Replay (`research/band_b/replay.py`, `out/replay.txt`):** spreads 2.0-2.49 at the opener reproduce the Oct 26
+  band table for home sites, 54.2% / +0.76 CLV on 2,248 plays (table: 54.3% / +0.71).
+  - Neutral sites came out 59.3% / +0.68 on 358 plays (table: 54.7% / +0.57).
+  - Every spread band B play clears +2% EV at -110. At recorded DraftKings prices (3 dates), 0 of 19 were trimmed.
+  - Totals were not confirmed on inputs known at the opener: 52.1% overs and 53.2% unders. At recorded prices 29
+    of 45 were trimmed. Totals stay off.
+- **v1 byte-identical check (`research/band_b/v1_identity.py`, `out/v1_identity.txt`):** the code before band B
+  and this code give identical v1 output on every committed line pull × card date: 1,268 card runs, 76,480 game
+  rows, with band B's new columns excluded. The same holds for:
+  - the log view, status, tripwires and recent results;
+  - the record and verification pages;
+  - every Discord payload;
+  - the chart statistics, the caption and both chart images.
+
+  With band B rows added, the only differences are band B's own record section and its chart tile and line.
+- **Tests:** `audit/test_band_b.py`. A 2.2-point spread signal is band B at 0.5 unit; a 2.5-point one is v1 at
+  1 unit. Band B never enters v1's log view, status or forward-test signals. `python -m pytest -q audit/`: all
+  passed.
+- **Discord note:** `bets/announcements.json`, id `2026-10-29-band-b`.
+- **New fingerprints:**
+
+```
+4b456414ae2215aba214f4989346beecef7d11eb3ee078feed7ab53025a1f81f  cbb/run_day.py
+0f80f2e0a98a08acc12f754bd8976c425c72187a6b5e4def32c678764f5b2fd2  cbb/tracker.py
+cd73d5f31ab149aa40c372947d368ef6fd00557ef4fcbde29f6a685886ee694d  audit/forward_eval.py
+b4bce61c9074f07c41ce55128381437bc9045444e7c4fbdd3ed97a5ccd2828ee  FORWARD_TEST_PROTOCOL.md
+148bea46722ffcd26aadab92282996b18ded2e6532df12aba10fbc2008624cd8  audit/test_band_b.py
+```

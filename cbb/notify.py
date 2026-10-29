@@ -20,7 +20,8 @@ def _message(bet: dict, row: pd.Series | None) -> tuple[str, str, str]:
     mk = bet["market"]
     odds = bet.get("odds")
     price = f"{int(odds):+d}" if pd.notna(odds) else ""
-    title = f"CBB BET: {bet['pick']} {price} {bet.get('book') or ''}".strip()
+    tag = "CBB BAND B (0.5u):" if bet.get("bet_type") == "bandB" else "CBB BET:"   # band B: tracker.BAND_B
+    title = f"{tag} {bet['pick']} {price} {bet.get('book') or ''}".strip()
     lines = [f"{bet['away']} at {bet['home']}"]
     if row is not None and pd.notna(row.get("start")):
         t = pd.Timestamp(row["start"]).tz_convert("America/New_York")

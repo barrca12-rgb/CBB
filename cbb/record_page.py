@@ -228,6 +228,46 @@ def build_charts() -> str:
 """
 
 
+def _plays_table(live: pd.DataFrame, empty: str) -> str:
+    """Every play in `live`, newest first (the "Bets placed" table)."""
+    plays = []
+    for _, r in live.sort_values(["date", "logged_at"], ascending=False).iterrows():
+        res = {"W": "<span class='pos b'>Win</span>", "L": "<span class='neg b'>Loss</span>", "P": "Push"}.get(
+            str(r["result"]), "Open")
+        units = _num(float(r["profit"])) if r["status"] == "settled" else "–"
+        logged = pd.Timestamp(r["logged_at"]).tz_convert("America/New_York")
+        plays.append(
+            f"<tr><td class='m'>{r['date']}</td><td>{_logo(r['away_id'])}{html.escape(str(r['away']))} at {_logo(r['home_id'])}{html.escape(str(r['home']))}</td>"
+            f"<td class='b'>{html.escape(str(r['pick']))}</td><td>{html.escape(str(r['book']))} "
+            f"<span class='m'>{_num(r['odds'], '{:+.0f}')}</span></td><td class='r'>{_num(r['edge'], '{:.1f}')}</td>"
+            f"<td class='r'>{_close_cell(r)}</td><td class='r'>{_num(r['clv_pts'], '{:+.2f}', _na(r))}</td>"
+            f"<td class='r m hide-sm'>{_num(r.get('clv_same_book'), '{:+.2f}')}</td>"
+            f"<td>{res}</td><td class='r'>{units}</td>"
+            f"<td class='m hide-sm'>{logged:%b %-d %-I:%M %p} ET</td></tr>")
+    return ("<thead><tr><th>Date</th><th>Game</th><th>Play</th><th>Book</th><th class='r'>Edge</th><th class='r'>Close</th>"
+            "<th class='r'>Alert CLV (pts)</th><th class='r hide-sm'>Same-book CLV (diagnostic)</th><th>Result</th><th class='r'>Units</th>"
+            "<th class='hide-sm'>Logged</th></tr></thead><tbody>" + "".join(plays) + "</tbody>") if plays else \
+        f"<tbody><tr><td class='empty'>{empty}</td></tr></tbody>"
+
+
+def _band_b_section() -> str:
+    """Band B (cbb/tracker.py BAND_B): its own summary tile and plays, never pooled with v1. Empty until the first
+    band B play is logged, so the page is unchanged before then."""
+    b = tracker.load(tracker.BAND_B)
+    if not len(b):
+        return ""
+    b = clv_primary.attach(b)
+    live = b[(b["status"] != "void") & (b["placed"].astype(str).str.lower() != "no")]
+    s = live[live["status"] == "settled"]
+    rows = [_row("Band B, all", summary(s))]
+    rows += [_row(f"Band B, {lbl}", summary(s[s["market"] == mk])) for mk, lbl in (("spread", "spreads"), ("total", "totals"))]
+    return (f"<section class='panel'><div class='panel-h'><h2>Band B (2-2.5 spreads, 2-3 totals, 0.5 u)</h2>"
+            f"<span class='note'>A separate bet type, not included in the record above: v1's edge of 2-2.49 points on a "
+            f"spread, with v1's +2% EV rule, 0.5 unit flat. Totals band B is switched off.</span></div>"
+            f"<div class='scroll'><table>{HEAD}<tbody>{''.join(rows)}</tbody></table></div>"
+            f"<div class='scroll'><table>{_plays_table(live, 'No band B plays yet.')}</table></div></section>")
+
+
 def build() -> str:
     # CLV and the close shown are the forward-test protocol's primary close (cbb/clv_primary.py), as the weekly chart
     b = clv_primary.attach(tracker.load())
@@ -253,25 +293,7 @@ def build() -> str:
         m = s.assign(mo=pd.to_datetime(s["date"]).dt.to_period("M"))
         months = "".join(_row(p.strftime("%b %Y"), summary(g)) for p, g in sorted(m.groupby("mo"), key=lambda x: x[0], reverse=True))
 
-    plays = []
-    mine = live   # every play except voids and any marked placed = "no"
-    for _, r in mine.sort_values(["date", "logged_at"], ascending=False).iterrows():
-        res = {"W": "<span class='pos b'>Win</span>", "L": "<span class='neg b'>Loss</span>", "P": "Push"}.get(
-            str(r["result"]), "Open")
-        units = _num(float(r["profit"])) if r["status"] == "settled" else "–"
-        logged = pd.Timestamp(r["logged_at"]).tz_convert("America/New_York")
-        plays.append(
-            f"<tr><td class='m'>{r['date']}</td><td>{_logo(r['away_id'])}{html.escape(str(r['away']))} at {_logo(r['home_id'])}{html.escape(str(r['home']))}</td>"
-            f"<td class='b'>{html.escape(str(r['pick']))}</td><td>{html.escape(str(r['book']))} "
-            f"<span class='m'>{_num(r['odds'], '{:+.0f}')}</span></td><td class='r'>{_num(r['edge'], '{:.1f}')}</td>"
-            f"<td class='r'>{_close_cell(r)}</td><td class='r'>{_num(r['clv_pts'], '{:+.2f}', _na(r))}</td>"
-            f"<td class='r m hide-sm'>{_num(r.get('clv_same_book'), '{:+.2f}')}</td>"
-            f"<td>{res}</td><td class='r'>{units}</td>"
-            f"<td class='m hide-sm'>{logged:%b %-d %-I:%M %p} ET</td></tr>")
-    plays_t = ("<thead><tr><th>Date</th><th>Game</th><th>Play</th><th>Book</th><th class='r'>Edge</th><th class='r'>Close</th>"
-               "<th class='r'>Alert CLV (pts)</th><th class='r hide-sm'>Same-book CLV (diagnostic)</th><th>Result</th><th class='r'>Units</th>"
-               "<th class='hide-sm'>Logged</th></tr></thead><tbody>" + "".join(plays) + "</tbody>") if plays else \
-        "<tbody><tr><td class='empty'>No placed bets yet.</td></tr></tbody>"
+    plays_t = _plays_table(live, "No placed bets yet.")
 
     notes = "".join(f"<li><b>{html.escape(a['date'])}</b>: {html.escape(a['text'])}</li>" for a in reversed(ann))
     disc = (f"<li><a href='{html.escape(links['discord_invite'])}'>Discord channel</a>: every play posted when it was "
@@ -308,7 +330,7 @@ def build() -> str:
     <div class="scroll"><table>{HEAD}<tbody>{''.join(rows)}</tbody></table></div>{_chart(s)}</section>
   {f"<section class='panel'><div class='panel-h'><h2>By month</h2></div><div class='scroll'><table>{HEAD}<tbody>{months}</tbody></table></div></section>" if months else ""}
   <section class="panel"><div class="panel-h"><h2>Bets placed</h2><span class="note">Newest first.</span></div>
-    <div class="scroll"><table>{plays_t}</table></div></section>
+    <div class="scroll"><table>{plays_t}</table></div></section>{_band_b_section()}
   <footer>
     <div><a class="follow" href="https://x.com/{report_html.X_HANDLE}" target="_blank" rel="noopener"><img src="assets/otg-logo-512.png" alt="">Follow @{report_html.X_HANDLE} on X for every play</a></div>
     <div style="margin-top:10px"><a class="m" href="record/verify.html">verification</a></div></footer>
@@ -385,6 +407,12 @@ def write() -> str:
         clv_primary.write()
     except Exception as e:
         print(f"CLV table failed ({e}); continuing.")
+    try:   # band B's own per-play table (bets/clv_primary_bandB.csv); v1's table above is unchanged
+        bb = tracker.load(tracker.BAND_B)
+        if len(bb):
+            clv_primary.primary(bb).to_csv(os.path.join(tracker.ROOT, "bets", "clv_primary_bandB.csv"), index=False)
+    except Exception as e:
+        print(f"Band B CLV table failed ({e}); continuing.")
     try:   # tip-time review before tip: open bets whose cutoff and ESPN / latest feed start differ by over 10 min
         from . import tipcheck
         tipcheck.check()

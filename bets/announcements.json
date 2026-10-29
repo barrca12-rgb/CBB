@@ -48,5 +48,10 @@
   "id": "2026-10-28-alert-clv-label",
   "date": "2026-10-28",
   "text": "Reporting note, recorded Oct 28, before the first games: closing-line value is now labeled \"Alert CLV (points)\". It measures the alert's number against the consensus close (the median of each book's last fresh quote in the 15 minutes before tip), not the price you got. Result posts now list each closing book's number and price beside it, and a close built from a single book is flagged as a one-book close. No change to the model, the plays, the stakes or grading. Recorded in MODEL_FREEZE.md."
+ },
+ {
+  "id": "2026-10-29-band-b",
+  "date": "2026-10-29",
+  "text": "New bet type, recorded Oct 29, before the first games: Band B. When the model's edge on a spread is 2 to 2.49 points (just under the 2.5-point cutoff) and the play still clears the +2% expected-value rule at the best price, it is posted as \"BAND B (0.5u)\" at half a unit, flat. Band B has its own record line and is never added to the main record, which stays exactly as it was: same model, same plays, same 1-unit stakes, same grading. Totals band B is switched off. The rule that decides whether band B stays (at 300 graded plays or March 14) is written in the forward-test protocol, Appendix B. Recorded in MODEL_FREEZE.md."
  }
 ]

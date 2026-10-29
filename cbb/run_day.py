@@ -224,6 +224,13 @@ def _call(edge: float, value: float, calls) -> tuple[str, float]:
     return "PASS", 0.0
 
 
+def _band_b(market: str, edge: float, value: float, verdict: str) -> bool:
+    """Band B (tracker.BAND_B, approved Oct 29): the same best play (book, side, EV) at an edge in the band below v1's
+    cutoff that passes v1's +2% EV rule. Never a v1 BET, and it never changes v1's columns."""
+    lo, hi = tracker.BAND_B_RANGE[market]
+    return bool(tracker.BAND_B_ON[market] and verdict != "BET" and lo <= edge < hi and value >= MIN_EV)
+
+
 def plays(f: pd.DataFrame, lines: pd.DataFrame) -> pd.DataFrame:
     """One row per game: the best spread and total play across books."""
     out = []
@@ -269,6 +276,7 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame) -> pd.DataFrame:
                          spread_p=p, spread_ev=value, spread_link=row.get(f"{side}_spread_link"), spread_verdict=v,
                          spread_units=units, spread_good_to=(thr - m) if side == "home" else (thr + m))
                 r["spread_good_price"] = price_needed("spread", thr, r["spread_good_to"], True)
+                r["spread_bandb"] = _band_b("spread", edge, value, v)
             to = _best(l, "total", {"over": ("total", lambda x: t - x, "over_odds"),
                                     "under": ("total", lambda x: x - t, "under_odds")})
             if to:
@@ -280,6 +288,7 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame) -> pd.DataFrame:
                          total_link=row.get(f"{side}_link"), total_verdict=v, total_units=units,
                          total_good_to=(t - thr) if side == "over" else (t + thr))
                 r["total_good_price"] = price_needed("total", thr, r["total_good_to"], side == "under")
+                r["total_bandb"] = _band_b("total", edge, value, v)
         out.append(r)
     return pd.DataFrame(out)
 
@@ -391,6 +400,20 @@ def attach_logged(card: pd.DataFrame, day: pd.Timestamp) -> pd.DataFrame:
     return card
 
 
+def attach_band_b(card: pd.DataFrame, day: pd.Timestamp) -> pd.DataFrame:
+    """The day's logged band B plays (not void) as {market}_bandb_* columns, for the card's band B block."""
+    b = tracker.load(tracker.BAND_B)
+    b = b[(b["date"] == f"{day:%Y-%m-%d}") & (b["status"] != "void")]
+    card = card.copy()
+    gid = card["game_id"].astype(str)
+    for mk in ("spread", "total"):
+        m = b[b["market"] == mk].drop_duplicates("game_id", keep="last")
+        m = m.set_index(m["game_id"].astype(str))
+        for c in ("bet_id", "pick", "line", "book", "odds", "edge", "stake", "placed", "status", "result", "profit"):
+            card[f"{mk}_bandb_{c}"] = gid.map(m[c]) if len(m) else np.nan
+    return card
+
+
 def build(day: pd.Timestamp, games: pd.DataFrame, lines: pd.DataFrame | None, replay: bool = False,
           current: bool = True):
     """Project one day's games, price them against the lines, log BETs and write the day's card. current=False adds
@@ -426,7 +449,24 @@ def build(day: pd.Timestamp, games: pd.DataFrame, lines: pd.DataFrame | None, re
                 hist = None
             quotelog.signals(new, card, day, quotelog.inputs(day, hist), getattr(odds.pull, "pulled_at", None),
                              getattr(odds.pull, "observations", None))
+        # band B (tracker.BAND_B): its own log rows, 0.5 u flat, tagged alert and Discord post; after v1's, so it
+        # never changes a v1 bet, stake, alert or post
+        try:
+            new_b = tracker.log_band_b(card, day)
+            if notify.send(new_b, card):
+                print(f"Sent {len(new_b)} band B alert(s).")
+            if new_b:
+                public_record.sync()
+                try:
+                    hb = data.season_games(season_of(day))[0] if day <= today_et() + pd.Timedelta(days=14) else None
+                except Exception:
+                    hb = None
+                quotelog.signals(new_b, card, day, quotelog.inputs(day, hb), getattr(odds.pull, "pulled_at", None),
+                                 getattr(odds.pull, "observations", None))
+        except Exception as e:
+            print(f"Band B failed ({e}); continuing.")
         card = attach_logged(card, day)
+        card = attach_band_b(card, day)
         try:
             rv = review.summary()
         except Exception as e:

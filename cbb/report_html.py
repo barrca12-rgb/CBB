@@ -341,6 +341,11 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     <div class="scroll"><table id="t-plays"></table></div>
   </section>
 
+  <section class="panel" aria-labelledby="bandb-h" id="bandb-sec" hidden>
+    <div class="panel-h"><h2 id="bandb-h">Band B (2-2.5 spreads, 2-3 totals, 0.5 u)</h2><span class="note">A separate bet type, never counted in the record above: v1's edge 2-2.49 on a spread with v1's +2% EV rule, 0.5 unit flat. Totals band B is switched off.</span></div>
+    <div class="scroll"><table id="t-bandb"></table></div>
+  </section>
+
   <section class="panel" aria-labelledby="board-h">
     <div class="panel-h"><h2 id="board-h">Odds board</h2>
       <div class="ctrls">
@@ -508,6 +513,26 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       "</td></tr>").join("") + "</tbody>"
     : "<tbody><tr><td class='empty'>" + (withLines ? "No plays. No line is far enough from the model." : "No lines posted yet. Openers usually post the night before.") + "</td></tr></tbody>";
 
+  // Band B (cbb/tracker.py BAND_B): logged band B plays, in their own block; never in P, the KPIs or the record
+  const BB = [];
+  D.games.forEach((g) => ["spread", "total"].forEach((mk) => {
+    if (!g[mk + "_bandb_pick"]) return;
+    BB.push({g, kind: mk === "spread" ? "Spread" : "Total", bet: g[mk + "_bandb_pick"], book: g[mk + "_bandb_book"], price: g[mk + "_bandb_odds"],
+      edge: g[mk + "_bandb_edge"], units: g[mk + "_bandb_stake"], res: g[mk + "_bandb_result"], profit: g[mk + "_bandb_profit"],
+      bid: g[mk + "_bandb_bet_id"], placed: String(g[mk + "_bandb_placed"] || "").toLowerCase() === "yes",
+      fill: {book: g[mk + "_bandb_book"], line: g[mk + "_bandb_line"], odds: g[mk + "_bandb_odds"], stake: g[mk + "_bandb_stake"]}});
+  }));
+  BB.sort((a, b) => String(a.g.start).localeCompare(String(b.g.start)) || b.edge - a.edge);
+  $("bandb-sec").hidden = D.replay;
+  $("t-bandb").innerHTML = BB.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r'>Edge</th><th class='r'>Units</th><th class='r'>Result</th><th></th></tr></thead><tbody>" +
+    BB.map((p) => "<tr><td><div class='b pick'><span class='tag'>Band B</span> " + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div></td><td>" +
+      esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r'>" + sgn(p.edge) + "</td><td class='r'>" + num(p.units, 2) +
+      "</td><td class='r'>" + (p.res ? esc(p.res) + (p.profit != null ? " <span class='" + (p.profit > 0 ? "pos" : p.profit < 0 ? "neg" : "m") + "'>" + sgn(p.profit, 2) + "</span>" : "") : "–") + "</td><td class='r'>" +
+      (p.bid && !D.replay && !p.res ? (p.placed ? "<span class='f' style='font-size:12px;margin-left:8px'>Placed &#10003;</span>"
+        : "<button type='button' class='pl-btn' data-b='" + BB.indexOf(p) + "' style='font-size:12px;padding:4px 10px;margin-left:8px'>Placed</button>") : "") +
+      "</td></tr>").join("") + "</tbody>"
+    : "<tbody><tr><td class='empty'>No band B plays.</td></tr></tbody>";
+
   // KPIs
   const st = D.record ? D.record.status : null;
   const rec = (s) => s && s.bets ? s.w + "–" + s.l + (s.p ? "–" + s.p : "") : "0–0";
@@ -674,7 +699,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
         "</td><td class='r m'>" + num(x.model) + "</td><td class='r m'>" + esc(x.away_score) + "–" + esc(x.home_score) + "</td></tr>").join("") + "</tbody>";
   }
 
-  ["t-plays", "t-watch", "t-rec", "t-recent", "t-review", "t-review2", "t-misses"].forEach(stack);
+  ["t-plays", "t-bandb", "t-watch", "t-rec", "t-recent", "t-review", "t-review2", "t-misses"].forEach(stack);
 
   // Ratings
   $("t-rat").innerHTML = "<thead><tr><th class='r'>#</th><th>Team</th><th class='r'>Net</th><th class='r'>Offense</th><th class='r'>Defense</th><th class='r'>Tempo</th></tr></thead><tbody>" +
@@ -730,10 +755,10 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   document.body.appendChild(dlg);
   const field = (k, label, v) => "<label style='display:block;margin:8px 0;font-size:13px'>" + label +
     "<input id='pl-" + k + "' value='" + esc(v ?? "") + "' style='display:block;width:100%;margin-top:3px;padding:6px;font:inherit;border:1px solid var(--line-strong);border-radius:6px;background:var(--surface);color:var(--text)'></label>";
-  $("t-plays").addEventListener("click", (ev) => {
+  const placedClick = (ev) => {
     const btn = ev.target.closest(".pl-btn");
     if (!btn) return;
-    const p = P[Number(btn.dataset.i)];
+    const p = btn.dataset.b != null ? BB[Number(btn.dataset.b)] : P[Number(btn.dataset.i)];   // band B rows: data-b
     dlg.innerHTML = "<div class='b' style='margin-bottom:4px'>Placed: " + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + esc(matchup(p.g)) +
       "</div>" + field("book", "Book", p.fill.book) + field("line", p.kind === "Spread" ? "Line (your side)" : "Total", p.fill.line) +
       field("odds", "Odds", p.fill.odds) + field("stake", "Units", p.fill.stake) +
@@ -754,7 +779,9 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       else if (r && [401, 403, 404].includes(r.status)) { store.set(""); msg("Token refused (" + r.status + "). Click Update to enter a new one."); }
       else msg("Couldn't reach GitHub. Try again.");
     };
-  });
+  };
+  $("t-plays").addEventListener("click", placedClick);
+  $("t-bandb").addEventListener("click", placedClick);
 })();
 </script>
 """

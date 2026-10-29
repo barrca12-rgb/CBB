@@ -91,12 +91,17 @@ def _price(odds) -> str:
     return f"{int(odds):+d}" if pd.notna(odds) else ""
 
 
+def _tag(b: pd.Series) -> str:
+    """Title prefix for a band B play (tracker.BAND_B); v1 titles are unchanged."""
+    return "BAND B (0.5u) " if str(b.get("bet_type", "")) == tracker.BAND_B else ""
+
+
 def _logged(b: pd.Series) -> dict:
     t = pd.Timestamp(b["logged_at"]).tz_convert("America/New_York")
     fields = [("Game", f"{b['away']} at {b['home']} · {b['date']}"), ("Market", b["market"].title()),
               ("Book", f"{b['book']} {_price(b['odds'])}"), ("Edge", f"{float(b['edge']):.1f} pts"),
               ("Stake", f"{float(b['stake']):g} u"), ("Logged", f"{t:%Y-%m-%d %-I:%M %p} ET")]
-    return {"embeds": [{"title": f"BET: {b['pick']} {_price(b['odds'])}", "color": BLUE,
+    return {"embeds": [{"title": f"{_tag(b)}BET: {b['pick']} {_price(b['odds'])}", "color": BLUE,
                         "fields": [{"name": k, "value": v, "inline": True} for k, v in fields],
                         "footer": {"text": f"bet id {b['bet_id']}"}}]}
 
@@ -121,7 +126,7 @@ def _settled(b: pd.Series) -> dict:
     if pd.notna(b.get("clv_same_book")):
         fields.append(("Same-book CLV (diagnostic)", f"{b['clv_same_book']:+.2f} pts"))
     from .clv_primary import VERIFICATION_STATUS
-    return {"embeds": [{"title": f"{res}: {b['pick']} {_price(b['odds'])}", "color": color,
+    return {"embeds": [{"title": f"{_tag(b)}{res}: {b['pick']} {_price(b['odds'])}", "color": color,
                         "fields": [{"name": k, "value": v, "inline": True} for k, v in fields],
                         "footer": {"text": f"bet id {b['bet_id']} · Alert CLV = points from the alert number to the "
                                            f"consensus close of fresh quotes in the last 15 min before tip; prices are "
@@ -162,8 +167,8 @@ def _sync(url: str) -> int:
             done("notes", a["id"])
     from . import clv_primary
     from . import tipoff
-    tipoff.refresh(tracker.load())                                     # actual tips for the pregame check (cached)
-    b = clv_primary.attach(tracker.load()).sort_values("logged_at")   # results post the primary-close CLV
+    tipoff.refresh(tracker.load("all"))                                # actual tips for the pregame check (cached)
+    b = clv_primary.attach(tracker.load("all")).sort_values("logged_at")   # results post the primary-close CLV; band B tagged
     for _, r in b.iterrows():
         i = r["bet_id"]
         if i not in st["bets"]:

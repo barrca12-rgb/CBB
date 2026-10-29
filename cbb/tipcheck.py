@@ -34,7 +34,7 @@ def check(now: pd.Timestamp | None = None, alert: bool = True) -> pd.DataFrame:
     """Flagged open bets before tip; alerts once per (bet, times) and logs every finding. Returns the findings."""
     from . import clv_primary, notify, tracker
     now = now or pd.Timestamp.now(tz="UTC")
-    b = tracker.load()
+    b = tracker.load("all")            # band B plays get the same tip-time check
     b = b[b["status"] == "open"]
     if not len(b):
         return pd.DataFrame()

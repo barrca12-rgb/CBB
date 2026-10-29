@@ -45,16 +45,35 @@ CAP_MULT = 0.5                    # the stake cap: multiplier held at this when 
 STAKE_CAP_STATE = os.path.join(ROOT, "bets", "stake_cap.json")   # ... after MIN_CLV_BETS bets with a primary close
 COLS = ["bet_id", "date", "game_id", "market", "pick", "side", "home_id", "away_id", "home", "away", "line", "alert_line", "odds",
         "book", "edge", "model", "stake", "placed", "logged_at", "close_line", "clv_pts", "clv_prob", "home_score",
-        "away_score", "result", "profit", "status"]
+        "away_score", "result", "profit", "status", "bet_type"]
+
+# Band B (approved by Chad Oct 29; MODEL_FREEZE.md, FORWARD_TEST_PROTOCOL.md appendix B): a separately tagged bet type
+# for the frozen v1 projection's edge of 2.0-2.49 points on a spread (2.0-2.99 on a total: built, switched off by
+# Chad on Oct 29 because the replay on inputs known at the opener did not support it), with v1's +2% EV rule and
+# win-probability rule, flat 0.5 unit, no live-record multiplier. Logged in this file with bet_type "bandB" and its
+# own bet id (suffix |bandB), so it never blocks or changes a v1 entry; v1 rows keep an empty bet_type. load()
+# returns v1's rows only, so every v1 figure (record, stake multiplier, stake cap, tripwires, pages) is unchanged.
+BAND_B = "bandB"
+BAND_B_STAKE = 0.5
+BAND_B_RANGE = {"spread": (2.0, 2.5), "total": (2.0, 3.0)}
+BAND_B_ON = {"spread": True, "total": False}
 
 
-def load() -> pd.DataFrame:
+def load(kind: str = "v1") -> pd.DataFrame:
+    """The bet log. kind: "v1" (default: the live model's plays only), "bandB" (band B only) or "all"."""
     if not os.path.exists(BETS):
         return pd.DataFrame(columns=COLS)
-    b = pd.read_csv(BETS, dtype={"bet_id": str, "result": str, "status": str, "placed": str, "side": str})
+    b = pd.read_csv(BETS, dtype={"bet_id": str, "result": str, "status": str, "placed": str, "side": str,
+                                 "bet_type": str})
     if "alert_line" not in b:   # bets logged before Oct 26 2026: the logged line is the alerted one
         b["alert_line"] = b["line"]
-    return b.reindex(columns=COLS)
+    b = b.reindex(columns=COLS)
+    band = b["bet_type"].fillna("") == BAND_B
+    if kind == "v1":
+        b = b[~band]
+    elif kind == BAND_B:
+        b = b[band]
+    return b
 
 
 def save(b: pd.DataFrame) -> None:
@@ -73,7 +92,7 @@ def payout(odds) -> float:
 
 def log(card: pd.DataFrame, day: pd.Timestamp, stakes: dict | None = None) -> list[dict]:
     """Record today's BET plays that aren't logged yet. Returns the bets added."""
-    b = load()
+    b = load("all")
     have = set(b["bet_id"].astype(str))
     stakes = stakes or {}
     now = pd.Timestamp.now(tz="UTC").isoformat(timespec="seconds")
@@ -99,6 +118,69 @@ def log(card: pd.DataFrame, day: pd.Timestamp, stakes: dict | None = None) -> li
     return new
 
 
+def log_band_b(card: pd.DataFrame, day: pd.Timestamp) -> list[dict]:
+    """Record today's band B plays (card {market}_bandb) that aren't logged yet, at BAND_B_STAKE. A market a v1 bet
+    already covers for that game is skipped, so a game is never both at the time of logging. Returns the bets added."""
+    b = load("all")
+    have = set(b["bet_id"].astype(str))
+    v1_keys = {(str(r["game_id"]), r["market"]) for _, r in b[(b["bet_type"].fillna("") != BAND_B)
+                                                            & (b["status"] != "void")].iterrows()}
+    bb_keys = {(str(r["game_id"]), r["market"]) for _, r in b[b["bet_type"].fillna("") == BAND_B].iterrows()}
+    now = pd.Timestamp.now(tz="UTC").isoformat(timespec="seconds")
+    new = []
+    for _, g in card.iterrows():
+        for mk in ("spread", "total"):
+            flag = g.get(f"{mk}_bandb")
+            if not BAND_B_ON[mk] or not (isinstance(flag, (bool, np.bool_)) and bool(flag)):   # NaN: no line
+                continue
+            key = (str(int(g["game_id"])), mk)
+            if key in v1_keys or key in bb_keys:
+                continue
+            side = g["spread_side"] if mk == "spread" else str(g["total_pick"]).lower()
+            bid = f"{day:%Y-%m-%d}|{int(g['game_id'])}|{mk}|{side}|{BAND_B}"
+            if bid in have:
+                continue
+            new.append({"bet_id": bid, "date": f"{day:%Y-%m-%d}", "game_id": int(g["game_id"]), "market": mk,
+                        "pick": f"{g[mk + '_pick']} {g[mk + '_line']:+g}" if mk == "spread" else f"{g['total_pick']} {g['total_line']:g}",
+                        "side": side, "home_id": int(g["home_id"]), "away_id": int(g["away_id"]), "home": g["home"],
+                        "away": g["away"], "line": g[f"{mk}_line"], "alert_line": g[f"{mk}_line"], "odds": g.get(f"{mk}_odds"),
+                        "book": g.get(f"{mk}_book"), "edge": round(float(g[f"{mk}_edge"]), 2),
+                        "model": round(float(g["model_margin"] if mk == "spread" else g["model_total"]), 2),
+                        "stake": BAND_B_STAKE, "placed": "", "logged_at": now, "status": "open", "bet_type": BAND_B})
+            bb_keys.add(key)
+    if new:
+        b = pd.concat([b, pd.DataFrame(new)], ignore_index=True) if len(b) else pd.DataFrame(new)
+        save(b.reindex(columns=COLS))
+    return new
+
+
+def band_b_status(b: pd.DataFrame | None = None) -> dict:
+    """Band B's own record per market and pooled (settled plays, W-L-P, units, ROI, mean primary CLV, trailing-100
+    primary CLV). Never part of status() or the tripwires."""
+    b = load(BAND_B) if b is None else b
+    s = b[b["status"] == "settled"]
+    try:
+        from . import clv_primary
+        p = clv_primary.primary(s).set_index("bet_id") if len(s) else None
+        clv = pd.to_numeric(s["bet_id"].map(p["clv_primary"]), errors="coerce") if p is not None else pd.Series(dtype=float)
+    except Exception:
+        clv = pd.Series(np.nan, index=s.index)
+    out = {}
+    for mk in ("spread", "total", "all"):
+        m = s if mk == "all" else s[s["market"] == mk]
+        c = clv.reindex(m.index).dropna()
+        w, l, pu = int((m["result"] == "W").sum()), int((m["result"] == "L").sum()), int((m["result"] == "P").sum())
+        staked = m["stake"].astype(float).sum()
+        tail = clv.reindex(m.sort_values(["date", "logged_at"]).index).dropna().tail(100)
+        out[mk] = {"bets": int(len(m)), "w": w, "l": l, "p": pu, "win": (w / (w + l)) if w + l else None,
+                   "units": round(float(m["profit"].astype(float).sum()), 2),
+                   "roi": round(float(m["profit"].astype(float).sum() / staked), 4) if staked else None,
+                   "clv": round(float(c.mean()), 2) if len(c) else None, "clv_n": int(len(c)),
+                   "clv_trailing100": round(float(tail.mean()), 2) if len(tail) else None, "trailing_n": int(len(tail)),
+                   "open": int(((b["market"] == mk) | (mk == "all")).mul(b["status"] == "open").sum())}
+    return out
+
+
 def _closing(bet: pd.Series, closing: pd.DataFrame) -> float:
     """Last pregame number at the bet's book (or the median of all books), from the bet's side."""
     c = closing[(closing["date"] == bet["date"])]
@@ -119,7 +201,7 @@ def _closing(bet: pd.Series, closing: pd.DataFrame) -> float:
 def settle(scores: pd.DataFrame | None = None) -> int:
     """Grade open bets whose games are final. scores: game_id, home_score, away_score, state (from run_day.slate);
     fetched per date when not given. Returns how many were settled."""
-    b = load()
+    b = load("all")            # band B plays are graded the same way
     if not len(b):
         return 0
     from .run_day import slate
@@ -169,7 +251,7 @@ def alert_voided() -> int:
     """One phone alert per voided bet (status "void") not yet announced: the play was alerted, then cancelled.
     Returns alerts sent; a bet is marked announced only when its alert goes out."""
     from . import notify
-    b = load()
+    b = load("all")
     v = b[b["status"] == "void"]
     done = set(json.load(open(VOID_ALERTED))) if os.path.exists(VOID_ALERTED) else set()
     v = v[~v["bet_id"].isin(done)]

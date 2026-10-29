@@ -48,9 +48,13 @@ def counts(a: pd.Timestamp, b: pd.Timestamp) -> dict:
             if "v1_check_max_diff" in rr and rr["v1_check_max_diff"].notna().any():
                 out["ridge input check (max diff)"] = float(rr["v1_check_max_diff"].max())
     bets = pd.read_csv(os.path.join(ROOT, "bets", "bets.csv"), dtype=str)
-    new = bets[_in(bets["logged_at"], a, b)]
+    band = bets["bet_type"].fillna("").eq("bandB") if "bet_type" in bets else pd.Series(False, index=bets.index)
+    newb = bets[band & _in(bets["logged_at"], a, b)]
+    new = bets[~band & _in(bets["logged_at"], a, b)]      # v1 counts as before; band B on its own lines
     posted = json.load(open(os.path.join(ROOT, "bets", "discord_posted.json"))).get("bets", {})
     out["new bets logged"] = len(new)
+    out["band B bets logged"] = len(newb)
+    out["band B Discord posts"] = int(newb["bet_id"].isin(list(posted)).sum())
     out["Discord posts (of new bets)"] = int(new["bet_id"].isin(list(posted)).sum())
     out["marked placed (of new bets)"] = int(new["placed"].fillna("").str.lower().eq("yes").sum())
     try:   # CLV coverage: settled plays dated in the window, with and without a primary close (cbb/clv_primary.py)
@@ -83,6 +87,14 @@ def counts(a: pd.Timestamp, b: pd.Timestamp) -> dict:
                 f", refreshed {c.get('refreshed_at') or 'never'}"
     except Exception as e:
         out["stake cap"] = f"check failed: {e}"
+    try:   # band B (cbb/tracker.py BAND_B): its own trailing-100 primary CLV, flagged below 0; never v1's tripwire
+        from cbb import tracker as tb
+        bs = tb.band_b_status()["all"]
+        out["band B trailing-100 CLV"] = bs["clv_trailing100"]
+        out["band B trailing n"] = bs["trailing_n"]
+        out["band B record"] = f"{bs['w']}-{bs['l']}-{bs['p']}, {bs['units']:+.2f} u, CLV {'–' if bs['clv'] is None else format(bs['clv'], '+.2f')} on {bs['clv_n']}"
+    except Exception as e:
+        out["band B trailing-100 CLV"], out["band B record"] = None, f"band B check failed: {e}"
     acc = os.path.join(ROOT, "bets", "accepted.csv")
     out["placed with the card button"] = int(_in(pd.read_csv(acc)["placed_at"], a, b).sum()) if os.path.exists(acc) else 0
     return out
@@ -109,6 +121,10 @@ def flags(c: dict, prev: dict, end: pd.Timestamp) -> list[str]:
                  if c["missing primary close"] > 0 else c.get("_missing reasons", "CLV check failed"))
     if c.get("tip-time reviews open", 0):
         f.append(f"tip-time review open: {c.get('_tip reviews', '')}")
+    if c.get("band B trailing-100 CLV") is not None and c["band B trailing-100 CLV"] < 0:
+        f.append(f"band B trailing-{c.get('band B trailing n', 100)} primary CLV {c['band B trailing-100 CLV']:+.2f} is below 0")
+    if c.get("band B bets logged", 0) and c["band B Discord posts"] < c["band B bets logged"]:
+        f.append(f"{c['band B bets logged'] - c['band B Discord posts']} new band B bet(s) not posted to Discord")
     if c.get("new bets logged", 0) and c["Discord posts (of new bets)"] < c["new bets logged"]:
         f.append(f"{c['new bets logged'] - c['Discord posts (of new bets)']} new bet(s) not posted to Discord")
     return f

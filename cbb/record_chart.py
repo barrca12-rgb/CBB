@@ -134,7 +134,16 @@ def tiles(st: dict) -> list[tuple[str, str, str]]:
             ("UNITS", _fmt(st["units"]), f"flat 1u · n {st['settled']}"),
             ("CLV SPREADS", _fmt(sp["mean"]), se(sp)),
             ("CLV TOTALS", _fmt(to["mean"]), se(to)),
-            ("CLOSE MOVED FOR", share, f"{mv['for']} / {mv['flat']} / {mv['against']} · n {mv['n']}")]
+            ("CLOSE MOVED FOR", share, f"{mv['for']} / {mv['flat']} / {mv['against']} · n {mv['n']}")] + _band_b_tile(st)
+
+
+def _band_b_tile(st: dict) -> list[tuple[str, str, str]]:
+    """Band B's own tile (tracker.BAND_B), only once band B has a logged play; never pooled with v1's tiles."""
+    bb = st.get("bandb")
+    if not bb:
+        return []
+    t = bb["tiles"]["spread"]
+    return [("BAND B CLV (SEP.)", _fmt(t["mean"]), f"{bb['w']}-{bb['l']}-{bb['p']} · {_fmt(bb['units'] / 2)} u at 0.5u · n {t['n']}")]
 
 
 def draw_clv(st: dict, path: str) -> None:
@@ -146,21 +155,26 @@ def draw_clv(st: dict, path: str) -> None:
     fig = plt.figure(figsize=(16, 9), dpi=100, facecolor=CREAM)
     _title(fig, "Cumulative closing-line value by play, season to date", 0.655)
     # tiles
-    x0, y0, w, h, gap = 0.04, 0.70, (0.92 - 5 * 0.012) / 6, 0.15, 0.012
-    for i, (lab, big, small) in enumerate(tiles(st)):
+    tl = tiles(st)
+    x0, y0, w, h, gap = 0.04, 0.70, (0.92 - (len(tl) - 1) * 0.012) / len(tl), 0.15, 0.012
+    for i, (lab, big, small) in enumerate(tl):
         x = x0 + i * (w + gap)
         fig.add_artist(FancyBboxPatch((x, y0), w, h, boxstyle="round,pad=0,rounding_size=0.008", transform=fig.transFigure,
                                       facecolor=SURFACE, edgecolor=LINE, lw=1.2))
         fig.add_artist(matplotlib.lines.Line2D([x + 0.004, x + w - 0.004], [y0 + h, y0 + h], color=NAVY, lw=3))
         fig.text(x + 0.012, y0 + h - 0.03, lab, fontsize=11.5, color=MUTED, family="Inter", weight="bold")
         fig.text(x + 0.012, y0 + 0.058, big, fontsize=30 if len(big) < 8 else 24, color=NAVY, family="Inter", weight="heavy")
-        fig.text(x + 0.012, y0 + 0.018, small, fontsize=11.5, color=FAINT, family="Inter")
+        fig.text(x + 0.012, y0 + 0.018, small, fontsize=11.5 if len(tl) == 6 else 9.5, color=FAINT, family="Inter")
     # chart
     ax = fig.add_axes([0.07, 0.15, 0.89, 0.47], facecolor=CREAM)
     for mk, color, lab in (("spread", ORANGE, "Spreads"), ("total", NAVY, "Totals")):
         y = st["series"][mk]
         ax.plot(np.arange(len(y)), y, color=color, lw=3, label=f"{lab}  {_fmt(y[-1])} pts after {len(y) - 1} plays",
                 solid_capstyle="round", zorder=3)
+    if st.get("bandb"):   # band B: its own dashed line, a separate bet type, never added to v1's
+        y = st["bandb"]["series"]["spread"]
+        ax.plot(np.arange(len(y)), y, color=GREY, lw=2.5, ls="--", zorder=3,
+                label=f"Band B spreads (separate, 0.5u)  {_fmt(y[-1])} pts after {len(y) - 1} plays")
     ax.axhline(0, color=GREY, lw=1.5, zorder=2)
     n = max(len(st["series"]["spread"]), len(st["series"]["total"]))
     ax.set_xlim(0, max(n - 1, 10))
@@ -252,8 +266,11 @@ def index(out: str) -> list[str]:
 def write(through: pd.Timestamp | None = None, bets: str | None = None, out: str = OUT) -> dict:
     through = pd.Timestamp(through) if through is not None else last_sunday()
     # the real log gets the protocol's primary close (cbb/clv_primary.py), as the record page; a --bets file is used as is
-    b = pd.read_csv(bets) if bets else clv_primary.attach(tracker.load())
-    st = stats(b, through)
+    b = pd.read_csv(bets) if bets else clv_primary.attach(tracker.load("all"))
+    band = b["bet_type"].fillna("").astype(str).eq(tracker.BAND_B) if "bet_type" in b else pd.Series(False, index=b.index)
+    st = stats(b[~band], through)                          # the headline: v1 alone, as before
+    if band.any():                                         # band B: its own tile and line, never pooled
+        st["bandb"] = stats(b[band], through)
     os.makedirs(out, exist_ok=True)
     tag = f"{through:%Y-%m-%d}"
     draw_clv(st, os.path.join(out, f"{tag}-clv.png"))

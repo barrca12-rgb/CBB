@@ -18,7 +18,7 @@ import numpy as np
 import pandas as pd
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
-PROTOCOL_VERSION = "2.1"
+PROTOCOL_VERSION = "2.2"
 
 # --- model versions (protocol sections 1 and 8) ------------------------------------------------------------------
 # Model v1 = the live card at the freeze commit (committed 2026-10-26T19:20:50Z). A switch to v2 at a checkpoint sets
@@ -27,6 +27,11 @@ PROTOCOL_VERSION = "2.1"
 FREEZE_COMMIT = "dfb4bc7196d4f72cdeb933abdfcbc87c951122b5"
 PROTOCOL_START = pd.Timestamp("2026-10-26T19:20:50Z")
 VERSIONS = {"v1": {"start": PROTOCOL_START, "end": None, "shadow_log": os.path.join("bets", "shadow_v1", "bets.csv")}}
+# Band B (protocol appendix B, approved Oct 29): a separate bet type in bets.csv (bet_type "bandB"), read with the
+# same code as its own version and never pooled with v1. v1's signals exclude it.
+BAND_B = "bandB"
+VERSIONS[BAND_B] = {"start": PROTOCOL_START, "end": None, "shadow_log": None}
+EDGE_BAND_B = {"spread": 2.0, "total": 2.0}             # band B's lower edge; B_rule = band B or better
 
 # --- season and reads (section 9) --------------------------------------------------------------------------------
 FIRST_GAME, LAST_GAME = "2026-11-01", "2027-03-14"      # regular season through Selection Sunday
@@ -112,6 +117,8 @@ def load_signals(version: str = "v1", through: str | None = None, bets: pd.DataF
     season window (and through `through`). Returns (signals including voids, version status)."""
     v = VERSIONS[version]
     b = pd.read_csv(os.path.join(ROOT, "bets", "bets.csv")) if bets is None else bets
+    band = b["bet_type"].fillna("").astype(str).eq(BAND_B) if "bet_type" in b else pd.Series(False, index=b.index)
+    b = b[band] if version == BAND_B else b[~band]
     t = pd.to_datetime(b["logged_at"], utc=True, format="ISO8601")
     keep = t >= v["start"]
     if v["end"] is not None:
@@ -334,7 +341,7 @@ def assess(b, r) -> dict:
         p = win_prob_v1(mk, e)
         ev = p * payout(r["price"]) - (1 - p)
         out.update(edge_v1=round(e, 3), ev_v1=round(ev, 4), B_ev=bool(ev >= MIN_EV_V1),
-                   B_rule=bool(ev >= MIN_EV_V1 and e >= EDGE_V1[mk]))
+                   B_rule=bool(ev >= MIN_EV_V1 and e >= (EDGE_BAND_B if b.get("bet_type") == BAND_B else EDGE_V1)[mk]))
     return out
 
 
@@ -637,6 +644,8 @@ def evaluate(through: str | None = None, today: str | None = None, bets: pd.Data
     out["signal immutability since the freeze"] = immutability(history)
     if bets is None:
         pre = pd.read_csv(os.path.join(ROOT, "bets", "bets.csv"))
+        if "bet_type" in pre:
+            pre = pre[pre["bet_type"].fillna("").astype(str).eq(BAND_B) == (version == BAND_B)]
         pre = pre[pd.to_datetime(pre["logged_at"], utc=True, format="ISO8601") < PROTOCOL_START]
         out["pre-freeze signals (separate, never pooled)"] = {"signals": len(pre), "voids": int((pre["status"] == "void").sum())}
     return out
@@ -645,4 +654,6 @@ def evaluate(through: str | None = None, today: str | None = None, bets: pd.Data
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--through")
-    print(json.dumps(evaluate(ap.parse_args().through), indent=1, default=str))
+    ap.add_argument("--version", default="v1", choices=sorted(VERSIONS))
+    x = ap.parse_args()
+    print(json.dumps(evaluate(x.through, version=x.version), indent=1, default=str))

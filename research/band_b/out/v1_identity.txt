@@ -1,0 +1,53 @@
+Band B go-live check, Oct 29 2026 (research/band_b/v1_identity.py)
+old = commit 89096ea (before band B); new = this commit
+bet logs: v1 = bets/bets.csv as of Oct 29 (9 rows); v1+bandB = the same plus 1 synthetic band B play (settled W)
+
+A. old code, v1 log  vs  new code, v1 log
+card     pulls x dates                            same
+card     rows                                     same
+card     hash                                     same
+card     band B flags (not part of the hash)      DIFFERENT   {'spread': 0, 'total': 0} | {'spread': 719, 'total': 0}
+log      load (without bet_type)                  same
+log      rows                                     same
+log      status                                   same
+log      tripwires                                same
+log      recent                                   same
+record   record.html                              same
+record   verify.html                              same
+record   band B section shown                     same
+discord  logged                                   same
+discord  settled                                  same
+discord  rows                                     same
+chart    v1 stats                                 same
+chart    v1 series                                same
+chart    caption                                  same
+chart    clv.png                                  same
+chart    units.png                                same
+chart    band B tile                              same
+
+B. old code, v1 log  vs  new code, v1 log + band B rows (differences are band B's own section, tile and line)
+card     pulls x dates                            same
+card     rows                                     same
+card     hash                                     same
+card     band B flags (not part of the hash)      DIFFERENT   {'spread': 0, 'total': 0} | {'spread': 719, 'total': 0}
+log      load (without bet_type)                  same
+log      rows                                     same
+log      status                                   same
+log      tripwires                                same
+log      recent                                   same
+record   record.html                              same
+record   verify.html                              same
+record   band B section shown                     DIFFERENT   False | True
+discord  logged                                   same
+discord  settled                                  same
+discord  rows                                     same
+chart    v1 stats                                 same
+chart    v1 series                                same
+chart    caption                                  same
+chart    clv.png                                  DIFFERENT   bef4e0f9e9a3c97bcda3cdc16999431e6838bb0d | 4053beedd263382a389b862249fdb159f33234d2
+chart    units.png                                same
+chart    band B tile                              DIFFERENT   False | True
+
+new code, v1 + band B:
+card: {'pulls x dates': 1268, 'rows': 76480, 'hash': '4b36664e6e390008022b63a7c0a18c31cfe9a2c5d9869084a4d82e9dbeddd93d', 'band B flags (not part of the hash)': {'spread': 719, 'total': 0}}
+discord band B titles: ['BAND B (0.5u) BET: Arizona -4.5 -110', 'BAND B (0.5u) WIN: Arizona -4.5 -110']
