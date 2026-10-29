@@ -3,7 +3,8 @@
 Read only. Two views:
   model   every totals play v1 would make at the opener (edge 3+), from the card's own files
           (research/quant/e2_shadow.build, reused read-only); win% on finished games, pushes dropped
-  logged  totals bets in bets/bets.csv (void excluded): count, record and average CLV by side
+  logged  totals bets in bets/bets.csv (void excluded): count, record and average CLV at the primary close
+          (bets/clv_primary.csv, the same CLV the site shows) by side
 
 History at the opener, edge 3+: overs were 87% of plays in 2023-24, 78% in 2024-25 and 53% in 2025-26; both sides
 won about 55-56%. Describe only; no change to the card follows from this line.
@@ -43,13 +44,15 @@ def model_line() -> str:
 def logged_line() -> str:
     b = pd.read_csv(os.path.join(ROOT, "bets", "bets.csv"))
     b = b[(b["market"] == "total") & (b["status"] != "void")]
+    cp = os.path.join(ROOT, "bets", "clv_primary.csv")
+    clv_of = pd.read_csv(cp).set_index("bet_id")["clv_primary"] if os.path.exists(cp) else pd.Series(dtype=float)
     if not len(b):
         return "logged totals: none yet"
     parts = []
     for side in ("over", "under"):
         x = b[b["side"].str.lower() == side]
         r = x["result"].astype(str)
-        clv = pd.to_numeric(x["clv_pts"], errors="coerce")
+        clv = pd.to_numeric(x["bet_id"].map(clv_of), errors="coerce")
         parts.append(f"{side}s {len(x)} ({(r == 'W').sum()}-{(r == 'L').sum()}"
                      + (f", CLV {clv.mean():+.2f}" if clv.notna().any() else "") + ")")
     return f"logged totals: {len(b)}, overs {100 * (b['side'].str.lower() == 'over').mean():.0f}%; " + ", ".join(parts)
