@@ -29,12 +29,21 @@ FLOOR = 300                     # stop if the month's remaining calls would fall
 FGA = {"JumpShot", "LayUpShot", "DunkShot", "TipShot", "Three Point Jump Shot", "Shot"}
 
 
-def fetch(day: str):
-    req = urllib.request.Request(f"{BASE}/plays/date?date={day}", headers={"Accept": "application/json"})
-    if os.environ.get("CBBD_API_KEY"):
-        req.add_header("Authorization", f"Bearer {os.environ['CBBD_API_KEY']}")
-    with urllib.request.urlopen(req, timeout=600) as r:
-        return json.loads(r.read()), r.headers.get("X-Calllimit-Remaining")
+def fetch(day: str, tries: int = 4):
+    """One date's plays. Large responses are sometimes cut off (connection reset); retry with backoff."""
+    for k in range(tries):
+        req = urllib.request.Request(f"{BASE}/plays/date?date={day}", headers={"Accept": "application/json"})
+        if os.environ.get("CBBD_API_KEY"):
+            req.add_header("Authorization", f"Bearer {os.environ['CBBD_API_KEY']}")
+        try:
+            with urllib.request.urlopen(req, timeout=600) as r:
+                return json.loads(r.read()), r.headers.get("X-Calllimit-Remaining")
+        except (ConnectionError, TimeoutError, urllib.error.URLError, json.JSONDecodeError) as e:
+            if isinstance(e, urllib.error.HTTPError) and e.code in (401, 403):
+                raise
+            print(f"{day}: attempt {k + 1} failed ({type(e).__name__}); retrying", flush=True)
+            time.sleep(10 * 2 ** k)
+    return None, None
 
 
 def reduce(plays: list, season: int) -> tuple[pd.DataFrame, pd.DataFrame, dict]:
@@ -135,6 +144,10 @@ def main() -> None:
                 continue
             t0 = time.time()
             plays, remaining = fetch(day)
+            if plays is None:
+                with open(OUT / "failed_dates.csv", "a") as fh:
+                    fh.write(f"{season},{day}\n")
+                continue
             s, pg, info = reduce(plays if isinstance(plays, list) else [], season)
             s.to_parquet(f, index=False)
             pg.to_parquet(sd / f"{day}_players.parquet", index=False)
