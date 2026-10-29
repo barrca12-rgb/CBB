@@ -214,18 +214,28 @@ def run_variant(lam: float, rho: float, data_by_season: dict) -> pd.DataFrame:
     return out
 
 
+_DBS: dict = {}
+
+
+def _one(args):
+    lam, rho = args
+    fe = run_variant(lam, rho, _DBS)
+    fe.to_parquet(DATA / f"features_lam{int(lam)}_rho{rho}.parquet", index=False)
+    return lam, rho, len(fe)
+
+
 def main(seasons=None) -> None:
+    """Learning features: every variant for the given seasons (default 2023-24 and 2024-25 only)."""
     import sys
+    from multiprocessing import Pool
     OUT.mkdir(exist_ok=True)
-    seasons = seasons or [int(x) for x in sys.argv[1:]] or SEASONS
-    dbs = {s: load(s) for s in seasons}
-    info = {s: v[2] for s, v in dbs.items()}
-    print(json.dumps(info, indent=1))
-    for lam in LAMS:
-        for rho in RHOS:
-            fe = run_variant(lam, rho, dbs)
-            fe.to_parquet(DATA / f"features_lam{int(lam)}_rho{rho}.parquet", index=False)
-            print(lam, rho, len(fe), flush=True)
+    seasons = seasons or [int(x) for x in sys.argv[1:]] or [2024, 2025]
+    assert 2026 not in seasons, "2025-26 features are built only by score.py, after the freeze"
+    _DBS.update({s: load(s) for s in seasons})
+    print(json.dumps({s: v[2] for s, v in _DBS.items()}, indent=1))
+    with Pool(4) as pool:
+        for lam, rho, n in pool.imap_unordered(_one, [(l, r) for l in LAMS for r in RHOS]):
+            print(lam, rho, n, flush=True)
 
 
 if __name__ == "__main__":
