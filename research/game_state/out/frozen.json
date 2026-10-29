@@ -1,0 +1,42 @@
+{
+ "spread": {
+  "families": {
+   "F": {
+    "variant": "none",
+    "val_mse": 126.05329331086173,
+    "control_mse": 126.05329331086173,
+    "mse_gain": 0.0,
+    "scale_ratio": 1.0
+   },
+   "R": {
+    "variant": "k2.0_a0.25",
+    "val_mse": 126.00110259611805,
+    "control_mse": 126.05049690519249,
+    "mse_gain": 0.049394309074443754,
+    "scale_ratio": 1.0266950098022023
+   }
+  },
+  "decision_family": "F",
+  "rule": "F unless R's selected variant changes the stage-1 input SD outside [0.95, 1.05]"
+ },
+ "total": {
+  "families": {
+   "F": {
+    "variant": "foul",
+    "val_mse": 277.5646677984825,
+    "control_mse": 277.5879723194112,
+    "mse_gain": 0.023304520928718375,
+    "scale_ratio": 1.00202467533054
+   },
+   "R": {
+    "variant": "k8.0_a0.25",
+    "val_mse": 277.81039720203194,
+    "control_mse": 277.95329345845965,
+    "mse_gain": 0.14289625642771853,
+    "scale_ratio": 1.0011258132017944
+   }
+  },
+  "decision_family": "F",
+  "rule": "F unless R's selected variant changes the stage-1 input SD outside [0.95, 1.05]"
+ }
+}
