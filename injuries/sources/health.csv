@@ -2135,3 +2135,7 @@ pulled_at,source,ok,rows,teams_matched,players_matched,unmatched_teams,error,sec
 2026-10-29T16:40:31+00:00,rotowire,True,5,0.6,1.0,Arkansas-Little Rock; Wisconsin-Milwaukee,,0.4,1326.0
 2026-10-29T16:40:31+00:00,covers,True,0,,,,,1.1,1271540.0
 2026-10-29T16:40:31+00:00,cbs,True,0,,,,,0.6,439074.0
+2026-10-29T17:00:38+00:00,espn,True,0,,,,,1.1,144.0
+2026-10-29T17:00:38+00:00,rotowire,True,5,0.6,1.0,Arkansas-Little Rock; Wisconsin-Milwaukee,,0.5,1326.0
+2026-10-29T17:00:38+00:00,covers,True,0,,,,,1.1,1271540.0
+2026-10-29T17:00:38+00:00,cbs,True,0,,,,,1.0,439005.0
