@@ -88,10 +88,61 @@ def log_moneylines(lines: pd.DataFrame, now: pd.Timestamp | None = None) -> int:
     return len(new)
 
 
+OPENER_FAV = os.path.join(ML_DIR, "opener_fav.csv")
+OPENER_COLS = ["run_at", "date", "game_id", "start", "book", "team_id", "opp_id", "price", "opp_price", "p_model", "ev",
+               "model_margin"]
+OPENER_EV, OPENER_SIGMA = 0.05, 11.0     # research/moneyline/opener_fav/PLAN.md: the Oct 26 rule, favorites only
+
+
+def _priced_keys() -> set:
+    """(home_id, away_id, book) already holding a priced moneyline in the log (before this run)."""
+    path = os.path.join(ML_DIR, "latest.csv")
+    if not os.path.exists(path):
+        return set()
+    old = pd.read_csv(path)
+    if "status" in old:
+        old = old[old["status"].fillna("ok") == "ok"]
+    return set(zip(old["home_id"].astype(int), old["away_id"].astype(int), old["book"]))
+
+
+def log_opener_favs(f: pd.DataFrame, lines: pd.DataFrame, before: set, now: pd.Timestamp | None = None) -> int:
+    """Each book's FIRST priced moneyline on a game this run: if the favorite's EV against the model's win
+    probability Phi(margin / 11) is +5% or more, append it to lines/ml/opener_fav.csv. Returns rows written."""
+    from scipy.stats import norm
+    if lines is None or not len(lines) or "home_ml" not in lines or not before:
+        return 0       # no log yet: everything would look new, and nothing is a true opener
+    now = now or pd.Timestamp.now(tz="UTC")
+    rows = []
+    proj = {(int(r.home_id), int(r.away_id)): r for r in f.itertuples()}
+    for r in lines.itertuples():
+        h, a = int(r.home_id), int(r.away_id)
+        if (h, a, r.book) in before or pd.isna(r.home_ml) or pd.isna(r.away_ml) or abs(r.home_ml) < 100 or abs(r.away_ml) < 100:
+            continue
+        g, sign = (proj[(h, a)], 1) if (h, a) in proj else (proj.get((a, h)), -1)
+        if g is None or pd.isna(g.final_margin):
+            continue
+        m_home = sign * float(g.final_margin)          # the model's margin for the feed's home team
+        for team, opp, price, opp_price, m in ((h, a, r.home_ml, r.away_ml, m_home), (a, h, r.away_ml, r.home_ml, -m_home)):
+            if price >= 0:
+                continue                                 # favorites only
+            p = float(norm.cdf(m / OPENER_SIGMA))
+            ev = p * (100 / -price) - (1 - p)
+            if ev >= OPENER_EV:
+                rows.append({"run_at": now.isoformat(timespec="seconds"), "date": str(g.date)[:10], "game_id": g.game_id,
+                             "start": getattr(r, "start", None), "book": r.book, "team_id": team, "opp_id": opp, "price": price,
+                             "opp_price": opp_price, "p_model": round(p, 4), "ev": round(ev, 4), "model_margin": round(m, 2)})
+    if rows:
+        os.makedirs(ML_DIR, exist_ok=True)
+        pd.DataFrame(rows)[OPENER_COLS].to_csv(OPENER_FAV, mode="a", header=not os.path.exists(OPENER_FAV), index=False)
+    return len(rows)
+
+
 def _plays_and_log(f: pd.DataFrame, lines: pd.DataFrame, live: bool = True) -> pd.DataFrame:
     if live:
         try:
+            before = _priced_keys()
             log_moneylines(lines)
+            log_opener_favs(f, lines, before)
         except Exception as e:   # never affects the card
             print(f"Moneyline log failed ({e}); continuing.")
     return _plays(f, lines, live)
