@@ -495,7 +495,8 @@ grading, the quote log and every close (CLV) are unchanged.
   - `parse_display()` keeps Novig apart: the latest prices go to `lines/novig_latest.csv`, and every change is
     appended to `lines/novig_log.csv` for the Jan 15 read.
 - **Display:** the card shows "Novig <number> (<price>)" under each play and band B play, flagged "better price" or
-  "better number" when it beats the play's number and price. The phone alert adds the same line. A bet placed at
+  "better number" when it beats the play's number and price. The phone alert adds the same line. The odds board has a separate Novig
+  column (spreads and totals), never counted in "Best" or a pick. A bet placed at
   Novig is recorded at its actual fill with the Placed button, as for any book.
 - **Test pull (Oct 30, 3 credits, `data/research/books_check.json`):** key `novig` confirmed. Novig priced 1 of 7
   posted games; every sportsbook had all 7.
