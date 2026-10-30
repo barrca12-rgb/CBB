@@ -7,7 +7,7 @@ bets/inputs.csv round-trips.
 import pandas as pd
 import pytest
 
-from cbb import barttorvik, context, data, freshness, injuries, kenpom
+from cbb import barttorvik, context, data, freshness, injuries, kenpom, odds
 
 NOW = pd.Timestamp("2026-11-05T18:00:00Z")
 
@@ -22,6 +22,7 @@ def test_fresh_stale_unknown():
     assert st == "stale" and why == "line 25m"
     st, why = freshness.judge(dict(ok, injuries=None), NOW)
     assert st == "unknown" and "injury report" in why
+    assert freshness.judge(dict(ok, barttorvik=None), NOW) == ("unknown", "Barttorvik: none this run (filled from KenPom)")
     assert freshness.judge(dict(ok, injuries=None, kenpom=NOW - pd.Timedelta(hours=50)), NOW)[0] == "stale"   # stale wins
 
 
@@ -63,7 +64,8 @@ def test_card_columns_unchanged_and_sidecar_round_trips(tmp_path, monkeypatch):
                                             "injuries": {"ok": True, "at": NOW - pd.Timedelta(hours=1)},
                                             "hoopr": {("schedule", 2027): {"ok": True, "at": NOW - pd.Timedelta(hours=1)}},
                                             "referees": {"at": NOW, "games": {7}}})
-    lines = pd.DataFrame([{"home_id": 1, "away_id": 2, "book": "DraftKings", "pulled_at": (NOW - pd.Timedelta(minutes=4)).isoformat()},
+    monkeypatch.setattr(odds.pull, "pulled_at", (NOW - pd.Timedelta(minutes=4)).isoformat(), raising=False)
+    lines = pd.DataFrame([{"home_id": 1, "away_id": 2, "book": "DraftKings", "pulled_at": None},          # this run's pull
                           {"home_id": 1, "away_id": 2, "book": "FanDuel", "pulled_at": (NOW - pd.Timedelta(minutes=40)).isoformat()}])
     card = _card()
     fr = freshness.stamp(card, pd.Timestamp("2026-11-05"), lines, run_at=NOW)
@@ -80,3 +82,15 @@ def test_card_columns_unchanged_and_sidecar_round_trips(tmp_path, monkeypatch):
     assert list(back.columns) == freshness.INPUT_COLS and len(back) == 2
     assert freshness.for_bet("2026-11-05|7|spread|home")["state"] == "stale"
     assert back.loc[1, "line_book"] == "FanDuel" and back.loc[1, "referees_at"] != ""
+
+
+def test_missing_feed_alerts_once_after_24h(tmp_path, monkeypatch):
+    monkeypatch.setattr(freshness, "ALERTED", str(tmp_path / "a.json"))
+    sent = []
+    from cbb import notify
+    monkeypatch.setattr(notify, "message", lambda t, b, **k: sent.append(t) or True)
+    monkeypatch.setattr(freshness, "LAST", {"inputs": {"barttorvik": None}})
+    freshness.alert_stale(NOW)                                   # first miss: starts the clock
+    freshness.alert_stale(NOW + pd.Timedelta(hours=25))          # 25h missing: one alert
+    freshness.alert_stale(NOW + pd.Timedelta(hours=30))          # still missing: no repeat
+    assert sent == ["CBB: Barttorvik stale"]

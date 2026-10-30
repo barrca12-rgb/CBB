@@ -453,6 +453,9 @@ def build(day: pd.Timestamp, games: pd.DataFrame, lines: pd.DataFrame | None, re
             public_record.sync()
         except Exception as e:
             print(f"Discord record failed ({e}); continuing.")
+        if new:   # alternate-line ladder, logged for research only (cbb/ladder.py; never shown, never changes a play)
+            from . import ladder
+            ladder.pull_for(new, lines)
         if new:   # forward-test log: what each new signal was built on (additive; never changes a play)
             try:
                 hist = data.season_games(season_of(day))[0] if day <= today_et() + pd.Timedelta(days=14) else None
@@ -469,6 +472,8 @@ def build(day: pd.Timestamp, games: pd.DataFrame, lines: pd.DataFrame | None, re
                 print(f"Sent {len(new_b)} band B alert(s).")
             if new_b:
                 public_record.sync()
+                from . import ladder
+                ladder.pull_for(new_b, lines)
                 try:
                     hb = data.season_games(season_of(day))[0] if day <= today_et() + pd.Timedelta(days=14) else None
                 except Exception:

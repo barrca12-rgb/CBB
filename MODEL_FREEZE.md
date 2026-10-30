@@ -549,3 +549,26 @@ existing columns are byte-identical; the stamp only adds trailing columns (`audi
 ```
 7b3e1bda77658a3c1d9e3596e5411d22ef361a3bc0e3dc64a77291beff4a9996  cbb/run_day.py
 ```
+
+## 2026-11-01: Alternate-line ladder log and freshness fixes (research only)
+
+Before any game. Picks, numbers, thresholds, stakes, grading, `bets/bets.csv` and the card CSV's existing columns are
+unchanged. Plan: `research/ladder/PLAN.md` (pre-registered before any ladder was pulled).
+
+- **What it does (`cbb/ladder.py`):** when a play is first logged (v1 or band B), the game's alternate spreads and
+  totals are pulled once from The Odds API's per-event endpoint, at the play's book and the best-price book for the
+  main number (2 credits). Every rung goes to `lines/ladder/ladders.csv`; the main-number and best-rung EVs go to
+  `lines/ladder/plays.csv`. Never shown on the card; never changes a play; never raises.
+- **Guards:** a pull reported above 2 credits switches the logger off (`lines/ladder/state.json`); no pull below
+  20,000 credits before Nov 25 or the 50,000 research floor from Nov 25.
+- **`cbb/run_day.py` (fingerprinted; non-picking):** calls `ladder.pull_for` after the v1 and band B plays are
+  logged.
+- **Freshness fixes (`cbb/freshness.py`, not fingerprinted):** a line from this run's pull takes the pull's time;
+  a feed missing from the run is named ("Barttorvik: none this run (filled from KenPom)"); a feed missing for more
+  than 24 hours sends one alert.
+- **Discord note:** none (research only).
+- **New fingerprint:**
+
+```
+3fdd80dd17933fd72e834e94a34b4d0e4caaa128bff2fdd85c778cca7bd5af5d  cbb/run_day.py
+```

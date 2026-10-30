@@ -184,8 +184,13 @@ def stamp(card: pd.DataFrame, day: pd.Timestamp, lines: pd.DataFrame | None, run
     inputs = {"kenpom": kp_at, "barttorvik": bt_at, "injuries": _injuries_at(), "schedule": _schedule_at(games_played, season)}
     refs = SEEN.get("referees")
     pulled = {}
-    if lines is not None and len(lines) and "pulled_at" in lines:
-        l = lines.assign(_p=pd.to_datetime(lines["pulled_at"], utc=True, errors="coerce"))
+    if lines is not None and len(lines):
+        # rows from this run's pull carry no pulled_at (odds.pull stamps the saved copy); rows carried over from an
+        # earlier pull keep theirs, so an old line shows its real age
+        from . import odds
+        this_pull = pd.to_datetime(getattr(odds.pull, "pulled_at", None), utc=True) if getattr(odds.pull, "pulled_at", None) else run_at
+        p = pd.to_datetime(lines["pulled_at"], utc=True, errors="coerce") if "pulled_at" in lines else pd.Series(pd.NaT, index=lines.index)
+        l = lines.assign(_p=p.fillna(this_pull))
         for (h, a, bk), t in l.groupby(["home_id", "away_id", "book"])["_p"].max().items():
             pulled[(int(h), int(a), bk)] = pulled[(int(a), int(h), bk)] = t
     rows = []
@@ -210,12 +215,17 @@ def stamp(card: pd.DataFrame, day: pd.Timestamp, lines: pd.DataFrame | None, run
     return fr
 
 
+MISSING = {"barttorvik": "Barttorvik: none this run (filled from KenPom)",
+           "lines": "line: no pull time", "injuries": "injury report: no successful pull on file",
+           "schedule": "ESPN schedule/box scores: download failed", "kenpom": "KenPom: not fetched"}
+
+
 def judge(used: dict, run_at: pd.Timestamp) -> tuple[str, str]:
     """('fresh' | 'stale' | 'unknown', 'KenPom 40h; ...'). Stale wins over unknown."""
     stale, unknown = [], []
     for k, t in used.items():
         if t is None or (isinstance(t, float) and np.isnan(t)) or pd.isna(t):
-            unknown.append(LABEL[k])
+            unknown.append(MISSING.get(k, LABEL[k]))
             continue
         age = (run_at - pd.Timestamp(t)).total_seconds() / 3600
         if age > CADENCE[k]:
@@ -223,7 +233,7 @@ def judge(used: dict, run_at: pd.Timestamp) -> tuple[str, str]:
     if stale:
         return "stale", "; ".join(stale)
     if unknown:
-        return "unknown", "no timestamp: " + ", ".join(unknown)
+        return "unknown", "; ".join(unknown)
     return "fresh", ""
 
 
@@ -295,8 +305,12 @@ def alert_stale(run_at: pd.Timestamp | None = None) -> int:
     st = json.load(open(ALERTED)) if os.path.exists(ALERTED) else {}
     sent = 0
     for k, t in inputs.items():
-        if t is None or pd.isna(t):
-            continue
+        if t is None or pd.isna(t):   # missing this run: age counted from the last run it was there (or first missed)
+            last = st.get(f"{k}_last_seen") or st.setdefault(f"{k}_missing_since", run_at.isoformat(timespec="seconds"))
+            t = pd.Timestamp(last)
+        else:
+            st[f"{k}_last_seen"] = pd.Timestamp(t).isoformat(timespec="seconds")
+            st.pop(f"{k}_missing_since", None)
         age = (run_at - pd.Timestamp(t)).total_seconds() / 3600
         if age <= ALERT_HOURS:
             st.pop(k, None)
