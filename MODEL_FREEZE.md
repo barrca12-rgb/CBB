@@ -450,3 +450,35 @@ cd73d5f31ab149aa40c372947d368ef6fd00557ef4fcbde29f6a685886ee694d  audit/forward_
 b4bce61c9074f07c41ce55128381437bc9045444e7c4fbdd3ed97a5ccd2828ee  FORWARD_TEST_PROTOCOL.md
 148bea46722ffcd26aadab92282996b18ded2e6532df12aba10fbc2008624cd8  audit/test_band_b.py
 ```
+
+## 2026-10-30: Odds API live credit reserve; band B labels, record line and overlap cell (Chad's decisions)
+
+Before any game. Predictions, the selection rules, staking, band B's rule and every v1 figure are unchanged.
+
+- **Credit reserve (`cbb/odds_api.py`, `cbb/poll_targets.py`; Chad, Oct 30):** card pulls and targeted quote polls
+  may spend The Odds API down to 10,000 credits and stop below it. Before this, card pulls stopped only below 15.
+  - One phone alert goes out the first time the balance falls below 20,000 (`lines/odds_api_alert.json`).
+  - The 50,000 floor applies to research pulls only, all scheduled after the Nov 25 renewal.
+  - At about 800 credits a day, live use is projected to leave about 25,000-37,000 credits at Nov 25 (57,637 on
+    Oct 30), so neither line is expected to bind.
+  - A stop can only remove pulls; it never changes how a pulled line is priced or picked.
+- **Band B is spreads only, in every label:** the card block and record-page section now read "Band B (spreads, edge
+  2-2.5, 0.5 u)", replacing the brief's "2-2.5 spreads, 2-3 totals" wording.
+  - The card block shows band B's own season record (`tracker.band_b_status`).
+  - The record page shows the band B section always, empty until the first play. Display only.
+- **Overlap cell (protocol v2.3, Appendix B):** band B games later bet by v1 are reported as their own cell
+  (`audit/band_b_read.py`): count, combined stake, and v1's record on them against v1 overall. If v1 wins below its
+  overall rate there, the Jan 15 proposal is that a band B play blocks a later same-side v1 bet.
+- **Tests:** `audit/test_band_b.py` adds the overlap case. `python -m pytest -q audit/`: 85 passed;
+  `audit.card_logic`: all OK.
+- **Discord note:** none. No rule, pick, stake or displayed figure of v1 changes, and band B's note already says
+  spreads only.
+- **New fingerprints:**
+
+```
+36d1d87e44df42889f3cfc57192b3a3ebb3a39b0e560818015d078880b586cf0  cbb/odds_api.py
+ae67a70fd1200babae6a771599ec7796cefbad63e063250baabe1f2b3b7debb2  cbb/poll_targets.py
+3b92a1e3908aaa3e23cb10e3c5b1ab3e00c12bfc8dcc4f1437aa114f7ff2bd0f  audit/forward_eval.py
+b43ebb22ea3745b62f58bf54c1f3d5215b32898527aa54e222f107a8fed43c19  FORWARD_TEST_PROTOCOL.md
+0398f07f4b3ed730d62d1be5ab6d691b9b99b61633a0c93b54abc4fa297a7bf1  audit/test_band_b.py
+```

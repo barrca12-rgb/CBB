@@ -32,7 +32,7 @@ listed above that is missing simply never contributes. That is a property of the
 | Targeted polls | 2 credits a call (spreads, totals), only when a game is watched | at most 480 calls a day (every 3 minutes, all day) = 960 credits a day, **at most about 29,800 a month**. Realistically, a day with 10-15 signal games watched about 115 minutes each is 150-250 calls, so 300-500 credits |
 | **Total** | | **at most about 42,000 a month against 100,000.** No upgrade or purchase is needed |
 
-`odds_api.due()` stops card pulls below 15 credits left. Targeted polls stop when the API refuses (logged as errors).
+`odds_api.due()` stops card pulls, and `poll_targets` stops targeted polls, below **10,000** credits left (live reserve, Chad, Oct 30); one phone alert goes out the first time the balance falls below **20,000** (`lines/odds_api_alert.json`). The 50,000 floor applies to research pulls only, all scheduled after the Nov 25 renewal.
 
 ## Achieved cadence
 
@@ -55,7 +55,7 @@ reported that way.
 | Overlap | `update.yml` and `quotes.yml` each have their own concurrency group (`cancel-in-progress: false`): runs of one workflow queue, never overlap |
 | Concurrent writes | the two workflows write different files (`lines/obs/` and `polls.csv` vs `lines/obs_targeted/` and `polls_targeted.csv`). Shared append-only logs use `merge=union` (`.gitattributes`). Finished days are gzipped once and never rewritten |
 | Idempotency | the signal log is keyed by `bet_id` (first row wins); an observation is written once per poll and game (`quotelog.LOGGED`); the evaluation sorts and de-duplicates deterministically |
-| Budgets | SGO 95% stop; The Odds API 15-credit floor; targeted polls spend nothing when no game is watched |
+| Budgets | SGO 95% stop; The Odds API live reserve 10,000 (card and targeted polls stop below it; alert at 20,000); research pulls keep a 50,000 floor; targeted polls spend nothing when no game is watched |
 | Failure logging | every card-run poll attempt (ok, skipped, error with text) is in `lines/polls.csv`, and every targeted poll that calls the API (ok or error) in `lines/polls_targeted.csv`; every alert attempt in `bets/alert_log.csv`. Every logger call catches its own errors, so logging can never stop a card run |
 
 ## Discord record

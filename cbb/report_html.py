@@ -126,6 +126,16 @@ def _clv_view() -> dict:
     return out
 
 
+def _band_b_view() -> dict | None:
+    """Band B's own season record for the card's band B block (tracker.band_b_status, spreads only). Display only."""
+    from . import tracker
+    try:
+        return {k: _clean(v) for k, v in tracker.band_b_status()["all"].items()}
+    except Exception as e:
+        print(f"Band B record failed ({e}); continuing.")
+        return None
+
+
 def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, replay: bool = False,
           record: dict | None = None) -> str:
     card = _logged_view(card)
@@ -144,7 +154,8 @@ def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, 
             "record": {"status": record["status"], "tripwire": record.get("tripwire"), "clv": clv,
                        "recent": [{k: _clean(v) for k, v in r.items()} for r in
                                   (clv_recent if clv_recent is not None else record["recent"])],
-                       "review": json.loads(json.dumps(record.get("review") or {}, default=_clean))}
+                       "review": json.loads(json.dumps(record.get("review") or {}, default=_clean)),
+                       "band_b": _band_b_view()}
             if record else None}
     payload = json.dumps(data).replace("</", "<\\/")
     title = f"Off The Glass · College Basketball · {day:%a %b} {day.day}"
@@ -342,7 +353,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   </section>
 
   <section class="panel" aria-labelledby="bandb-h" id="bandb-sec" hidden>
-    <div class="panel-h"><h2 id="bandb-h">Band B (2-2.5 spreads, 2-3 totals, 0.5 u)</h2><span class="note">A separate bet type, never counted in the record above: v1's edge 2-2.49 on a spread with v1's +2% EV rule, 0.5 unit flat. Totals band B is switched off.</span></div>
+    <div class="panel-h"><h2 id="bandb-h">Band B (spreads, edge 2-2.5, 0.5 u)</h2><span class="note" id="bandb-rec">A separate bet type on spreads only, never counted in the record above: v1's edge of 2-2.49 points with v1's +2% EV rule, 0.5 unit flat.</span></div>
     <div class="scroll"><table id="t-bandb"></table></div>
   </section>
 
@@ -524,6 +535,10 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   }));
   BB.sort((a, b) => String(a.g.start).localeCompare(String(b.g.start)) || b.edge - a.edge);
   $("bandb-sec").hidden = D.replay;
+  const bbr = D.record && D.record.band_b;   // band B's own season record (tracker.band_b_status), never pooled
+  if (bbr) $("bandb-rec").textContent = "Season: " + bbr.w + "–" + bbr.l + (bbr.p ? "–" + bbr.p : "") + " · " + sgn(bbr.units, 2) + "u" +
+    (bbr.clv != null ? " · Alert CLV " + clvf(bbr.clv) + " on " + bbr.clv_n : "") + (bbr.open ? " · " + bbr.open + " open" : "") +
+    ". A separate bet type on spreads only, never counted in the record above: v1's edge of 2-2.49 points with v1's +2% EV rule, 0.5 unit flat.";
   $("t-bandb").innerHTML = BB.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r'>Edge</th><th class='r'>Units</th><th class='r'>Result</th><th></th></tr></thead><tbody>" +
     BB.map((p) => "<tr><td><div class='b pick'><span class='tag'>Band B</span> " + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div></td><td>" +
       esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r'>" + sgn(p.edge) + "</td><td class='r'>" + num(p.units, 2) +

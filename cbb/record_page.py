@@ -251,19 +251,17 @@ def _plays_table(live: pd.DataFrame, empty: str) -> str:
 
 
 def _band_b_section() -> str:
-    """Band B (cbb/tracker.py BAND_B): its own summary tile and plays, never pooled with v1. Empty until the first
-    band B play is logged, so the page is unchanged before then."""
+    """Band B (cbb/tracker.py BAND_B): its own summary and plays, never pooled with v1. Always shown (Chad, Oct 30),
+    with an empty table until the first band B play."""
     b = tracker.load(tracker.BAND_B)
-    if not len(b):
-        return ""
-    b = clv_primary.attach(b)
+    b = clv_primary.attach(b) if len(b) else b.assign(clv_pts=np.nan, close_line=np.nan, clv_same_book=np.nan)
     live = b[(b["status"] != "void") & (b["placed"].astype(str).str.lower() != "no")]
     s = live[live["status"] == "settled"]
-    rows = [_row("Band B, all", summary(s))]
-    rows += [_row(f"Band B, {lbl}", summary(s[s["market"] == mk])) for mk, lbl in (("spread", "spreads"), ("total", "totals"))]
-    return (f"<section class='panel'><div class='panel-h'><h2>Band B (2-2.5 spreads, 2-3 totals, 0.5 u)</h2>"
-            f"<span class='note'>A separate bet type, not included in the record above: v1's edge of 2-2.49 points on a "
-            f"spread, with v1's +2% EV rule, 0.5 unit flat. Totals band B is switched off.</span></div>"
+    rows = [_row("Band B spreads", summary(s))]
+
+    return (f"<section class='panel'><div class='panel-h'><h2>Band B (spreads, edge 2-2.5, 0.5 u)</h2>"
+            f"<span class='note'>A separate bet type on spreads only, not included in the record above: v1's edge of "
+            f"2-2.49 points, with v1's +2% EV rule, 0.5 unit flat. Units are at the 0.5-unit stake.</span></div>"
             f"<div class='scroll'><table>{HEAD}<tbody>{''.join(rows)}</tbody></table></div>"
             f"<div class='scroll'><table>{_plays_table(live, 'No band B plays yet.')}</table></div></section>")
 

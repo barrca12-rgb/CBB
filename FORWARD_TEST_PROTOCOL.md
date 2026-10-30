@@ -1,4 +1,4 @@
-# Forward-test protocol, v2.2 (declared Oct 26, 2026, before the season's first games on Nov 1; v2.1 Oct 28; v2.2 Oct 29)
+# Forward-test protocol, v2.3 (declared Oct 26, 2026, before the season's first games on Nov 1; v2.1 Oct 28; v2.2 Oct 29; v2.3 Oct 30)
 
 This file fixes how the 2026-27 live record is collected and judged. It is fingerprinted in `MODEL_FREEZE.md`
 together with its evaluation code, `audit/forward_eval.py`, and that code's tests, `audit/test_forward_eval.py`.
@@ -343,14 +343,24 @@ The same best-book choice, opening-week rule and accepted-price flow apply.
 - **Logging:** in `bets/bets.csv` with `bet_type` = "bandB" and a bet id ending in `|bandB`. Each play is alerted
   and posted with the tag.
 - **One bet per game and market:** a game and market that v1 has already bet is never logged as band B. If a game
-  logged as band B later reaches v1's cutoff, v1 logs it as usual and the band B play stands. That play counts in
-  band B only, and each read reports how many such games there were.
+  logged as band B later reaches v1's cutoff, v1 logs it as usual and the band B play stands. Each bet counts in
+  its own record only.
+- **Overlap cell (v2.3):** such games put 0.5 + 1 units on one side. Every read reports them as their own cell
+  (`python -m audit.band_b_read`):
+  - count and combined stake;
+  - v1's record, units and Alert CLV on those games against v1's record overall;
+  - band B's record on them;
+  - the opposite-side case (a hedge) separately.
+
+  If v1 wins below its overall rate on these games, the Jan 15 proposal to Chad is that a band B play blocks a
+  later v1 bet on the same side. That would be a v1 change and needs his approval.
 
 **Cohorts and measures.** Every band B play is cohort A. It gets the same primary close (section 7), delay windows
 (section 6), accepted-price fields (section 4) and immutability check as a v1 play. It is read with the same code as
 its own version, `python -m audit.forward_eval --version bandB`, and never pooled with v1.
 
-**Decision rule** (fixed now; measured on settled band B plays at the primary close, at recorded prices):
+**Decision rule** (fixed now; measured on settled band B plays at the primary close, at recorded prices; band B is
+spreads only, so the per-market clause below applies only if totals are ever switched on):
 - **Jan 15:** descriptive only.
 - **Decision read:** at 300 settled band B plays, or on Mar 14, whichever comes first.
   - Mean primary CLV above +0.3 points **and** win rate above 52.4%: keep band B and move it to 1 unit.
@@ -395,3 +405,6 @@ to Chad, not an automatic pause.
     (`--version bandB`). In the delayed check, B_rule uses band B's 2.0-point floor for band B plays.
   - v1's endpoints, tests, thresholds, games and every v1 number are unchanged. The test is
     `audit/test_band_b.py`.
+- v2.3 (2026-10-30, before any game and before any band B play was logged; helper note, Chad's go-ahead): Appendix
+  B adds the overlap cell. It reports band B games later bet by v1 as their own cell (`audit/band_b_read.py`), with
+  the Jan 15 proposal condition. It also states that band B is spreads only. No rule, endpoint or threshold changes.

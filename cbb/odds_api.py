@@ -8,6 +8,11 @@ Needs ODDS_API_KEY (repository secret). Each pull costs 3 credits (spreads, tota
 as one region). The free plan's 500 credits a month cover the pulls in PULL_HOURS (about 4 a day); set
 ODDS_API_EVERY_RUN=1 on a paid plan to pull on every run. Manual runs (the Update button) always pull. Usage is kept
 in lines/odds_api_usage.json; pulls stop when fewer than MIN_LEFT credits remain.
+
+Credit reserve (Chad, Oct 30): the live system (card pulls here and the targeted quote polls, cbb/poll_targets.py)
+may spend down to MIN_LEFT = 10,000 credits and stops below it; one phone alert goes out the first time the balance
+falls below ALERT_AT = 20,000 (lines/odds_api_alert.json). The 50,000 floor belongs to research pulls only (their own
+workflows), whose pulls are all scheduled after the Nov 25 renewal.
 """
 from __future__ import annotations
 
@@ -29,9 +34,41 @@ CORE = ["draftkings", "fanduel", "betmgm", "williamhill_us"]
 # Book keys the API refused (wrong or not offered), found once by trying each extra book alone and then skipped
 REFUSED = os.path.join(os.path.dirname(__file__), "..", "lines", "odds_api_refused_books.json")
 PULL_HOURS = {7, 12, 18, 23}     # ET hours of the scheduled runs that pull (7:37 am, 12:37, 6:07 pm, 11:37 pm)
-MIN_LEFT = 15
+MIN_LEFT = 10_000                 # live reserve: card pulls and targeted polls stop below this (Chad, Oct 30)
+ALERT_AT = 20_000                 # one phone alert the first time the balance falls below this
+ALERTED = os.path.join(os.path.dirname(__file__), "..", "lines", "odds_api_alert.json")
 MAX_AGE = pd.Timedelta(hours=12)
 USAGE = os.path.join(os.path.dirname(__file__), "..", "lines", "odds_api_usage.json")
+
+
+def budget_ok() -> bool:
+    """False once the last recorded balance is below the live reserve (MIN_LEFT)."""
+    u = json.load(open(USAGE)) if os.path.exists(USAGE) else {}
+    return u.get("remaining") is None or u["remaining"] >= MIN_LEFT
+
+
+def _alert_low(remaining) -> None:
+    """One phone alert the first time the balance falls below ALERT_AT (re-armed once it is back above)."""
+    if remaining is None:
+        return
+    st = json.load(open(ALERTED)) if os.path.exists(ALERTED) else {}
+    if remaining >= ALERT_AT:
+        if st.get("sent"):
+            json.dump({"sent": False}, open(ALERTED, "w"))
+        return
+    if st.get("sent"):
+        return
+    try:
+        from . import notify
+        ok = notify.message("CBB: Odds API credits low",
+                            f"{remaining:,} credits left (alert below {ALERT_AT:,}). Card pulls and targeted quote polls "
+                            f"stop below {MIN_LEFT:,}. The plan renews Nov 25.")
+    except Exception as e:
+        print(f"Low-credit alert failed ({e}); continuing.")
+        ok = False
+    if ok:
+        json.dump({"sent": True, "remaining": int(remaining), "at": pd.Timestamp.now(tz="UTC").isoformat(timespec="seconds")},
+                  open(ALERTED, "w"))
 
 
 def due() -> bool:
@@ -186,4 +223,5 @@ def fetch(api_key: str | None = None) -> pd.DataFrame:
     with open(USAGE, "w") as f:
         json.dump(u, f)
     fetch.usage = u
+    _alert_low(u["remaining"])
     return df

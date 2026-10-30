@@ -86,3 +86,13 @@ def test_v1_figures_ignore_band_b_rows(log):
 def test_a_game_v1_already_bet_is_never_also_band_b(log):
     tracker.log(_card(12.5), pd.Timestamp("2026-11-04"), {"spread": 1.0, "total": 1.0})
     assert tracker.log_band_b(_card(12.2), pd.Timestamp("2026-11-04")) == []   # the line moved; v1 holds the game
+
+
+def test_a_band_b_game_later_bet_by_v1_is_reported_as_its_own_cell(log):
+    from audit import band_b_read
+    tracker.log_band_b(_card(12.2), pd.Timestamp("2026-11-04"))          # band B first, home +10 at edge 2.2
+    import time; time.sleep(1.1)                                          # logged_at has one-second resolution
+    tracker.log(_card(12.6), pd.Timestamp("2026-11-04"), {"spread": 1.0, "total": 1.0})   # model moved: v1 joins
+    m = band_b_read.overlaps(tracker.load("all"))
+    assert len(m) == 1 and bool(m.iloc[0]["same_side"]) and m.iloc[0]["combined_stake"] == 1.5
+    assert len(tracker.load()) == 1 and len(tracker.load("bandB")) == 1  # both stand, each in its own record

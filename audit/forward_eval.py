@@ -18,7 +18,7 @@ import numpy as np
 import pandas as pd
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
-PROTOCOL_VERSION = "2.2"
+PROTOCOL_VERSION = "2.3"
 
 # --- model versions (protocol sections 1 and 8) ------------------------------------------------------------------
 # Model v1 = the live card at the freeze commit (committed 2026-10-26T19:20:50Z). A switch to v2 at a checkpoint sets

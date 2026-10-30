@@ -30,6 +30,11 @@ def _poll() -> None:
     if not watched:   # idle: no API call and no log row (the Actions run history shows the schedule is alive)
         print("Nothing to watch.")
         return
+    if not odds_api.budget_ok():   # live credit reserve (odds_api.MIN_LEFT), from the card runs' latest balance
+        quotelog.poll("oddsapi-targeted", "error", quotelog.now(),
+                      error=f"credit reserve: stopped below {odds_api.MIN_LEFT} credits left")
+        print(f"Credit reserve reached (below {odds_api.MIN_LEFT}); no targeted poll.")
+        return
     try:
         obs, info = odds_api.fetch_quotes()
     except Exception as e:

@@ -240,3 +240,16 @@ Notes for applying it. These are not part of the action.
   timestamp are left out of `closing.csv`, so an untouched line could first "appear" when its book updates it.
 - **Lags measure logging, not betting:** each one is time to the logged alert, not to a bet being placed or still
   being available.
+
+## Chad's decision, Oct 30: which lag the Nov 12 rule uses
+The rule's lag is the **upper bound: from the feed's previous poll that did not have the number to the alert**, not
+the alert's own run. With a 10-minute cadence the true posting moment is spread evenly over the poll interval, so
+the expected lag is about half the cadence plus processing, about 5 minutes. By this measure the preseason median
+sits at the 5-minute line, and Chad expects the action to fire on Nov 12: a proposal for 3-minute polling in the
+posting window, about +126 Odds API credits a day. The Nov 12 read computes it on alerts logged from Nov 1 (ET) and
+puts the proposal with its cost to Chad. The cadence itself is set outside the repo (cron-job.org, Chad's account);
+a change is a freeze entry.
+
+**Which books SGO had first (2 of 31 openers):** FanDuel (128 minutes ahead of The Odds API) and theScore Bet (68
+minutes ahead), both on Notre Dame vs Villanova, Oct 28. The Odds API was polled every 10 minutes the whole time and
+did not have them.
