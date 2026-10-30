@@ -34,3 +34,16 @@ def test_edges():
 def test_no_key_no_pull(monkeypatch):
     monkeypatch.delenv("ODDS_API_KEY", raising=False)
     assert ladder.pull_for([{"bet_id": "b"}], pd.DataFrame()) == 0
+
+
+def test_event_id_when_sgo_quotes_every_book(tmp_path, monkeypatch):
+    """odds.py drops the Odds API rows for books SGO quotes, so the id comes from the Novig file or the events list."""
+    lines = pd.DataFrame([{"home_id": 1, "away_id": 2, "book": "DraftKings", "sgo_event": "sgoABC"}])
+    nv = tmp_path / "novig.csv"
+    monkeypatch.setattr(ladder.odds_api, "NOVIG_LATEST", str(nv))
+    monkeypatch.setattr(ladder, "_EVENTS", {frozenset((1, 2)): "fromlist"})
+    assert ladder._event_id(lines, 1, 2, "k") == "fromlist"
+    pd.DataFrame([{"event_id": "fromnovig", "home_id": 2, "away_id": 1}]).to_csv(nv, index=False)
+    assert ladder._event_id(lines, 1, 2, "k") == "fromnovig"
+    oa = pd.concat([lines, pd.DataFrame([{"home_id": 1, "away_id": 2, "book": "BetMGM", "sgo_event": "oa:fromlines"}])])
+    assert ladder._event_id(oa, 1, 2, "k") == "fromlines"

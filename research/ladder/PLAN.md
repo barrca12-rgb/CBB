@@ -10,6 +10,9 @@ the best EV on the ladder is sometimes a point off the main number at a better p
 ## Cost (The Odds API; SGO ends Nov 25)
 - **Per pull:** the per-event odds endpoint, `markets=alternate_spreads,alternate_totals`, one region, the play's
   book and the best-price book for the main number. Ten books count as one region, so a pull is 2 credits.
+- **Event id:** from this run's Odds API line rows, else the Novig file, else The Odds API's events list, which
+  uses no credits (added Nov 1 before any pull: `odds.py` drops the Odds API rows for books SGO already quotes, so
+  the line rows alone would skip SGO-covered games).
 - **Per play:** one pull, never repeated. Two plays on the same game in the same card run share it.
 - **Per day:** about 15 v1 and 4 band B plays a game day (2023-26 backtest), so roughly 24-38 credits. That is under
   the brief's 40-credit stop.

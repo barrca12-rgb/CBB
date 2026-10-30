@@ -29,6 +29,7 @@ LADDERS = os.path.join(DIR, "ladders.csv")
 PLAYS = os.path.join(DIR, "plays.csv")
 STATE = os.path.join(DIR, "state.json")
 EVENT = "https://api.the-odds-api.com/v4/sports/basketball_ncaab/events/{}/odds"
+EVENTS = "https://api.the-odds-api.com/v4/sports/basketball_ncaab/events"   # list only: free
 MAX_COST = 2
 MIN_BALANCE = 20_000
 RENEWAL, RESEARCH_FLOOR = pd.Timestamp("2026-11-25", tz="America/New_York"), 50_000
@@ -66,12 +67,44 @@ def edge_at(market: str, side: str, model: float, line: float) -> float:
     return model - line if side == "over" else line - model
 
 
-def _event_id(lines: pd.DataFrame, h: int, a: int) -> str | None:
-    if lines is None or not len(lines) or "sgo_event" not in lines:
+def _event_id(lines: pd.DataFrame, h: int, a: int, key: str = "") -> str | None:
+    """The Odds API's event id for the game: from this run's Odds API line rows ("oa:" ids), else the Novig file
+    (pulled from the same Odds API call), else The Odds API's events list (free: it uses no credits). The line rows
+    alone are not enough: odds.py drops the Odds API rows for every book SGO already quotes."""
+    pair = lambda d, hc, ac: (((d[hc] == h) & (d[ac] == a)) | ((d[hc] == a) & (d[ac] == h)))
+    if lines is not None and len(lines) and "sgo_event" in lines:
+        m = lines[pair(lines, "home_id", "away_id") & lines["sgo_event"].astype(str).str.startswith("oa:")]
+        if len(m):
+            return m["sgo_event"].iloc[0][3:]
+    if os.path.exists(odds_api.NOVIG_LATEST):
+        n = pd.read_csv(odds_api.NOVIG_LATEST)
+        n = n[pair(n, "home_id", "away_id")] if len(n) else n
+        if len(n) and pd.notna(n["event_id"].iloc[0]):
+            return str(n["event_id"].iloc[0])
+    try:
+        return _events(key).get(frozenset((h, a))) if key else None
+    except Exception as e:
+        print(f"Ladder: Odds API events list failed ({e}).")
         return None
-    m = lines[(((lines["home_id"] == h) & (lines["away_id"] == a)) | ((lines["home_id"] == a) & (lines["away_id"] == h)))
-              & lines["sgo_event"].astype(str).str.startswith("oa:")]
-    return m["sgo_event"].iloc[0][3:] if len(m) else None
+
+
+_EVENTS: dict | None = None
+
+
+def _events(key: str) -> dict:
+    """{frozenset(home_id, away_id): event id} from The Odds API's events list, once per run (no credits)."""
+    global _EVENTS
+    if _EVENTS is None:
+        _EVENTS = {}
+        req = urllib.request.Request(EVENTS + "?" + urllib.parse.urlencode({"apiKey": key}), headers={"User-Agent": "cbb-model"})
+        with urllib.request.urlopen(req, timeout=60) as r:
+            evs = json.load(r)
+        look = odds_api._lookup()
+        for e in evs:
+            h, a = look.get(teams.norm(e.get("home_team") or "")), look.get(teams.norm(e.get("away_team") or ""))
+            if h is not None and a is not None:
+                _EVENTS[frozenset((int(h), int(a)))] = e["id"]
+    return _EVENTS
 
 
 def _best_book(lines: pd.DataFrame, bet: dict) -> str | None:
@@ -153,7 +186,7 @@ def pull_for(new_bets: list[dict], lines: pd.DataFrame | None) -> int:
             if bet["bet_id"] in done:
                 continue
             h, a = int(bet["home_id"]), int(bet["away_id"])
-            eid = _event_id(lines, h, a)
+            eid = _event_id(lines, h, a, key)
             if eid is None:
                 print(f"Ladder: no Odds API event for {bet['bet_id']}; skipped.")
                 continue
