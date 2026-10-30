@@ -306,6 +306,7 @@ a.odd:hover { background: var(--sunken); text-decoration: none }
 .board td.edge { white-space: normal; min-width: 110px; max-width: 170px } .tag { white-space: normal }
 .bestc { display: none; text-align: right } .tm-sm { display: none; color: var(--faint); font-size: 11px }
 @media (max-width: 1100px) { .bk-minor, .hide-md { display: none } .board .bestc { display: table-cell } }
+.board th.nv, .board td.nv { border-left: 1px dashed var(--line-strong) }
 .bestc small { display: block; color: var(--faint); font-size: 11px }
 .board tbody.g.has-bet { background: linear-gradient(90deg, var(--brand) 0 3px, transparent 3px) }
 
@@ -639,8 +640,15 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       .sort((a, b) => String(a.start).localeCompare(String(b.start)) || a.home.localeCompare(b.home));
     const mh = {spread: "Model", total: "Model", ml: "Win %"}[market];
     let h = "<thead><tr><th class='tm'>Time</th><th>Team</th><th class='r pts'>Proj</th><th class='r'>" + mh + "</th>" +
-      BOOKS.map((b, j) => "<th class='bk" + (j >= 4 ? " bk-minor" : "") + "'>" + b + "</th>").join("") + "<th class='bestc'>Best</th><th class='r edge'>Edge</th></tr></thead>";
-    if (!G.length) { $("t-board").innerHTML = h + "<tbody><tr><td class='empty' colspan='" + (BOOKS.length + 5) + "'>No games.</td></tr></tbody>"; return; }
+      BOOKS.map((b, j) => "<th class='bk" + (j >= 4 ? " bk-minor" : "") + "'>" + b + "</th>").join("") +
+      "<th class='bk nv' title='Novig exchange price, shown only: never used for picks, Best or CLV'>Novig</th>" +
+      "<th class='bestc'>Best</th><th class='r edge'>Edge</th></tr></thead>";
+    if (!G.length) { $("t-board").innerHTML = h + "<tbody><tr><td class='empty' colspan='" + (BOOKS.length + 6) + "'>No games.</td></tr></tbody>"; return; }
+    // Novig (show-only, cbb/odds_api.py DISPLAY_BOOKS): its own column, never in Best or a pick
+    const nvCell = (g, sd, i) => { const n = g.novig; if (!n) return cell(null);
+      if (market === "spread") return n.home_spread == null ? cell(null) : cell(ln(sd === "home" ? n.home_spread : -n.home_spread), n[sd + "_spread_odds"], null, false);
+      if (market === "total") { const ou = i === 0 ? "over" : "under"; return n.total == null ? cell(null) : cell((i === 0 ? "o" : "u") + num(n.total), n[ou + "_odds"], null, false); }
+      return cell(null); };
     h += G.map((g) => {
       const sides = ["away", "home"];
       const hasBet = (market === "spread" && (g.spread_verdict === "BET" || loggedSide(g, "spread"))) ||
@@ -680,7 +688,8 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
           (i === 1 && !g.neutral ? "<span class='f'>@ </span>" : "") + logo(g[sd + "_id"], 18) + esc(team) +
           (g.state === "post" ? " <span class='m'>" + esc(g[sd + "_score"]) + "</span>" : "") +
           (g[sd + "_injuries"] ? "<div class='inj'>" + esc(g[sd + "_injuries"]) + "</div>" : "") + "</td><td class='r pts'>" + pts + "</td><td class='r b'>" + model + "</td>" +
-          bookCells.map((c, j) => "<td class='bk" + (j >= 4 ? " bk-minor" : "") + "'>" + c + "</td>").join("") + "<td class='bestc'>" + best(g, sd, i) + "</td><td class='r edge'>" + edge + "</td></tr>";
+          bookCells.map((c, j) => "<td class='bk" + (j >= 4 ? " bk-minor" : "") + "'>" + c + "</td>").join("") + "<td class='bk nv'>" + nvCell(g, sd, i) + "</td>" +
+          "<td class='bestc'>" + best(g, sd, i) + "</td><td class='r edge'>" + edge + "</td></tr>";
       }).join("");
       return "<tbody class='g" + (hasBet ? " has-bet" : "") + "' data-gid='" + g.game_id + "'>" + rows + "</tbody>";
     }).join("");
