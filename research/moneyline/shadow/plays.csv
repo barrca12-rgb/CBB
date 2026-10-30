@@ -1,0 +1,4 @@
+bet_id,type,date,game_id,pick,side,spread_line,spread_book,logged_at,status,spread_units,p_conversion,p_margin,ml_state
+2026-11-02|401916313|spread|away,v1,2026-11-02,401916313,Ohio State +1.5,away,1.5,DraftKings,2026-10-26T01:53:02+00:00,open,,0.5790946105670189,0.5798506164186189,before the price log
+2026-11-02|401921704|spread|home,v1,2026-11-02,401921704,Purdue +4.5,home,4.5,DraftKings,2026-10-26T02:28:35+00:00,open,,0.4280475494780962,0.4273581891853143,before the price log
+2026-11-02|401906769|spread|home,v1,2026-11-02,401906769,Florida -5.5,home,-5.5,Caesars,2026-10-26T02:40:27+00:00,open,,0.7794940268783834,0.7817007577662978,before the price log

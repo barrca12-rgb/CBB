@@ -1,0 +1,5 @@
+Spread plays (v1 and band B, not void): 3
+  logged before the price log started (kept out of the reads): 3
+
+Graded plays recorded after the price log started:
+  none graded yet
