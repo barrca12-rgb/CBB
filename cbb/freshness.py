@@ -215,9 +215,9 @@ def stamp(card: pd.DataFrame, day: pd.Timestamp, lines: pd.DataFrame | None, run
     return fr
 
 
-MISSING = {"barttorvik": "Barttorvik: none this run (filled from KenPom)",
-           "lines": "line: no pull time", "injuries": "injury report: no successful pull on file",
-           "schedule": "ESPN schedule/box scores: download failed", "kenpom": "KenPom: not fetched"}
+MISSING = {"barttorvik": "no Barttorvik ratings yet, KenPom used in their place",
+           "lines": "line time not recorded", "injuries": "no injury report pulled yet",
+           "schedule": "ESPN schedule download failed", "kenpom": "KenPom not fetched"}
 
 
 def judge(used: dict, run_at: pd.Timestamp) -> tuple[str, str]:

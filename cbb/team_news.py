@@ -24,6 +24,7 @@ WATCH = os.path.join(ROOT, "data", "eligibility_watch.csv")
 LOG = os.path.join(ROOT, "injuries", "news_log.csv")
 URL = "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/news?team={}&limit=50"
 LOOKBACK = pd.Timedelta(days=7)
+MAX_TEAMS = 4      # ESPN tags league-wide stories (rankings, "eligibility chaos") with 25-65 teams; team news has 1-4
 KEYWORDS = re.compile(
     r"\b(eligib\w*|ineligib\w*|ruling|injunction|court|lawsuit|waiver|suspend\w*|dismiss\w*|reinstat\w*|"
     r"out for (?:the )?season|season-ending|torn|tear|surgery|fractur\w*|concussion|indefinitely|"
@@ -48,10 +49,10 @@ def team_articles(team_id: int, now: pd.Timestamp) -> list[dict]:
         arts = json.load(r).get("articles") or []
     out = []
     for a in arts:
-        tagged = any(c.get("type") == "team" and str(c.get("teamId") or (c.get("team") or {}).get("id")) == str(int(team_id))
-                     for c in a.get("categories") or [])
+        tags = [str(c.get("teamId") or (c.get("team") or {}).get("id")) for c in a.get("categories") or [] if c.get("type") == "team"]
+        tagged = str(int(team_id)) in tags
         pub = pd.to_datetime(a.get("published"), utc=True, errors="coerce")
-        if not tagged or pd.isna(pub) or now - pub > LOOKBACK:
+        if not tagged or len(tags) > MAX_TEAMS or pd.isna(pub) or now - pub > LOOKBACK:
             continue
         text = f"{a.get('headline') or ''} {a.get('description') or ''}"
         m = KEYWORDS.findall(text)
@@ -94,7 +95,7 @@ def annotate(card: pd.DataFrame, now: pd.Timestamp | None = None) -> pd.DataFram
             active |= card[f"{mk}_verdict"].isin(["BET", "WATCH"])
     cache, hits, errors = {}, [], 0
     for i, g in card[active].iterrows():
-        notes = []
+        arts, notes = {}, []                      # one line per article, naming every team of this game it is tagged with
         for tid in (int(g["away_id"]), int(g["home_id"])):
             if tid not in cache:
                 try:
@@ -104,8 +105,11 @@ def annotate(card: pd.DataFrame, now: pd.Timestamp | None = None) -> pd.DataFram
                     cache[tid] = []
                     errors += 1
             for a in cache[tid][:2]:
-                d = pd.Timestamp(a["published"]).tz_convert("America/New_York")
-                notes.append(f"News ({names.get(tid, tid)}, {d:%b %-d}): {a['headline']}")
+                arts.setdefault(a["article_id"], (a, []))[1].append(names.get(tid, tid))
+        for a, who in arts.values():
+            d = pd.Timestamp(a["published"]).tz_convert("America/New_York")
+            notes.append(f"News ({', '.join(map(str, who))}, {d:%b %-d}): {a['headline']}")
+        for tid in (int(g["away_id"]), int(g["home_id"])):
             if tid in watch:
                 notes.append("Eligibility watch: " + watch[tid])
         card.loc[i, "news_flag"] = " · ".join(notes)

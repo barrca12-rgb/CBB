@@ -22,7 +22,7 @@ def test_fresh_stale_unknown():
     assert st == "stale" and why == "line 25m"
     st, why = freshness.judge(dict(ok, injuries=None), NOW)
     assert st == "unknown" and "injury report" in why
-    assert freshness.judge(dict(ok, barttorvik=None), NOW) == ("unknown", "Barttorvik: none this run (filled from KenPom)")
+    assert freshness.judge(dict(ok, barttorvik=None), NOW) == ("unknown", "no Barttorvik ratings yet, KenPom used in their place")
     assert freshness.judge(dict(ok, injuries=None, kenpom=NOW - pd.Timedelta(hours=50)), NOW)[0] == "stale"   # stale wins
 
 

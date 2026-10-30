@@ -296,8 +296,6 @@ tbody tr:last-child td { border-bottom: 0 }
 .tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 6px; border-radius: 4px; border: 1px solid var(--line-strong); color: var(--muted) }
 .tag.bet { color: #fff; border-color: var(--brand); background: var(--brand) }
 .tag.logged { color: var(--brand); border-color: var(--brand); background: transparent }
-.tag.vn-ok { color: var(--pos); border-color: var(--pos) } .tag.vn-bad { color: #fff; border-color: var(--neg); background: var(--neg) }
-.tag.vn-unk { color: var(--warn); border-color: var(--warn) }
 
 /* Segmented control */
 .seg { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 6px; overflow: hidden }
@@ -538,27 +536,23 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     }).filter(Boolean).sort((p, q) => q.key - p.key || pay(q.price) - pay(p.price));
     return L.length ? "Also: " + L.map((x) => x.book + " " + x.txt + (x.price != null ? " (" + odds(x.price) + ")" : "")).join(" · ") : "";
   };
-  // Venue check of the neutral flag (cbb/venue.py): a mark on every play, the venue on hover; display only
+  // Venue check of the neutral flag (cbb/venue.py): shown only when the listed arena contradicts the flag; display only
   const venueTag = (g) => {
-    const s = g.venue_state || "unknown";
+    if ((g.venue_state || "unknown") !== "conflict") return "";
     const where = [g.venue_venue, g.venue_city].filter(Boolean).join(", ");
-    const why = [s !== "confirmed" ? g.venue_reason : "", g.venue_edge].filter(Boolean).join("; ");
-    const ttl = (where || "venue not listed") + (why ? " · " + why : "") + " · flag: " + (g.neutral ? "neutral" : "home game");
-    return " <span class='tag " + ({confirmed: "vn-ok", conflict: "vn-bad"}[s] || "vn-unk") + "' title='" + esc(ttl) + "'>Venue " +
-      ({confirmed: "&#10003;", conflict: "conflict", unknown: "?"}[s] || "?") + "</span>" +
-      (s === "conflict" ? "<div class='inj'>&#9888; Venue conflict: " + esc(g.venue_reason || "") + (where ? " (" + esc(where) + ")" : "") + ". The model used the " + (g.neutral ? "neutral" : "home") + " flag.</div>" : "");
+    return "<div class='inj'>&#9888; Venue conflict: " + esc(g.venue_reason || "") + (where ? " (" + esc(where) + ")" : "") + ". The model used the " + (g.neutral ? "neutral" : "home") + " flag.</div>";
   };
-  // Input freshness (cbb/freshness.py): fresh / stale / unknown per play, the stale input named; display only
+  // Input freshness (cbb/freshness.py): nothing when every input is current; otherwise one line naming the input, with
+  // every input's time on hover; display only
   const freshTag = (g, kind) => {
     const mk = kind === "Spread" ? "spread" : "total", s = g[mk + "_fresh"];
-    if (!s) return "";
+    if (!s || s === "fresh") return "";
     const ts = (k, lab) => g["fresh_" + k] ? lab + " " + new Date(g["fresh_" + k]).toLocaleString("en-US", {timeZone: "America/New_York", month: "short", day: "numeric", hour: "numeric", minute: "2-digit"}) : lab + " –";
-    const ttl = [ts("kenpom_at", "KenPom"), ts("barttorvik_at", "Barttorvik"), ts("injuries_at", "injuries"), ts("schedule_at", "schedule"),
+    const ttl = "Inputs used: " + [ts("kenpom_at", "KenPom"), ts("barttorvik_at", "Barttorvik"), ts("injuries_at", "injuries"), ts("schedule_at", "schedule"),
       g[mk + "_line_at"] ? "line (" + (g[mk + "_line_book"] || "") + ") " + new Date(g[mk + "_line_at"]).toLocaleTimeString("en-US", {timeZone: "America/New_York", hour: "numeric", minute: "2-digit"}) : "line –"].join(" · ");
-    const why = g[mk + "_stale_inputs"] || "";
-    return " <span class='tag " + ({fresh: "vn-ok", stale: "vn-bad"}[s] || "vn-unk") + "' title='" + esc(ttl + (why ? " · " + why : "")) + "'>Inputs " +
-      ({fresh: "&#10003;", stale: "stale", unknown: "?"}[s] || "?") + "</span>" +
-      (s === "stale" ? "<div class='inj'>&#9888; Stale input: " + esc(why) + "</div>" : "");
+    const why = g[mk + "_stale_inputs"] || "an input has no timestamp";
+    return s === "stale" ? "<div class='inj' title='" + esc(ttl) + "'>&#9888; Old input: " + esc(why) + "</div>"
+      : "<div class='f' style='font-size:12px' title='" + esc(ttl) + "'>" + esc(why.charAt(0).toUpperCase() + why.slice(1)) + "</div>";
   };
   // Novig (show-only exchange price, never used for picks): its number and price on the bet's side, and whether it
   // beats the number and price shown for the play
@@ -595,7 +589,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   $("t-plays").innerHTML = P.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r hide-sm hide-md'>Model</th><th class='r'>Edge</th><th class='r hide-sm'>Win %</th><th class='r'>EV</th><th class='r'>Bet to</th><th class='r hide-sm hide-md'>Opened</th><th class='r hide-sm hide-md'>Units</th><th></th></tr></thead><tbody>" +
     P.map((p) => "<tr data-gid='" + p.g.game_id + "' data-mk='" + p.kind.toLowerCase() + "'><td><div class='b pick'>" + logo(pickId(p.g, p.kind, p.side), 20) + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
       (p.kind === "Total" && p.g.crew ? "<div class='f' style='font-size:11px'>Refs: " + esc(p.g.crew) + "</div>" : "") +
-      (D.replay ? "" : "<div style='font-size:12px'>" + venueTag(p.g) + freshTag(p.g, p.kind) + "</div>") +
+      (D.replay ? "" : venueTag(p.g) + freshTag(p.g, p.kind)) +
       (p.status ? "<div class='f' style='font-size:12px'>" + esc(p.status) + "</div>" : "") +
       (p.also ? "<div class='f' style='font-size:12px'>" + esc(p.also) + "</div>" : "") +
       novig(p.g, p.kind, p.side, p.line, p.price) +
@@ -629,7 +623,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     ". A separate bet type on spreads only, never counted in the record above: v1's edge of 2-2.49 points with v1's +2% EV rule, 0.5 unit flat.";
   $("t-bandb").innerHTML = BB.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r'>Edge</th><th class='r'>Units</th><th class='r'>Result</th><th></th></tr></thead><tbody>" +
     BB.map((p) => "<tr><td><div class='b pick'><span class='tag'>Band B</span> " + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
-      "<div style='font-size:12px'>" + venueTag(p.g) + freshTag(p.g, p.kind) + "</div>" +
+      venueTag(p.g) + freshTag(p.g, p.kind) +
       (p.res ? "" : novig(p.g, p.kind, p.side, p.line, p.price)) + "</td><td>" +
       esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r'>" + sgn(p.edge) + "</td><td class='r'>" + num(p.units, 2) +
       "</td><td class='r'>" + (p.res ? esc(p.res) + (p.profit != null ? " <span class='" + (p.profit > 0 ? "pos" : p.profit < 0 ? "neg" : "m") + "'>" + sgn(p.profit, 2) + "</span>" : "") : "–") + "</td><td class='r'>" +
