@@ -106,6 +106,17 @@
 
 ### Where moneylines stand
 - Five historical tests, all at the close, all closed: tests 1, 2 and 3, the devig re-run, and the flipped idea.
-- No moneyline-related bet has shown an edge at any time of day in the data we have.
-- The one open question is the opening moneyline on our own spread plays. History cannot answer it; the live shadow
-  will, with its read at Jan 15.
+- **Correction (Oct 30, later the same day):** the first version of this line said no moneyline bet had shown an edge
+  at any time of day. That was wrong. The Oct 26 edge search (`research/edges/out/e1_run.txt`, idea 1: model win
+  probability Phi(margin / 11), best price, EV +5% or more) found, at the OPENER, 2024-26 only:
+  - favorites: development (2024) +5.34% on 1,306 bets (se 1.76); holdout (2025-26) +5.14% on 1,458 bets
+    (se 1.92). That is about 3 standard errors each, and it replicated.
+  - underdogs at the opener: +1.95% development, -2.56% holdout.
+  - the pre-registered primary at the opener (all sides): +3.41% development, +0.79% holdout.
+  - Favorites were a reported split, not the primary rule. But the split held in both periods, and it is the only
+    moneyline result anywhere with an interval clear of zero in both.
+  - At the close, every threshold was negative in the holdout (2% -3.1%, 5% -4.9%, 10% -8.7%), and it got worse as
+    the threshold rose.
+- **The open question is therefore narrower and more promising than first written:** model-priced favorite moneylines
+  at the opener. The live shadow records this on our spread plays. A broader live log of every opener favorite with
+  EV +5% or more is a separate proposal for Chad.
