@@ -53,5 +53,10 @@
   "id": "2026-10-29-band-b",
   "date": "2026-10-29",
   "text": "New bet type, recorded Oct 29, before the first games: Band B. When the model's edge on a spread is 2 to 2.49 points (just under the 2.5-point cutoff) and the play still clears the +2% expected-value rule at the best price, it is posted as \"BAND B (0.5u)\" at half a unit, flat. Band B has its own record line and is never added to the main record, which stays exactly as it was: same model, same plays, same 1-unit stakes, same grading. Totals band B is switched off. The rule that decides whether band B stays (at 300 graded plays or March 14) is written in the forward-test protocol, Appendix B. Recorded in MODEL_FREEZE.md."
+ },
+ {
+  "id": "2026-10-30-barttorvik-retry",
+  "date": "2026-10-30",
+  "text": "Data fix, recorded Oct 30, before the first games: when Barttorvik had not yet posted a day's ratings file, the card treated it as missing for good and used KenPom's number in its place. It now asks again hourly until the file appears, as the backtest assumed; KenPom's game-day predictions get the same rule. Replays of past days are unchanged, and each play's input stamp shows when KenPom stood in for Barttorvik."
  }
 ]

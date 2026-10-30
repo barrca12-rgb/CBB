@@ -598,7 +598,8 @@ for the day before each game, and this lets the live card actually get it.
   answer for today not cached, old and undated answers cached as before.
 - **Effect on live plays:** once Barttorvik posts files, games use them as the backtest did; until then KenPom
   fills, as now. Plays already logged are unchanged.
-- **Discord note:** none posted (the approval named the freeze entry).
+- **Discord note:** `2026-10-30-barttorvik-retry` in bets/announcements.json (added Oct 30 at Chad's request, so the
+  verified record shows every change to a frozen file).
 - **New fingerprints:**
 
 ```
