@@ -30,3 +30,7 @@ Team names: 365 teams in `data/teams.csv`, 365 with a KenPom name. Teams in the 
 | SportsGameOdds (`SGO_API_KEY`, `X-Api-Key`) | works | Live NCAAB lines from 7+ books with betslip links. Lines kept for finished games are the last ones seen, often after tipoff, so not usable as closing lines. Rookie tier: 50 requests/minute, 100,000 events per month, shared with the NFL model |
 | ESPN odds feed (`sports.core.api.espn.com`, no key) | works | Last pregame spread, total and moneyline per book: 2013-2018 about 70% of games (2014-2017 include Pinnacle and an "Opening" line), 2019-2026 about 100% with 8-13 books; opening and closing lines from 2024 on. Nothing for 2012. Downloaded by `python -m cbb.lines_hist` into `data/lines/` |
 | Barttorvik | reachable | not explored yet |
+
+**Historical Odds API snapshots in this repo:** `research/market/data/quotes_*.csv.gz` and `snapshots_*.csv` (12 sampled
+dates, Oct 26 pull) stay in the public repo. Chad decided this on Oct 30. They are the exception to keeping raw paid
+data in the private CBB-Data repo, so do not flag them again.
