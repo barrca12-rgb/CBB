@@ -59,3 +59,53 @@
 - Closed as pre-registered.
 - **Possible follow-up (needs its own plan and Chad's go):** a live shadow of "v1's underdog spread plays, also logged
   at the opening moneyline", read against the result and the closing moneyline after enough games.
+
+## Follow-ups (Oct 30; Chad's "moneyline follow-ups" brief). Plans in shadow/, devig/, flip/ PLAN.md, committed before any number.
+
+### 1. Opening-moneyline shadow on our spread plays: running, no data yet
+- **What it is:** `shadow/run.py` reads the bet log and the card's price log. It records the moneyline in force when
+  each spread play was logged (at the play's book, and the best of the seven books), the two labeled model win
+  probabilities, and, at settle, units and Shin CLV. It adds nothing to the card run. Test: `audit/test_ml_shadow.py`.
+- **Price log fixes:**
+  - A book quoting a game with no moneyline (or one side only) is logged with status "missing", never as a price.
+  - This run's rows now take the pull time.
+  - The log started Oct 30, 19:41 UTC.
+- **Today:** all 3 open spread plays were logged before the price log started, so the shadow has no rows to read yet.
+  The first week's table comes with the Nov 9 Monday health line (now part of that report). The pre-set read is
+  Jan 15 (scheduled).
+
+### 2. Test 2 re-run with a proper devig and a price band: FAILS at development, closed
+`devig/run.py`; tables in `devig/out/run.txt`.
+
+- **Calibration by price band (2021-23):** proportional misses at both ends (-300 or shorter +3.0 pts, +300 or longer
+  -2.6). Shin and power are within about 1.5 points everywhere.
+- **Method:** the plan's rule (lowest 2021-23 Brier score) froze power, by a hair over Shin (0.182320 vs 0.182384).
+- **Data:** ESPN's history has one book per game in 2025-26, so no reference exists there. The holdout is 2024 only,
+  as the plan said in advance.
+- **Signals:** a book 3+ points under the other books, price -200 to +200, best per game and side.
+  - Development 2021-23: 667 bets, ROI +5.94%, 95% interval [-1.60%, +13.30%].
+  - No candidate structure had 300+ bets in every development season (best: 235). By the plan, closed at development.
+- **For the record only (outside the rule, not decisive):** 2024, all signals, 315 bets, ROI -8.04%
+  [-19.62%, +3.62%]. The development number did not carry over.
+
+### 3. The flipped idea (bet the spread when the book's own moneyline disagrees): FAILS, closed
+`flip/run.py`; tables in `flip/out/run.txt`.
+
+- **Noise floor (2014-17):** the moneyline-to-spread inversion is off by 0.47 points on average (median 0.44).
+- **Gaps of 1+ point** grew from 3-5% of quotes (2014-17) to 18-22% (2022-26). Mean |gap| ran from 0.46 to 0.94.
+- **Development 2018-21, |gap| 1+, -110 assumed:** 5,535 bets, 51.3%, ROI -2.05% [-4.71%, +0.45%].
+- **Holdout 2022-26:** 13,045 bets, 51.9%, ROI -0.90% [-2.61%, +0.78%]. By season: 53.6%, 52.3%, 50.5%, 50.7%,
+  51.3%. The 2+ point gaps: 52.4%.
+- **Robustness:** 0.5+ gap 51.2%; 1.5+ gap 52.2%.
+- **Beyond the close:** against the other books' median spread, the chosen side wins 50.3% (dev and holdout alike).
+  Where the bet wins at all, it wins only against the book's own number, never against the market: a stale-quote
+  play, the Oct 30 bad-quote case in slow motion.
+- **Post hoc, for the record:** development favorites went 58.0% on 524 bets (+10.6%); the holdout's went 51.8% on
+  606 (-1.1%). It did not replicate.
+- **Kill rule:** holdout win rate 51.9%, under 53%. Closed.
+
+### Where moneylines stand
+- Five historical tests, all at the close, all closed: tests 1, 2 and 3, the devig re-run, and the flipped idea.
+- No moneyline-related bet has shown an edge at any time of day in the data we have.
+- The one open question is the opening moneyline on our own spread plays. History cannot answer it; the live shadow
+  will, with its read at Jan 15.

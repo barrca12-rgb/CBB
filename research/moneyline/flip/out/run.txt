@@ -1,0 +1,118 @@
+Quotes with spread and both moneylines, D-I games with a result, 2014-2026: 332,931
+  dropped: off-market spread 6,945; overround outside 0-15% 3,028; moneyline favorite opposite the spread favorite 984
+  clean quotes: 321,974 on 61,061 games
+
+1. Inversion noise floor, 2014-17 (69,753 quotes): mean |implied spread - book spread| 0.47 pts, median 0.44, mean signed -0.16
+
+2. Gap distribution by season (share of quotes):
+ season  quotes  books  mean |gap|  0.5+ %  1+ %  2+ %
+   2014   11529      4        0.46    42.4   3.2   0.3
+   2015   11527      4        0.46    40.3   3.8   0.6
+   2016   18006      9        0.47    40.6   4.8   0.8
+   2017   28691      9        0.49    41.9   4.8   0.9
+   2018   18352      6        0.56    45.8   8.9   1.6
+   2019   21530      6        0.59    49.7   7.8   2.1
+   2020   25516      7        0.57    51.3   9.7   1.8
+   2021   26736     11        0.66    54.2  11.7   3.1
+   2022   47888     11        0.94    65.5  21.9   6.6
+   2023   48948     12        0.78    61.7  17.7   4.0
+   2024   51894     11        0.78    61.3  20.8   4.7
+   2025    5593      1        0.79    58.6  19.1   5.0
+   2026    5764      2        0.84    55.3  21.0   6.8
+
+   by book (2018-2026):
+                                   quotes  mean_abs  share_1
+book                                                        
+Unibet                              33031      0.70    20.98
+DraftKings                          27788      0.81    18.23
+SugarHouse                          21447      0.61    12.97
+Westgate                            20384      0.60     7.48
+Caesars Sportsbook (New Jersey)     19349      0.84    17.80
+MGM                                 17086      0.88    23.91
+Titanbets                           15697      0.74    12.77
+Caesars Sportsbook (Colorado)       15341      0.85    19.37
+ESPN BET                            12205      1.00    20.33
+PointsBet                           11334      0.84    22.05
+Caesars Sportsbook                  10296      0.84    14.74
+Caesars (New Jersey)                 9829      0.54     5.35
+BetfairSportsbook                    8644      0.84    21.97
+Caesars Sportsbook (Pennsylvania)    8050      0.80    15.79
+Caesars Sportsbook (Tennessee)       7062      0.77    22.12
+Caesar's                             6845      0.46     3.13
+CG Technology                        5279      0.47     4.30
+Wynn                                 2554      0.50     5.64
+
+3. DEVELOPMENT 2018-21, |gap| 1+, one bet per game at the book's spread, -110 assumed: {'bets': 5535, 'W-L-P': '2811-2669-55', 'win %': 51.3, 'ROI % at -110': -2.05, '95% lo': -4.71, '95% hi': 0.45}
+   by gap_band:
+gap_band  bets        W-L-P  win %  ROI % at -110  95% lo  95% hi
+     1-2  4343 2187-2117-39   50.8          -2.97   -5.78   -0.06
+      2+  1192   624-552-16   53.1           1.28   -5.01    7.41
+   by fav_dog:
+ fav_dog  bets        W-L-P  win %  ROI % at -110  95% lo  95% hi
+favorite   524    300-217-7   58.0          10.63    2.78   18.70
+ pick'em     4        4-0-0  100.0          90.91   90.91   90.91
+underdog  5007 2507-2452-48   50.6          -3.45   -6.20   -0.68
+   by season:
+ season  bets      W-L-P  win %  ROI % at -110  95% lo  95% hi
+   2018  1328  670-649-9   50.8          -3.01   -8.40    2.17
+   2019  1354 722-617-15   53.9           2.91   -1.88    7.73
+   2020  1327 658-655-14   50.1          -4.28   -9.46    0.63
+   2021  1526 761-748-17   50.4          -3.68   -8.79    1.59
+   by book (10+ bets):
+                             book  bets        W-L-P  win %  ROI % at -110  95% lo  95% hi
+                BetfairSportsbook    65      40-25-0   61.5          17.48   -8.58   43.87
+                    CG Technology   160      71-87-2   44.9         -14.03  -27.68   -0.05
+                         Caesar's   121      58-60-3   49.2          -6.01  -22.98   11.03
+             Caesars (New Jersey)   226    118-103-5   53.4           1.89   -9.90   13.64
+               Caesars Sportsbook   820   481-327-12   59.5          13.45    6.98   19.85
+  Caesars Sportsbook (New Jersey)   124      56-64-4   46.7         -10.56  -25.61    5.08
+Caesars Sportsbook (Pennsylvania)    64      33-31-0   51.6          -1.56  -24.71   21.79
+                       DraftKings   174      91-82-1   52.6           0.42  -12.79   13.18
+                              MGM   316    162-154-0   51.3          -2.13  -13.17    8.12
+                        PointsBet   182      84-97-1   46.4         -11.34  -26.32    5.40
+                       SugarHouse   435    215-214-6   50.1          -4.26  -13.83    5.36
+                           Unibet  2399 1181-1203-15   49.5          -5.39   -9.16   -1.59
+                         Westgate   351    165-182-4   47.6          -9.12  -19.25    0.19
+                             Wynn    98      56-40-2   58.3          11.13   -7.69   29.26
+   robustness, |gap| 0.5+: {'bets': 15100, 'W-L-P': '7536-7364-200', 'win %': 50.6, 'ROI % at -110': -3.4, '95% lo': -4.79, '95% hi': -1.96}
+   robustness, |gap| 1.5+: {'bets': 1768, 'W-L-P': '916-827-25', 'win %': 52.6, 'ROI % at -110': 0.32, '95% lo': -4.66, '95% hi': 5.26}
+   4. beyond the close: against the other books' median spread (5,157 bets with one): side wins 50.3% of 5,073 decided
+
+3. HOLDOUT 2022-26, |gap| 1+, one bet per game at the book's spread, -110 assumed: {'bets': 13045, 'W-L-P': '6720-6227-98', 'win %': 51.9, 'ROI % at -110': -0.9, '95% lo': -2.61, '95% hi': 0.78}
+   by gap_band:
+gap_band  bets        W-L-P  win %  ROI % at -110  95% lo  95% hi
+     1-2 10251 5263-4908-80   51.7           -1.2   -3.08    0.68
+      2+  2788 1451-1319-18   52.4            0.0   -4.19    4.00
+   by fav_dog:
+ fav_dog  bets        W-L-P  win %  ROI % at -110  95% lo  95% hi
+favorite   606    312-290-4   51.8          -1.05   -8.94    6.92
+ pick'em     2        2-0-0  100.0          90.91   90.91   90.91
+underdog 12437 6406-5937-94   51.9          -0.91   -2.63    0.83
+   by season:
+ season  bets        W-L-P  win %  ROI % at -110  95% lo  95% hi
+   2022  3386 1790-1551-45   53.6           2.25   -1.34    5.37
+   2023  3515 1829-1665-21   52.3          -0.06   -3.31    3.22
+   2024  3882 1946-1904-32   50.5          -3.48   -6.18   -0.86
+   2025  1068    542-526-0   50.7          -3.12   -8.68    2.80
+   2026  1194    613-581-0   51.3          -1.99   -7.50    3.48
+   by book (10+ bets):
+                             book  bets        W-L-P  win %  ROI % at -110  95% lo  95% hi
+                BetfairSportsbook   950    490-460-0   51.6          -1.53   -7.18    3.91
+               Caesars Sportsbook   198      99-97-2   50.5          -3.54  -18.04   10.99
+    Caesars Sportsbook (Colorado)   510    261-241-8   52.0          -0.73   -8.43    6.98
+  Caesars Sportsbook (New Jersey)   459    235-216-8   52.1          -0.51   -9.47    8.32
+Caesars Sportsbook (Pennsylvania)   278    143-129-6   52.6           0.36  -12.19   12.11
+   Caesars Sportsbook (Tennessee)   490    240-244-6   49.6          -5.27  -13.39    2.27
+                       DraftKings  2394 1222-1142-30   51.7          -1.30   -5.19    2.44
+                         ESPN BET  1841    942-899-0   51.2          -2.32   -6.54    2.21
+                              MGM  1708    874-834-0   51.2          -2.31   -6.97    2.39
+                        PointsBet   873   432-423-18   50.5          -3.47   -9.43    2.28
+                       SugarHouse   703    367-332-4   52.5           0.23   -7.42    7.71
+                        Titanbets   476   260-206-10   55.8           6.38   -2.44   15.57
+                           Unibet  2010   1067-941-2   53.1           1.44   -2.34    5.20
+                         Westgate   155      88-63-4   58.3          10.97   -3.29   24.09
+   robustness, |gap| 0.5+: {'bets': 22898, 'W-L-P': '11634-11098-166', 'win %': 51.2, 'ROI % at -110': -2.28, '95% lo': -3.58, '95% hi': -1.02}
+   robustness, |gap| 1.5+: {'bets': 4975, 'W-L-P': '2583-2365-27', 'win %': 52.2, 'ROI % at -110': -0.34, '95% lo': -3.34, '95% hi': 2.6}
+   4. beyond the close: against the other books' median spread (10,754 bets with one): side wins 50.3% of 10,588 decided
+
+Kill rule (holdout, 1-point gap): win 51.9% (need 53%+); bets per season {2022: 3386, 2023: 3515, 2024: 3882, 2025: 1068, 2026: 1194} (need 150+ each)  =>  FAILS: closed
