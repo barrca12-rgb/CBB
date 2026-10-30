@@ -482,3 +482,28 @@ ae67a70fd1200babae6a771599ec7796cefbad63e063250baabe1f2b3b7debb2  cbb/poll_targe
 b43ebb22ea3745b62f58bf54c1f3d5215b32898527aa54e222f107a8fed43c19  FORWARD_TEST_PROTOCOL.md
 0398f07f4b3ed730d62d1be5ab6d691b9b99b61633a0c93b54abc4fa297a7bf1  audit/test_band_b.py
 ```
+
+## 2026-10-30: Novig prices shown beside each play (show-only; Chad's option 2)
+
+Before any game. Picks, the 7-book set, best-book selection, logged books and prices, stakes, alerts' picks,
+grading, the quote log and every close (CLV) are unchanged.
+
+- **Feed (`cbb/odds_api.py`):** the card's Odds API call also requests `novig` (DISPLAY_BOOKS), at no extra credit
+  (8 books, up to 10 cost one region).
+  - `parse()` still keeps only the 7 frozen books for the card's lines and the quote log, so Novig never enters
+    `_best`, `openers.csv`, `closing.csv` or a close.
+  - `parse_display()` keeps Novig apart: the latest prices go to `lines/novig_latest.csv`, and every change is
+    appended to `lines/novig_log.csv` for the Jan 15 read.
+- **Display:** the card shows "Novig <number> (<price>)" under each play and band B play, flagged "better price" or
+  "better number" when it beats the play's number and price. The phone alert adds the same line. A bet placed at
+  Novig is recorded at its actual fill with the Placed button, as for any book.
+- **Test pull (Oct 30, 3 credits, `data/research/books_check.json`):** key `novig` confirmed. Novig priced 1 of 7
+  posted games; every sportsbook had all 7.
+- **Tests:** `audit/test_novig.py` checks that Novig never reaches the card's lines or quote log, plus orientation,
+  the change-only log and the labels. `python -m pytest -q audit/`: 89 passed; `audit.card_logic`: all OK.
+- **Discord note:** none (no pick, rule, stake or record change).
+- **New fingerprint:**
+
+```
+1df96b56a2c0d5ea43d7caf1899dc6b2adb8f776b85ae1bfbe0b13acf14d4c3d  cbb/odds_api.py
+```

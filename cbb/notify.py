@@ -16,6 +16,39 @@ from . import quotelog
 SITE = "https://barrca12-rgb.github.io/CBB"
 
 
+def compare(market: str, side: str, number: float, price: float, line, odds) -> str:
+    """How a show-only (Novig) quote compares with the alerted number and price, from the bet's side."""
+    if line is None or pd.isna(line) or odds is None or pd.isna(odds):
+        return ""
+    pay = lambda o: o / 100 if o > 0 else 100 / -o
+    k = number if market == "spread" or side == "under" else -number
+    r = float(line) if market == "spread" or side == "under" else -float(line)
+    if k > r + 1e-9:
+        return "better number" + (", worse price" if pay(price) < pay(float(odds)) - 1e-9 else "")
+    if abs(k - r) < 1e-9 and pay(price) > pay(float(odds)) + 1e-9:
+        return "better price"
+    return ""
+
+
+def novig_line(bet: dict) -> str:
+    """One line with Novig's price on the bet's side, if Novig has the game (show-only; Chad, Oct 30)."""
+    try:
+        from . import odds_api
+        if bet.get("home_id") is None:
+            return ""
+        mk, side = bet["market"], str(bet.get("side", "")).lower()
+        q = odds_api.display_side(odds_api.display_quote(int(bet["home_id"]), int(bet["away_id"])), mk, side)
+        if not q:
+            return ""
+        n, p = q
+        num = f"{n:+g}" if mk == "spread" else f"{side.title()} {n:g}"
+        c = compare(mk, side, n, p, bet.get("line"), bet.get("odds"))
+        return f"Novig: {num} {int(p):+d}" + (f" ({c})" if c else "")
+    except Exception as e:
+        print(f"Novig line failed ({e}); continuing.")
+        return ""
+
+
 def _message(bet: dict, row: pd.Series | None) -> tuple[str, str, str]:
     mk = bet["market"]
     odds = bet.get("odds")
@@ -33,6 +66,9 @@ def _message(bet: dict, row: pd.Series | None) -> tuple[str, str, str]:
     if row is not None and pd.notna(row.get(f"{mk}_good_to")):
         lines.append(f"Good down to {row[f'{mk}_good_to']:+.1f}" if mk == "spread"
                      else f"Good to {row[f'{mk}_good_to']:.1f}")
+    nv = novig_line(bet)
+    if nv:
+        lines.append(nv)
     warn = row.get(f"{mk}_warn") if row is not None else None
     if isinstance(warn, str) and warn:
         lines.insert(0, "WARNING: " + warn)

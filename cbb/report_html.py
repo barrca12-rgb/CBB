@@ -10,6 +10,7 @@ from __future__ import annotations
 import html
 import json
 import math
+import os
 
 import numpy as np
 import pandas as pd
@@ -47,6 +48,8 @@ def _clean(v):
         return None
     if isinstance(v, list):
         return [{k: _clean(x) for k, x in o.items()} for o in v]
+    if isinstance(v, dict):
+        return {k: _clean(x) for k, x in v.items()}
     if isinstance(v, (np.floating, float)):
         return None if math.isnan(v) else round(float(v), 3)
     if isinstance(v, (np.integer,)):
@@ -104,6 +107,21 @@ def _logged_view(card: pd.DataFrame) -> pd.DataFrame:
     return card
 
 
+def _novig_view(card: pd.DataFrame) -> pd.DataFrame:
+    """Novig's latest prices per game (show-only, Chad Oct 30; cbb/odds_api.py DISPLAY_BOOKS), oriented to the card's
+    home and away. Display only: picks, logged prices and CLV never use them."""
+    from . import odds_api
+    card = card.copy()
+    try:
+        d = pd.read_csv(odds_api.NOVIG_LATEST) if os.path.exists(odds_api.NOVIG_LATEST) else pd.DataFrame()
+        card["novig"] = [odds_api.display_quote(int(h), int(a), d) if len(d) and pd.notna(h) and pd.notna(a) else None
+                         for h, a in zip(card["home_id"], card["away_id"])]
+    except Exception as e:
+        print(f"Novig prices failed ({e}); continuing.")
+        card["novig"] = None
+    return card
+
+
 def _clv_view() -> dict:
     """The card's CLV figures from the protocol's primary close (cbb/clv_primary.py), the same calculation as the
     record page, the charts, Discord and the tripwire: per market and overall, mean CLV over decided plays with a
@@ -139,6 +157,8 @@ def _band_b_view() -> dict | None:
 def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, replay: bool = False,
           record: dict | None = None) -> str:
     card = _logged_view(card)
+    if not replay:
+        card = _novig_view(card)
     clv = _clv_view() if record else None
     clv_recent = clv.pop("recent", None) if clv else None
     if record and clv_recent is None:   # primary close unreadable: show no CLV, never the grader's as CLV
@@ -471,7 +491,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       to: placed ? "Placed" : still ? (mk === "spread" ? ln(g.spread_good_to) : num(g.total_good_to)) : "–",
       open: mk === "spread" ? (g.open_home_spread != null ? ln(side === "home" ? g.open_home_spread : -g.open_home_spread) : null)
         : (g.open_total != null ? num(g.open_total) : null),
-      units: g[mk + "_logged_stake"],
+      units: g[mk + "_logged_stake"], line: g[mk + "_logged_line"],
       bid: D.date + "|" + g.game_id + "|" + mk + "|" + side, placed,
       fill: {book: g[mk + "_logged_book"], line: g[mk + "_logged_line"], odds: g[mk + "_logged_odds"], stake: g[mk + "_logged_stake"]},
       status: (pre ? "Logged at edge " + sgn(g[mk + "_logged_edge"]) + " (before the Oct 26 update) · edge now vs today's model"
@@ -492,15 +512,32 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     }).filter(Boolean).sort((p, q) => q.key - p.key || pay(q.price) - pay(p.price));
     return L.length ? "Also: " + L.map((x) => x.book + " " + x.txt + (x.price != null ? " (" + odds(x.price) + ")" : "")).join(" · ") : "";
   };
+  // Novig (show-only exchange price, never used for picks): its number and price on the bet's side, and whether it
+  // beats the number and price shown for the play
+  const novig = (g, kind, side, line, price) => {
+    const n = g.novig; if (!n || !side) return "";
+    const L = kind === "Spread" ? (n.home_spread == null ? null : (side === "home" ? n.home_spread : -n.home_spread)) : n.total;
+    const P = kind === "Spread" ? n[side + "_spread_odds"] : n[side + "_odds"];
+    if (L == null || P == null) return "";
+    const pay = (o) => o > 0 ? o / 100 : 100 / -o;
+    const k = kind === "Spread" || side === "under" ? L : -L, r = line == null ? null : (kind === "Spread" || side === "under" ? line : -line);
+    let c = "";
+    if (r != null && price != null) {
+      if (k > r + 1e-9) c = pay(P) < pay(price) - 1e-9 ? "better number, worse price" : "better number";
+      else if (Math.abs(k - r) < 1e-9 && pay(P) > pay(price) + 1e-9) c = "better price";
+    }
+    return "<div class='f' style='font-size:12px'>Novig " + esc(kind === "Spread" ? ln(L) : (side === "over" ? "o" : "u") + num(L)) +
+      " (" + esc(odds(P)) + ")" + (c ? " <span class='pos b'>" + c + "</span>" : "") + "</div>";
+  };
   D.games.forEach((g) => {
     const ls = logged(g, "spread"), lt = logged(g, "total");
     if (!ls && g.spread_verdict === "BET") P.push({g, kind: "Spread", side: g.spread_side, bet: g.spread_pick + " " + ln(g.spread_line), price: g.spread_odds, book: g.spread_book,
       link: g.spread_link, warn: g.spread_warn, edge: g.spread_edge, p: g.spread_p, ev: g.spread_ev, model: g.spread_side === "home" ? ln(-g.model_margin) : ln(g.model_margin), to: ln(g.spread_good_to),
       open: g.open_home_spread == null ? null : ln(g.spread_side === "home" ? g.open_home_spread : -g.open_home_spread), units: g.spread_units,
-      also: others(g, "spread", g.spread_side, g.spread_book)});
+      also: others(g, "spread", g.spread_side, g.spread_book), line: g.spread_line});
     if (!lt && g.total_verdict === "BET") P.push({g, kind: "Total", bet: g.total_pick + " " + num(g.total_line), price: g.total_odds, book: g.total_book,
       link: g.total_link, warn: g.total_warn, edge: g.total_edge, p: g.total_p, ev: g.total_ev, model: num(g.model_total), to: num(g.total_good_to), open: g.open_total == null ? null : num(g.open_total), units: g.total_units,
-      also: others(g, "total", String(g.total_pick || "").toLowerCase(), g.total_book)});
+      also: others(g, "total", String(g.total_pick || "").toLowerCase(), g.total_book), side: String(g.total_pick || "").toLowerCase(), line: g.total_line});
   });
   P.sort((a, b) => String(a.g.start).localeCompare(String(b.g.start)) || b.edge - a.edge);
   const pc = $("plays-count"), pUnits = P.reduce((s, p) => s + (p.units || 0), 0);
@@ -512,6 +549,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       (p.kind === "Total" && p.g.crew ? "<div class='f' style='font-size:11px'>Refs: " + esc(p.g.crew) + "</div>" : "") +
       (p.status ? "<div class='f' style='font-size:12px'>" + esc(p.status) + "</div>" : "") +
       (p.also ? "<div class='f' style='font-size:12px'>" + esc(p.also) + "</div>" : "") +
+      novig(p.g, p.kind, p.side, p.line, p.price) +
       (p.g.news_flag ? "<div class='inj'>&#9888; " + esc(p.g.news_flag) + "</div>" : "") +
       (p.warn ? "<div class='inj'>&#9888; " + esc(p.warn) + "</div>" : "") +
       [["away", p.g.away], ["home", p.g.home]].filter(([sd]) => p.g[sd + "_injuries"]).map(([sd, nm]) => "<div class='inj'>" + esc(nm) + ": " + esc(p.g[sd + "_injuries"]) + "</div>").join("") + "</td><td>" +
@@ -531,6 +569,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     BB.push({g, kind: mk === "spread" ? "Spread" : "Total", bet: g[mk + "_bandb_pick"], book: g[mk + "_bandb_book"], price: g[mk + "_bandb_odds"],
       edge: g[mk + "_bandb_edge"], units: g[mk + "_bandb_stake"], res: g[mk + "_bandb_result"], profit: g[mk + "_bandb_profit"],
       bid: g[mk + "_bandb_bet_id"], placed: String(g[mk + "_bandb_placed"] || "").toLowerCase() === "yes",
+      side: String(g[mk + "_bandb_bet_id"] || "").split("|")[3], line: g[mk + "_bandb_line"],
       fill: {book: g[mk + "_bandb_book"], line: g[mk + "_bandb_line"], odds: g[mk + "_bandb_odds"], stake: g[mk + "_bandb_stake"]}});
   }));
   BB.sort((a, b) => String(a.g.start).localeCompare(String(b.g.start)) || b.edge - a.edge);
@@ -540,7 +579,8 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     (bbr.clv != null ? " · Alert CLV " + clvf(bbr.clv) + " on " + bbr.clv_n : "") + (bbr.open ? " · " + bbr.open + " open" : "") +
     ". A separate bet type on spreads only, never counted in the record above: v1's edge of 2-2.49 points with v1's +2% EV rule, 0.5 unit flat.";
   $("t-bandb").innerHTML = BB.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r'>Edge</th><th class='r'>Units</th><th class='r'>Result</th><th></th></tr></thead><tbody>" +
-    BB.map((p) => "<tr><td><div class='b pick'><span class='tag'>Band B</span> " + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div></td><td>" +
+    BB.map((p) => "<tr><td><div class='b pick'><span class='tag'>Band B</span> " + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
+      (p.res ? "" : novig(p.g, p.kind, p.side, p.line, p.price)) + "</td><td>" +
       esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r'>" + sgn(p.edge) + "</td><td class='r'>" + num(p.units, 2) +
       "</td><td class='r'>" + (p.res ? esc(p.res) + (p.profit != null ? " <span class='" + (p.profit > 0 ? "pos" : p.profit < 0 ? "neg" : "m") + "'>" + sgn(p.profit, 2) + "</span>" : "") : "–") + "</td><td class='r'>" +
       (p.bid && !D.replay && !p.res ? (p.placed ? "<span class='f' style='font-size:12px;margin-left:8px'>Placed &#10003;</span>"
