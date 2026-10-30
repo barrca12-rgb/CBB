@@ -1,22 +1,22 @@
-# https://www.covers.com/sport/basketball/ncaab/injuries saved 2026-10-29T13:20:34+00:00
+# https://www.covers.com/sport/basketball/ncaab/injuries saved 2026-10-30T13:30:59+00:00
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta name="keywords" content="">
-    <title>College Basketball Injuries 2026-2027 - Full Report for Oct 29, 2026</title>
+    <title>College Basketball Injuries 2026-2027 - Full Report for Oct 30, 2026</title>
     <meta name="description" content="See which college basketball players are injured today and get the latest NCAA basketball injury news with our injury report for every team in the NCAA." />
     <link rel="canonical" href="https://www.covers.com/sport/basketball/ncaab/injuries" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:description" content="See which college basketball players are injured today and get the latest NCAA basketball injury news with our injury report for every team in the NCAA." />
 <meta name="twitter:image" content="https://img.covers.com/covers/logos/covers-og-logo-home.jpg" />
 <meta name="twitter:creator" content="@Covers" />
-<meta name="twitter:title" content="College Basketball Injuries 2026-2027 - Full Report for Oct 29, 2026" />
+<meta name="twitter:title" content="College Basketball Injuries 2026-2027 - Full Report for Oct 30, 2026" />
 <meta name="twitter:url" content="https://www.covers.com/sport/basketball/ncaab/injuries" />
 <meta property="og:description" content="See which college basketball players are injured today and get the latest NCAA basketball injury news with our injury report for every team in the NCAA." />
 <meta property="og:image" content="https://img.covers.com/covers/logos/covers-og-logo-home.jpg" />
 <meta property="og:site_name" content="Covers.com" />
-<meta property="og:title" content="College Basketball Injuries 2026-2027 - Full Report for Oct 29, 2026" />
+<meta property="og:title" content="College Basketball Injuries 2026-2027 - Full Report for Oct 30, 2026" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.covers.com/sport/basketball/ncaab/injuries" />
 <meta charset="utf-8" />
@@ -598,9 +598,9 @@
                                     <ul class="covers-menudropdown-container toplevel-8-row" id="containerNav-BigEvents">
                                                     <li><a href="https://www.covers.com/sport/football/nfl/odds" data-linkcont="Menu - Big Events Menu - NFL Odds">NFL Odds</a></li>
                                                     <li><a href="https://www.covers.com/picks/nfl" data-linkcont="Menu - Big Events Menu - NFL Picks">NFL Picks</a></li>
-                                                    <li><a href="https://www.covers.com/nfl/panthers-vs-packers-prediction-picks-oct-29-2026" data-linkcont="Menu - Big Events Menu - Panthers-Packers Picks">Panthers-Packers Picks</a></li>
-                                                    <li><a href="https://www.covers.com/nfl/panthers-vs-packers-props-best-bets-week-8-2026" data-linkcont="Menu - Big Events Menu - Panthers-Packers Prop Picks">Panthers-Packers Props</a></li>
-                                                    <li><a href="https://www.covers.com/nfl/panthers-vs-packers-anytime-touchdown-props-week-8-2026" data-linkcont="Menu - Big Events Menu - Panthers-Packers TD Picks">Panthers-Packers TD Pic</a></li>
+                                                    <li><a href="https://www.covers.com/nfl/anytime-touchdown-picks-week-8-2026" data-linkcont="Menu - Big Events Menu - Anytime TD Picks">Anytime TD Picks</a></li>
+                                                    <li><a href="https://www.covers.com/nfl/picks-and-predictions-week-8-2026" data-linkcont="Menu - Big Events Menu - Underdog Picks">Underdog Picks</a></li>
+                                                    <li><a href="https://www.covers.com/nfl/survivor-picks-week-8-2026" data-linkcont="Menu - Big Events Menu - Survivor Pool Picks">Survivor Pool Picks</a></li>
                                                     <li><a href="https://www.covers.com/nfl/picks-against-the-spread-week-8-2026" data-linkcont="Menu - Big Events Menu - NFL ATS Picks">NFL ATS Picks</a></li>
                                                     <li><a href="https://www.covers.com/betting/prediction-sites/nfl-prediction-markets" data-linkcont="Menu - Big Events Menu - NFL Prediction Markets">NFL Prediction Markets</a></li>
                                                     <li><a href="https://www.covers.com/betting/football-sites" data-linkcont="Menu - Big Events Menu - NFL Betting Sites">NFL Betting Sites</a></li>
@@ -817,9 +817,9 @@
                                 <ul class="covers-CoversMobileMenu4-expandedMenu collapse" id="Big_Event_Expander" aria-expanded="false" style="height:0px;">
                                                 <li><a href="https://www.covers.com/sport/football/nfl/odds" class="covers-noRightArrow" data-linkcont="Big Events Menu - NFL Odds">NFL Odds</a></li>
                                                 <li><a href="https://www.covers.com/picks/nfl" class="covers-noRightArrow" data-linkcont="Big Events Menu - NFL Picks">NFL Picks</a></li>
-                                                <li><a href="https://www.covers.com/nfl/panthers-vs-packers-prediction-picks-oct-29-2026" class="covers-noRightArrow" data-linkcont="Big Events Menu - Panthers-Packers Picks">Panthers-Packers Picks</a></li>
-                                                <li><a href="https://www.covers.com/nfl/panthers-vs-packers-props-best-bets-week-8-2026" class="covers-noRightArrow" data-linkcont="Big Events Menu - Panthers-Packers Prop Picks">Panthers-Packers Props</a></li>
-                                                <li><a href="https://www.covers.com/nfl/panthers-vs-packers-anytime-touchdown-props-week-8-2026" class="covers-noRightArrow" data-linkcont="Big Events Menu - Panthers-Packers TD Picks">Panthers-Packers TD Pic</a></li>
+                                                <li><a href="https://www.covers.com/nfl/anytime-touchdown-picks-week-8-2026" class="covers-noRightArrow" data-linkcont="Big Events Menu - Anytime TD Picks">Anytime TD Picks</a></li>
+                                                <li><a href="https://www.covers.com/nfl/picks-and-predictions-week-8-2026" class="covers-noRightArrow" data-linkcont="Big Events Menu - Underdog Picks">Underdog Picks</a></li>
+                                                <li><a href="https://www.covers.com/nfl/survivor-picks-week-8-2026" class="covers-noRightArrow" data-linkcont="Big Events Menu - Survivor Pool Picks">Survivor Pool Picks</a></li>
                                                 <li><a href="https://www.covers.com/nfl/picks-against-the-spread-week-8-2026" class="covers-noRightArrow" data-linkcont="Big Events Menu - NFL ATS Picks">NFL ATS Picks</a></li>
                                                 <li><a href="https://www.covers.com/betting/prediction-sites/nfl-prediction-markets" class="covers-noRightArrow" data-linkcont="Big Events Menu - NFL Prediction Markets">NFL Prediction Markets</a></li>
                                                 <li><a href="https://www.covers.com/betting/football-sites" class="covers-noRightArrow" data-linkcont="Big Events Menu - NFL Betting Sites">NFL Betting Sites</a></li>
@@ -1463,21 +1463,21 @@
                                 <ul class="covers-CoversMobileMenu2-expandedMenu">
                                 </ul>
                             </div>
-                            <div class="covers-CoversMobileMenu2-panelMenu covers-CoversMobileMenu2-subMenu" id="Panthers-PackersPicks">
+                            <div class="covers-CoversMobileMenu2-panelMenu covers-CoversMobileMenu2-subMenu" id="AnytimeTDPicks">
                                 <div class="covers-CoversMobileMenu3-backContainer"><a class="covers-CoversMobileMenu3-backButton covers-CoversMobileMenu3-backlink" onclick="backButton3Click()">Back</a></div>
-                                <button class="collapsed covers-CoversMobileMenu2-expanderLink">Panthers-Packers Picks</button>
+                                <button class="collapsed covers-CoversMobileMenu2-expanderLink">Anytime TD Picks</button>
                                 <ul class="covers-CoversMobileMenu2-expandedMenu">
                                 </ul>
                             </div>
-                            <div class="covers-CoversMobileMenu2-panelMenu covers-CoversMobileMenu2-subMenu" id="Panthers-PackersProps">
+                            <div class="covers-CoversMobileMenu2-panelMenu covers-CoversMobileMenu2-subMenu" id="UnderdogPicks">
                                 <div class="covers-CoversMobileMenu3-backContainer"><a class="covers-CoversMobileMenu3-backButton covers-CoversMobileMenu3-backlink" onclick="backButton3Click()">Back</a></div>
-                                <button class="collapsed covers-CoversMobileMenu2-expanderLink">Panthers-Packers Props</button>
+                                <button class="collapsed covers-CoversMobileMenu2-expanderLink">Underdog Picks</button>
                                 <ul class="covers-CoversMobileMenu2-expandedMenu">
                                 </ul>
                             </div>
-                            <div class="covers-CoversMobileMenu2-panelMenu covers-CoversMobileMenu2-subMenu" id="Panthers-PackersTDPic">
+                            <div class="covers-CoversMobileMenu2-panelMenu covers-CoversMobileMenu2-subMenu" id="SurvivorPoolPicks">
                                 <div class="covers-CoversMobileMenu3-backContainer"><a class="covers-CoversMobileMenu3-backButton covers-CoversMobileMenu3-backlink" onclick="backButton3Click()">Back</a></div>
-                                <button class="collapsed covers-CoversMobileMenu2-expanderLink">Panthers-Packers TD Pic</button>
+                                <button class="collapsed covers-CoversMobileMenu2-expanderLink">Survivor Pool Picks</button>
                                 <ul class="covers-CoversMobileMenu2-expandedMenu">
                                 </ul>
                             </div>
@@ -5338,4 +5338,12 @@
             </div>
         </div>
     </div>
-    
+                    </div>
+            </div>
+        </div>
+    </section>
+    <a id="DePaul"></a>
+    <section>
+        <div class="row">
+            <div class="col-xs-12 covers-CoversSeasonInjuries-blockContainer">
+            
