@@ -1,0 +1,82 @@
+Quotes with spread and both moneylines, D-I games with a result, 2014-2024: 321,500
+  dropped: off-market spread 6,931; overround outside 0-15% 3,028; moneyline favorite opposite the spread favorite 924
+  clean quotes: 310,617 on 49,920 games
+
+Fit on 2014-2017 (15,243 games), frozen: c = +0.092 points, sigma = 10.422
+Quotes x sides: 621,234; signals (EV >= +3%): 16,175; best per game and side: 10,796
+
+Calibration of the spread fit, confirm era 2018-2024 (home side, by decile):
+                    games  predicted  actual
+bin                                         
+(-0.000447, 0.285]   3509      0.195   0.199
+(0.285, 0.405]       3476      0.351   0.377
+(0.405, 0.542]       3715      0.457   0.465
+(0.542, 0.598]       3232      0.579   0.566
+(0.598, 0.67]        4198      0.643   0.631
+(0.67, 0.721]        2765      0.703   0.682
+(0.721, 0.781]       3536      0.755   0.754
+(0.781, 0.845]       3364      0.818   0.831
+(0.845, 0.926]       3606      0.891   0.891
+(0.926, 1.0]         3276      0.965   0.962
+
+== dev 2014-2017 (in-sample fit) ==
+(ii) best per game/side [primary]: {'bets': 2281, 'win %': np.float64(50.8), 'exp win %': np.float64(53.4), 'avg price': -135.0, 'units': -7.0, 'ROI %': -0.31, '95% lo': -7.06, '95% hi': 6.58}
+(i) every signal quote: {'bets': 3426, 'win %': np.float64(51.3), 'exp win %': np.float64(53.6), 'avg price': -135.0, 'units': 79.6, 'ROI %': 2.32, '95% lo': -5.67, '95% hi': 10.29}
+
+== CONFIRM 2018-2024 ==
+(ii) best per game/side [primary]: {'bets': 8515, 'win %': np.float64(56.4), 'exp win %': np.float64(60.1), 'avg price': -145.0, 'units': -228.4, 'ROI %': -2.68, '95% lo': -4.88, '95% hi': -0.52}
+(i) every signal quote: {'bets': 12749, 'win %': np.float64(57.1), 'exp win %': np.float64(60.7), 'avg price': -145.0, 'units': -311.3, 'ROI %': -2.44, '95% lo': -4.72, '95% hi': -0.11}
+
+Confirm era by dog:
+     dog  bets  win %  exp win %  avg price  units  ROI %  95% lo  95% hi
+favorite  7442   61.3       64.7     -150.0  -48.5  -0.65   -2.32    1.21
+underdog  1073   21.9       28.6      375.0 -180.0 -16.77  -28.90   -3.33
+
+Confirm era by band:
+           band  bets  win %  exp win %  avg price  units  ROI %  95% lo  95% hi
+-300 or shorter   432   82.2       87.0     -418.0   -6.4  -1.47   -6.29    2.80
+   -299 to -150  3477   65.6       68.3     -185.0   10.2   0.29   -1.98    2.60
+   -149 to +149  3704   54.3       58.0     -125.0  -41.6  -1.12   -3.91    1.80
+   +150 to +299   258   31.8       36.4      210.0  -11.0  -4.26  -22.50   14.01
+ +300 or longer   644   10.4       19.4      625.0 -179.7 -27.90  -46.59   -7.57
+
+Confirm era by spread_band:
+spread_band  bets  win %  exp win %  avg price  units  ROI %  95% lo  95% hi
+      0-2.5  3126   52.8       56.6     -115.0  -61.6  -1.97   -5.09    1.10
+      3-5.5  3496   59.7       63.3     -160.0  -61.3  -1.75   -4.51    0.79
+      6-9.5  1366   60.5       63.4     -250.0  -24.8  -1.81   -7.49    4.30
+    10-14.5   338   30.8       38.5      650.0  -86.8 -25.68  -44.91   -3.06
+        15+   184   70.7       73.7    -1400.0    7.9   4.31  -25.79   44.53
+
+Confirm era by book:
+                             book  bets  win %  exp win %  avg price  units  ROI %  95% lo  95% hi
+                BetfairSportsbook  1194   53.6       57.8     -115.0   24.2   2.03   -5.25   10.49
+                    CG Technology   135   65.2       61.8     -155.0    9.9   7.31   -7.00   21.81
+                         Caesar's    92   57.6       61.2     -160.0   -1.8  -1.92  -20.43   16.23
+             Caesars (New Jersey)   103   68.9       61.0     -145.0   21.8  21.15    5.83   37.45
+               Caesars Sportsbook   751   39.8       50.6     -115.0 -217.5 -28.96  -37.23  -21.02
+    Caesars Sportsbook (Colorado)   266   59.8       63.5     -155.0   -4.8  -1.79  -12.08    8.48
+  Caesars Sportsbook (New Jersey)   236   59.7       63.7     -150.0   -6.6  -2.81  -12.65    6.90
+Caesars Sportsbook (Pennsylvania)   233   69.5       68.1     -180.0   11.0   4.74   -5.36   14.65
+   Caesars Sportsbook (Tennessee)     9   55.6       65.0     -172.0   -1.0 -11.07  -64.78   40.02
+                       DraftKings   933   62.2       63.7     -155.0   32.7   3.50   -2.64   10.54
+                         ESPN BET   293   48.5       53.5     -150.0  -28.1  -9.59  -26.69   10.63
+                              MGM  1324   60.3       63.2     -149.0    0.3   0.02   -5.05    4.94
+                        PointsBet   541   59.5       64.5     -149.0  -21.7  -4.01  -10.58    3.30
+                       SugarHouse   721   51.2       55.8     -133.0  -36.1  -5.01  -13.03    3.15
+                        Titanbets    76   63.2       69.1     -150.0   -3.9  -5.17  -21.80   12.03
+                           Unibet  1261   57.2       60.8     -135.0  -22.8  -1.81   -6.52    3.33
+                         Westgate   237   62.0       61.9     -160.0   22.8   9.62   -6.29   30.31
+                             Wynn   110   49.1       52.3     -145.0   -6.9  -6.30  -24.62   12.28
+
+Confirm era by season:
+ season  bets  win %  exp win %  avg price  units  ROI %  95% lo  95% hi
+   2018   763   54.9       57.5     -135.0  -41.6  -5.45  -11.75    1.19
+   2019   700   41.6       51.7     -116.0 -175.3 -25.05  -33.60  -16.61
+   2020   515   59.2       59.0     -133.0   21.1   4.11   -2.74   10.98
+   2021  1181   57.8       61.5     -145.0    3.4   0.29   -5.87    6.35
+   2022  1637   61.3       65.1     -156.0  -36.8  -2.25   -5.59    1.51
+   2023  1865   56.8       61.3     -147.0  -39.1  -2.10   -5.74    1.86
+   2024  1854   55.9       58.2     -145.0   40.0   2.16   -3.62    8.42
+
+Kill rule (confirm, best per game/side): bets 8515 (need 200+), ROI -2.68% (need +1%+), 95% interval [-4.88, -0.52] (must exclude 0)  =>  FAILS: closed
