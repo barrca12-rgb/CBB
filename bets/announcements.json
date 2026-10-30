@@ -58,5 +58,10 @@
   "id": "2026-10-30-barttorvik-retry",
   "date": "2026-10-30",
   "text": "Data fix, recorded Oct 30, before the first games: when Barttorvik had not yet posted a day's ratings file, the card treated it as missing for good and used KenPom's number in its place. It now asks again hourly until the file appears, as the backtest assumed; KenPom's game-day predictions get the same rule. Replays of past days are unchanged, and each play's input stamp shows when KenPom stood in for Barttorvik."
+ },
+ {
+  "id": "2026-10-30-barttorvik-repo",
+  "date": "2026-10-30",
+  "text": "Data note, recorded Oct 30, before the first games: Barttorvik's site refuses the servers the card runs on, so his daily ratings file is now fetched from our own computer and saved to the repo, where the card reads it. The model, its inputs and its rules are unchanged; until the first daily file arrives (expected around Nov 2), KenPom's number stands in, as each play's input stamp shows."
  }
 ]

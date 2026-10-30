@@ -25,6 +25,9 @@ CACHE = os.path.join(os.path.dirname(__file__), "cache", "barttorvik")
 # A date with no file is cached as missing, but a recent one may still be posted (the card asks for a day's file
 # before Barttorvik publishes it): within RETRY_DAYS of today it is asked again, at most once per RETRY_SECONDS.
 RETRY_DAYS, RETRY_SECONDS = 10, 3600
+# Barttorvik refuses GitHub's servers (403, Oct 30), so Chad's own computer fetches each day's file and commits the four
+# columns here (local/fetch_barttorvik.py); a file here is read before any request
+REPO = os.path.join(os.path.dirname(__file__), "..", "data", "barttorvik_tm")
 LAST = {}          # what the last live lookup used, for the run log
 # Each season's preseason ratings, saved before the first game (the live file changes once games are played)
 PRESEASON = os.path.join(os.path.dirname(__file__), "..", "data", "barttorvik_preseason_{}.csv")
@@ -35,10 +38,17 @@ def snapshot(day) -> pd.DataFrame | None:
     """Ratings file for one date (None if Barttorvik has no file that day)."""
     d = pd.Timestamp(day).strftime("%Y%m%d")
     path = os.path.join(CACHE, d + ".parquet")
-    if os.path.exists(path):
-        t = pd.read_parquet(path)
-        if len(t) or not _recent(day) or time.time() - os.path.getmtime(path) < RETRY_SECONDS:
-            return t if len(t) else None
+    t = pd.read_parquet(path) if os.path.exists(path) else None
+    if t is not None and len(t):
+        return t
+    repo = os.path.join(REPO, d + ".csv")
+    if os.path.exists(repo):
+        t = pd.read_csv(repo)[["team", "adj_oe", "adj_de", "adj_tempo"]]
+        ids = teams.id_lookup("kenpom")
+        t["espn_id"] = t["team"].map(lambda n: ids.get(teams.norm(n))).astype("Int64")
+        return t if len(t) else None
+    if t is not None and (not _recent(day) or time.time() - os.path.getmtime(path) < RETRY_SECONDS):
+        return None
     req = urllib.request.Request(URL.format(d), headers=UA)
     try:
         with urllib.request.urlopen(req, timeout=60) as r:
@@ -85,7 +95,10 @@ def predict(games: pd.DataFrame, live_season: int | None = None) -> pd.DataFrame
     out = []
     for day, g in games.groupby("date"):
         t = before(day)
-        used = f"time-machine file {LAST['file']}" if t is not None else None
+        used = None
+        if t is not None:
+            src = "repo copy from Chad's machine" if os.path.exists(os.path.join(REPO, LAST["file"].replace("-", "") + ".csv")) else "download"
+            used = f"time-machine file {LAST['file']} ({src})"
         if t is None and live_season:
             t = current(live_season)
             used = "live ratings file" if t is not None else f"none (time machine: no file in the 7 days before; live file: {LAST.get('current')}); KenPom fills"

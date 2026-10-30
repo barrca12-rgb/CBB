@@ -100,3 +100,55 @@ def test_kenpom_old_and_undated_answers_cache_as_before(tmp_path, monkeypatch):
     kenpom.get("fanmatch", d="2025-07-04")                          # an old empty date stays cached as empty
     kenpom.get("archive", preseason="true", y=2027)
     assert sorted(os.listdir(tmp_path)) == ["endpoint-archive_preseason-true_y-2027.json", "endpoint-fanmatch_d-2025-07-04.json"]
+
+
+def _fetcher():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("fetch_barttorvik", os.path.join(os.path.dirname(barttorvik.__file__), "..", "local", "fetch_barttorvik.py"))
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    return m
+
+
+def _rows_many():
+    out = []
+    for k, (team, oe, de, tempo) in enumerate([("Duke", 120.63523723471697, 91.26906206401344, 70.13581845268743),
+                                                ("Florida", 120.431960949121, 93.50930117438779, 74.11147845268742)]):
+        r = [0] * 45
+        r[1], r[4], r[6], r[44] = team, oe, de, tempo
+        out.append(r)
+    return out
+
+
+def test_repo_copy_from_chads_machine_matches_a_direct_download(tmp_path, monkeypatch):
+    """The fetcher's CSV, read by the card, gives exactly the frame a direct download would; no request is made."""
+    import datetime as dt
+    f = _fetcher()
+    monkeypatch.setattr(f, "OUT", str(tmp_path / "repo"))
+    monkeypatch.setattr(f, "PAUSE", 0)
+    day = dt.date(2026, 11, 2)
+    served = {"20261102": _rows_many()}                                  # Nov 1 and Oct 31: not posted (404)
+
+    def fake(req, timeout=60):
+        d = req.full_url.split("/")[-1][:8]
+        if d not in served:
+            raise f.urllib.error.HTTPError(req.full_url, 404, "nf", {}, None)
+        return _Resp(gzip.compress(json.dumps(served[d]).encode()))
+    monkeypatch.setattr(f.urllib.request, "urlopen", fake)
+    assert [os.path.basename(p) for p in f.fetch(day)] == ["20261102.csv"]
+    assert f.fetch(day) == []                                             # already there: not asked again
+
+    # direct download of the same rows through the card's own path, into an empty cache
+    monkeypatch.setattr(barttorvik, "CACHE", str(tmp_path / "cache"))
+    monkeypatch.setattr(barttorvik, "REPO", str(tmp_path / "none"))
+    monkeypatch.setattr(barttorvik.urllib.request, "urlopen", lambda req, timeout=60: _Resp(gzip.compress(json.dumps(_rows_many()).encode())))
+    direct = barttorvik.snapshot(pd.Timestamp("2026-11-02"))
+
+    # the card reading the repo copy, with a stale "missing" cache entry and no network at all
+    monkeypatch.setattr(barttorvik, "CACHE", str(tmp_path / "cache2"))
+    os.makedirs(tmp_path / "cache2")
+    _empty(tmp_path / "cache2" / "20261102.parquet", 60)
+    monkeypatch.setattr(barttorvik, "REPO", str(tmp_path / "repo"))
+    monkeypatch.setattr(barttorvik.urllib.request, "urlopen", lambda *a, **k: (_ for _ in ()).throw(AssertionError("network")))
+    from_repo = barttorvik.snapshot(pd.Timestamp("2026-11-02"))
+    pd.testing.assert_frame_equal(from_repo.reset_index(drop=True), direct.reset_index(drop=True))

@@ -34,3 +34,9 @@ Team names: 365 teams in `data/teams.csv`, 365 with a KenPom name. Teams in the 
 **Historical Odds API snapshots in this repo:** `research/market/data/quotes_*.csv.gz` and `snapshots_*.csv` (12 sampled
 dates, Oct 26 pull) stay in the public repo. Chad decided this on Oct 30. They are the exception to keeping raw paid
 data in the private CBB-Data repo, so do not flag them again.
+
+## Barttorvik daily files in the repo (Oct 30, 2026)
+`data/barttorvik_tm/<YYYYMMDD>.csv` holds Barttorvik's free, public T-Rank ratings for one date, fetched from Chad's
+computer because Barttorvik refuses GitHub's servers (`local/README.md`). Only the four columns the model uses are
+kept (team, adjusted offense, adjusted defense, tempo), the same as `data/barttorvik_preseason_<season>.csv`; the
+raw file is never committed.

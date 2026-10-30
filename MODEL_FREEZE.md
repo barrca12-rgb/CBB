@@ -606,3 +606,25 @@ for the day before each game, and this lets the live card actually get it.
 48a9f26e5268c3a467d21cdff557bc36f1b2230f838ecd2f2fe4c4cca71cf8e3  cbb/barttorvik.py
 7f7d4f58f22c7c167b43361b25237767c6a8b7557c7acd0648efbb289611b3bd  cbb/kenpom.py
 ```
+
+## 2026-10-30: Barttorvik's daily file read from the repo (Chad's option 2, approved Oct 30)
+
+The 16:10 UTC card run confirmed Barttorvik refuses GitHub's servers ("live file: failed (HTTP Error 403:
+Forbidden)"). Nothing is done to get around that from GitHub. Instead:
+
+- **`local/fetch_barttorvik.py` (runs on Chad's computer, not in the card):** three times a day it asks once for
+  each of the last three dates with no file yet, five seconds apart. It keeps the four columns the model uses,
+  commits them to `data/barttorvik_tm/<YYYYMMDD>.csv` and pushes. It uses the standard library only. Setup steps are
+  in `local/README.md`.
+- **`cbb/barttorvik.py`:** after a cached file with data, the card reads `data/barttorvik_tm/<YYYYMMDD>.csv` before
+  any request. The run log names the source ("repo copy from Chad's machine" or "download").
+- **Checks:**
+  - The repo copy gives exactly the frame a direct download gives (`audit/test_source_retry.py`, no request made).
+  - Replays of 2025-11-15, 2026-01-17 and 2026-03-01 give byte-identical card CSVs and pages against the code before
+    this change (generated_at aside).
+- **Discord note:** `2026-10-30-barttorvik-repo` in bets/announcements.json.
+- **New fingerprint:**
+
+```
+6fc98f00663e8fcec13d2484fe8cd5df43761b0f4d77df0b7cd9aba6a66c0e95  cbb/barttorvik.py
+```
