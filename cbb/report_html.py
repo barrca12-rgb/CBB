@@ -282,7 +282,7 @@ h1 { font-family: var(--display); font-weight: 400; font-size: 26px; letter-spac
 .panel-h h2::before { content: ""; width: 4px; height: 14px; background: var(--brand); border-radius: 2px } .panel-h .note { color: var(--muted); font-size: 12px }
 .scroll { overflow-x: auto }
 /* long notes wrap instead of widening the table (no sideways scrolling) */
-#t-plays td:first-child, #t-watch td:first-child { white-space: normal; min-width: 240px }
+#t-plays td:first-child { white-space: normal; min-width: 240px }
 #t-rec td { white-space: normal }
 table { width: 100%; border-collapse: collapse; font-size: 13px }
 th { text-align: left; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); padding: 8px 12px; border-bottom: 1px solid var(--line); background: var(--sunken); white-space: nowrap }
@@ -403,7 +403,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
 
   <section class="panel" aria-labelledby="watch-h" id="watch-sec">
     <div class="panel-h"><h2 id="watch-h">Watch list</h2><span class="note">Becomes a play if the line reaches the number shown. Follows the Spread / Total tab on the odds board.</span></div>
-    <div class="scroll"><table id="t-watch"></table></div>
+    <div class="scroll"><table class="board" id="t-watch"></table></div>
   </section>
 
   <section class="panel" aria-labelledby="board-h">
@@ -678,15 +678,18 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   const loggedTag = (g, mk) => "<span class='tag logged'>Logged " + esc(g[mk + "_logged_pick"]) + "</span>";
   const board = () => {
     const only = $("only-plays").checked;
-    const G = D.games.filter((g) => !only || g.spread_verdict === "BET" || g.total_verdict === "BET" ||
-      loggedSide(g, "spread") || loggedSide(g, "total"))
-      .sort((a, b) => String(a.start).localeCompare(String(b.start)) || a.home.localeCompare(b.home));
+    boardInto($("t-board"), D.games.filter((g) => !only || g.spread_verdict === "BET" || g.total_verdict === "BET" ||
+      loggedSide(g, "spread") || loggedSide(g, "total")), "No games.");
+  };
+  // one odds-board tile per game (logos, every book, Novig, best, edge), into any table: the board and the watch list
+  const boardInto = (table, games, empty) => {
+    const G = games.slice().sort((a, b) => String(a.start).localeCompare(String(b.start)) || a.home.localeCompare(b.home));
     const mh = {spread: "Model", total: "Model", ml: "Win %"}[market];
     let h = "<thead><tr><th class='tm'>Time</th><th>Team</th><th class='r pts'>Proj</th><th class='r'>" + mh + "</th>" +
       BOOKS.map((b, j) => "<th class='bk" + (j >= 4 ? " bk-minor" : "") + "'>" + b + "</th>").join("") +
       "<th class='bk nv' title='Novig exchange price, shown only: never used for picks, Best or CLV'>Novig</th>" +
       "<th class='bestc'>Best</th><th class='r edge'>Edge</th></tr></thead>";
-    if (!G.length) { $("t-board").innerHTML = h + "<tbody><tr><td class='empty' colspan='" + (BOOKS.length + 6) + "'>No games.</td></tr></tbody>"; return; }
+    if (!G.length) { table.innerHTML = h + "<tbody><tr><td class='empty' colspan='" + (BOOKS.length + 6) + "'>" + esc(empty) + "</td></tr></tbody>"; return; }
     // Novig (show-only, cbb/odds_api.py DISPLAY_BOOKS): its own column, never in Best or a pick
     const nvCell = (g, sd, i) => { const n = g.novig; if (!n) return cell(null);
       if (market === "spread") return n.home_spread == null ? cell(null) : cell(ln(sd === "home" ? n.home_spread : -n.home_spread), n[sd + "_spread_odds"], null, false);
@@ -701,22 +704,24 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
         let model, bookCells, edge = "";
         if (market === "spread") {
           model = ln(sd === "home" ? g.model_home_spread : -g.model_home_spread);
-          const pick = g.spread_side === sd && ["BET", "WATCH"].includes(g.spread_verdict) && loggedSide(g, "spread") !== sd;
+          const pick = g.spread_side === sd && ["BET", "WATCH", "REVIEW"].includes(g.spread_verdict) && loggedSide(g, "spread") !== sd;
           bookCells = BOOKS.map((bk) => { const x = bl(g, bk); if (!x || x.home_spread == null) return cell(null);
             const v = sd === "home" ? x.home_spread : -x.home_spread;
             return cell(ln(v), x[sd + "_spread_odds"], x[sd + "_spread_link"], pick && g.spread_book === bk && v === g.spread_line); });
           if (loggedSide(g, "spread") === sd) edge = loggedTag(g, "spread");
           else if (pick && g.spread_verdict === "BET") edge = "<span class='tag bet'>BET " + sgn(g.spread_edge) + "</span>";
+          else if (pick && g.spread_verdict === "REVIEW") edge = "<span class='tag' title='Edge above the maximum: likely a bad quote. Never a play.'>REVIEW " + sgn(g.spread_edge) + "</span>";
           else if (pick) { const at = playAt(g.spread_good_to, true);
             edge = watchTag(g.spread_line >= at ? "better price" : "bet at " + ln(at) + gp(g.spread_good_price)); }
         } else if (market === "total") {
           const ou = i === 0 ? "over" : "under";
           model = i === 0 ? num(g.model_total) : "";
-          const pick = (g.total_pick || "").toLowerCase() === ou && ["BET", "WATCH"].includes(g.total_verdict) && loggedSide(g, "total") !== ou;
+          const pick = (g.total_pick || "").toLowerCase() === ou && ["BET", "WATCH", "REVIEW"].includes(g.total_verdict) && loggedSide(g, "total") !== ou;
           bookCells = BOOKS.map((bk) => { const x = bl(g, bk); if (!x || x.total == null) return cell(null);
             return cell((i === 0 ? "o" : "u") + num(x.total), x[ou + "_odds"], x[ou + "_link"], pick && g.total_book === bk && x.total === g.total_line); });
           if (loggedSide(g, "total") === ou) edge = loggedTag(g, "total");
           else if (pick && g.total_verdict === "BET") edge = "<span class='tag bet'>BET " + sgn(g.total_edge) + "</span>";
+          else if (pick && g.total_verdict === "REVIEW") edge = "<span class='tag' title='Edge above the maximum: likely a bad quote. Never a play.'>REVIEW " + sgn(g.total_edge) + "</span>";
           else if (pick) { const at = playAt(g.total_good_to, ou === "under");
             edge = watchTag((ou === "under" ? g.total_line >= at : g.total_line <= at) ? "better price" : "bet at " + ou[0] + num(at) + gp(g.total_good_price)); }
         } else {
@@ -736,29 +741,23 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       }).join("");
       return "<tbody class='g" + (hasBet ? " has-bet" : "") + "' data-gid='" + g.game_id + "'>" + rows + "</tbody>";
     }).join("");
-    $("t-board").innerHTML = h;
+    table.innerHTML = h;
   };
   document.querySelectorAll(".seg button").forEach((b) => b.onclick = () => {
     market = b.dataset.m; document.querySelectorAll(".seg button").forEach((x) => x.setAttribute("aria-pressed", x === b)); board(); watch(); });
   $("only-plays").onchange = board;
   board();
 
-  // Watch list (a side already logged as a play is listed under Plays at its logged number, not here); it shows the
-  // market of the odds board's Spread / Total tab
-  const W = [];
-  D.games.forEach((g) => {
-    if (g.spread_verdict === "WATCH" && loggedSide(g, "spread") !== g.spread_side) W.push([tip(g), matchup(g), g.spread_pick, g.game_id, "spread", ln(g.spread_line), ln(playAt(g.spread_good_to, true)) + gp(g.spread_good_price), sgn(g.spread_edge)]);
-    if (g.total_verdict === "WATCH" && loggedSide(g, "total") !== String(g.total_pick || "").toLowerCase()) W.push([tip(g), matchup(g), g.total_pick, g.game_id, "total", num(g.total_line), num(playAt(g.total_good_to, g.total_pick === "Under")) + gp(g.total_good_price), sgn(g.total_edge)]);
-    // REVIEW (run_day.MAX_EDGE): an edge larger than any real disagreement with the market; never a play, never alerted
-    if (g.spread_verdict === "REVIEW") W.push([tip(g), matchup(g), "REVIEW: " + g.spread_pick + " " + ln(g.spread_line) + " (" + (g.spread_book || "") + "), check the line", g.game_id, "spread", ln(g.spread_line), "not a play", sgn(g.spread_edge)]);
-    if (g.total_verdict === "REVIEW") W.push([tip(g), matchup(g), "REVIEW: " + g.total_pick + " " + num(g.total_line) + " (" + (g.total_book || "") + "), check the line", g.game_id, "total", num(g.total_line), "not a play", sgn(g.total_edge)]);
-  });
+  // Watch list: the odds-board tile of every game whose pick on the current tab is WATCH (becomes a play if the line
+  // reaches the number shown) or REVIEW (edge above run_day.MAX_EDGE: never a play); a side already logged is under Plays
+  const onWatch = (g, mk) => {
+    const sd = mk === "spread" ? g.spread_side : String(g.total_pick || "").toLowerCase();
+    return ["WATCH", "REVIEW"].includes(g[mk + "_verdict"]) && loggedSide(g, mk) !== sd;
+  };
   const watch = () => {
-    const mk = market === "total" ? "total" : "spread", Wm = W.filter((r) => r[4] === mk);
-    $("watch-sec").hidden = !W.length || market === "ml";
-    $("t-watch").innerHTML = Wm.length ? "<thead><tr><th>Time</th><th>Game</th><th>Side</th><th class='r'>Now</th><th class='r'>Play at</th><th class='r'>Edge now</th></tr></thead><tbody>" +
-      Wm.map((r) => "<tr data-gid='" + r[3] + "' data-mk='" + r[4] + "'><td class='m'>" + esc(r[0]) + "</td><td>" + esc(r[1]) + "</td><td class='b'>" + esc(r[2]) + "</td><td class='r'>" + esc(r[5]) + "</td><td class='r'>" + esc(r[6]) + "</td><td class='r m'>" + esc(r[7]) + "</td></tr>").join("") + "</tbody>"
-      : "<tbody><tr><td class='empty'>No " + (mk === "total" ? "totals" : "spreads") + " on the watch list.</td></tr></tbody>";
+    const mk = market === "total" ? "total" : "spread";
+    $("watch-sec").hidden = market === "ml" || !D.games.some((g) => onWatch(g, "spread") || onWatch(g, "total"));
+    boardInto($("t-watch"), D.games.filter((g) => onWatch(g, mk)), "No " + (mk === "total" ? "totals" : "spreads") + " on the watch list.");
   };
   watch();
 
@@ -815,7 +814,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
         "</td><td class='r m'>" + num(x.model) + "</td><td class='r m'>" + esc(x.away_score) + "–" + esc(x.home_score) + "</td></tr>").join("") + "</tbody>";
   }
 
-  ["t-plays", "t-bandb", "t-watch", "t-rec", "t-recent", "t-review", "t-review2", "t-misses"].forEach(stack);
+  ["t-plays", "t-bandb", "t-rec", "t-recent", "t-review", "t-review2", "t-misses"].forEach(stack);
 
   // Ratings
   $("t-rat").innerHTML = "<thead><tr><th class='r'>#</th><th>Team</th><th class='r'>Net</th><th class='r'>Offense</th><th class='r'>Defense</th><th class='r'>Tempo</th></tr></thead><tbody>" +

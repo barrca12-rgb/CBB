@@ -51,9 +51,8 @@ const {chromium} = require('playwright');
     for (const mk of ['spread', 'total']) {
       await p.click(".seg button[data-m='" + mk + "']");
       await p.waitForTimeout(50);
-      const wr = await p.evaluate(() => [...document.querySelectorAll('#t-watch tbody tr[data-gid]')].map((r) => r.dataset.gid + '|' + r.dataset.mk));
-      wr.forEach((k) => { if (!k.endsWith('|' + mk)) res.problems.push(`watch list on the ${mk} tab shows ${k}`); });
-      watch.push(...wr);
+      const wr = await p.evaluate(() => [...document.querySelectorAll('#t-watch tbody.g')].map((t) => t.dataset.gid));
+      watch.push(...wr.map((gid) => gid + '|' + mk));     // board tiles: the tab is the market
       const cells = await p.evaluate(() => Object.fromEntries([...document.querySelectorAll('#t-board tbody.g')]
         .map((t) => [t.dataset.gid, [...t.querySelectorAll('td.edge')].map((c) => c.textContent.trim())])));
       for (const g of D.games) {
@@ -62,7 +61,7 @@ const {chromium} = require('playwright');
         const sides = mk === 'spread' ? ['away', 'home'] : ['over', 'under'];
         sides.forEach((sd, i) => {
           const ls = side(g, mk), v = g[mk + '_verdict'], ps = pickSide(g, mk);
-          const want = ls === sd ? 'Logged' : (ps === sd && v === 'BET') ? 'BET' : (ps === sd && v === 'WATCH') ? 'Watch' : '';
+          const want = ls === sd ? 'Logged' : (ps === sd && v === 'BET') ? 'BET' : (ps === sd && v === 'WATCH') ? 'Watch' : (ps === sd && v === 'REVIEW') ? 'REVIEW' : '';
           const got = c[i] || '';
           if (want ? !got.startsWith(want) : got !== '') res.problems.push(`${g.away} at ${g.home} ${mk} ${sd}: board shows "${got}", expected ${want || 'nothing'}`);
         });
@@ -72,7 +71,7 @@ const {chromium} = require('playwright');
     const count = (a, k) => a.filter((x) => x === k).length;
     for (const g of D.games) for (const mk of ['spread', 'total']) {
       const k = g.game_id + '|' + mk, ls = side(g, mk), v = g[mk + '_verdict'], ps = pickSide(g, mk);
-      const wantW = v === 'WATCH' && ls !== ps ? 1 : 0;
+      const wantW = (v === 'WATCH' || v === 'REVIEW') && ls !== ps ? 1 : 0;
       if (count(watch, k) !== wantW) res.problems.push(`${g.away} at ${g.home} ${mk}: ${count(watch, k)} watch row(s), expected ${wantW}`);
       const wantP = (ls ? 1 : 0) + (!ls && v === 'BET' ? 1 : 0);
       if (count(plays, k) !== wantP) res.problems.push(`${g.away} at ${g.home} ${mk}: ${count(plays, k)} play row(s), expected ${wantP}`);
