@@ -19,6 +19,9 @@ def read(through: str | None = None) -> str:
     if not os.path.exists(ladder.PLAYS):
         return "No ladder plays logged yet."
     p = pd.read_csv(ladder.PLAYS)
+    from cbb import tracker
+    void = set(tracker.load("all").query("status == 'void'")["bet_id"])
+    p = p[~p["bet_id"].isin(void)]                  # a voided play (e.g. the Oct 30 bad BetMGM quote) is not a play
     if through:
         p = p[p["date"].astype(str) <= through]
     pulls = p.drop_duplicates(["game_id", "pulled_at"])

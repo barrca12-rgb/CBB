@@ -628,3 +628,48 @@ Forbidden)"). Nothing is done to get around that from GitHub. Instead:
 ```
 6fc98f00663e8fcec13d2484fe8cd5df43761b0f4d77df0b7cd9aba6a66c0e95  cbb/barttorvik.py
 ```
+
+## 2026-10-30: Bad-quote guards; Villanova +7.5 voided (approved by Chad Oct 30)
+
+**What happened.** A backtest assumption leaked into live play. At 15:50 UTC the SGO feed carried a BetMGM row for
+Notre Dame-Villanova (Nov 1) with the sign flipped and no price on one side: Notre Dame -7.5 (-110), where every other
+book had Notre Dame +7.5. In the card's orientation that read Villanova +7.5 with no price. The model has Villanova by
+7.3, so the edge was 14.8. `ev()` priced the missing price at -110, an assumption that exists because ESPN's historical
+lines carry no prices. The play was logged (`2026-11-01|401920982|spread|home`), alerted and posted to Discord. It was
+not placed.
+
+- **Void:** the row stays in `bets/bets.csv` with status void, never deleted. The next run sends one CANCELLED phone
+  alert and a Discord correction under the original post. The record page and chart count it in their void footers.
+  The one real Nov 1 play, Notre Dame-Villanova Under 149.5 (placed), is unaffected.
+- **Guard 1, no price means no play (live only):** a quote with no price on our side is skipped and logged as "no
+  price". Replays of past days keep the -110 assumption.
+- **Guard 2, off-market (live only):** with 3+ books quoting, a book 3+ points from the median of the other books is
+  skipped and logged as "off-market", with the book's number, the median and the book count.
+- **Guard 3, maximum plausible edge (live and replay):** a spread edge above 8 or a total edge above 10 is REVIEW.
+  It is shown in the card's watch list as "REVIEW ... check the line", never a BET, never band B, never alerted or
+  logged.
+- **Skip log:** every skip goes to `lines/bad_quotes.csv`, once per quote, for the Nov 16 execution read (how often
+  each guard fires, and at which book).
+- **Season scan (`python -m audit.guard_scan`, `audit/out/guard_scan.csv`):** all 10 bets logged so far (v1; no band
+  B yet), each with the books as the card saw them when it logged the bet. Only the Villanova +7.5 bet is caught, and
+  it trips all three guards.
+- **History, guard 3 (live-like frame, swapped records out):**
+  - Spreads: 46 of 4,195 decided spread plays had an edge above 8 (22 in 2014-17, 24 in 2024-26). Without them, the win rate
+    goes from 56.8% to 56.6% (2014-17) and from 57.8% to 57.5% (2024-26).
+  - Totals: 87 of 7,219 decided total plays had an edge above 10. The win rate is unchanged (57.6% and 55.8% to 55.7%).
+  - Many of these were bad ESPN openers rather than real disagreements: in 2024-26, 79% of the over-8 spread openers
+    moved 5+ points by the close, and 9 of 24 sat on the opposite side of zero from the close (the same sign-flip
+    defect).
+  - Season 2014 totals (outside both eras) has 1,981 such plays: that season's model totals sit about 11 points under
+    the line, a first-season artifact already excluded from the eras.
+- **Checks:**
+  - `audit/test_bad_quotes.py` covers each guard with the real BetMGM row, the replay -110 path and the skip log.
+  - Replays of 2025-11-15, 2026-01-17 and 2026-03-01 give byte-identical card CSVs. The pages differ only by the three
+    lines of REVIEW display code.
+- **After the Nov 24 switch to The Odds API, the guards stay on.**
+- **Discord note:** `2026-10-30-bad-quote-guards` in bets/announcements.json.
+- **New fingerprint:**
+
+```
+b171aa8410e202e87361a4a61aee18c163fc23ff3a3d8920ac3562e29b9164d6  cbb/run_day.py
+```

@@ -51,6 +51,15 @@ WATCH_BELOW = 1.0      # within this many points of a BET: WATCH (becomes a play
 WIN_PROB = {"spread": (0.0255, 0.58), "total": (0.014, 0.565)}
 PREFERRED_BOOK = "DraftKings"   # same number and price at several books: the play goes to this one
 MIN_EV = 0.02          # a play also needs +2% expected value at the book's price (3-pt spread edge: fine to -125)
+# Bad-quote guards (approved by Chad Oct 30, after a sign-flipped BetMGM row with no price was logged as Villanova +7.5):
+# live quotes always carry a price, so one without a price on our side is a broken row, never a play (replays of past
+# days keep the -110 assumption: ESPN's stored lines have no prices); a book 3+ points off the median of the other
+# books, with 3+ books quoting, is skipped; an edge above MAX_EDGE is shown as REVIEW, never a BET or an alert
+OFF_MARKET, OFF_MARKET_BOOKS = 3.0, 3
+MAX_EDGE = {"spread": 8.0, "total": 10.0}
+BAD_QUOTES = os.path.join(os.path.dirname(__file__), "..", "lines", "bad_quotes.csv")
+BAD_COLS = ["first_seen", "date", "game_id", "market", "side", "book", "number", "price", "median_others", "books", "reason"]
+BAD = []               # skips from the last plays() call, written by build() on live runs
 # Opening week (first 7 days of the season): totals are shifted so the day's average matches KenPom's, keeping our
 # game-to-game differences. The model starts each season at last season's scoring level, and in 2026-27 that put every
 # total about 3.6 below KenPom and the market: one league-wide bet that scoring falls back, not game-by-game edges.
@@ -198,14 +207,19 @@ def opening_week_totals(f: pd.DataFrame, day: pd.Timestamp) -> pd.DataFrame:
     return f
 
 
-def _best(lines: pd.DataFrame, market: str, sides: dict):
+def _best(lines: pd.DataFrame, market: str, sides: dict, live: bool = False, skip=None):
     """Best (side, book row, edge, win prob, EV) across books and both sides, by expected value at each book's
-    price. sides: side -> (line column, edge function of the line, odds column)."""
+    price. sides: side -> (line column, edge function of the line, odds column). Live, a quote with no price on the
+    side is skipped (skip(row, side, number, reason) records it)."""
     best = None
     for side, (col, edge_fn, odds_col) in sides.items():
         for _, row in lines.dropna(subset=[col]).iterrows():
             e = float(edge_fn(row[col]))
             if e <= 0:
+                continue
+            if live and pd.isna(row.get(odds_col)):
+                if skip:
+                    skip(row, side, row[col], "no price")
                 continue
             p = win_prob(market, e)
             v = ev(p, row.get(odds_col))
@@ -231,8 +245,22 @@ def _band_b(market: str, edge: float, value: float, verdict: str) -> bool:
     return bool(tracker.BAND_B_ON[market] and verdict != "BET" and lo <= edge < hi and value >= MIN_EV)
 
 
-def plays(f: pd.DataFrame, lines: pd.DataFrame) -> pd.DataFrame:
-    """One row per game: the best spread and total play across books."""
+def _off_market(l: pd.DataFrame, col: str) -> pd.DataFrame:
+    """Rows whose number in col is OFF_MARKET+ points from the median of the other books, when OFF_MARKET_BOOKS+
+    books quote it; adds median_others and books."""
+    q = l.dropna(subset=[col])
+    if q["book"].nunique() < OFF_MARKET_BOOKS:
+        return q.iloc[0:0].assign(median_others=np.nan, books=0)
+    med = [float(q.drop(index=i)[col].median()) for i in q.index]
+    q = q.assign(median_others=med, books=q["book"].nunique())
+    return q[(q[col] - q["median_others"]).abs() >= OFF_MARKET]
+
+
+def plays(f: pd.DataFrame, lines: pd.DataFrame, live: bool = True) -> pd.DataFrame:
+    """One row per game: the best spread and total play across books. live: apply the no-price and off-market
+    guards (replays of past days have one priceless ESPN line per game)."""
+    global BAD
+    BAD = []
     out = []
     for _, g in f.iterrows():
         l = lines[(lines["home_id"] == g["home_id"]) & (lines["away_id"] == g["away_id"])]
@@ -262,13 +290,36 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame) -> pd.DataFrame:
                 r["open_home_spread"] = float(l["open_home_spread"].median()) if l["open_home_spread"].notna().any() else np.nan
             if "open_total" in l:
                 r["open_total"] = float(l["open_total"].median()) if l["open_total"].notna().any() else np.nan
+            def skip(mk):
+                def rec(row, side, number, reason, med=np.nan, books=np.nan):
+                    BAD.append({"date": str(g.get("date", ""))[:10], "game_id": g["game_id"], "market": mk, "side": side,
+                                "book": row.get("book"), "number": number, "price": row.get(f"{side}_spread_odds" if mk == "spread" else f"{side}_odds"),
+                                "median_others": med, "books": books, "reason": reason})
+                return rec
+            ls, lt = l, l
+            if live:   # a book far off every other book's number is a broken or stale quote, not a price to bet
+                for mk, col in (("spread", "home_spread"), ("total", "total")):
+                    off = _off_market(l, col)
+                    for i, row in off.iterrows():
+                        skip(mk)(row, "-", row[col], "off-market", row["median_others"], row["books"])
+                    if len(off):
+                        if mk == "spread":
+                            ls = l.drop(index=off.index)
+                        else:
+                            lt = l.drop(index=off.index)
             # spread: home edge at line s is m + s; away edge is -(m + s)
-            sp = _best(l, "spread", {"home": ("home_spread", lambda s_: m + s_, "home_spread_odds"),
-                                     "away": ("home_spread", lambda s_: -(m + s_), "away_spread_odds")})
+            sp = _best(ls, "spread", {"home": ("home_spread", lambda s_: m + s_, "home_spread_odds"),
+                                      "away": ("home_spread", lambda s_: -(m + s_), "away_spread_odds")}, live, skip("spread"))
             if sp:
                 side, row, edge, p, value = sp
                 calls = SPREAD_CALLS
                 v, units = _call(edge, value, calls)
+                if edge > MAX_EDGE["spread"]:   # no real disagreement is this large: shown for review, never bet
+                    BAD.append({"date": str(g.get("date", ""))[:10], "game_id": g["game_id"], "market": "spread", "side": side,
+                                "book": row.get("book"), "number": row["home_spread"] if side == "home" else -row["home_spread"],
+                                "price": row.get(f"{side}_spread_odds"), "median_others": np.nan, "books": np.nan,
+                                "reason": f"review: edge {edge:.1f}"})
+                    v, units = "REVIEW", 0.0
                 line = row["home_spread"] if side == "home" else -row["home_spread"]
                 thr = calls[0][0]
                 r.update(spread_pick=g["home"] if side == "home" else g["away"], spread_side=side, spread_line=line,
@@ -276,21 +327,46 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame) -> pd.DataFrame:
                          spread_p=p, spread_ev=value, spread_link=row.get(f"{side}_spread_link"), spread_verdict=v,
                          spread_units=units, spread_good_to=(thr - m) if side == "home" else (thr + m))
                 r["spread_good_price"] = price_needed("spread", thr, r["spread_good_to"], True)
-                r["spread_bandb"] = _band_b("spread", edge, value, v)
-            to = _best(l, "total", {"over": ("total", lambda x: t - x, "over_odds"),
-                                    "under": ("total", lambda x: x - t, "under_odds")})
+                r["spread_bandb"] = _band_b("spread", edge, value, v) and v != "REVIEW"
+            to = _best(lt, "total", {"over": ("total", lambda x: t - x, "over_odds"),
+                                     "under": ("total", lambda x: x - t, "under_odds")}, live, skip("total"))
             if to:
                 side, row, edge, p, value = to
                 v, units = _call(edge, value, TOTAL_CALLS)
+                if edge > MAX_EDGE["total"]:
+                    BAD.append({"date": str(g.get("date", ""))[:10], "game_id": g["game_id"], "market": "total", "side": side,
+                                "book": row.get("book"), "number": row["total"], "price": row.get(f"{side}_odds"),
+                                "median_others": np.nan, "books": np.nan, "reason": f"review: edge {edge:.1f}"})
+                    v, units = "REVIEW", 0.0
                 thr = TOTAL_CALLS[0][0]
                 r.update(total_pick=side.title(), total_line=row["total"], total_book=row["book"],
                          total_odds=row.get(f"{side}_odds"), total_edge=edge, total_p=p, total_ev=value,
                          total_link=row.get(f"{side}_link"), total_verdict=v, total_units=units,
                          total_good_to=(t - thr) if side == "over" else (t + thr))
                 r["total_good_price"] = price_needed("total", thr, r["total_good_to"], side == "under")
-                r["total_bandb"] = _band_b("total", edge, value, v)
+                r["total_bandb"] = _band_b("total", edge, value, v) and v != "REVIEW"
         out.append(r)
     return pd.DataFrame(out)
+
+
+def log_bad_quotes(bad: list[dict]) -> None:
+    """Append each guard skip to lines/bad_quotes.csv the first time it is seen (for the Nov 16 execution read:
+    how often each guard fires, and at which book). Never stops the card."""
+    try:
+        if not bad:
+            return
+        new = pd.DataFrame(bad).assign(first_seen=pd.Timestamp.now(tz="UTC").isoformat(timespec="seconds"))
+        key = ["date", "game_id", "market", "side", "book", "number", "reason"]
+        if os.path.exists(BAD_QUOTES):
+            old = pd.read_csv(BAD_QUOTES, dtype=str)
+            seen = set(map(tuple, old[key].astype(str).to_numpy()))
+            new = new[[tuple(map(str, r)) not in seen for r in new[key].astype(str).to_numpy()]]
+        if len(new):
+            new.reindex(columns=BAD_COLS).to_csv(BAD_QUOTES, mode="a", header=not os.path.exists(BAD_QUOTES), index=False)
+            for _, r in new.iterrows():
+                print(f"Bad quote skipped: {r['book']} {r['market']} {r['side']} {r['number']} ({r['reason']}) game {r['game_id']}")
+    except Exception as e:
+        print(f"Bad-quote log failed ({e}); continuing.")
 
 
 def replay_lines(day: pd.Timestamp, f: pd.DataFrame) -> pd.DataFrame:
@@ -425,8 +501,9 @@ def build(day: pd.Timestamp, games: pd.DataFrame, lines: pd.DataFrame | None, re
     f = opening_week_totals(f, day)
     if replay:
         lines = replay_lines(day, f)
-    card = plays(f, lines)
+    card = plays(f, lines, live=not replay)
     if not replay:
+        log_bad_quotes(BAD)
         try:
             card = news.annotate(card)
         except Exception as e:

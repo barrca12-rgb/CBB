@@ -748,6 +748,9 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   D.games.forEach((g) => {
     if (g.spread_verdict === "WATCH" && loggedSide(g, "spread") !== g.spread_side) W.push([tip(g), matchup(g), g.spread_pick, g.game_id, "spread", ln(g.spread_line), ln(playAt(g.spread_good_to, true)) + gp(g.spread_good_price), sgn(g.spread_edge)]);
     if (g.total_verdict === "WATCH" && loggedSide(g, "total") !== String(g.total_pick || "").toLowerCase()) W.push([tip(g), matchup(g), g.total_pick, g.game_id, "total", num(g.total_line), num(playAt(g.total_good_to, g.total_pick === "Under")) + gp(g.total_good_price), sgn(g.total_edge)]);
+    // REVIEW (run_day.MAX_EDGE): an edge larger than any real disagreement with the market; never a play, never alerted
+    if (g.spread_verdict === "REVIEW") W.push([tip(g), matchup(g), "REVIEW: " + g.spread_pick + " " + ln(g.spread_line) + " (" + (g.spread_book || "") + "), check the line", g.game_id, "spread", ln(g.spread_line), "not a play", sgn(g.spread_edge)]);
+    if (g.total_verdict === "REVIEW") W.push([tip(g), matchup(g), "REVIEW: " + g.total_pick + " " + num(g.total_line) + " (" + (g.total_book || "") + "), check the line", g.game_id, "total", num(g.total_line), "not a play", sgn(g.total_edge)]);
   });
   if (!W.length) $("watch-sec").hidden = true;
   else $("t-watch").innerHTML = "<thead><tr><th>Time</th><th>Game</th><th>Side</th><th class='r'>Now</th><th class='r'>Play at</th><th class='r'>Edge now</th></tr></thead><tbody>" +

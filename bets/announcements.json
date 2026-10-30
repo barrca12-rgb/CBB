@@ -63,5 +63,10 @@
   "id": "2026-10-30-barttorvik-repo",
   "date": "2026-10-30",
   "text": "Data note, recorded Oct 30, before the first games: Barttorvik's site refuses the servers the card runs on, so his daily ratings file is now fetched from our own computer and saved to the repo, where the card reads it. The model, its inputs and its rules are unchanged; until the first daily file arrives (expected around Nov 2), KenPom's number stands in, as each play's input stamp shows."
+ },
+ {
+  "id": "2026-10-30-bad-quote-guards",
+  "date": "2026-10-30",
+  "text": "Correction and data fix, recorded Oct 30: Villanova +7.5 (Nov 1) came from a broken BetMGM quote in our odds feed (sign flipped, no price) and is void; it was never a real line. The card treated the missing price as -110, an assumption meant only for historical lines. Three guards now stop this: no price means no play; a book 3+ points away from the other books is skipped; an edge above 8 points (spreads) or 10 (totals) is flagged for review, never posted as a bet. Notre Dame-Villanova Under 149.5 is unaffected."
  }
 ]
