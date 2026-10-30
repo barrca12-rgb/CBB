@@ -572,3 +572,36 @@ unchanged. Plan: `research/ladder/PLAN.md` (pre-registered before any ladder was
 ```
 3fdd80dd17933fd72e834e94a34b4d0e4caaa128bff2fdd85c778cca7bd5af5d  cbb/run_day.py
 ```
+
+## 2026-10-30: Barttorvik and KenPom retry a missing answer for a recent date (approved by Chad Oct 30)
+
+A data-fetch fix, not a model change: the frozen model was built and backtested with Barttorvik's time-machine file
+for the day before each game, and this lets the live card actually get it.
+
+- **The bug (`cbb/barttorvik.py`):** a date with no file yet was cached as missing for good. The card asks for a
+  day's file before Barttorvik posts it (tonight's runs build the Nov 1-2 cards and ask for the Nov 1 file), and
+  GitHub's cache carries that "missing" from run to run. Every live game so far has had Barttorvik's term filled
+  from KenPom (all 121 games on the Nov 1-2 cards).
+- **The fix:**
+  - A missing file dated within 10 days of today is asked for again, at most once an hour, until it appears. The
+    files already cached as missing heal the same way.
+  - Older dates and files that exist are read exactly as before.
+  - Each live run prints which Barttorvik file its games used, or why none was (including the live file's error),
+    so the first in-season run shows whether GitHub's runners can reach Barttorvik.
+- **KenPom check (`cbb/kenpom.py`):** the same pattern applied to FanMatch, which the card asks for on game day
+  from 7:37 am ET and KenPom publishes by late morning. An empty answer for a date within 3 days of today is no
+  longer cached. Every other response caches as before. No empty FanMatch file was found in the local cache; this
+  is preventive.
+- **Byte-identical check:** replays of 2025-11-15, 2026-01-17 and 2026-03-01 (`python -m cbb.run_day --date D
+  --replay`) give byte-identical card CSVs before and after; the HTML differs only in its generated_at stamp.
+  `audit/test_source_retry.py`: the retry rule, cached files read unchanged without a request, KenPom's empty
+  answer for today not cached, old and undated answers cached as before.
+- **Effect on live plays:** once Barttorvik posts files, games use them as the backtest did; until then KenPom
+  fills, as now. Plays already logged are unchanged.
+- **Discord note:** none posted (the approval named the freeze entry).
+- **New fingerprints:**
+
+```
+48a9f26e5268c3a467d21cdff557bc36f1b2230f838ecd2f2fe4c4cca71cf8e3  cbb/barttorvik.py
+7f7d4f58f22c7c167b43361b25237767c6a8b7557c7acd0648efbb289611b3bd  cbb/kenpom.py
+```

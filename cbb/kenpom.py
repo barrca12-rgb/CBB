@@ -39,12 +39,22 @@ def get(endpoint: str, cache: bool = True, **params) -> list[dict]:
     req = urllib.request.Request(API + "?" + urllib.parse.urlencode(q), headers=headers)
     with urllib.request.urlopen(req, timeout=60) as r:
         data = json.load(r)
-    if cache:
+    if cache and not (not data and _recent(q.get("d"))):   # an empty answer for a recent date may not be final
+
         os.makedirs(CACHE, exist_ok=True)
         with open(path + ".tmp", "w") as f:
             json.dump(data, f)
         os.replace(path + ".tmp", path)
     return data
+
+
+def _recent(d) -> bool:
+    """True for a date within 3 days of today (or later): FanMatch is published on game day, so an empty answer
+    from an early run must be asked again, not cached as final."""
+    if not d:
+        return False
+    today = pd.Timestamp.now(tz="America/New_York").tz_localize(None).normalize()
+    return pd.Timestamp(d).normalize() >= today - pd.Timedelta(days=3)
 
 
 def _table(rows: list[dict], *name_cols: str) -> pd.DataFrame:

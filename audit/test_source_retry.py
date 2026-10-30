@@ -1,0 +1,102 @@
+"""Barttorvik and KenPom: a missing answer for a recent date is asked again, not cached as final (approved by Chad
+Oct 30; MODEL_FREEZE.md). Old dates and files that exist behave exactly as before, so every backtest and replay is
+byte-identical (checked on the 2025-11-15, 2026-01-17 and 2026-03-01 replays; here on the cached files).
+
+    python -m pytest -q audit/test_source_retry.py
+"""
+import gzip
+import io
+import json
+import os
+import time
+
+import pandas as pd
+import pytest
+
+from cbb import barttorvik, kenpom
+
+TODAY = pd.Timestamp.now(tz="America/New_York").tz_localize(None).normalize()
+
+
+class _Resp(io.BytesIO):
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *a):
+        return False
+
+
+def _rows():
+    r = [0] * 45
+    r[1], r[4], r[6], r[44] = "Duke", 120.0, 95.0, 70.0
+    return [r]
+
+
+@pytest.fixture
+def bt(tmp_path, monkeypatch):
+    monkeypatch.setattr(barttorvik, "CACHE", str(tmp_path))
+    calls = []
+
+    def fake(req, timeout=60):
+        calls.append(req.full_url)
+        return _Resp(gzip.compress(json.dumps(_rows()).encode()))
+    monkeypatch.setattr(barttorvik.urllib.request, "urlopen", fake)
+    return tmp_path, calls
+
+
+def _empty(path, age_s):
+    pd.DataFrame(columns=["team", "adj_oe", "adj_de", "adj_tempo", "espn_id"]).to_parquet(path)
+    os.utime(path, (time.time() - age_s, time.time() - age_s))
+
+
+def test_recent_missing_file_is_asked_again_hourly(bt):
+    tmp, calls = bt
+    day = TODAY - pd.Timedelta(days=1)
+    p = tmp / f"{day:%Y%m%d}.parquet"
+    _empty(p, 600)                                   # cached as missing 10 minutes ago: not asked yet
+    assert barttorvik.snapshot(day) is None and calls == []
+    _empty(p, 7200)                                  # two hours ago: asked again, and now it is posted
+    t = barttorvik.snapshot(day)
+    assert len(calls) == 1 and t is not None and list(t["team"]) == ["Duke"]
+    assert len(pd.read_parquet(p)) == 1              # cached once posted
+
+
+def test_old_missing_file_is_never_asked_again(bt):
+    tmp, calls = bt
+    day = TODAY - pd.Timedelta(days=barttorvik.RETRY_DAYS + 5)
+    _empty(tmp / f"{day:%Y%m%d}.parquet", 10 ** 7)
+    assert barttorvik.snapshot(day) is None and calls == []
+
+
+def test_cached_files_read_without_network(monkeypatch):
+    """Every cached file with data is returned from the cache, unchanged, with no request (sample of the real cache)."""
+    files = sorted(f for f in os.listdir(barttorvik.CACHE) if f.endswith(".parquet")) if os.path.isdir(barttorvik.CACHE) else []
+    if not files:
+        pytest.skip("no Barttorvik cache in this checkout")
+    monkeypatch.setattr(barttorvik.urllib.request, "urlopen", lambda *a, **k: (_ for _ in ()).throw(AssertionError("network")))
+    for f in files[::25]:
+        raw = pd.read_parquet(os.path.join(barttorvik.CACHE, f))
+        day = pd.Timestamp(f[:8])
+        if len(raw) == 0 and barttorvik._recent(day):
+            continue                                 # recent and missing: the one case that changed
+        t = barttorvik.snapshot(day)
+        assert (t is None and len(raw) == 0) or t.equals(raw)
+
+
+def test_kenpom_empty_answer_for_today_is_not_cached(tmp_path, monkeypatch):
+    monkeypatch.setattr(kenpom, "CACHE", str(tmp_path))
+    answers = [[], [{"Home": "Duke", "Visitor": "UNC"}]]
+    monkeypatch.setattr(kenpom.urllib.request, "urlopen", lambda req, timeout=60: _Resp(json.dumps(answers.pop(0)).encode()))
+    d = f"{TODAY:%Y-%m-%d}"
+    assert kenpom.get("fanmatch", d=d) == []                       # 7:37 am: not published yet
+    assert not os.listdir(tmp_path)                                 # ... and not cached
+    assert kenpom.get("fanmatch", d=d) == [{"Home": "Duke", "Visitor": "UNC"}]   # later run: published, cached
+    assert os.listdir(tmp_path) == [f"endpoint-fanmatch_d-{d}.json"]
+
+
+def test_kenpom_old_and_undated_answers_cache_as_before(tmp_path, monkeypatch):
+    monkeypatch.setattr(kenpom, "CACHE", str(tmp_path))
+    monkeypatch.setattr(kenpom.urllib.request, "urlopen", lambda req, timeout=60: _Resp(b"[]"))
+    kenpom.get("fanmatch", d="2025-07-04")                          # an old empty date stays cached as empty
+    kenpom.get("archive", preseason="true", y=2027)
+    assert sorted(os.listdir(tmp_path)) == ["endpoint-archive_preseason-true_y-2027.json", "endpoint-fanmatch_d-2025-07-04.json"]

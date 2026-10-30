@@ -9,6 +9,7 @@ from __future__ import annotations
 import gzip
 import json
 import os
+import time
 import urllib.error
 import urllib.request
 
@@ -21,6 +22,10 @@ URL = "https://barttorvik.com/timemachine/team_results/{}_team_results.json.gz"
 # Barttorvik refuses some non-browser clients (403 from GitHub's runners with a plain user agent).
 UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
 CACHE = os.path.join(os.path.dirname(__file__), "cache", "barttorvik")
+# A date with no file is cached as missing, but a recent one may still be posted (the card asks for a day's file
+# before Barttorvik publishes it): within RETRY_DAYS of today it is asked again, at most once per RETRY_SECONDS.
+RETRY_DAYS, RETRY_SECONDS = 10, 3600
+LAST = {}          # what the last live lookup used, for the run log
 # Each season's preseason ratings, saved before the first game (the live file changes once games are played)
 PRESEASON = os.path.join(os.path.dirname(__file__), "..", "data", "barttorvik_preseason_{}.csv")
 FIRST_SEASON = 2015
@@ -32,7 +37,8 @@ def snapshot(day) -> pd.DataFrame | None:
     path = os.path.join(CACHE, d + ".parquet")
     if os.path.exists(path):
         t = pd.read_parquet(path)
-        return t if len(t) else None
+        if len(t) or not _recent(day) or time.time() - os.path.getmtime(path) < RETRY_SECONDS:
+            return t if len(t) else None
     req = urllib.request.Request(URL.format(d), headers=UA)
     try:
         with urllib.request.urlopen(req, timeout=60) as r:
@@ -57,12 +63,19 @@ def snapshot(day) -> pd.DataFrame | None:
     return t if len(t) else None
 
 
+def _recent(day) -> bool:
+    today = pd.Timestamp.now(tz="America/New_York").tz_localize(None).normalize()
+    return pd.Timestamp(day).normalize() >= today - pd.Timedelta(days=RETRY_DAYS)
+
+
 def before(day) -> pd.DataFrame | None:
     """Most recent ratings published before `day` (looks back up to a week)."""
     for k in range(1, 8):
         t = snapshot(pd.Timestamp(day) - pd.Timedelta(days=k))
         if t is not None:
+            LAST["file"] = f"{pd.Timestamp(day) - pd.Timedelta(days=k):%Y-%m-%d}"
             return t
+    LAST["file"] = None
     return None
 
 
@@ -72,8 +85,12 @@ def predict(games: pd.DataFrame, live_season: int | None = None) -> pd.DataFrame
     out = []
     for day, g in games.groupby("date"):
         t = before(day)
+        used = f"time-machine file {LAST['file']}" if t is not None else None
         if t is None and live_season:
             t = current(live_season)
+            used = "live ratings file" if t is not None else f"none (time machine: no file in the 7 days before; live file: {LAST.get('current')}); KenPom fills"
+        if live_season:
+            print(f"Barttorvik for {pd.Timestamp(day):%Y-%m-%d} games: {used}")
         if t is None:
             continue
         t = t.dropna(subset=["espn_id"]).drop_duplicates("espn_id").set_index("espn_id")
@@ -95,8 +112,10 @@ def current(season: int) -> pd.DataFrame | None:
     try:
         with urllib.request.urlopen(req, timeout=60) as r:
             rows = json.load(r)
-    except Exception:
+    except Exception as e:
+        LAST["current"] = f"failed ({e})"
         return None
+    LAST["current"] = "ok"
     t = pd.DataFrame([(r[1], r[4], r[6], r[44], r[3]) for r in rows],
                      columns=["team", "adj_oe", "adj_de", "adj_tempo", "record"])
     ids = teams.id_lookup("kenpom")
