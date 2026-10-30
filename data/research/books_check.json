@@ -6,9 +6,61 @@
    "title": "DraftKings",
    "games": 7
   },
+  "kalshi": {
+   "title": "Kalshi",
+   "games": 1
+  },
   "williamhill_us": {
    "title": "Caesars",
    "games": 7
+  },
+  "betonlineag": {
+   "title": "BetOnline.ag",
+   "games": 1
+  },
+  "lowvig": {
+   "title": "LowVig.ag",
+   "games": 1
+  },
+  "fanatics": {
+   "title": "Fanatics",
+   "games": 7
+  },
+  "betparx": {
+   "title": "betPARX",
+   "games": 7
+  },
+  "betrivers": {
+   "title": "BetRivers",
+   "games": 7
+  },
+  "ballybet": {
+   "title": "Bally Bet",
+   "games": 7
+  },
+  "hardrockbet": {
+   "title": "Hard Rock Bet",
+   "games": 7
+  },
+  "prophetx": {
+   "title": "ProphetX",
+   "games": 1
+  },
+  "espnbet": {
+   "title": "theScore Bet",
+   "games": 7
+  },
+  "fanduel": {
+   "title": "FanDuel",
+   "games": 7
+  },
+  "novig": {
+   "title": "Novig",
+   "games": 1
+  },
+  "betopenly": {
+   "title": "BetOpenly",
+   "games": 1
   }
  }
 }
