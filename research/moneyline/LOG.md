@@ -23,3 +23,39 @@
 - **Not a test result:** "the spread is the stale one, so bet the spread side when its own moneyline disagrees" is a
   new hypothesis. It would need its own plan; nothing is acted on.
 - **Kill rule:** ROI under +1% and the interval below 0. Closed.
+
+## Test 2 (Oct 30): a book's moneyline against the other books' moneylines. FAILS, closed.
+`test2.py`, exactly as `PLAN.md`. Tables in `out/test2.txt`.
+
+- **Data:** 234,445 clean quotes with 3+ other clean books on the game (31,529 games, 2018-2024).
+- **Result, confirm 2021-2024, best signal per game and side:** 6,651 bets won 19.3% against an expected 21.4%.
+  ROI -7.72%, 95% interval [-13.91%, -1.32%]. Dev 2018-2020: ROI -26.8%.
+- **Why:** 95% of the signals are underdogs, median +500. With the vig removed proportionally, the other books'
+  consensus overstates longshots (the favorite-longshot bias). Its calibration shows favorites winning more often than
+  priced (deciles 7-10: predicted 0.72 to 0.92, actual 0.76 to 0.95). So an underdog priced above the consensus looks
+  like value and isn't.
+- **Not acted on (post hoc, outside the plan):** favorites and near pick'em prices among the signals did well:
+  favorites +11.1% on 311 bets; -149 to +149 +11.5% on 428. Small cells picked after seeing the table; a hypothesis
+  for a future plan, not a finding.
+- Closed.
+
+## Test 3 (Oct 30): the model's win probability against the market. FAILS, closed (with one caveat).
+`test3.py`, exactly as `PLAN.md`. Tables in `out/test3.txt`.
+
+- **Fit (2014-2017, frozen):** P(home wins) = Phi(model margin / 10.32). Calibration in 2024-2026 is within about 3
+  points in every decile.
+- **Result, confirm 2024-2026:** EV +3% or more at the best clean closing price across books gave 7,540 bets. They
+  won 49.8% against an expected 54.8%. ROI -1.83%, 95% interval [-4.68%, +1.02%]. Dev 2014-2017: ROI +1.52%,
+  [-2.02%, +5.31%]. By season: 2024 +1.0%, 2025 -0.5%, 2026 -7.9%.
+- **Caveat:** the plan compares the model with the CLOSING moneyline. The model's measured edge is against the
+  opener, which the market corrects by the close.
+  - The same 1,156 underdog games where v1 has a spread play (edge 2.5+ at the opener): the spread at the opener
+    returned +13.6% (at an assumed -110). The moneyline on the same dog at the best closing price returned -3.4%,
+    [-13.9%, +7.9%].
+  - So the test says the model has no moneyline edge left at the close. It says nothing about moneylines at the
+    opener.
+  - History has almost no opening moneylines (2025-26 only, one book), so that question can only be read from the
+    live log `lines/ml/`, which records every book's first moneyline from Oct 30.
+- Closed as pre-registered.
+- **Possible follow-up (needs its own plan and Chad's go):** a live shadow of "v1's underdog spread plays, also logged
+  at the opening moneyline", read against the result and the closing moneyline after enough games.

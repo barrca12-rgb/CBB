@@ -1,0 +1,57 @@
+Quotes with spread and both moneylines, D-I games with a result, 2014-2026: 134,390
+  dropped: off-market spread 159; overround outside 0-15% 874; moneyline favorite opposite the spread favorite 353
+  clean quotes: 133,004 on 32,087 games
+
+Model win probability, fit on 2014-2017 (21,880 games), frozen: P(home wins) = Phi(model margin / 10.322)
+Calibration, confirm era 2024-2026 (home side, by decile):
+                  games  predicted  actual
+bin                                       
+(0.00112, 0.304]   1723      0.203   0.197
+(0.304, 0.431]     1723      0.371   0.380
+(0.431, 0.521]     1723      0.478   0.475
+(0.521, 0.6]       1722      0.561   0.567
+(0.6, 0.669]       1723      0.635   0.627
+(0.669, 0.737]     1723      0.703   0.672
+(0.737, 0.806]     1722      0.771   0.762
+(0.806, 0.879]     1723      0.841   0.830
+(0.879, 0.954]     1723      0.917   0.907
+(0.954, 1.0]       1723      0.982   0.979
+
+Games with the model and a clean closing moneyline: 32,021; signals (EV >= +3% at the best price): 16,233
+
+== dev 2014-2017 (in-sample sigma) ==  {'bets': 8693, 'win %': np.float64(44.7), 'exp win %': np.float64(49.4), 'avg price': 135.0, 'units': 131.9, 'ROI %': 1.52, '95% lo': -2.02, '95% hi': 5.31}
+
+== CONFIRM 2024-2026 ==  {'bets': 7540, 'win %': np.float64(49.8), 'exp win %': np.float64(54.8), 'avg price': -105.0, 'units': -137.9, 'ROI %': -1.83, '95% lo': -4.68, '95% hi': 1.02}
+
+Confirm era by dog:
+     dog  bets  win %  exp win %  avg price  units  ROI %  95% lo  95% hi
+favorite  3807   67.3       72.6     -195.0   -7.7  -0.20   -2.52    2.03
+underdog  3733   32.0       36.6      190.0 -130.2  -3.49   -9.01    1.70
+
+Confirm era by band:
+           band  bets  win %  exp win %  avg price  units  ROI %  95% lo  95% hi
+-300 or shorter   916   82.8       86.6     -420.0   10.0   1.10   -1.59    4.00
+   -299 to -150  1786   66.9       72.3     -200.0   -5.6  -0.31   -3.41    2.64
+   -149 to +149  2344   51.0       55.8      100.0   41.4   1.77   -2.18    5.71
+   +150 to +299  1368   32.2       38.2      198.0  -57.9  -4.23  -10.91    2.56
+ +300 or longer  1126   14.9       19.1      500.0 -125.8 -11.17  -24.51    2.92
+
+Confirm era by ev band:
+ev band  bets  win %  exp win %  avg price  units  ROI %  95% lo  95% hi
+   3-5%  1699   59.0       62.5     -170.0  -65.1  -3.83   -8.58    1.07
+   5-8%  1828   55.3       59.1     -138.0  -49.4  -2.70   -7.39    1.89
+  8-15%  2305   49.1       54.4     -102.0  -44.0  -1.91   -6.64    3.03
+   15%+  1708   35.8       43.0      185.0   20.6   1.20   -6.84   10.03
+
+Confirm era by season:
+ season  bets  win %  exp win %  avg price  units  ROI %  95% lo  95% hi
+   2024  3351   52.5       56.7     -115.0   34.8   1.04   -3.14    5.35
+   2025  2124   49.5       53.6      100.0   -9.6  -0.45   -5.81    5.47
+   2026  2065   45.8       52.9      102.0 -163.0  -7.90  -13.37   -2.66
+
+v1 underdog spread plays, confirm era, with a clean moneyline on the same dog: 1,156 games
+  spread at the opener, -110 assumed: ROI +13.59% (pushes out, 1,153 decided)
+  moneyline on the same dog at the best closing price: {'bets': 1156, 'win %': np.float64(36.5), 'exp win %': np.float64(39.0), 'avg price': 150.0, 'units': -39.1, 'ROI %': -3.38, '95% lo': -13.86, '95% hi': 7.94}
+  of these, moneyline EV >= +3% at the close: 786
+
+Kill rule (confirm): bets 7540 (need 200+), ROI -1.83% (need +1%+), 95% interval [-4.68, 1.02] (must exclude 0)  =>  FAILS: closed

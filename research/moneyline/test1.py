@@ -35,9 +35,9 @@ def payout(ml):
     return np.where(ml > 0, ml / 100, 100 / -ml)
 
 
-def load() -> pd.DataFrame:
+def load(seasons=None) -> pd.DataFrame:
     out = []
-    for s in list(DEV) + list(CONFIRM):
+    for s in (seasons or list(DEV) + list(CONFIRM)):
         l = pd.read_csv(os.path.join(lines_hist.OUT, f"espn_{s}.csv"))
         l = l[~l["book"].fillna("").isin(lines_hist.NOT_BOOKS | {"", "Opening"})]
         l = l.dropna(subset=["home_spread", "home_ml", "away_ml"])
@@ -56,7 +56,7 @@ def load() -> pd.DataFrame:
     bad_vig = (over < 0) | (over > MAX_OVERROUND)
     s = d["home_spread"]
     wrong_side = ((s < 0) & (d["home_ml"] > d["away_ml"])) | ((s > 0) & (d["away_ml"] > d["home_ml"]))
-    say(f"Quotes with spread and both moneylines, D-I games with a result, 2014-2024: {n0:,}")
+    say(f"Quotes with spread and both moneylines, D-I games with a result, {d['season'].min()}-{d['season'].max()}: {n0:,}")
     say(f"  dropped: off-market spread {int(off.sum()):,}; overround outside 0-15% {int((bad_vig & ~off).sum()):,}; "
         f"moneyline favorite opposite the spread favorite {int((wrong_side & ~off & ~bad_vig).sum()):,}")
     d = d[~off & ~bad_vig & ~wrong_side].copy()
