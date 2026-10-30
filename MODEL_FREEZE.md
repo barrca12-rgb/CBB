@@ -524,3 +524,28 @@ card CSV and the bet log are byte-identical with the mark on and off (`audit/tes
     residual ran −1.72 points (SE 2.51), against the direction the correction predicts.
   - Neither data-fix trigger fires, so no flag correction is proposed.
 - **Discord note:** none (display only).
+
+## 2026-11-01: Input freshness stamp on every play (display only)
+
+Before any game. Picks, numbers, thresholds, stakes, grading and `bets/bets.csv` are unchanged. The card CSV's
+existing columns are byte-identical; the stamp only adds trailing columns (`audit/test_freshness.py`).
+
+- **What it does (`cbb/freshness.py`):** pass-through wrappers record what each input the projection used actually
+  returned, and when. That covers KenPom's DataThrough, the Barttorvik snapshot date, the injury fetch, the hoopR
+  schedule and box-score download times, and the referee crew fetch. Each play's book carries this run's line pull
+  time.
+- **States:** a play is stale past its cadence (KenPom 36 h, Barttorvik 36 h, injuries 12 h, schedule 6 h, lines
+  15 min, referees 24 h), unknown with no timestamp, else fresh.
+- **Display and logging:**
+  - The card shows a mark per play, the phone alert an "Inputs: …" line, and Discord an Inputs field.
+  - `bets/inputs.csv` stores each logged play's stamp, keyed by bet id.
+  - The Monday health line counts stale plays.
+  - A feed stale for more than 24 hours sends one phone alert.
+- **`cbb/run_day.py` (fingerprinted; non-picking):** installs the wrappers, stamps after pricing, logs each new
+  play's stamp, and appends the trailing columns before writing the CSV.
+- **Discord note:** none (display only).
+- **New fingerprint:**
+
+```
+7b3e1bda77658a3c1d9e3596e5411d22ef361a3bc0e3dc64a77291beff4a9996  cbb/run_day.py
+```

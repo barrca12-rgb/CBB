@@ -106,6 +106,11 @@ def _logged(b: pd.Series) -> dict:
         fields.append(("Venue", venue.word(venue.lookup(b["date"], b["game_id"]))[len("Venue: "):]))
     except Exception as e:
         print(f"Venue field failed ({e}); continuing.")
+    try:   # input freshness stamp (cbb/freshness.py; display only)
+        from . import freshness
+        fields.append(("Inputs", freshness.word(freshness.for_bet(b["bet_id"], b.get("market"), b.get("game_id")))[len("Inputs: "):]))
+    except Exception as e:
+        print(f"Freshness field failed ({e}); continuing.")
     return {"embeds": [{"title": f"{_tag(b)}BET: {b['pick']} {_price(b['odds'])}", "color": BLUE,
                         "fields": [{"name": k, "value": v, "inline": True} for k, v in fields],
                         "footer": {"text": f"bet id {b['bet_id']}"}}]}

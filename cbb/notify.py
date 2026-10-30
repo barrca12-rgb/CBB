@@ -74,6 +74,11 @@ def _message(bet: dict, row: pd.Series | None) -> tuple[str, str, str]:
         lines.append(venue.word(venue.lookup(bet["date"], bet["game_id"])))
     except Exception as e:
         print(f"Venue line failed ({e}); continuing.")
+    try:   # input freshness stamp (cbb/freshness.py; display only)
+        from . import freshness
+        lines.append(freshness.word(freshness.for_bet(bet["bet_id"], bet.get("market"), bet.get("game_id"))))
+    except Exception as e:
+        print(f"Freshness line failed ({e}); continuing.")
     warn = row.get(f"{mk}_warn") if row is not None else None
     if isinstance(warn, str) and warn:
         lines.insert(0, "WARNING: " + warn)

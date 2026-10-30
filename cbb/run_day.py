@@ -418,6 +418,9 @@ def build(day: pd.Timestamp, games: pd.DataFrame, lines: pd.DataFrame | None, re
           current: bool = True):
     """Project one day's games, price them against the lines, log BETs and write the day's card. current=False adds
     the day to the site's day list without making it the day the site opens on."""
+    from . import freshness   # input freshness stamp: pass-through wrappers that record each input's date
+    if not replay:
+        freshness.watch()
     f, rt = project(day, games)
     f = opening_week_totals(f, day)
     if replay:
@@ -429,6 +432,13 @@ def build(day: pd.Timestamp, games: pd.DataFrame, lines: pd.DataFrame | None, re
         except Exception as e:
             print(f"News checks failed ({e}); continuing.")
     record = None
+    fr = None
+    if not replay:   # freshness stamp (display only; never changes a pick or a number)
+        try:
+            fr = freshness.stamp(card, day, lines)
+            freshness.alert_stale()
+        except Exception as e:
+            print(f"Freshness stamp failed ({e}); continuing.")
     if not replay:
         # scale stakes by each market's live record, then log the day's plays
         st = tracker.status()
@@ -436,6 +446,7 @@ def build(day: pd.Timestamp, games: pd.DataFrame, lines: pd.DataFrame | None, re
             if f"{mk}_units" in card:
                 card[f"{mk}_units"] = card[f"{mk}_units"] * st[mk]["multiplier"]
         new = tracker.log(card, day, {mk: st[mk]["multiplier"] for mk in st})
+        freshness.log_inputs(new, fr)
         if notify.send(new, card):
             print(f"Sent {len(new)} phone alert(s).")
         try:   # same run as the phone alert, so the public post carries the same time
@@ -453,6 +464,7 @@ def build(day: pd.Timestamp, games: pd.DataFrame, lines: pd.DataFrame | None, re
         # never changes a v1 bet, stake, alert or post
         try:
             new_b = tracker.log_band_b(card, day)
+            freshness.log_inputs(new_b, fr)
             if notify.send(new_b, card):
                 print(f"Sent {len(new_b)} band B alert(s).")
             if new_b:
@@ -480,6 +492,8 @@ def build(day: pd.Timestamp, games: pd.DataFrame, lines: pd.DataFrame | None, re
         record = {"status": tracker.status(), "recent": tracker.recent(), "review": rv, "tripwire": trip}
     os.makedirs(REPORTS, exist_ok=True)
     stem = os.path.join(REPORTS, f"cbb_{day:%Y-%m-%d}")
+    if fr is not None:   # the stamp as trailing columns; every earlier column unchanged
+        card = freshness.trail(card, fr)
     card.drop(columns=["book_lines"]).to_csv(stem + ".csv", index=False)
     names = teams.load().set_index("espn_id")["espn_location"]
     rt = rt.assign(team=names.reindex(rt.index).to_numpy())

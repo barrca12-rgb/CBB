@@ -95,6 +95,17 @@ def counts(a: pd.Timestamp, b: pd.Timestamp) -> dict:
         out["band B record"] = f"{bs['w']}-{bs['l']}-{bs['p']}, {bs['units']:+.2f} u, CLV {'–' if bs['clv'] is None else format(bs['clv'], '+.2f')} on {bs['clv_n']}"
     except Exception as e:
         out["band B trailing-100 CLV"], out["band B record"] = None, f"band B check failed: {e}"
+    try:   # input freshness stamp (cbb/freshness.py): plays logged this week by state, and which inputs were stale
+        ip = os.path.join(ROOT, "bets", "inputs.csv")
+        fi = pd.read_csv(ip, dtype=str) if os.path.exists(ip) else pd.DataFrame(columns=["run_at", "state", "stale_inputs"])
+        fi = fi[_in(fi["run_at"], a, b)]
+        out["plays stamped"] = len(fi)
+        out["plays stale"] = int((fi["state"] == "stale").sum())
+        out["plays unknown"] = int((fi["state"] == "unknown").sum())
+        names = fi.loc[fi["state"] == "stale", "stale_inputs"].fillna("").str.split("; ").explode().str.replace(r" \d+[hm]$", "", regex=True)
+        out["_stale inputs"] = "; ".join(f"{k} {v}" for k, v in names[names != ""].value_counts().items())
+    except Exception as e:
+        out["plays stale"], out["_stale inputs"] = -1, f"freshness check failed: {e}"
     acc = os.path.join(ROOT, "bets", "accepted.csv")
     out["placed with the card button"] = int(_in(pd.read_csv(acc)["placed_at"], a, b).sum()) if os.path.exists(acc) else 0
     return out
@@ -121,6 +132,9 @@ def flags(c: dict, prev: dict, end: pd.Timestamp) -> list[str]:
                  if c["missing primary close"] > 0 else c.get("_missing reasons", "CLV check failed"))
     if c.get("tip-time reviews open", 0):
         f.append(f"tip-time review open: {c.get('_tip reviews', '')}")
+    if c.get("plays stale", 0):
+        f.append(f"{c['plays stale']} play(s) logged on a stale input" + (f": {c.get('_stale inputs')}" if c.get('_stale inputs') else "")
+                 if c["plays stale"] > 0 else c.get("_stale inputs", "freshness check failed"))
     if c.get("band B trailing-100 CLV") is not None and c["band B trailing-100 CLV"] < 0:
         f.append(f"band B trailing-{c.get('band B trailing n', 100)} primary CLV {c['band B trailing-100 CLV']:+.2f} is below 0")
     if c.get("band B bets logged", 0) and c["band B Discord posts"] < c["band B bets logged"]:

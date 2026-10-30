@@ -548,6 +548,18 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       ({confirmed: "&#10003;", conflict: "conflict", unknown: "?"}[s] || "?") + "</span>" +
       (s === "conflict" ? "<div class='inj'>&#9888; Venue conflict: " + esc(g.venue_reason || "") + (where ? " (" + esc(where) + ")" : "") + ". The model used the " + (g.neutral ? "neutral" : "home") + " flag.</div>" : "");
   };
+  // Input freshness (cbb/freshness.py): fresh / stale / unknown per play, the stale input named; display only
+  const freshTag = (g, kind) => {
+    const mk = kind === "Spread" ? "spread" : "total", s = g[mk + "_fresh"];
+    if (!s) return "";
+    const ts = (k, lab) => g["fresh_" + k] ? lab + " " + new Date(g["fresh_" + k]).toLocaleString("en-US", {timeZone: "America/New_York", month: "short", day: "numeric", hour: "numeric", minute: "2-digit"}) : lab + " –";
+    const ttl = [ts("kenpom_at", "KenPom"), ts("barttorvik_at", "Barttorvik"), ts("injuries_at", "injuries"), ts("schedule_at", "schedule"),
+      g[mk + "_line_at"] ? "line (" + (g[mk + "_line_book"] || "") + ") " + new Date(g[mk + "_line_at"]).toLocaleTimeString("en-US", {timeZone: "America/New_York", hour: "numeric", minute: "2-digit"}) : "line –"].join(" · ");
+    const why = g[mk + "_stale_inputs"] || "";
+    return " <span class='tag " + ({fresh: "vn-ok", stale: "vn-bad"}[s] || "vn-unk") + "' title='" + esc(ttl + (why ? " · " + why : "")) + "'>Inputs " +
+      ({fresh: "&#10003;", stale: "stale", unknown: "?"}[s] || "?") + "</span>" +
+      (s === "stale" ? "<div class='inj'>&#9888; Stale input: " + esc(why) + "</div>" : "");
+  };
   // Novig (show-only exchange price, never used for picks): its number and price on the bet's side, and whether it
   // beats the number and price shown for the play
   const novig = (g, kind, side, line, price) => {
@@ -583,7 +595,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   $("t-plays").innerHTML = P.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r hide-sm hide-md'>Model</th><th class='r'>Edge</th><th class='r hide-sm'>Win %</th><th class='r'>EV</th><th class='r'>Bet to</th><th class='r hide-sm hide-md'>Opened</th><th class='r hide-sm hide-md'>Units</th><th></th></tr></thead><tbody>" +
     P.map((p) => "<tr data-gid='" + p.g.game_id + "' data-mk='" + p.kind.toLowerCase() + "'><td><div class='b pick'>" + logo(pickId(p.g, p.kind, p.side), 20) + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
       (p.kind === "Total" && p.g.crew ? "<div class='f' style='font-size:11px'>Refs: " + esc(p.g.crew) + "</div>" : "") +
-      (D.replay ? "" : "<div style='font-size:12px'>" + venueTag(p.g) + "</div>") +
+      (D.replay ? "" : "<div style='font-size:12px'>" + venueTag(p.g) + freshTag(p.g, p.kind) + "</div>") +
       (p.status ? "<div class='f' style='font-size:12px'>" + esc(p.status) + "</div>" : "") +
       (p.also ? "<div class='f' style='font-size:12px'>" + esc(p.also) + "</div>" : "") +
       novig(p.g, p.kind, p.side, p.line, p.price) +
@@ -617,7 +629,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     ". A separate bet type on spreads only, never counted in the record above: v1's edge of 2-2.49 points with v1's +2% EV rule, 0.5 unit flat.";
   $("t-bandb").innerHTML = BB.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r'>Edge</th><th class='r'>Units</th><th class='r'>Result</th><th></th></tr></thead><tbody>" +
     BB.map((p) => "<tr><td><div class='b pick'><span class='tag'>Band B</span> " + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
-      "<div style='font-size:12px'>" + venueTag(p.g) + "</div>" +
+      "<div style='font-size:12px'>" + venueTag(p.g) + freshTag(p.g, p.kind) + "</div>" +
       (p.res ? "" : novig(p.g, p.kind, p.side, p.line, p.price)) + "</td><td>" +
       esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r'>" + sgn(p.edge) + "</td><td class='r'>" + num(p.units, 2) +
       "</td><td class='r'>" + (p.res ? esc(p.res) + (p.profit != null ? " <span class='" + (p.profit > 0 ? "pos" : p.profit < 0 ? "neg" : "m") + "'>" + sgn(p.profit, 2) + "</span>" : "") : "–") + "</td><td class='r'>" +
