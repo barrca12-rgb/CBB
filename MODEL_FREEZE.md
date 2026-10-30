@@ -508,3 +508,19 @@ grading, the quote log and every close (CLV) are unchanged.
 ```
 1df96b56a2c0d5ea43d7caf1899dc6b2adb8f776b85ae1bfbe0b13acf14d4c3d  cbb/odds_api.py
 ```
+
+## 2026-10-31: Venue check of the neutral flag (reads and displays only)
+
+Before any game. The model's neutral flag stays ESPN's, unchanged. Picks, numbers, thresholds, stakes, grading, the
+card CSV and the bet log are byte-identical with the mark on and off (`audit/test_venue.py`).
+
+- **What it does (`cbb/venue.py`, `data/home_arenas.csv`):** each game's venue is compared with both teams' home
+  arenas. The result is confirmed, conflict or unknown, with "home city" and "reversed" labels.
+  - The card shows a mark on every play, the phone alert gets a "Venue: …" line, and Discord gets a Venue field.
+  - The check is cached in `reports/venue_<date>.csv`.
+- **Findings (`research/venue/LOG.md`):**
+  - November 2026 has 2 conflicts in 1,250 D-I games (0.2%).
+  - On 20 conflict games over the last three Novembers, the venue-corrected flag did not beat the given one: the
+    residual ran −1.72 points (SE 2.51), against the direction the correction predicts.
+  - Neither data-fix trigger fires, so no flag correction is proposed.
+- **Discord note:** none (display only).

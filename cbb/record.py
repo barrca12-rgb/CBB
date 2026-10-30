@@ -101,6 +101,11 @@ def _logged(b: pd.Series) -> dict:
     fields = [("Game", f"{b['away']} at {b['home']} · {b['date']}"), ("Market", b["market"].title()),
               ("Book", f"{b['book']} {_price(b['odds'])}"), ("Edge", f"{float(b['edge']):.1f} pts"),
               ("Stake", f"{float(b['stake']):g} u"), ("Logged", f"{t:%Y-%m-%d %-I:%M %p} ET")]
+    try:   # venue check of the neutral flag (cbb/venue.py; display only)
+        from . import venue
+        fields.append(("Venue", venue.word(venue.lookup(b["date"], b["game_id"]))[len("Venue: "):]))
+    except Exception as e:
+        print(f"Venue field failed ({e}); continuing.")
     return {"embeds": [{"title": f"{_tag(b)}BET: {b['pick']} {_price(b['odds'])}", "color": BLUE,
                         "fields": [{"name": k, "value": v, "inline": True} for k, v in fields],
                         "footer": {"text": f"bet id {b['bet_id']}"}}]}

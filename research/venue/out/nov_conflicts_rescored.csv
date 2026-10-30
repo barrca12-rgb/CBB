@@ -1,0 +1,21 @@
+date,away,home,neutral,reason,edge,final_margin,d_margin,corr_margin,margin,open_home_spread,home_spread
+2025-11-03,Queens University,Winthrop,True,flagged neutral at the home team's arena,,3.66,4.82,8.47,7,-3.5,-3.5
+2025-11-08,Oklahoma,Gonzaga,False,home game at an arena belonging to neither team,home city,12.75,-5.0,7.75,15,-10.5,-10.5
+2025-11-11,Arkansas-Pine Bluff,Oklahoma,False,home game at an arena belonging to neither team,home city,33.64,-4.67,28.97,26,-33.5,-36.5
+2025-11-14,Cal State Bakersfield,Ole Miss,False,home game at an arena belonging to neither team,home city,21.18,-3.89,17.29,22,-25.5,-23.5
+2025-11-21,Wisconsin,BYU,False,home game at an arena belonging to neither team,,6.54,-5.41,1.13,28,-4.5,-4.5
+2025-11-27,Oklahoma State,Northwestern,False,home game at an arena belonging to neither team,,3.88,-4.28,-0.4,-5,-2.5,-2.5
+2025-11-28,Indiana State,Alcorn State,True,flagged neutral at the away team's arena,,-10.61,-4.59,-15.21,7,9.5,12.5
+2024-11-04,Baylor,Gonzaga,False,home game at an arena belonging to neither team,home city,6.18,-4.89,1.29,38,-2.5,-6.5
+2024-11-11,Jacksonville,Furman,False,home game at an arena belonging to neither team,,5.53,-3.97,1.56,9,-6.5,-8.5
+2024-11-12,South Alabama,Ole Miss,False,home game at an arena belonging to neither team,home city,17.08,-3.45,13.64,10,-17.5,-17.5
+2024-11-15,William & Mary,Winthrop,False,home game at an arena belonging to neither team,home city,8.28,-3.96,4.32,1,-6.5,-7.5
+2024-11-15,Tulane,Furman,False,home game at an arena belonging to neither team,,3.21,-4.32,-1.12,8,-3.5,-5.5
+2024-11-16,Georgia Southern,Winthrop,False,home game at an arena belonging to neither team,home city,6.81,-4.23,2.58,-2,-5.5,-4.5
+2024-11-17,North Carolina Central,Winthrop,False,home game at an arena belonging to neither team,home city,9.49,-4.09,5.4,2,-9.5,-9.5
+2024-11-21,UT Martin,Texas A&M-Corpus Christi,False,home game at an arena belonging to neither team,home city,12.48,-4.24,8.24,4,-9.5,-11.5
+2024-11-23,Le Moyne,Texas A&M-Corpus Christi,False,home game at an arena belonging to neither team,home city,15.26,-4.17,11.09,21,-11.5,-11.5
+2023-11-11,Fairleigh Dickinson,Seton Hall,False,home game at an arena belonging to neither team,,19.25,-4.43,14.82,30,-18.5,-16.75
+2023-11-17,Coastal Carolina,Furman,True,flagged neutral at the away team's arena,,11.8,-3.81,7.99,9,-10.0,-11.0
+2023-11-17,Sam Houston,Ole Miss,False,home game at an arena belonging to neither team,home city,6.24,-3.21,3.03,3,-8.5,-9.5
+2023-11-18,Winthrop,IU Indianapolis,True,flagged neutral at the home team's arena,,-12.2,3.24,-8.96,-13,12.0,12.0

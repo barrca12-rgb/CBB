@@ -69,6 +69,11 @@ def _message(bet: dict, row: pd.Series | None) -> tuple[str, str, str]:
     nv = novig_line(bet)
     if nv:
         lines.append(nv)
+    try:   # venue check of the neutral flag (cbb/venue.py; display only)
+        from . import venue
+        lines.append(venue.word(venue.lookup(bet["date"], bet["game_id"])))
+    except Exception as e:
+        print(f"Venue line failed ({e}); continuing.")
     warn = row.get(f"{mk}_warn") if row is not None else None
     if isinstance(warn, str) and warn:
         lines.insert(0, "WARNING: " + warn)

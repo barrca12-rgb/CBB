@@ -1,0 +1,160 @@
+home_arenas.csv: 366 of 366 D-I teams have an arena on file (365 from the Nov 2026 scoreboard, the rest from the 2025-26 schedule); 26 teams have an alternate home arena
+venue field: competitions[0].venue (id, fullName, address.city/state); blank for 0 of 1250 D-I games
+
+November 2026 (ESPN scoreboard, Oct 31 pull): 1250 D-I games
+             games  share %
+venue_state                
+confirmed     1248     99.8
+conflict         2      0.2
+unknown          0      0.0
+  flagged neutral: 215 games, confirmed 214, conflict 1
+  flagged home: 1035 games, confirmed 1034, conflict 1
+  conflict reasons: flagged neutral at the away team's arena 1; home game at an arena belonging to neither team 1
+  edge cases: home city 8
+
+November 2026 conflicts:
+      date     away              home  neutral                           venue      city                            event                                          reason
+2026-11-02 Winthrop Queens University     True Rock Hill Sports & Event Center Rock Hill Field of 68 Opening Day Marathon        flagged neutral at the away team's arena
+2026-11-14      LSU           Gonzaga    False Spokane Numerica Veterans Arena   Spokane            Bad Boy Mowers Series home game at an arena belonging to neither team
+
+November 2026 edge cases (not conflicts):
+      date            away               home  neutral                           venue         city                               event      edge
+2026-11-06     Saint Louis           Missouri     True               Enterprise Center    St. Louis                                     home city
+2026-11-07 San Diego State           Colorado     True                  Pechanga Arena    San Diego                 Bill Walton Classic home city
+2026-11-08        Richmond             Temple     True                    The Palestra Philadelphia                                     home city
+2026-11-14             LSU            Gonzaga    False Spokane Numerica Veterans Arena      Spokane               Bad Boy Mowers Series home city
+2026-11-17            UNLV             Kansas     True            Michelob ULTRA Arena    Las Vegas                       Players Era 8 home city
+2026-11-23       Charlotte Florida Gulf Coast     True     Suncoast Credit Union Arena   Fort Myers Fort Myers Tip-Off - Palms Division home city
+2026-11-25   Georgia State Florida Gulf Coast     True     Suncoast Credit Union Arena   Fort Myers Fort Myers Tip-Off - Palms Division home city
+2026-11-27        La Salle           Bucknell     True                    The Palestra Philadelphia                   Cathedral Classic home city
+
+November 2025 (calibration; hoopR schedule = ESPN): 1246 D-I games
+             games  share %
+venue_state                
+confirmed     1239     99.4
+conflict         7      0.6
+unknown          0      0.0
+  flagged neutral: 280 games, confirmed 278, conflict 2
+  flagged home: 966 games, confirmed 961, conflict 5
+  conflict reasons: home game at an arena belonging to neither team 5; flagged neutral at the away team's arena 1; flagged neutral at the home team's arena 1
+  edge cases: home city 17
+
+November 2025 conflicts:
+      date                  away         home  neutral                           venue           city                                      event                                          reason      edge
+2025-11-28         Indiana State Alcorn State     True                   Hulman Center    Terre Haute                                                   flagged neutral at the away team's arena          
+2025-11-28        Oklahoma State Northwestern    False                   United Center        Chicago            CBS Sports Thanksgiving Classic home game at an arena belonging to neither team          
+2025-11-21             Wisconsin          BYU    False                    Delta Center Salt Lake City The Bad Boy Mowers Series - Salt Lake City home game at an arena belonging to neither team          
+2025-11-15 Cal State Bakersfield     Ole Miss    False        C. M. Tad Smith Coliseum         Oxford                                            home game at an arena belonging to neither team home city
+2025-11-12   Arkansas-Pine Bluff     Oklahoma    False    Howard McCasland Field House         Norman                                            home game at an arena belonging to neither team home city
+2025-11-09              Oklahoma      Gonzaga    False                   Spokane Arena        Spokane        The Bad Boy Mowers Series - Spokane home game at an arena belonging to neither team home city
+2025-11-03     Queens University     Winthrop     True Rock Hill Sports & Event Center      Rock Hill           Field of 68 Opening Day Marathon        flagged neutral at the home team's arena          
+
+re-score checks (2026): stage-1 margin recomputed with the given flag vs the frame: mean |diff| 0.276, max 1.289 (the change uses only the refit's home court and possessions); market term: max |diff| 0.0000
+
+Nov 2025 conflicts re-scored: 7 games with a forecast; mean change from the correction -3.29 (|mean| 4.67) points
+  residual in the direction the correction predicts, sign(change) x (result - given forecast): -3.18 points (SE 4.51)
+  mean absolute error: given flag 8.86, corrected 10.01; mean residual given +4.14, corrected +7.43
+  vs the opener (given flag): 7 decided games, model side won 57.1%; edge 2.5+: 1 plays, 1-0
+  vs the opener (corrected flag): 7 decided games, model side won 57.1%; edge 2.5+: 7 plays, 4-3
+  vs the close (given flag): 7 decided games, model side won 85.7%; edge 2.5+: 1 plays, 1-0
+  vs the close (corrected flag): 7 decided games, model side won 57.1%; edge 2.5+: 7 plays, 4-3
+
+November 2024 (calibration; hoopR schedule = ESPN): 1213 D-I games
+             games  share %
+venue_state                
+confirmed     1204     99.3
+conflict         9      0.7
+unknown          0      0.0
+  flagged neutral: 298 games, confirmed 298
+  flagged home: 915 games, confirmed 906, conflict 9
+  conflict reasons: home game at an arena belonging to neither team 9
+  edge cases: home city 10
+
+November 2024 conflicts:
+      date                   away                     home  neutral                           venue           city                event                                          reason      edge
+2024-11-23               Le Moyne Texas A&M-Corpus Christi    False           Dugan Wellness Center Corpus Christi                      home game at an arena belonging to neither team home city
+2024-11-22              UT Martin Texas A&M-Corpus Christi    False           Dugan Wellness Center Corpus Christi                      home game at an arena belonging to neither team home city
+2024-11-17 North Carolina Central                 Winthrop    False Rock Hill Sports & Event Center      Rock Hill    Rock Hill Classic home game at an arena belonging to neither team home city
+2024-11-16       Georgia Southern                 Winthrop    False Rock Hill Sports & Event Center      Rock Hill    Rock Hill Classic home game at an arena belonging to neither team home city
+2024-11-16                 Tulane                   Furman    False      Bon Secours Wellness Arena     Greenville                      home game at an arena belonging to neither team          
+2024-11-15         William & Mary                 Winthrop    False Rock Hill Sports & Event Center      Rock Hill    Rock Hill Classic home game at an arena belonging to neither team home city
+2024-11-13          South Alabama                 Ole Miss    False        C. M. Tad Smith Coliseum         Oxford                      home game at an arena belonging to neither team home city
+2024-11-12           Jacksonville                   Furman    False      Bon Secours Wellness Arena     Greenville SoCon/ASUN Challenge home game at an arena belonging to neither team          
+2024-11-05                 Baylor                  Gonzaga    False                   Spokane Arena        Spokane Findlay Auto Tip-Off home game at an arena belonging to neither team home city
+
+re-score checks (2025): stage-1 margin recomputed with the given flag vs the frame: mean |diff| 0.271, max 0.599 (the change uses only the refit's home court and possessions); market term: max |diff| 0.0000
+
+Nov 2024 conflicts re-scored: 9 games with a forecast; mean change from the correction -4.15 (|mean| 4.15) points
+  residual in the direction the correction predicts, sign(change) x (result - given forecast): -0.74 points (SE 4.38)
+  mean absolute error: given flag 9.44, corrected 9.15; mean residual given +0.74, corrected +4.89
+  vs the opener (given flag): 9 decided games, model side won 44.4%; edge 2.5+: 3 plays, 2-1
+  vs the opener (corrected flag): 9 decided games, model side won 55.6%; edge 2.5+: 5 plays, 3-2
+  vs the close (given flag): 9 decided games, model side won 33.3%; edge 2.5+: 2 plays, 1-1
+  vs the close (corrected flag): 9 decided games, model side won 55.6%; edge 2.5+: 7 plays, 4-3
+
+November 2023 (calibration; hoopR schedule = ESPN): 1122 D-I games
+             games  share %
+venue_state                
+confirmed     1118     99.6
+conflict         4      0.4
+unknown          0      0.0
+  flagged neutral: 297 games, confirmed 295, conflict 2
+  flagged home: 825 games, confirmed 823, conflict 2
+  conflict reasons: home game at an arena belonging to neither team 2; flagged neutral at the home team's arena 1; flagged neutral at the away team's arena 1
+  edge cases: home city 8
+
+November 2023 conflicts:
+      date                away            home  neutral                    venue         city                     event                                          reason      edge
+2023-11-18            Winthrop IU Indianapolis     True Indiana Farmers Coliseum Indianapolis     Winthrop Invitational        flagged neutral at the home team's arena          
+2023-11-18         Sam Houston        Ole Miss    False C. M. Tad Smith Coliseum       Oxford                           home game at an arena belonging to neither team home city
+2023-11-17    Coastal Carolina          Furman     True           The HTC Center       Conway Myrtle Beach Invitational        flagged neutral at the away team's arena          
+2023-11-11 Fairleigh Dickinson      Seton Hall    False          Walsh Gymnasium South Orange                           home game at an arena belonging to neither team          
+
+re-score checks (2024): stage-1 margin recomputed with the given flag vs the frame: mean |diff| 0.179, max 0.649 (the change uses only the refit's home court and possessions); market term: max |diff| 0.0000
+
+Nov 2023 conflicts re-scored: 4 games with a forecast; mean change from the correction -2.05 (|mean| 3.68) points
+  residual in the direction the correction predicts, sign(change) x (result - given forecast): -1.38 points (SE 3.25)
+  mean absolute error: given flag 4.40, corrected 5.07; mean residual given +0.98, corrected +3.03
+  vs the opener (given flag): 4 decided games, model side won 75.0%; edge 2.5+: 0 plays, 0-0
+  vs the opener (corrected flag): 4 decided games, model side won 50.0%; edge 2.5+: 3 plays, 1-2
+  vs the close (given flag): 4 decided games, model side won 75.0%; edge 2.5+: 2 plays, 2-0
+  vs the close (corrected flag): 4 decided games, model side won 50.0%; edge 2.5+: 3 plays, 2-1
+
+All three Novembers pooled: 20 games with a forecast; mean change from the correction -3.43 (|mean| 4.23) points
+  residual in the direction the correction predicts, sign(change) x (result - given forecast): -1.72 points (SE 2.51)
+  mean absolute error: given flag 8.23, corrected 8.63; mean residual given +1.98, corrected +5.41
+  vs the opener (given flag): 20 decided games, model side won 55.0%; edge 2.5+: 4 plays, 3-1
+  vs the opener (corrected flag): 20 decided games, model side won 55.0%; edge 2.5+: 15 plays, 8-7
+  vs the close (given flag): 20 decided games, model side won 60.0%; edge 2.5+: 5 plays, 4-1
+  vs the close (corrected flag): 20 decided games, model side won 55.0%; edge 2.5+: 17 plays, 10-7
+
+Pooled, excluding home games at another venue in the home team's city: 9 games with a forecast; mean change from the correction -2.53 (|mean| 4.32) points
+  residual in the direction the correction predicts, sign(change) x (result - given forecast): -4.87 points (SE 3.35)
+  mean absolute error: given flag 8.21, corrected 10.21; mean residual given +5.44, corrected +7.97
+  vs the opener (given flag): 9 decided games, model side won 44.4%; edge 2.5+: 0 plays, 0-0
+  vs the opener (corrected flag): 9 decided games, model side won 33.3%; edge 2.5+: 8 plays, 2-6
+  vs the close (given flag): 9 decided games, model side won 55.6%; edge 2.5+: 2 plays, 1-1
+  vs the close (corrected flag): 9 decided games, model side won 33.3%; edge 2.5+: 8 plays, 3-5
+
+Per game (all three Novembers):
+      date                   away                     home  neutral                                          reason      edge  final_margin  d_margin  corr_margin  margin  open_home_spread  home_spread
+2025-11-03      Queens University                 Winthrop     True        flagged neutral at the home team's arena                    3.66      4.82         8.47       7              -3.5        -3.50
+2025-11-08               Oklahoma                  Gonzaga    False home game at an arena belonging to neither team home city         12.75     -5.00         7.75      15             -10.5       -10.50
+2025-11-11    Arkansas-Pine Bluff                 Oklahoma    False home game at an arena belonging to neither team home city         33.64     -4.67        28.97      26             -33.5       -36.50
+2025-11-14  Cal State Bakersfield                 Ole Miss    False home game at an arena belonging to neither team home city         21.18     -3.89        17.29      22             -25.5       -23.50
+2025-11-21              Wisconsin                      BYU    False home game at an arena belonging to neither team                    6.54     -5.41         1.13      28              -4.5        -4.50
+2025-11-27         Oklahoma State             Northwestern    False home game at an arena belonging to neither team                    3.88     -4.28        -0.40      -5              -2.5        -2.50
+2025-11-28          Indiana State             Alcorn State     True        flagged neutral at the away team's arena                  -10.61     -4.59       -15.21       7               9.5        12.50
+2024-11-04                 Baylor                  Gonzaga    False home game at an arena belonging to neither team home city          6.18     -4.89         1.29      38              -2.5        -6.50
+2024-11-11           Jacksonville                   Furman    False home game at an arena belonging to neither team                    5.53     -3.97         1.56       9              -6.5        -8.50
+2024-11-12          South Alabama                 Ole Miss    False home game at an arena belonging to neither team home city         17.08     -3.45        13.64      10             -17.5       -17.50
+2024-11-15         William & Mary                 Winthrop    False home game at an arena belonging to neither team home city          8.28     -3.96         4.32       1              -6.5        -7.50
+2024-11-15                 Tulane                   Furman    False home game at an arena belonging to neither team                    3.21     -4.32        -1.12       8              -3.5        -5.50
+2024-11-16       Georgia Southern                 Winthrop    False home game at an arena belonging to neither team home city          6.81     -4.23         2.58      -2              -5.5        -4.50
+2024-11-17 North Carolina Central                 Winthrop    False home game at an arena belonging to neither team home city          9.49     -4.09         5.40       2              -9.5        -9.50
+2024-11-21              UT Martin Texas A&M-Corpus Christi    False home game at an arena belonging to neither team home city         12.48     -4.24         8.24       4              -9.5       -11.50
+2024-11-23               Le Moyne Texas A&M-Corpus Christi    False home game at an arena belonging to neither team home city         15.26     -4.17        11.09      21             -11.5       -11.50
+2023-11-11    Fairleigh Dickinson               Seton Hall    False home game at an arena belonging to neither team                   19.25     -4.43        14.82      30             -18.5       -16.75
+2023-11-17       Coastal Carolina                   Furman     True        flagged neutral at the away team's arena                   11.80     -3.81         7.99       9             -10.0       -11.00
+2023-11-17            Sam Houston                 Ole Miss    False home game at an arena belonging to neither team home city          6.24     -3.21         3.03       3              -8.5        -9.50
+2023-11-18               Winthrop          IU Indianapolis     True        flagged neutral at the home team's arena                  -12.20      3.24        -8.96     -13              12.0        12.00

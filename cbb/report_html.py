@@ -122,6 +122,28 @@ def _novig_view(card: pd.DataFrame) -> pd.DataFrame:
     return card
 
 
+def _venue_view(card: pd.DataFrame, day: pd.Timestamp, fetch: bool) -> pd.DataFrame:
+    """Venue check of each game's neutral flag (cbb/venue.py): confirmed / conflict / unknown with the venue.
+    Display only; the flag the model used is unchanged. fetch=False reads the cache only (renders of past cards)."""
+    from . import venue
+    card = card.copy()
+    try:
+        path = venue.CACHE.format(f"{day:%Y-%m-%d}")
+        t = venue.day_table(day, refresh=True) if fetch else (pd.read_csv(path) if os.path.exists(path) else None)
+    except Exception as e:
+        print(f"Venue check failed ({e}); continuing.")
+        t = None
+    if t is None or not len(t):
+        card["venue_state"] = "unknown"
+        return card
+    t = t.drop_duplicates("game_id").set_index(t["game_id"].astype(str))
+    gid = card["game_id"].astype(str)
+    card["venue_state"] = gid.map(t["venue_state"]).fillna("unknown")
+    for c in ("venue", "city", "reason", "edge", "event"):
+        card[f"venue_{c}"] = gid.map(t[c])
+    return card
+
+
 def _clv_view() -> dict:
     """The card's CLV figures from the protocol's primary close (cbb/clv_primary.py), the same calculation as the
     record page, the charts, Discord and the tripwire: per market and overall, mean CLV over decided plays with a
@@ -159,6 +181,7 @@ def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, 
     card = _logged_view(card)
     if not replay:
         card = _novig_view(card)
+        card = _venue_view(card, day, fetch=record is not None)
     clv = _clv_view() if record else None
     clv_recent = clv.pop("recent", None) if clv else None
     if record and clv_recent is None:   # primary close unreadable: show no CLV, never the grader's as CLV
@@ -273,6 +296,8 @@ tbody tr:last-child td { border-bottom: 0 }
 .tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 6px; border-radius: 4px; border: 1px solid var(--line-strong); color: var(--muted) }
 .tag.bet { color: #fff; border-color: var(--brand); background: var(--brand) }
 .tag.logged { color: var(--brand); border-color: var(--brand); background: transparent }
+.tag.vn-ok { color: var(--pos); border-color: var(--pos) } .tag.vn-bad { color: #fff; border-color: var(--neg); background: var(--neg) }
+.tag.vn-unk { color: var(--warn); border-color: var(--warn) }
 
 /* Segmented control */
 .seg { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 6px; overflow: hidden }
@@ -513,6 +538,16 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     }).filter(Boolean).sort((p, q) => q.key - p.key || pay(q.price) - pay(p.price));
     return L.length ? "Also: " + L.map((x) => x.book + " " + x.txt + (x.price != null ? " (" + odds(x.price) + ")" : "")).join(" · ") : "";
   };
+  // Venue check of the neutral flag (cbb/venue.py): a mark on every play, the venue on hover; display only
+  const venueTag = (g) => {
+    const s = g.venue_state || "unknown";
+    const where = [g.venue_venue, g.venue_city].filter(Boolean).join(", ");
+    const why = [s !== "confirmed" ? g.venue_reason : "", g.venue_edge].filter(Boolean).join("; ");
+    const ttl = (where || "venue not listed") + (why ? " · " + why : "") + " · flag: " + (g.neutral ? "neutral" : "home game");
+    return " <span class='tag " + ({confirmed: "vn-ok", conflict: "vn-bad"}[s] || "vn-unk") + "' title='" + esc(ttl) + "'>Venue " +
+      ({confirmed: "&#10003;", conflict: "conflict", unknown: "?"}[s] || "?") + "</span>" +
+      (s === "conflict" ? "<div class='inj'>&#9888; Venue conflict: " + esc(g.venue_reason || "") + (where ? " (" + esc(where) + ")" : "") + ". The model used the " + (g.neutral ? "neutral" : "home") + " flag.</div>" : "");
+  };
   // Novig (show-only exchange price, never used for picks): its number and price on the bet's side, and whether it
   // beats the number and price shown for the play
   const novig = (g, kind, side, line, price) => {
@@ -548,6 +583,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   $("t-plays").innerHTML = P.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r hide-sm hide-md'>Model</th><th class='r'>Edge</th><th class='r hide-sm'>Win %</th><th class='r'>EV</th><th class='r'>Bet to</th><th class='r hide-sm hide-md'>Opened</th><th class='r hide-sm hide-md'>Units</th><th></th></tr></thead><tbody>" +
     P.map((p) => "<tr data-gid='" + p.g.game_id + "' data-mk='" + p.kind.toLowerCase() + "'><td><div class='b pick'>" + logo(pickId(p.g, p.kind, p.side), 20) + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
       (p.kind === "Total" && p.g.crew ? "<div class='f' style='font-size:11px'>Refs: " + esc(p.g.crew) + "</div>" : "") +
+      (D.replay ? "" : "<div style='font-size:12px'>" + venueTag(p.g) + "</div>") +
       (p.status ? "<div class='f' style='font-size:12px'>" + esc(p.status) + "</div>" : "") +
       (p.also ? "<div class='f' style='font-size:12px'>" + esc(p.also) + "</div>" : "") +
       novig(p.g, p.kind, p.side, p.line, p.price) +
@@ -581,6 +617,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     ". A separate bet type on spreads only, never counted in the record above: v1's edge of 2-2.49 points with v1's +2% EV rule, 0.5 unit flat.";
   $("t-bandb").innerHTML = BB.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r'>Edge</th><th class='r'>Units</th><th class='r'>Result</th><th></th></tr></thead><tbody>" +
     BB.map((p) => "<tr><td><div class='b pick'><span class='tag'>Band B</span> " + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
+      "<div style='font-size:12px'>" + venueTag(p.g) + "</div>" +
       (p.res ? "" : novig(p.g, p.kind, p.side, p.line, p.price)) + "</td><td>" +
       esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r'>" + sgn(p.edge) + "</td><td class='r'>" + num(p.units, 2) +
       "</td><td class='r'>" + (p.res ? esc(p.res) + (p.profit != null ? " <span class='" + (p.profit > 0 ? "pos" : p.profit < 0 ? "neg" : "m") + "'>" + sgn(p.profit, 2) + "</span>" : "") : "–") + "</td><td class='r'>" +

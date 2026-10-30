@@ -1,0 +1,3 @@
+game_id,date,home_id,away_id,neutral,venue_id,venue,city,state,event,home_venue_id,away_venue_id,venue_state,reason,edge
+401920982,2026-11-01,222,87,True,3282,Palazzo dello Sport,Rome,Italy,Eternal City Tip-Off,1969,282,confirmed,"neutral, arena belongs to neither team",
+401920409,2026-11-01,2272,2335,True,7239,Rock Hill Sports & Event Center,Rock Hill,SC,Field of 68 Opening Day Marathon,7116,7117,confirmed,"neutral, arena belongs to neither team",
