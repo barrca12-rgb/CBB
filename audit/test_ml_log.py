@@ -23,11 +23,14 @@ def _lines(dk_home=-218.0):
 
 def test_change_only_log(tmp_path, monkeypatch):
     monkeypatch.setattr(card_features, "ML_DIR", str(tmp_path))
-    assert card_features.log_moneylines(_lines(), T0) == 1                          # BetMGM has no moneyline: skipped
+    assert card_features.log_moneylines(_lines(), T0) == 2      # BetMGM quotes the game with no moneyline: "missing"
     assert card_features.log_moneylines(_lines(), T0 + pd.Timedelta(minutes=10)) == 0   # unchanged: nothing new
     assert card_features.log_moneylines(_lines(-225.0), T0 + pd.Timedelta(minutes=20)) == 1
     d = pd.read_csv(tmp_path / "2026-11-01.csv")
-    assert list(d.columns) == card_features.ML_COLS and list(d["home_ml"]) == [-218.0, -225.0]
+    assert list(d.columns) == card_features.ML_COLS
+    assert list(d["status"]) == ["ok", "missing", "ok"] and d.loc[1, "home_ml"] != d.loc[1, "home_ml"]   # NaN, never a price
+    assert list(d.loc[d["book"] == "DraftKings", "home_ml"]) == [-218.0, -225.0]
+    assert d["pulled_at"].notna().all() and (d["date"] == "2026-11-02").all()
 
 
 def test_card_plays_unchanged(tmp_path, monkeypatch):
