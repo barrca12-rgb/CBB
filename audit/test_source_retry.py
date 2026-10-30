@@ -152,3 +152,18 @@ def test_repo_copy_from_chads_machine_matches_a_direct_download(tmp_path, monkey
     monkeypatch.setattr(barttorvik.urllib.request, "urlopen", lambda *a, **k: (_ for _ in ()).throw(AssertionError("network")))
     from_repo = barttorvik.snapshot(pd.Timestamp("2026-11-02"))
     pd.testing.assert_frame_equal(from_repo.reset_index(drop=True), direct.reset_index(drop=True))
+
+
+def test_a_non_ratings_answer_never_stops_the_card(bt, monkeypatch):
+    """Oct 30 18:20 UTC: Barttorvik answered a recent date with a page that was not JSON (200), and the card crashed."""
+    tmp, calls = bt
+    monkeypatch.setattr(barttorvik, "REPO", str(tmp / "none"))
+    monkeypatch.setattr(barttorvik.urllib.request, "urlopen", lambda req, timeout=60: _Resp(b"\n<!doctype html><title>Just a moment...</title>"))
+    day = TODAY - pd.Timedelta(days=1)
+    assert barttorvik.snapshot(day) is None                         # treated as missing
+    assert len(pd.read_parquet(tmp / f"{day:%Y%m%d}.parquet")) == 0  # marked missing: asked again at most hourly
+    old = TODAY - pd.Timedelta(days=barttorvik.RETRY_DAYS + 30)
+    assert barttorvik.snapshot(old) is None and not (tmp / f"{old:%Y%m%d}.parquet").exists()   # old date: not cached
+    monkeypatch.setattr(barttorvik, "before", lambda day: (_ for _ in ()).throw(RuntimeError("boom")))
+    g = pd.DataFrame([{"game_id": 1, "date": TODAY, "home_id": 150, "away_id": 57, "neutral": False}])
+    assert barttorvik.predict(g).empty                               # any other failure: KenPom fills, no crash

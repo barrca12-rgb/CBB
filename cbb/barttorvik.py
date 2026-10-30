@@ -64,8 +64,16 @@ def snapshot(day) -> pd.DataFrame | None:
             raw = gzip.decompress(raw)
         except OSError:
             pass
-        rows = json.loads(raw)
-    t = pd.DataFrame([(r[1], r[4], r[6], r[44]) for r in rows], columns=["team", "adj_oe", "adj_de", "adj_tempo"])
+        try:
+            rows = [(r[1], r[4], r[6], r[44]) for r in json.loads(raw)]
+        except (ValueError, TypeError, IndexError, KeyError):
+            # not a ratings file (e.g. a bot-check page served with 200, Oct 30): treat as missing, never crash the card;
+            # a recent date is marked missing so it is asked again at most hourly, an older one is not cached at all
+            if _recent(day):
+                os.makedirs(CACHE, exist_ok=True)
+                pd.DataFrame(columns=["team", "adj_oe", "adj_de", "adj_tempo", "espn_id"]).to_parquet(path)
+            return None
+    t = pd.DataFrame(rows, columns=["team", "adj_oe", "adj_de", "adj_tempo"])
     ids = teams.id_lookup("kenpom")  # Barttorvik uses KenPom-style names
     t["espn_id"] = t["team"].map(lambda n: ids.get(teams.norm(n))).astype("Int64")
     os.makedirs(CACHE, exist_ok=True)
@@ -94,7 +102,11 @@ def predict(games: pd.DataFrame, live_season: int | None = None) -> pd.DataFrame
     live_season: fall back to the live ratings file when the archive has nothing for the day before."""
     out = []
     for day, g in games.groupby("date"):
-        t = before(day)
+        try:
+            t = before(day)
+        except Exception as e:      # any Barttorvik failure means no file for the day (KenPom fills), never a stopped card
+            print(f"Barttorvik lookup failed for {pd.Timestamp(day):%Y-%m-%d} ({e}); KenPom fills.")
+            t, LAST["file"] = None, None
         used = None
         if t is not None:
             src = "repo copy from Chad's machine" if os.path.exists(os.path.join(REPO, LAST["file"].replace("-", "") + ".csv")) else "download"

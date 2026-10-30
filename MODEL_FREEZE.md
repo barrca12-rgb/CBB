@@ -673,3 +673,26 @@ not placed.
 ```
 b171aa8410e202e87361a4a61aee18c163fc23ff3a3d8920ac3562e29b9164d6  cbb/run_day.py
 ```
+
+## 2026-10-30: Barttorvik answer that is not a ratings file no longer stops the card (fix to the retry above)
+
+The retry for recent dates (this morning's entry) exposed an unguarded parse. At 18:20 UTC Barttorvik answered a
+recent date with a page that was not JSON (status 200, probably a bot-check page), and the card run crashed before
+building anything. That run's card, alerts and logging were skipped; the 18:30 run built normally. (Its separate
+failure was GitHub Pages' own deploy step: "Deployment failed, try again later.")
+
+- **Fix (`cbb/barttorvik.py`):**
+  - An answer that is not a ratings file is treated as missing. A recent date is marked missing, so it is asked again
+    at most hourly; an older one is not cached.
+  - Any other Barttorvik failure during a run is printed, and KenPom fills, as it does for any missing file.
+  - Nothing is done to get past the page itself.
+- **Checks:**
+  - `audit/test_source_retry.py` tests a non-JSON 200 answer and a failing lookup.
+  - Replays of 2025-11-15, 2026-01-17 and 2026-03-01 give byte-identical card CSVs.
+- **Discord note:** none. No play was affected: the crashed run logged nothing, and no new play appeared on the next
+  run.
+- **New fingerprint:**
+
+```
+b4e9fdbc9320906e3ab26397a9978fd66608a219b25bf874d7e7f8880102ceb7  cbb/barttorvik.py
+```
