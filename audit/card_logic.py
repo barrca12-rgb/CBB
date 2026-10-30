@@ -5,7 +5,7 @@ headless Chromium, and checked against the rules below for both markets. Read on
 
   board     a logged side shows "Logged <pick>" and never BET or Watch; an unlogged pick side shows BET for a BET
             verdict and Watch for a WATCH verdict; every other side shows nothing
-  watch     no row for a logged side; one row for each unlogged WATCH
+  watch     no row for a logged side; one row for each unlogged WATCH, on its own market's tab only
   plays     each logged bet listed once; each unlogged BET listed once (none when the market is already logged)
   filter    "Plays only" keeps every game with a BET or a logged bet, and only those
   data      no game has more than one logged (non-void) bet in a market (the card can show only one)
@@ -47,9 +47,13 @@ const {chromium} = require('playwright');
     const D = await p.evaluate(() => JSON.parse(document.getElementById('data').textContent));
     const side = (g, mk) => g[mk + '_logged_pick'] ? String(g[mk + '_logged_side'] || '').toLowerCase() : null;
     const pickSide = (g, mk) => mk === 'spread' ? g.spread_side : String(g.total_pick || '').toLowerCase();
+    const watch = [];      // the watch list follows the board's tab: read it on each tab
     for (const mk of ['spread', 'total']) {
       await p.click(".seg button[data-m='" + mk + "']");
       await p.waitForTimeout(50);
+      const wr = await p.evaluate(() => [...document.querySelectorAll('#t-watch tbody tr[data-gid]')].map((r) => r.dataset.gid + '|' + r.dataset.mk));
+      wr.forEach((k) => { if (!k.endsWith('|' + mk)) res.problems.push(`watch list on the ${mk} tab shows ${k}`); });
+      watch.push(...wr);
       const cells = await p.evaluate(() => Object.fromEntries([...document.querySelectorAll('#t-board tbody.g')]
         .map((t) => [t.dataset.gid, [...t.querySelectorAll('td.edge')].map((c) => c.textContent.trim())])));
       for (const g of D.games) {
@@ -64,7 +68,6 @@ const {chromium} = require('playwright');
         });
       }
     }
-    const watch = await p.evaluate(() => [...document.querySelectorAll('#t-watch tbody tr')].map((r) => r.dataset.gid + '|' + r.dataset.mk));
     const plays = await p.evaluate(() => [...document.querySelectorAll('#t-plays tbody tr[data-gid]')].map((r) => r.dataset.gid + '|' + r.dataset.mk));
     const count = (a, k) => a.filter((x) => x === k).length;
     for (const g of D.games) for (const mk of ['spread', 'total']) {

@@ -401,6 +401,11 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     <div class="scroll"><table id="t-bandb"></table></div>
   </section>
 
+  <section class="panel" aria-labelledby="watch-h" id="watch-sec">
+    <div class="panel-h"><h2 id="watch-h">Watch list</h2><span class="note">Becomes a play if the line reaches the number shown. Follows the Spread / Total tab on the odds board.</span></div>
+    <div class="scroll"><table id="t-watch"></table></div>
+  </section>
+
   <section class="panel" aria-labelledby="board-h">
     <div class="panel-h"><h2 id="board-h">Odds board</h2>
       <div class="ctrls">
@@ -409,11 +414,6 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       </div>
     </div>
     <div class="scroll"><table class="board" id="t-board"></table></div>
-  </section>
-
-  <section class="panel" aria-labelledby="watch-h" id="watch-sec">
-    <div class="panel-h"><h2 id="watch-h">Watch list</h2><span class="note">Becomes a play if the line reaches the number shown.</span></div>
-    <div class="scroll"><table id="t-watch"></table></div>
   </section>
 
   <section class="panel" aria-labelledby="rec-h" id="rec-sec" hidden>
@@ -739,11 +739,12 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     $("t-board").innerHTML = h;
   };
   document.querySelectorAll(".seg button").forEach((b) => b.onclick = () => {
-    market = b.dataset.m; document.querySelectorAll(".seg button").forEach((x) => x.setAttribute("aria-pressed", x === b)); board(); });
+    market = b.dataset.m; document.querySelectorAll(".seg button").forEach((x) => x.setAttribute("aria-pressed", x === b)); board(); watch(); });
   $("only-plays").onchange = board;
   board();
 
-  // Watch list (a side already logged as a play is listed under Plays at its logged number, not here)
+  // Watch list (a side already logged as a play is listed under Plays at its logged number, not here); it shows the
+  // market of the odds board's Spread / Total tab
   const W = [];
   D.games.forEach((g) => {
     if (g.spread_verdict === "WATCH" && loggedSide(g, "spread") !== g.spread_side) W.push([tip(g), matchup(g), g.spread_pick, g.game_id, "spread", ln(g.spread_line), ln(playAt(g.spread_good_to, true)) + gp(g.spread_good_price), sgn(g.spread_edge)]);
@@ -752,9 +753,14 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     if (g.spread_verdict === "REVIEW") W.push([tip(g), matchup(g), "REVIEW: " + g.spread_pick + " " + ln(g.spread_line) + " (" + (g.spread_book || "") + "), check the line", g.game_id, "spread", ln(g.spread_line), "not a play", sgn(g.spread_edge)]);
     if (g.total_verdict === "REVIEW") W.push([tip(g), matchup(g), "REVIEW: " + g.total_pick + " " + num(g.total_line) + " (" + (g.total_book || "") + "), check the line", g.game_id, "total", num(g.total_line), "not a play", sgn(g.total_edge)]);
   });
-  if (!W.length) $("watch-sec").hidden = true;
-  else $("t-watch").innerHTML = "<thead><tr><th>Time</th><th>Game</th><th>Side</th><th class='r'>Now</th><th class='r'>Play at</th><th class='r'>Edge now</th></tr></thead><tbody>" +
-    W.map((r) => "<tr data-gid='" + r[3] + "' data-mk='" + r[4] + "'><td class='m'>" + esc(r[0]) + "</td><td>" + esc(r[1]) + "</td><td class='b'>" + esc(r[2]) + "</td><td class='r'>" + esc(r[5]) + "</td><td class='r'>" + esc(r[6]) + "</td><td class='r m'>" + esc(r[7]) + "</td></tr>").join("") + "</tbody>";
+  const watch = () => {
+    const mk = market === "total" ? "total" : "spread", Wm = W.filter((r) => r[4] === mk);
+    $("watch-sec").hidden = !W.length || market === "ml";
+    $("t-watch").innerHTML = Wm.length ? "<thead><tr><th>Time</th><th>Game</th><th>Side</th><th class='r'>Now</th><th class='r'>Play at</th><th class='r'>Edge now</th></tr></thead><tbody>" +
+      Wm.map((r) => "<tr data-gid='" + r[3] + "' data-mk='" + r[4] + "'><td class='m'>" + esc(r[0]) + "</td><td>" + esc(r[1]) + "</td><td class='b'>" + esc(r[2]) + "</td><td class='r'>" + esc(r[5]) + "</td><td class='r'>" + esc(r[6]) + "</td><td class='r m'>" + esc(r[7]) + "</td></tr>").join("") + "</tbody>"
+      : "<tbody><tr><td class='empty'>No " + (mk === "total" ? "totals" : "spreads") + " on the watch list.</td></tr></tbody>";
+  };
+  watch();
 
   // Record
   if (st) {
