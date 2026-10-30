@@ -1,6 +1,6 @@
 # Injury sources: who reports first
 
-Updated 2026-10-30 20:41 UTC by `cbb/injury_sources.py`. Logging since 2026-10-26; 0 game day(s) so far. Model's injury input: **espn** (recommendation after 7 game days with 30+ line-matched injuries, or 14 game days; the switch needs Chad's approval).
+Updated 2026-10-30 20:50 UTC by `cbb/injury_sources.py`. Logging since 2026-10-26; 0 game day(s) so far. Model's injury input: **espn** (recommendation after 7 game days with 30+ line-matched injuries, or 14 game days; the switch needs Chad's approval).
 
 Material injuries: Out / Doubtful / Questionable, player with 10%+ of team minutes, first reported after logging began and before the team's next game. A line move is the spread moving 1+ point against the team at any book. Times are poll times (one run = 30 minutes).
 
