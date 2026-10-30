@@ -1,5 +1,7 @@
 # Two-leg teasers on the card's spread plays: plan (written Nov 1, 2026, before any teaser number was computed)
 
+**Closed Oct 30, 2026 without a run (see LOG.md): no source for the books' teaser prices.**
+
 Research only. Nothing is bet on it. If it survives, the output is a proposal for Chad at the Nov 16 read.
 
 ## Blocked until Chad's book list exists
