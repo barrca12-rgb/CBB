@@ -123,3 +123,4 @@ oddsapi-targeted-20261031T140623.741037,2026-10-31T14:06:23+00:00,oddsapi-target
 oddsapi-targeted-20261031T145418.825738,2026-10-31T14:54:18+00:00,oddsapi-targeted,ok,,125,520,2,56674,2876
 oddsapi-targeted-20261031T145720.528667,2026-10-31T14:57:20+00:00,oddsapi-targeted,ok,,125,520,2,56672,183
 oddsapi-targeted-20261031T150050.520575,2026-10-31T15:00:50+00:00,oddsapi-targeted,error,HTTP Error 502: Bad Gateway,,,,,
+oddsapi-targeted-20261031T150319.179732,2026-10-31T15:03:19+00:00,oddsapi-targeted,ok,,125,520,2,56667,359
