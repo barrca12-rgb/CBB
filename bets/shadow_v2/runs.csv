@@ -700,3 +700,4 @@ run_at,games,teams_with_adjustment,signals,error
 2026-10-31T19:52:01+00:00,121,0,1,no adjustments: HTTP Error 404: Not Found
 2026-10-31T20:02:15+00:00,121,0,5,no adjustments: HTTP Error 404: Not Found
 2026-10-31T20:12:07+00:00,121,0,1,no adjustments: HTTP Error 404: Not Found
+2026-10-31T20:22:10+00:00,121,0,0,no adjustments: HTTP Error 404: Not Found
