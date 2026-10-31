@@ -9,3 +9,37 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-02|401909771|total|over,2026-11-02,401909771,total,Over 152.5,over,66,235,Iowa State,Memphis,152.5,152.5,-115.0,DraftKings,4.5,157.0,1.0,yes,2026-10-26T17:20:55+00:00,,,,,,,,open,
 2026-11-02|401906769|total|over,2026-11-02,401906769,total,Over 159.5,over,57,2390,Florida,Miami,159.5,159.5,-110.0,Fanatics,3.01,162.51,1.0,yes,2026-10-27T00:20:47+00:00,,,,,,,,open,
 2026-11-01|401920982|spread|home,2026-11-01,401920982,spread,Villanova +7.5,home,222,87,Villanova,Notre Dame,7.5,7.5,,BetMGM,14.8,7.3,1.0,,2026-10-30T15:50:41+00:00,,,,,,,,void,
+2026-11-02|401919014|total|over,2026-11-02,401919014,total,Over 149.5,over,2377,5,McNeese,UAB,149.5,149.5,-110.0,Caesars,3.23,152.73,1.0,,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401925733|spread|away,2026-11-02,401925733,spread,Oakland +29,away,130,2473,Michigan,Oakland,29.0,29.0,-110.0,Caesars,2.98,26.02,1.0,,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401925818|spread|home,2026-11-02,401925818,spread,Indiana State +5,home,282,2429,Indiana State,Charlotte,5.0,5.0,-110.0,Caesars,2.58,-2.42,1.0,,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401921766|spread|away,2026-11-02,401921766,spread,Niagara +29,away,277,315,West Virginia,Niagara,29.0,29.0,-110.0,Caesars,3.79,25.21,1.0,,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401921139|spread|home,2026-11-02,401921139,spread,Columbia -3,home,171,2210,Columbia,Elon,-3.0,-3.0,-110.0,Caesars,2.76,5.76,1.0,,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401916296|spread|away,2026-11-02,401916296,spread,Bucknell +32,away,120,2083,Maryland,Bucknell,32.0,32.0,-110.0,Caesars,2.92,29.08,1.0,,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401911374|spread|home,2026-11-02,401911374,spread,South Florida -19.5,home,58,2127,South Florida,Charleston Southern,-19.5,-19.5,-110.0,Caesars,3.4,22.9,1.0,,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401911333|total|under,2026-11-02,401911333,total,Under 157,under,2750,2005,Wright State,Air Force,157.0,157.0,-110.0,Caesars,5.91,151.09,1.0,,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401911304|spread|home,2026-11-02,401911304,spread,Brown -8.5,home,225,160,Brown,New Hampshire,-8.5,-8.5,-110.0,Caesars,3.2,11.7,1.0,,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401911001|spread|home,2026-11-02,401911001,spread,Troy -3,home,2653,113,Troy,Massachusetts,-3.0,-3.0,-110.0,Caesars,3.44,6.44,1.0,,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401910998|spread|home,2026-11-02,401910998,spread,Coastal Carolina +2.5,home,324,2199,Coastal Carolina,Eastern Michigan,2.5,2.5,-110.0,Caesars,3.57,1.07,1.0,,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401909705|spread|away,2026-11-02,401909705,spread,Rider +30,away,221,2520,Pittsburgh,Rider,30.0,30.0,-110.0,Caesars,3.4,26.6,1.0,,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401920959|spread|home,2026-11-02,401920959,spread,Western Kentucky -16.5,home,98,2413,Western Kentucky,Morehead State,-16.5,-16.5,-110.0,Caesars,2.7,19.2,1.0,,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401910996|spread|home,2026-11-02,401910996,spread,UL Monroe +4.5,home,2433,2117,UL Monroe,Central Michigan,4.5,4.5,-110.0,Caesars,3.11,-1.39,1.0,,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401909522|spread|away,2026-11-02,401909522,spread,Mercyhurst +30.5,away,269,2385,Marquette,Mercyhurst,30.5,30.5,-110.0,Caesars,2.69,27.81,1.0,,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401919047|spread|away,2026-11-02,401919047,spread,Lindenwood +30.5,away,2628,2815,TCU,Lindenwood,30.5,30.5,-110.0,Caesars,3.83,26.67,1.0,,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401925683|spread|away,2026-11-02,401925683,spread,Alcorn State +31.5,away,145,2016,Ole Miss,Alcorn State,31.5,31.5,-110.0,Caesars,2.59,28.91,1.0,,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401909694|spread|away,2026-11-02,401909694,spread,Florida A&M +25,away,52,50,Florida State,Florida A&M,25.0,25.0,-110.0,Caesars,4.49,20.51,1.0,,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401922020|spread|away,2026-11-02,401922020,spread,Idaho State +28.5,away,328,304,Utah State,Idaho State,28.5,28.5,-110.0,Caesars,2.64,25.86,1.0,,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401909750|spread|away,2026-11-02,401909750,spread,Northwestern State +30.5,away,239,2466,Baylor,Northwestern State,30.5,30.5,-110.0,Caesars,4.03,26.47,1.0,,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401922029|spread|home,2026-11-02,401922029,spread,Oregon -16.5,home,2483,149,Oregon,Montana,-16.5,-16.5,-110.0,Caesars,4.11,20.61,1.0,,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401921731|spread|away,2026-11-02,401921731,spread,East Tennessee State +19.5,away,9,2193,Arizona State,East Tennessee State,19.5,19.5,-110.0,Caesars,4.42,15.08,1.0,,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401920769|spread|home,2026-11-02,401920769,spread,Washington -14.5,home,264,2142,Washington,Colgate,-14.5,-14.5,-110.0,Caesars,3.29,17.79,1.0,,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401911452|spread|home,2026-11-02,401911452,spread,Nevada -12,home,2440,2523,Nevada,Robert Morris,-12.0,-12.0,-110.0,Caesars,3.39,15.39,1.0,,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401911707|spread|home|bandB,2026-11-02,401911707,spread,Tennessee State +10,home,2634,93,Tennessee State,Murray State,10.0,10.0,-110.0,Caesars,2.02,-7.98,0.5,,2026-10-31T07:42:05+00:00,,,,,,,,open,bandB
+2026-11-02|401921753|spread|home|bandB,2026-11-02,401921753,spread,UCF -22,home,2116,526,UCF,Florida Gulf Coast,-22.0,-22.0,-110.0,Caesars,2.46,24.46,0.5,,2026-10-31T07:42:05+00:00,,,,,,,,open,bandB
+2026-11-02|401918976|spread|home|bandB,2026-11-02,401918976,spread,East Carolina -13,home,151,2908,East Carolina,South Carolina Upstate,-13.0,-13.0,-110.0,Caesars,2.02,15.02,0.5,,2026-10-31T07:42:05+00:00,,,,,,,,open,bandB
+2026-11-02|401913099|spread|away|bandB,2026-11-02,401913099,spread,Western Carolina +23.5,away,153,2717,North Carolina,Western Carolina,23.5,23.5,-110.0,Caesars,2.21,21.29,0.5,,2026-10-31T07:42:05+00:00,,,,,,,,open,bandB
+2026-11-02|401911237|spread|home|bandB,2026-11-02,401911237,spread,Richmond -13,home,257,2427,Richmond,UNC Asheville,-13.0,-13.0,-110.0,Caesars,2.5,15.5,0.5,,2026-10-31T07:42:05+00:00,,,,,,,,open,bandB
+2026-11-02|401910995|spread|away|bandB,2026-11-02,401910995,spread,Buffalo +3,away,276,2084,Marshall,Buffalo,3.0,3.0,-110.0,Caesars,2.15,0.85,0.5,,2026-10-31T07:42:05+00:00,,,,,,,,open,bandB
+2026-11-02|401920758|spread|home|bandB,2026-11-02,401920758,spread,Belmont -16,home,2057,88,Belmont,Southern Indiana,-16.0,-16.0,-110.0,Caesars,2.07,18.07,0.5,,2026-10-31T07:42:05+00:00,,,,,,,,open,bandB
+2026-11-02|401920716|spread|away|bandB,2026-11-02,401920716,spread,Eastern Washington +17,away,24,331,Stanford,Eastern Washington,17.0,17.0,-110.0,Caesars,2.49,14.51,0.5,,2026-10-31T07:42:05+00:00,,,,,,,,open,bandB
+2026-11-02|401917509|spread|home|bandB,2026-11-02,401917509,spread,Santa Clara -12,home,2541,119,Santa Clara,Towson,-12.0,-12.0,-110.0,Caesars,2.34,14.34,0.5,,2026-10-31T07:42:05+00:00,,,,,,,,open,bandB
+2026-11-02|401911517|spread|home|bandB,2026-11-02,401911517,spread,UC Davis -10,home,302,2453,UC Davis,North Alabama,-10.0,-10.0,-110.0,Caesars,2.06,12.06,0.5,,2026-10-31T07:42:05+00:00,,,,,,,,open,bandB
