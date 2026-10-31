@@ -1,8 +1,11 @@
 # Manual test of the Discord webhook (the public record channel): posts one message, clearly labeled as a test.
-# Run only by hand (Actions tab, or the API). Touches no file, bet or card.
+# Runs by hand (Actions tab), or when .github/discord-test.txt changes (its text is the message). Touches no file,
+# bet or card.
 name: Discord test message
 
 on:
+  push:
+    paths: [".github/discord-test.txt"]
   workflow_dispatch:
     inputs:
       message:
@@ -14,11 +17,13 @@ jobs:
   post:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Post the test message
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           MESSAGE: ${{ github.event.inputs.message }}
         run: |
+          if [ -z "$MESSAGE" ] && [ -f .github/discord-test.txt ]; then MESSAGE=$(cat .github/discord-test.txt); fi
           if [ -z "$DISCORD_WEBHOOK" ]; then echo "DISCORD_WEBHOOK secret is not set"; exit 1; fi
           body=$(python3 -c 'import json, os; print(json.dumps({"content": "TEST: " + os.environ["MESSAGE"]}))')
           code=$(curl -s -o /tmp/resp -w "%{http_code}" -H "Content-Type: application/json" -d "$body" "$DISCORD_WEBHOOK")
