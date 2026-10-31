@@ -49,3 +49,13 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-02|401920231|spread|home,2026-11-02,401920231,spread,Marist -5,home,2368,159,Marist,Dartmouth,-5.0,-5.0,-105.0,Fanatics,3.26,8.26,1.0,,2026-10-31T19:51:07+00:00,,,,,,,,open,
 2026-11-02|401917173|total|over,2026-11-02,401917173,total,Over 150,over,213,2099,Penn State,Canisius,150.0,150.0,-110.0,Fanatics,5.67,155.67,1.0,,2026-10-31T19:51:07+00:00,,,,,,,,open,
 2026-11-02|401911000|spread|home|bandB,2026-11-02,401911000,spread,Louisiana Tech +6.5,home,2348,2309,Louisiana Tech,Kent State,6.5,6.5,-110.0,Fanatics,2.36,-4.14,0.5,,2026-10-31T19:51:11+00:00,,,,,,,,open,bandB
+2026-11-02|401920893|spread|home,2026-11-02,401920893,spread,Wisconsin -22,home,275,2172,Wisconsin,Denver,-22.0,-22.0,-110.0,Fanatics,2.95,24.95,1.0,,2026-10-31T20:01:06+00:00,,,,,,,,open,
+2026-11-02|401920758|spread|home,2026-11-02,401920758,spread,Belmont -14.5,home,2057,88,Belmont,Southern Indiana,-14.5,-14.5,-110.0,Fanatics,3.57,18.07,1.0,,2026-10-31T20:01:06+00:00,,,,,,,,open,
+2026-11-02|401906791|total|over,2026-11-02,401906791,total,Over 156.5,over,344,2635,Mississippi State,Tennessee Tech,156.5,156.5,-110.0,Fanatics,3.2,159.7,1.0,,2026-10-31T20:01:06+00:00,,,,,,,,open,
+2026-11-02|401917913|spread|home,2026-11-02,401917913,spread,Central Arkansas -6.5,home,2110,198,Central Arkansas,Oral Roberts,-6.5,-6.5,-115.0,Fanatics,3.08,9.58,1.0,,2026-10-31T20:01:06+00:00,,,,,,,,open,
+2026-11-02|401918947|spread|home,2026-11-02,401918947,spread,Louisville -28.5,home,97,236,Louisville,Chattanooga,-28.5,-28.5,-110.0,Fanatics,3.67,32.17,1.0,,2026-10-31T20:01:06+00:00,,,,,,,,open,
+2026-11-02|401911517|spread|home,2026-11-02,401911517,spread,UC Davis -9,home,302,2453,UC Davis,North Alabama,-9.0,-9.0,-110.0,Fanatics,3.06,12.06,1.0,,2026-10-31T20:01:06+00:00,,,,,,,,open,
+2026-11-02|401926771|total|over,2026-11-02,401926771,total,Over 155,over,30,270,USC,Milwaukee,155.0,155.0,-110.0,Fanatics,3.07,158.07,1.0,,2026-10-31T20:01:06+00:00,,,,,,,,open,
+2026-11-02|401911003|spread|home|bandB,2026-11-02,401911003,spread,South Alabama +2,home,6,195,South Alabama,Ohio,2.0,2.0,-110.0,Fanatics,2.3,0.3,0.5,,2026-10-31T20:01:13+00:00,,,,,,,,open,bandB
+2026-11-02|401925811|spread|away|bandB,2026-11-02,401925811,spread,La Salle +28.5,away,248,2325,Houston,La Salle,28.5,28.5,-110.0,Fanatics,2.45,26.05,0.5,,2026-10-31T20:01:13+00:00,,,,,,,,open,bandB
+2026-11-02|401917507|spread|home|bandB,2026-11-02,401917507,spread,Saint Mary's -8.5,home,2608,2287,Saint Mary's,Illinois State,-8.5,-8.5,-115.0,Fanatics,2.42,10.92,0.5,,2026-10-31T20:01:13+00:00,,,,,,,,open,bandB
