@@ -43,3 +43,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-02|401920716|spread|away|bandB,2026-11-02,401920716,spread,Eastern Washington +17,away,24,331,Stanford,Eastern Washington,17.0,17.0,-110.0,Caesars,2.49,14.51,0.5,,2026-10-31T07:42:05+00:00,,,,,,,,open,bandB
 2026-11-02|401917509|spread|home|bandB,2026-11-02,401917509,spread,Santa Clara -12,home,2541,119,Santa Clara,Towson,-12.0,-12.0,-110.0,Caesars,2.34,14.34,0.5,,2026-10-31T07:42:05+00:00,,,,,,,,open,bandB
 2026-11-02|401911517|spread|home|bandB,2026-11-02,401911517,spread,UC Davis -10,home,302,2453,UC Davis,North Alabama,-10.0,-10.0,-110.0,Caesars,2.06,12.06,0.5,,2026-10-31T07:42:05+00:00,,,,,,,,open,bandB
+2026-11-01|401920409|spread|home,2026-11-01,401920409,spread,High Point -6.5,home,2272,2335,High Point,Liberty,-6.5,-6.5,-110.0,DraftKings,2.78,9.28,1.0,,2026-10-31T12:33:39+00:00,,,,,,,,open,
