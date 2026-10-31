@@ -68,5 +68,10 @@
   "id": "2026-10-30-bad-quote-guards",
   "date": "2026-10-30",
   "text": "Correction and data fix, recorded Oct 30: Villanova +7.5 (Nov 1) came from a broken BetMGM quote in our odds feed (sign flipped, no price) and is void; it was never a real line. The card treated the missing price as -110, an assumption meant only for historical lines. Three guards now stop this: no price means no play; a book 3+ points away from the other books is skipped; an edge above 8 points (spreads) or 10 (totals) is flagged for review, never posted as a bet. Notre Dame-Villanova Under 149.5 is unaffected."
+ },
+ {
+  "id": "2026-10-31-qualifying-quote",
+  "date": "2026-10-31",
+  "text": "Rule fix, recorded Oct 31, before the first games: when several books are open, the card now takes a quote that qualifies as a play (2.5+ point edge and +2% expected value at that book's price) over one that only prices better without qualifying. Liberty at High Point had been held on the watch list although two books qualified (High Point -6.5 at -110); it is now a play. Every card run also re-checks every book and alerts if a qualifying quote is ever passed over."
  }
 ]

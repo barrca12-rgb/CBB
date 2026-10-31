@@ -137,6 +137,80 @@ def log_opener_favs(f: pd.DataFrame, lines: pd.DataFrame, before: set, now: pd.T
     return len(rows)
 
 
+MISSED = os.path.join(os.path.dirname(__file__), "..", "lines", "missed_plays.csv")
+MISSED_ALERTED = os.path.join(os.path.dirname(__file__), "..", "lines", "missed_alerted.json")
+MISSED_COLS = ["seen_at", "date", "game_id", "game", "market", "side", "book", "line", "price", "edge", "ev", "card_verdict",
+               "card_book", "card_line", "card_edge"]
+
+
+def missed_plays(card: pd.DataFrame, lines: pd.DataFrame) -> pd.DataFrame:
+    """Safety net, independent of run_day's own selection (Chad, Oct 31: "make sure watch list plays don't get missed
+    ever again"). Every book's quote is re-checked against the live rule: an edge at the cutoff or more (and at most
+    MAX_EDGE), +2% EV at that book's price, a real price, and not off-market. A qualifying quote on a game and
+    market the card neither plays (BET) nor already has logged is a miss."""
+    out = []
+    if card is None or not len(card) or lines is None or not len(lines):
+        return pd.DataFrame(columns=MISSED_COLS)
+    for _, g in card.iterrows():
+        h, a = int(g["home_id"]), int(g["away_id"])
+        l = lines[(lines["home_id"] == h) & (lines["away_id"] == a)]
+        flip = lines[(lines["home_id"] == a) & (lines["away_id"] == h)]
+        if not len(l) and len(flip):                    # the feed lists the teams the other way round
+            l = flip.rename(columns={"home_spread_odds": "away_spread_odds", "away_spread_odds": "home_spread_odds"}).assign(
+                home_spread=-flip["home_spread"])
+        if not len(l):
+            continue
+        for mk, col, thr in (("spread", "home_spread", run_day.SPREAD_CALLS[0][0]), ("total", "total", run_day.TOTAL_CALLS[0][0])):
+            if g.get(f"{mk}_verdict") == "BET" or (isinstance(g.get(f"{mk}_logged_pick"), str) and g.get(f"{mk}_logged_pick")):
+                continue
+            off = set(run_day._off_market(l, col).index)
+            m = g["model_margin"] if mk == "spread" else g["model_total"]
+            for i, x in l.iterrows():
+                if i in off or pd.isna(x.get(col)) or pd.isna(m):
+                    continue
+                sides = (("home", m + x[col], "home_spread_odds"), ("away", -(m + x[col]), "away_spread_odds")) if mk == "spread" \
+                    else (("over", m - x[col], "over_odds"), ("under", x[col] - m, "under_odds"))
+                for side, e, oc in sides:
+                    price = x.get(oc)
+                    if pd.isna(price) or e < thr or e > run_day.MAX_EDGE[mk]:
+                        continue
+                    v = run_day.ev(run_day.win_prob(mk, e), price)
+                    if v >= run_day.MIN_EV:
+                        line = (x[col] if side == "home" else -x[col]) if mk == "spread" else x[col]
+                        out.append({"date": str(g.get("date", ""))[:10] if "date" in g else "", "game_id": g["game_id"],
+                                    "game": f"{g['away']} at {g['home']}", "market": mk, "side": side, "book": x.get("book"),
+                                    "line": line, "price": price, "edge": round(e, 2), "ev": round(v, 4),
+                                    "card_verdict": g.get(f"{mk}_verdict"), "card_book": g.get(f"{mk}_book"),
+                                    "card_line": g.get(f"{mk}_line"), "card_edge": round(float(g.get(f"{mk}_edge") or 0), 2)})
+    return pd.DataFrame(out, columns=[c for c in MISSED_COLS if c != "seen_at"])
+
+
+def report_missed(miss: pd.DataFrame, day: str, now: pd.Timestamp | None = None) -> int:
+    """Append misses to lines/missed_plays.csv and send one phone alert per game, market, book and number."""
+    import json
+    from . import notify
+    if miss is None or not len(miss):
+        return 0
+    now = now or pd.Timestamp.now(tz="UTC")
+    miss = miss.assign(seen_at=now.isoformat(timespec="seconds"), date=miss["date"].replace("", day))[MISSED_COLS]
+    miss.to_csv(MISSED, mode="a", header=not os.path.exists(MISSED), index=False)
+    done = set(json.load(open(MISSED_ALERTED))) if os.path.exists(MISSED_ALERTED) else set()
+    sent = 0
+    for _, r in miss.iterrows():
+        k = f"{r['date']}|{r['game_id']}|{r['market']}|{r['book']}|{r['line']}"
+        print(f"MISSED PLAY: {r['game']} {r['market']} {r['side']} {r['line']} at {r['book']} ({r['price']}), edge {r['edge']}, "
+              f"EV {100 * r['ev']:+.1f}%; card had {r['card_verdict']} at {r['card_book']} {r['card_line']}")
+        if k in done:
+            continue
+        if notify.message(f"CBB: a qualifying quote was not played ({r['game']})",
+                          f"{r['side']} {r['line']} at {r['book']} ({int(r['price']):+d}): edge {r['edge']}, EV {100 * r['ev']:+.1f}%. "
+                          f"The card shows {r['card_verdict']} at {r['card_book']}. This is a selection bug; check before betting."):
+            done.add(k)
+            sent += 1
+    json.dump(sorted(done), open(MISSED_ALERTED, "w"))
+    return sent
+
+
 def _plays_and_log(f: pd.DataFrame, lines: pd.DataFrame, live: bool = True) -> pd.DataFrame:
     if live:
         try:
@@ -145,7 +219,14 @@ def _plays_and_log(f: pd.DataFrame, lines: pd.DataFrame, live: bool = True) -> p
             log_opener_favs(f, lines, before)
         except Exception as e:   # never affects the card
             print(f"Moneyline log failed ({e}); continuing.")
-    return _plays(f, lines, live)
+    card = _plays(f, lines, live)
+    if live:
+        try:
+            day = str(f["date"].iloc[0])[:10] if len(f) and "date" in f else ""
+            report_missed(missed_plays(card.assign(date=day), lines), day)
+        except Exception as e:   # never affects the card
+            print(f"Missed-play check failed ({e}); continuing.")
+    return card
 
 
 if __name__ == "__main__":

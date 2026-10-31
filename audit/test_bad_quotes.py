@@ -82,3 +82,51 @@ def test_skips_are_logged_once(tmp_path, monkeypatch):
     b = pd.read_csv(tmp_path / "bad.csv")
     assert list(b.columns) == run_day.BAD_COLS and len(b) == 1
     assert b.loc[0, "book"] == "BetMGM" and b.loc[0, "number"] == 7.5 and b.loc[0, "median_others"] == -7.5   # card orientation: Villanova home
+
+
+def test_a_qualifying_quote_beats_a_better_priced_one_that_does_not_qualify():
+    """Oct 31, Liberty-High Point (neutral): model High Point by 9.28. theScore -7.5 at +100 (edge 1.78, EV +9.07%)
+    outscored DraftKings/Caesars -6.5 at -110 (edge 2.78, EV +8.98%) and the game fell to WATCH. The qualifying
+    quote now wins."""
+    f = pd.DataFrame([{"game_id": 401921000, "date": pd.Timestamp("2026-11-01"), "start": "2026-11-01T17:00:00Z",
+                       "home": "High Point", "away": "Liberty", "home_id": 2272, "away_id": 2335, "neutral": True,
+                       "state": "pre", "final_margin": 9.2775, "final_total": 154.1}])
+    feed = [  # the feed lists Liberty home: home_spread +6.5 means High Point -6.5
+        {"home_id": 2335, "away_id": 2272, "book": "DraftKings", "home_spread": 6.5, "home_spread_odds": -110.0, "away_spread_odds": -110.0, "total": 154.5, "over_odds": -110.0, "under_odds": -110.0},
+        {"home_id": 2335, "away_id": 2272, "book": "Caesars", "home_spread": 6.5, "home_spread_odds": -110.0, "away_spread_odds": -110.0, "total": 154.5, "over_odds": -110.0, "under_odds": -110.0},
+        {"home_id": 2335, "away_id": 2272, "book": "Fanatics", "home_spread": 7.0, "home_spread_odds": -105.0, "away_spread_odds": -115.0, "total": 154.5, "over_odds": -110.0, "under_odds": -110.0},
+        {"home_id": 2335, "away_id": 2272, "book": "theScore Bet", "home_spread": 7.5, "home_spread_odds": -120.0, "away_spread_odds": 100.0, "total": 154.5, "over_odds": -110.0, "under_odds": -110.0},
+        {"home_id": 2335, "away_id": 2272, "book": "FanDuel", "home_spread": 7.5, "home_spread_odds": -105.0, "away_spread_odds": -115.0, "total": 154.5, "over_odds": -110.0, "under_odds": -110.0}]
+    g = run_day.plays(f, pd.DataFrame(feed)).iloc[0]
+    assert g["spread_verdict"] == "BET" and g["spread_book"] == "DraftKings" and g["spread_line"] == -6.5
+    assert g["spread_edge"] == pytest.approx(2.7775, abs=1e-3) and g["spread_ev"] >= run_day.MIN_EV
+
+
+def test_no_qualifying_quote_keeps_the_highest_ev_for_the_watch_list():
+    f = F.assign(final_margin=9.2)            # Villanova by 9.2 vs -7.5 everywhere: edge 1.7, WATCH, nothing qualifies
+    lines = pd.DataFrame([_book("DraftKings", 7.5, -110.0, -110.0), _book("Caesars", 7.5, -110.0, -105.0)])
+    g = run_day.plays(f, lines).iloc[0]
+    assert g["spread_verdict"] == "WATCH" and g["spread_book"] == "Caesars" and g["spread_odds"] == -105.0
+
+
+def test_safety_net_flags_a_missed_qualifying_quote_and_is_silent_otherwise(tmp_path, monkeypatch):
+    from cbb import card_features, notify
+    f = pd.DataFrame([{"game_id": 401921000, "date": pd.Timestamp("2026-11-01"), "start": "2026-11-01T17:00:00Z",
+                       "home": "High Point", "away": "Liberty", "home_id": 2272, "away_id": 2335, "neutral": True,
+                       "state": "pre", "final_margin": 9.2775, "final_total": 154.1}])
+    lines = pd.DataFrame([
+        {"home_id": 2335, "away_id": 2272, "book": "DraftKings", "home_spread": 6.5, "home_spread_odds": -110.0, "away_spread_odds": -110.0, "total": 154.5, "over_odds": -110.0, "under_odds": -110.0},
+        {"home_id": 2335, "away_id": 2272, "book": "Caesars", "home_spread": 6.5, "home_spread_odds": -110.0, "away_spread_odds": -110.0, "total": 154.5, "over_odds": -110.0, "under_odds": -110.0},
+        {"home_id": 2335, "away_id": 2272, "book": "theScore Bet", "home_spread": 7.5, "home_spread_odds": -120.0, "away_spread_odds": 100.0, "total": 154.5, "over_odds": -110.0, "under_odds": -110.0}])
+    card = run_day.plays(f, lines)
+    assert card_features.missed_plays(card, lines).empty                     # fixed selection: nothing missed
+    old = card.assign(spread_verdict="WATCH", spread_book="theScore Bet", spread_line=-7.5, spread_edge=1.78)   # the Oct 31 card
+    miss = card_features.missed_plays(old, lines)
+    assert set(miss["book"]) == {"DraftKings", "Caesars"} and (miss["line"] == -6.5).all() and (miss["side"] == "home").all()
+    sent = []
+    monkeypatch.setattr(notify, "message", lambda t, b, **k: sent.append(t) or True)
+    monkeypatch.setattr(card_features, "MISSED", str(tmp_path / "m.csv"))
+    monkeypatch.setattr(card_features, "MISSED_ALERTED", str(tmp_path / "a.json"))
+    assert card_features.report_missed(miss, "2026-11-01") == 2
+    assert card_features.report_missed(miss, "2026-11-01") == 0               # one alert per quote, not every run
+    assert len(pd.read_csv(tmp_path / "m.csv")) == 4

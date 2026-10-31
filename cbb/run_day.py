@@ -208,9 +208,25 @@ def opening_week_totals(f: pd.DataFrame, day: pd.Timestamp) -> pd.DataFrame:
 
 
 def _best(lines: pd.DataFrame, market: str, sides: dict, live: bool = False, skip=None):
-    """Best (side, book row, edge, win prob, EV) across books and both sides, by expected value at each book's
-    price. sides: side -> (line column, edge function of the line, odds column). Live, a quote with no price on the
-    side is skipped (skip(row, side, number, reason) records it)."""
+    """Best (side, book row, edge, win prob, EV) across books and both sides. sides: side -> (line column, edge function
+    of the line, odds column). Live, a quote with no price on the side is skipped (skip(row, side, number, reason)
+    records it).
+
+    A quote that qualifies wins over one that only prices better (approved by Chad Oct 31, after DraftKings' High
+    Point -6.5 at -110, a full play, lost to theScore's -7.5 at +100 by 0.09% of EV and the game fell to WATCH):
+    first the quotes that make a BET (cutoff edge and +2% EV), then those that make band B, then the rest; within a
+    tier, the highest EV (then edge, then the preferred book). An edge above MAX_EDGE (REVIEW) ranks below all."""
+    cut = (SPREAD_CALLS if market == "spread" else TOTAL_CALLS)[0][0]
+    lo, hi = tracker.BAND_B_RANGE[market]
+
+    def tier(e: float, v: float) -> int:
+        if e > MAX_EDGE[market]:
+            return -1
+        if e >= cut and v >= MIN_EV:
+            return 2
+        if tracker.BAND_B_ON[market] and lo <= e < hi and v >= MIN_EV:
+            return 1
+        return 0
     best = None
     for side, (col, edge_fn, odds_col) in sides.items():
         for _, row in lines.dropna(subset=[col]).iterrows():
@@ -223,7 +239,7 @@ def _best(lines: pd.DataFrame, market: str, sides: dict, live: bool = False, ski
                 continue
             p = win_prob(market, e)
             v = ev(p, row.get(odds_col))
-            key = (round(v, 6), round(e, 6), row.get("book") == PREFERRED_BOOK)
+            key = (tier(e, v), round(v, 6), round(e, 6), row.get("book") == PREFERRED_BOOK)
             if best is None or key > best[5]:
                 best = (side, row, e, p, v, key)
     return best[:5] if best else None

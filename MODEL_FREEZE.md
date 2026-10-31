@@ -696,3 +696,40 @@ failure was GitHub Pages' own deploy step: "Deployment failed, try again later."
 ```
 b4e9fdbc9320906e3ab26397a9978fd66608a219b25bf874d7e7f8880102ceb7  cbb/barttorvik.py
 ```
+
+## 2026-10-31: A qualifying quote is never passed over; missed-play safety net (approved by Chad Oct 31)
+
+**What happened.** On Liberty at High Point (Nov 1, neutral; model High Point by 9.3), DraftKings and Caesars had
+High Point -6.5 at -110: edge 2.8, EV +9.0%, a full play. theScore had -7.5 at +100, EV +9.07%, by 0.09 points the
+higher. The card chose the single highest-EV quote and then judged its edge, 1.8, so the game fell to WATCH.
+
+This is a live multi-book selection flaw. The backtest priced one line per game and never met it. A scan of the
+Nov 1-2 cards found this one case.
+
+- **Fix (`cbb/run_day.py` `_best`):** quotes are ranked in tiers, then by EV within a tier (then edge, then the
+  preferred book):
+  - first, quotes that make a BET (cutoff edge and +2% EV at that book's price);
+  - then, quotes that make band B;
+  - then, the rest (the WATCH display);
+  - an edge above MAX_EDGE (REVIEW) ranks below all.
+
+  When nothing qualifies, the choice is unchanged.
+- **Safety net (`cbb/card_features.py`, the unfrozen wrapper):**
+  - On every card run, every book's quote is re-checked independently of `_best`: cutoff edge, +2% EV, a real
+    price, not off-market, not above MAX_EDGE.
+  - A qualifying quote on a game and market the card does not play is written to `lines/missed_plays.csv` and sends
+    one phone alert per game, market, book and number.
+  - With the fix in place it should never fire; if it does, it is a bug, known within one run.
+- **Checks:**
+  - `audit/test_bad_quotes.py` uses the real High Point quotes: the qualifying quote wins at DraftKings -6.5; with
+    nothing qualifying, the highest EV still drives WATCH; the safety net flags the Oct 31 card and stays silent on
+    the fixed one.
+  - Replays of 2025-11-15, 2026-01-17 and 2026-03-01 give byte-identical card CSVs.
+  - 128 tests pass; the card check is OK.
+- **Effect:** High Point -6.5 (DraftKings) becomes a play on the next run. No other current game changes.
+- **Discord note:** `2026-10-31-qualifying-quote` in bets/announcements.json.
+- **New fingerprint:**
+
+```
+d3b2ead5ef56cf6c4fa0c5426b3ab32384e964c24dc39022927963e21fdd5d6d  cbb/run_day.py
+```
