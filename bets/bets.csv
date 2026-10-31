@@ -59,3 +59,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-02|401911003|spread|home|bandB,2026-11-02,401911003,spread,South Alabama +2,home,6,195,South Alabama,Ohio,2.0,2.0,-110.0,Fanatics,2.3,0.3,0.5,,2026-10-31T20:01:13+00:00,,,,,,,,open,bandB
 2026-11-02|401925811|spread|away|bandB,2026-11-02,401925811,spread,La Salle +28.5,away,248,2325,Houston,La Salle,28.5,28.5,-110.0,Fanatics,2.45,26.05,0.5,,2026-10-31T20:01:13+00:00,,,,,,,,open,bandB
 2026-11-02|401917507|spread|home|bandB,2026-11-02,401917507,spread,Saint Mary's -8.5,home,2608,2287,Saint Mary's,Illinois State,-8.5,-8.5,-115.0,Fanatics,2.42,10.92,0.5,,2026-10-31T20:01:13+00:00,,,,,,,,open,bandB
+2026-11-02|401924717|spread|home,2026-11-02,401924717,spread,Cornell +4,home,172,2492,Cornell,Pepperdine,4.0,4.0,-110.0,Caesars,5.67,1.67,1.0,,2026-10-31T20:11:18+00:00,,,,,,,,open,
+2026-11-02|401911261|spread|home|bandB,2026-11-02,401911261,spread,St. Bonaventure -8.5,home,179,2754,St. Bonaventure,Youngstown State,-8.5,-8.5,-110.0,Caesars,2.42,10.92,0.5,,2026-10-31T20:11:19+00:00,,,,,,,,open,bandB
