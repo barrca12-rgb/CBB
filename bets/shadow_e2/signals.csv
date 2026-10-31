@@ -1,2 +1,3 @@
 bet_id,pick,game,date,game_id,home_id,away_id,start,side,book,line,odds,v1_total,e2_delta,e2_total,neutral,conf_game,edge,ev,v1_edge_at_quote,v1_signal_at_quote,lines_pulled_at,logged_at
 2026-11-02|401916313|total|under,Under 161.5,Ohio State at BYU,2026-11-02,401916313,252,194,2026-11-03T02:00Z,under,BetMGM,161.5,-110.0,159.883,-1.52,158.363,True,False,3.137,0.0384,1.617,False,2026-10-30T20:12:47+00:00,2026-10-30T20:19:25+00:00
+2026-11-02|401911333|total|under,Under 157,Air Force at Wright State,2026-11-02,401911333,2750,2005,2026-11-03T00:00Z,under,Caesars,157.0,-110.0,151.086,0.181,151.267,False,False,5.733,0.0786,5.914,True,2026-10-31T07:40:35+00:00,2026-10-31T07:42:56+00:00
