@@ -581,12 +581,31 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       link: g.total_link, warn: g.total_warn, edge: g.total_edge, p: g.total_p, ev: g.total_ev, model: num(g.model_total), to: num(g.total_good_to), open: g.open_total == null ? null : num(g.open_total), units: g.total_units,
       also: others(g, "total", String(g.total_pick || "").toLowerCase(), g.total_book), side: String(g.total_pick || "").toLowerCase(), line: g.total_line});
   });
-  P.sort((a, b) => String(a.g.start).localeCompare(String(b.g.start)) || b.edge - a.edge);
+  // sortable columns: click a header to sort by it, again to reverse; the default is tip time, then edge
+  const byTime = (a, b) => String(a.g.start).localeCompare(String(b.g.start)) || b.edge - a.edge;
+  const numOf = (v) => { if (v == null) return null; const m = String(v).replace(/\u2212/g, "-").match(/[-+]?\d+(\.\d+)?/); return m ? Number(m[0]) : null; };
+  const SORT = {bet: (p) => String(p.g.start || ""), book: (p) => String(p.book || "").toLowerCase(), model: (p) => numOf(p.model),
+    edge: (p) => p.edge, p: (p) => p.p, ev: (p) => p.ev, to: (p) => numOf(p.to), open: (p) => numOf(p.open), units: (p) => p.units};
+  let playSort = {key: "bet", dir: 1};
+  try { const v = JSON.parse(localStorage.getItem("cbb-play-sort") || "null"); if (v && SORT[v.key]) playSort = v; } catch (e) {}
+  const sortPlays = () => P.sort((a, b) => {
+    if (playSort.key === "bet") return playSort.dir * byTime(a, b) || 0;
+    const x = SORT[playSort.key](a), y = SORT[playSort.key](b);
+    if (x == null || x === "") return (y == null || y === "") ? byTime(a, b) : 1;   // blanks last, either direction
+    if (y == null || y === "") return -1;
+    return (x < y ? -1 : x > y ? 1 : 0) * playSort.dir || byTime(a, b);
+  });
+  sortPlays();
   const pc = $("plays-count"), pUnits = P.reduce((s, p) => s + (p.units || 0), 0);
   pc.textContent = P.length ? P.length + (P.length === 1 ? " play" : " plays") + " · " + pUnits.toFixed(1).replace(/\.0$/, "") + "u" : "No plays";
   pc.classList.toggle("zero", !P.length);
   $("rules-btn").onclick = () => { const r = $("plays-rules"), open = r.hidden; r.hidden = !open; $("rules-btn").setAttribute("aria-expanded", open); };
-  $("t-plays").innerHTML = P.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r hide-sm hide-md'>Model</th><th class='r'>Edge</th><th class='r hide-sm'>Win %</th><th class='r'>EV</th><th class='r'>Bet to</th><th class='r hide-sm hide-md'>Opened</th><th class='r hide-sm hide-md'>Units</th><th></th></tr></thead><tbody>" +
+  const renderPlays = () => {
+  const th = (k, label, cls) => "<th" + (cls ? " class='" + cls + "'" : "") + " data-sort='" + k + "' style='cursor:pointer;user-select:none' title='Sort'>" +
+    label + (playSort.key === k ? (playSort.dir > 0 ? " &#9650;" : " &#9660;") : "") + "</th>";
+  $("t-plays").innerHTML = P.length ? "<thead><tr>" + th("bet", "Bet") + th("book", "Book") + th("model", "Model", "r hide-sm hide-md") + th("edge", "Edge", "r") +
+    th("p", "Win %", "r hide-sm") + th("ev", "EV", "r") + th("to", "Bet to", "r") + th("open", "Opened", "r hide-sm hide-md") + th("units", "Units", "r hide-sm hide-md") +
+    "<th></th></tr></thead><tbody>" +
     P.map((p) => "<tr data-gid='" + p.g.game_id + "' data-mk='" + p.kind.toLowerCase() + "'><td><div class='b pick'>" + logo(pickId(p.g, p.kind, p.side), 20) + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
       (p.kind === "Total" && p.g.crew ? "<div class='f' style='font-size:11px'>Refs: " + esc(p.g.crew) + "</div>" : "") +
       (D.replay ? "" : venueTag(p.g) + freshTag(p.g, p.kind)) +
@@ -604,6 +623,18 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
         : "<button type='button' class='pl-btn' data-i='" + P.indexOf(p) + "' style='font-size:12px;padding:4px 10px;margin-left:8px'>Placed</button>") : "") +
       "</td></tr>").join("") + "</tbody>"
     : "<tbody><tr><td class='empty'>" + (withLines ? "No plays. No line is far enough from the model." : "No lines posted yet. Openers usually post the night before.") + "</td></tr></tbody>";
+  stack("t-plays");
+  };
+  renderPlays();
+  $("t-plays").addEventListener("click", (ev) => {
+    const h = ev.target.closest("th[data-sort]");
+    if (!h) return;
+    const k = h.dataset.sort;
+    playSort = playSort.key === k ? {key: k, dir: -playSort.dir} : {key: k, dir: ["edge", "p", "ev", "units"].includes(k) ? -1 : 1};
+    try { localStorage.setItem("cbb-play-sort", JSON.stringify(playSort)); } catch (e) {}
+    sortPlays();
+    renderPlays();
+  });
 
   // Band B (cbb/tracker.py BAND_B): logged band B plays, in their own block; never in P, the KPIs or the record
   const BB = [];
@@ -814,7 +845,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
         "</td><td class='r m'>" + num(x.model) + "</td><td class='r m'>" + esc(x.away_score) + "–" + esc(x.home_score) + "</td></tr>").join("") + "</tbody>";
   }
 
-  ["t-plays", "t-bandb", "t-rec", "t-recent", "t-review", "t-review2", "t-misses"].forEach(stack);
+  ["t-bandb", "t-rec", "t-recent", "t-review", "t-review2", "t-misses"].forEach(stack);   // t-plays: renderPlays() stacks itself
 
   // Ratings
   $("t-rat").innerHTML = "<thead><tr><th class='r'>#</th><th>Team</th><th class='r'>Net</th><th class='r'>Offense</th><th class='r'>Defense</th><th class='r'>Tempo</th></tr></thead><tbody>" +
