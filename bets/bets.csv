@@ -45,3 +45,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-02|401911517|spread|home|bandB,2026-11-02,401911517,spread,UC Davis -10,home,302,2453,UC Davis,North Alabama,-10.0,-10.0,-110.0,Caesars,2.06,12.06,0.5,,2026-10-31T07:42:05+00:00,,,,,,,,open,bandB
 2026-11-01|401920409|spread|home,2026-11-01,401920409,spread,High Point -6.5,home,2272,2335,High Point,Liberty,-6.5,-6.5,-110.0,DraftKings,2.78,9.28,1.0,,2026-10-31T12:33:39+00:00,,,,,,,,open,
 2026-11-02|401906801|spread|home,2026-11-02,401906801,spread,Oklahoma -29,home,201,2837,Oklahoma,East Texas A&M,-29.0,-29.0,-110.0,Caesars,2.68,31.68,1.0,,2026-10-31T14:51:26+00:00,,,,,,,,open,
+2026-11-02|401911707|total|over,2026-11-02,401911707,total,Over 161,over,2634,93,Tennessee State,Murray State,161.0,161.0,-110.0,Fanatics,3.37,164.37,1.0,,2026-10-31T19:51:07+00:00,,,,,,,,open,
+2026-11-02|401920231|spread|home,2026-11-02,401920231,spread,Marist -5,home,2368,159,Marist,Dartmouth,-5.0,-5.0,-105.0,Fanatics,3.26,8.26,1.0,,2026-10-31T19:51:07+00:00,,,,,,,,open,
+2026-11-02|401917173|total|over,2026-11-02,401917173,total,Over 150,over,213,2099,Penn State,Canisius,150.0,150.0,-110.0,Fanatics,5.67,155.67,1.0,,2026-10-31T19:51:07+00:00,,,,,,,,open,
+2026-11-02|401911000|spread|home|bandB,2026-11-02,401911000,spread,Louisiana Tech +6.5,home,2348,2309,Louisiana Tech,Kent State,6.5,6.5,-110.0,Fanatics,2.36,-4.14,0.5,,2026-10-31T19:51:11+00:00,,,,,,,,open,bandB
