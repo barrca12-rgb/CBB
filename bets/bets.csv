@@ -72,3 +72,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-02|401909500|spread|home|bandB,2026-11-02,401909500,spread,DePaul -23,home,305,2698,DePaul,West Georgia,-23.0,-23.0,-110.0,Fanatics,2.42,25.42,0.5,yes,2026-11-01T01:51:09+00:00,,,,,,,,open,bandB
 2026-11-02|401924894|spread|home,2026-11-02,401924894,spread,New Mexico -19.5,home,167,3101,New Mexico,Utah Tech,-19.5,-19.5,-115.0,Fanatics,3.42,22.92,1.0,yes,2026-11-01T01:59:20+00:00,,,,,,,,open,
 2026-11-02|401925947|spread|home|bandB,2026-11-02,401925947,spread,Oregon State -17,home,204,2692,Oregon State,Weber State,-17.0,-17.0,-115.0,Fanatics,2.25,19.25,0.5,yes,2026-11-01T01:59:22+00:00,,,,,,,,open,bandB
+2026-11-02|401920679|spread|away|bandB,2026-11-02,401920679,spread,Monmouth +28,away,2599,2405,St. John's,Monmouth,28.0,28.0,-110.0,Caesars,2.38,25.62,0.5,yes,2026-11-01T02:22:52+00:00,,,,,,,,open,bandB
