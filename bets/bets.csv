@@ -67,3 +67,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-02|401909771|spread|home|bandB,2026-11-02,401909771,spread,Iowa State -12.5,home,66,235,Iowa State,Memphis,-12.5,-12.5,-115.0,DraftKings,2.34,14.84,0.5,yes,2026-11-01T00:41:12+00:00,,,,,,,,open,bandB
 2026-11-02|401924856|spread|home|bandB,2026-11-02,401924856,spread,Michigan State -29.5,home,127,2514,Michigan State,Quinnipiac,-29.5,-29.5,-115.0,DraftKings,2.15,31.65,0.5,yes,2026-11-01T01:41:07+00:00,,,,,,,,open,bandB
 2026-11-02|401916286|spread|away|bandB,2026-11-02,401916286,spread,Eastern Illinois +34.5,away,84,2197,Indiana,Eastern Illinois,34.5,34.5,-108.0,DraftKings,2.0,32.5,0.5,yes,2026-11-01T01:41:07+00:00,,,,,,,,open,bandB
+2026-11-02|401918955|total|over,2026-11-02,401918955,total,Over 158.5,over,152,2097,NC State,Campbell,158.5,158.5,-110.0,Fanatics,3.47,161.97,1.0,yes,2026-11-01T01:51:07+00:00,,,,,,,,open,
+2026-11-02|401928995|spread|home,2026-11-02,401928995,spread,Valparaiso -18.5,home,2674,2710,Valparaiso,Western Illinois,-18.5,-18.5,-110.0,Fanatics,3.03,21.53,1.0,yes,2026-11-01T01:51:07+00:00,,,,,,,,open,
+2026-11-02|401909500|spread|home|bandB,2026-11-02,401909500,spread,DePaul -23,home,305,2698,DePaul,West Georgia,-23.0,-23.0,-110.0,Fanatics,2.42,25.42,0.5,yes,2026-11-01T01:51:09+00:00,,,,,,,,open,bandB
