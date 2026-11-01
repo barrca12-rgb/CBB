@@ -88,3 +88,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-02|401910997|spread|home,2026-11-02,401910997,spread,Old Dominion +1,home,295,2711,Old Dominion,Western Michigan,1.0,1.0,-115.0,Fanatics,3.54,2.54,1.0,yes,2026-11-01T14:41:25+00:00,,,,,,,,open,
 2026-11-02|401924894|total|under,2026-11-02,401924894,total,Under 158,under,167,3101,New Mexico,Utah Tech,158.0,158.0,-110.0,Fanatics,3.64,154.36,1.0,yes,2026-11-01T14:41:25+00:00,,,,,,,,open,
 2026-11-02|401911532|spread|away|bandB,2026-11-02,401911532,spread,UTEP -1,away,94,2638,Northern Kentucky,UTEP,-1.0,-1.0,-110.0,Fanatics,2.0,-3.0,0.5,yes,2026-11-01T14:41:31+00:00,,,,,,,,open,bandB
+2026-11-02|401911707|spread|home,2026-11-02,401911707,spread,Tennessee State +10.5,home,2634,93,Tennessee State,Murray State,10.5,10.5,-110.0,FanDuel,2.52,-7.98,1.0,yes,2026-11-01T17:21:06+00:00,,,,,,,,open,
