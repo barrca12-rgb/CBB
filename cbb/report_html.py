@@ -122,6 +122,43 @@ def _novig_view(card: pd.DataFrame) -> pd.DataFrame:
     return card
 
 
+def _first_open_view(card: pd.DataFrame, day: pd.Timestamp) -> pd.DataFrame:
+    """The first number posted on each game (lines/openers.csv: each book's first number and when it was seen), oriented
+    to the card's home team: first_open = [{book, home_spread, total}] for the books that posted at the earliest time
+    (spread and total separately, as first_open_spread / first_open_total). The card's Opened column shows the play's
+    book when it is among them, else their median (Chad, Oct 31: a later book's opener must not move "Opened").
+    Display only."""
+    card = card.copy()
+    card["first_open_spread"], card["first_open_total"] = None, None
+    try:
+        path = os.path.join(os.path.dirname(__file__), "..", "lines", "openers.csv")
+        if not os.path.exists(path) or not len(card):
+            return card
+        o = pd.read_csv(path)
+        o = o[o["game_key"].astype(str).str.startswith(f"{day:%Y-%m-%d}|")]
+        o["t"] = pd.to_datetime(o["first_seen"], utc=True, format="ISO8601", errors="coerce")
+        out_s, out_t = [], []
+        for h, a in zip(card["home_id"], card["away_id"]):
+            if pd.isna(h) or pd.isna(a):
+                out_s.append(None); out_t.append(None); continue
+            lo, hi = sorted((int(h), int(a)))
+            g = o[o["game_key"] == f"{day:%Y-%m-%d}|{lo}|{hi}"]
+            res = []
+            for col in ("open_home_spread", "open_total"):
+                x = g.dropna(subset=[col, "t"])
+                if not len(x):
+                    res.append(None); continue
+                first = x[x["t"] <= x["t"].min() + pd.Timedelta(minutes=1)]      # the same pull
+                val = [(v if int(oh) == int(h) else -v) if col == "open_home_spread" else v
+                       for v, oh in zip(first[col], first["home_id"])]
+                res.append([{"book": b, "value": float(v), "at": t.isoformat()} for b, v, t in zip(first["book"], val, first["t"])])
+            out_s.append(res[0]); out_t.append(res[1])
+        card["first_open_spread"], card["first_open_total"] = out_s, out_t
+    except Exception as e:
+        print(f"First openers failed ({e}); continuing.")
+    return card
+
+
 def _venue_view(card: pd.DataFrame, day: pd.Timestamp, fetch: bool) -> pd.DataFrame:
     """Venue check of each game's neutral flag (cbb/venue.py): confirmed / conflict / unknown with the venue.
     Display only; the flag the model used is unchanged. fetch=False reads the cache only (renders of past cards)."""
@@ -179,6 +216,7 @@ def _band_b_view() -> dict | None:
 def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, replay: bool = False,
           record: dict | None = None) -> str:
     card = _logged_view(card)
+    card = _first_open_view(card, day)
     if not replay:
         card = _novig_view(card)
         card = _venue_view(card, day, fetch=record is not None)
@@ -487,6 +525,15 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   // Plays
   const P = [];
   // the current market number on a play's side: the median across books (line_home_spread / line_total), like Opened
+  const firstOpen = (g, mk, side, book) => {
+    const f = g["first_open_" + mk];
+    if (!f || !f.length) return mk === "spread" ? (g.open_home_spread == null ? null : ln(side === "home" ? g.open_home_spread : -g.open_home_spread))
+      : (g.open_total == null ? null : num(g.open_total));
+    const own = f.find((x) => x.book === book);
+    const vs = f.map((x) => x.value).sort((p, q) => p - q), mid = vs.length % 2 ? vs[(vs.length - 1) / 2] : (vs[vs.length / 2 - 1] + vs[vs.length / 2]) / 2;
+    const v = own ? own.value : mid;
+    return mk === "spread" ? ln(side === "home" ? v : -v) : num(v);
+  };
   const nowLine = (g, mk, side) => mk === "spread" ? (g.line_home_spread == null ? null : ln(side === "home" ? g.line_home_spread : -g.line_home_spread))
     : (g.line_total == null ? null : num(g.line_total));
   // A logged bet stays listed at the number it was logged at, with where the game stands now underneath.
@@ -516,8 +563,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       p: pre ? g[mk + "_now_p"] : g[mk + "_logged_p"] ?? g[mk + "_now_p"], ev: pre ? g[mk + "_now_ev"] : g[mk + "_logged_ev"] ?? g[mk + "_now_ev"], model: mk === "spread" ? (side === "home" ? ln(-g.model_margin) : ln(g.model_margin)) : num(g.model_total),
       to: still ? (mk === "spread" ? ln(g.spread_good_to) : num(g.total_good_to)) : "–",
       now: nowLine(g, mk, side),
-      open: mk === "spread" ? (g.open_home_spread != null ? ln(side === "home" ? g.open_home_spread : -g.open_home_spread) : null)
-        : (g.open_total != null ? num(g.open_total) : null),
+      open: firstOpen(g, mk, side, g[mk + "_logged_book"]),
       units: g[mk + "_logged_stake"], line: g[mk + "_logged_line"],
       bid: D.date + "|" + g.game_id + "|" + mk + "|" + side,
       fill: {book: g[mk + "_logged_book"], line: g[mk + "_logged_line"], odds: g[mk + "_logged_odds"], stake: g[mk + "_logged_stake"]},
@@ -578,11 +624,11 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     const ls = logged(g, "spread"), lt = logged(g, "total");
     if (!ls && g.spread_verdict === "BET") P.push({g, kind: "Spread", side: g.spread_side, bet: g.spread_pick + " " + ln(g.spread_line), price: g.spread_odds, book: g.spread_book,
       link: g.spread_link, warn: g.spread_warn, edge: g.spread_edge, p: g.spread_p, ev: g.spread_ev, model: g.spread_side === "home" ? ln(-g.model_margin) : ln(g.model_margin), to: ln(g.spread_good_to),
-      open: g.open_home_spread == null ? null : ln(g.spread_side === "home" ? g.open_home_spread : -g.open_home_spread), units: g.spread_units,
+      open: firstOpen(g, "spread", g.spread_side, g.spread_book), units: g.spread_units,
       now: nowLine(g, "spread", g.spread_side),
       also: others(g, "spread", g.spread_side, g.spread_book), line: g.spread_line});
     if (!lt && g.total_verdict === "BET") P.push({g, kind: "Total", bet: g.total_pick + " " + num(g.total_line), price: g.total_odds, book: g.total_book,
-      link: g.total_link, warn: g.total_warn, edge: g.total_edge, p: g.total_p, ev: g.total_ev, model: num(g.model_total), to: num(g.total_good_to), open: g.open_total == null ? null : num(g.open_total), now: nowLine(g, "total"), units: g.total_units,
+      link: g.total_link, warn: g.total_warn, edge: g.total_edge, p: g.total_p, ev: g.total_ev, model: num(g.model_total), to: num(g.total_good_to), open: firstOpen(g, "total", null, g.total_book), now: nowLine(g, "total"), units: g.total_units,
       also: others(g, "total", String(g.total_pick || "").toLowerCase(), g.total_book), side: String(g.total_pick || "").toLowerCase(), line: g.total_line});
   });
   // sortable columns: click a header to sort by it, again to reverse; the default is tip time, then edge
@@ -621,7 +667,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       [["away", p.g.away], ["home", p.g.home]].filter(([sd]) => p.g[sd + "_injuries"]).map(([sd, nm]) => "<div class='inj'>" + esc(nm) + ": " + esc(p.g[sd + "_injuries"]) + "</div>").join("") + "</td><td>" +
       esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r m hide-sm hide-md'>" + esc(p.model) + "</td><td class='r " + (p.edge >= (p.kind === "Spread" ? 2.5 : 3) ? "pos b" : p.edge < 0 ? "neg" : "m") + "'>" + sgn(p.edge) +
       "</td><td class='r m hide-sm'>" + pct(p.p) + "</td><td class='r'>" + (p.ev == null ? "–" : sgn(100 * p.ev) + "%") +
-      "</td><td class='r'>" + esc(p.to) + "</td><td class='r m hide-sm hide-md'>" + esc(p.open ?? "–") + "</td><td class='r m' title='Median across books now'>" + esc(p.now ?? "–") + "</td><td class='r hide-sm hide-md'>" + num(p.units, 2) + "</td><td class='r'>" +
+      "</td><td class='r'>" + esc(p.to) + "</td><td class='r m hide-sm hide-md' title='First number posted (the play&#39;s book if it was among the first)'>" + esc(p.open ?? "–") + "</td><td class='r m' title='Median across books now'>" + esc(p.now ?? "–") + "</td><td class='r hide-sm hide-md'>" + num(p.units, 2) + "</td><td class='r'>" +
       (p.g.news_url ? "<a class='f' style='font-size:12px;margin-right:8px' href='" + esc(p.g.news_url) + "' target='_blank' rel='noopener'>News</a>" : "") +
       "</td></tr>").join("") + "</tbody>"
     : "<tbody><tr><td class='empty'>" + (withLines ? "No plays. No line is far enough from the model." : "No lines posted yet. Openers usually post the night before.") + "</td></tr></tbody>";
