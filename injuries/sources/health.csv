@@ -3939,3 +3939,7 @@ pulled_at,source,ok,rows,teams_matched,players_matched,unmatched_teams,error,sec
 2026-11-01T12:30:35+00:00,rotowire,True,5,1.0,0.8,,,0.6,1295.0
 2026-11-01T12:30:35+00:00,covers,True,105,0.952,0.0,Miami (FL) Hurricanes; UNLV Runnin' Rebels; Utah Runnin' Utes,,0.9,1429490.0
 2026-11-01T12:30:35+00:00,cbs,True,0,,,,,0.3,439876.0
+2026-11-01T12:40:32+00:00,espn,True,0,,,,,1.0,149.0
+2026-11-01T12:40:32+00:00,rotowire,True,5,1.0,0.8,,,0.4,1295.0
+2026-11-01T12:40:32+00:00,covers,False,0,,,,HTTPError: HTTP Error 502: Bad Gateway,12.4,0.0
+2026-11-01T12:40:32+00:00,cbs,True,0,,,,,0.2,439903.0
