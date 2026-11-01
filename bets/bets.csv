@@ -81,3 +81,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-02|401922029|total|over,2026-11-02,401922029,total,Over 152.5,over,2483,149,Oregon,Montana,152.5,152.5,-115.0,theScore Bet,3.46,155.96,1.0,yes,2026-11-01T14:01:11+00:00,,,,,,,,open,
 2026-11-02|401911261|total|under,2026-11-02,401911261,total,Under 153.5,under,179,2754,St. Bonaventure,Youngstown State,153.5,153.5,-105.0,DraftKings,3.16,150.34,1.0,yes,2026-11-01T14:21:25+00:00,,,,,,,,open,
 2026-11-02|401925811|spread|away,2026-11-02,401925811,spread,La Salle +29.5,away,248,2325,Houston,La Salle,29.5,29.5,-105.0,theScore Bet,3.45,26.05,1.0,yes,2026-11-01T14:21:25+00:00,,,,,,,,open,
+2026-11-02|401920679|spread|away,2026-11-02,401920679,spread,Monmouth +28.5,away,2599,2405,St. John's,Monmouth,28.5,28.5,-110.0,Caesars,2.88,25.62,1.0,yes,2026-11-01T14:31:21+00:00,,,,,,,,open,
+2026-11-02|401909738|total|over,2026-11-02,401909738,total,Over 149.5,over,26,12,UCLA,Arizona,149.5,149.5,-105.0,theScore Bet,3.01,152.51,1.0,yes,2026-11-01T14:31:21+00:00,,,,,,,,open,
