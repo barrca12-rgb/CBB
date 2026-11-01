@@ -733,3 +733,25 @@ Nov 1-2 cards found this one case.
 ```
 d3b2ead5ef56cf6c4fa0c5426b3ab32384e964c24dc39022927963e21fdd5d6d  cbb/run_day.py
 ```
+
+## 2026-10-31: Every play is logged as placed; the Placed option is removed (Chad, Oct 31)
+
+Chad bets every play, so marking placed by hand was redundant.
+
+- **`cbb/tracker.py` (fingerprinted):** `log()` and `log_band_b()` write `placed = "yes"` on every new play (was
+  blank). Picks, lines, stakes, grading and the record are unchanged: the record already counted every play not
+  marked "no" (`record_page`), and so did the execution tripwire.
+- **Backfill:** the 55 open plays logged with a blank `placed` (40 v1, 15 band B) are set to "yes". Voided plays
+  are untouched.
+- **Card:** the Placed button, its dialog and `.github/workflows/placed.yml` are removed. "Bet to" shows the number
+  again instead of "Placed".
+  - `cbb/placed.py` stays, so a fill that differs from the alert can still be recorded by hand from the session
+    (`bets/accepted.csv`, cohort C).
+  - Without the button, cohort C only fills when Chad reports a different fill.
+- **Card check:** `audit/card_logic.py` counts logged bets per bet type, since a band B play later joined by v1 on
+  the same game is the approved overlap.
+- **New fingerprint:**
+
+```
+4f4966cc0ee43f9b86200db7bab6e9b85ad6c663476ea75360fc16756b9390b7  cbb/tracker.py
+```

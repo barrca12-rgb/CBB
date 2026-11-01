@@ -500,7 +500,6 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       .filter(Boolean).sort((p, q) => q.key - p.key)[0];
     const cur = still ? (mk === "spread" ? ln(g.spread_line) : num(g.total_line))
       : sideBest ? (mk === "spread" ? ln(sideBest.key) : (side === "over" ? "o" : "u") + num(Math.abs(sideBest.key))) + " (" + sideBest.book + ")" : null;
-    const placed = String(g[mk + "_logged_placed"] || "").toLowerCase() === "yes";
     const pre = !!g[mk + "_logged_pre"];
     // a logged play stays a play at its logged number; this only says where the market is now
     // today's model number from the bet's side, in the same form as the bet (spread: the team's line; total: points)
@@ -512,11 +511,11 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       // plays logged before the Oct 26 revision show the edge vs today's model at the placed number; others as logged
       edge: pre ? g[mk + "_now_edge"] : g[mk + "_logged_edge"] ?? g[mk + "_now_edge"],
       p: pre ? g[mk + "_now_p"] : g[mk + "_logged_p"] ?? g[mk + "_now_p"], ev: pre ? g[mk + "_now_ev"] : g[mk + "_logged_ev"] ?? g[mk + "_now_ev"], model: mk === "spread" ? (side === "home" ? ln(-g.model_margin) : ln(g.model_margin)) : num(g.model_total),
-      to: placed ? "Placed" : still ? (mk === "spread" ? ln(g.spread_good_to) : num(g.total_good_to)) : "–",
+      to: still ? (mk === "spread" ? ln(g.spread_good_to) : num(g.total_good_to)) : "–",
       open: mk === "spread" ? (g.open_home_spread != null ? ln(side === "home" ? g.open_home_spread : -g.open_home_spread) : null)
         : (g.open_total != null ? num(g.open_total) : null),
       units: g[mk + "_logged_stake"], line: g[mk + "_logged_line"],
-      bid: D.date + "|" + g.game_id + "|" + mk + "|" + side, placed,
+      bid: D.date + "|" + g.game_id + "|" + mk + "|" + side,
       fill: {book: g[mk + "_logged_book"], line: g[mk + "_logged_line"], odds: g[mk + "_logged_odds"], stake: g[mk + "_logged_stake"]},
       status: (pre ? "Logged at edge " + sgn(g[mk + "_logged_edge"]) + " (before the Oct 26 update) · edge now vs today's model"
         : "Logged at edge " + sgn(g[mk + "_logged_edge"])) + " · " + now});
@@ -619,8 +618,6 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       "</td><td class='r m hide-sm'>" + pct(p.p) + "</td><td class='r'>" + (p.ev == null ? "–" : sgn(100 * p.ev) + "%") +
       "</td><td class='r'>" + esc(p.to) + "</td><td class='r m hide-sm hide-md'>" + esc(p.open ?? "–") + "</td><td class='r hide-sm hide-md'>" + num(p.units, 2) + "</td><td class='r'>" +
       (p.g.news_url ? "<a class='f' style='font-size:12px;margin-right:8px' href='" + esc(p.g.news_url) + "' target='_blank' rel='noopener'>News</a>" : "") +
-      (p.bid && !D.replay ? (p.placed ? "<span class='f' style='font-size:12px;margin-left:8px'>Placed &#10003;</span>"
-        : "<button type='button' class='pl-btn' data-i='" + P.indexOf(p) + "' style='font-size:12px;padding:4px 10px;margin-left:8px'>Placed</button>") : "") +
       "</td></tr>").join("") + "</tbody>"
     : "<tbody><tr><td class='empty'>" + (withLines ? "No plays. No line is far enough from the model." : "No lines posted yet. Openers usually post the night before.") + "</td></tr></tbody>";
   stack("t-plays");
@@ -642,7 +639,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     if (!g[mk + "_bandb_pick"]) return;
     BB.push({g, kind: mk === "spread" ? "Spread" : "Total", bet: g[mk + "_bandb_pick"], book: g[mk + "_bandb_book"], price: g[mk + "_bandb_odds"],
       edge: g[mk + "_bandb_edge"], units: g[mk + "_bandb_stake"], res: g[mk + "_bandb_result"], profit: g[mk + "_bandb_profit"],
-      bid: g[mk + "_bandb_bet_id"], placed: String(g[mk + "_bandb_placed"] || "").toLowerCase() === "yes",
+      bid: g[mk + "_bandb_bet_id"],
       side: String(g[mk + "_bandb_bet_id"] || "").split("|")[3], line: g[mk + "_bandb_line"],
       fill: {book: g[mk + "_bandb_book"], line: g[mk + "_bandb_line"], odds: g[mk + "_bandb_odds"], stake: g[mk + "_bandb_stake"]}});
   }));
@@ -658,8 +655,6 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       (p.res ? "" : novig(p.g, p.kind, p.side, p.line, p.price)) + "</td><td>" +
       esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r'>" + sgn(p.edge) + "</td><td class='r'>" + num(p.units, 2) +
       "</td><td class='r'>" + (p.res ? esc(p.res) + (p.profit != null ? " <span class='" + (p.profit > 0 ? "pos" : p.profit < 0 ? "neg" : "m") + "'>" + sgn(p.profit, 2) + "</span>" : "") : "–") + "</td><td class='r'>" +
-      (p.bid && !D.replay && !p.res ? (p.placed ? "<span class='f' style='font-size:12px;margin-left:8px'>Placed &#10003;</span>"
-        : "<button type='button' class='pl-btn' data-b='" + BB.indexOf(p) + "' style='font-size:12px;padding:4px 10px;margin-left:8px'>Placed</button>") : "") +
       "</td></tr>").join("") + "</tbody>"
     : "<tbody><tr><td class='empty'>No band B plays.</td></tr></tbody>";
 
@@ -894,40 +889,6 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   if (store.get()) gh("/workflows/" + WF + "/runs?per_page=1").then((r) => r.json()).then((j) => {
     const run = j.workflow_runs?.[0]; if (run && run.status !== "completed") followRun(new Date(run.created_at)); }).catch(() => {});
 
-  // Placed: records what was actually taken (book, line, odds, stake) through the "Record placed bet" workflow,
-  // which marks the bet placed and adds it to bets/accepted.csv. Uses the same browser token as Update.
-  const dlg = document.createElement("dialog");
-  dlg.style.cssText = "border:1px solid var(--line-strong);border-radius:10px;padding:18px;background:var(--surface);color:var(--text);max-width:340px;width:90%";
-  document.body.appendChild(dlg);
-  const field = (k, label, v) => "<label style='display:block;margin:8px 0;font-size:13px'>" + label +
-    "<input id='pl-" + k + "' value='" + esc(v ?? "") + "' style='display:block;width:100%;margin-top:3px;padding:6px;font:inherit;border:1px solid var(--line-strong);border-radius:6px;background:var(--surface);color:var(--text)'></label>";
-  const placedClick = (ev) => {
-    const btn = ev.target.closest(".pl-btn");
-    if (!btn) return;
-    const p = btn.dataset.b != null ? BB[Number(btn.dataset.b)] : P[Number(btn.dataset.i)];   // band B rows: data-b
-    dlg.innerHTML = "<div class='b' style='margin-bottom:4px'>Placed: " + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + esc(matchup(p.g)) +
-      "</div>" + field("book", "Book", p.fill.book) + field("line", p.kind === "Spread" ? "Line (your side)" : "Total", p.fill.line) +
-      field("odds", "Odds", p.fill.odds) + field("stake", "Units", p.fill.stake) +
-      "<div id='pl-msg' class='f' style='font-size:12px;min-height:16px'></div><div style='display:flex;gap:8px;justify-content:flex-end;margin-top:8px'>" +
-      "<button type='button' id='pl-cancel'>Cancel</button><button type='button' id='pl-save'>Save</button></div>";
-    dlg.showModal();
-    $("pl-cancel").onclick = () => dlg.close();
-    $("pl-save").onclick = async () => {
-      const v = (k) => $("pl-" + k).value.trim();
-      const msg = (t) => { $("pl-msg").textContent = t; };
-      if (!v("book") || [v("line"), v("odds"), v("stake")].some((x) => x === "" || isNaN(Number(x)))) { msg("Fill in book, line, odds and units."); return; }
-      if (!store.get() && !askKey()) { msg("No GitHub token: use Update's token prompt first."); return; }
-      msg("Saving…");
-      const branch = (await (await fetch("https://api.github.com/repos/" + REPO)).json().catch(() => ({}))).default_branch || "main";
-      const inputs = {bet_id: p.bid, book: v("book"), line: v("line"), odds: v("odds"), stake: v("stake")};
-      const r = await gh("/workflows/placed.yml/dispatches", { method: "POST", body: JSON.stringify({ ref: branch, inputs }) }).catch(() => null);
-      if (r && r.status === 204) { dlg.close(); btn.outerHTML = "<span class='f' style='font-size:12px;margin-left:8px'>Saved &#10003;</span>"; }
-      else if (r && [401, 403, 404].includes(r.status)) { store.set(""); msg("Token refused (" + r.status + "). Click Update to enter a new one."); }
-      else msg("Couldn't reach GitHub. Try again.");
-    };
-  };
-  $("t-plays").addEventListener("click", placedClick);
-  $("t-bandb").addEventListener("click", placedClick);
 })();
 </script>
 """

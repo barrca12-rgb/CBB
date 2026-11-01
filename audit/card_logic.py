@@ -108,8 +108,10 @@ def render(day: str, folder: str) -> str:
 def data_check() -> list[str]:
     b = pd.read_csv(os.path.join(ROOT, "bets", "bets.csv"))
     b = b[b["status"] != "void"]
-    d = b.groupby(["date", "game_id", "market"]).size()
-    return [f"{k[0]} game {k[1]} {k[2]}: {n} logged bets; the card shows only the last" for k, n in d[d > 1].items()]
+    # band B has its own block; a band B play later joined by v1 on the same game is the approved overlap (both stand)
+    b = b.assign(bet_type=b.get("bet_type", pd.Series(index=b.index, dtype=object)).fillna("v1"))
+    d = b.groupby(["date", "game_id", "market", "bet_type"]).size()
+    return [f"{k[0]} game {k[1]} {k[2]} ({k[3]}): {n} logged bets; the card shows only the last" for k, n in d[d > 1].items()]
 
 
 def main() -> int:

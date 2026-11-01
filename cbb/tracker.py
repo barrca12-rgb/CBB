@@ -7,8 +7,9 @@ Every daily run (run_day.py) does three things here, so nothing needs logging by
   log(card)  every BET on today's card, recorded once: the number, price and book when it first showed up
   status()   record, ROI and CLV per market, and the stake multiplier the card applies
 
-Bets live in bets/bets.csv. Edit a row to the line, price or stake you actually got; set `placed` to "no" for a
-bet you skipped (it's still graded, but report() also shows placed bets on their own).
+Bets live in bets/bets.csv. Every play is logged as placed ("yes": Chad bets every play; approved Oct 31). The
+card's Placed/Edit button records the line, price and stake actually got (bets/accepted.csv); set `placed` to "no"
+for a bet that was skipped (it's still graded, but report() also shows placed bets on their own).
 
 CLV: points you got versus the close from the same side (+1 = a point better than the close). clv_prob prices that
 with the result's spread around the closing line (2020-2026: 11.3 points for margins, 16.5 for totals): the cover
@@ -111,7 +112,7 @@ def log(card: pd.DataFrame, day: pd.Timestamp, stakes: dict | None = None) -> li
                         "away": g["away"], "line": g[f"{mk}_line"], "alert_line": g[f"{mk}_line"], "odds": g.get(f"{mk}_odds"), "book": g.get(f"{mk}_book"),
                         "edge": round(float(g[f"{mk}_edge"]), 2),
                         "model": round(float(g["model_margin"] if mk == "spread" else g["model_total"]), 2),
-                        "stake": stakes.get(mk, 1.0), "placed": "", "logged_at": now, "status": "open"})
+                        "stake": stakes.get(mk, 1.0), "placed": "yes", "logged_at": now, "status": "open"})
     if new:
         b = pd.concat([b, pd.DataFrame(new)], ignore_index=True) if len(b) else pd.DataFrame(new)
         save(b.reindex(columns=COLS))
@@ -146,7 +147,7 @@ def log_band_b(card: pd.DataFrame, day: pd.Timestamp) -> list[dict]:
                         "away": g["away"], "line": g[f"{mk}_line"], "alert_line": g[f"{mk}_line"], "odds": g.get(f"{mk}_odds"),
                         "book": g.get(f"{mk}_book"), "edge": round(float(g[f"{mk}_edge"]), 2),
                         "model": round(float(g["model_margin"] if mk == "spread" else g["model_total"]), 2),
-                        "stake": BAND_B_STAKE, "placed": "", "logged_at": now, "status": "open", "bet_type": BAND_B})
+                        "stake": BAND_B_STAKE, "placed": "yes", "logged_at": now, "status": "open", "bet_type": BAND_B})
             bb_keys.add(key)
     if new:
         b = pd.concat([b, pd.DataFrame(new)], ignore_index=True) if len(b) else pd.DataFrame(new)
