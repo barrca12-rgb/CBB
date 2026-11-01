@@ -78,3 +78,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-02|401909500|total|over,2026-11-02,401909500,total,Over 145.5,over,305,2698,DePaul,West Georgia,145.5,145.5,-112.0,DraftKings,3.02,148.52,1.0,yes,2026-11-01T13:41:01+00:00,,,,,,,,open,
 2026-11-02|401909500|spread|home,2026-11-02,401909500,spread,DePaul -22.5,home,305,2698,DePaul,West Georgia,-22.5,-22.5,-115.0,DraftKings,2.92,25.42,1.0,yes,2026-11-01T13:51:24+00:00,,,,,,,,open,
 2026-11-02|401925947|spread|home,2026-11-02,401925947,spread,Oregon State -16.5,home,204,2692,Oregon State,Weber State,-16.5,-16.5,-102.0,DraftKings,2.75,19.25,1.0,yes,2026-11-01T13:51:24+00:00,,,,,,,,open,
+2026-11-02|401922029|total|over,2026-11-02,401922029,total,Over 152.5,over,2483,149,Oregon,Montana,152.5,152.5,-115.0,theScore Bet,3.46,155.96,1.0,yes,2026-11-01T14:01:11+00:00,,,,,,,,open,
