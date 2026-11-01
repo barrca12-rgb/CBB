@@ -339,6 +339,7 @@ h1 { font-family: var(--display); font-weight: 400; font-size: 26px; letter-spac
 table { width: 100%; border-collapse: collapse; font-size: 13px }
 th { text-align: left; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); padding: 8px 12px; border-bottom: 1px solid var(--line); background: var(--sunken); white-space: nowrap }
 td { padding: 9px 12px; border-bottom: 1px solid var(--line); white-space: nowrap; vertical-align: middle }
+tr.rephead th { border-top: 1px solid var(--line) }
 tbody tr:last-child td { border-bottom: 0 }
 .r { text-align: right } .c { text-align: center } .m { color: var(--muted) } .f { color: var(--faint) }
 .pos { color: var(--pos) } .neg { color: var(--neg) } .b { font-weight: 600 }
@@ -414,6 +415,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   .board .tm { display: none } .tm-sm { display: block } .board td.edge { max-width: 104px }
   table.stack thead { display: none }
   table.stack tbody tr { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 12px; padding: 12px; border-bottom: 1px solid var(--line) }
+  table.stack tbody tr.rephead { display: none }
   table.stack tbody tr:last-child { border-bottom: 0 }
   table.stack td { display: block; border: 0; padding: 0; white-space: normal; text-align: left; min-width: 0 }
   table.stack td:first-child { grid-column: 1 / -1; min-width: 0 }
@@ -676,10 +678,13 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   const renderPlays = () => {
   const th = (k, label, cls) => "<th" + (cls ? " class='" + cls + "'" : "") + " data-sort='" + k + "' style='cursor:pointer;user-select:none' title='Sort'>" +
     label + (playSort.key === k ? (playSort.dir > 0 ? " &#9650;" : " &#9660;") : "") + "</th>";
-  $("t-plays").innerHTML = P.length ? "<thead><tr>" + th("bet", "Bet") + th("book", "Book") + th("model", "Model", "r hide-sm hide-md") + th("edge", "Edge", "r") +
+  // the column bar, repeated above every play after the first (Chad, Nov 1: "easier to follow"); hidden on phones,
+  // where each play is a card with its own labels
+  const bar = th("bet", "Bet") + th("book", "Book") + th("model", "Model", "r hide-sm hide-md") + th("edge", "Edge", "r") +
     th("p", "Win %", "r hide-sm") + th("ev", "EV", "r") + th("to", "Bet to", "r") + th("open", "Opened", "r hide-sm hide-md") + th("now", "Now", "r") + th("units", "Units", "r hide-sm hide-md") + th("at", "Logged", "r hide-sm") +
-    "<th></th></tr></thead><tbody>" +
-    P.map((p) => "<tr data-gid='" + p.g.game_id + "' data-mk='" + p.kind.toLowerCase() + "'><td><div class='b pick'>" + logo(pickId(p.g, p.kind, p.side), 20) + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
+    "<th></th>";
+  $("t-plays").innerHTML = P.length ? "<thead><tr>" + bar + "</tr></thead><tbody>" +
+    P.map((p, i) => (i ? "<tr class='rephead'>" + bar + "</tr>" : "") + "<tr data-gid='" + p.g.game_id + "' data-mk='" + p.kind.toLowerCase() + "'><td><div class='b pick'>" + logo(pickId(p.g, p.kind, p.side), 20) + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
       (p.kind === "Total" && p.g.crew ? "<div class='f' style='font-size:11px'>Refs: " + esc(p.g.crew) + "</div>" : "") +
       (D.replay ? "" : venueTag(p.g) + freshTag(p.g, p.kind)) +
       (p.status ? "<div class='f' style='font-size:12px'>" + esc(p.status) + "</div>" : "") +
