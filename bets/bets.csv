@@ -97,3 +97,8 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-02|401921753|spread|home,2026-11-02,401921753,spread,UCF -19,home,2116,526,UCF,Florida Gulf Coast,-19.0,-19.0,-110.0,Fanatics,5.46,24.46,1.0,yes,2026-11-01T19:11:38+00:00,,,,,,,,open,
 2026-11-02|401911237|spread|home,2026-11-02,401911237,spread,Richmond -11.5,home,257,2427,Richmond,UNC Asheville,-11.5,-11.5,-110.0,Fanatics,4.0,15.5,1.0,yes,2026-11-01T19:11:38+00:00,,,,,,,,open,
 2026-11-02|401920758|total|under,2026-11-02,401920758,total,Under 156.5,under,2057,88,Belmont,Southern Indiana,156.5,156.5,-110.0,FanDuel,3.28,153.22,0.97,yes,2026-11-01T19:11:38+00:00,,,,,,,,open,
+2026-11-02|401918976|spread|home,2026-11-02,401918976,spread,East Carolina -12,home,151,2908,East Carolina,South Carolina Upstate,-12.0,-12.0,-105.0,Fanatics,3.02,15.02,1.0,yes,2026-11-01T19:21:29+00:00,,,,,,,,open,
+2026-11-02|401918976|total|over,2026-11-02,401918976,total,Over 149.5,over,151,2908,East Carolina,South Carolina Upstate,149.5,149.5,-110.0,Fanatics,3.43,152.93,0.97,yes,2026-11-01T19:21:29+00:00,,,,,,,,open,
+2026-11-02|401911304|total|over,2026-11-02,401911304,total,Over 141.5,over,225,160,Brown,New Hampshire,141.5,141.5,-110.0,Fanatics,3.2,144.7,0.97,yes,2026-11-01T19:21:29+00:00,,,,,,,,open,
+2026-11-02|401911248|spread|home,2026-11-02,401911248,spread,Saint Louis -18,home,139,2329,Saint Louis,Lehigh,-18.0,-18.0,-110.0,Fanatics,5.38,23.38,1.0,yes,2026-11-01T19:21:29+00:00,,,,,,,,open,
+2026-11-02|401911248|total|over,2026-11-02,401911248,total,Over 152.5,over,139,2329,Saint Louis,Lehigh,152.5,152.5,-110.0,Fanatics,4.56,157.06,0.97,yes,2026-11-01T19:21:29+00:00,,,,,,,,open,
