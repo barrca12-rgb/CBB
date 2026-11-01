@@ -820,3 +820,34 @@ Chad bets every play, so marking placed by hand was redundant.
 - **Unchanged:** the Under 149.5 and its CLV (+4.00), picks, rules, staking and every frozen file.
 - **Open:** the logging gap itself (an opposite side can still be logged). A guard in `cbb/tracker.py` waits on
   Chad's approval.
+
+## 2026-11-01: The other side of a held game is never logged (approved by Chad, Nov 1)
+
+"Yes add it" (the guard proposed after the Notre Dame-Villanova Over 146 was logged against a standing Under 149.5).
+
+- **`cbb/tracker.py` `log()` (fingerprinted; non-picking):** a v1 play is not logged when the bet log already holds
+  the other side of the same game and market.
+  - "Held" means any bet that is not void: a v1 bet or a band B play.
+  - The same side is not blocked, so a band B play later joined by v1 on that side remains the approved overlap.
+  - A void bet does not hold a game, and the other market of the same game is not affected.
+  - Band B's own logging already skipped any game and market v1 holds, and it is unchanged.
+- **`cbb/report_html.py` (display):** the blocked side is never shown as a BET, a watch or a play. The held side
+  shows as logged, as before.
+- **`audit/card_logic.py`:** expects the same. Its data check now also flags a game with both sides held.
+- **Unchanged:** picks, thresholds, staking, alerts and grading. Every bet already in the log is unchanged.
+- **Tests:** `audit/test_opposite_side.py` covers eight cases:
+  - a held Under blocks a later Over, and a held spread side blocks the other side;
+  - band B blocks the other side, but the same side still joins band B;
+  - a void bet does not block, and the other market is not blocked;
+  - the real log blocks a fresh Over on Notre Dame-Villanova;
+  - the card shows no BET on the blocked side (this case fails without the display change).
+
+  All 147 audit tests pass.
+- **Also today (display only):** the record page is wider and fits without sideways scrolling. Its play tables
+  have result and market filters, sortable column headers and a running total (`cbb/record_page.py`,
+  `audit/test_record_page.py`).
+- **New fingerprint:**
+
+```
+4d1e03a599bc859019c077e3dc0348ed65a19a2a7ae7fed9bfde42683d713447  cbb/tracker.py
+```

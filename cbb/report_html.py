@@ -494,6 +494,11 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
 (() => {
   const D = JSON.parse(document.getElementById("data").textContent);
   const $ = (id) => document.getElementById(id);
+  const loggedSide = (g, mk) => g[mk + "_logged_pick"] ? String(g[mk + "_logged_side"] || "").toLowerCase() : null;
+  // a side already held (v1 or band B, not void): the other side of that market is never a new play or watch
+  // (cbb/tracker.log, Chad Nov 1: "we didn't play both spots")
+  const bbSide = (g, mk) => g[mk + "_bandb_bet_id"] ? String(g[mk + "_bandb_bet_id"]).split("|")[3] || null : null;
+  const heldOther = (g, mk, sd) => { const a = loggedSide(g, mk), b = bbSide(g, mk); return !!((a && a !== sd) || (b && b !== sd)); };
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
   const sgn = (x, d = 1) => x == null ? "–" : (x > 0 ? "+" : x < 0 ? "−" : "") + Math.abs(x).toFixed(d).replace(/\.0+$/, "");
   // stake cap (cbb/tracker.py): held at 50% when primary-close CLV averages below 0 after 25 bets with a close
@@ -639,12 +644,12 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   };
   D.games.forEach((g) => {
     const ls = logged(g, "spread"), lt = logged(g, "total");
-    if (!ls && g.spread_verdict === "BET") P.push({g, kind: "Spread", side: g.spread_side, bet: g.spread_pick + " " + ln(g.spread_line), price: g.spread_odds, book: g.spread_book,
+    if (!ls && g.spread_verdict === "BET" && !heldOther(g, "spread", g.spread_side)) P.push({g, kind: "Spread", side: g.spread_side, bet: g.spread_pick + " " + ln(g.spread_line), price: g.spread_odds, book: g.spread_book,
       link: g.spread_link, warn: g.spread_warn, edge: g.spread_edge, p: g.spread_p, ev: g.spread_ev, model: g.spread_side === "home" ? ln(-g.model_margin) : ln(g.model_margin), to: ln(g.spread_good_to),
       open: firstOpen(g, "spread", g.spread_side, g.spread_book), units: g.spread_units,
       now: nowLine(g, "spread", g.spread_side),
       also: others(g, "spread", g.spread_side, g.spread_book), line: g.spread_line});
-    if (!lt && g.total_verdict === "BET") P.push({g, kind: "Total", bet: g.total_pick + " " + num(g.total_line), price: g.total_odds, book: g.total_book,
+    if (!lt && g.total_verdict === "BET" && !heldOther(g, "total", String(g.total_pick || "").toLowerCase())) P.push({g, kind: "Total", bet: g.total_pick + " " + num(g.total_line), price: g.total_odds, book: g.total_book,
       link: g.total_link, warn: g.total_warn, edge: g.total_edge, p: g.total_p, ev: g.total_ev, model: num(g.model_total), to: num(g.total_good_to), open: firstOpen(g, "total", null, g.total_book), now: nowLine(g, "total"), units: g.total_units,
       also: others(g, "total", String(g.total_pick || "").toLowerCase(), g.total_book), side: String(g.total_pick || "").toLowerCase(), line: g.total_line});
   });
@@ -781,7 +786,6 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   };
   // the side of a market already logged as a play ("home"/"away"/"over"/"under"), or null; a logged side is shown
   // as logged everywhere (Plays, board), never again as a new BET or a WATCH
-  const loggedSide = (g, mk) => g[mk + "_logged_pick"] ? String(g[mk + "_logged_side"] || "").toLowerCase() : null;
   const loggedTag = (g, mk) => "<span class='tag logged'>Logged " + esc(g[mk + "_logged_pick"]) + "</span>";
   const board = () => {
     const only = $("only-plays").checked;
@@ -811,7 +815,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
         let model, bookCells, edge = "";
         if (market === "spread") {
           model = ln(sd === "home" ? g.model_home_spread : -g.model_home_spread);
-          const pick = g.spread_side === sd && ["BET", "WATCH", "REVIEW"].includes(g.spread_verdict) && loggedSide(g, "spread") !== sd;
+          const pick = g.spread_side === sd && ["BET", "WATCH", "REVIEW"].includes(g.spread_verdict) && loggedSide(g, "spread") !== sd && !heldOther(g, "spread", sd);
           bookCells = BOOKS.map((bk) => { const x = bl(g, bk); if (!x || x.home_spread == null) return cell(null);
             const v = sd === "home" ? x.home_spread : -x.home_spread;
             return cell(ln(v), x[sd + "_spread_odds"], x[sd + "_spread_link"], pick && g.spread_book === bk && v === g.spread_line); });
@@ -823,7 +827,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
         } else if (market === "total") {
           const ou = i === 0 ? "over" : "under";
           model = i === 0 ? num(g.model_total) : "";
-          const pick = (g.total_pick || "").toLowerCase() === ou && ["BET", "WATCH", "REVIEW"].includes(g.total_verdict) && loggedSide(g, "total") !== ou;
+          const pick = (g.total_pick || "").toLowerCase() === ou && ["BET", "WATCH", "REVIEW"].includes(g.total_verdict) && loggedSide(g, "total") !== ou && !heldOther(g, "total", ou);
           bookCells = BOOKS.map((bk) => { const x = bl(g, bk); if (!x || x.total == null) return cell(null);
             return cell((i === 0 ? "o" : "u") + num(x.total), x[ou + "_odds"], x[ou + "_link"], pick && g.total_book === bk && x.total === g.total_line); });
           if (loggedSide(g, "total") === ou) edge = loggedTag(g, "total");
@@ -866,7 +870,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   // reaches the number shown) or REVIEW (edge above run_day.MAX_EDGE: never a play); a side already logged is under Plays
   const onWatch = (g, mk) => {
     const sd = mk === "spread" ? g.spread_side : String(g.total_pick || "").toLowerCase();
-    return ["WATCH", "REVIEW"].includes(g[mk + "_verdict"]) && loggedSide(g, mk) !== sd;
+    return ["WATCH", "REVIEW"].includes(g[mk + "_verdict"]) && loggedSide(g, mk) !== sd && !heldOther(g, mk, sd);
   };
   const watch = () => {
     const mk = market === "total" ? "total" : "spread";

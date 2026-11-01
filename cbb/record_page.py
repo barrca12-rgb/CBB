@@ -228,6 +228,83 @@ def build_charts() -> str:
 """
 
 
+def _controls(tid: str) -> str:
+    """Filter chips (result, market) and a running total for one plays table; sorting is on its column headers."""
+    chip = lambda grp, v, t, on=False: (f"<button type='button' class='fchip' data-grp='{grp}' data-v='{v}' "
+                                        f"aria-pressed='{'true' if on else 'false'}'>{t}</button>")
+    return (f"<div class='recctl' data-for='rec-{tid}'><div class='fgrp' role='group' aria-label='Result'>"
+            + chip("res", "", "All", True) + chip("res", "W", "Wins") + chip("res", "L", "Losses") + chip("res", "P", "Pushes")
+            + chip("res", "O", "Open") + "</div><div class='fgrp' role='group' aria-label='Market'>"
+            + chip("mk", "", "All", True) + chip("mk", "spread", "Spreads") + chip("mk", "total", "Totals")
+            + "</div><span class='rectot m'></span></div>")
+
+
+RECORD_CSS = """<style>
+.wrap { max-width: 1600px }
+table.rec td { white-space: normal } table.rec td:nth-child(1), table.rec td:nth-child(5), table.rec td:nth-child(7),
+table.rec td:nth-child(9), table.rec td:nth-child(10) { white-space: nowrap }
+table.rec th[data-k] { cursor: pointer; user-select: none } table.rec th[data-k]:hover { color: var(--text) }
+table.rec th[aria-sort='ascending']::after { content: " \\25B2"; font-size: 9px }
+table.rec th[aria-sort='descending']::after { content: " \\25BC"; font-size: 9px }
+.recctl { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--line) }
+.fgrp { display: flex; flex-wrap: wrap; gap: 6px }
+.fchip { font: inherit; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line-strong);
+  background: var(--surface); color: var(--muted); cursor: pointer }
+.fchip[aria-pressed='true'] { background: var(--text); border-color: var(--text); color: var(--bg) }
+.rectot { font-size: 12px; margin-left: auto }
+@media (max-width: 860px) { .rectot { margin-left: 0; width: 100% } }
+</style>"""
+
+# sort + filter for table.rec (keys in each row's data- attributes); the sort is kept per table in this browser
+RECORD_JS = """<script>
+document.querySelectorAll("table.rec").forEach((t) => {
+  const tb = t.tBodies[0], rows = [...tb.rows].filter((r) => r.dataset.date !== undefined);
+  if (!rows.length) return;
+  const ctl = document.querySelector(".recctl[data-for='" + t.id + "']");
+  const KEY = "otg-rec-sort:" + t.id, NUM = ["edge", "close", "clv", "sb", "units"];
+  const RES = {W: 0, L: 1, P: 2, O: 3};
+  let sort = {k: "date", dir: -1};
+  try { const v = JSON.parse(localStorage.getItem(KEY) || "null"); if (v && v.k) sort = v; } catch (e) {}
+  const f = {res: "", mk: ""};
+  const val = (r, k) => { const v = r.dataset[k] ?? "";
+    if (k === "res") return RES[v] ?? 9;
+    if (NUM.includes(k)) return v === "" ? null : Number(v);
+    return v.toLowerCase(); };
+  const render = () => {
+    const vis = rows.filter((r) => (!f.res || r.dataset.res === f.res) && (!f.mk || r.dataset.mk === f.mk));
+    vis.sort((a, b) => { const x = val(a, sort.k), y = val(b, sort.k);
+      if (x === null && y === null) return 0; if (x === null) return 1; if (y === null) return -1;
+      return (x < y ? -1 : x > y ? 1 : 0) * sort.dir || (a.dataset.date < b.dataset.date ? 1 : -1); });
+    rows.forEach((r) => { r.hidden = true; });
+    vis.forEach((r) => { r.hidden = false; tb.appendChild(r); });
+    t.querySelectorAll("th[data-k]").forEach((h) => h.setAttribute("aria-sort", h.dataset.k === sort.k ? (sort.dir > 0 ? "ascending" : "descending") : "none"));
+    if (ctl) {
+      const s = vis.filter((r) => ["W", "L", "P"].includes(r.dataset.res));
+      const n = (c) => s.filter((r) => r.dataset.res === c).length;
+      const u = s.reduce((a, r) => a + (Number(r.dataset.units) || 0), 0);
+      const st = s.reduce((a, r) => a + (Number(r.dataset.stake) || 1), 0);
+      ctl.querySelector(".rectot").textContent = "Showing " + vis.length + " of " + rows.length +
+        (s.length ? " · " + n("W") + "-" + n("L") + (n("P") ? "-" + n("P") : "") + " · " + (u > 0 ? "+" : u < 0 ? "−" : "") +
+          Math.abs(u).toFixed(2) + " u · ROI " + (u / st * 100).toFixed(1) + "%" : "");
+    }
+  };
+  t.querySelectorAll("th[data-k]").forEach((h) => {
+    const go = () => { const k = h.dataset.k;
+      sort = sort.k === k ? {k, dir: -sort.dir} : {k, dir: ["date", "logged", "edge", "clv", "sb", "units", "close"].includes(k) ? -1 : 1};
+      try { localStorage.setItem(KEY, JSON.stringify(sort)); } catch (e) {}
+      render(); };
+    h.addEventListener("click", go);
+    h.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
+  });
+  if (ctl) ctl.querySelectorAll(".fchip").forEach((b) => b.addEventListener("click", () => {
+    f[b.dataset.grp] = b.dataset.v;
+    ctl.querySelectorAll(".fchip[data-grp='" + b.dataset.grp + "']").forEach((x) => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+    render(); }));
+  render();
+});
+</script>"""
+
+
 def _plays_table(live: pd.DataFrame, empty: str) -> str:
     """Every play in `live`, newest first (the "Bets placed" table)."""
     plays = []
@@ -236,17 +313,29 @@ def _plays_table(live: pd.DataFrame, empty: str) -> str:
             str(r["result"]), "Open")
         units = _num(float(r["profit"])) if r["status"] == "settled" else "–"
         logged = pd.Timestamp(r["logged_at"]).tz_convert("America/New_York")
+        res_k = {"W": "W", "L": "L", "P": "P"}.get(str(r["result"]), "O")
+        keys = {"date": f"{r['date']} {r['logged_at']}", "game": f"{r['away']} at {r['home']}", "play": str(r["pick"]),
+                "book": str(r["book"]), "edge": r["edge"], "close": r.get("close_line"), "clv": r.get("clv_pts"),
+                "sb": r.get("clv_same_book"), "res": res_k, "units": r["profit"] if r["status"] == "settled" else None,
+                "logged": str(r["logged_at"]), "mk": r["market"], "stake": r["stake"]}
+        attrs = " ".join(f"data-{k}='{html.escape('' if v is None or (isinstance(v, float) and np.isnan(v)) else str(v))}'"
+                         for k, v in keys.items())
         plays.append(
-            f"<tr><td class='m'>{r['date']}</td><td>{_logo(r['away_id'])}{html.escape(str(r['away']))} at {_logo(r['home_id'])}{html.escape(str(r['home']))}</td>"
+            f"<tr {attrs}><td class='m'>{r['date']}</td><td>{_logo(r['away_id'])}{html.escape(str(r['away']))} at {_logo(r['home_id'])}{html.escape(str(r['home']))}</td>"
             f"<td class='b'>{html.escape(str(r['pick']))}</td><td>{html.escape(str(r['book']))} "
             f"<span class='m'>{_num(r['odds'], '{:+.0f}')}</span></td><td class='r'>{_num(r['edge'], '{:.1f}')}</td>"
             f"<td class='r'>{_close_cell(r)}</td><td class='r'>{_num(r['clv_pts'], '{:+.2f}', _na(r))}</td>"
-            f"<td class='r m hide-sm'>{_num(r.get('clv_same_book'), '{:+.2f}')}</td>"
+            f"<td class='r m hide-sm hide-md'>{_num(r.get('clv_same_book'), '{:+.2f}')}</td>"
             f"<td>{res}</td><td class='r'>{units}</td>"
-            f"<td class='m hide-sm'>{logged:%b %-d %-I:%M %p} ET</td></tr>")
-    return ("<thead><tr><th>Date</th><th>Game</th><th>Play</th><th>Book</th><th class='r'>Edge</th><th class='r'>Close</th>"
-            "<th class='r'>Alert CLV (pts)</th><th class='r hide-sm'>Same-book CLV (diagnostic)</th><th>Result</th><th class='r'>Units</th>"
-            "<th class='hide-sm'>Logged</th></tr></thead><tbody>" + "".join(plays) + "</tbody>") if plays else \
+            f"<td class='m hide-sm hide-md'>{logged:%b %-d %-I:%M %p} ET</td></tr>")
+    th = lambda k, t, c="", tip="": (f"<th data-k='{k}' class='{c}' tabindex='0' role='button'"
+                                       + (f" title='{tip}'" if tip else "") + f">{t}</th>")
+    return ("<thead><tr>" + th("date", "Date") + th("game", "Game") + th("play", "Play") + th("book", "Book")
+            + th("edge", "Edge", "r") + th("close", "Close", "r")
+            + th("clv", "Alert CLV", "r", "Points the line moved our way from the alert number to the close (primary close)")
+            + th("sb", "Same-book CLV", "r hide-sm hide-md", "Diagnostic only: the close at the play's own book")
+            + th("res", "Result") + th("units", "Units", "r") + th("logged", "Logged", "hide-sm hide-md")
+            + "</tr></thead><tbody>" + "".join(plays) + "</tbody>") if plays else \
         f"<tbody><tr><td class='empty'>{empty}</td></tr></tbody>"
 
 
@@ -263,7 +352,8 @@ def _band_b_section() -> str:
             f"<span class='note'>A separate bet type on spreads only, not included in the record above: v1's edge of "
             f"2-2.49 points, with v1's +2% EV rule, 0.5 unit flat. Units are at the 0.5-unit stake.</span></div>"
             f"<div class='scroll'><table>{HEAD}<tbody>{''.join(rows)}</tbody></table></div>"
-            f"<div class='scroll'><table>{_plays_table(live, 'No band B plays yet.')}</table></div></section>")
+            f"{_controls('bandb') if len(live) else ''}<div class='scroll'><table class='rec' id='rec-bandb'>"
+            f"{_plays_table(live, 'No band B plays yet.')}</table></div></section>")
 
 
 def build() -> str:
@@ -315,6 +405,7 @@ def build() -> str:
 {autorefresh.meta(autorefresh.stamp())}
 {report_html.HEAD}
 {style}
+{RECORD_CSS}
 <header class="top"><div class="wrap">
   {report_html.BRAND}
   <nav class="tabs" aria-label="Sport"><a href="{report_html.NFL_SITE}">NFL</a>{report_html.NBA_TAB}<a href="./" aria-current="page"><span class="hide-sm">College Basketball</span><span class="show-sm">CBB</span></a></nav>
@@ -329,7 +420,7 @@ def build() -> str:
     <div class="scroll"><table>{HEAD}<tbody>{''.join(rows)}</tbody></table></div>{_chart(s)}</section>
   {f"<section class='panel'><div class='panel-h'><h2>By month</h2></div><div class='scroll'><table>{HEAD}<tbody>{months}</tbody></table></div></section>" if months else ""}
   <section class="panel"><div class="panel-h"><h2>Bets placed</h2><span class="note">Newest first.</span></div>
-    <div class="scroll"><table>{plays_t}</table></div></section>{_band_b_section()}
+    {_controls('v1') if len(live) else ''}<div class="scroll"><table class="rec" id="rec-v1">{plays_t}</table></div></section>{_band_b_section()}
   <footer>
     <div><a class="follow" href="https://x.com/{report_html.X_HANDLE}" target="_blank" rel="noopener"><img src="assets/otg-logo-512.png" alt="">Follow @{report_html.X_HANDLE} on X for every play</a></div>
     <div style="margin-top:10px"><a class="m" href="record/verify.html">verification</a></div></footer>
@@ -342,6 +433,7 @@ document.querySelectorAll("main table").forEach((t) => {{
   t.querySelectorAll("tbody tr").forEach((r) => [...r.children].forEach((c, k) => {{ if (hs[k]) c.dataset.l = hs[k]; }}));
 }});
 </script>
+{RECORD_JS}
 {autorefresh.SCRIPT}</html>
 """
 

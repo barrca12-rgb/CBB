@@ -92,9 +92,16 @@ def payout(odds) -> float:
 
 
 def log(card: pd.DataFrame, day: pd.Timestamp, stakes: dict | None = None) -> list[dict]:
-    """Record today's BET plays that aren't logged yet. Returns the bets added."""
+    """Record today's BET plays that aren't logged yet. Returns the bets added.
+
+    The other side of a game and market already held (any bet not void, v1 or band B) is never logged (Chad, Nov 1,
+    after Over 146 was logged against a standing Under 149.5 on Notre Dame-Villanova: "we didn't play both spots").
+    The same side is not blocked, so a band B play later joined by v1 on that side stays the approved overlap."""
     b = load("all")
     have = set(b["bet_id"].astype(str))
+    held = {}
+    for _, r in b[b["status"] != "void"].iterrows():
+        held.setdefault((str(r["game_id"]), r["market"]), set()).add(str(r["side"]).lower())
     stakes = stakes or {}
     now = pd.Timestamp.now(tz="UTC").isoformat(timespec="seconds")
     new = []
@@ -104,7 +111,7 @@ def log(card: pd.DataFrame, day: pd.Timestamp, stakes: dict | None = None) -> li
                 continue
             side = g["spread_side"] if mk == "spread" else str(g["total_pick"]).lower()
             bid = f"{day:%Y-%m-%d}|{int(g['game_id'])}|{mk}|{side}"
-            if bid in have:
+            if bid in have or held.get((str(int(g["game_id"])), mk), set()) - {side}:
                 continue
             new.append({"bet_id": bid, "date": f"{day:%Y-%m-%d}", "game_id": int(g["game_id"]), "market": mk,
                         "pick": f"{g[mk + '_pick']} {g[mk + '_line']:+g}" if mk == "spread" else f"{g['total_pick']} {g['total_line']:g}",

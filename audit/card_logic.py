@@ -47,6 +47,9 @@ const {chromium} = require('playwright');
     const D = await p.evaluate(() => JSON.parse(document.getElementById('data').textContent));
     const side = (g, mk) => g[mk + '_logged_pick'] ? String(g[mk + '_logged_side'] || '').toLowerCase() : null;
     const pickSide = (g, mk) => mk === 'spread' ? g.spread_side : String(g.total_pick || '').toLowerCase();
+    // the other side of a held market (v1 or band B) is never a new play or watch (tracker.log, Nov 1)
+    const bbSide = (g, mk) => g[mk + '_bandb_bet_id'] ? String(g[mk + '_bandb_bet_id']).split('|')[3] || null : null;
+    const heldOther = (g, mk, sd) => { const a = side(g, mk), b = bbSide(g, mk); return !!((a && a !== sd) || (b && b !== sd)); };
     const watch = [];      // the watch list follows the board's tab: read it on each tab
     for (const mk of ['spread', 'total']) {
       await p.click(".seg button[data-m='" + mk + "']");
@@ -61,7 +64,7 @@ const {chromium} = require('playwright');
         const sides = mk === 'spread' ? ['away', 'home'] : ['over', 'under'];
         sides.forEach((sd, i) => {
           const ls = side(g, mk), v = g[mk + '_verdict'], ps = pickSide(g, mk);
-          const want = ls === sd ? 'Logged' : (ps === sd && v === 'BET') ? 'BET' : (ps === sd && v === 'WATCH') ? 'Watch' : (ps === sd && v === 'REVIEW') ? 'REVIEW' : '';
+          const want = ls === sd ? 'Logged' : heldOther(g, mk, sd) ? '' : (ps === sd && v === 'BET') ? 'BET' : (ps === sd && v === 'WATCH') ? 'Watch' : (ps === sd && v === 'REVIEW') ? 'REVIEW' : '';
           const got = c[i] || '';
           if (want ? !got.startsWith(want) : got !== '') res.problems.push(`${g.away} at ${g.home} ${mk} ${sd}: board shows "${got}", expected ${want || 'nothing'}`);
         });
@@ -71,11 +74,10 @@ const {chromium} = require('playwright');
     const count = (a, k) => a.filter((x) => x === k).length;
     for (const g of D.games) for (const mk of ['spread', 'total']) {
       const k = g.game_id + '|' + mk, ls = side(g, mk), v = g[mk + '_verdict'], ps = pickSide(g, mk);
-      const wantW = (v === 'WATCH' || v === 'REVIEW') && ls !== ps ? 1 : 0;
+      const wantW = (v === 'WATCH' || v === 'REVIEW') && ls !== ps && !heldOther(g, mk, ps) ? 1 : 0;
       if (count(watch, k) !== wantW) res.problems.push(`${g.away} at ${g.home} ${mk}: ${count(watch, k)} watch row(s), expected ${wantW}`);
-      const wantP = (ls ? 1 : 0) + (!ls && v === 'BET' ? 1 : 0);
+      const wantP = (ls ? 1 : 0) + (!ls && v === 'BET' && !heldOther(g, mk, ps) ? 1 : 0);
       if (count(plays, k) !== wantP) res.problems.push(`${g.away} at ${g.home} ${mk}: ${count(plays, k)} play row(s), expected ${wantP}`);
-      if (ls && v === 'BET' && ps !== ls) res.problems.push(`${g.away} at ${g.home} ${mk}: logged ${ls}, model now a BET on ${ps} (not listed under Plays)`);
     }
     await p.click("#only-plays");
     await p.waitForTimeout(50);
@@ -112,18 +114,29 @@ def data_check() -> list[str]:
     # band B has its own block; a band B play later joined by v1 on the same game is the approved overlap (both stand)
     b = b.assign(bet_type=b.get("bet_type", pd.Series(index=b.index, dtype=object)).fillna("v1"))
     d = b.groupby(["date", "game_id", "market", "bet_type"]).size()
-    return [f"{k[0]} game {k[1]} {k[2]} ({k[3]}): {n} logged bets; the card shows only the last" for k, n in d[d > 1].items()]
+    out = [f"{k[0]} game {k[1]} {k[2]} ({k[3]}): {n} logged bets; the card shows only the last" for k, n in d[d > 1].items()]
+    # both sides of one game and market held (any bet type): tracker.log never logs the other side (Nov 1)
+    sides = b.assign(side=b["side"].astype(str).str.lower()).groupby(["date", "game_id", "market"])["side"].nunique()
+    return out + [f"{k[0]} game {k[1]} {k[2]}: both sides held" for k, n in sides[sides > 1].items()]
+
+
+def check(files: list[str], cwd: str) -> dict:
+    """Run the browser checks on rendered card files; {file: {problems, errors, games, plays, watch}}."""
+    r = subprocess.run(["node", "-e", JS, json.dumps(files)], capture_output=True, text=True, cwd=cwd, timeout=600)
+    if r.returncode:
+        raise RuntimeError(r.stderr)
+    return json.loads(r.stdout)
 
 
 def main() -> int:
     days = sys.argv[1:] or json.load(open(os.path.join(REPORTS, "days.json")))["days"]
     with tempfile.TemporaryDirectory() as tmp:
         files = [render(d, tmp) for d in days if os.path.exists(os.path.join(REPORTS, f"cbb_{d}.html"))]
-        r = subprocess.run(["node", "-e", JS, json.dumps(files)], capture_output=True, text=True, cwd=tmp, timeout=600)
-        if r.returncode:
-            print(r.stderr)
+        try:
+            res = check(files, tmp)
+        except RuntimeError as e:
+            print(e)
             return 2
-        res = json.loads(r.stdout)
     bad = 0
     for f, x in res.items():
         p = x["problems"] + [f"JS error: {e}" for e in x["errors"]]
