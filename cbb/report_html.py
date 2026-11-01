@@ -15,6 +15,8 @@ import os
 import numpy as np
 import pandas as pd
 
+from cbb import autorefresh
+
 REPO = "barrca12-rgb/CBB"
 NFL_SITE = "https://barrca12-rgb.github.io/NFL/"
 NBA_SITE = "https://barrca12-rgb.github.io/NBA/"
@@ -231,8 +233,9 @@ def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, 
     t["rank"] = range(1, len(t) + 1)
     rat = [{k: _clean(v) for k, v in r.items()} for r in
            t[["rank", "team", "net", "adj_oe", "adj_de", "adj_tempo"]].to_dict("records")]
+    built = autorefresh.stamp()
     data = {"date": f"{day:%Y-%m-%d}", "season": season, "replay": replay, "repo": REPO, "nfl": NFL_SITE,
-            "generated_at": pd.Timestamp.now(tz="UTC").isoformat(timespec="seconds"), "games": games, "ratings": rat,
+            "generated_at": built, "games": games, "ratings": rat,
             "record": {"status": record["status"], "tripwire": record.get("tripwire"), "clv": clv,
                        "recent": [{k: _clean(v) for k, v in r.items()} for r in
                                   (clv_recent if clv_recent is not None else record["recent"])],
@@ -242,7 +245,10 @@ def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, 
     payload = json.dumps(data).replace("</", "<\\/")
     title = f"Off The Glass · College Basketball · {day:%a %b} {day.day}"
     return (TEMPLATE.replace("__HEAD__", HEAD).replace("__BRAND__", BRAND).replace("__X__", X_HANDLE)
-            .replace("__TITLE__", html.escape(title)).replace("__DATA__", payload))
+            .replace("__TITLE__", html.escape(title)).replace("__DATA__", payload)
+            # auto refresh (cbb/autorefresh.py): live cards only; a replay never changes
+            .replace("__BUILT__", "" if replay else autorefresh.meta(built))
+            .replace("__AUTOREFRESH__", "" if replay else autorefresh.SCRIPT))
 
 
 TEMPLATE = r"""<!doctype html>
@@ -251,6 +257,7 @@ TEMPLATE = r"""<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>__TITLE__</title>
 <meta property="og:title" content="__TITLE__">
+__BUILT__
 __HEAD__
 <style>
 :root {
@@ -847,6 +854,13 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     market = b.dataset.m; document.querySelectorAll(".seg button").forEach((x) => x.setAttribute("aria-pressed", x === b)); board(); watch(); });
   $("only-plays").onchange = board;
   board();
+  // auto refresh hooks (cbb/autorefresh.py): keep the odds-board tab and "Plays only" across a reload
+  window.otgState = () => ({market, only: $("only-plays").checked});
+  window.otgRestore = (s) => {
+    if (s.only) $("only-plays").checked = true;
+    const b = document.querySelector(".seg button[data-m='" + s.market + "']");
+    if (b && s.market !== market) b.onclick(); else board();
+  };
 
   // Watch list: the odds-board tile of every game whose pick on the current tab is WATCH (becomes a play if the line
   // reaches the number shown) or REVIEW (edge above run_day.MAX_EDGE: never a play); a side already logged is under Plays
@@ -930,7 +944,9 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   const ago = (d) => { const m = Math.round((Date.now() - d) / 60000);
     return m < 1 ? "just now" : m < 60 ? m + " min ago" : m < 1440 ? Math.round(m / 60) + " hr ago" : Math.round(m / 1440) + " days ago"; };
   const say = (t) => { $("upd-status").innerHTML = t; };
-  say("Updated " + gen.toLocaleString("en-US", {weekday: "short", hour: "numeric", minute: "2-digit"}) + " · " + ago(gen));
+  const stamp = () => say("Updated " + gen.toLocaleString("en-US", {weekday: "short", hour: "numeric", minute: "2-digit"}) + " · " + ago(gen));
+  stamp();
+  setInterval(() => { if (!$("upd-btn").disabled && /^Updated /.test($("upd-status").textContent)) stamp(); }, 60000);
   const askKey = () => { const t = prompt("Paste a GitHub fine-grained token for " + REPO + " with Actions: Read and write.\nIt is saved only in this browser. Leave blank to remove it.", store.get());
     if (t !== null) store.set(t.trim()); return store.get(); };
   const gh = (path, opts) => fetch(API + path, Object.assign({ headers: { Accept: "application/vnd.github+json",
@@ -965,4 +981,4 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
 
 })();
 </script>
-"""
+__AUTOREFRESH__"""

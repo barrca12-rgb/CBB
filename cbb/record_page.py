@@ -14,7 +14,7 @@ import os
 import numpy as np
 import pandas as pd
 
-from . import clv_primary, report_html, tracker
+from . import autorefresh, clv_primary, report_html, tracker
 
 OUT = os.path.join(tracker.ROOT, "reports", "record.html")
 VERIFY = os.path.join(tracker.ROOT, "reports", "verify.html")      # published unlisted at record/verify.html
@@ -312,6 +312,7 @@ def build() -> str:
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Off The Glass · College Basketball Record</title>
 <meta property="og:title" content="Off The Glass · College Basketball Record">
+{autorefresh.meta(autorefresh.stamp())}
 {report_html.HEAD}
 {style}
 <header class="top"><div class="wrap">
@@ -341,7 +342,7 @@ document.querySelectorAll("main table").forEach((t) => {{
   t.querySelectorAll("tbody tr").forEach((r) => [...r.children].forEach((c, k) => {{ if (hs[k]) c.dataset.l = hs[k]; }}));
 }});
 </script>
-</html>
+{autorefresh.SCRIPT}</html>
 """
 
 

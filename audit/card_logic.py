@@ -99,7 +99,8 @@ def render(day: str, folder: str) -> str:
     data = re.search(r'<script id="data" type="application/json">(.*?)</script>', src, re.S).group(1)
     title = H.unescape(re.search(r"<title>(.*?)</title>", src, re.S).group(1))
     page = (report_html.TEMPLATE.replace("__HEAD__", report_html.HEAD).replace("__BRAND__", report_html.BRAND)
-            .replace("__X__", report_html.X_HANDLE).replace("__TITLE__", H.escape(title)).replace("__DATA__", data))
+            .replace("__X__", report_html.X_HANDLE).replace("__TITLE__", H.escape(title)).replace("__DATA__", data)
+            .replace("__BUILT__", "").replace("__AUTOREFRESH__", ""))      # no auto refresh in a check
     path = os.path.join(folder, f"cbb_{day}.html")
     open(path, "w").write(page)
     return path

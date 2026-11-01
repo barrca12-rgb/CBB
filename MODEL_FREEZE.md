@@ -778,3 +778,26 @@ Chad bets every play, so marking placed by hand was redundant.
 ```
 14f7260346b9ef6082ade27d826ac83547365bacaa62c002fe0099105c69e899  cbb/run_day.py
 ```
+
+## 2026-11-01: The site refreshes itself (Chad, Nov 1)
+
+"Wish the site would auto refresh."
+
+- **Display only, no frozen file changed:** `cbb/autorefresh.py` (new), `cbb/report_html.py`, `cbb/record_page.py`.
+  - Each card and the record page carry their build time.
+  - While a page is on screen, it checks the published copy a few seconds after it opens, every 3 minutes, and
+    whenever the tab or phone app comes back into view. If the published copy is newer, the page reloads itself.
+  - The scroll position, the odds-board tab (Spread / Total / Moneyline) and "Plays only" are kept. The play sort
+    was already remembered.
+  - It never reloads while someone is typing. If a reload lands on an older cached copy, it waits 10 minutes before
+    trying again. Replay cards have no auto refresh.
+  - The "Updated … ago" stamp now counts up while the page is open.
+- **Unchanged:** picks, rules, staking, the bet log, grading and alerts.
+- **Tests:** `audit/test_autorefresh.py` serves a real card in Chromium and checks five things:
+  - no reload when the build is the same;
+  - a reload when a newer build is published, with the tab, the filter and the scroll kept and a clean URL;
+  - a back-off after landing on an older copy;
+  - no auto refresh on replay cards;
+  - auto refresh on the record page.
+
+  `audit/card_logic.py` renders cards without it.
