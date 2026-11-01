@@ -87,3 +87,11 @@ def test_opener_favorites_graded(tmp_path, monkeypatch):
     assert len(s) == 2 and len(unit) == 1 and unit.iloc[0]["book"] == "FanDuel"   # the first qualifying quote per game-side
     assert unit.iloc[0]["won"] == 1 and abs(unit.iloc[0]["profit"] - 100 / 220) < 1e-9   # Florida (away in the report) won
     assert unit.iloc[0]["clv_pp"] > 0                                             # -220 closed near -245
+
+
+def test_opener_favorite_is_the_more_negative_price(tmp_path, monkeypatch):
+    monkeypatch.setattr(card_features, "ML_DIR", str(tmp_path))
+    monkeypatch.setattr(card_features, "OPENER_FAV", str(tmp_path / "of.csv"))
+    f = pd.DataFrame([{"game_id": 1, "date": pd.Timestamp("2026-11-02"), "home_id": 57, "away_id": 2390, "final_margin": 1.0}])
+    lines = pd.DataFrame([{"home_id": 57, "away_id": 2390, "book": "FanDuel", "home_ml": -105.0, "away_ml": -115.0, "start": "x"}])
+    assert card_features.log_opener_favs(f, lines, {(0, 0, "x")}, T0) == 0      # -105 is the underdog here, never a favorite signal

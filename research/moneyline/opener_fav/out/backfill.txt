@@ -1,0 +1,1 @@
+Backfill (recorder down Oct 30 20:30 to Nov 1 02:30 UTC): 121 first priced moneylines in the window; 7 qualifying favorites; 7 appended to lines/ml/opener_fav.csv

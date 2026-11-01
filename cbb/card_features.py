@@ -124,8 +124,8 @@ def log_opener_favs(f: pd.DataFrame, lines: pd.DataFrame, before: set, now: pd.T
             continue
         m_home = sign * float(g.final_margin)          # the model's margin for the feed's home team
         for team, opp, price, opp_price, m in ((h, a, r.home_ml, r.away_ml, m_home), (a, h, r.away_ml, r.home_ml, -m_home)):
-            if price >= 0:
-                continue                                 # favorites only
+            if not (price < 0 and price < opp_price):
+                continue                                 # favorites only: the more negative price (a -110/-110 pair has none)
             p = float(cdf(m / OPENER_SIGMA))
             ev = p * (100 / -price) - (1 - p)
             if ev >= OPENER_EV:
