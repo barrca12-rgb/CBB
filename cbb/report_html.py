@@ -301,7 +301,13 @@ button { font: inherit; font-weight: 600; font-size: 13px; color: var(--text); b
 .head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px; padding: 24px 0 16px }
 h1 { font-family: var(--display); font-weight: 400; font-size: 26px; letter-spacing: .01em; margin: 0; line-height: 1.15 }
 .sub { color: var(--muted); margin-top: 2px }
-.days { display: flex; gap: 4px; flex-wrap: wrap }
+.days { display: flex; gap: 4px; flex-wrap: wrap; margin: -4px 0 20px }
+/* other pages: plain links beside the title, so they never read as days */
+.pagelinks { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; padding-bottom: 4px }
+.pagelinks a { color: var(--muted); font-weight: 600; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; text-decoration: none;
+  border-bottom: 2px solid transparent; padding: 2px 0 }
+.pagelinks a::after { content: " \2192"; opacity: .6 }
+.pagelinks a:hover { color: var(--text); border-bottom-color: var(--brand); text-decoration: none }
 .days a, .pagebtn { padding: 5px 12px; border-radius: 6px; color: var(--text); font-weight: 600; font-size: 13px; text-decoration: none;
   border: 1px solid var(--line-strong); background: var(--surface); white-space: nowrap }
 .days a:hover, .pagebtn:hover { background: var(--sunken); text-decoration: none }
@@ -421,8 +427,9 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
 <main class="wrap">
   <div class="head">
     <div><h1 id="h1"></h1><div class="sub" id="sub"></div></div>
-    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><nav class="days" id="days" aria-label="Days"></nav><a class="pagebtn" href="record.html">Record</a><a class="pagebtn" href="record/charts.html">Charts</a><a class="pagebtn" href="record/survivor.html">Survivor</a></div>
+    <nav class="pagelinks" aria-label="Pages"><a href="record.html">Record</a><a href="record/charts.html">Charts</a><a href="record/survivor.html">Survivor</a></nav>
   </div>
+  <nav class="days" id="days" aria-label="Days"></nav>
   <div class="notice" id="replay" hidden>Replay of a past day using ESPN's stored closing lines. Prices and bet links appear on live cards only.</div>
 
   <div class="kpis" id="kpis"></div>
