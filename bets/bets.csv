@@ -64,3 +64,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-02|401909784|total|over,2026-11-02,401909784,total,Over 145.5,over,2305,2230,Kansas,Fordham,145.5,145.5,-110.0,Fanatics,3.92,149.42,1.0,yes,2026-10-31T20:51:11+00:00,,,,,,,,open,
 2026-11-02|401910993|total|under,2026-11-02,401910993,total,Under 149,under,309,2006,Louisiana,Akron,149.0,149.0,-110.0,Fanatics,3.28,145.72,1.0,yes,2026-10-31T22:21:06+00:00,,,,,,,,open,
 2026-11-02|401917507|spread|home,2026-11-02,401917507,spread,Saint Mary's -7.5,home,2608,2287,Saint Mary's,Illinois State,-7.5,-7.5,-115.0,Fanatics,3.42,10.92,1.0,yes,2026-10-31T22:21:06+00:00,,,,,,,,open,
+2026-11-02|401909771|spread|home|bandB,2026-11-02,401909771,spread,Iowa State -12.5,home,66,235,Iowa State,Memphis,-12.5,-12.5,-115.0,DraftKings,2.34,14.84,0.5,yes,2026-11-01T00:41:12+00:00,,,,,,,,open,bandB
