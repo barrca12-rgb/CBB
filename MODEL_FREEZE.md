@@ -801,3 +801,22 @@ Chad bets every play, so marking placed by hand was redundant.
   - auto refresh on the record page.
 
   `audit/card_logic.py` renders cards without it.
+
+## 2026-11-01: Notre Dame-Villanova Over 146 voided (Chad, Nov 1)
+
+"Remove the Notre Dame over as a loss from the record. We already had the under; we didn't play both spots."
+
+- **What happened:** Under 149.5 (DraftKings -110) was logged on Oct 25 under the pre-Oct 26 model, with a total
+  of 139.8.
+  - After the Oct 26 update the model had 149.4, so at 146 the card called the Over. It logged Over 146 (Fanatics
+    -110) at 12:30 UTC on Nov 1 and alerted it.
+  - The bet log blocks a repeat of the same bet id but not the other side of a game it already holds.
+  - Final 74-70 (144): the Under won and the Over lost.
+- **Void:** the Over 146 row (`2026-11-01|401920982|total|over`) stays in `bets/bets.csv` with status void, never
+  deleted. Its grade (L, -1.0) and close fields are cleared.
+  - The next run posts the Discord correction under the original post.
+  - No "don't bet it" phone alert, since the game is over (`bets/void_alerted.json`).
+  - Record: 1-0, +0.91 units (it was 1-1, -0.09).
+- **Unchanged:** the Under 149.5 and its CLV (+4.00), picks, rules, staking and every frozen file.
+- **Open:** the logging gap itself (an opposite side can still be logged). A guard in `cbb/tracker.py` waits on
+  Chad's approval.
