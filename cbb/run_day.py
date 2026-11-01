@@ -450,14 +450,19 @@ def main():
     except Exception as e:
         print(f"Discord record failed ({e}); continuing.")
     build(day, games, lines)
-    if a.auto and not a.date and len(lines):
-        # books open some games days ahead: give each later day that already has lines its own card
-        ahead = pd.to_datetime(lines["start"], utc=True, format="ISO8601").dt.tz_convert("America/New_York").dt.normalize()
-        for d in sorted({t.tz_localize(None) for t in ahead.dropna()}):
-            if day < d <= day + pd.Timedelta(days=7):
+    if a.auto and not a.date:
+        # the whole coming week gets its own card every run, lines or not (Chad, Oct 31: "build out the week so we are
+        # ready when lines drop"): the model's numbers are up before books post, and a day's first lines are priced
+        # (and any play logged) on the first run that sees them
+        for k in range(1, 8):
+            d = day + pd.Timedelta(days=k)
+            try:
                 later = slate(d)
-                if len(later):
-                    build(d, later, lines, current=False)
+            except Exception as e:
+                print(f"Schedule for {d:%Y-%m-%d} unavailable ({e}); skipped this run.")
+                continue
+            if len(later):
+                build(d, later, lines, current=False)
     try:   # the public record page (record.html on the site)
         record_page.write()
     except Exception as e:

@@ -229,6 +229,26 @@ def _plays_and_log(f: pd.DataFrame, lines: pd.DataFrame, live: bool = True) -> p
     return card
 
 
+def memoize_run_fetches() -> None:
+    """One card run now builds every day of the coming week, so the live fetches each day's build repeats (KenPom's
+    current ratings, the injury report, the lineup downloads) are made once per run and reused: within a run of a
+    minute or so they would return the same data. Results are unchanged; only the repeat downloads go."""
+    from . import injuries, kenpom, players
+    memo = {}
+
+    def once(key, fn):
+        if key not in memo:
+            memo[key] = fn()
+        return memo[key]
+    g0, f0, a0 = kenpom.get, injuries.fetch, players.availability
+    kenpom.get = lambda endpoint, cache=True, **p: (g0(endpoint, cache=cache, **p) if cache else
+                                                    once(("kenpom", endpoint, tuple(sorted(p.items()))), lambda: g0(endpoint, cache=False, **p)))
+    injuries.fetch = lambda: once(("injuries",), f0)
+    players.availability = lambda season, upcoming=False, refresh=False: once(
+        ("availability", season, upcoming, refresh), lambda: a0(season, upcoming=upcoming, refresh=refresh))
+
+
 if __name__ == "__main__":
     run_day.plays = _plays_and_log      # only the card run logs moneylines (not tests or other importers)
+    memoize_run_fetches()
     run_day.main()

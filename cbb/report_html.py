@@ -516,7 +516,9 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   $("replay").hidden = !D.replay;
 
   const navDays = (list, cur) => {
-    $("days").innerHTML = list.slice(-7).map((d) => '<a href="cbb_' + d + '.html"' + (d === D.date ? ' aria-current="page"' : "") + ">" +
+    // yesterday and today, then the coming week (the card builds the next 7 days every run)
+    const i = list.indexOf(cur || D.date), shown = i < 0 ? list.slice(-9) : list.slice(Math.max(0, i - 1), i + 8);
+    $("days").innerHTML = shown.map((d) => '<a href="cbb_' + d + '.html"' + (d === D.date ? ' aria-current="page"' : "") + ">" +
       new Date(d + "T12:00:00").toLocaleDateString("en-US", {weekday: "short", month: "short", day: "numeric"}) + "</a>").join("");
   };
   navDays([D.date]);

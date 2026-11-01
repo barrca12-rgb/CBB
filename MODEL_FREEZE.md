@@ -755,3 +755,26 @@ Chad bets every play, so marking placed by hand was redundant.
 ```
 4f4966cc0ee43f9b86200db7bab6e9b85ad6c663476ea75360fc16756b9390b7  cbb/tracker.py
 ```
+
+## 2026-11-01: The card builds the whole coming week every run (Chad, Oct 31)
+
+"Build out the week of games so we are ready when lines drop."
+
+- **`cbb/run_day.py` `main()` (fingerprinted; non-picking):** an `--auto` run now builds each of the next 7 days that
+  has games, whether or not books have posted lines. Before, only days that already had lines were built.
+  - A day's model numbers are on the site before books post.
+  - A day's first lines are priced, and any play logged, on the first run that sees them, exactly as before.
+  - A day whose ESPN schedule fails to load is skipped for that run only.
+- **`cbb/card_features.py` (the card's unfrozen wrapper):** the live fetches each day's build repeats (KenPom's
+  current ratings, the injury report, the lineup downloads) are made once per run and reused. Within one run they
+  return the same data, so results are unchanged.
+- **`cbb/report_html.py` (display):** the day bar shows yesterday, today and the coming week.
+- **Unchanged:** picks, rules, staking, the bet log and grading. Replays are untouched (the replay path does not
+  build ahead).
+- **Tests:** `audit/test_week_ahead.py` covers the seven-day loop (a day with no games or a failed schedule is
+  skipped) and that each repeated fetch happens once per run.
+- **New fingerprint:**
+
+```
+14f7260346b9ef6082ade27d826ac83547365bacaa62c002fe0099105c69e899  cbb/run_day.py
+```
