@@ -108,7 +108,8 @@ def _priced_keys() -> set:
 def log_opener_favs(f: pd.DataFrame, lines: pd.DataFrame, before: set, now: pd.Timestamp | None = None) -> int:
     """Each book's FIRST priced moneyline on a game this run: if the favorite's EV against the model's win
     probability Phi(margin / 11) is +5% or more, append it to lines/ml/opener_fav.csv. Returns rows written."""
-    from scipy.stats import norm
+    import math
+    cdf = lambda x: 0.5 * (1 + math.erf(x / math.sqrt(2)))   # the card's runner has no scipy
     if lines is None or not len(lines) or "home_ml" not in lines or not before:
         return 0       # no log yet: everything would look new, and nothing is a true opener
     now = now or pd.Timestamp.now(tz="UTC")
@@ -125,7 +126,7 @@ def log_opener_favs(f: pd.DataFrame, lines: pd.DataFrame, before: set, now: pd.T
         for team, opp, price, opp_price, m in ((h, a, r.home_ml, r.away_ml, m_home), (a, h, r.away_ml, r.home_ml, -m_home)):
             if price >= 0:
                 continue                                 # favorites only
-            p = float(norm.cdf(m / OPENER_SIGMA))
+            p = float(cdf(m / OPENER_SIGMA))
             ev = p * (100 / -price) - (1 - p)
             if ev >= OPENER_EV:
                 rows.append({"run_at": now.isoformat(timespec="seconds"), "date": str(g.date)[:10], "game_id": g.game_id,
