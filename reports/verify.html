@@ -69,7 +69,13 @@ button { font: inherit; font-weight: 600; font-size: 13px; color: var(--text); b
 .head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px; padding: 24px 0 16px }
 h1 { font-family: var(--display); font-weight: 400; font-size: 26px; letter-spacing: .01em; margin: 0; line-height: 1.15 }
 .sub { color: var(--muted); margin-top: 2px }
-.days { display: flex; gap: 4px; flex-wrap: wrap }
+.days { display: flex; gap: 4px; flex-wrap: wrap; margin: -4px 0 20px }
+/* other pages: plain links beside the title, so they never read as days */
+.pagelinks { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; padding-bottom: 4px }
+.pagelinks a { color: var(--muted); font-weight: 600; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; text-decoration: none;
+  border-bottom: 2px solid transparent; padding: 2px 0 }
+.pagelinks a::after { content: " \2192"; opacity: .6 }
+.pagelinks a:hover { color: var(--text); border-bottom-color: var(--brand); text-decoration: none }
 .days a, .pagebtn { padding: 5px 12px; border-radius: 6px; color: var(--text); font-weight: 600; font-size: 13px; text-decoration: none;
   border: 1px solid var(--line-strong); background: var(--surface); white-space: nowrap }
 .days a:hover, .pagebtn:hover { background: var(--sunken); text-decoration: none }
@@ -184,7 +190,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
 </div></header>
 <main class="wrap">
   <div class="head"><div><h1>Verification</h1>
-    <div class="sub">How to check the College Basketball record yourself. Updated Oct 31, 10:27 PM ET.</div></div><a class="pagebtn" href="record.html">&larr; Record</a></div>
+    <div class="sub">How to check the College Basketball record yourself. Updated Oct 31, 10:30 PM ET.</div></div><a class="pagebtn" href="record.html">&larr; Record</a></div>
   <section class="panel"><div class="panel-h"><h2>Forward-test cohorts</h2><span class="note">A, B and C are model v1 signals (logged from Oct 26, 19:20 UTC); 6 pre-freeze signal(s) are shown on their own row. CLV is against the protocol&#x27;s primary close for every row (A and B at the alert number, C at the accepted number); close coverage = decided plays with a primary close. Units use the recorded price; 0 signal(s) without one are counted at -110 here and are left out of the forward test&#x27;s profitability figures. B excludes 7 signal(s) logged before quote timestamps were recorded or without one. C counts only bets confirmed with book, time, line, odds and stake (bets/accepted.csv); 0 of 50 signals matched.</span></div>
     <div class="scroll"><table><thead><tr><th>Cohort</th><th class='r'>Signals</th><th class='r'>Settled</th><th class='r'>W-L-P</th><th class='r'>Win %</th><th class='r'>Units (logged price)</th><th class='r'>CLV pts (A, B: alert; C: accepted)</th><th class='r'>Close coverage</th></tr></thead><tbody><tr><td class='b'>A. Every model v1 signal (alert number)</td><td class='r'>44</td><td class='r'>0</td><td class='r'>0-0-0</td><td class='r'>–</td><td class='r'>+0.00</td><td class='r'>–</td><td class='r'>0/0</td></tr><tr><td class='b'>B. v1, fresh observed quote at the logged book and number</td><td class='r'>43</td><td class='r'>0</td><td class='r'>0-0-0</td><td class='r'>–</td><td class='r'>+0.00</td><td class='r'>–</td><td class='r'>0/0</td></tr><tr><td class='b'>C. v1, confirmed accepted bets (accepted number)</td><td class=r>0</td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td class='b'>Pre-freeze signals (reported separately, never pooled)</td><td class='r'>6</td><td class='r'>0</td><td class='r'>0-0-0</td><td class='r'>–</td><td class='r'>+0.00</td><td class='r'>–</td><td class='r'>0/0</td></tr></tbody></table></div></section>
   <section class="panel"><div class="panel-h"><h2>Check it</h2></div><ul style="margin:12px 16px 16px;padding-left:18px;line-height:1.7">
