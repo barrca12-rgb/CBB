@@ -88,6 +88,7 @@ def _logged_view(card: pd.DataFrame) -> pd.DataFrame:
             m = b[b["market"] == mk].drop_duplicates("game_id", keep="last").set_index("game_id")
             t = pd.to_datetime(card["game_id"].map(m["logged_at"]), utc=True, errors="coerce", format="ISO8601")
             card[f"{mk}_logged_pre"] = (t < REVISION).fillna(False).to_numpy()
+            card[f"{mk}_logged_at"] = [x.isoformat() if pd.notna(x) else None for x in t]   # for the Logged column / sort
     # tip-time review (cbb/clv_primary.py tip_check): shown on the logged play before tip, display only
     try:
         from . import clv_primary, tipcheck
@@ -428,7 +429,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
 
   <section class="panel" aria-labelledby="plays-h">
     <div class="panel-h"><h2 id="plays-h">Plays</h2>
-      <div class="ctrls"><span class="chip" id="plays-count"></span><button type="button" class="chipbtn" id="rules-btn" aria-expanded="false" aria-controls="plays-rules">Rules</button></div>
+      <div class="ctrls"><label class="chk" style="font-size:12px">Sort <select id="play-sort" style="font:inherit;font-size:12px;padding:2px 4px;border:1px solid var(--line-strong);border-radius:6px;background:var(--surface);color:var(--text)"><option value="bet">Tip time</option><option value="at">Newest play</option><option value="edge">Edge</option><option value="ev">EV</option><option value="book">Book</option></select></label><span class="chip" id="plays-count"></span><button type="button" class="chipbtn" id="rules-btn" aria-expanded="false" aria-controls="plays-rules">Rules</button></div>
     </div>
     <div class="rules" id="plays-rules" hidden>Spread edge 2.5+ pts · total edge 3+ pts · +2% EV at the price · 1 unit each. Win % = backtest rate for that edge. A logged play stays a play: its edge, win % and EV are as they were when it was logged (plays logged before the Oct 26 model update show them against today's model at your number); the line under it says where the line and the model are now.</div>
     <div class="scroll"><table id="t-plays"></table></div>
@@ -564,7 +565,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       edge: pre ? g[mk + "_now_edge"] : g[mk + "_logged_edge"] ?? g[mk + "_now_edge"],
       p: pre ? g[mk + "_now_p"] : g[mk + "_logged_p"] ?? g[mk + "_now_p"], ev: pre ? g[mk + "_now_ev"] : g[mk + "_logged_ev"] ?? g[mk + "_now_ev"], model: mk === "spread" ? (side === "home" ? ln(-g.model_margin) : ln(g.model_margin)) : num(g.model_total),
       to: still ? (mk === "spread" ? ln(g.spread_good_to) : num(g.total_good_to)) : "–",
-      now: nowLine(g, mk, side),
+      now: nowLine(g, mk, side), at: g[mk + "_logged_at"] || null,
       open: firstOpen(g, mk, side, g[mk + "_logged_book"]),
       units: g[mk + "_logged_stake"], line: g[mk + "_logged_line"],
       bid: D.date + "|" + g.game_id + "|" + mk + "|" + side,
@@ -637,7 +638,8 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   const byTime = (a, b) => String(a.g.start).localeCompare(String(b.g.start)) || b.edge - a.edge;
   const numOf = (v) => { if (v == null) return null; const m = String(v).replace(/\u2212/g, "-").match(/[-+]?\d+(\.\d+)?/); return m ? Number(m[0]) : null; };
   const SORT = {bet: (p) => String(p.g.start || ""), book: (p) => String(p.book || "").toLowerCase(), model: (p) => numOf(p.model),
-    edge: (p) => p.edge, p: (p) => p.p, ev: (p) => p.ev, to: (p) => numOf(p.to), open: (p) => numOf(p.open), now: (p) => numOf(p.now), units: (p) => p.units};
+    edge: (p) => p.edge, p: (p) => p.p, ev: (p) => p.ev, to: (p) => numOf(p.to), open: (p) => numOf(p.open), now: (p) => numOf(p.now), units: (p) => p.units,
+    at: (p) => p.at ? Date.parse(p.at) : null};
   let playSort = {key: "bet", dir: 1};
   try { const v = JSON.parse(localStorage.getItem("cbb-play-sort") || "null"); if (v && SORT[v.key]) playSort = v; } catch (e) {}
   const sortPlays = () => P.sort((a, b) => {
@@ -656,7 +658,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   const th = (k, label, cls) => "<th" + (cls ? " class='" + cls + "'" : "") + " data-sort='" + k + "' style='cursor:pointer;user-select:none' title='Sort'>" +
     label + (playSort.key === k ? (playSort.dir > 0 ? " &#9650;" : " &#9660;") : "") + "</th>";
   $("t-plays").innerHTML = P.length ? "<thead><tr>" + th("bet", "Bet") + th("book", "Book") + th("model", "Model", "r hide-sm hide-md") + th("edge", "Edge", "r") +
-    th("p", "Win %", "r hide-sm") + th("ev", "EV", "r") + th("to", "Bet to", "r") + th("open", "Opened", "r hide-sm hide-md") + th("now", "Now", "r") + th("units", "Units", "r hide-sm hide-md") +
+    th("p", "Win %", "r hide-sm") + th("ev", "EV", "r") + th("to", "Bet to", "r") + th("open", "Opened", "r hide-sm hide-md") + th("now", "Now", "r") + th("units", "Units", "r hide-sm hide-md") + th("at", "Logged", "r hide-sm") +
     "<th></th></tr></thead><tbody>" +
     P.map((p) => "<tr data-gid='" + p.g.game_id + "' data-mk='" + p.kind.toLowerCase() + "'><td><div class='b pick'>" + logo(pickId(p.g, p.kind, p.side), 20) + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
       (p.kind === "Total" && p.g.crew ? "<div class='f' style='font-size:11px'>Refs: " + esc(p.g.crew) + "</div>" : "") +
@@ -669,21 +671,33 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       [["away", p.g.away], ["home", p.g.home]].filter(([sd]) => p.g[sd + "_injuries"]).map(([sd, nm]) => "<div class='inj'>" + esc(nm) + ": " + esc(p.g[sd + "_injuries"]) + "</div>").join("") + "</td><td>" +
       esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r m hide-sm hide-md'>" + esc(p.model) + "</td><td class='r " + (p.edge >= (p.kind === "Spread" ? 2.5 : 3) ? "pos b" : p.edge < 0 ? "neg" : "m") + "'>" + sgn(p.edge) +
       "</td><td class='r m hide-sm'>" + pct(p.p) + "</td><td class='r'>" + (p.ev == null ? "–" : sgn(100 * p.ev) + "%") +
-      "</td><td class='r'>" + esc(p.to) + "</td><td class='r m hide-sm hide-md' title='First number posted (the play&#39;s book if it was among the first)'>" + esc(p.open ?? "–") + "</td><td class='r m' title='Median across books now'>" + esc(p.now ?? "–") + "</td><td class='r hide-sm hide-md'>" + num(p.units, 2) + "</td><td class='r'>" +
+      "</td><td class='r'>" + esc(p.to) + "</td><td class='r m hide-sm hide-md' title='First number posted (the play&#39;s book if it was among the first)'>" + esc(p.open ?? "–") + "</td><td class='r m' title='Median across books now'>" + esc(p.now ?? "–") + "</td><td class='r hide-sm hide-md'>" + num(p.units, 2) + "</td><td class='r m hide-sm' style='white-space:nowrap'>" +
+      (p.at ? esc(new Date(p.at).toLocaleString("en-US", {timeZone: "America/New_York", month: "short", day: "numeric", hour: "numeric", minute: "2-digit"})) : "–") + "</td><td class='r'>" +
       (p.g.news_url ? "<a class='f' style='font-size:12px;margin-right:8px' href='" + esc(p.g.news_url) + "' target='_blank' rel='noopener'>News</a>" : "") +
       "</td></tr>").join("") + "</tbody>"
     : "<tbody><tr><td class='empty'>" + (withLines ? "No plays. No line is far enough from the model." : "No lines posted yet. Openers usually post the night before.") + "</td></tr></tbody>";
   stack("t-plays");
   };
   renderPlays();
+  const sel = $("play-sort");
+  const syncSel = () => { if ([...sel.options].some((o) => o.value === playSort.key)) sel.value = playSort.key; };
+  syncSel();
+  sel.onchange = () => {
+    const k = sel.value;
+    playSort = {key: k, dir: ["edge", "p", "ev", "units", "at"].includes(k) ? -1 : 1};
+    try { localStorage.setItem("cbb-play-sort", JSON.stringify(playSort)); } catch (e) {}
+    sortPlays();
+    renderPlays();
+  };
   $("t-plays").addEventListener("click", (ev) => {
     const h = ev.target.closest("th[data-sort]");
     if (!h) return;
     const k = h.dataset.sort;
-    playSort = playSort.key === k ? {key: k, dir: -playSort.dir} : {key: k, dir: ["edge", "p", "ev", "units"].includes(k) ? -1 : 1};
+    playSort = playSort.key === k ? {key: k, dir: -playSort.dir} : {key: k, dir: ["edge", "p", "ev", "units", "at"].includes(k) ? -1 : 1};
     try { localStorage.setItem("cbb-play-sort", JSON.stringify(playSort)); } catch (e) {}
     sortPlays();
     renderPlays();
+    syncSel();
   });
 
   // Band B (cbb/tracker.py BAND_B): logged band B plays, in their own block; never in P, the KPIs or the record
