@@ -406,4 +406,57 @@ UTC), so it is the first placed bet but not part of model v1 cohort A; it has no
 
 ### First-game report
 
-Pending (the game is on Nov 1).
+Run 2026-11-01 17:17 UTC (the scheduled check, tip plus 2 h 45 min). Final: Villanova 70, Notre Dame 74 (total 144).
+Traced example: `audit/examples/clv_2026-11-01_401920982_total_under.md`. All times UTC.
+
+1. **Entry:** Under 149.5 at -110, DraftKings, logged 2026-10-25T22:32:02 (pre-freeze cohort). No confirmed fill in
+   `bets/accepted.csv`, so this is the alert number and price, not an accepted bet.
+2. **Selected closing quotes** (play side, all from the 14:27:23 targeted poll):
+
+   | Book | Observed (our clock) | Provider timestamp | Age (s) | Line | Price |
+   |---|---|---|---|---|---|
+   | Caesars | 14:27:23 | 14:24:50 | 153 | 145.5 | -110 |
+   | Fanatics | 14:27:23 | 14:25:54 | 89 | 145.5 | -110 |
+   | FanDuel | 14:27:23 | 14:26:43 | 40 | 145.5 | -110 |
+   | theScore Bet | 14:27:23 | 14:26:55 | 28 | 145.5 | -115 |
+   | DraftKings | 14:27:23 | 14:27:06 | 17 | 145.5 | -115 |
+   | BetMGM | 14:27:23 | 14:27:06 | 17 | 145.5 | -110 |
+
+3. **Cutoff:** 14:30:00, source "latest pregame report" (the feed's latest pregame start). ESPN's scheduled start
+   was also 14:30:00 (0 min apart). ESPN's estimated opening timestamp, a diagnostic from the earliest period-1
+   play-by-play stamp (jump ball), was 14:34:14. The cutoff was 4 min before it, and every selected quote was
+   observed 411 s before it.
+4. **Close:** median 145.5 from 6 books. **Alert CLV +4.00 points** (149.5 against 145.5, in our favor).
+5. **Coverage:**
+   - 6 of the 7 frozen books quoted the game. No bet365 quote was observed around the window. All 6 quoting books
+     were selected.
+   - Excluded: 24 quotes from the 14:10:33 and 14:12:21 polls (before the 15-minute window). Every other quote in
+     the window was replaced by the same book's later quote.
+   - No quote was dropped as stale, in-play, missing a price or off-market, and no book sat 1+ point from the
+     others.
+   - Polls in the 20 minutes before the cutoff: 14:10:33, 14:12:21, 14:15:26, 14:18:24, 14:20:38, 14:21:24,
+     14:24:19, 14:27:23. The longest gap was 185 s, and the last poll was 157 s before the cutoff. SGO was skipped
+     twice by its 25-minute spacing rule, as designed.
+6. **Collection failures or timing conflicts:** none. The cutoff, ESPN's scheduled start and the feed's start agree,
+   and the actual tip came 4 min later.
+7. **Voided spread play on the same game:** Under 149.5 is unaffected by the Oct 30 void of Villanova +7.5
+   (`2026-11-01|401920982|spread|home`, logged from a broken BetMGM quote, sign flipped with no price;
+   MODEL_FREEZE.md "Bad-quote guards").
+   - The Under is a different market with its own DraftKings entry at -110, logged on Oct 25, five days before the
+     bad row.
+   - The spread play is still status void, with no result or profit, and is not counted in the record.
+   - The Discord correction was posted (`bets/discord_posted.json` "voided" lists it).
+
+**Calculation:** correct. Recomputed independently from the raw observation files (standard library only), the
+cutoff (14:30:00), books (6), close (145.5) and CLV (+4.00) all match the stored values, and every surface shows
++4.00.
+
+**Closing benchmark confidence, unresolved items:**
+- The meaning of the provider timestamp is unconfirmed. The filter checks only that it is within 5 minutes of
+  receipt, not that the book re-confirmed its price.
+- ESPN's opening stamp has an unverified recording lag.
+- The close uses 6 of 7 books (bet365 absent).
+
+There was no one-book close and no timing conflict.
+
+CLV tracking status: built, not verified
