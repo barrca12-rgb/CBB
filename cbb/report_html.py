@@ -486,6 +486,9 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
 
   // Plays
   const P = [];
+  // the current market number on a play's side: the median across books (line_home_spread / line_total), like Opened
+  const nowLine = (g, mk, side) => mk === "spread" ? (g.line_home_spread == null ? null : ln(side === "home" ? g.line_home_spread : -g.line_home_spread))
+    : (g.line_total == null ? null : num(g.line_total));
   // A logged bet stays listed at the number it was logged at, with where the game stands now underneath.
   const logged = (g, mk) => {
     const pick = g[mk + "_logged_pick"];
@@ -512,6 +515,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       edge: pre ? g[mk + "_now_edge"] : g[mk + "_logged_edge"] ?? g[mk + "_now_edge"],
       p: pre ? g[mk + "_now_p"] : g[mk + "_logged_p"] ?? g[mk + "_now_p"], ev: pre ? g[mk + "_now_ev"] : g[mk + "_logged_ev"] ?? g[mk + "_now_ev"], model: mk === "spread" ? (side === "home" ? ln(-g.model_margin) : ln(g.model_margin)) : num(g.model_total),
       to: still ? (mk === "spread" ? ln(g.spread_good_to) : num(g.total_good_to)) : "–",
+      now: nowLine(g, mk, side),
       open: mk === "spread" ? (g.open_home_spread != null ? ln(side === "home" ? g.open_home_spread : -g.open_home_spread) : null)
         : (g.open_total != null ? num(g.open_total) : null),
       units: g[mk + "_logged_stake"], line: g[mk + "_logged_line"],
@@ -575,16 +579,17 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     if (!ls && g.spread_verdict === "BET") P.push({g, kind: "Spread", side: g.spread_side, bet: g.spread_pick + " " + ln(g.spread_line), price: g.spread_odds, book: g.spread_book,
       link: g.spread_link, warn: g.spread_warn, edge: g.spread_edge, p: g.spread_p, ev: g.spread_ev, model: g.spread_side === "home" ? ln(-g.model_margin) : ln(g.model_margin), to: ln(g.spread_good_to),
       open: g.open_home_spread == null ? null : ln(g.spread_side === "home" ? g.open_home_spread : -g.open_home_spread), units: g.spread_units,
+      now: nowLine(g, "spread", g.spread_side),
       also: others(g, "spread", g.spread_side, g.spread_book), line: g.spread_line});
     if (!lt && g.total_verdict === "BET") P.push({g, kind: "Total", bet: g.total_pick + " " + num(g.total_line), price: g.total_odds, book: g.total_book,
-      link: g.total_link, warn: g.total_warn, edge: g.total_edge, p: g.total_p, ev: g.total_ev, model: num(g.model_total), to: num(g.total_good_to), open: g.open_total == null ? null : num(g.open_total), units: g.total_units,
+      link: g.total_link, warn: g.total_warn, edge: g.total_edge, p: g.total_p, ev: g.total_ev, model: num(g.model_total), to: num(g.total_good_to), open: g.open_total == null ? null : num(g.open_total), now: nowLine(g, "total"), units: g.total_units,
       also: others(g, "total", String(g.total_pick || "").toLowerCase(), g.total_book), side: String(g.total_pick || "").toLowerCase(), line: g.total_line});
   });
   // sortable columns: click a header to sort by it, again to reverse; the default is tip time, then edge
   const byTime = (a, b) => String(a.g.start).localeCompare(String(b.g.start)) || b.edge - a.edge;
   const numOf = (v) => { if (v == null) return null; const m = String(v).replace(/\u2212/g, "-").match(/[-+]?\d+(\.\d+)?/); return m ? Number(m[0]) : null; };
   const SORT = {bet: (p) => String(p.g.start || ""), book: (p) => String(p.book || "").toLowerCase(), model: (p) => numOf(p.model),
-    edge: (p) => p.edge, p: (p) => p.p, ev: (p) => p.ev, to: (p) => numOf(p.to), open: (p) => numOf(p.open), units: (p) => p.units};
+    edge: (p) => p.edge, p: (p) => p.p, ev: (p) => p.ev, to: (p) => numOf(p.to), open: (p) => numOf(p.open), now: (p) => numOf(p.now), units: (p) => p.units};
   let playSort = {key: "bet", dir: 1};
   try { const v = JSON.parse(localStorage.getItem("cbb-play-sort") || "null"); if (v && SORT[v.key]) playSort = v; } catch (e) {}
   const sortPlays = () => P.sort((a, b) => {
@@ -603,7 +608,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   const th = (k, label, cls) => "<th" + (cls ? " class='" + cls + "'" : "") + " data-sort='" + k + "' style='cursor:pointer;user-select:none' title='Sort'>" +
     label + (playSort.key === k ? (playSort.dir > 0 ? " &#9650;" : " &#9660;") : "") + "</th>";
   $("t-plays").innerHTML = P.length ? "<thead><tr>" + th("bet", "Bet") + th("book", "Book") + th("model", "Model", "r hide-sm hide-md") + th("edge", "Edge", "r") +
-    th("p", "Win %", "r hide-sm") + th("ev", "EV", "r") + th("to", "Bet to", "r") + th("open", "Opened", "r hide-sm hide-md") + th("units", "Units", "r hide-sm hide-md") +
+    th("p", "Win %", "r hide-sm") + th("ev", "EV", "r") + th("to", "Bet to", "r") + th("open", "Opened", "r hide-sm hide-md") + th("now", "Now", "r hide-sm hide-md") + th("units", "Units", "r hide-sm hide-md") +
     "<th></th></tr></thead><tbody>" +
     P.map((p) => "<tr data-gid='" + p.g.game_id + "' data-mk='" + p.kind.toLowerCase() + "'><td><div class='b pick'>" + logo(pickId(p.g, p.kind, p.side), 20) + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
       (p.kind === "Total" && p.g.crew ? "<div class='f' style='font-size:11px'>Refs: " + esc(p.g.crew) + "</div>" : "") +
@@ -616,7 +621,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       [["away", p.g.away], ["home", p.g.home]].filter(([sd]) => p.g[sd + "_injuries"]).map(([sd, nm]) => "<div class='inj'>" + esc(nm) + ": " + esc(p.g[sd + "_injuries"]) + "</div>").join("") + "</td><td>" +
       esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r m hide-sm hide-md'>" + esc(p.model) + "</td><td class='r " + (p.edge >= (p.kind === "Spread" ? 2.5 : 3) ? "pos b" : p.edge < 0 ? "neg" : "m") + "'>" + sgn(p.edge) +
       "</td><td class='r m hide-sm'>" + pct(p.p) + "</td><td class='r'>" + (p.ev == null ? "–" : sgn(100 * p.ev) + "%") +
-      "</td><td class='r'>" + esc(p.to) + "</td><td class='r m hide-sm hide-md'>" + esc(p.open ?? "–") + "</td><td class='r hide-sm hide-md'>" + num(p.units, 2) + "</td><td class='r'>" +
+      "</td><td class='r'>" + esc(p.to) + "</td><td class='r m hide-sm hide-md'>" + esc(p.open ?? "–") + "</td><td class='r m hide-sm hide-md' title='Median across books now'>" + esc(p.now ?? "–") + "</td><td class='r hide-sm hide-md'>" + num(p.units, 2) + "</td><td class='r'>" +
       (p.g.news_url ? "<a class='f' style='font-size:12px;margin-right:8px' href='" + esc(p.g.news_url) + "' target='_blank' rel='noopener'>News</a>" : "") +
       "</td></tr>").join("") + "</tbody>"
     : "<tbody><tr><td class='empty'>" + (withLines ? "No plays. No line is far enough from the model." : "No lines posted yet. Openers usually post the night before.") + "</td></tr></tbody>";
