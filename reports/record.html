@@ -4,6 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Off The Glass · College Basketball Record</title>
 <meta property="og:title" content="Off The Glass · College Basketball Record">
+<meta name="otg-built" content="2026-11-01T02:43:10+00:00">
 <meta name="description" content="Off The Glass: a college basketball betting model. Every play logged at the posted number, graded in public.">
 <meta name="theme-color" content="#0A2C49">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
@@ -191,7 +192,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
 <main class="wrap">
   <img class="hero" src="assets/otg-banner.webp" alt="Off The Glass Hoops" width="2000" height="667">
   <div class="head"><div><h1>College Basketball Record</h1>
-    <div class="sub">Bets placed on the model's plays, at the logged number and price. Updated Oct 31, 10:41 PM ET.</div></div>
+    <div class="sub">Bets placed on the model's plays, at the logged number and price. Updated Oct 31, 10:43 PM ET.</div></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="pagebtn" href="./">&larr; Card</a><a class="pagebtn" href="record/charts.html">Charts</a><a class="pagebtn" href="record/survivor.html">Survivor</a></div></div>
   <div class="kpis"><div class='kpi'><div class='k'>Record</div><div class='v'>0-0</div></div><div class='kpi'><div class='k'>Win %</div><div class='v'>–</div></div><div class='kpi'><div class='k'>Units</div><div class='v'>+0.00</div></div><div class='kpi'><div class='k'>ROI</div><div class='v'>–</div></div><div class='kpi'><div class='k'>Alert CLV</div><div class='v'>–<small>no decided plays yet · built, not verified</small></div></div><div class='kpi'><div class='k'>Open plays</div><div class='v'>50</div></div></div>
   <section class="panel"><div class="panel-h"><h2>Summary</h2><span class="note">Settled bets placed. Alert CLV = points the line moved our way from the alert (logged) number to the close; prices are shown separately and not converted (the forward test's primary close: each book's last fresh quote in the 15 minutes before tip, median). Break-even at -110 is 52.4%.</span></div>
@@ -210,5 +211,53 @@ document.querySelectorAll("main table").forEach((t) => {
   t.classList.add("stack");
   t.querySelectorAll("tbody tr").forEach((r) => [...r.children].forEach((c, k) => { if (hs[k]) c.dataset.l = hs[k]; }));
 });
+</script>
+<script>
+(() => {
+  const el = document.querySelector('meta[name="otg-built"]');
+  if (!el || !window.fetch) return;
+  const built = new Date(el.content), path = location.pathname, KEY = "otg-keep:" + path, EVERY = 180000;
+  let waitUntil = 0, busy = false;
+  // a reload this script started: drop the cache-busting query, put the page back the way it was
+  try {
+    const k = JSON.parse(sessionStorage.getItem(KEY) || "null");
+    sessionStorage.removeItem(KEY);
+    if (/[?&]t=\d+/.test(location.search)) history.replaceState(null, "", path + location.hash);
+    if (k) {
+      if (k.want && built < new Date(k.want)) waitUntil = Date.now() + 600000;   // landed on an older copy: back off
+      if (k.state && window.otgRestore) { try { window.otgRestore(k.state); } catch (e) {} }
+      let moved = false;
+      const mark = () => { moved = true; };
+      ["wheel", "touchstart", "keydown"].forEach((ev) => addEventListener(ev, mark, {once: true, passive: true}));
+      const put = () => { if (!moved) scrollTo(0, k.y || 0); };
+      requestAnimationFrame(put);
+      addEventListener("load", put, {once: true});
+      setTimeout(put, 800);
+    }
+  } catch (e) {}
+  const typing = () => { const a = document.activeElement;
+    return a && (a.tagName === "TEXTAREA" || (a.tagName === "INPUT" && /^(text|search|number|email|password)$/.test(a.type))); };
+  const check = async () => {
+    if (busy || document.hidden || Date.now() < waitUntil) return;
+    busy = true;
+    try {
+      const r = await fetch(path + "?fresh=" + Date.now(), {cache: "no-store"});
+      const m = r.ok ? (await r.text()).match(/<meta name="otg-built" content="([^"]+)">/) : null;
+      if (m && new Date(m[1]) > built && !typing()) {
+        let state = null;
+        try { state = window.otgState ? window.otgState() : null; } catch (e) {}
+        try { sessionStorage.setItem(KEY, JSON.stringify({y: scrollY, want: m[1], state})); } catch (e) {}
+        location.replace(path + "?t=" + Date.now() + location.hash);
+        return;
+      }
+    } catch (e) {}
+    busy = false;
+  };
+  setTimeout(check, 3000);
+  setInterval(check, EVERY);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) check(); });
+  addEventListener("pageshow", (e) => { if (e.persisted) check(); });
+  addEventListener("online", check);
+})();
 </script>
 </html>
