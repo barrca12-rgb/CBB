@@ -112,3 +112,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-02|401925947|total|under,2026-11-02,401925947,total,Under 159.5,under,204,2692,Oregon State,Weber State,159.5,159.5,-105.0,BetMGM,5.43,154.07,0.97,yes,2026-11-01T20:51:16+00:00,,,,,,,,open,
 2026-11-02|401909531|total|over,2026-11-02,401909531,total,Over 146.5,over,2507,311,Providence,Maine,146.5,146.5,-110.0,DraftKings,3.21,149.71,0.97,yes,2026-11-01T21:11:25+00:00,,,,,,,,open,
 2026-11-02|401909531|spread|home|bandB,2026-11-02,401909531,spread,Providence -27.5,home,2507,311,Providence,Maine,-27.5,-27.5,-110.0,Caesars,2.18,29.68,0.5,yes,2026-11-01T21:11:28+00:00,,,,,,,,open,bandB
+2026-11-02|401923269|spread|home,2026-11-02,401923269,spread,Bryant +1.5,home,2803,2561,Bryant,Siena,1.5,1.5,-125.0,DraftKings,2.7,1.2,1.0,yes,2026-11-01T21:31:36+00:00,,,,,,,,open,
