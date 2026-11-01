@@ -142,3 +142,7 @@ CBB: tripwire,ntfy,message,2026-10-31T22:21:10+00:00,True,
 2026-11-02|401909771|spread|home|bandB,ntfy,bet,2026-11-01T00:41:12+00:00,True,
 2026-11-02|401909771|spread|home|bandB,discord,post,2026-11-01T00:41:13+00:00,True,1566250727830061157
 CBB tip time conflict,ntfy,message,2026-11-01T00:41:17+00:00,True,
+2026-11-02|401924856|spread|home|bandB,ntfy,bet,2026-11-01T01:41:08+00:00,True,
+2026-11-02|401916286|spread|away|bandB,ntfy,bet,2026-11-01T01:41:08+00:00,True,
+2026-11-02|401924856|spread|home|bandB,discord,post,2026-11-01T01:41:09+00:00,True,1566265810870206468
+2026-11-02|401916286|spread|away|bandB,discord,post,2026-11-01T01:41:10+00:00,True,1566265814204686340

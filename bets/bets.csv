@@ -65,3 +65,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-02|401910993|total|under,2026-11-02,401910993,total,Under 149,under,309,2006,Louisiana,Akron,149.0,149.0,-110.0,Fanatics,3.28,145.72,1.0,yes,2026-10-31T22:21:06+00:00,,,,,,,,open,
 2026-11-02|401917507|spread|home,2026-11-02,401917507,spread,Saint Mary's -7.5,home,2608,2287,Saint Mary's,Illinois State,-7.5,-7.5,-115.0,Fanatics,3.42,10.92,1.0,yes,2026-10-31T22:21:06+00:00,,,,,,,,open,
 2026-11-02|401909771|spread|home|bandB,2026-11-02,401909771,spread,Iowa State -12.5,home,66,235,Iowa State,Memphis,-12.5,-12.5,-115.0,DraftKings,2.34,14.84,0.5,yes,2026-11-01T00:41:12+00:00,,,,,,,,open,bandB
+2026-11-02|401924856|spread|home|bandB,2026-11-02,401924856,spread,Michigan State -29.5,home,127,2514,Michigan State,Quinnipiac,-29.5,-29.5,-115.0,DraftKings,2.15,31.65,0.5,yes,2026-11-01T01:41:07+00:00,,,,,,,,open,bandB
+2026-11-02|401916286|spread|away|bandB,2026-11-02,401916286,spread,Eastern Illinois +34.5,away,84,2197,Indiana,Eastern Illinois,34.5,34.5,-108.0,DraftKings,2.0,32.5,0.5,yes,2026-11-01T01:41:07+00:00,,,,,,,,open,bandB
