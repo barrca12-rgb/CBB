@@ -608,7 +608,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   const th = (k, label, cls) => "<th" + (cls ? " class='" + cls + "'" : "") + " data-sort='" + k + "' style='cursor:pointer;user-select:none' title='Sort'>" +
     label + (playSort.key === k ? (playSort.dir > 0 ? " &#9650;" : " &#9660;") : "") + "</th>";
   $("t-plays").innerHTML = P.length ? "<thead><tr>" + th("bet", "Bet") + th("book", "Book") + th("model", "Model", "r hide-sm hide-md") + th("edge", "Edge", "r") +
-    th("p", "Win %", "r hide-sm") + th("ev", "EV", "r") + th("to", "Bet to", "r") + th("open", "Opened", "r hide-sm hide-md") + th("now", "Now", "r hide-sm hide-md") + th("units", "Units", "r hide-sm hide-md") +
+    th("p", "Win %", "r hide-sm") + th("ev", "EV", "r") + th("to", "Bet to", "r") + th("open", "Opened", "r hide-sm hide-md") + th("now", "Now", "r") + th("units", "Units", "r hide-sm hide-md") +
     "<th></th></tr></thead><tbody>" +
     P.map((p) => "<tr data-gid='" + p.g.game_id + "' data-mk='" + p.kind.toLowerCase() + "'><td><div class='b pick'>" + logo(pickId(p.g, p.kind, p.side), 20) + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
       (p.kind === "Total" && p.g.crew ? "<div class='f' style='font-size:11px'>Refs: " + esc(p.g.crew) + "</div>" : "") +
@@ -621,7 +621,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       [["away", p.g.away], ["home", p.g.home]].filter(([sd]) => p.g[sd + "_injuries"]).map(([sd, nm]) => "<div class='inj'>" + esc(nm) + ": " + esc(p.g[sd + "_injuries"]) + "</div>").join("") + "</td><td>" +
       esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r m hide-sm hide-md'>" + esc(p.model) + "</td><td class='r " + (p.edge >= (p.kind === "Spread" ? 2.5 : 3) ? "pos b" : p.edge < 0 ? "neg" : "m") + "'>" + sgn(p.edge) +
       "</td><td class='r m hide-sm'>" + pct(p.p) + "</td><td class='r'>" + (p.ev == null ? "–" : sgn(100 * p.ev) + "%") +
-      "</td><td class='r'>" + esc(p.to) + "</td><td class='r m hide-sm hide-md'>" + esc(p.open ?? "–") + "</td><td class='r m hide-sm hide-md' title='Median across books now'>" + esc(p.now ?? "–") + "</td><td class='r hide-sm hide-md'>" + num(p.units, 2) + "</td><td class='r'>" +
+      "</td><td class='r'>" + esc(p.to) + "</td><td class='r m hide-sm hide-md'>" + esc(p.open ?? "–") + "</td><td class='r m' title='Median across books now'>" + esc(p.now ?? "–") + "</td><td class='r hide-sm hide-md'>" + num(p.units, 2) + "</td><td class='r'>" +
       (p.g.news_url ? "<a class='f' style='font-size:12px;margin-right:8px' href='" + esc(p.g.news_url) + "' target='_blank' rel='noopener'>News</a>" : "") +
       "</td></tr>").join("") + "</tbody>"
     : "<tbody><tr><td class='empty'>" + (withLines ? "No plays. No line is far enough from the model." : "No lines posted yet. Openers usually post the night before.") + "</td></tr></tbody>";
