@@ -244,6 +244,24 @@ window with none is reported unavailable with its reason.
 theScore Bet not yet posted); SGO returned no events. With 3 books, a primary close needs at least one of them fresh
 in the window. The Nov 4 books check covers the other four.
 
+
+**Nov 2 tip-time re-check (15:05 UTC, the scheduled re-check before the games).** All 81 Nov 2 games with a bet
+were checked: the feed's start (the latest in `lines/closing.csv`) against ESPN's.
+- **Ohio State vs BYU:** settled. The feed and ESPN agree on 02:00 UTC, which matches the announced 9:00 pm ET tip
+  (Salt Lake City, FS1; schedule listings via [Legion Report](https://legionreport.com/?p=40559) and
+  [SportsBrackets](https://sportsbrackets.net/wp-content/uploads/2026/10/printable-2026-27-ohio-state-basketball-schedule.pdf)).
+  The cutoff is 02:00 UTC.
+- **Memphis vs Iowa State** (neutral site, Sanford Pentagon, Sioux Falls; no tip time found published,
+  [Dakota News Now](https://www.dakotanewsnow.com/2026/03/11/iowa-state-vs-memphis-open-2026-27-season-sanford-pentagon/)):
+  every book in the feed now reports 00:00 UTC (7 pm ET), and so does ESPN.
+  - The play still reads "conflict" (-60 min). The quote log last saw this game on Nov 1 (00:40-02:15 UTC), when
+    the feed still said 23:00. The cutoff rule takes the start carried by the latest logged observation, so it is
+    still 23:00.
+  - The pre-tip polls are keyed to `lines/closing.csv` (00:00), so tonight's observations will carry 00:00 and the
+    cutoff moves to 00:00 under the existing rule.
+  - Nothing to change and no protocol question.
+- **Every other Nov 2 game:** the feed and ESPN agree within 30 minutes.
+
 ## 3. Missing coverage
 
 - **Requirement:** the protocol requires at least one valid book in the window; it sets no higher minimum, and that
