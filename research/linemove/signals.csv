@@ -1,0 +1,2 @@
+seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,opener_line,opener_price,opener_book,opener_first_seen,line,price,book,move_pts,minutes_since_open,edge_vs_opener,edge_vs_current,model
+2026-11-02T04:20:39+00:00,2026-11-02,401922020,2026-11-03T02:30Z,328,304,Utah State,Idaho State,total,under,v1,Under 148.5,146.5,100.0,FanDuel,2026-11-02T02:24:49+00:00,148.5,-110.0,Caesars,2.0,115.8,1.9,3.9,144.6
