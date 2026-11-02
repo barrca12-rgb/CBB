@@ -320,6 +320,7 @@ h1 { font-family: var(--display); font-weight: 400; font-size: 26px; letter-spac
 .kpi { padding: 12px 16px; border-right: 1px solid var(--line) } .kpi:last-child { border-right: 0 }
 .kpi .k { color: var(--muted); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em } .kpi .v { font-size: 21px; font-weight: 800; margin-top: 3px; letter-spacing: -.01em }
 .kpi .v small { font-size: 12px; color: var(--muted); font-weight: 500; margin-left: 4px }
+.kpi .v small.blk { display: block; margin: 2px 0 0; line-height: 1.3 }
 
 /* Panels and tables */
 .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; margin-bottom: 24px; overflow: hidden; box-shadow: 0 1px 2px rgba(10,44,73,.06) }
@@ -754,12 +755,15 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       // primary-close CLV; bets without a close are excluded and counted (cbb/tracker.py, Oct 28)
       const miss = m.missing ? " · " + m.missing + " without a close" : "";
       const lab = m.state === "unavailable" ? "Unavailable<small>closes could not be read</small>"
-        : m.state === "collecting" ? "Collecting<small>" + (m.with_close != null ? m.with_close : m.n) + "/" + (m.min || 150) + " bets with a close" + miss + "</small>"
+        : m.state === "collecting" ? "Collecting<small class='blk'>" + (m.with_close != null ? m.with_close : m.n) + "/" + (m.min || 150) + " closes" + miss + "</small>"
         : "<span class='" + (m.state === "ok" ? "pos" : "neg") + "'>" + {ok: "OK", review: "Review", pause: "Pause"}[m.state] + "</span><small>CLV " + clvf(m.clv) + " · last " + m.n + miss + "</small>";
       return lab + (e.state === "review" ? "<small class='neg'> · slippage " + sgn(e.slip, 2) + "</small>" : ""); })()],
     ["Alert CLV", (() => { const c = D.record && D.record.clv; if (!c || c.error || !c.all) return "–<small>CLV unavailable</small>";
-      // primary (consensus) close, decided plays with a close; coverage and status always shown beside it
-      return (c.all.clv != null ? clvf(c.all.clv) + "<small>pts</small>" : "–") + "<small>" + esc(c.all.text) + " · " + esc(c.status) + "</small>"; })()]];
+      // primary (consensus) close, decided plays with a close; coverage and status on one short line, the full
+      // breakdown (books, pregame check) on hover (Chad, Nov 2: the tile was dragging the row down)
+      const short = c.all.decided ? c.all.with_close + "/" + c.all.decided + " closed" : "no graded plays yet";
+      return "<span title='" + esc(c.all.text + " · " + c.status) + "'>" + (c.all.clv != null ? clvf(c.all.clv) + "<small>pts</small>" : "–") +
+        "<small class='blk'>" + esc(short) + " · " + esc(String(c.status).replace("built, ", "")) + "</small></span>"; })()]];
   $("kpis").innerHTML = kp.map(([k, v]) => "<div class='kpi'><div class='k'>" + k + "</div><div class='v'>" + v + "</div></div>").join("");
 
   // Odds board
