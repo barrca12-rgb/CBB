@@ -78,5 +78,10 @@
   "id": "2026-11-01-one-side",
   "date": "2026-11-01",
   "text": "Rule fix, Nov 1: once we hold a side of a game (spread or total), the card will never log the other side of that same market. On Notre Dame-Villanova the card logged Over 146 this morning while we already held Under 149.5 from Oct 25; that Over was voided (correction above) and the record counts the Under only. Picks, thresholds and staking are unchanged."
+ },
+ {
+  "id": "2026-11-02-opener-rule",
+  "date": "2026-11-02",
+  "text": "Rule change, Nov 2, before today's games: the card now logs a play only if it also qualifies against the game's opening line with the current model. A game that becomes a play only because the line moved away from us afterwards is no longer bet; it is tracked as research. In the backtest those line-move plays won 50.1% on spreads and 48.4% on totals in 2024-26, below break-even, while plays that qualified at the opener won 55.8-57.8%. The 38 line-move plays already posted (31 regular, 7 band B) stay as posted and are graded in their own line-move record, never mixed into the main record. Thresholds, the +2% EV rule, stakes, books and grading are unchanged."
  }
 ]

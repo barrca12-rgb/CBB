@@ -32,6 +32,17 @@ VERSIONS = {"v1": {"start": PROTOCOL_START, "end": None, "shadow_log": os.path.j
 BAND_B = "bandB"
 VERSIONS[BAND_B] = {"start": PROTOCOL_START, "end": None, "shadow_log": None}
 EDGE_BAND_B = {"spread": 2.0, "total": 2.0}             # band B's lower edge; B_rule = band B or better
+# Opener rule (protocol v2.4, Nov 2): the v1 and band B plays logged before it that qualified only after the line
+# moved (bets/linemove_prerule.csv, research/linemove/prerule.py) are their own version, never pooled with either.
+LINEMOVE = "linemove"
+VERSIONS[LINEMOVE] = {"start": PROTOCOL_START, "end": None, "shadow_log": None}
+
+
+def _prerule() -> set:
+    try:
+        return set(pd.read_csv(os.path.join(ROOT, "bets", "linemove_prerule.csv"), dtype=str)["bet_id"])
+    except (OSError, ValueError, KeyError):
+        return set()
 
 # --- season and reads (section 9) --------------------------------------------------------------------------------
 FIRST_GAME, LAST_GAME = "2026-11-01", "2027-03-14"      # regular season through Selection Sunday
@@ -118,7 +129,8 @@ def load_signals(version: str = "v1", through: str | None = None, bets: pd.DataF
     v = VERSIONS[version]
     b = pd.read_csv(os.path.join(ROOT, "bets", "bets.csv")) if bets is None else bets
     band = b["bet_type"].fillna("").astype(str).eq(BAND_B) if "bet_type" in b else pd.Series(False, index=b.index)
-    b = b[band] if version == BAND_B else b[~band]
+    lm = b["bet_id"].astype(str).isin(_prerule()) if bets is None else pd.Series(False, index=b.index)
+    b = b[lm] if version == LINEMOVE else b[band & ~lm] if version == BAND_B else b[~band & ~lm]
     t = pd.to_datetime(b["logged_at"], utc=True, format="ISO8601")
     keep = t >= v["start"]
     if v["end"] is not None:

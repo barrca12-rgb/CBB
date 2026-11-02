@@ -1,4 +1,4 @@
-# Forward-test protocol, v2.3 (declared Oct 26, 2026, before the season's first games on Nov 1; v2.1 Oct 28; v2.2 Oct 29; v2.3 Oct 30)
+# Forward-test protocol, v2.4 (declared Oct 26, 2026, before the season's first games on Nov 1; v2.1 Oct 28; v2.2 Oct 29; v2.3 Oct 30; v2.4 Nov 2)
 
 This file fixes how the 2026-27 live record is collected and judged. It is fingerprinted in `MODEL_FREEZE.md`
 together with its evaluation code, `audit/forward_eval.py`, and that code's tests, `audit/test_forward_eval.py`.
@@ -31,6 +31,7 @@ Logging and reporting changes that leave every prediction and selection unchange
 | Opening week | the season's first 7 days: totals shifted to KenPom's average scoring level (`run_day.opening_week_totals`) |
 | Line feeds | SportsGameOdds (`odds.py`; every third run, stops at 95% of its monthly allowance, subscription ends Nov 25) and The Odds API (`odds_api.py`; every run, `ODDS_API_EVERY_RUN=1`). Both ignore quotes untouched for 12 hours. After SGO ends or stops, The Odds API alone |
 | Selection | each card run: for each game, the side and book with the best EV at the book's price across the 7 books (DraftKings, FanDuel, BetMGM, Caesars, Fanatics, bet365, theScore Bet; ties go to DraftKings). A BET needs spread edge >= 2.5 or total edge >= 3.0, and EV >= +2% (`run_day.plays`; win chance from `run_day.WIN_PROB`) |
+| Opener rule (v2.4, Nov 2) | a signal that qualifies at the current number is logged only if it also qualifies against the game's opener with the current model (Appendix C). One that does not is research only (`research/linemove/signals.csv`), never logged, alerted or posted |
 | Logging | the first run in which a side qualifies logs one signal (`bet_id` = date, game, market, side) at that book's number and price (`tracker.log`). A logged signal is never re-priced, re-selected or deleted |
 | Stakes | the card's units follow the live record (`tracker.status`). This protocol evaluates flat 1 unit per signal. Staking is not part of the test and is not changed by it |
 
@@ -376,6 +377,53 @@ spreads only, so the per-market clause below applies only if totals are ever swi
 report (`audit/health.py`) carries its own trailing-100 primary-CLV line, flagged when below 0. The flag is a report
 to Chad, not an automatic pause.
 
+## Appendix C. Opener rule (v2.4, written Nov 2, 2026, 00:30-02:00 UTC, before the Nov 2 slate tipped)
+
+**Rule.** A live v1 or band B signal is logged only if it also qualifies against the game's opener with the current
+model: the projection the card just produced, so KenPom, Barttorvik, injury and lineup updates count.
+- **Opener per book.** Each book's first quote for the market on our side: its earliest row in `lines/moves.csv`
+  (the card's own pull log, from Oct 26 12:32 UTC) with that number.
+  - Where `lines/openers.csv` (numbers only, from Oct 25) saw the book more than 5 minutes earlier, that number is
+    the first quote and it has no price.
+  - A first quote without a price on our side is skipped, never given a later price.
+  - A book never seen before this run is its own opener.
+  - The bad-quote guards apply to first quotes as well: no price, 3+ points off the other books' first numbers with
+    3+ books, or an edge above `MAX_EDGE`.
+- **The game's opener.** The best first quote on our side: one that qualifies if any, else the largest edge.
+- **The test.** Edge against that opener >= 2.5 (spreads) or 3.0 (totals), or >= 2.0 for band B, and +2% EV at the
+  opener's price.
+- **No usable first quote at any book.** The test cannot be applied and the signal stands. Missing data never fails
+  a signal on its own.
+- **Effect.** The test only gates. A passing signal is logged exactly as before, at the current best number and
+  price. A watch the test would stop is not shown as a watch.
+- **Code.** `run_day.first_quotes`, `run_day.opener_test`, `run_day.plays`; tests in `audit/test_opener_rule.py`.
+
+**Signals the rule stops.** Each one is written once to `research/linemove/signals.csv` with: the time, game,
+market, side and bet type; the opener (number, price, book, first seen); the current number, price and book; the
+move in points on our side's scale; the minutes since the opener; and the edge against the opener and against the
+current number. They form the **line-move research cell**:
+- graded at the number and price they would have been bet at (1 unit, 0.5 for band B);
+- close = median of the books' last pregame numbers in `lines/closing.csv` (the strict primary close needs the
+  watch windows, which cover only games with a logged bet).
+
+**Plays logged before the rule.** They stay in `bets/bets.csv` as logged. Those that fail the same test as of their
+own logging time are listed in `bets/linemove_prerule.csv` (`research/linemove/prerule.py`): 38 plays, 31 v1 and
+7 band B. They are read as their own version, `linemove` (`audit/forward_eval.py`, `tracker.load`), and are never
+pooled with v1 or band B in any read, record, CLV figure, tripwire or chart.
+
+**Evidence the rule was set on** (`research/linemove/backtest_split.py`). Plays that qualified only after an adverse
+move, graded at the close, won:
+- spreads 52.9% in 2014-17 (1,189 plays) and 50.1% in 2024-26 (1,490);
+- totals 54.8% in 2014-17 (1,466) and 48.4% in 2024-26 (2,464).
+
+Plays that qualified at the opener won 55.7-57.8%. The 0.5-1 point band did not reach 54% in both eras, so there is
+no tolerance.
+
+**Reads.**
+- **Jan 15:** compares the line-move research cell with v1 live, descriptive only.
+- **Mar 14:** may reopen the rule if 2024-26 proves to have been unlucky for line-move plays. A reopening is a new
+  protocol version with Chad's approval.
+
 ## Changelog
 
 - v1.0 (2026-10-26): declared.
@@ -408,3 +456,11 @@ to Chad, not an automatic pause.
 - v2.3 (2026-10-30, before any game and before any band B play was logged; helper note, Chad's go-ahead): Appendix
   B adds the overlap cell. It reports band B games later bet by v1 as their own cell (`audit/band_b_read.py`), with
   the Jan 15 proposal condition. It also states that band B is spreads only. No rule, endpoint or threshold changes.
+- v2.4 (2026-11-02, before the Nov 2 slate tipped; Chad's approval, option 1): Appendix C, the opener rule.
+  - From the first card run on this version, a signal is logged only if it also qualifies against the game's
+    opener with the current model. Signals stopped by the rule are a research cell.
+  - The 38 plays logged before it that fail the same test are their own version (`linemove`) in
+    `audit/forward_eval.py`. v1 and band B exclude them.
+  - Thresholds, the EV rule, the win-probability rule, stakes, books, the log format and grading are unchanged.
+  - Every v1 result is now computed without the 38. One v1 play had been graded when this was written
+    (Under 149.5, a win), and it is not among the 38.

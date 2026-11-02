@@ -60,6 +60,20 @@ MAX_EDGE = {"spread": 8.0, "total": 10.0}
 BAD_QUOTES = os.path.join(os.path.dirname(__file__), "..", "lines", "bad_quotes.csv")
 BAD_COLS = ["first_seen", "date", "game_id", "market", "side", "book", "number", "price", "median_others", "books", "reason"]
 BAD = []               # skips from the last plays() call, written by build() on live runs
+# Opener rule (Chad, Nov 2; protocol v2.4): a live signal is a play only if it also qualifies against the game's
+# opener with the current model. The opener is each book's FIRST quote for that market on our side: its earliest row
+# in lines/moves.csv (odds.MOVES, the card's own pull log since Oct 26) with the number and our side's price. A book
+# with no such row is skipped (never assumed); a book the card sees for the first time on this run is its own opener.
+# The bad-quote guards apply to first quotes too (no price, 3+ points off the other books' first numbers, edge above
+# MAX_EDGE). With no usable first quote at any book the test cannot be applied and the signal stands. The game's opener is the best first quote on our side: one that qualifies (threshold and +2% EV at that
+# quote's price) if any, else the largest edge. A signal that clears the live rule but fails this test is not logged,
+# alerted or posted: it goes to research/linemove/signals.csv only. The test gates; the number bet is unchanged.
+OPENER_RULE = True     # the switch the replay check (research/linemove/replay.py) turns off to compare
+GATED = []             # signals stopped by the opener rule in the last plays() call, written by build() on live runs
+LINEMOVE_SIGNALS = os.path.join(os.path.dirname(__file__), "..", "research", "linemove", "signals.csv")
+LINEMOVE_COLS = ["seen_at", "date", "game_id", "start", "home_id", "away_id", "home", "away", "market", "side",
+                 "bet_type", "pick", "opener_line", "opener_price", "opener_book", "opener_first_seen", "line", "price",
+                 "book", "move_pts", "minutes_since_open", "edge_vs_opener", "edge_vs_current", "model"]
 # Opening week (first 7 days of the season): totals are shifted so the day's average matches KenPom's, keeping our
 # game-to-game differences. The model starts each season at last season's scoring level, and in 2026-27 that put every
 # total about 3.6 below KenPom and the market: one league-wide bet that scoring falls back, not game-by-game edges.
@@ -272,11 +286,122 @@ def _off_market(l: pd.DataFrame, col: str) -> pd.DataFrame:
     return q[(q[col] - q["median_others"]).abs() >= OFF_MARKET]
 
 
-def plays(f: pd.DataFrame, lines: pd.DataFrame, live: bool = True) -> pd.DataFrame:
+def first_quotes(path: str | None = None, openers: str | None = None) -> pd.DataFrame:
+    """Each book's first quote per game, market and side from lines/moves.csv (its earliest row with that market's
+    number), oriented by ESPN ids (lo/hi): columns lo_id, hi_id, date, book, market, side ("lo"/"hi" for spreads,
+    "over"/"under"), number (spreads: the lo team's line), price (empty when that first row had no price on the side:
+    the book is then skipped by the opener test, never given a later price), seen_at.
+
+    lines/moves.csv starts Oct 26, 12:32 UTC. lines/openers.csv has each book's first number (no price) since Oct 25:
+    where it saw a book more than 5 minutes before moves.csv did, that earlier number is the book's first quote, with
+    no price, so the book is skipped for that game (6 games posted Oct 25-26, DraftKings and Caesars)."""
+    path = path or odds.MOVES
+    cols = ["lo_id", "hi_id", "date", "book", "market", "side", "number", "price", "seen_at"]
+    if not os.path.exists(path):
+        return pd.DataFrame(columns=cols)
+    m = pd.read_csv(path).sort_values("pulled_at", kind="stable")
+    rows = []
+    for market, side, num, price in (("spread", "lo", "spread", "spread_odds_lo"), ("spread", "hi", "spread", "spread_odds_hi"),
+                                     ("total", "over", "total", "over_odds"), ("total", "under", "total", "under_odds")):
+        q = m.dropna(subset=[num]).drop_duplicates(["game_key", "book"], keep="first")
+        rows.append(pd.DataFrame({"lo_id": q["lo_id"].astype(int), "hi_id": q["hi_id"].astype(int), "date": q["date"],
+                                  "book": q["book"], "market": market, "side": side, "number": q[num],
+                                  "price": q[price], "seen_at": q["pulled_at"]}))
+    fq = pd.concat(rows, ignore_index=True)
+    op_path = openers if openers is not None else (os.path.join(odds.LINES, "openers.csv") if path == odds.MOVES else None)
+    if op_path and os.path.exists(op_path):
+        o = pd.read_csv(op_path).dropna(subset=["home_id", "away_id", "first_seen"])
+        if len(o):
+            o_lo = np.minimum(o["home_id"], o["away_id"]).astype(int)
+            o_hi = np.maximum(o["home_id"], o["away_id"]).astype(int)
+            home_lo = o["home_id"].astype(int) == o_lo
+            seen = pd.to_datetime(o["first_seen"], utc=True, format="ISO8601")
+            earlier = []
+            for market, sides in (("spread", ("lo", "hi")), ("total", ("over", "under"))):
+                n = (np.where(home_lo, o["open_home_spread"], -o["open_home_spread"]) if market == "spread"
+                     else o["open_total"])
+                for sd in sides:
+                    earlier.append(pd.DataFrame({"lo_id": o_lo, "hi_id": o_hi, "date": o["game_key"].astype(str).str[:10],
+                                                 "book": o["book"], "market": market, "side": sd, "number": n,
+                                                 "price": np.nan, "seen_at": seen.dt.strftime("%Y-%m-%dT%H:%M:%S+00:00"),
+                                                 "_t": seen}))
+            e = pd.concat(earlier, ignore_index=True).dropna(subset=["number"])
+            k = ["lo_id", "hi_id", "date", "book", "market", "side"]
+            mt = fq.assign(_m=pd.to_datetime(fq["seen_at"], utc=True, format="ISO8601"))[k + ["_m"]]
+            e = e.merge(mt, on=k, how="left")
+            e = e[e["_m"].isna() | (e["_t"] < e["_m"] - pd.Timedelta(minutes=5))].drop(columns=["_t", "_m"])
+            if len(e):
+                drop = set(map(tuple, e[k].astype(str).to_numpy()))
+                fq = pd.concat([fq[[tuple(r) not in drop for r in fq[k].astype(str).to_numpy()]], e], ignore_index=True)
+    return fq
+
+
+def opener_test(fq: pd.DataFrame, g, market: str, side: str, model: float, thr: float, cur: pd.DataFrame,
+                now: str | None = None) -> tuple[bool, dict | None]:
+    """The opener rule for one signal: (passes, the opener used). fq: first_quotes(); g: the card's game (home_id,
+    away_id, start); side: home/away/over/under; model: the margin (home) or total; thr: the edge the signal needs;
+    cur: this run's quotes for the game (home/away oriented), the opener for any book with no earlier quote."""
+    h, a = int(g["home_id"]), int(g["away_id"])
+    lo, hi = min(h, a), max(h, a)
+    st = pd.to_datetime(g.get("start"), utc=True, errors="coerce")
+    day = pd.Timestamp(st.tz_convert("America/New_York").date()) if pd.notna(st) else None
+    q = fq[(fq["lo_id"] == lo) & (fq["hi_id"] == hi) & (fq["market"] == market)] if len(fq) else fq
+    if day is not None and len(q):   # the same pairing within a day either side (feeds can disagree on the start)
+        q = q[(pd.to_datetime(q["date"]) - day).abs() <= pd.Timedelta(days=1)]
+    if market == "spread":
+        want = "lo" if (side == "home") == (h == lo) else "hi"
+        q = q[q["side"] == want]
+        num = q["number"] * (1 if want == "lo" else -1)           # our side's own line
+        cols = ("home_spread", f"{side}_spread_odds")
+        cn = cur[cols[0]] * (1 if side == "home" else -1) if len(cur) else pd.Series(dtype=float)
+    else:
+        q = q[q["side"] == side]
+        num = q["number"]
+        cols = ("total", f"{side}_odds")
+        cn = cur[cols[0]] if len(cur) else pd.Series(dtype=float)
+    c = pd.DataFrame({"book": q["book"], "number": num, "price": q["price"], "seen_at": q["seen_at"]})
+    if len(cur):   # a book seen for the first time on this run is its own opener
+        new = cur[~cur["book"].isin(set(c["book"]))]
+        c = pd.concat([c, pd.DataFrame({"book": new["book"], "number": cn.reindex(new.index), "price": new[cols[1]],
+                                        "seen_at": now or pd.Timestamp.now(tz="UTC").isoformat(timespec="seconds")})],
+                      ignore_index=True)
+    c = c.dropna(subset=["number", "price"])   # a first quote without a price: that book is skipped
+    if len(c) and c["book"].nunique() >= OFF_MARKET_BOOKS:      # a first quote far off the others' is a broken row
+        med = [float(c.drop(index=i)["number"].median()) for i in c.index]
+        c = c[(c["number"] - pd.Series(med, index=c.index)).abs() < OFF_MARKET]
+    if not len(c):   # no usable first quote at any book: the test cannot be applied, and missing data never fails it
+        return True, None
+    if market == "spread":
+        c["edge"] = (model + c["number"]) if side == "home" else (c["number"] - model)
+    else:
+        c["edge"] = (model - c["number"]) if side == "over" else (c["number"] - model)
+    c = c[c["edge"] <= MAX_EDGE[market]]
+    if not len(c):
+        return True, None
+    c["ev"] = [ev(win_prob(market, e), p) for e, p in zip(c["edge"], c["price"])]
+    c["ok"] = (c["edge"] >= thr) & (c["ev"] >= MIN_EV)
+    c["pay"] = [(p / 100 if p > 0 else 100 / -p) for p in c["price"]]
+    best = c.sort_values(["ok", "edge", "pay"], ascending=False).iloc[0]
+    return bool(best["ok"]), {"book": best["book"], "line": float(best["number"]), "price": float(best["price"]),
+                              "edge": float(best["edge"]), "seen_at": best["seen_at"]}
+
+
+def plays(f: pd.DataFrame, lines: pd.DataFrame, live: bool = True, fq: pd.DataFrame | None = None) -> pd.DataFrame:
     """One row per game: the best spread and total play across books. live: apply the no-price and off-market
-    guards (replays of past days have one priceless ESPN line per game)."""
-    global BAD
+    guards and the opener rule (replays of past days have one priceless ESPN line per game). fq: first quotes for the
+    opener rule (default: read from lines/moves.csv)."""
+    global BAD, GATED
     BAD = []
+    GATED = []
+    if live and fq is None:
+        try:
+            fq = first_quotes()
+        except Exception as e:   # unreadable first-quote log: this run's quotes are the openers (logged)
+            print(f"First quotes unreadable ({e}); this run's quotes stand as the openers.")
+            fq = None
+    if fq is None:
+        fq = first_quotes("/nonexistent")
+    now = pd.Timestamp.now(tz="UTC").isoformat(timespec="seconds")
     out = []
     for _, g in f.iterrows():
         l = lines[(lines["home_id"] == g["home_id"]) & (lines["away_id"] == g["away_id"])]
@@ -323,6 +448,40 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame, live: bool = True) -> pd.DataFra
                             ls = l.drop(index=off.index)
                         else:
                             lt = l.drop(index=off.index)
+            def gate(mk, side, row, edge, value, v, units, bandb, cur):
+                """The opener rule on a live BET, WATCH or band B signal: returns (verdict, units, bandb, gated)."""
+                if not live or not OPENER_RULE or not (v in ("BET", "WATCH") or bandb):
+                    return v, units, bandb, False
+                model = m if mk == "spread" else t
+                thr = (SPREAD_CALLS if mk == "spread" else TOTAL_CALLS)[0][0]
+                ok, op = opener_test(fq, g, mk, side, model, thr, cur, now)
+                ok_b, op_b = (opener_test(fq, g, mk, side, model, tracker.BAND_B_RANGE[mk][0], cur, now)
+                              if bandb else (False, None))
+                gated = False
+                for kind, passed, o in (("v1", ok, op), ("bandB", ok_b, op_b)):
+                    if (kind == "v1" and v != "BET") or (kind == "bandB" and not bandb) or passed:
+                        continue
+                    gated = True
+                    line = (row["home_spread"] if side == "home" else -row["home_spread"]) if mk == "spread" else row["total"]
+                    pick = (f"{g['home'] if side == 'home' else g['away']} {line:+g}" if mk == "spread"
+                            else f"{side.title()} {line:g}")
+                    e_op = o["edge"] if o else np.nan
+                    st = pd.to_datetime(g.get("start"), utc=True, errors="coerce")
+                    GATED.append({"seen_at": now, "date": str(g.get("date", ""))[:10] or (str(st.tz_convert("America/New_York").date()) if pd.notna(st) else ""),
+                                  "game_id": g["game_id"], "start": g.get("start"), "home_id": g["home_id"], "away_id": g["away_id"],
+                                  "home": g["home"], "away": g["away"], "market": mk, "side": side, "bet_type": kind,
+                                  "pick": pick, "opener_line": o["line"] if o else np.nan, "opener_price": o["price"] if o else np.nan,
+                                  "opener_book": o["book"] if o else None, "opener_first_seen": o["seen_at"] if o else None,
+                                  "line": line, "price": row.get(f"{side}_spread_odds" if mk == "spread" else f"{side}_odds"),
+                                  "book": row.get("book"), "move_pts": round(edge - e_op, 2) if o else np.nan,
+                                  "minutes_since_open": round((pd.Timestamp(now) - pd.Timestamp(o["seen_at"])).total_seconds() / 60, 1) if o else np.nan,
+                                  "edge_vs_opener": round(e_op, 2) if o else np.nan, "edge_vs_current": round(edge, 2),
+                                  "model": round(float(model), 2)})
+                if v in ("BET", "WATCH") and not ok:
+                    v, units = "PASS", 0.0
+                if bandb and not ok_b:
+                    bandb = False
+                return v, units, bandb, gated
             # spread: home edge at line s is m + s; away edge is -(m + s)
             sp = _best(ls, "spread", {"home": ("home_spread", lambda s_: m + s_, "home_spread_odds"),
                                       "away": ("home_spread", lambda s_: -(m + s_), "away_spread_odds")}, live, skip("spread"))
@@ -344,6 +503,9 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame, live: bool = True) -> pd.DataFra
                          spread_units=units, spread_good_to=(thr - m) if side == "home" else (thr + m))
                 r["spread_good_price"] = price_needed("spread", thr, r["spread_good_to"], True)
                 r["spread_bandb"] = _band_b("spread", edge, value, v) and v != "REVIEW"
+                v2, u2, b2, gated = gate("spread", side, row, edge, value, v, units, r["spread_bandb"], ls)
+                if gated or (v2, u2, b2) != (v, units, r["spread_bandb"]):
+                    r.update(spread_verdict=v2, spread_units=u2, spread_bandb=b2, spread_gate="opener rule")
             to = _best(lt, "total", {"over": ("total", lambda x: t - x, "over_odds"),
                                      "under": ("total", lambda x: x - t, "under_odds")}, live, skip("total"))
             if to:
@@ -361,8 +523,34 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame, live: bool = True) -> pd.DataFra
                          total_good_to=(t - thr) if side == "over" else (t + thr))
                 r["total_good_price"] = price_needed("total", thr, r["total_good_to"], side == "under")
                 r["total_bandb"] = _band_b("total", edge, value, v) and v != "REVIEW"
+                v2, u2, b2, gated = gate("total", side, row, edge, value, v, units, r["total_bandb"], lt)
+                if gated or (v2, u2, b2) != (v, units, r["total_bandb"]):
+                    r.update(total_verdict=v2, total_units=u2, total_bandb=b2, total_gate="opener rule")
         out.append(r)
     return pd.DataFrame(out)
+
+
+def log_linemove(gated: list[dict]) -> None:
+    """Append each signal the opener rule stopped to research/linemove/signals.csv the first time it is seen (one row
+    per game, market, side and bet type: the number and price it would have been bet at). Never stops the card."""
+    try:
+        if not gated:
+            return
+        new = pd.DataFrame(gated).reindex(columns=LINEMOVE_COLS)
+        key = ["date", "game_id", "market", "side", "bet_type"]
+        if os.path.exists(LINEMOVE_SIGNALS):
+            old = pd.read_csv(LINEMOVE_SIGNALS, dtype=str)
+            seen = set(map(tuple, old[key].astype(str).to_numpy()))
+            new = new[[tuple(map(str, r)) not in seen for r in new[key].astype(str).to_numpy()]]
+        new = new.drop_duplicates(key)
+        if len(new):
+            os.makedirs(os.path.dirname(LINEMOVE_SIGNALS), exist_ok=True)
+            new.to_csv(LINEMOVE_SIGNALS, mode="a", header=not os.path.exists(LINEMOVE_SIGNALS), index=False)
+            for _, r in new.iterrows():
+                print(f"Opener rule: {r['pick']} ({r['bet_type']}) not a play; opener {r['opener_line']} at "
+                      f"{r['opener_book']}, edge there {r['edge_vs_opener']}")
+    except Exception as e:
+        print(f"Line-move research log failed ({e}); continuing.")
 
 
 def log_bad_quotes(bad: list[dict]) -> None:
@@ -472,7 +660,7 @@ def main():
 def attach_logged(card: pd.DataFrame, day: pd.Timestamp) -> pd.DataFrame:
     """Add the day's logged bets (not void) to the card as {market}_logged_* columns, so a bet stays on the Plays list
     after the line or the model moves and the game is no longer a play at the current number."""
-    b = tracker.load()
+    b = tracker.load("v1_logged")   # pre-rule line-move plays included: the card shows them in their own block
     b = b[(b["date"] == f"{day:%Y-%m-%d}") & (b["status"] != "void")]
     card = card.copy()
     gid = card["game_id"].astype(str)
@@ -499,7 +687,7 @@ def attach_logged(card: pd.DataFrame, day: pd.Timestamp) -> pd.DataFrame:
 
 def attach_band_b(card: pd.DataFrame, day: pd.Timestamp) -> pd.DataFrame:
     """The day's logged band B plays (not void) as {market}_bandb_* columns, for the card's band B block."""
-    b = tracker.load(tracker.BAND_B)
+    b = tracker.load("bandB_logged")
     b = b[(b["date"] == f"{day:%Y-%m-%d}") & (b["status"] != "void")]
     card = card.copy()
     gid = card["game_id"].astype(str)
@@ -525,6 +713,7 @@ def build(day: pd.Timestamp, games: pd.DataFrame, lines: pd.DataFrame | None, re
     card = plays(f, lines, live=not replay)
     if not replay:
         log_bad_quotes(BAD)
+        log_linemove(GATED)
         try:
             card = news.annotate(card)
         except Exception as e:

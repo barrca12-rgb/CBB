@@ -1,0 +1,23 @@
+Each run is rebuilt from the repo's own history: the model's numbers from that run's committed card
+(reports/cbb_<date>.csv), the lines and every first quote from lines/moves.csv as of that run's time. The v1 output
+(every BET and band B play: game, market, side, line, book, price, edge, units) is compared rule-off vs rule-on.
+
+2026-11-01 card, run committed 2026-10-31T13:51:30+00:00: 1 plays with the rule off, 1 with it on; v1 and band B output byte-identical: YES; watches the rule removes: 0
+
+2026-11-01 card, run committed 2026-11-01T06:02:23+00:00: 1 plays with the rule off, 1 with it on; v1 and band B output byte-identical: YES; watches the rule removes: 0
+
+2026-11-02 card, run committed 2026-10-27T02:50:44+00:00: 231 plays with the rule off, 231 with it on; v1 and band B output byte-identical: YES; watches the rule removes: 4
+
+2026-11-02 card, run committed 2026-11-01T19:22:10+00:00: 103 plays with the rule off, 94 with it on; v1 and band B output byte-identical: NO; watches the rule removes: 30
+  plays removed (and nothing else changed):
+  game_id             away            home market                pick  line         book   odds  edge  units type
+401911707     Murray State Tennessee State spread Tennessee State +11  11.0     Fanatics -110.0 3.018    1.0   v1
+401920679         Monmouth      St. John's spread      Monmouth +28.5  28.5      Caesars -110.0 2.881    1.0   v1
+401910997 Western Michigan    Old Dominion spread   Old Dominion +1.5   1.5      Caesars -110.0 4.036    1.0   v1
+401921704          Gonzaga          Purdue spread           Purdue +6   6.0      Caesars -110.0 3.060    1.0   v1
+401920758 Southern Indiana         Belmont  total         Under 156.5 156.5      FanDuel -110.0 3.280    1.0   v1
+401910996 Central Michigan       UL Monroe  total          Over 151.5 151.5      FanDuel -110.0 3.093    1.0   v1
+401906801   East Texas A&M        Oklahoma spread        Oklahoma -29 -29.0      Caesars -110.0 3.009    1.0   v1
+401924894        Utah Tech      New Mexico  total           Under 158 158.0     Fanatics -110.0 3.704    1.0   v1
+401922029          Montana          Oregon  total          Over 152.5 152.5 theScore Bet -115.0 3.418    1.0   v1
+

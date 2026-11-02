@@ -134,7 +134,7 @@ def tiles(st: dict) -> list[tuple[str, str, str]]:
             ("UNITS", _fmt(st["units"]), f"flat 1u · n {st['settled']}"),
             ("CLV SPREADS", _fmt(sp["mean"]), se(sp)),
             ("CLV TOTALS", _fmt(to["mean"]), se(to)),
-            ("CLOSE MOVED FOR", share, f"{mv['for']} / {mv['flat']} / {mv['against']} · n {mv['n']}")] + _band_b_tile(st)
+            ("CLOSE MOVED FOR", share, f"{mv['for']} / {mv['flat']} / {mv['against']} · n {mv['n']}")] + _band_b_tile(st) + _linemove_tile(st)
 
 
 def _band_b_tile(st: dict) -> list[tuple[str, str, str]]:
@@ -144,6 +144,15 @@ def _band_b_tile(st: dict) -> list[tuple[str, str, str]]:
         return []
     t = bb["tiles"]["spread"]
     return [("BAND B CLV (SEP.)", _fmt(t["mean"]), f"{bb['w']}-{bb['l']}-{bb['p']} · {_fmt(bb['units'] / 2)} u at 0.5u · n {t['n']}")]
+
+
+def _linemove_tile(st: dict) -> list[tuple[str, str, str]]:
+    """The pre-rule line-move plays' own tile (Nov 2 opener rule; tracker.LINEMOVE), never pooled with v1 or band B."""
+    lm = st.get("linemove")
+    if not lm:
+        return []
+    t = lm["tiles"]["spread"]   # both markets pooled into one series (see write)
+    return [("LINE-MOVE CLV (SEP.)", _fmt(t["mean"]), f"{lm['w']}-{lm['l']}-{lm['p']} · {_fmt(lm['units'])} u · pre-rule")]
 
 
 def draw_clv(st: dict, path: str) -> None:
@@ -175,6 +184,10 @@ def draw_clv(st: dict, path: str) -> None:
         y = st["bandb"]["series"]["spread"]
         ax.plot(np.arange(len(y)), y, color=GREY, lw=2.5, ls="--", zorder=3,
                 label=f"Band B spreads (separate, 0.5u)  {_fmt(y[-1])} pts after {len(y) - 1} plays")
+    if st.get("linemove"):   # pre-rule line-move plays: their own dotted line, never added to v1's or band B's
+        y = st["linemove"]["series"]["spread"]
+        ax.plot(np.arange(len(y)), y, color=GREY, lw=2.5, ls=":", zorder=3,
+                label=f"Line-move plays before the Nov 2 rule (separate)  {_fmt(y[-1])} pts after {len(y) - 1} plays")
     ax.axhline(0, color=GREY, lw=1.5, zorder=2)
     n = max(len(st["series"]["spread"]), len(st["series"]["total"]))
     ax.set_xlim(0, max(n - 1, 10))
@@ -268,9 +281,12 @@ def write(through: pd.Timestamp | None = None, bets: str | None = None, out: str
     # the real log gets the protocol's primary close (cbb/clv_primary.py), as the record page; a --bets file is used as is
     b = pd.read_csv(bets) if bets else clv_primary.attach(tracker.load("all"))
     band = b["bet_type"].fillna("").astype(str).eq(tracker.BAND_B) if "bet_type" in b else pd.Series(False, index=b.index)
-    st = stats(b[~band], through)                          # the headline: v1 alone, as before
-    if band.any():                                         # band B: its own tile and line, never pooled
-        st["bandb"] = stats(b[band], through)
+    lm = b["bet_id"].astype(str).isin(tracker.prerule_ids()) if not bets else pd.Series(False, index=b.index)
+    st = stats(b[~band & ~lm], through)                    # the headline: v1 alone, as before
+    if (band & ~lm).any():                                 # band B: its own tile and line, never pooled
+        st["bandb"] = stats(b[band & ~lm], through)
+    if lm.any():                                           # pre-rule line-move plays (Nov 2): their own tile and line
+        st["linemove"] = stats(b[lm].assign(market="spread"), through)
     os.makedirs(out, exist_ok=True)
     tag = f"{through:%Y-%m-%d}"
     draw_clv(st, os.path.join(out, f"{tag}-clv.png"))

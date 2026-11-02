@@ -356,6 +356,33 @@ def _band_b_section() -> str:
             f"{_plays_table(live, 'No band B plays yet.')}</table></div></section>")
 
 
+def _linemove_section() -> str:
+    """Line-move plays (opener rule, Nov 2): the plays logged before the rule that qualified only after the line moved
+    (tracker.LINEMOVE), and the signals the rule has stopped since (research only, never bet; cbb/linemove.py). Their
+    own cell, never pooled with v1 or band B."""
+    from . import linemove
+    b = tracker.load(tracker.LINEMOVE)
+    b = clv_primary.attach(b) if len(b) else b.assign(clv_pts=np.nan, close_line=np.nan, clv_same_book=np.nan)
+    live = b[(b["status"] != "void") & (b["placed"].astype(str).str.lower() != "no")]
+    rows = [_row("Logged before Nov 2", summary(live[live["status"] == "settled"]))]
+    try:
+        g = linemove.graded()
+        rows.append(_row("Stopped since Nov 2*", linemove.summary(g)))
+        n_sig = len(g)
+    except Exception as e:
+        print(f"Line-move research cell failed ({e}); continuing.")
+        n_sig = 0
+    return (f"<section class='panel'><div class='panel-h'><h2>Line-move plays (separate)</h2>"
+            f"<span class='note'>Plays that qualified only after the line moved against the model, not at the opener. "
+            f"From Nov 2 the card logs only plays that also qualify at the opener; the ones logged before stay as "
+            f"logged and are graded here, never in the record above. *Signals stopped since the rule: graded at the "
+            f"number and price they would have been bet at ({n_sig} so far); close = median of the books' last pregame "
+            f"number (closing.csv).</span></div>"
+            f"<div class='scroll'><table>{HEAD}<tbody>{''.join(rows)}</tbody></table></div>"
+            f"{_controls('lm') if len(live) else ''}<div class='scroll'><table class='rec' id='rec-lm'>"
+            f"{_plays_table(live, 'No line-move plays.')}</table></div></section>")
+
+
 def build() -> str:
     # CLV and the close shown are the forward-test protocol's primary close (cbb/clv_primary.py), as the weekly chart
     b = clv_primary.attach(tracker.load())
@@ -420,7 +447,7 @@ def build() -> str:
     <div class="scroll"><table>{HEAD}<tbody>{''.join(rows)}</tbody></table></div>{_chart(s)}</section>
   {f"<section class='panel'><div class='panel-h'><h2>By month</h2></div><div class='scroll'><table>{HEAD}<tbody>{months}</tbody></table></div></section>" if months else ""}
   <section class="panel"><div class="panel-h"><h2>Bets placed</h2><span class="note">Newest first.</span></div>
-    {_controls('v1') if len(live) else ''}<div class="scroll"><table class="rec" id="rec-v1">{plays_t}</table></div></section>{_band_b_section()}
+    {_controls('v1') if len(live) else ''}<div class="scroll"><table class="rec" id="rec-v1">{plays_t}</table></div></section>{_band_b_section()}{_linemove_section()}
   <footer>
     <div><a class="follow" href="https://x.com/{report_html.X_HANDLE}" target="_blank" rel="noopener"><img src="assets/otg-logo-512.png" alt="">Follow @{report_html.X_HANDLE} on X for every play</a></div>
     <div style="margin-top:10px"><a class="m" href="record/verify.html">verification</a></div></footer>

@@ -73,7 +73,7 @@ def _logged_view(card: pd.DataFrame) -> pd.DataFrame:
     from . import tracker
     card = card.copy()
     try:
-        b = tracker.load()
+        b = tracker.load("v1_logged")   # every logged play (pre-rule line-move plays show in their own block)
         b = b[b["status"] != "void"]
     except Exception:
         b = None
@@ -221,7 +221,13 @@ def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, 
     rat = [{k: _clean(v) for k, v in r.items()} for r in
            t[["rank", "team", "net", "adj_oe", "adj_de", "adj_tempo"]].to_dict("records")]
     built = autorefresh.stamp()
+    try:   # line-move plays logged before the Nov 2 opener rule: their own block on the card
+        from . import tracker
+        prerule = sorted(i for i in tracker.prerule_ids() if i.startswith(f"{day:%Y-%m-%d}|"))
+    except Exception:
+        prerule = []
     data = {"date": f"{day:%Y-%m-%d}", "season": season, "replay": replay, "repo": REPO, "nfl": NFL_SITE,
+            "prerule": prerule,
             "generated_at": built, "games": games, "ratings": rat,
             "record": {"status": record["status"], "tripwire": record.get("tripwire"), "clv": clv,
                        "recent": [{k: _clean(v) for k, v in r.items()} for r in
@@ -448,6 +454,11 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     <div class="scroll"><table class="board" id="t-watch"></table></div>
   </section>
 
+  <section class="panel" aria-labelledby="lm-h" id="lm-sec" hidden>
+    <div class="panel-h"><h2 id="lm-h">Line-move plays (before the opener rule)</h2><span class="note">Logged before Nov 2 under the old rule: they qualified only after the line moved, not at the opener. Kept as logged and graded, in their own record, never counted with the plays above.</span></div>
+    <div class="scroll"><table id="t-lm"></table></div>
+  </section>
+
   <section class="panel" aria-labelledby="board-h">
     <div class="panel-h"><h2 id="board-h">Odds board</h2>
       <div class="ctrls">
@@ -625,6 +636,10 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       link: g.total_link, warn: g.total_warn, edge: g.total_edge, p: g.total_p, ev: g.total_ev, model: num(g.model_total), to: num(g.total_good_to), open: firstOpen(g, "total", null, g.total_book), now: nowLine(g, "total"), units: g.total_units,
       also: others(g, "total", String(g.total_pick || "").toLowerCase(), g.total_book), side: String(g.total_pick || "").toLowerCase(), line: g.total_line});
   });
+  // line-move plays logged before the Nov 2 opener rule: their own block, never listed or counted with v1's plays
+  const PRE = new Set(D.prerule || []);
+  const LM = P.filter((p) => PRE.has(p.bid)).map((p) => Object.assign({type: "v1"}, p));
+  for (let i = P.length - 1; i >= 0; i--) if (PRE.has(P[i].bid)) P.splice(i, 1);
   // sortable columns: click a header to sort by it, again to reverse; the default is tip time, then edge
   const byTime = (a, b) => String(a.g.start).localeCompare(String(b.g.start)) || b.edge - a.edge;
   const numOf = (v) => { if (v == null) return null; const m = String(v).replace(/\u2212/g, "-").match(/[-+]?\d+(\.\d+)?/); return m ? Number(m[0]) : null; };
@@ -703,7 +718,15 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       side: String(g[mk + "_bandb_bet_id"] || "").split("|")[3], line: g[mk + "_bandb_line"],
       fill: {book: g[mk + "_bandb_book"], line: g[mk + "_bandb_line"], odds: g[mk + "_bandb_odds"], stake: g[mk + "_bandb_stake"]}});
   }));
+  for (let i = BB.length - 1; i >= 0; i--) if (PRE.has(BB[i].bid)) LM.push(Object.assign({type: "Band B"}, BB.splice(i, 1)[0]));
   BB.sort((a, b) => String(a.g.start).localeCompare(String(b.g.start)) || b.edge - a.edge);
+  LM.sort((a, b) => String(a.g.start).localeCompare(String(b.g.start)) || b.edge - a.edge);
+  $("lm-sec").hidden = D.replay || !LM.length;
+  $("t-lm").innerHTML = LM.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r'>Edge</th><th class='r'>Units</th><th class='r'>Now</th></tr></thead><tbody>" +
+    LM.map((p) => "<tr data-lm='" + esc(p.bid) + "'><td><div class='b pick'><span class='tag'>Line move</span> " + esc(p.bet) + (p.type === "Band B" ? " <span class='m'>(band B)</span>" : "") +
+      "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div></td><td>" +
+      esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r'>" + sgn(p.edge) + "</td><td class='r'>" + num(p.units, 2) +
+      "</td><td class='r m'>" + esc(p.now ?? "–") + "</td></tr>").join("") + "</tbody>" : "";
   $("bandb-sec").hidden = D.replay;
   const bbr = D.record && D.record.band_b;   // band B's own season record (tracker.band_b_status), never pooled
   if (bbr) $("bandb-rec").textContent = "Season: " + bbr.w + "–" + bbr.l + (bbr.p ? "–" + bbr.p : "") + " · " + sgn(bbr.units, 2) + "u" +
@@ -900,7 +923,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
         "</td><td class='r m'>" + num(x.model) + "</td><td class='r m'>" + esc(x.away_score) + "–" + esc(x.home_score) + "</td></tr>").join("") + "</tbody>";
   }
 
-  ["t-bandb", "t-rec", "t-recent", "t-review", "t-review2", "t-misses"].forEach(stack);   // t-plays: renderPlays() stacks itself
+  ["t-bandb", "t-lm", "t-rec", "t-recent", "t-review", "t-review2", "t-misses"].forEach(stack);   // t-plays: renderPlays() stacks itself
 
   // Ratings
   $("t-rat").innerHTML = "<thead><tr><th class='r'>#</th><th>Team</th><th class='r'>Net</th><th class='r'>Offense</th><th class='r'>Defense</th><th class='r'>Tempo</th></tr></thead><tbody>" +

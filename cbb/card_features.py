@@ -148,10 +148,16 @@ def missed_plays(card: pd.DataFrame, lines: pd.DataFrame) -> pd.DataFrame:
     """Safety net, independent of run_day's own selection (Chad, Oct 31: "make sure watch list plays don't get missed
     ever again"). Every book's quote is re-checked against the live rule: an edge at the cutoff or more (and at most
     MAX_EDGE), +2% EV at that book's price, a real price, and not off-market. A qualifying quote on a game and
-    market the card neither plays (BET) nor already has logged is a miss."""
+    market the card neither plays (BET) nor already has logged is a miss, unless the opener rule (run_day.opener_test,
+    Nov 2) stops that side: a line-move signal is research only, never a play, so never a miss."""
     out = []
     if card is None or not len(card) or lines is None or not len(lines):
         return pd.DataFrame(columns=MISSED_COLS)
+    try:
+        fq = run_day.first_quotes()
+    except Exception:
+        fq = run_day.first_quotes("/nonexistent")
+    gate_cache = {}
     for _, g in card.iterrows():
         h, a = int(g["home_id"]), int(g["away_id"])
         l = lines[(lines["home_id"] == h) & (lines["away_id"] == a)]
@@ -177,6 +183,11 @@ def missed_plays(card: pd.DataFrame, lines: pd.DataFrame) -> pd.DataFrame:
                         continue
                     v = run_day.ev(run_day.win_prob(mk, e), price)
                     if v >= run_day.MIN_EV:
+                        k = (g["game_id"], mk, side)
+                        if k not in gate_cache:
+                            gate_cache[k] = run_day.opener_test(fq, g, mk, side, m, thr, l.drop(index=list(off & set(l.index))))[0]
+                        if not gate_cache[k]:
+                            continue
                         line = (x[col] if side == "home" else -x[col]) if mk == "spread" else x[col]
                         out.append({"date": str(g.get("date", ""))[:10] if "date" in g else "", "game_id": g["game_id"],
                                     "game": f"{g['away']} at {g['home']}", "market": mk, "side": side, "book": x.get("book"),

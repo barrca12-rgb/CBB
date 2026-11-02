@@ -71,13 +71,17 @@ const {chromium} = require('playwright');
       }
     }
     const plays = await p.evaluate(() => [...document.querySelectorAll('#t-plays tbody tr[data-gid]')].map((r) => r.dataset.gid + '|' + r.dataset.mk));
+    const lmRows = await p.evaluate(() => [...document.querySelectorAll('#t-lm tbody tr[data-lm]')].map((r) => r.dataset.lm));
+    const PRE = new Set(D.prerule || []);
     const count = (a, k) => a.filter((x) => x === k).length;
     for (const g of D.games) for (const mk of ['spread', 'total']) {
       const k = g.game_id + '|' + mk, ls = side(g, mk), v = g[mk + '_verdict'], ps = pickSide(g, mk);
       const wantW = (v === 'WATCH' || v === 'REVIEW') && ls !== ps && !heldOther(g, mk, ps) ? 1 : 0;
       if (count(watch, k) !== wantW) res.problems.push(`${g.away} at ${g.home} ${mk}: ${count(watch, k)} watch row(s), expected ${wantW}`);
-      const wantP = (ls ? 1 : 0) + (!ls && v === 'BET' && !heldOther(g, mk, ps) ? 1 : 0);
+      const pre = ls && PRE.has(D.date + '|' + g.game_id + '|' + mk + '|' + ls);   // pre-rule line-move: its own block
+      const wantP = (ls && !pre ? 1 : 0) + (!ls && v === 'BET' && !heldOther(g, mk, ps) ? 1 : 0);
       if (count(plays, k) !== wantP) res.problems.push(`${g.away} at ${g.home} ${mk}: ${count(plays, k)} play row(s), expected ${wantP}`);
+      if (pre && !lmRows.includes(D.date + '|' + g.game_id + '|' + mk + '|' + ls)) res.problems.push(`${g.away} at ${g.home} ${mk}: pre-rule line-move play not in its block`);
     }
     await p.click("#only-plays");
     await p.waitForTimeout(50);

@@ -864,3 +864,50 @@ Chad bets every play, so marking placed by hand was redundant.
 - **Tests:** `audit/test_same_layout.py` checks two things:
   - every date on the site, today through the coming week, has the same layout once its own data is set aside;
   - Novig is gone from the template.
+
+## 2026-11-02: Opener rule (approved by Chad, Nov 2, option 1; protocol v2.4)
+
+From this run on, the card logs only plays that the frozen model would have made at the opener.
+
+- **Rule (`cbb/run_day.py`, fingerprinted):** a live signal is logged only if it also qualifies against the game's
+  opener with the current model. The opener is the best of each book's first quote on our side, from
+  `lines/moves.csv`, with `lines/openers.csv` for the earliest sightings. It must clear 2.5 / 3.0 (2.0 for band B)
+  and +2% EV at the opener's price.
+  - A signal that fails is research only (`research/linemove/signals.csv`): not logged, alerted, posted or bet.
+  - A first quote without a price is skipped, never assumed. With no usable first quote at all, the signal stands.
+  - The rule only gates: the number bet is unchanged. A watch the rule would stop is not shown as a watch.
+  - Full text: `FORWARD_TEST_PROTOCOL.md` Appendix C. `run_day.OPENER_RULE` is the switch the replay check turns off.
+- **Plays already logged (`cbb/tracker.py`, fingerprinted; `audit/forward_eval.py`, fingerprinted):** the 38 that
+  fail the same test as of their own logging time are listed in `bets/linemove_prerule.csv`: 31 v1 (13 spreads,
+  18 totals) and 7 band B. They stay in `bets/bets.csv` as logged.
+  - `tracker.load` and `forward_eval.load_signals` read them as their own cell, `linemove`. v1 and band B (the
+    record, CLV, stake cap, tripwires, reviews) exclude them.
+  - The card shows them in their own block. The record page and weekly chart give them their own line and tile.
+  - The research cell is graded by `cbb/linemove.py`.
+- **Unchanged:** thresholds, the EV rule, the win-probability rule, stakes, books, the log format and grading.
+- **Evidence** (`research/linemove/out/backtest_split.txt`): plays that qualified only after an adverse move won
+  50.1% (spreads) and 48.4% (totals) in 2024-26, against 57.8% and 55.8% at the opener. The 0.5-1 point band was
+  below 54% in both eras, so there is no tolerance.
+- **Replay** (`research/linemove/out/replay.txt`): rule off vs on, from the repo's own history.
+  - Byte-identical on three runs with no line-move play: Nov 1 card at Oct 31 13:51 and Nov 1 06:02, Nov 2 card at
+    Oct 27 02:50 (231 plays).
+  - The Nov 1 19:22 run: exactly 9 plays removed, none added.
+- **Coverage** (`research/linemove/out/coverage.txt`): 92 of the 99 lined games on the card have every book's first
+  quote in `moves.csv`.
+  - 6 games posted Oct 25-26, before `moves.csv` began: DraftKings and Caesars are skipped (first number, no price).
+  - In 1 game, BetMGM's first quote is missing.
+  - The other books carry the test in all 7.
+- **Tests:** `audit/test_opener_rule.py` (12): qualified at the opener, qualified by a model move, line-move only;
+  missing first quotes; band B; totals; watches; replays.
+  - The selection tests in `audit/test_bad_quotes.py` and `audit/test_band_b.py` run with the rule switched off.
+  - All 154 audit tests pass. The card check passes on every day.
+- **Discord note:** `bets/announcements.json` "2026-11-02-opener-rule".
+- **New fingerprints:**
+
+```
+78c62cd16f6d9710937da16f930f2d5cdde541d5d904272eaa714244dc1b38d4  cbb/run_day.py
+20225ab64eb8b619ad763ab31b8edb87d9f6018a48b81237c53c8b74a84373a1  cbb/tracker.py
+b137cda36e7f459c127bc4316adb8e1589ca6bfba9c6124ce07c5557b54ac22a  FORWARD_TEST_PROTOCOL.md
+e6fe6f6b690c2da50e22b649752a4e5c826bbb4f0514df4916167913ad9be856  audit/forward_eval.py
+5f6eafc20f6c09bd891cc1a160dc5d11bf71b9c4f52880be7a8872136793289c  audit/test_band_b.py
+```

@@ -23,7 +23,7 @@ ALERTED = os.path.join(injury_sources.DIR, "alerted.json")
 
 
 def _open_bets(now: pd.Timestamp) -> pd.DataFrame:
-    b = tracker.load()
+    b = tracker.load("v1_logged")
     today = now.tz_convert("America/New_York").strftime("%Y-%m-%d")
     return b[(b["status"] == "open") & (b["date"] >= today)]
 

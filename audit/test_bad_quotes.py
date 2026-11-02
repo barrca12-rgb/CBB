@@ -17,6 +17,13 @@ F = pd.DataFrame([{"game_id": 401920982, "date": pd.Timestamp("2026-11-01"), "st
                    "state": "pre", "final_margin": 7.3, "final_total": 139.8}])
 
 
+@pytest.fixture(autouse=True)
+def _no_opener_rule(monkeypatch):
+    """These tests cover selection, band B and the bad-quote guards on fresh quotes; the opener rule (Nov 2) has its
+    own tests (audit/test_opener_rule.py) and is switched off here."""
+    monkeypatch.setattr(run_day, "OPENER_RULE", False)
+
+
 def _book(book, nd_spread, nd_price, vu_price, total=147.5):
     return {"home_id": 87, "away_id": 222, "book": book, "home_spread": nd_spread, "home_spread_odds": nd_price,
             "away_spread_odds": vu_price, "total": total, "over_odds": -110.0, "under_odds": -110.0}

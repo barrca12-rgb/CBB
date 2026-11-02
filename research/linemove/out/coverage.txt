@@ -1,0 +1,12 @@
+Games on the card with lines (today and later): 99; with a first quote in lines/moves.csv for every book openers.csv has: 92; with a gap: 7.
+Earliest first quote in moves.csv: 2026-10-26T12:32:00+00:00 (the log started Oct 26, 12:32 UTC); the card's first lines for any game: 2026-10-25T22:08:10.778942+00:00.
+
+Games with a gap (the gate skips a book with no first quote; this run's quote stands for a book it has never seen):
+      date                      game  books_now  books_with_first_quote  priced_first_quotes first_quote_from                                                                                                                                                    gaps
+2026-11-01     Liberty at High Point          6                       6                    6 2026-10-26T12:32 DraftKings: first in moves.csv 2026-10-26T12:32, first seen 2026-10-26T02:28; Caesars: first in moves.csv 2026-10-26T12:32, first seen 2026-10-26T02:40
+2026-11-02          Miami at Florida          6                       6                    4 2026-10-26T12:32 DraftKings: first in moves.csv 2026-10-26T12:32, first seen 2026-10-26T02:28; Caesars: first in moves.csv 2026-10-26T12:32, first seen 2026-10-26T02:40
+2026-11-02     Memphis at Iowa State          6                       6                    4 2026-10-26T12:32 DraftKings: first in moves.csv 2026-10-26T12:32, first seen 2026-10-26T02:28; Caesars: first in moves.csv 2026-10-26T12:32, first seen 2026-10-26T02:40
+2026-11-02         Gonzaga at Purdue          6                       6                    4 2026-10-26T12:32 DraftKings: first in moves.csv 2026-10-26T12:32, first seen 2026-10-26T02:28; Caesars: first in moves.csv 2026-10-26T12:32, first seen 2026-10-26T02:40
+2026-11-02 Furman at Bethune-Cookman          5                       5                    5 2026-10-31T07:40                                                                                BetMGM: first in moves.csv 2026-11-01T19:20, first seen 2026-11-01T16:30
+2026-11-02         Ohio State at BYU          6                       6                    4 2026-10-26T12:32 DraftKings: first in moves.csv 2026-10-26T12:32, first seen 2026-10-25T23:15; Caesars: first in moves.csv 2026-10-26T12:32, first seen 2026-10-25T23:15
+2026-11-02           Arizona at UCLA          4                       6                    4 2026-10-26T12:32 DraftKings: first in moves.csv 2026-10-26T12:32, first seen 2026-10-26T02:28; Caesars: first in moves.csv 2026-10-26T12:32, first seen 2026-10-26T02:40

@@ -10,6 +10,13 @@ from audit import forward_eval as fe
 from cbb import run_day, tracker
 
 
+@pytest.fixture(autouse=True)
+def _no_opener_rule(monkeypatch):
+    """These tests cover selection, band B and the bad-quote guards on fresh quotes; the opener rule (Nov 2) has its
+    own tests (audit/test_opener_rule.py) and is switched off here."""
+    monkeypatch.setattr(run_day, "OPENER_RULE", False)
+
+
 def _card(margin: float, total: float = 140.0) -> pd.DataFrame:
     """One game against one book at -110 both ways: home -10, total 140."""
     f = pd.DataFrame([{"game_id": 1, "start": "2026-11-05T00:00:00Z", "home": "Home", "away": "Away", "home_id": 10,

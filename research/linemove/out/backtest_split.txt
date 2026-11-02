@@ -1,0 +1,43 @@
+A play "qualifies only after an adverse move" when the frozen walk-forward model's edge against the opener is below
+the threshold (2.5 spreads, 3 totals) and its edge against the close, on the same side, is at or above it. It is
+graded at the close (the only later number the history has). Move = edge at the close minus edge at the opener, in
+points on our side's scale. Plays that qualify at the opener are graded at the opener for comparison. Pushes are
+excluded; 95% Wilson intervals. Minutes since open: not in the historical data (opener and close only).
+
+spread, 2014-17:
+                                             group  plays  win %  95% lo  95% hi  ROI % at -110
+       qualified at the opener (bet at the opener)   2601   56.4    54.5    58.3            7.7
+only after an adverse move, all (bet at the close)   1189   52.9    50.1    55.7            1.0
+                                     move 0.5-1 pt    133   48.9    40.5    57.3           -6.7
+                                      move 1-2 pts    411   56.7    51.9    61.4            8.2
+                                       move 2+ pts    636   51.3    47.4    55.1           -2.1
+                                 move under 0.5 pt      9   55.6    26.7    81.1            6.1
+
+spread, 2024-26:
+                                             group  plays  win %  95% lo  95% hi  ROI % at -110
+       qualified at the opener (bet at the opener)   2268   57.8    55.7    59.8           10.3
+only after an adverse move, all (bet at the close)   1490   50.1    47.5    52.6           -4.4
+                                     move 0.5-1 pt     74   40.5    30.1    51.9          -22.6
+                                      move 1-2 pts    483   49.3    44.8    53.7           -5.9
+                                       move 2+ pts    924   51.1    47.9    54.3           -2.5
+                                 move under 0.5 pt      9   66.7    35.4    87.9           27.3
+
+total, 2014-17:
+                                             group  plays  win %  95% lo  95% hi  ROI % at -110
+       qualified at the opener (bet at the opener)   7205   55.7    54.5    56.8            6.3
+only after an adverse move, all (bet at the close)   1466   54.8    52.3    57.4            4.7
+                                     move 0.5-1 pt     85   47.1    36.8    57.6          -10.2
+                                      move 1-2 pts    296   54.1    48.4    59.6            3.2
+                                       move 2+ pts   1078   55.7    52.7    58.6            6.3
+                                 move under 0.5 pt      7   57.1    25.0    84.2            9.1
+
+total, 2024-26:
+                                             group  plays  win %  95% lo  95% hi  ROI % at -110
+       qualified at the opener (bet at the opener)   3636   55.8    54.2    57.4            6.5
+only after an adverse move, all (bet at the close)   2464   48.4    46.4    50.4           -7.6
+                                     move 0.5-1 pt     41   53.7    38.7    67.9            2.4
+                                      move 1-2 pts    455   45.9    41.4    50.5          -12.3
+                                       move 2+ pts   1962   48.9    46.7    51.1           -6.7
+                                 move under 0.5 pt      6   50.0    18.8    81.2           -4.5
+
+CLV of a play bet at the close is 0 by construction, so the history cannot show positive CLV for any after-move band; minutes since open are not in the history (opener and close only).

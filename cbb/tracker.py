@@ -60,8 +60,23 @@ BAND_B_RANGE = {"spread": (2.0, 2.5), "total": (2.0, 3.0)}
 BAND_B_ON = {"spread": True, "total": False}
 
 
+# Line-move plays logged before the opener rule (Nov 2; research/linemove/prerule.py): they stay in the log as logged
+# and are read as their own cell ("linemove"), never pooled with v1 or band B. The ids live in this file, not the log.
+LINEMOVE = "linemove"
+PRERULE = os.path.join(ROOT, "bets", "linemove_prerule.csv")
+
+
+def prerule_ids() -> set:
+    try:
+        return set(pd.read_csv(PRERULE, dtype=str)["bet_id"])
+    except (OSError, ValueError, KeyError):
+        return set()
+
+
 def load(kind: str = "v1") -> pd.DataFrame:
-    """The bet log. kind: "v1" (default: the live model's plays only), "bandB" (band B only) or "all"."""
+    """The bet log. kind: "v1" (default: the live model's plays, without the pre-rule line-move plays), "bandB"
+    (band B, likewise), "linemove" (the pre-rule line-move plays of either type), "v1_logged" / "bandB_logged" (every
+    logged play of that type, for showing what was logged and for the one-side guard) or "all"."""
     if not os.path.exists(BETS):
         return pd.DataFrame(columns=COLS)
     b = pd.read_csv(BETS, dtype={"bet_id": str, "result": str, "status": str, "placed": str, "side": str,
@@ -70,9 +85,16 @@ def load(kind: str = "v1") -> pd.DataFrame:
         b["alert_line"] = b["line"]
     b = b.reindex(columns=COLS)
     band = b["bet_type"].fillna("") == BAND_B
+    lm = b["bet_id"].isin(prerule_ids())
     if kind == "v1":
-        b = b[~band]
+        b = b[~band & ~lm]
     elif kind == BAND_B:
+        b = b[band & ~lm]
+    elif kind == LINEMOVE:
+        b = b[lm]
+    elif kind == "v1_logged":
+        b = b[~band]
+    elif kind == "bandB_logged":
         b = b[band]
     return b
 
