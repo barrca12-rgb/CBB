@@ -118,3 +118,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-02|401921424|total|over,2026-11-02,401921424,total,Over 148.5,over,2065,231,Bethune-Cookman,Furman,148.5,148.5,-110.0,BetMGM,4.64,153.14,1.0,yes,2026-11-01T23:41:38+00:00,,,,,,,,open,
 2026-11-02|401910998|total|over,2026-11-02,401910998,total,Over 141.5,over,324,2199,Coastal Carolina,Eastern Michigan,141.5,141.5,-110.0,Caesars,3.85,145.35,1.0,yes,2026-11-02T00:04:10+00:00,,,,,,,,open,
 2026-11-02|401906779|spread|away|bandB,2026-11-02,401906779,spread,North Carolina Central +36.5,away,61,2428,Georgia,North Carolina Central,36.5,36.5,-115.0,DraftKings,2.22,34.28,0.5,yes,2026-11-02T00:21:14+00:00,,,,,,,,open,bandB
+2026-11-02|401906779|total|under,2026-11-02,401906779,total,Under 160.5,under,61,2428,Georgia,North Carolina Central,160.5,160.5,-110.0,DraftKings,3.49,157.01,1.0,yes,2026-11-02T00:31:39+00:00,,,,,,,,open,
