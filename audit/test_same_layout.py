@@ -62,3 +62,10 @@ def test_past_days_get_final_scores_the_current_record_and_todays_layout(tmp_pat
         assert nd["games"][1].get(k) == d["games"][1].get(k)
     assert report_html.refresh_past(scores, reports=str(tmp_path)) == []
     assert (tmp_path / "cbb_2026-11-02.html").read_text() == src
+
+
+def test_the_top_shows_the_season_record_across_both_markets():
+    """Chad, Nov 2: the top of the card shows the running record (spreads and totals together, every day so far)."""
+    t = report_html.TEMPLATE
+    assert '["Season record", allRec' in t
+    assert 'st.spread[k] || 0) + (st.total[k] || 0)' in t

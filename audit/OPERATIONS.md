@@ -176,3 +176,13 @@ The proposed 15-unit daily cap and any staking change are not part of this work.
   - the layout, to today's.
 - **Unchanged:** picks and logged numbers.
 - **Test:** `audit/test_same_layout.py`.
+
+## 2026-11-02: Season record tile at the top of the card (Chad, Nov 2)
+
+- **What:** a "Season record" tile leads the card's top row: the official record across spreads and totals, every
+  day so far (Nov 1's Notre Dame-Villanova Under included), with win %. On a phone it spans the full width.
+  The Spreads and Totals tiles stay.
+- **Source:** the same record block as those tiles (`record.status`, main plays only), so they always agree.
+- **Display only** (`cbb/report_html.py`, unfrozen). Past days pick it up through `refresh_past`.
+- **Tests:** `audit/test_same_layout.py`. `audit/test_opposite_side.py` now picks a game with no spread play. Its
+  first pick from tonight's live card had gained a spread play, which failed the test with or without this change.

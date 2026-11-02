@@ -480,6 +480,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   .wordmark { display: none } .tabs a { padding: 0 8px; font-size: 12px }
   h1 { font-size: 21px }
   .kpi { border-right: 0; border-bottom: 1px solid var(--line) } .kpi:last-child { border-bottom: 0 }
+  .kpi.wide { grid-column: 1 / -1 }
   .hide-sm { display: none } .show-sm { display: inline }
   td, th { padding-left: 10px; padding-right: 10px }
   #t-plays td:first-child { white-space: normal; min-width: 150px }
@@ -857,7 +858,11 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   const st = D.record ? D.record.status : null;
   const rec = (s) => s && s.bets ? s.w + "–" + s.l + (s.p ? "–" + s.p : "") : "0–0";
   const units = st ? (st.spread.units || 0) + (st.total.units || 0) : 0;
-  const kp = [["Plays today", P.length + "<small>" + P.reduce((s, p) => s + (p.units || 0), 0).toFixed(1).replace(/\.0$/, "") + "u</small>"],
+  // the official record, both markets together (Chad, Nov 2: "show the total record up top")
+  const all = st ? ["w", "l", "p"].reduce((o, k) => (o[k] = (st.spread[k] || 0) + (st.total[k] || 0), o), {}) : null;
+  const allRec = all && all.w + all.l + all.p ? all.w + "–" + all.l + (all.p ? "–" + all.p : "") : "0–0";
+  const kp = [["Season record", allRec + "<small>" + (all && all.w + all.l ? pct(all.w / (all.w + all.l)) : "") + "</small>", "wide"],
+    ["Plays today", P.length + "<small>" + P.reduce((s, p) => s + (p.units || 0), 0).toFixed(1).replace(/\.0$/, "") + "u</small>"],
     ["Spreads", rec(st && st.spread) + "<small>" + (st && st.spread.win != null ? pct(st.spread.win) : "") + "</small>"],
     ["Totals", rec(st && st.total) + "<small>" + (st && st.total.win != null ? pct(st.total.win) : "") + "</small>"],
     ["Units", "<span class='" + (units > 0 ? "pos" : units < 0 ? "neg" : "") + "'>" + sgn(units, 2) + "</span>"],
@@ -875,7 +880,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       const short = c.all.decided ? c.all.with_close + "/" + c.all.decided + " closed" : "no graded plays yet";
       return "<span title='" + esc(c.all.text + " · " + c.status) + "'>" + (c.all.clv != null ? clvf(c.all.clv) + "<small>pts</small>" : "–") +
         "<small class='blk'>" + esc(short) + " · " + esc(String(c.status).replace("built, ", "")) + "</small></span>"; })()]];
-  $("kpis").innerHTML = kp.map(([k, v]) => "<div class='kpi'><div class='k'>" + k + "</div><div class='v'>" + v + "</div></div>").join("");
+  $("kpis").innerHTML = kp.map(([k, v, c]) => "<div class='kpi" + (c ? " " + c : "") + "'><div class='k'>" + k + "</div><div class='v'>" + v + "</div></div>").join("");
 
   // Odds board
   let market = "spread";

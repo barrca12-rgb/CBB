@@ -116,7 +116,9 @@ def test_the_card_never_shows_the_other_side_as_a_play(tmp_path):
     and nothing on the over row; Plays lists the logged Under only; no watch row."""
     src = open(os.path.join(os.path.dirname(__file__), "..", "reports", "cbb_2026-11-02.html")).read()
     D = json.loads(re.search(r'<script id="data" type="application/json">(.*?)</script>', src, re.S).group(1))
-    g = next(x for x in D["games"] if x.get("total_line") is not None)
+    # a game with a total and no spread play, so only the total can show (the live card's games change every run)
+    g = next(x for x in D["games"] if x.get("total_line") is not None and not x.get("spread_logged_pick")
+             and x.get("spread_verdict") != "BET" and not x.get("spread_bandb_pick"))
     g.update(total_verdict="BET", total_pick="Over", total_edge=3.5, total_logged_pick="Under 150", total_logged_side="under",
              total_logged_line=150.0, total_logged_book="DraftKings", total_logged_odds=-110.0, total_logged_edge=4.0)
     page = (report_html.TEMPLATE.replace("__HEAD__", report_html.HEAD).replace("__BRAND__", report_html.BRAND)
