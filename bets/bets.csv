@@ -135,3 +135,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-02|401921060|spread|away,2026-11-02,401921060,spread,Radford +13.5,away,2539,2515,San Francisco,Radford,13.5,13.5,-110.0,FanDuel,3.18,10.32,1.0,yes,2026-11-02T20:31:20+00:00,,,,,,,,open,
 2026-11-02|401917506|total|over,2026-11-02,401917506,total,Over 142.5,over,62,2547,Hawai'i,Seattle U,142.5,142.5,-105.0,BetMGM,3.82,146.32,0.97,yes,2026-11-02T20:31:20+00:00,,,,,,,,open,
 2026-11-02|401919803|spread|home|bandB,2026-11-02,401919803,spread,Florida Atlantic -11.5,home,2226,112358,Florida Atlantic,Long Island University,-11.5,-11.5,-108.0,DraftKings,2.47,13.97,0.5,yes,2026-11-02T20:31:30+00:00,,,,,,,,open,bandB
+2026-11-03|401906848|spread|home,2026-11-03,401906848,spread,Tennessee -27.5,home,2633,2747,Tennessee,Wofford,-27.5,-27.5,-110.0,FanDuel,3.08,30.58,1.0,yes,2026-11-02T22:31:28+00:00,,,,,,,,open,
+2026-11-03|401921801|spread|home,2026-11-03,401921801,spread,Kentucky -30.5,home,96,2363,Kentucky,Manhattan,-30.5,-30.5,-110.0,FanDuel,3.66,34.16,1.0,yes,2026-11-02T22:31:28+00:00,,,,,,,,open,
+2026-11-03|401925779|spread|home,2026-11-03,401925779,spread,Duquesne -10.5,home,2184,2870,Duquesne,Purdue Fort Wayne,-10.5,-10.5,-120.0,FanDuel,4.65,15.15,1.0,yes,2026-11-02T22:31:28+00:00,,,,,,,,open,
+2026-11-03|401925779|total|over,2026-11-03,401925779,total,Over 152.5,over,2184,2870,Duquesne,Purdue Fort Wayne,152.5,152.5,-110.0,FanDuel,3.88,156.38,0.97,yes,2026-11-02T22:31:28+00:00,,,,,,,,open,
