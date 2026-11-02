@@ -1,2 +1,4 @@
 seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,opener_line,opener_price,opener_book,opener_first_seen,line,price,book,move_pts,minutes_since_open,edge_vs_opener,edge_vs_current,model
 2026-11-02T04:20:39+00:00,2026-11-02,401922020,2026-11-03T02:30Z,328,304,Utah State,Idaho State,total,under,v1,Under 148.5,146.5,100.0,FanDuel,2026-11-02T02:24:49+00:00,148.5,-110.0,Caesars,2.0,115.8,1.9,3.9,144.6
+2026-11-02T10:01:02+00:00,2026-11-02,401918967,2026-11-03T01:00Z,2567,2582,SMU,Southern,total,under,v1,Under 157.5,155.5,-110.0,theScore Bet,2026-11-01T21:00:45+00:00,157.5,-108.0,DraftKings,2.0,780.3,1.35,3.35,154.15
+2026-11-02T10:01:02+00:00,2026-11-02,401909725,2026-11-03T01:00Z,154,2379,Wake Forest,Maryland Eastern Shore,total,under,v1,Under 144.5,141.5,-110.0,Caesars,2026-10-31T07:40:35+00:00,144.5,-110.0,DraftKings,3.0,3020.4,0.27,3.27,141.23
