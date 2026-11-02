@@ -33,7 +33,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-02|401921731|spread|away,2026-11-02,401921731,spread,East Tennessee State +19.5,away,9,2193,Arizona State,East Tennessee State,19.5,19.5,-110.0,Caesars,4.42,15.08,1.0,yes,2026-10-31T07:41:33+00:00,,,,,,,,open,
 2026-11-02|401920769|spread|home,2026-11-02,401920769,spread,Washington -14.5,home,264,2142,Washington,Colgate,-14.5,-14.5,-110.0,Caesars,3.29,17.79,1.0,yes,2026-10-31T07:41:33+00:00,,,,,,,,open,
 2026-11-02|401911452|spread|home,2026-11-02,401911452,spread,Nevada -12,home,2440,2523,Nevada,Robert Morris,-12.0,-12.0,-110.0,Caesars,3.39,15.39,1.0,yes,2026-10-31T07:41:33+00:00,,,,,,,,open,
-2026-11-02|401911707|spread|home|bandB,2026-11-02,401911707,spread,Tennessee State +10,home,2634,93,Tennessee State,Murray State,10.0,10.0,-110.0,Caesars,2.02,-7.98,0.5,yes,2026-10-31T07:42:05+00:00,,,,,,,,open,bandB
+2026-11-02|401911707|spread|home|bandB,2026-11-02,401911707,spread,Tennessee State +10,home,2634,93,Tennessee State,Murray State,10.0,10.0,-110.0,Caesars,2.02,-7.98,0.5,yes,2026-10-31T07:42:05+00:00,10.5,-0.5,-0.01758434989146518,64.0,94.0,L,-0.5,settled,bandB
 2026-11-02|401921753|spread|home|bandB,2026-11-02,401921753,spread,UCF -22,home,2116,526,UCF,Florida Gulf Coast,-22.0,-22.0,-110.0,Caesars,2.46,24.46,0.5,yes,2026-10-31T07:42:05+00:00,,,,,,,,open,bandB
 2026-11-02|401918976|spread|home|bandB,2026-11-02,401918976,spread,East Carolina -13,home,151,2908,East Carolina,South Carolina Upstate,-13.0,-13.0,-110.0,Caesars,2.02,15.02,0.5,yes,2026-10-31T07:42:05+00:00,,,,,,,,open,bandB
 2026-11-02|401913099|spread|away|bandB,2026-11-02,401913099,spread,Western Carolina +23.5,away,153,2717,North Carolina,Western Carolina,23.5,23.5,-110.0,Caesars,2.21,21.29,0.5,yes,2026-10-31T07:42:05+00:00,,,,,,,,open,bandB
@@ -45,7 +45,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-02|401911517|spread|home|bandB,2026-11-02,401911517,spread,UC Davis -10,home,302,2453,UC Davis,North Alabama,-10.0,-10.0,-110.0,Caesars,2.06,12.06,0.5,yes,2026-10-31T07:42:05+00:00,,,,,,,,open,bandB
 2026-11-01|401920409|spread|home,2026-11-01,401920409,spread,High Point -6.5,home,2272,2335,High Point,Liberty,-6.5,-6.5,-110.0,DraftKings,2.78,9.28,1.0,yes,2026-10-31T12:33:39+00:00,-9.5,3.0,0.10432203080282465,72.0,57.0,W,0.909,settled,
 2026-11-02|401906801|spread|home,2026-11-02,401906801,spread,Oklahoma -29,home,201,2837,Oklahoma,East Texas A&M,-29.0,-29.0,-110.0,Caesars,2.68,31.68,1.0,yes,2026-10-31T14:51:26+00:00,,,,,,,,open,
-2026-11-02|401911707|total|over,2026-11-02,401911707,total,Over 161,over,2634,93,Tennessee State,Murray State,161.0,161.0,-110.0,Fanatics,3.37,164.37,1.0,yes,2026-10-31T19:51:07+00:00,,,,,,,,open,
+2026-11-02|401911707|total|over,2026-11-02,401911707,total,Over 161,over,2634,93,Tennessee State,Murray State,161.0,161.0,-110.0,Fanatics,3.37,164.37,1.0,yes,2026-10-31T19:51:07+00:00,165.5,4.5,0.10746856572622032,64.0,94.0,L,-1.0,settled,
 2026-11-02|401920231|spread|home,2026-11-02,401920231,spread,Marist -5,home,2368,159,Marist,Dartmouth,-5.0,-5.0,-105.0,Fanatics,3.26,8.26,1.0,yes,2026-10-31T19:51:07+00:00,,,,,,,,open,
 2026-11-02|401917173|total|over,2026-11-02,401917173,total,Over 150,over,213,2099,Penn State,Canisius,150.0,150.0,-110.0,Fanatics,5.67,155.67,1.0,yes,2026-10-31T19:51:07+00:00,,,,,,,,open,
 2026-11-02|401911000|spread|home|bandB,2026-11-02,401911000,spread,Louisiana Tech +6.5,home,2348,2309,Louisiana Tech,Kent State,6.5,6.5,-110.0,Fanatics,2.36,-4.14,0.5,yes,2026-10-31T19:51:11+00:00,,,,,,,,open,bandB
@@ -88,7 +88,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-02|401910997|spread|home,2026-11-02,401910997,spread,Old Dominion +1,home,295,2711,Old Dominion,Western Michigan,1.0,1.0,-115.0,Fanatics,3.54,2.54,1.0,yes,2026-11-01T14:41:25+00:00,,,,,,,,open,
 2026-11-02|401924894|total|under,2026-11-02,401924894,total,Under 158,under,167,3101,New Mexico,Utah Tech,158.0,158.0,-110.0,Fanatics,3.64,154.36,1.0,yes,2026-11-01T14:41:25+00:00,,,,,,,,open,
 2026-11-02|401911532|spread|away|bandB,2026-11-02,401911532,spread,UTEP -1,away,94,2638,Northern Kentucky,UTEP,-1.0,-1.0,-110.0,Fanatics,2.0,-3.0,0.5,yes,2026-11-01T14:41:31+00:00,,,,,,,,open,bandB
-2026-11-02|401911707|spread|home,2026-11-02,401911707,spread,Tennessee State +10.5,home,2634,93,Tennessee State,Murray State,10.5,10.5,-110.0,FanDuel,2.52,-7.98,1.0,yes,2026-11-01T17:21:06+00:00,,,,,,,,open,
+2026-11-02|401911707|spread|home,2026-11-02,401911707,spread,Tennessee State +10.5,home,2634,93,Tennessee State,Murray State,10.5,10.5,-110.0,FanDuel,2.52,-7.98,1.0,yes,2026-11-01T17:21:06+00:00,9.5,1.0,0.03513455315346392,64.0,94.0,L,-1.0,settled,
 2026-11-02|401910996|total|over,2026-11-02,401910996,total,Over 151.5,over,2433,2117,UL Monroe,Central Michigan,151.5,151.5,-110.0,FanDuel,3.11,154.61,0.97,yes,2026-11-01T17:31:14+00:00,,,,,,,,open,
 2026-11-02|401909716|total|under,2026-11-02,401909716,total,Under 140.5,under,183,2441,Syracuse,New Haven,140.5,140.5,-110.0,DraftKings,3.11,137.39,0.97,yes,2026-11-01T18:31:22+00:00,,,,,,,,open,
 2026-11-02|401909716|spread|away|bandB,2026-11-02,401909716,spread,New Haven +27.5,away,183,2441,Syracuse,New Haven,27.5,27.5,-110.0,DraftKings,2.45,25.05,0.5,yes,2026-11-01T18:31:24+00:00,,,,,,,,open,bandB
