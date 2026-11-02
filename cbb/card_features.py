@@ -264,3 +264,10 @@ if __name__ == "__main__":
     run_day.plays = _plays_and_log      # only the card run logs moneylines (not tests or other importers)
     memoize_run_fetches()
     run_day.main()
+    try:   # past days: final scores, the current record and today's layout (display only; picks unchanged)
+        from . import report_html
+        n = report_html.refresh_past(run_day.slate)
+        if n:
+            print(f"Past cards brought up to date: {', '.join(n)}")
+    except Exception as e:
+        print(f"Past cards not refreshed ({e}); continuing.")

@@ -227,7 +227,7 @@ def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, 
     except Exception:
         prerule = []
     data = {"date": f"{day:%Y-%m-%d}", "season": season, "replay": replay, "repo": REPO, "nfl": NFL_SITE,
-            "prerule": prerule,
+            "prerule": prerule, "prerule_res": _prerule_results(f"{day:%Y-%m-%d}") if not replay else {},
             "generated_at": built, "games": games, "ratings": rat,
             "record": {"status": record["status"], "tripwire": record.get("tripwire"), "clv": clv,
                        "recent": [{k: _clean(v) for k, v in r.items()} for r in
@@ -243,6 +243,88 @@ def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, 
             .replace("__BUILT__", "" if replay else autorefresh.meta(built))
             .replace("__AUTOREFRESH__", "" if replay else autorefresh.SCRIPT))
 
+
+
+REPORTS_DIR = os.path.join(os.path.dirname(__file__), "..", "reports")
+
+
+def _prerule_results(day: str) -> dict:
+    """{bet_id: {"res", "profit"}} for the day's graded pre-rule line-move plays (their own block on the card)."""
+    from . import tracker
+    try:
+        b = tracker.load(tracker.LINEMOVE)
+    except Exception:
+        return {}
+    b = b[(b["date"] == day) & (b["status"] == "settled")]
+    return {r["bet_id"]: {"res": r["result"], "profit": _clean(float(r["profit"]))} for _, r in b.iterrows()}
+PAST_DAYS = 3
+
+
+def refresh_past(scores, reports: str | None = None, today_record: dict | None = None, days_back: int = PAST_DAYS) -> list[str]:
+    """Bring the last few past days' cards up to date (Chad, Nov 2: "why isn't Nov 1 updating"). The card run
+    rebuilds today and the coming week, never a past day, so a past page kept the scores and record from its last
+    build. For each past day in days.json within days_back: final scores and game state from ESPN (scores(day), the
+    card's own run_day.slate), the record block from today's freshly built card, the pre-rule line-move list, and
+    today's layout. The day's picks and every logged number are kept as they were. Returns the dates rewritten."""
+    import re as _re
+    from . import tracker
+    reports = reports or REPORTS_DIR
+    path = os.path.join(reports, "days.json")
+    if not os.path.exists(path):
+        return []
+    days = json.load(open(path))
+    cur = days.get("current", "")
+    past = sorted(d for d in days.get("days", []) if d < cur)[-days_back:]
+    if today_record is None:
+        f = os.path.join(reports, f"cbb_{cur}.html")
+        m = _re.search(r'<script id="data" type="application/json">(.*?)</script>', open(f).read(), _re.S) if os.path.exists(f) else None
+        today_record = json.loads(m.group(1)).get("record") if m else None
+    done = []
+    for d in past:
+        f = os.path.join(reports, f"cbb_{d}.html")
+        if not os.path.exists(f):
+            continue
+        src = open(f).read()
+        m = _re.search(r'<script id="data" type="application/json">(.*?)</script>', src, _re.S)
+        t = _re.search(r"<title>(.*?)</title>", src, _re.S)
+        if not m or not t:
+            continue
+        data = json.loads(m.group(1))
+        if data.get("replay"):
+            continue
+        try:
+            sl = scores(pd.Timestamp(d))
+            fin = {str(r["game_id"]): r for _, r in sl.iterrows()} if len(sl) else {}
+        except Exception as e:
+            print(f"Scores for {d} unavailable ({e}); page left as is.")
+            continue
+        for g in data.get("games", []):
+            r = fin.get(str(g.get("game_id")))
+            if r is None:
+                continue
+            g["state"] = r.get("state", g.get("state"))
+            for k in ("home_score", "away_score"):
+                if pd.notna(r.get(k)):
+                    g[k] = _clean(r.get(k))
+        if today_record is not None:
+            data["record"] = today_record
+        data["prerule"] = sorted(i for i in tracker.prerule_ids() if i.startswith(f"{d}|"))
+        data["prerule_res"] = _prerule_results(d)
+        prev = json.loads(m.group(1))
+        prev.pop("generated_at", None)
+        cmp = dict(data)
+        cmp.pop("generated_at", None)
+        same_data = json.dumps(cmp, sort_keys=True) == json.dumps(prev, sort_keys=True)
+        if not same_data:
+            data["generated_at"] = autorefresh.stamp()
+        payload = json.dumps(data).replace("</", "<\\/")
+        page = (TEMPLATE.replace("__HEAD__", HEAD).replace("__BRAND__", BRAND).replace("__X__", X_HANDLE)
+                .replace("__TITLE__", t.group(1)).replace("__DATA__", payload)
+                .replace("__BUILT__", autorefresh.meta(data["generated_at"])).replace("__AUTOREFRESH__", autorefresh.SCRIPT))
+        if page != src:
+            open(f, "w").write(page)
+            done.append(d)
+    return done
 
 
 TEMPLATE = r"""<!doctype html>
@@ -723,11 +805,14 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   BB.sort((a, b) => String(a.g.start).localeCompare(String(b.g.start)) || b.edge - a.edge);
   LM.sort((a, b) => String(a.g.start).localeCompare(String(b.g.start)) || b.edge - a.edge);
   $("lm-sec").hidden = D.replay || !LM.length;
-  $("t-lm").innerHTML = LM.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r'>Edge</th><th class='r'>Units</th><th class='r'>Now</th></tr></thead><tbody>" +
+  const LMR = D.prerule_res || {};
+  $("t-lm").innerHTML = LM.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r'>Edge</th><th class='r'>Units</th><th class='r'>Result</th></tr></thead><tbody>" +
     LM.map((p) => "<tr data-lm='" + esc(p.bid) + "'><td><div class='b pick'><span class='tag'>Line move</span> " + esc(p.bet) + (p.type === "Band B" ? " <span class='m'>(band B)</span>" : "") +
       "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div></td><td>" +
       esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r'>" + sgn(p.edge) + "</td><td class='r'>" + num(p.units, 2) +
-      "</td><td class='r m'>" + esc(p.now ?? "–") + "</td></tr>").join("") + "</tbody>" : "";
+      "</td><td class='r'>" + (LMR[p.bid] ? esc(LMR[p.bid].res === "W" ? "Win" : LMR[p.bid].res === "L" ? "Loss" : "Push") +
+        " <span class='" + (LMR[p.bid].profit > 0 ? "pos" : LMR[p.bid].profit < 0 ? "neg" : "m") + "'>" + sgn(LMR[p.bid].profit, 2) + "</span>"
+        : "<span class='m'>" + esc(p.now ?? "Open") + "</span>") + "</td></tr>").join("") + "</tbody>" : "";
   $("bandb-sec").hidden = D.replay;
   const bbr = D.record && D.record.band_b;   // band B's own season record (tracker.band_b_status), never pooled
   if (bbr) $("bandb-rec").textContent = "Season: " + bbr.w + "–" + bbr.l + (bbr.p ? "–" + bbr.p : "") + " · " + sgn(bbr.units, 2) + "u" +

@@ -163,3 +163,16 @@ The proposed 15-unit daily cap and any staking change are not part of this work.
   logged later are not flagged as missing. Every count is unchanged. Operational only.
 - `research/quant/e2_shadow.py score`: a card built before books post has no `open_total` column, which made the
   score read fail. That column is now read as empty. Research only.
+
+## 2026-11-02: Past days' cards brought up to date
+
+- **Why:** the card run rebuilds today and the coming week, never a past day. Nov 1's page kept the scores and
+  record from its last build, at 00:50 UTC Nov 2, before High Point finished.
+- **The fix:** `report_html.refresh_past`, called by `cbb/card_features.py` after each run (unfrozen; display
+  only). For the last 3 past days it updates:
+  - the final scores and game state from ESPN (`run_day.slate`);
+  - the record block from today's fresh card;
+  - the pre-rule line-move list and results;
+  - the layout, to today's.
+- **Unchanged:** picks and logged numbers.
+- **Test:** `audit/test_same_layout.py`.
