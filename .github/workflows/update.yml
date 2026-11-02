@@ -108,7 +108,8 @@ jobs:
           mkdir -p reports lines
           mkdir -p bets
           mkdir -p injuries
-          git add -A reports lines bets injuries data/barttorvik_preseason_*.csv
+          # research/linemove: signals the opener rule stopped (run_day.log_linemove; protocol v2.4, Nov 2)
+          git add -A reports lines bets injuries research/linemove data/barttorvik_preseason_*.csv
           git diff --cached --quiet || git commit -m "Update CBB card ($(date -u +'%Y-%m-%d %H:%M') UTC)"
           # if a push landed meanwhile, keep this run's freshly built card and lines on any conflict
           # retry: another job may push between this job's pull and push; fail only if every try fails

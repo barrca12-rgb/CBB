@@ -21,8 +21,9 @@ def _layout(path: str) -> str:
     return re.sub(r'<meta name="otg-built" content="[^"]*">', "", s)
 
 
-def test_every_date_on_the_site_has_the_same_layout():
-    days = json.load(open(os.path.join(REPORTS, "days.json")))["days"]
+def test_today_and_every_future_date_have_the_same_layout():
+    dj = json.load(open(os.path.join(REPORTS, "days.json")))
+    days = [d for d in dj["days"] if d >= dj["current"]]   # today and the coming week (past days are never rebuilt)
     pages = [os.path.join(REPORTS, f"cbb_{d}.html") for d in days if os.path.exists(os.path.join(REPORTS, f"cbb_{d}.html"))]
     layouts = {os.path.basename(p): _layout(p) for p in pages}
     first = next(iter(layouts.values()))

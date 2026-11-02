@@ -78,6 +78,17 @@ def test_qualified_only_because_the_line_moved_is_research_only(log):
     assert len(s) == 1 and s.iloc[0]["pick"] == "Home -10"
 
 
+def test_a_game_already_held_is_not_a_research_signal(log):
+    """The rule stops nothing on a game and market the log already holds (the log would refuse it anyway)."""
+    fq = _moves(log, [{"book": "DraftKings", "home_spread": -10.0, "total": 140.0}])
+    tracker.log(run_day.plays(_f(12.6), _lines(-10.0), fq=fq), DAY, ST)       # home -10 logged at the opener
+    fq = _moves(log, [{"book": "DraftKings", "home_spread": -11.0, "total": 140.0}])
+    run_day.plays(_f(12.6), _lines(-10.0), fq=fq)
+    assert len(run_day.GATED) == 1
+    run_day.log_linemove(run_day.GATED)
+    assert not (log / "signals.csv").exists()
+
+
 def test_a_line_move_signal_is_not_a_missed_play(log, monkeypatch):
     fq = _moves(log, [{"book": "DraftKings", "home_spread": -11.0, "total": 140.0}])
     monkeypatch.setattr(run_day, "first_quotes", lambda path=None: fq)

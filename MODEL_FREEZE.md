@@ -911,3 +911,29 @@ b137cda36e7f459c127bc4316adb8e1589ca6bfba9c6124ce07c5557b54ac22a  FORWARD_TEST_P
 e6fe6f6b690c2da50e22b649752a4e5c826bbb4f0514df4916167913ad9be856  audit/forward_eval.py
 5f6eafc20f6c09bd891cc1a160dc5d11bf71b9c4f52880be7a8872136793289c  audit/test_band_b.py
 ```
+
+## 2026-11-02: Opener rule, research log saved (operational fix, same approval)
+
+- **What went wrong:** the first card run on the rule (01:07 UTC) wrote `research/linemove/signals.csv` on the
+  runner. `.github/workflows/update.yml` commits only `reports`, `lines`, `bets`, `injuries` and the Barttorvik
+  files, so the file was dropped.
+- **`.github/workflows/update.yml` (fingerprinted):** the commit step adds `research/linemove`.
+- **`cbb/run_day.py` `log_linemove` (fingerprinted; research log only):** a game and market the log already holds
+  (any bet not void) is not written. The rule stopped nothing there, because the log would refuse it anyway.
+  `FORWARD_TEST_PROTOCOL.md` Appendix C says so.
+- **Nothing was lost.** `research/linemove/backfill.py` replayed the 8 card runs since 01:06. Each of their 15
+  stopped signals was on a game already held: 14 by pre-rule line-move plays and 1 by a v1 play. So the research
+  cell is correctly empty so far.
+- **Unchanged:** picks, the gate, the bet log, stakes and alerts.
+- **Tests:** `audit/test_opener_rule.py` adds the held-game case (13 tests). `audit/test_same_layout.py` checks
+  today and the coming week, since past days are never rebuilt.
+  - 154 of 155 audit tests pass on the full run. The 155th, `test_band_b.py::test_v1_figures_ignore_band_b_rows`,
+    failed once on a stake-cap `refreshed_at` second boundary and passed 3 of 3 reruns.
+- **Discord note:** `2026-11-02-opener-rule-log`.
+- **New fingerprints:**
+
+```
+74ea3a8b427daeba8ee0033c305d4a7249c8d8825d13c14804647403e7504793  cbb/run_day.py
+92a8c380ef4d34198c0bd62668b22013d39116720067682b6e3770f4a85e28fa  .github/workflows/update.yml
+101cdcc777b24dd06a5900aa01e17755d75cda2f24ecce3aff964a0325f28f1d  FORWARD_TEST_PROTOCOL.md
+```

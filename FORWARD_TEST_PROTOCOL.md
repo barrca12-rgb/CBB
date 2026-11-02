@@ -401,7 +401,8 @@ model: the projection the card just produced, so KenPom, Barttorvik, injury and 
 **Signals the rule stops.** Each one is written once to `research/linemove/signals.csv` with: the time, game,
 market, side and bet type; the opener (number, price, book, first seen); the current number, price and book; the
 move in points on our side's scale; the minutes since the opener; and the edge against the opener and against the
-current number. They form the **line-move research cell**:
+current number. A game and market the log already holds is not a research signal: the rule stopped nothing there. They
+form the **line-move research cell**:
 - graded at the number and price they would have been bet at (1 unit, 0.5 for band B);
 - close = median of the books' last pregame numbers in `lines/closing.csv` (the strict primary close needs the
   watch windows, which cover only games with a logged bet).

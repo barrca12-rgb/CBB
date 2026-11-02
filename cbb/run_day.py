@@ -537,6 +537,11 @@ def log_linemove(gated: list[dict]) -> None:
         if not gated:
             return
         new = pd.DataFrame(gated).reindex(columns=LINEMOVE_COLS)
+        # a game and market the log already holds (any bet not void) could not have been logged anyway: the rule
+        # stopped nothing there, so it is not a research signal
+        b = tracker.load("all")
+        held = set(zip(b.loc[b["status"] != "void", "game_id"].astype(str), b.loc[b["status"] != "void", "market"]))
+        new = new[[(str(g), m) not in held for g, m in zip(new["game_id"], new["market"])]]
         key = ["date", "game_id", "market", "side", "bet_type"]
         if os.path.exists(LINEMOVE_SIGNALS):
             old = pd.read_csv(LINEMOVE_SIGNALS, dtype=str)
