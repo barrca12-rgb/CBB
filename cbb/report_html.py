@@ -803,16 +803,42 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   }));
   for (let i = BB.length - 1; i >= 0; i--) if (PRE.has(BB[i].bid)) LM.push(Object.assign({type: "Band B"}, BB.splice(i, 1)[0]));
   BB.sort((a, b) => String(a.g.start).localeCompare(String(b.g.start)) || b.edge - a.edge);
-  LM.sort((a, b) => String(a.g.start).localeCompare(String(b.g.start)) || b.edge - a.edge);
   $("lm-sec").hidden = D.replay || !LM.length;
   const LMR = D.prerule_res || {};
-  $("t-lm").innerHTML = LM.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r'>Edge</th><th class='r'>Units</th><th class='r'>Result</th></tr></thead><tbody>" +
-    LM.map((p) => "<tr data-lm='" + esc(p.bid) + "'><td><div class='b pick'><span class='tag'>Line move</span> " + esc(p.bet) + (p.type === "Band B" ? " <span class='m'>(band B)</span>" : "") +
-      "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div></td><td>" +
-      esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r'>" + sgn(p.edge) + "</td><td class='r'>" + num(p.units, 2) +
-      "</td><td class='r'>" + (LMR[p.bid] ? esc(LMR[p.bid].res === "W" ? "Win" : LMR[p.bid].res === "L" ? "Loss" : "Push") +
-        " <span class='" + (LMR[p.bid].profit > 0 ? "pos" : LMR[p.bid].profit < 0 ? "neg" : "m") + "'>" + sgn(LMR[p.bid].profit, 2) + "</span>"
-        : "<span class='m'>" + esc(p.now ?? "Open") + "</span>") + "</td></tr>").join("") + "</tbody>" : "";
+  // sortable like the Plays table: click a header to sort by it, again to reverse (kept in this browser)
+  const lmRes = (p) => LMR[p.bid] ? {W: 0, L: 1, P: 2}[LMR[p.bid].res] ?? 3 : 4;
+  const LMSORT = {bet: (p) => String(p.g.start || ""), book: (p) => String(p.book || "").toLowerCase(), edge: (p) => p.edge,
+    units: (p) => p.units, now: (p) => numOf(p.now), res: lmRes};
+  let lmSort = {key: "bet", dir: 1};
+  try { const v = JSON.parse(localStorage.getItem("cbb-lm-sort") || "null"); if (v && LMSORT[v.key]) lmSort = v; } catch (e) {}
+  const renderLM = () => {
+    LM.sort((a, b) => {
+      const x = LMSORT[lmSort.key](a), y = LMSORT[lmSort.key](b);
+      if (x == null || x === "") return (y == null || y === "") ? 0 : 1;   // blanks last, either direction
+      if (y == null || y === "") return -1;
+      return (x < y ? -1 : x > y ? 1 : 0) * lmSort.dir || String(a.g.start).localeCompare(String(b.g.start));
+    });
+    const th = (k, label, cls) => "<th" + (cls ? " class='" + cls + "'" : "") + " data-lmsort='" + k + "' style='cursor:pointer;user-select:none' title='Sort'>" +
+      label + (lmSort.key === k ? (lmSort.dir > 0 ? " &#9650;" : " &#9660;") : "") + "</th>";
+    $("t-lm").innerHTML = LM.length ? "<thead><tr>" + th("bet", "Bet") + th("book", "Book") + th("edge", "Edge", "r") + th("units", "Units", "r") +
+      th("now", "Now", "r") + th("res", "Result", "r") + "</tr></thead><tbody>" +
+      LM.map((p) => "<tr data-lm='" + esc(p.bid) + "'><td><div class='b pick'><span class='tag'>Line move</span> " + esc(p.bet) + (p.type === "Band B" ? " <span class='m'>(band B)</span>" : "") +
+        "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div></td><td>" +
+        esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r'>" + sgn(p.edge) + "</td><td class='r'>" + num(p.units, 2) +
+        "</td><td class='r m' title='Median across books now'>" + esc(p.now ?? "–") + "</td><td class='r'>" + (LMR[p.bid] ? esc(LMR[p.bid].res === "W" ? "Win" : LMR[p.bid].res === "L" ? "Loss" : "Push") +
+          " <span class='" + (LMR[p.bid].profit > 0 ? "pos" : LMR[p.bid].profit < 0 ? "neg" : "m") + "'>" + sgn(LMR[p.bid].profit, 2) + "</span>"
+          : "<span class='m'>Open</span>") + "</td></tr>").join("") + "</tbody>" : "";
+    stack("t-lm");
+  };
+  renderLM();
+  $("t-lm").addEventListener("click", (ev) => {
+    const h = ev.target.closest("th[data-lmsort]");
+    if (!h) return;
+    const k = h.dataset.lmsort;
+    lmSort = lmSort.key === k ? {key: k, dir: -lmSort.dir} : {key: k, dir: ["edge", "units"].includes(k) ? -1 : 1};
+    try { localStorage.setItem("cbb-lm-sort", JSON.stringify(lmSort)); } catch (e) {}
+    renderLM();
+  });
   $("bandb-sec").hidden = D.replay;
   const bbr = D.record && D.record.band_b;   // band B's own season record (tracker.band_b_status), never pooled
   if (bbr) $("bandb-rec").textContent = "Season: " + bbr.w + "–" + bbr.l + (bbr.p ? "–" + bbr.p : "") + " · " + sgn(bbr.units, 2) + "u" +
@@ -1012,7 +1038,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
         "</td><td class='r m'>" + num(x.model) + "</td><td class='r m'>" + esc(x.away_score) + "–" + esc(x.home_score) + "</td></tr>").join("") + "</tbody>";
   }
 
-  ["t-bandb", "t-lm", "t-rec", "t-recent", "t-review", "t-review2", "t-misses"].forEach(stack);   // t-plays: renderPlays() stacks itself
+  ["t-bandb", "t-rec", "t-recent", "t-review", "t-review2", "t-misses"].forEach(stack);   // t-plays, t-lm: their renders stack themselves   // t-plays: renderPlays() stacks itself
 
   // Ratings
   $("t-rat").innerHTML = "<thead><tr><th class='r'>#</th><th>Team</th><th class='r'>Net</th><th class='r'>Offense</th><th class='r'>Defense</th><th class='r'>Tempo</th></tr></thead><tbody>" +
