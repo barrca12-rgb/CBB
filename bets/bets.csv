@@ -120,3 +120,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-02|401906779|spread|away|bandB,2026-11-02,401906779,spread,North Carolina Central +36.5,away,61,2428,Georgia,North Carolina Central,36.5,36.5,-115.0,DraftKings,2.22,34.28,0.5,yes,2026-11-02T00:21:14+00:00,,,,,,,,open,bandB
 2026-11-02|401906779|total|under,2026-11-02,401906779,total,Under 160.5,under,61,2428,Georgia,North Carolina Central,160.5,160.5,-110.0,DraftKings,3.49,157.01,1.0,yes,2026-11-02T00:31:39+00:00,,,,,,,,open,
 2026-11-02|401911001|total|under,2026-11-02,401911001,total,Under 155.5,under,2653,113,Troy,Massachusetts,155.5,155.5,-110.0,FanDuel,3.04,152.46,1.0,yes,2026-11-02T07:10:48+00:00,,,,,,,,open,
+2026-11-02|401924856|spread|home,2026-11-02,401924856,spread,Michigan State -29.5,home,127,2514,Michigan State,Quinnipiac,-29.5,-29.5,-110.0,Caesars,2.8,32.3,1.0,yes,2026-11-02T11:31:06+00:00,,,,,,,,open,
