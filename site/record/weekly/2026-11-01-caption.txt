@@ -1,4 +1,4 @@
 Week 1, through Sun Nov 1.
-Plays logged: 1. Record: 0-0-0. Units (flat 1u): +0.00.
-CLV spreads: – pts (n 0). CLV totals: – pts (n 0).
+Plays logged: 1. Record: 1-0-0. Units (flat 1u): +0.91.
+CLV spreads: – pts (close for 0 of 0 decided). CLV totals: +4.00 pts (close for 1 of 1 decided).
 Every play alerted and timestamped before tip. Record and verification: https://barrca12-rgb.github.io/CBB/record.html
