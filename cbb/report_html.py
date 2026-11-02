@@ -110,18 +110,6 @@ def _logged_view(card: pd.DataFrame) -> pd.DataFrame:
     return card
 
 
-def _novig_view(card: pd.DataFrame) -> pd.DataFrame:
-    """Novig's latest prices per game (show-only, Chad Oct 30; cbb/odds_api.py DISPLAY_BOOKS), oriented to the card's
-    home and away. Display only: picks, logged prices and CLV never use them."""
-    from . import odds_api
-    card = card.copy()
-    try:
-        d = pd.read_csv(odds_api.NOVIG_LATEST) if os.path.exists(odds_api.NOVIG_LATEST) else pd.DataFrame()
-        card["novig"] = [odds_api.display_quote(int(h), int(a), d) if len(d) and pd.notna(h) and pd.notna(a) else None
-                         for h, a in zip(card["home_id"], card["away_id"])]
-    except Exception as e:
-        print(f"Novig prices failed ({e}); continuing.")
-        card["novig"] = None
     return card
 
 
@@ -221,7 +209,6 @@ def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, 
     card = _logged_view(card)
     card = _first_open_view(card, day)
     if not replay:
-        card = _novig_view(card)
         card = _venue_view(card, day, fetch=record is not None)
     clv = _clv_view() if record else None
     clv_recent = clv.pop("recent", None) if clv else None
@@ -249,6 +236,7 @@ def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, 
             # auto refresh (cbb/autorefresh.py): live cards only; a replay never changes
             .replace("__BUILT__", "" if replay else autorefresh.meta(built))
             .replace("__AUTOREFRESH__", "" if replay else autorefresh.SCRIPT))
+
 
 
 TEMPLATE = r"""<!doctype html>
@@ -382,7 +370,6 @@ a.odd:hover { background: var(--sunken); text-decoration: none }
 .board td.edge { white-space: normal; min-width: 110px; max-width: 170px } .tag { white-space: normal }
 .bestc { display: none; text-align: right } .tm-sm { display: none; color: var(--faint); font-size: 11px }
 @media (max-width: 1100px) { .bk-minor, .hide-md { display: none } .board .bestc { display: table-cell } }
-.board th.nv, .board td.nv { border-left: 1px dashed var(--line-strong) }
 .bestc small { display: block; color: var(--faint); font-size: 11px }
 .board tbody.g.has-bet { background: linear-gradient(90deg, var(--brand) 0 3px, transparent 3px) }
 
@@ -627,23 +614,6 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     return s === "stale" ? "<div class='inj' title='" + esc(ttl) + "'>&#9888; Old input: " + esc(why) + "</div>"
       : "<div class='f' style='font-size:12px' title='" + esc(ttl) + "'>" + esc(why.charAt(0).toUpperCase() + why.slice(1)) + "</div>";
   };
-  // Novig (show-only exchange price, never used for picks): its number and price on the bet's side, and whether it
-  // beats the number and price shown for the play
-  const novig = (g, kind, side, line, price) => {
-    const n = g.novig; if (!n || !side) return "";
-    const L = kind === "Spread" ? (n.home_spread == null ? null : (side === "home" ? n.home_spread : -n.home_spread)) : n.total;
-    const P = kind === "Spread" ? n[side + "_spread_odds"] : n[side + "_odds"];
-    if (L == null || P == null) return "";
-    const pay = (o) => o > 0 ? o / 100 : 100 / -o;
-    const k = kind === "Spread" || side === "under" ? L : -L, r = line == null ? null : (kind === "Spread" || side === "under" ? line : -line);
-    let c = "";
-    if (r != null && price != null) {
-      if (k > r + 1e-9) c = pay(P) < pay(price) - 1e-9 ? "better number, worse price" : "better number";
-      else if (Math.abs(k - r) < 1e-9 && pay(P) > pay(price) + 1e-9) c = "better price";
-    }
-    return "<div class='f' style='font-size:12px'>Novig " + esc(kind === "Spread" ? ln(L) : (side === "over" ? "o" : "u") + num(L)) +
-      " (" + esc(odds(P)) + ")" + (c ? " <span class='pos b'>" + c + "</span>" : "") + "</div>";
-  };
   D.games.forEach((g) => {
     const ls = logged(g, "spread"), lt = logged(g, "total");
     if (!ls && g.spread_verdict === "BET" && !heldOther(g, "spread", g.spread_side)) P.push({g, kind: "Spread", side: g.spread_side, bet: g.spread_pick + " " + ln(g.spread_line), price: g.spread_odds, book: g.spread_book,
@@ -689,7 +659,6 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       (D.replay ? "" : venueTag(p.g) + freshTag(p.g, p.kind)) +
       (p.status ? "<div class='f' style='font-size:12px'>" + esc(p.status) + "</div>" : "") +
       (p.also ? "<div class='f' style='font-size:12px'>" + esc(p.also) + "</div>" : "") +
-      novig(p.g, p.kind, p.side, p.line, p.price) +
       (p.g.news_flag ? "<div class='inj'>&#9888; " + esc(p.g.news_flag) + "</div>" : "") +
       (p.warn ? "<div class='inj'>&#9888; " + esc(p.warn) + "</div>" : "") +
       [["away", p.g.away], ["home", p.g.home]].filter(([sd]) => p.g[sd + "_injuries"]).map(([sd, nm]) => "<div class='inj'>" + esc(nm) + ": " + esc(p.g[sd + "_injuries"]) + "</div>").join("") + "</td><td>" +
@@ -743,7 +712,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   $("t-bandb").innerHTML = BB.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r'>Edge</th><th class='r'>Units</th><th class='r'>Result</th><th></th></tr></thead><tbody>" +
     BB.map((p) => "<tr><td><div class='b pick'><span class='tag'>Band B</span> " + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
       venueTag(p.g) + freshTag(p.g, p.kind) +
-      (p.res ? "" : novig(p.g, p.kind, p.side, p.line, p.price)) + "</td><td>" +
+      "</td><td>" +
       esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r'>" + sgn(p.edge) + "</td><td class='r'>" + num(p.units, 2) +
       "</td><td class='r'>" + (p.res ? esc(p.res) + (p.profit != null ? " <span class='" + (p.profit > 0 ? "pos" : p.profit < 0 ? "neg" : "m") + "'>" + sgn(p.profit, 2) + "</span>" : "") : "–") + "</td><td class='r'>" +
       "</td></tr>").join("") + "</tbody>"
@@ -797,20 +766,14 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     boardInto($("t-board"), D.games.filter((g) => !only || g.spread_verdict === "BET" || g.total_verdict === "BET" ||
       loggedSide(g, "spread") || loggedSide(g, "total")), "No games.");
   };
-  // one odds-board tile per game (logos, every book, Novig, best, edge), into any table: the board and the watch list
+  // one odds-board tile per game (logos, every book, best, edge), into any table: the board and the watch list
   const boardInto = (table, games, empty) => {
     const G = games.slice().sort((a, b) => String(a.start).localeCompare(String(b.start)) || a.home.localeCompare(b.home));
     const mh = {spread: "Model", total: "Model", ml: "Win %"}[market];
     let h = "<thead><tr><th class='tm'>Time</th><th>Team</th><th class='r pts'>Proj</th><th class='r'>" + mh + "</th>" +
       BOOKS.map((b, j) => "<th class='bk" + (j >= 4 ? " bk-minor" : "") + "'>" + b + "</th>").join("") +
-      "<th class='bk nv' title='Novig exchange price, shown only: never used for picks, Best or CLV'>Novig</th>" +
       "<th class='bestc'>Best</th><th class='r edge'>Edge</th></tr></thead>";
-    if (!G.length) { table.innerHTML = h + "<tbody><tr><td class='empty' colspan='" + (BOOKS.length + 6) + "'>" + esc(empty) + "</td></tr></tbody>"; return; }
-    // Novig (show-only, cbb/odds_api.py DISPLAY_BOOKS): its own column, never in Best or a pick
-    const nvCell = (g, sd, i) => { const n = g.novig; if (!n) return cell(null);
-      if (market === "spread") return n.home_spread == null ? cell(null) : cell(ln(sd === "home" ? n.home_spread : -n.home_spread), n[sd + "_spread_odds"], null, false);
-      if (market === "total") { const ou = i === 0 ? "over" : "under"; return n.total == null ? cell(null) : cell((i === 0 ? "o" : "u") + num(n.total), n[ou + "_odds"], null, false); }
-      return cell(null); };
+    if (!G.length) { table.innerHTML = h + "<tbody><tr><td class='empty' colspan='" + (BOOKS.length + 5) + "'>" + esc(empty) + "</td></tr></tbody>"; return; }
     h += G.map((g) => {
       const sides = ["away", "home"];
       const hasBet = (market === "spread" && (g.spread_verdict === "BET" || loggedSide(g, "spread"))) ||
@@ -852,7 +815,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
           (i === 1 && !g.neutral ? "<span class='f'>@ </span>" : "") + logo(g[sd + "_id"], 18) + esc(team) +
           (g.state === "post" ? " <span class='m'>" + esc(g[sd + "_score"]) + "</span>" : "") +
           (g[sd + "_injuries"] ? "<div class='inj'>" + esc(g[sd + "_injuries"]) + "</div>" : "") + "</td><td class='r pts'>" + pts + "</td><td class='r b'>" + model + "</td>" +
-          bookCells.map((c, j) => "<td class='bk" + (j >= 4 ? " bk-minor" : "") + "'>" + c + "</td>").join("") + "<td class='bk nv'>" + nvCell(g, sd, i) + "</td>" +
+          bookCells.map((c, j) => "<td class='bk" + (j >= 4 ? " bk-minor" : "") + "'>" + c + "</td>").join("") +
           "<td class='bestc'>" + best(g, sd, i) + "</td><td class='r edge'>" + edge + "</td></tr>";
       }).join("");
       return "<tbody class='g" + (hasBet ? " has-bet" : "") + "' data-gid='" + g.game_id + "'>" + rows + "</tbody>";

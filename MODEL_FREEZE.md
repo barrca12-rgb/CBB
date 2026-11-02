@@ -851,3 +851,16 @@ Chad bets every play, so marking placed by hand was redundant.
 ```
 4d1e03a599bc859019c077e3dc0348ed65a19a2a7ae7fed9bfde42683d713447  cbb/tracker.py
 ```
+
+## 2026-11-01: Novig removed from the card (Chad, Nov 1)
+
+"You can remove Novig."
+
+- **`cbb/report_html.py` (display only):** the card no longer shows Novig anywhere: not the odds-board column, the
+  watch list tiles, or the line under each play.
+  - Novig was show-only (Oct 30, option 2) and never fed picks, Best or CLV, so nothing else changes.
+- **Unchanged:** `cbb/odds_api.py` (frozen) still requests Novig in the same card call, at no extra credit cost.
+  Removing that request would be a frozen-file change, and it costs nothing to keep.
+- **Tests:** `audit/test_same_layout.py` checks two things:
+  - every date on the site, today through the coming week, has the same layout once its own data is set aside;
+  - Novig is gone from the template.
