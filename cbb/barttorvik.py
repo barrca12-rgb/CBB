@@ -21,6 +21,15 @@ from . import teams
 URL = "https://barttorvik.com/timemachine/team_results/{}_team_results.json.gz"
 # Barttorvik refuses some non-browser clients (403 from GitHub's runners with a plain user agent).
 UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
+# Bart Torvik whitelisted this model (his reply to Chad, Nov 1): a request whose User-Agent carries the string he gave
+# is let through. The string is the GitHub secret BARTTORVIK_UA_TOKEN (never in this public repo); without it every
+# request is sent exactly as before.
+UA_TOKEN_ENV = "BARTTORVIK_UA_TOKEN"
+
+
+def headers() -> dict:
+    tok = os.environ.get(UA_TOKEN_ENV, "").strip()
+    return {"User-Agent": UA["User-Agent"] + (f" {tok}" if tok else "")}
 CACHE = os.path.join(os.path.dirname(__file__), "cache", "barttorvik")
 # A date with no file is cached as missing, but a recent one may still be posted (the card asks for a day's file
 # before Barttorvik publishes it): within RETRY_DAYS of today it is asked again, at most once per RETRY_SECONDS.
@@ -49,7 +58,7 @@ def snapshot(day) -> pd.DataFrame | None:
         return t if len(t) else None
     if t is not None and (not _recent(day) or time.time() - os.path.getmtime(path) < RETRY_SECONDS):
         return None
-    req = urllib.request.Request(URL.format(d), headers=UA)
+    req = urllib.request.Request(URL.format(d), headers=headers())
     try:
         with urllib.request.urlopen(req, timeout=60) as r:
             raw = r.read()
@@ -133,7 +142,7 @@ def predict(games: pd.DataFrame, live_season: int | None = None) -> pd.DataFrame
 def current(season: int) -> pd.DataFrame | None:
     """Barttorvik's live ratings for `season` (barttorvik.com/<season>_team_results.json), for today's games
     when the time machine has no file yet (e.g. preseason). Not cached."""
-    req = urllib.request.Request(f"https://barttorvik.com/{season}_team_results.json", headers=UA)
+    req = urllib.request.Request(f"https://barttorvik.com/{season}_team_results.json", headers=headers())
     try:
         with urllib.request.urlopen(req, timeout=60) as r:
             rows = json.load(r)

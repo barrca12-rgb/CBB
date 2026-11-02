@@ -35,7 +35,8 @@ COLS = ["team", "adj_oe", "adj_de", "adj_tempo"]
 
 def rows_for(day: dt.date) -> list[list] | None:
     """The four columns for every team on `day`, or None when Barttorvik has no file for it yet."""
-    req = urllib.request.Request(URL.format(f"{day:%Y%m%d}"), headers=UA)
+    tok = os.environ.get("BARTTORVIK_UA_TOKEN", "").strip()   # Bart's whitelist string, if set on this machine
+    req = urllib.request.Request(URL.format(f"{day:%Y%m%d}"), headers={"User-Agent": UA["User-Agent"] + (f" {tok}" if tok else "")})
     try:
         with urllib.request.urlopen(req, timeout=60) as r:
             raw = r.read()

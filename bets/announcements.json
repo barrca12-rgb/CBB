@@ -93,5 +93,10 @@
   "id": "2026-11-02-main-only",
   "date": "2026-11-02",
   "text": "From Nov 2, this channel and the play alerts carry only main plays: each main play when logged, its result, and any correction. Band B plays and the line-move plays logged before the opener rule are still tracked and graded, in their own sections on the record page, but are no longer posted here, and none of them count in the official record."
+ },
+ {
+  "id": "2026-11-02-barttorvik-access",
+  "date": "2026-11-02",
+  "text": "Data note, Nov 2: Bart Torvik kindly whitelisted this model, so the card can read his daily T-Rank file again instead of falling back to the last file it had. Thanks, Bart. The model, its rules and the record are unchanged; this restores an input the model already uses."
  }
 ]

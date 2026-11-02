@@ -70,6 +70,7 @@ jobs:
           ODDS_API_EVERY_RUN: "1"                    # paid plan (20K credits/month): pull on all 12 runs
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}     # phone alerts for new BETs (cbb/notify.py); optional
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}   # public record channel (cbb/record.py); optional
+          BARTTORVIK_UA_TOKEN: ${{ secrets.BARTTORVIK_UA_TOKEN }}   # Bart Torvik's whitelist string (cbb/barttorvik.py); optional
         run: |
           # cbb.card_features runs cbb.run_day unchanged and also saves each day's stage-2 inputs for the ridge-1,000 shadow
           if [ -n "${{ github.event.inputs.date }}" ]; then python -m cbb.card_features --date "${{ github.event.inputs.date }}"

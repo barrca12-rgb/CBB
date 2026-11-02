@@ -968,3 +968,30 @@ a8632b5516e7eff8579e2b454208b5bd6761f90bfb82086a8bb69abf91f9c773  cbb/run_day.py
 17633634506b05b3b145865a36c244cf98e99697aadb7bb1d7f4589ada9953b8  cbb/tracker.py
 32ee4b3a2ba9df3ca86ce81f63a3a2909f00c729ddc0d1757426959786e1a4fc  audit/test_band_b.py
 ```
+
+## 2026-11-02: Barttorvik access, whitelisted by Bart Torvik (Chad, Nov 2)
+
+Bart Torvik replied to Chad's request (Nov 1): a request whose User-Agent includes the string he gave is
+whitelisted. This is his sanctioned access path. Before it, GitHub's runners were refused, and the card kept using
+the Oct 31 file.
+
+- **`cbb/barttorvik.py` (fingerprinted):** the time-machine and live-ratings requests add the string to the
+  User-Agent (`headers()`).
+  - The string is the repo secret `BARTTORVIK_UA_TOKEN` (added by Chad), never in this public repo; a test checks
+    that.
+  - With no secret set, every request is byte-for-byte as before.
+- **`.github/workflows/update.yml` (fingerprinted):** passes the secret to the card build, like the other keys.
+- **`local/fetch_barttorvik.py`:** uses the string too when it is set on Chad's machine. That fetcher should no
+  longer be needed.
+- **Not a model change.** The protocol already defines Barttorvik as the newest non-empty time-machine file in
+  the 7 days before the card day, else the live file. This restores that input, so `bt_margin` and `bt_total` move
+  from the Oct 31 file to the newest one. Picks, rules, staking and the record are otherwise unchanged.
+- **Tests:** `audit/test_barttorvik_ua.py` covers the string sent when the secret is set, unchanged without it, and
+  not in the repo. No network is used. All 161 audit tests pass.
+- **Discord note:** `2026-11-02-barttorvik-access`.
+- **New fingerprints:**
+
+```
+a5a849f6f7ab7bd2450a51ba9b053770afd9864acf952d6cf072b7171981dc97  cbb/barttorvik.py
+9a8704d4be0130821134c525ce94bce6d519e456d4ecdb2e355f55e601ed3a9d  .github/workflows/update.yml
+```
