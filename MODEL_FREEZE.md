@@ -995,3 +995,22 @@ the Oct 31 file.
 a5a849f6f7ab7bd2450a51ba9b053770afd9864acf952d6cf072b7171981dc97  cbb/barttorvik.py
 9a8704d4be0130821134c525ce94bce6d519e456d4ecdb2e355f55e601ed3a9d  .github/workflows/update.yml
 ```
+
+## 2026-11-02: Injury timing report and injury-check save step (operational fixes, Chad, Nov 2)
+
+- **`cbb/injury_sources.py` (fingerprinted; report only):** the timing report (`injuries/sources/timing.md`) failed
+  on every run from 17:30 UTC on. Two jobs had pulled ESPN in the same second, so `health.csv` held two ESPN rows
+  with one stamp, and `_online` could not look the stamp up. It now keeps the larger ESPN count per stamp.
+  `_online` feeds only the timing report and the source recommendation, which never switches the source on its own.
+- **`.github/workflows/injuries.yml` (not fingerprinted):** the 23:10 UTC injury check sent its alert, then failed
+  to save. Another tracked file had changed outside `injuries/`, so `git pull --rebase` refused on all 6 retries.
+  The save step now lists any such file in the log and drops it before pulling. The job only ever saves
+  `injuries/`. The alert's record was saved by the 23:12 card run, so nothing was lost.
+- **Unchanged:** the injury source (ESPN), the alerts, picks, stakes and the record.
+- **Test:** `audit/test_injury_timing.py`. The duplicate-stamp case fails on the old code and passes on the new.
+- **Discord note:** `2026-11-02-injury-housekeeping`.
+- **New fingerprint:**
+
+```
+c779e188f209c32f11ae15eff7439443f44d4d003b7e7cef5d36ee3b18dcebc8  cbb/injury_sources.py
+```

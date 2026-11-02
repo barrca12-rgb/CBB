@@ -45,6 +45,9 @@ jobs:
           git config user.email "41898+github-actions[bot]@users.noreply.github.com"
           git add -A injuries
           git diff --cached --quiet || git commit -m "Injury check ($(date -u +'%Y-%m-%d %H:%M') UTC)"
+          # this job saves only injuries/: any other tracked file it changed would block the pull below, so name
+          # it in the log and drop it (Nov 2, 23:10 UTC: an unnamed stray change failed every retry)
+          if ! git diff --quiet; then echo "Dropping changes outside injuries/:"; git diff --name-only; git checkout -- .; fi
           # retry: another job may push between this job's pull and push; fail only if every try fails
           ok=0
           for i in 1 2 3 4 5 6; do

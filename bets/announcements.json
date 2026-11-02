@@ -98,5 +98,10 @@
   "id": "2026-11-02-barttorvik-access",
   "date": "2026-11-02",
   "text": "Data note, Nov 2: Bart Torvik kindly whitelisted this model, so the card can read his daily T-Rank file again instead of falling back to the last file it had. Thanks, Bart. The model, its rules and the record are unchanged; this restores an input the model already uses."
+ },
+ {
+  "id": "2026-11-02-injury-housekeeping",
+  "date": "2026-11-02",
+  "text": "Housekeeping, Nov 2: two fixes to the injury checker's bookkeeping. Its source-timing report had stopped writing after two pulls landed in the same second, and one check failed to save its log after sending an alert. Both are fixed. The injury source, alerts, picks and the record are unchanged."
  }
 ]

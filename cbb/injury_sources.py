@@ -384,7 +384,8 @@ def _online(health: pd.DataFrame | None = None) -> pd.Series:
     if not len(h):
         return pd.Series(dtype="datetime64[ns, UTC]")
     h = h.assign(pulled_at=pd.to_datetime(h["pulled_at"], utc=True))
-    esp = h[h["source"] == "espn"].set_index("pulled_at")["rows"]
+    # two jobs pulling in the same second leave two ESPN rows with one stamp: keep the larger count per stamp
+    esp = h[h["source"] == "espn"].groupby("pulled_at")["rows"].max()
     h["working"] = h["ok"].astype(bool) & ((h["rows"] > 0) | (h["pulled_at"].map(esp).fillna(0) < 10))
     out = {}
     for src, g in h.sort_values("pulled_at").groupby("source"):
