@@ -61,7 +61,8 @@ def build() -> pd.DataFrame:
     for day in _days():
         d = pd.read_csv(os.path.join(ROOT, "reports", f"features_{day}.csv"))
         card = pd.read_csv(os.path.join(ROOT, "reports", f"cbb_{day}.csv"))
-        d = d.merge(card[["game_id", "open_total", "total_shift"]], on="game_id", how="left")
+        # a day with no lines yet has no open_total column (the card builds the coming week before books post)
+        d = d.merge(card.reindex(columns=["game_id", "open_total", "total_shift"]), on="game_id", how="left")
         d["neutral"] = d["neutral"].astype(float)
         d["conf_game"] = d["game_id"].map(conf).fillna(0.0)
         d["e2_pre"] = c["intercept"] + sum(d[k].astype(float) * v for k, v in c.items() if k in FEATS)

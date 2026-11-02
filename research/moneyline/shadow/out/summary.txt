@@ -1,5 +1,8 @@
-Spread plays (v1 and band B, not void): 3
+Spread plays (v1 and band B, not void): 83
   logged before the price log started (kept out of the reads): 3
+  moneyline on our side quoted at the play's book when logged: 42% of 80
 
 Graded plays recorded after the price log started:
-  none graded yet
+   group  plays  ML units (book)  ML ROI % (book)  ML CLV pp (book)  ML units (best)  ML ROI % (best)  ML CLV pp (best)  spread units  spread ROI %
+     all      1             0.31             30.8              5.05             0.33             33.3               6.6          0.91          90.9
+favorite      1             0.31             30.8              5.05             0.33             33.3               6.6          0.91          90.9
