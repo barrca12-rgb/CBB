@@ -155,3 +155,11 @@ The proposed 15-unit daily cap and any staking change are not part of this work.
   hashes match). ESPN covers mostly high-majors; low-major news still relies on the X link on each play.
 - **First live hit:** today's Arizona at UCLA play, with "Arizona's Lloyd fumes over fifth-year F RJ Godfrey's
   eligibility limbo" (ESPN, Oct 21).
+
+## 2026-11-02: Weekly health check follows the main-plays-only notifications
+
+- `audit/health.py`: since Nov 2, 01:30 UTC only main plays are posted to Discord (MODEL_FREEZE "Notifications carry
+  main plays only"). The missing-post flag now counts only band B bets logged before that time, so band B plays
+  logged later are not flagged as missing. Every count is unchanged. Operational only.
+- `research/quant/e2_shadow.py score`: a card built before books post has no `open_total` column, which made the
+  score read fail. That column is now read as empty. Research only.

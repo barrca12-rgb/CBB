@@ -14,6 +14,7 @@ import subprocess
 import pandas as pd
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
+MAIN_ONLY = pd.Timestamp("2026-11-02T01:30:00Z")   # notifications carry main plays only from this run (MODEL_FREEZE)
 
 
 def _in(ts: pd.Series, a: pd.Timestamp, b: pd.Timestamp) -> pd.Series:
@@ -55,6 +56,11 @@ def counts(a: pd.Timestamp, b: pd.Timestamp) -> dict:
     out["new bets logged"] = len(new)
     out["band B bets logged"] = len(newb)
     out["band B Discord posts"] = int(newb["bet_id"].isin(list(posted)).sum())
+    # from Nov 2, 01:30 UTC only main plays are posted (Chad: "only main plays in the notifications"); band B logged
+    # after that is never expected on Discord, so only earlier band B bets count toward the missing-post flag
+    nb_old = newb[pd.to_datetime(newb["logged_at"], utc=True, format="ISO8601") < MAIN_ONLY]
+    out["band B bets due on Discord"] = len(nb_old)
+    out["band B Discord posts (due)"] = int(nb_old["bet_id"].isin(list(posted)).sum())
     out["Discord posts (of new bets)"] = int(new["bet_id"].isin(list(posted)).sum())
     out["marked placed (of new bets)"] = int(new["placed"].fillna("").str.lower().eq("yes").sum())
     try:   # CLV coverage: settled plays dated in the window, with and without a primary close (cbb/clv_primary.py)
@@ -137,8 +143,8 @@ def flags(c: dict, prev: dict, end: pd.Timestamp) -> list[str]:
                  if c["plays stale"] > 0 else c.get("_stale inputs", "freshness check failed"))
     if c.get("band B trailing-100 CLV") is not None and c["band B trailing-100 CLV"] < 0:
         f.append(f"band B trailing-{c.get('band B trailing n', 100)} primary CLV {c['band B trailing-100 CLV']:+.2f} is below 0")
-    if c.get("band B bets logged", 0) and c["band B Discord posts"] < c["band B bets logged"]:
-        f.append(f"{c['band B bets logged'] - c['band B Discord posts']} new band B bet(s) not posted to Discord")
+    if c.get("band B bets due on Discord", 0) and c["band B Discord posts (due)"] < c["band B bets due on Discord"]:
+        f.append(f"{c['band B bets due on Discord'] - c['band B Discord posts (due)']} new band B bet(s) not posted to Discord")
     if c.get("new bets logged", 0) and c["Discord posts (of new bets)"] < c["new bets logged"]:
         f.append(f"{c['new bets logged'] - c['Discord posts (of new bets)']} new bet(s) not posted to Discord")
     return f
