@@ -79,10 +79,15 @@ def test_totals_band_b_is_built_but_switched_off():
 def test_v1_figures_ignore_band_b_rows(log):
     c = _card(12.5)
     tracker.log(c, pd.Timestamp("2026-11-04"), {"spread": 1.0, "total": 1.0})
-    before = (tracker.load().to_csv(index=False), tracker.status(), tracker.recent())
+    def status():   # the stake cap's refreshed_at is the clock time of each call: not a v1 figure
+        st = tracker.status()
+        for mk in st:
+            st[mk].get("cap", {}).pop("refreshed_at", None)
+        return st
+    before = (tracker.load().to_csv(index=False), status(), tracker.recent())
     tracker.log_band_b(_card(12.2).assign(game_id=2, home_id=11, away_id=21), pd.Timestamp("2026-11-04"))
     assert len(tracker.load("all")) == 2
-    assert (tracker.load().to_csv(index=False), tracker.status(), tracker.recent()) == before
+    assert (tracker.load().to_csv(index=False), status(), tracker.recent()) == before
     b = pd.read_csv(tracker.BETS)
     s, _ = fe.load_signals("v1", bets=b.assign(logged_at="2026-10-30T00:00:00+00:00", date="2026-11-04"))
     assert list(s["bet_type"].fillna("")) == [""]

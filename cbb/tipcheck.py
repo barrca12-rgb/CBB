@@ -34,7 +34,8 @@ def check(now: pd.Timestamp | None = None, alert: bool = True) -> pd.DataFrame:
     """Flagged open bets before tip; alerts once per (bet, times) and logs every finding. Returns the findings."""
     from . import clv_primary, notify, tracker
     now = now or pd.Timestamp.now(tz="UTC")
-    b = tracker.load("all")            # band B plays get the same tip-time check
+    b = tracker.load("all")            # every open bet is checked and logged; only main plays alert (Chad, Nov 2)
+    main = set(tracker.load("v1")["bet_id"])
     b = b[b["status"] == "open"]
     if not len(b):
         return pd.DataFrame()
@@ -48,7 +49,7 @@ def check(now: pd.Timestamp | None = None, alert: bool = True) -> pd.DataFrame:
     f["key"] = f["bet_id"] + "|" + f["cutoff"].astype(str) + "|" + f["espn_start"].astype(str) + "|" + f["feed_latest_start"].astype(str)
     f["alerted"] = False
     for i, r in f.iterrows():
-        if alert and r["key"] not in sent and notify.message("CBB tip time " + r["tip_check"], message(r)):
+        if alert and r["bet_id"] in main and r["key"] not in sent and notify.message("CBB tip time " + r["tip_check"], message(r)):
             sent.add(r["key"])
             f.at[i, "alerted"] = True
     with open(SENT, "w") as fh:

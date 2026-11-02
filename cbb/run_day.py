@@ -755,15 +755,13 @@ def build(day: pd.Timestamp, games: pd.DataFrame, lines: pd.DataFrame | None, re
                 hist = None
             quotelog.signals(new, card, day, quotelog.inputs(day, hist), getattr(odds.pull, "pulled_at", None),
                              getattr(odds.pull, "observations", None))
-        # band B (tracker.BAND_B): its own log rows, 0.5 u flat, tagged alert and Discord post; after v1's, so it
-        # never changes a v1 bet, stake, alert or post
+        # band B (tracker.BAND_B): its own log rows, 0.5 u flat; after v1's, so it never changes a v1 bet, stake,
+        # alert or post. No phone alert and no Discord post (Chad, Nov 2: "only main plays in the notifications")
         try:
             new_b = tracker.log_band_b(card, day)
             freshness.log_inputs(new_b, fr)
-            if notify.send(new_b, card):
-                print(f"Sent {len(new_b)} band B alert(s).")
             if new_b:
-                public_record.sync()
+                print(f"Logged {len(new_b)} band B play(s) (record page only; no alert or post).")
                 from . import ladder
                 ladder.pull_for(new_b, lines)
                 try:

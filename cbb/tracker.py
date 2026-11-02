@@ -281,7 +281,7 @@ def alert_voided() -> int:
     """One phone alert per voided bet (status "void") not yet announced: the play was alerted, then cancelled.
     Returns alerts sent; a bet is marked announced only when its alert goes out."""
     from . import notify
-    b = load("all")
+    b = load("v1")             # main plays only (Chad, Nov 2): no alerts for band B or line-move plays
     v = b[b["status"] == "void"]
     done = set(json.load(open(VOID_ALERTED))) if os.path.exists(VOID_ALERTED) else set()
     v = v[~v["bet_id"].isin(done)]

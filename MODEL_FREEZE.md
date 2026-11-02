@@ -937,3 +937,34 @@ e6fe6f6b690c2da50e22b649752a4e5c826bbb4f0514df4916167913ad9be856  audit/forward_
 92a8c380ef4d34198c0bd62668b22013d39116720067682b6e3770f4a85e28fa  .github/workflows/update.yml
 101cdcc777b24dd06a5900aa01e17755d75cda2f24ecce3aff964a0325f28f1d  FORWARD_TEST_PROTOCOL.md
 ```
+
+## 2026-11-02: Notifications carry main plays only (Chad, Nov 2)
+
+"Only main plays in the notifications, no band B or line moves."
+
+- **`cbb/run_day.py` (fingerprinted):** a new band B play is logged as before, with no phone alert and no Discord
+  post.
+- **`cbb/tracker.py` `alert_voided` (fingerprinted):** cancellation alerts go out for main plays only.
+- **`cbb/record.py` (Discord):** posts main plays only, as `tracker.load("v1")`: each play when logged, its
+  result, voids and reinstatements. Band B and the pre-rule line-move plays are never posted.
+- **`cbb/injury_watch.py`, `cbb/tipcheck.py`:** injury and tip-time alerts are for main plays only. The tip check
+  still checks and logs every open bet.
+- **Unchanged:**
+  - Band B and line-move plays are still logged, graded and shown in their own sections on the card and the
+    record page.
+  - The official record already excluded both, checked by marking one of each a win on a copy of the log: the
+    record, card tiles, record page, weekly chart, recent results and stake sizing did not move.
+  - Picks, rules and staking.
+- **Tests:**
+  - `audit/test_notifications.py`: Discord, cancellation alerts and the band B path.
+  - `audit/test_band_b.py`: its v1-unchanged check ignores the stake cap's clock-time `refreshed_at`, which had
+    made it fail when a run crossed a second.
+  - All 158 audit tests pass.
+- **Discord note:** `2026-11-02-main-only`.
+- **New fingerprints:**
+
+```
+a8632b5516e7eff8579e2b454208b5bd6761f90bfb82086a8bb69abf91f9c773  cbb/run_day.py
+17633634506b05b3b145865a36c244cf98e99697aadb7bb1d7f4589ada9953b8  cbb/tracker.py
+32ee4b3a2ba9df3ca86ce81f63a3a2909f00c729ddc0d1757426959786e1a4fc  audit/test_band_b.py
+```

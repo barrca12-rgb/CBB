@@ -178,7 +178,9 @@ def _sync(url: str) -> int:
     from . import clv_primary
     from . import tipoff
     tipoff.refresh(tracker.load("all"))                                # actual tips for the pregame check (cached)
-    b = clv_primary.attach(tracker.load("all")).sort_values("logged_at")   # results post the primary-close CLV; band B tagged
+    # main plays only (Chad, Nov 2: "only main plays in the notifications"): band B and the pre-rule line-move plays
+    # are never posted; results post the primary-close CLV
+    b = clv_primary.attach(tracker.load("v1")).sort_values("logged_at")
     for _, r in b.iterrows():
         i = r["bet_id"]
         if i not in st["bets"]:
