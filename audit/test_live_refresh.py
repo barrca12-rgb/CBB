@@ -138,3 +138,16 @@ def test_no_line_time_label_once_a_game_starts():
     body = t[i:t.index("};", i)]
     assert 'if (g.state === "in" || g.state === "post") return "";' in body
     assert "no book has a line up right now" in body and "no current line at " in body
+
+
+def test_a_card_run_keeps_the_game_clock(monkeypatch):
+    """Chad, Nov 2 ("it's not showing half and time anymore"): each card run rebuilt the page without the clock until
+    the next results refresh. The card build now reads the clock itself (ESPN's free scoreboard)."""
+    card = pd.read_csv(os.path.join(REPORTS, "cbb_2026-11-02.csv"))
+    card.loc[0, "state"] = "in"
+    rt = pd.DataFrame({"net": [1.0], "adj_oe": [110.0], "adj_de": [100.0], "adj_tempo": [68.0], "team": ["X"]}, index=[1])
+    monkeypatch.setattr(live_refresh, "clocks", lambda day: {str(card["game_id"].iloc[0]): "15:48 - 2nd"})
+    page = report_html.build(card, rt, pd.Timestamp("2026-11-02"), 2027)
+    assert json.loads(DATA.search(page).group(1))["games"][0]["clock"] == "15:48 - 2nd"
+    monkeypatch.setattr(live_refresh, "clocks", lambda day: (_ for _ in ()).throw(OSError("down")))
+    assert "clock" not in json.loads(DATA.search(report_html.build(card, rt, pd.Timestamp("2026-11-02"), 2027)).group(1))["games"][0]

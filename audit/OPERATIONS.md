@@ -228,3 +228,7 @@ The proposed 15-unit daily cap and any staking change are not part of this work.
   - a pregame game says "no book has a line up right now", or "no current line at <book>" when other books have one.
   - Freshness alerts and `bets/inputs.csv` are unchanged.
 - **Test:** `audit/test_live_refresh.py`.
+- **Follow-up, same night:** each 10-minute card run rebuilt the card without the game clock, and the results
+  refresh correctly held off publishing until the next pass, so "2nd half · 15:48 left" disappeared for 3-5
+  minutes after every card run. The card build (`report_html.build`) now reads the clock from ESPN's free
+  scoreboard when any game has started (display only; a failure leaves scores only).

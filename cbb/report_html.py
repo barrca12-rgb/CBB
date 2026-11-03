@@ -211,6 +211,17 @@ def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, 
     if not replay:
         card = _venue_view(card, day, fetch=record is not None)
     games = [{k: _clean(v) for k, v in r.items()} for r in card.to_dict("records")]
+    if not replay and any(g.get("state") in ("in", "post") for g in games):
+        # the game clock ("2nd half · 15:48 left") from ESPN's free scoreboard, so a card run keeps what the results
+        # refresh (cbb/live_refresh.py) shows between runs; display only, never fails the build
+        try:
+            from .live_refresh import clocks
+            clk = clocks(day)
+            for g in games:
+                if str(g.get("game_id")) in clk:
+                    g["clock"] = clk[str(g.get("game_id"))]
+        except Exception as e:
+            print(f"Game clocks unavailable ({e}); scores only.")
     t = rt.reset_index(names="espn_id")
     t["rank"] = range(1, len(t) + 1)
     rat = [{k: _clean(v) for k, v in r.items()} for r in
