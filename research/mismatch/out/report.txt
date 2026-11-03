@@ -1,0 +1,52 @@
+Early-season mismatch study (research/mismatch/PLAN.md). Early = days 0-13 of each season; bootstrap by game date, 2000 draws, seed 7.
+
+H1. Calibration slope: actual home margin on the model's home margin (above 1 = margins understated)
+  2014-17     early slope 1.041 (n=2739)  later 1.000 (n=19141)  early minus later +0.040  95% [-0.015, +0.103]
+  2024-26     early slope 1.040 (n=1867)  later 1.031 (n=15361)  early minus later +0.009  95% [-0.050, +0.071]
+  all 2014-26 early slope 1.008 (n=8402)  later 0.992 (n=62225)  early minus later +0.015  95% [-0.013, +0.044]
+
+H2. Big lines (|opener| >= 17.5), from the favorite's side: lean = model - market, outcome = actual - market
+  2014-17 early n= 266  vs opener: lean +0.45, outcome +1.04, outcome minus lean +0.58 95% [-0.99, +2.18]  |  vs close: lean +0.22, outcome +0.81
+  2014-17 later n= 826  vs opener: lean +0.11, outcome +1.06, outcome minus lean +0.95 95% [+0.22, +1.67]  |  vs close: lean +0.37, outcome +1.32
+  2024-26 early n= 547  vs opener: lean +0.58, outcome +1.32, outcome minus lean +0.74 95% [-0.58, +1.88]  |  vs close: lean -0.53, outcome +0.20
+  2024-26 later n=1174  vs opener: lean -0.64, outcome +0.73, outcome minus lean +1.37 95% [+0.70, +2.01]  |  vs close: lean -0.90, outcome +0.47
+
+H3. v1 plays at the opener (edge >= 2.5), graded at the opener
+  2014-17
+    underdog 17.5+   early n=  34  win  47.1%  95% [31.5, 63.3]
+    underdog 17.5+   later n=  92  win  56.5%  95% [46.3, 66.2]
+    underdog < 17.5  early n= 191  win  55.5%  95% [48.4, 62.4]
+    underdog < 17.5  later n=1066  win  57.3%  95% [54.3, 60.3]
+    favorite 17.5+   early n=  58  win  60.3%  95% [47.5, 71.9]
+    favorite 17.5+   later n= 127  win  54.3%  95% [45.7, 62.7]
+    favorite < 17.5  early n= 235  win  57.4%  95% [51.1, 63.6]
+    favorite < 17.5  later n= 798  win  55.6%  95% [52.2, 59.1]
+  2024-26
+    underdog 17.5+   early n=  51  win  60.8%  95% [47.1, 73.0]
+    underdog 17.5+   later n= 205  win  55.1%  95% [48.3, 61.8]
+    underdog < 17.5  early n=  89  win  52.8%  95% [42.5, 62.8]
+    underdog < 17.5  later n= 922  win  60.2%  95% [57.0, 63.3]
+    favorite 17.5+   early n= 103  win  59.2%  95% [49.6, 68.2]
+    favorite 17.5+   later n=  72  win  58.3%  95% [46.8, 69.0]
+    favorite < 17.5  early n= 221  win  50.2%  95% [43.7, 56.8]
+    favorite < 17.5  later n= 605  win  57.9%  95% [53.9, 61.7]
+  both eras
+    underdog 17.5+   early n=  85  win  55.3%  95% [44.7, 65.4]
+    underdog 17.5+   later n= 297  win  55.6%  95% [49.9, 61.1]
+    underdog < 17.5  early n= 280  win  54.6%  95% [48.8, 60.4]
+    underdog < 17.5  later n=1988  win  58.7%  95% [56.5, 60.8]
+    favorite 17.5+   early n= 161  win  59.6%  95% [51.9, 66.9]
+    favorite 17.5+   later n= 199  win  55.8%  95% [48.8, 62.5]
+    favorite < 17.5  early n= 456  win  53.9%  95% [49.4, 58.5]
+    favorite < 17.5  later n=1403  win  56.6%  95% [54.0, 59.2]
+
+Live reference (2026-27 cards so far): model minus close for the favorite, games with a close
+  |close| >= 17.5 n= 75  lean -0.46  (days: 2026-11-02, 2026-11-03)
+  7-17            n= 27  lean +0.79  (days: 2026-11-01, 2026-11-02, 2026-11-03)
+  < 7             n= 32  lean -1.05  (days: 2026-11-02, 2026-11-10)
+
+Decision rule (PLAN.md): propose a change only if (a), (b) and (c) all hold
+  (a) H1 early-minus-later slope above 0, interval excluding 0, both eras: no
+  (b) H2 early lean below early outcome, both eras: yes
+  (c) H3 early big-underdog plays under 52.4% pooled: no (47/85)
+  -> not all hold: no reliable evidence; nothing changes
