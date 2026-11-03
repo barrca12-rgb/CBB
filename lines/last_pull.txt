@@ -1,1 +1,1 @@
-2026-11-03 19:46 UTC  events 0  book-game rows 91 (0 SGO, 91 The Odds API)  unmatched teams: CSU Fullerton Titans, CSU Northridge Matadors, Cal Baptist Lancers, Fort Wayne Mastodons, New Orleans Privateers, Sam Houston St Bearkats  The Odds API credits left: 97168
+2026-11-03 19:50 UTC  events 0  book-game rows 95 (0 SGO, 95 The Odds API)  unmatched teams: CSU Fullerton Titans, CSU Northridge Matadors, Cal Baptist Lancers, Fort Wayne Mastodons, New Orleans Privateers, Sam Houston St Bearkats  The Odds API credits left: 97163
