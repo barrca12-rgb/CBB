@@ -140,8 +140,65 @@ def refresh_cards(scores, reports: str | None = None, rec: dict | None = None) -
     return done
 
 
+def _over(day: str, reports: str, scores, now: pd.Timestamp) -> bool:
+    """True when every game on that day's card is final, postponed or long past its tip without starting."""
+    f = os.path.join(reports, f"cbb_{day}.html")
+    if not os.path.exists(f):
+        return True
+    m = DATA.search(open(f).read())
+    games = json.loads(m.group(1)).get("games", []) if m else []
+    try:   # the scoreboard now, not the page's last copy
+        sl = scores(pd.Timestamp(day))
+        state = {str(r["game_id"]): r.get("state") for _, r in sl.iterrows()} if len(sl) else {}
+    except Exception as e:
+        print(f"Scores for {day} unavailable ({e}); using the card's.")
+        state = {}
+    for g in games:
+        st = state.get(str(g.get("game_id")), g.get("state"))
+        if st == "in":
+            return False
+        start = pd.to_datetime(g.get("start"), utc=True, errors="coerce")
+        if st == "pre" and pd.notna(start) and start >= now - pd.Timedelta(hours=3):
+            return False
+    return True
+
+
+def hold_tonight(reports: str | None = None, scores=None, now: pd.Timestamp | None = None, fresh_card: bool = False) -> str:
+    """The home page stays on tonight's card until its last game is final (Chad, Nov 2). After 8 pm ET the card run
+    makes tomorrow's card the current one (run_day --auto), while tonight's games still play. This keeps
+    days.json's "current" (which the site build copies to index.html) on the day before while any of its games is
+    live or still to tip, and records the card run's own choice in "held_from"; once they are all final it goes back.
+    fresh_card: days.json's "current" was just written by the card run (it wins over an older "held_from").
+    Display only: run_day still builds, prices and logs tomorrow's card exactly as before. Returns the day shown."""
+    reports = reports or report_html.REPORTS_DIR
+    scores = scores or run_day.slate
+    now = now or pd.Timestamp.now(tz="UTC")
+    path = os.path.join(reports, "days.json")
+    if not os.path.exists(path):
+        return ""
+    days = json.load(open(path))
+    card_cur = days.get("current", "") if fresh_card else (days.get("held_from") or days.get("current", ""))
+    if not card_cur:
+        return ""
+    prev = f"{pd.Timestamp(card_cur) - pd.Timedelta(days=1):%Y-%m-%d}"
+    new = {k: v for k, v in days.items() if k != "held_from"}
+    new["current"] = card_cur
+    if prev in days.get("days", []) and not _over(prev, reports, scores, now):
+        new.update(current=prev, held_from=card_cur)
+    if new != days:
+        with open(path, "w") as fh:
+            json.dump(new, fh)
+    return new["current"]
+
+
 def main() -> bool:
     """Grade, rebuild and say whether anything changed (so the workflow publishes only then)."""
+    try:   # the home page stays on tonight until its last game ends; flips to tomorrow once they are all final
+        before = json.load(open(os.path.join(report_html.REPORTS_DIR, "days.json"))).get("current")
+        held = hold_tonight() != before
+    except Exception as e:
+        print(f"Home-page day check failed ({e}); left as is.")
+        held = False
     try:
         n = tracker.settle()
     except Exception as e:
@@ -161,7 +218,7 @@ def main() -> bool:
         except Exception as e:
             print(f"Record page failed ({e}); continuing.")
     print(f"Graded {n} play(s); cards rewritten: {cards or 'none'}; past days: {past or 'none'}.")
-    return bool(n or cards or past)
+    return bool(n or cards or past or held)
 
 
 if __name__ == "__main__":

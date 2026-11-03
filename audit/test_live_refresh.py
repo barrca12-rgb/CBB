@@ -197,3 +197,38 @@ def test_the_page_updates_its_own_scores_and_clock(tmp_path):
     assert o["one"].startswith("2nd half · 3:05 left") and "55" in o["one"] and "61" in o["one"]
     assert o["board"] == ["55", "61"]
     assert o["two"].startswith("Final") and o["two"].endswith("W")      # home won by 145: covers any home line
+
+
+def _hold_setup(tmp_path, games_state):
+    src = open(os.path.join(REPORTS, "cbb_2026-11-02.html")).read()
+    data = json.loads(DATA.search(src).group(1))
+    data["games"] = [dict(data["games"][0], game_id=1, state=st, start=start) for st, start in games_state]
+    (tmp_path / "cbb_2026-11-02.html").write_text(live_refresh._page(src, data))
+    json.dump({"days": ["2026-11-02", "2026-11-03"], "current": "2026-11-03"}, open(tmp_path / "days.json", "w"))
+
+
+def test_home_page_holds_tonight_until_the_last_game_is_final(tmp_path):
+    """Chad, Nov 2: "keep home page on tonight until last game ends"."""
+    now = pd.Timestamp("2026-11-03T02:00:00Z")                        # 9 pm ET Nov 2: the card run made Nov 3 current
+    no_scores = lambda day: pd.DataFrame()
+    _hold_setup(tmp_path, [("post", "2026-11-02T23:00Z"), ("in", "2026-11-03T01:00Z")])
+    assert live_refresh.hold_tonight(str(tmp_path), no_scores, now, fresh_card=True) == "2026-11-02"
+    dj = json.load(open(tmp_path / "days.json"))
+    assert dj["current"] == "2026-11-02" and dj["held_from"] == "2026-11-03"
+    # a game still to tip holds it too; a postponed one (tip long past, never started) does not
+    _hold_setup(tmp_path, [("pre", "2026-11-03T04:59Z")])
+    assert live_refresh.hold_tonight(str(tmp_path), no_scores, now, fresh_card=True) == "2026-11-02"
+    _hold_setup(tmp_path, [("post", "2026-11-02T23:00Z"), ("pre", "2026-11-02T17:00Z")])
+    assert live_refresh.hold_tonight(str(tmp_path), no_scores, now, fresh_card=True) == "2026-11-03"
+    # the results refresh releases it once the scoreboard says the last game is final
+    _hold_setup(tmp_path, [("in", "2026-11-03T01:00Z")])
+    live_refresh.hold_tonight(str(tmp_path), no_scores, now, fresh_card=True)
+    final = lambda day: pd.DataFrame([{"game_id": 1, "state": "post", "home_score": 70, "away_score": 60}])
+    assert live_refresh.hold_tonight(str(tmp_path), final, now) == "2026-11-03"
+    assert json.load(open(tmp_path / "days.json")) == {"days": ["2026-11-02", "2026-11-03"], "current": "2026-11-03"}
+
+
+def test_card_run_applies_the_hold_after_its_own_build():
+    src = open(os.path.join(ROOT, "cbb", "card_features.py")).read()
+    main = src[src.index('if __name__ == "__main__":'):]
+    assert main.index("run_day.main()") < main.index("refresh_past") < main.index("hold_tonight(fresh_card=True)")

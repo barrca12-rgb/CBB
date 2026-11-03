@@ -271,3 +271,9 @@ if __name__ == "__main__":
             print(f"Past cards brought up to date: {', '.join(n)}")
     except Exception as e:
         print(f"Past cards not refreshed ({e}); continuing.")
+    try:   # the home page stays on tonight's card until its last game is final (display only)
+        from . import live_refresh
+        shown = live_refresh.hold_tonight(fresh_card=True)
+        print(f"Home page shows {shown}.")
+    except Exception as e:
+        print(f"Home-page day check failed ({e}); continuing.")

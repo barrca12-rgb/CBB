@@ -236,3 +236,18 @@ The proposed 15-unit daily cap and any staking change are not part of this work.
   ESPN's free scoreboard itself every 30 seconds while a game on it is on (ESPN allows browser reads), and repaints
   scores, the clock and the final W/L in place. It also reads it on open and when the tab comes back into view.
   Display only: the published card, record and bet log update as before. Test: `audit/test_live_refresh.py`.
+
+## 2026-11-02: Home page stays on tonight until the last game is final (Chad, Nov 2)
+
+- **Why:** after 8 pm ET the card run makes tomorrow's card the current one (run_day `--auto`, unchanged), so the
+  home page jumped to tomorrow while tonight's games were still on.
+- **`live_refresh.hold_tonight` (display only):**
+  - While any game on the day before the card's current day is live, or still to tip (no more than 3 hours past
+    its start), days.json's `current` (the day the site build copies to index.html) stays on that day.
+  - The card run's own choice is kept in `held_from`.
+  - Once every game is final, postponed or long past its tip, `current` goes back to the card run's day.
+  - Applied by `cbb/card_features.py` after each card build, and by each results refresh. The refresh is what
+    switches the home page within ~3 minutes of the last final.
+- **Unchanged:** run_day still builds, prices and logs tomorrow's card exactly as before; no fingerprinted file
+  changed.
+- **Tests:** `audit/test_live_refresh.py`.
