@@ -232,3 +232,7 @@ The proposed 15-unit daily cap and any staking change are not part of this work.
   refresh correctly held off publishing until the next pass, so "2nd half · 15:48 left" disappeared for 3-5
   minutes after every card run. The card build (`report_html.build`) now reads the clock from ESPN's free
   scoreboard when any game has started (display only; a failure leaves scores only).
+- **Follow-up 2 ("time not updating"):** a 3-minute publish makes the clock jump in steps. The card page now reads
+  ESPN's free scoreboard itself every 30 seconds while a game on it is on (ESPN allows browser reads), and repaints
+  scores, the clock and the final W/L in place. It also reads it on open and when the tab comes back into view.
+  Display only: the published card, record and bet log update as before. Test: `audit/test_live_refresh.py`.

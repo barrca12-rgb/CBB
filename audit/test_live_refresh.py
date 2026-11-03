@@ -151,3 +151,49 @@ def test_a_card_run_keeps_the_game_clock(monkeypatch):
     assert json.loads(DATA.search(page).group(1))["games"][0]["clock"] == "15:48 - 2nd"
     monkeypatch.setattr(live_refresh, "clocks", lambda day: (_ for _ in ()).throw(OSError("down")))
     assert "clock" not in json.loads(DATA.search(report_html.build(card, rt, pd.Timestamp("2026-11-02"), 2027)).group(1))["games"][0]
+
+
+TICK = r"""
+const {chromium} = require('playwright');
+(async () => {
+  const [file, gid] = process.argv.slice(2);
+  const b = await chromium.launch(); const p = await b.newPage({viewport: {width: 1300, height: 900}});
+  const errors = []; p.on('pageerror', (e) => errors.push(String(e)));
+  let n = 0;
+  await p.route(/site\.api\.espn\.com/, (r) => { n++; const fin = n > 1; return r.fulfill({status: 200, contentType: 'application/json',
+    headers: {'access-control-allow-origin': '*'}, body: JSON.stringify({events: [{id: gid, status: {type: {state: fin ? 'post' : 'in',
+    shortDetail: fin ? 'Final' : '3:05 - 2nd'}}, competitions: [{competitors: [{homeAway: 'home', score: fin ? '200' : '61'},
+    {homeAway: 'away', score: '55'}]}]}]})}); });
+  await p.goto('file://' + file);
+  const sel = "#t-plays .score[data-g='" + gid + "']";
+  await p.waitForTimeout(2500);
+  const one = await p.$eval(sel, (e) => e.textContent);
+  const board = await p.$$eval(".sc[data-g='" + gid + "']", (es) => es.map((e) => e.textContent));
+  await p.evaluate(() => window.otgLiveTick()); await p.waitForTimeout(500);
+  const two = await p.$eval(sel, (e) => e.textContent);
+  console.log(JSON.stringify({one, board, two, errors})); await b.close();
+})();
+"""
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="needs node + playwright")
+def test_the_page_updates_its_own_scores_and_clock(tmp_path):
+    """Chad, Nov 2 ("time not updating"): while a game is on, the page reads ESPN's scoreboard every 30 seconds and
+    repaints scores, the clock and the final W/L in place, between site publishes."""
+    src = open(os.path.join(REPORTS, "cbb_2026-11-02.html")).read()
+    D = json.loads(DATA.search(src).group(1))
+    g = next(x for x in D["games"] if x.get("spread_logged_pick") and x.get("spread_logged_side") == "home"
+             and float(x["spread_logged_line"]) > -100)
+    g.update(state="in", home_score=40, away_score=33, clock="8:41 - 2nd")
+    f = tmp_path / "card.html"
+    f.write_text(live_refresh._page(src, D))
+    js = tmp_path / "t.js"
+    js.write_text(TICK)
+    env = dict(os.environ, NODE_PATH=subprocess.run(["npm", "root", "-g"], capture_output=True, text=True).stdout.strip())
+    r = subprocess.run(["node", str(js), str(f), str(g["game_id"])], capture_output=True, text=True, timeout=120, env=env)
+    assert r.returncode == 0, r.stderr
+    o = json.loads(r.stdout.strip().splitlines()[-1])
+    assert o["errors"] == []
+    assert o["one"].startswith("2nd half · 3:05 left") and "55" in o["one"] and "61" in o["one"]
+    assert o["board"] == ["55", "61"]
+    assert o["two"].startswith("Final") and o["two"].endswith("W")      # home won by 145: covers any home line

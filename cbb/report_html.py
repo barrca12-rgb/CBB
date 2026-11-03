@@ -637,9 +637,13 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     const hs = Number(g.home_score), as = Number(g.away_score), l = Number(line);
     const r = kind === "Spread" ? (side === "home" ? hs - as : as - hs) + l : (hs + as - l) * (side === "over" ? 1 : -1);
     return r > 0 ? "W" : r < 0 ? "L" : "P"; };
-  const scoreTag = (g, res) => started(g) ? "<div class='score'>" + (g.state === "in" ? "<span class='dot'></span>" : "") +
+  const scoreInner = (g, res) => started(g) ? (g.state === "in" ? "<span class='dot'></span>" : "") +
     esc(clock(g)) + " · " + esc(g.away) + " " + esc(g.away_score) + ", " + esc(g.home) + " " + esc(g.home_score) +
-    (res ? "<span class='res " + res + "'>" + res + "</span>" : "") + "</div>" : "";
+    (res ? "<span class='res " + res + "'>" + res + "</span>" : "") : "";
+  // every score line carries its game and play, so the in-page live updater (bottom of this script) can repaint it
+  const scoreTag = (g, kind, side, line, grade) => "<div class='score' data-g='" + esc(g.game_id) + "' data-k='" + esc(kind || "") +
+    "' data-s='" + esc(side || "") + "' data-l='" + esc(line ?? "") + "' data-r='" + (grade ? 1 : 0) + "'" + (started(g) ? "" : " hidden") + ">" +
+    scoreInner(g, grade ? cover(g, kind, side, line) : null) + "</div>";
   const matchup = (g) => g.away + (g.neutral ? " vs " : " @ ") + g.home;
   // phones: each row of these tables becomes a small card; each cell is labeled with its column header
   const stack = (id) => { const t = $(id); if (!t) return; const hs = [...t.querySelectorAll("thead th")].map((h) => h.textContent.trim());
@@ -798,7 +802,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     "<th></th>";
   $("t-plays").innerHTML = P.length ? "<thead><tr>" + bar + "</tr></thead><tbody>" +
     P.map((p, i) => (i ? "<tr class='rephead'>" + bar + "</tr>" : "") + "<tr data-gid='" + p.g.game_id + "' data-mk='" + p.kind.toLowerCase() + "'><td><div class='b pick'>" + logo(pickId(p.g, p.kind, p.side), 20) + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
-      scoreTag(p.g, cover(p.g, p.kind, p.side, p.line)) +
+      scoreTag(p.g, p.kind, p.side, p.line, true) +
       (p.kind === "Total" && p.g.crew ? "<div class='f' style='font-size:11px'>Refs: " + esc(p.g.crew) + "</div>" : "") +
       (D.replay ? "" : venueTag(p.g) + freshTag(p.g, p.kind)) +
       (p.status ? "<div class='f' style='font-size:12px'>" + esc(p.status) + "</div>" : "") +
@@ -891,7 +895,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     (bbr.clv != null ? " · Alert CLV " + clvf(bbr.clv) + " on " + bbr.clv_n : "") + (bbr.open ? " · " + bbr.open + " open" : "") +
     ". A separate bet type on spreads only, never counted in the record above: v1's edge of 2-2.49 points with v1's +2% EV rule, 0.5 unit flat.";
   $("t-bandb").innerHTML = BB.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r'>Edge</th><th class='r'>Units</th><th class='r'>Result</th><th></th></tr></thead><tbody>" +
-    BB.map((p) => "<tr><td><div class='b pick'><span class='tag'>Band B</span> " + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" + scoreTag(p.g, null) +
+    BB.map((p) => "<tr><td><div class='b pick'><span class='tag'>Band B</span> " + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" + scoreTag(p.g, p.kind, p.side, p.line, false) +
       venueTag(p.g) + freshTag(p.g, p.kind) +
       "</td><td>" +
       esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r'>" + sgn(p.edge) + "</td><td class='r'>" + num(p.units, 2) +
@@ -998,10 +1002,10 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
           const top = Math.max(...prices.filter((v) => v != null));
           bookCells = BOOKS.map((bk, j) => { const x = bl(g, bk); return x && x[sd + "_ml"] != null ? cell(odds(x[sd + "_ml"]), null, x[sd + "_ml_link"], prices[j] === top && prices.filter((v) => v != null).length > 1) : cell(null); });
         }
-        return "<tr>" + (i === 0 ? "<td class='tm' rowspan='2'>" + esc(tip(g)) + (started(g) ? "<div class='f'>" + esc(clock(g)) + "</div>" : "") + "</td>" : "") +
-          "<td class='team'>" + (i === 0 ? "<div class='tm-sm'>" + esc(tip(g)) + (started(g) ? " · " + esc(clock(g)) : "") + "</div>" : "") +
+        return "<tr>" + (i === 0 ? "<td class='tm' rowspan='2'>" + esc(tip(g)) + "<div class='f clk' data-g='" + esc(g.game_id) + "'>" + (started(g) ? esc(clock(g)) : "") + "</div></td>" : "") +
+          "<td class='team'>" + (i === 0 ? "<div class='tm-sm'>" + esc(tip(g)) + "<span class='clk2' data-g='" + esc(g.game_id) + "'>" + (started(g) ? " · " + esc(clock(g)) : "") + "</span></div>" : "") +
           (i === 1 && !g.neutral ? "<span class='f'>@ </span>" : "") + logo(g[sd + "_id"], 18) + esc(team) +
-          (started(g) ? " <span class='" + (g.state === "in" ? "b" : "m") + "'>" + esc(g[sd + "_score"]) + "</span>" : "") +
+          " <span class='sc " + (g.state === "in" ? "b" : "m") + "' data-g='" + esc(g.game_id) + "' data-sd='" + sd + "'>" + (started(g) ? esc(g[sd + "_score"]) : "") + "</span>" +
           (g[sd + "_injuries"] ? "<div class='inj'>" + esc(g[sd + "_injuries"]) + "</div>" : "") + "</td><td class='r pts'>" + pts + "</td><td class='r b'>" + model + "</td>" +
           bookCells.map((c, j) => "<td class='bk" + (j >= 4 ? " bk-minor" : "") + "'>" + c + "</td>").join("") +
           "<td class='bestc'>" + best(g, sd, i) + "</td><td class='r edge'>" + edge + "</td></tr>";
@@ -1138,6 +1142,52 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   };
   if (store.get()) gh("/workflows/" + WF + "/runs?per_page=1").then((r) => r.json()).then((j) => {
     const run = j.workflow_runs?.[0]; if (run && run.status !== "completed") followRun(new Date(run.created_at)); }).catch(() => {});
+
+  // Live scores in the page itself (Chad, Nov 2: "time not updating"): while a game on this card is on, read ESPN's
+  // free scoreboard every 30 seconds and repaint scores, clocks and final W/L in place. Display only; the published
+  // card, the record and the bet log are unchanged (they update through the card run and cbb/live_refresh.py).
+  if (!D.replay) {
+    const SB = "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard?groups=50&limit=500&dates=";
+    const GI = {};
+    D.games.forEach((g) => { GI[String(g.game_id)] = g; });
+    const paint = () => {
+      document.querySelectorAll(".score[data-g]").forEach((el) => {
+        const g = GI[el.dataset.g]; if (!g) return;
+        el.hidden = !started(g);
+        el.innerHTML = scoreInner(g, el.dataset.r === "1" ? cover(g, el.dataset.k, el.dataset.s, el.dataset.l === "" ? null : el.dataset.l) : null);
+      });
+      document.querySelectorAll(".clk[data-g], .clk2[data-g]").forEach((el) => {
+        const g = GI[el.dataset.g]; if (!g) return;
+        el.textContent = started(g) ? (el.classList.contains("clk2") ? " · " : "") + clock(g) : "";
+      });
+      document.querySelectorAll(".sc[data-g]").forEach((el) => {
+        const g = GI[el.dataset.g]; if (!g) return;
+        el.textContent = started(g) ? String(g[el.dataset.sd + "_score"] ?? "") : "";
+        el.className = "sc " + (g.state === "in" ? "b" : "m");
+      });
+    };
+    const active = () => { const now = Date.now();
+      return D.games.some((g) => g.state === "in" || (g.state !== "post" && g.start && Date.parse(g.start) <= now + 300000 && Date.parse(g.start) > now - 14400000)); };
+    const liveTick = async () => {
+      if (document.hidden || !active()) return;
+      try {
+        const d = await (await fetch(SB + String(D.date).replace(/-/g, ""), {cache: "no-store"})).json();
+        (d.events || []).forEach((ev) => {
+          const g = GI[String(ev.id)]; if (!g) return;
+          const st = ((ev.status || {}).type) || {}, c = (ev.competitions || [{}])[0] || {}, side = {};
+          (c.competitors || []).forEach((t) => { side[t.homeAway] = t; });
+          if (st.state) g.state = st.state;
+          ["home", "away"].forEach((sd) => { const v = side[sd] && side[sd].score; if (v != null && v !== "") g[sd + "_score"] = Number(v); });
+          if (st.shortDetail) g.clock = st.shortDetail;
+        });
+        paint();
+      } catch (e) {}
+    };
+    window.otgLiveTick = liveTick;
+    setTimeout(liveTick, 1500);
+    setInterval(liveTick, 30000);
+    document.addEventListener("visibilitychange", () => { if (!document.hidden) liveTick(); });
+  }
 
 })();
 </script>
