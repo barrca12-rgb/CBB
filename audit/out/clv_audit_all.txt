@@ -1,0 +1,13 @@
+Every play's CLV recomputed independently (standard library, protocol v2.5) vs the site, 2026-11-03 15:08 UTC
+  plays (not void): 163; with a close: 125; matching to the decimal: 125; mismatches: 0; no close yet (games not played or no fresh quotes): 38
+  graded plays: 132; with a close: 125; matching: 125; graded without a close: 7
+
+Graded plays without a close (shown as 'no close' on the site, excluded from CLV averages):
+                                bet_id                          pick  type
+      2026-11-02|401909562|total|under                   Under 157.5   NaN
+      2026-11-02|401920842|spread|home             Presbyterian +3.5   NaN
+      2026-11-02|401912207|spread|away     American University +25.5   NaN
+      2026-11-02|401912207|total|under                   Under 153.5   NaN
+      2026-11-02|401920701|spread|home Southeast Missouri State +1.5   NaN
+       2026-11-02|401917506|total|over                    Over 142.5   NaN
+2026-11-02|401919803|spread|home|bandB        Florida Atlantic -11.5 bandB

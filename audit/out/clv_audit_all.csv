@@ -1,0 +1,164 @@
+bet_id,pick,status,type,site_close,site_clv,audit_close,audit_clv,books,match
+2026-11-01|401920982|total|under,Under 149.5,settled,,145.5,4.0,145.5,4.0,6,True
+2026-11-02|401916313|spread|away,Ohio State +1.5,settled,,3.5,-2.0,3.5,-2.0,5,True
+2026-11-02|401921704|spread|home,Purdue +4.5,settled,,5.5,-1.0,5.5,-1.0,6,True
+2026-11-02|401906769|spread|home,Florida -5.5,settled,,-6.5,1.0,-6.5,1.0,5,True
+2026-11-02|401921704|total|under,Under 156.5,settled,,153.5,3.0,153.5,3.0,6,True
+2026-11-02|401909771|total|over,Over 152.5,settled,,157.5,5.0,157.5,5.0,6,True
+2026-11-02|401906769|total|over,Over 159.5,settled,,159.0,-0.5,159.0,-0.5,6,True
+2026-11-02|401919014|total|over,Over 149.5,settled,,153.5,4.0,153.5,4.0,6,True
+2026-11-02|401925733|spread|away,Oakland +29,settled,,27.0,2.0,27.0,2.0,6,True
+2026-11-02|401925818|spread|home,Indiana State +5,settled,,5.5,-0.5,5.5,-0.5,6,True
+2026-11-02|401921766|spread|away,Niagara +29,settled,,28.5,0.5,28.5,0.5,6,True
+2026-11-02|401921139|spread|home,Columbia -3,settled,,-3.5,0.5,-3.5,0.5,6,True
+2026-11-02|401916296|spread|away,Bucknell +32,settled,,31.5,0.5,31.5,0.5,6,True
+2026-11-02|401911374|spread|home,South Florida -19.5,settled,,-21.5,2.0,-21.5,2.0,3,True
+2026-11-02|401911333|total|under,Under 157,settled,,162.5,-5.5,162.5,-5.5,6,True
+2026-11-02|401911304|spread|home,Brown -8.5,settled,,-8.5,0.0,-8.5,0.0,6,True
+2026-11-02|401911001|spread|home,Troy -3,settled,,-2.5,-0.5,-2.5,-0.5,6,True
+2026-11-02|401910998|spread|home,Coastal Carolina +2.5,settled,,-1.5,4.0,-1.5,4.0,6,True
+2026-11-02|401909705|spread|away,Rider +30,settled,,27.5,2.5,27.5,2.5,6,True
+2026-11-02|401920959|spread|home,Western Kentucky -16.5,settled,,-17.5,1.0,-17.5,1.0,6,True
+2026-11-02|401910996|spread|home,UL Monroe +4.5,settled,,2.75,1.75,2.75,1.75,6,True
+2026-11-02|401909522|spread|away,Mercyhurst +30.5,settled,,31.5,-1.0,31.5,-1.0,6,True
+2026-11-02|401919047|spread|away,Lindenwood +30.5,settled,,29.5,1.0,29.5,1.0,6,True
+2026-11-02|401925683|spread|away,Alcorn State +31.5,settled,,30.5,1.0,30.5,1.0,6,True
+2026-11-02|401909694|spread|away,Florida A&M +25,settled,,28.5,-3.5,28.5,-3.5,5,True
+2026-11-02|401922020|spread|away,Idaho State +28.5,settled,,26.5,2.0,26.5,2.0,6,True
+2026-11-02|401909750|spread|away,Northwestern State +30.5,settled,,31.5,-1.0,31.5,-1.0,6,True
+2026-11-02|401922029|spread|home,Oregon -16.5,settled,,-19.5,3.0,-19.5,3.0,6,True
+2026-11-02|401921731|spread|away,East Tennessee State +19.5,settled,,19.5,0.0,19.5,0.0,5,True
+2026-11-02|401920769|spread|home,Washington -14.5,settled,,-14.5,0.0,-14.5,0.0,6,True
+2026-11-02|401911452|spread|home,Nevada -12,settled,,-13.25,1.25,-13.25,1.25,6,True
+2026-11-02|401911707|spread|home|bandB,Tennessee State +10,settled,bandB,9.5,0.5,9.5,0.5,5,True
+2026-11-02|401921753|spread|home|bandB,UCF -22,settled,bandB,-22.5,0.5,-22.5,0.5,6,True
+2026-11-02|401918976|spread|home|bandB,East Carolina -13,settled,bandB,-15.5,2.5,-15.5,2.5,6,True
+2026-11-02|401913099|spread|away|bandB,Western Carolina +23.5,settled,bandB,22.5,1.0,22.5,1.0,6,True
+2026-11-02|401911237|spread|home|bandB,Richmond -13,settled,bandB,-15.5,2.5,-15.5,2.5,6,True
+2026-11-02|401910995|spread|away|bandB,Buffalo +3,settled,bandB,2.5,0.5,2.5,0.5,6,True
+2026-11-02|401920758|spread|home|bandB,Belmont -16,settled,bandB,-17.5,1.5,-17.5,1.5,6,True
+2026-11-02|401920716|spread|away|bandB,Eastern Washington +17,settled,bandB,13.75,3.25,13.75,3.25,6,True
+2026-11-02|401917509|spread|home|bandB,Santa Clara -12,settled,bandB,-13.5,1.5,-13.5,1.5,6,True
+2026-11-02|401911517|spread|home|bandB,UC Davis -10,settled,bandB,-9.5,-0.5,-9.5,-0.5,6,True
+2026-11-01|401920409|spread|home,High Point -6.5,settled,,-9.5,3.0,-9.5,3.0,6,True
+2026-11-02|401906801|spread|home,Oklahoma -29,settled,,-29.5,0.5,-29.5,0.5,6,True
+2026-11-02|401911707|total|over,Over 161,settled,,165.5,4.5,165.5,4.5,5,True
+2026-11-02|401920231|spread|home,Marist -5,settled,,-7.5,2.5,-7.5,2.5,6,True
+2026-11-02|401917173|total|over,Over 150,settled,,154.5,4.5,154.5,4.5,6,True
+2026-11-02|401911000|spread|home|bandB,Louisiana Tech +6.5,settled,bandB,5.5,1.0,5.5,1.0,6,True
+2026-11-02|401920893|spread|home,Wisconsin -22,settled,,-25.5,3.5,-25.5,3.5,6,True
+2026-11-02|401920758|spread|home,Belmont -14.5,settled,,-17.5,3.0,-17.5,3.0,6,True
+2026-11-02|401906791|total|over,Over 156.5,settled,,158.5,2.0,158.5,2.0,6,True
+2026-11-02|401917913|spread|home,Central Arkansas -6.5,settled,,-8.75,2.25,-8.75,2.25,6,True
+2026-11-02|401918947|spread|home,Louisville -28.5,settled,,-30.5,2.0,-30.5,2.0,6,True
+2026-11-02|401911517|spread|home,UC Davis -9,settled,,-9.5,0.5,-9.5,0.5,6,True
+2026-11-02|401926771|total|over,Over 155,settled,,160.5,5.5,160.5,5.5,6,True
+2026-11-02|401911003|spread|home|bandB,South Alabama +2,settled,bandB,-1.5,3.5,-1.5,3.5,5,True
+2026-11-02|401925811|spread|away|bandB,La Salle +28.5,settled,bandB,29.5,-1.0,29.5,-1.0,6,True
+2026-11-02|401917507|spread|home|bandB,Saint Mary's -8.5,settled,bandB,-6.75,-1.75,-6.75,-1.75,4,True
+2026-11-02|401924717|spread|home,Cornell +4,settled,,3.25,0.75,3.25,0.75,6,True
+2026-11-02|401911261|spread|home|bandB,St. Bonaventure -8.5,settled,bandB,-10.5,2.0,-10.5,2.0,6,True
+2026-11-02|401909784|total|over,Over 145.5,settled,,146.5,1.0,146.5,1.0,6,True
+2026-11-02|401910993|total|under,Under 149,settled,,147.5,1.5,147.5,1.5,6,True
+2026-11-02|401917507|spread|home,Saint Mary's -7.5,settled,,-6.75,-0.75,-6.75,-0.75,4,True
+2026-11-02|401909771|spread|home|bandB,Iowa State -12.5,settled,bandB,-15.5,3.0,-15.5,3.0,6,True
+2026-11-02|401924856|spread|home|bandB,Michigan State -29.5,settled,bandB,-30.5,1.0,-30.5,1.0,6,True
+2026-11-02|401916286|spread|away|bandB,Eastern Illinois +34.5,settled,bandB,34.5,0.0,34.5,0.0,5,True
+2026-11-02|401918955|total|over,Over 158.5,settled,,158.5,0.0,158.5,0.0,6,True
+2026-11-02|401928995|spread|home,Valparaiso -18.5,settled,,-18.5,0.0,-18.5,0.0,5,True
+2026-11-02|401909500|spread|home|bandB,DePaul -23,settled,bandB,-25.5,2.5,-25.5,2.5,5,True
+2026-11-02|401924894|spread|home,New Mexico -19.5,settled,,-23.5,4.0,-23.5,4.0,6,True
+2026-11-02|401925947|spread|home|bandB,Oregon State -17,settled,bandB,-18.5,1.5,-18.5,1.5,6,True
+2026-11-02|401920679|spread|away|bandB,Monmouth +28,settled,bandB,28.0,0.0,28.0,0.0,5,True
+2026-11-02|401911002|spread|home|bandB,James Madison +1.5,settled,bandB,-1.5,3.0,-1.5,3.0,5,True
+2026-11-02|401909500|total|over,Over 145.5,settled,,143.0,-2.5,143.0,-2.5,5,True
+2026-11-02|401909500|spread|home,DePaul -22.5,settled,,-25.5,3.0,-25.5,3.0,5,True
+2026-11-02|401925947|spread|home,Oregon State -16.5,settled,,-18.5,2.0,-18.5,2.0,6,True
+2026-11-02|401922029|total|over,Over 152.5,settled,,151.5,-1.0,151.5,-1.0,6,True
+2026-11-02|401911261|total|under,Under 153.5,settled,,153.5,0.0,153.5,0.0,6,True
+2026-11-02|401925811|spread|away,La Salle +29.5,settled,,29.5,0.0,29.5,0.0,6,True
+2026-11-02|401920679|spread|away,Monmouth +28.5,settled,,28.0,0.5,28.0,0.5,5,True
+2026-11-02|401909738|total|over,Over 149.5,settled,,149.5,0.0,149.5,0.0,6,True
+2026-11-02|401921766|total|under,Under 140.5,settled,,141.5,-1.0,141.5,-1.0,6,True
+2026-11-02|401911004|total|under,Under 157.5,settled,,162.5,-5.0,162.5,-5.0,6,True
+2026-11-02|401910997|spread|home,Old Dominion +1,settled,,1.5,-0.5,1.5,-0.5,6,True
+2026-11-02|401924894|total|under,Under 158,settled,,159.5,-1.5,159.5,-1.5,6,True
+2026-11-02|401911532|spread|away|bandB,UTEP -1,settled,bandB,-4.5,3.5,-4.5,3.5,6,True
+2026-11-02|401911707|spread|home,Tennessee State +10.5,settled,,9.5,1.0,9.5,1.0,5,True
+2026-11-02|401910996|total|over,Over 151.5,settled,,151.5,0.0,151.5,0.0,6,True
+2026-11-02|401909716|total|under,Under 140.5,settled,,130.75,9.75,130.75,9.75,6,True
+2026-11-02|401909716|spread|away|bandB,New Haven +27.5,settled,bandB,26.5,1.0,26.5,1.0,6,True
+2026-11-02|401909716|spread|away,New Haven +28.5,settled,,26.5,2.0,26.5,2.0,6,True
+2026-11-02|401906863|spread|away,Chicago State +40.5,settled,,40.5,0.0,40.5,0.0,5,True
+2026-11-02|401921753|spread|home,UCF -19,settled,,-22.5,3.5,-22.5,3.5,6,True
+2026-11-02|401911237|spread|home,Richmond -11.5,settled,,-15.5,4.0,-15.5,4.0,6,True
+2026-11-02|401920758|total|under,Under 156.5,settled,,156.25,0.25,156.25,0.25,6,True
+2026-11-02|401918976|spread|home,East Carolina -12,settled,,-15.5,3.5,-15.5,3.5,6,True
+2026-11-02|401918976|total|over,Over 149.5,settled,,152.25,2.75,152.25,2.75,6,True
+2026-11-02|401911304|total|over,Over 141.5,settled,,144.75,3.25,144.75,3.25,6,True
+2026-11-02|401911248|spread|home,Saint Louis -18,settled,,-26.5,8.5,-26.5,8.5,6,True
+2026-11-02|401911248|total|over,Over 152.5,settled,,159.25,6.75,159.25,6.75,6,True
+2026-11-02|401921423|total|over,Over 165,settled,,168.5,3.5,168.5,3.5,6,True
+2026-11-02|401918073|spread|away|bandB,Stetson +26.5,settled,bandB,22.5,4.0,22.5,4.0,6,True
+2026-11-02|401920071|spread|home,George Mason -14.5,settled,,-20.0,5.5,-20.0,5.5,5,True
+2026-11-02|401919039|spread|away,Incarnate Word +30.5,settled,,27.5,3.0,27.5,3.0,6,True
+2026-11-02|401918967|spread|away|bandB,Southern +27.5,settled,bandB,25.5,2.0,25.5,2.0,6,True
+2026-11-02|401923269|total|under,Under 148.5,settled,,157.5,-9.0,157.5,-9.0,6,True
+2026-11-02|401902275|spread|home,Butler -20.5,settled,,-19.5,-1.0,-19.5,-1.0,6,True
+2026-11-02|401925947|total|under,Under 159.5,settled,,161.5,-2.0,161.5,-2.0,6,True
+2026-11-02|401909531|total|over,Over 146.5,settled,,151.5,5.0,151.5,5.0,6,True
+2026-11-02|401909531|spread|home|bandB,Providence -27.5,settled,bandB,-32.5,5.0,-32.5,5.0,6,True
+2026-11-02|401923269|spread|home,Bryant +1.5,settled,,4.5,-3.0,4.5,-3.0,6,True
+2026-11-02|401911185|spread|home|bandB,Dayton -22.5,settled,bandB,-23.5,1.0,-23.5,1.0,6,True
+2026-11-02|401918073|total|over,Over 144.5,settled,,144.5,0.0,144.5,0.0,6,True
+2026-11-02|401921424|total|over,Over 148.5,settled,,154.25,5.75,154.25,5.75,4,True
+2026-11-02|401910998|total|over,Over 141.5,settled,,143.0,1.5,143.0,1.5,6,True
+2026-11-02|401906779|spread|away|bandB,North Carolina Central +36.5,settled,bandB,40.5,-4.0,40.5,-4.0,6,True
+2026-11-02|401906779|total|under,Under 160.5,settled,,163.5,-3.0,163.5,-3.0,6,True
+2026-11-02|401911001|total|under,Under 155.5,settled,,154.5,1.0,154.5,1.0,6,True
+2026-11-02|401924856|spread|home,Michigan State -29.5,settled,,-30.5,1.0,-30.5,1.0,6,True
+2026-11-02|401906779|spread|away,North Carolina Central +37.5,settled,,40.5,-3.0,40.5,-3.0,6,True
+2026-11-02|401918967|total|under,Under 158.5,settled,,159.75,-1.25,159.75,-1.25,6,True
+2026-11-02|401909562|total|under,Under 157.5,settled,,,,,,0,True
+2026-11-02|401920842|spread|home,Presbyterian +3.5,settled,,,,,,0,True
+2026-11-02|401912207|spread|away,American University +25.5,settled,,,,,,0,True
+2026-11-02|401912207|total|under,Under 153.5,settled,,,,,,0,True
+2026-11-02|401920701|spread|home,Southeast Missouri State +1.5,settled,,,,,,0,True
+2026-11-02|401911390|spread|away,Gardner-Webb +41.5,settled,,41.0,0.5,41.0,0.5,2,True
+2026-11-02|401921697|total|over,Over 146.5,settled,,146.5,0.0,146.5,0.0,5,True
+2026-11-02|401911389|spread|home,Grand Canyon -28.5,settled,,-28.5,0.0,-28.5,0.0,5,True
+2026-11-02|401911389|total|over,Over 143.5,settled,,144.5,1.0,144.5,1.0,3,True
+2026-11-02|401921060|spread|away,Radford +13.5,settled,,13.5,0.0,13.5,0.0,6,True
+2026-11-02|401917506|total|over,Over 142.5,settled,,,,,,0,True
+2026-11-02|401919803|spread|home|bandB,Florida Atlantic -11.5,settled,bandB,,,,,0,True
+2026-11-03|401906848|spread|home,Tennessee -27.5,open,,,,,,0,True
+2026-11-03|401921801|spread|home,Kentucky -30.5,open,,,,,,0,True
+2026-11-03|401925779|spread|home,Duquesne -10.5,open,,,,,,0,True
+2026-11-03|401925779|total|over,Over 152.5,open,,,,,,0,True
+2026-11-03|401920422|spread|home,Virginia -26.5,open,,,,,,0,True
+2026-11-03|401921165|spread|home,Missouri -23.5,open,,,,,,0,True
+2026-11-03|401909796|spread|home,Kansas State -11.5,open,,,,,,0,True
+2026-11-03|401920155|spread|home,San Diego State -15.5,open,,,,,,0,True
+2026-11-03|401906757|spread|home|bandB,Alabama -25.5,open,bandB,,,,,0,True
+2026-11-03|401920304|spread|away,Hampton +16,open,,,,,,0,True
+2026-11-03|401921165|total|over,Over 158.5,open,,,,,,0,True
+2026-11-03|401924911|total|over,Over 148.5,open,,,,,,0,True
+2026-11-03|401909796|total|over,Over 158.5,open,,,,,,0,True
+2026-11-03|401920422|total|under,Under 143,open,,,,,,0,True
+2026-11-03|401906848|total|under,Under 155,open,,,,,,0,True
+2026-11-03|401921819|spread|home,South Carolina -16,open,,,,,,0,True
+2026-11-03|401920376|spread|home,Virginia Tech -30,open,,,,,,0,True
+2026-11-03|401920376|total|under,Under 151.5,open,,,,,,0,True
+2026-11-03|401920061|total|under,Under 149.5,open,,,,,,0,True
+2026-11-03|401909551|spread|home,Boston College -16.5,open,,,,,,0,True
+2026-11-03|401909551|total|under,Under 147.5,open,,,,,,0,True
+2026-11-03|401920702|spread|home,Iowa -19,open,,,,,,0,True
+2026-11-03|401920702|total|under,Under 149.5,open,,,,,,0,True
+2026-11-03|401920061|spread|home|bandB,Rhode Island -17.5,open,bandB,,,,,0,True
+2026-11-03|401920343|spread|home,California Baptist -8.5,open,,,,,,0,True
+2026-11-03|401921808|spread|home|bandB,LSU -20.5,open,bandB,,,,,0,True
+2026-11-03|401920806|spread|home|bandB,Texas A&M -27.5,open,bandB,,,,,0,True
+2026-11-03|401929372|total|under,Under 164.5,open,,,,,,0,True
+2026-11-03|401921819|total|under,Under 150.5,open,,,,,,0,True
+2026-11-03|401906757|total|under,Under 172,open,,,,,,0,True
+2026-11-03|401920806|total|under,Under 163.5,open,,,,,,0,True
