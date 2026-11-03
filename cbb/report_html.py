@@ -204,8 +204,42 @@ def _band_b_view() -> dict | None:
         return None
 
 
+def _logged_sides(card: pd.DataFrame, day: pd.Timestamp) -> pd.DataFrame:
+    """A logged spread whose game ESPN has since relisted the other way round (neutral sites; Nov 2: Purdue +4.5 was
+    logged with Purdue at home, the card now has Gonzaga at home) is shown from the card's orientation: its side is
+    swapped and the model's view now (edge, win chance, EV at the logged number and price) recomputed for the team
+    actually bet. Display only; the bet log keeps the play as logged and grades it by team (tracker.settle)."""
+    if "spread_logged_side" not in card or not card["spread_logged_side"].notna().any():
+        return card
+    from . import run_day, tracker
+    try:
+        b = tracker.load("all")
+    except Exception:
+        return card
+    home = {str(k): v for k, v in zip(b["bet_id"], b["home_id"])}
+    card = card.copy()
+    for i, g in card.iterrows():
+        side = g.get("spread_logged_side")
+        if not isinstance(side, str) or side not in ("home", "away"):
+            continue
+        h = home.get(f"{day:%Y-%m-%d}|{g['game_id']}|spread|{side}")
+        if h is None or pd.isna(h) or int(h) != int(g["away_id"]):
+            continue
+        card.loc[i, "spread_logged_bid_side"] = side          # the bet id keeps the side it was logged under
+        side = "away" if side == "home" else "home"
+        line = float(g["spread_logged_line"])
+        e = g["model_margin"] + line if side == "home" else line - g["model_margin"]
+        slope, cap = run_day.WIN_PROB["spread"]
+        p = float(min(max(0.5 + slope * e, 1 - cap), cap))
+        card.loc[i, ["spread_logged_side", "spread_now_edge", "spread_now_p", "spread_now_ev"]] = [
+            side, e, p, run_day.ev(p, g["spread_logged_odds"])]
+    return card
+
+
 def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, replay: bool = False,
           record: dict | None = None) -> str:
+    if not replay:
+        card = _logged_sides(card, day)
     card = _logged_view(card)
     card = _first_open_view(card, day)
     if not replay:
@@ -714,7 +748,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       now: nowLine(g, mk, side), at: g[mk + "_logged_at"] || null,
       open: firstOpen(g, mk, side, g[mk + "_logged_book"]),
       units: g[mk + "_logged_stake"], line: g[mk + "_logged_line"],
-      bid: D.date + "|" + g.game_id + "|" + mk + "|" + side,
+      bid: D.date + "|" + g.game_id + "|" + mk + "|" + (g[mk + "_logged_bid_side"] || side),
       fill: {book: g[mk + "_logged_book"], line: g[mk + "_logged_line"], odds: g[mk + "_logged_odds"], stake: g[mk + "_logged_stake"]},
       status: (pre ? "Logged at edge " + sgn(g[mk + "_logged_edge"]) + " (before the Oct 26 update) · edge now vs today's model"
         : "Logged at edge " + sgn(g[mk + "_logged_edge"])) + " · " + now});

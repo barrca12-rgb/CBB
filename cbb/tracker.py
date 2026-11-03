@@ -249,6 +249,10 @@ def settle(scores: pd.DataFrame | None = None) -> int:
                 continue
             hs, as_ = float(g["home_score"]), float(g["away_score"])
             bet = b.loc[i]
+            # scores from the bet's own home team (Nov 2: ESPN relisted Purdue-Gonzaga with Gonzaga at home after
+            # Purdue +4.5 was logged with Purdue at home): a scoreboard naming the bet's away team as home is swapped
+            if "home_id" in g.index and pd.notna(g["home_id"]) and int(g["home_id"]) == int(bet["away_id"]):
+                hs, as_ = as_, hs
             line = float(bet["line"])
             if bet["market"] == "spread":
                 margin = (hs - as_) if bet["side"] == "home" else (as_ - hs)

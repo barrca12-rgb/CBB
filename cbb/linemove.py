@@ -20,15 +20,19 @@ REPORTS = os.path.join(ROOT, "reports")
 CLOSING = os.path.join(ROOT, "lines", "closing.csv")
 
 
-def _final(date: str, game_id) -> tuple | None:
+def _final(date: str, game_id, home_id=None) -> tuple | None:
     p = os.path.join(REPORTS, f"cbb_{date}.csv")
     if not os.path.exists(p):
         return None
-    c = pd.read_csv(p, usecols=lambda k: k in ("game_id", "state", "home_score", "away_score"))
+    c = pd.read_csv(p, usecols=lambda k: k in ("game_id", "state", "home_id", "home_score", "away_score"))
     r = c[c["game_id"].astype(str) == str(game_id)]
     if not len(r) or r["state"].iloc[0] != "post" or pd.isna(r["home_score"].iloc[0]):
         return None
-    return float(r["home_score"].iloc[0]), float(r["away_score"].iloc[0])
+    hs, as_ = float(r["home_score"].iloc[0]), float(r["away_score"].iloc[0])
+    # from the signal's own home team: a card that has since relisted the game the other way round is swapped (Nov 2)
+    if home_id is not None and "home_id" in r and pd.notna(r["home_id"].iloc[0]) and int(r["home_id"].iloc[0]) != int(home_id):
+        hs, as_ = as_, hs
+    return hs, as_
 
 
 def graded(path: str | None = None) -> pd.DataFrame:
@@ -42,7 +46,7 @@ def graded(path: str | None = None) -> pd.DataFrame:
     for _, r in s.iterrows():
         d = r.to_dict()
         d["stake"] = tracker.BAND_B_STAKE if r["bet_type"] == "bandB" else 1.0
-        fin = _final(str(r["date"]), r["game_id"])
+        fin = _final(str(r["date"]), r["game_id"], r.get("home_id"))
         line, side, mk = float(r["line"]), str(r["side"]), r["market"]
         # close: median of each book's last pregame number for the game (closing.csv), oriented to our side
         close = np.nan

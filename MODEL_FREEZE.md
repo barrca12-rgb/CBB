@@ -1076,3 +1076,25 @@ ad963b313e7e36af173dc366089760bc1a18f175a45322d6007d5cdc91f77112  audit/forward_
 c4040ab035bd573aad7bd3ff977500ae48a5e437b9d4d16f405ad9e6c4fffb50  audit/forward_eval.py
 63dff849dc7bcb865fbe9a6e3afeba8046053ce72a2bb4405d32feb5c414970b  FORWARD_TEST_PROTOCOL.md
 ```
+
+## 2026-11-02: Plays graded by team when ESPN relists which team is home (bug fix; Chad, Nov 2)
+
+- **What went wrong:**
+  - Purdue +4.5 (Purdue vs Gonzaga, neutral site) was logged on Oct 26 while ESPN listed Purdue at home. ESPN later
+    listed Gonzaga at home. The bet log keeps the play as "home side, Purdue".
+  - The grader read ESPN's home score as Purdue's, so a Gonzaga win by 6 would have graded Purdue +4.5 a win.
+  - The card applied the model's Gonzaga number to the play: a now-edge of +8.0, where the true one is +1.0.
+- **`cbb/tracker.py` `settle` (fingerprinted):** when the scoreboard names the bet's away team as home, the scores
+  are swapped, so a play is always graded from its own team. Every other play grades exactly as before.
+- **`cbb/report_html.py` (display) and `cbb/linemove.py` (research):**
+  - The card shows a relisted logged spread from the card's side and recomputes its now-edge, win chance and EV
+    for the team actually bet; the bet id keeps the side it was logged under.
+  - The line-move research grader swaps relisted scores the same way.
+- **Scope:** one play, Purdue +4.5 (open while this was fixed). No graded play changed.
+- **Tests:** `audit/test_relisted_home.py`.
+- **Discord note:** `2026-11-02-relisted-home`.
+- **New fingerprint:**
+
+```
+2236dc3da92cdefd81dd216c7782f5b2cf8eb6e3a44b0f056c3727fd56cdbfed  cbb/tracker.py
+```
