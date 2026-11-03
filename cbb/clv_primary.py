@@ -28,8 +28,10 @@ import numpy as np
 import pandas as pd
 
 # Shown next to every CLV figure until the first-game report (audit/CLV_VERIFICATION.md, section 7) confirms the
-# pipeline on a real game. Changed only by that report.
-VERIFICATION_STATUS = "built, not verified"
+# pipeline on a real game and Chad signs off. Chad signed off on Nov 3, 2026 ("verify it then"), after the Nov 1
+# first-game check passed and the Nov 2 neutral-site and actual-tip fixes. Surfaces show no status note once verified.
+VERIFICATION_STATUS = "verified"
+VERIFIED = not VERIFICATION_STATUS.startswith("built")
 TABLE = os.path.join(os.path.dirname(__file__), "..", "bets", "clv_primary.csv")
 COLS = ["bet_id", "cohort", "cutoff", "cutoff_source", "espn_start", "start_gap_min", "feed_latest_start",
         "feed_gap_min", "tip_check", "close_primary", "clv_primary", "books_primary", "feed_age_s",

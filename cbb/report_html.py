@@ -980,7 +980,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       // breakdown (books, pregame check) on hover (Chad, Nov 2: the tile was dragging the row down)
       const short = c.all.decided ? c.all.with_close + "/" + c.all.decided + " closed" : "no graded plays yet";
       return "<span title='" + esc(c.all.text + " · " + c.status) + "'>" + (c.all.clv != null ? clvf(c.all.clv) + "<small>pts</small>" : "–") +
-        "<small class='blk'>" + esc(short) + " · " + esc(String(c.status).replace("built, ", "")) + "</small></span>"; })()]];
+        "<small class='blk'>" + esc(short) + (/not verified/.test(String(c.status)) ? " · " + esc(String(c.status).replace("built, ", "")) : "") + "</small></span>"; })()]];
   $("kpis").innerHTML = kp.map(([k, v, c]) => "<div class='kpi" + (c ? " " + c : "") + "'><div class='k'>" + k + "</div><div class='v'>" + v + "</div></div>").join("");
 
   // Odds board

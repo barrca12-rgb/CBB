@@ -283,3 +283,13 @@ The proposed 15-unit daily cap and any staking change are not part of this work.
   next card run rebuilt it. This began with the results refresh (Nov 2).
 - **Fix (`cbb/live_refresh.py`):** every refresh builds the Charts page before publishing (about half a second).
 - **Test:** `audit/test_live_refresh.py`.
+
+## 2026-11-03: CLV marked verified (Chad)
+
+- Chad signed off ("verify it then") after the Nov 1 first-game check passed and the Nov 2 CLV fixes. These were the
+  neutral-site spread sides and the actual-tip cutoff.
+- `cbb/clv_primary.VERIFICATION_STATUS` is "verified". The card, record page and Discord results no longer add a
+  status note to CLV figures.
+- `audit/CLV_VERIFICATION.md` records the sign-off. The section 7 caveats stay listed: the meaning of the provider
+  timestamp, ESPN's stamp lag, and 6 of 7 books.
+- Discord note: `2026-11-03-clv-verified`.

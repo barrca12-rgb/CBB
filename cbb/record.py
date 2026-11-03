@@ -140,7 +140,8 @@ def _settled(b: pd.Series) -> dict:
                         "fields": [{"name": k, "value": v, "inline": True} for k, v in fields],
                         "footer": {"text": f"bet id {b['bet_id']} · Alert CLV = points from the alert number to the "
                                            f"consensus close of fresh quotes in the last 15 min before tip; prices are "
-                                           f"shown separately, not converted · CLV tracking: {VERIFICATION_STATUS}"}}]}
+                                           f"shown separately, not converted"
+                                           + ("" if VERIFICATION_STATUS == "verified" else f" · CLV tracking: {VERIFICATION_STATUS}")}}]}
 
 
 def sync(url: str | None = None) -> int:

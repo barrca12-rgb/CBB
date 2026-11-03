@@ -1,10 +1,11 @@
 # CLV verification (audit of Oct 28, 2026; first-game report to follow)
 
-**Status: built, not verified.** The pipeline is built and tested on synthetic data; it has not yet been run on a
-real closing window. Chad's instruction (Oct 28): the status stays "built, not verified" on every surface
-(`cbb/clv_primary.VERIFICATION_STATUS`) until he changes it. The first-game check reports "first live capture
-verified" only when its evidence checklist passes (section 7); that finding does not change the status, and running
-polling jobs is never evidence of verification.
+**Status: verified (Chad, Nov 3, 2026).** The Nov 1 first-game check (section 7) passed: the independent
+recomputation from the raw quotes matched the stored cutoff, books, close and CLV exactly. Every selected quote was
+pregame, taken 411 s before the cutoff and about 7 minutes before the actual tip. Two defects found on Nov 2 are fixed
+and tested: spread sides read from the feed's home team at neutral sites, and in-play quotes possible when a game
+tipped before the feed's start (protocol v2.5). Chad then signed off ("verify it then"), and
+`cbb/clv_primary.VERIFICATION_STATUS` is "verified". The caveats listed at the end of section 7 still apply.
 
 Scope: Chad's Oct 28 instruction. A (display only) and B (the model-check tripwire) are implemented under change
 control (MODEL_FREEZE.md, "2026-10-28: one CLV everywhere"; Discord note `2026-10-28-clv-definition`, posted
@@ -477,4 +478,5 @@ cutoff (14:30:00), books (6), close (145.5) and CLV (+4.00) all match the stored
 
 There was no one-book close and no timing conflict.
 
-CLV tracking status: built, not verified
+CLV tracking status at the time of this report: built, not verified. Changed to verified by Chad on Nov 3, 2026
+(see the status note at the top).

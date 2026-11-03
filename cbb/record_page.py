@@ -400,7 +400,8 @@ def build() -> str:
           ("Alert CLV", f"<span title='{html.escape(clv_primary.coverage_text(tot['cv']) + ' · ' + clv_primary.VERIFICATION_STATUS)}'>"
                       + _num(tot["clv"], "{:+.2f} pts")
                       + f"<small class='blk'>{(str(tot['cv']['with_close']) + '/' + str(tot['cv']['decided']) + ' closed') if tot['cv']['decided'] else 'no graded plays yet'}"
-                      f" · {html.escape(clv_primary.VERIFICATION_STATUS.replace('built, ', ''))}</small></span>"),
+                      + ("" if clv_primary.VERIFIED else f" · {html.escape(clv_primary.VERIFICATION_STATUS.replace('built, ', ''))}")
+                      + "</small></span>"),
           ("Open plays", str(int((live["status"] == "open").sum())))]
     kpis = "".join(f"<div class='kpi'><div class='k'>{k}</div><div class='v'>{v}</div></div>" for k, v in kp)
 

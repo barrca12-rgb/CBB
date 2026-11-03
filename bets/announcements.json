@@ -118,5 +118,10 @@
   "id": "2026-11-02-relisted-home",
   "date": "2026-11-02",
   "text": "Fix, Nov 2: ESPN switched which team it lists as home for Purdue-Gonzaga (neutral site) after Purdue +4.5 was logged. Plays are now graded by the team actually bet whatever the listing, and the card shows that play's current edge correctly (+1.0, not +8.0). No graded play or posted result changed."
+ },
+ {
+  "id": "2026-11-03-clv-verified",
+  "date": "2026-11-03",
+  "text": "Tracking note, Nov 3: closing-line value (CLV) is now verified. A first-game check recomputed the close from the raw sportsbook quotes and matched exactly, with every quote confirmed pregame against the actual tip. CLV is measured against the consensus close of 6+ books in the last 15 minutes before tip."
  }
 ]
