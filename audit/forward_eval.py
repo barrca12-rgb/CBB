@@ -233,7 +233,57 @@ def load_obs(obs: pd.DataFrame | None = None) -> pd.DataFrame:
     o["price"] = pd.to_numeric(o["price"], errors="coerce")
     o = o.dropna(subset=["t"]).sort_values(["t", "_lr", "_sr", "upd", "line", "price"], na_position="first",
                                            kind="mergesort")
-    return o.reset_index(drop=True)
+    o = o.reset_index(drop=True)
+    o["feed_home"] = _feed_home(o)
+    return o
+
+
+def _feed_home(o: pd.DataFrame, moves: pd.DataFrame | None = None) -> pd.Series:
+    """Team id of each observation's "home" side, per feed event (Nov 2 fix). The quote log labels spread sides by the
+    feed's own home team, which can differ from ESPN's (neutral sites: Miami-Florida, Nov 2, was read from Miami's
+    side). Each event is matched to lines/moves.csv, which records the lower-id team's spread by team id: a "home"
+    quote equal to that spread at the same book and time means the lower id is the feed's home; its negative means
+    the higher id. Majority over the event's quotes; NaN (no relabelling) when there is no evidence or a tie."""
+    out = pd.Series(np.nan, index=o.index)
+    if moves is None:
+        p = os.path.join(ROOT, "lines", "moves.csv")
+        if not os.path.exists(p):
+            return out
+        moves = pd.read_csv(p, usecols=lambda c: c in ("pulled_at", "game_key", "book", "lo_id", "hi_id", "spread"))
+    if not len(o) or not len(moves) or "event_id" not in o:
+        return out
+    h = o[(o["market"] == "spread") & (o["side"] == "home") & o["line"].notna() & (o["line"] != 0)]
+    if not len(h):
+        return out
+    m = moves.dropna(subset=["spread"]).assign(t=lambda x: pd.to_datetime(x["pulled_at"], utc=True, errors="coerce",
+                                                                           format="ISO8601"))
+    m = m[m["spread"] != 0].dropna(subset=["t"]).sort_values("t")
+    if not len(m):
+        return out
+    j = pd.merge_asof(h[["t", "game_key", "book", "event_id", "line"]].reset_index().sort_values("t"),
+                      m[["t", "game_key", "book", "lo_id", "hi_id", "spread"]], on="t", by=["game_key", "book"],
+                      direction="backward")
+    j = j.dropna(subset=["spread"])
+    j["vote"] = np.where(j["line"] == j["spread"], 1, np.where(j["line"] == -j["spread"], -1, 0))
+    who = {}
+    for ev, g in j.groupby("event_id"):
+        v = int(g["vote"].sum())
+        if v:
+            who[ev] = g["lo_id"].iloc[0] if v > 0 else g["hi_id"].iloc[0]
+    return o["event_id"].map(who).astype(float)
+
+
+def orient(og: pd.DataFrame, b) -> pd.DataFrame:
+    """A game's observations with spread sides labelled from the bet's home team (Nov 2 fix): quotes from a feed
+    event whose home team is the bet's away team swap "home" and "away"."""
+    if not len(og) or "feed_home" not in og:
+        return og
+    flip = (og["market"] == "spread") & (og["feed_home"] == float(b["away_id"]))
+    if not flip.any():
+        return og
+    og = og.copy()
+    og.loc[flip, "side"] = og.loc[flip, "side"].map({"home": "away", "away": "home"})
+    return og
 
 
 def classify(r) -> str:
@@ -367,6 +417,7 @@ def delay_windows(sig: pd.DataFrame, obs: pd.DataFrame, closing: pd.DataFrame,
     rows = []
     for _, b in sig.iterrows():
         og = by_game.get(b["game_key"], obs.iloc[0:0])
+        og = orient(og, b)   # spread sides from the bet's home team (Nov 2 fix)
         cutoff, _ = tip_cutoff(og, fallback_start(closing, b))
         if b["bet_id"] in al.index:
             t0, src = al.loc[b["bet_id"], "alert_at"], al.loc[b["bet_id"], "alert_source"]
@@ -558,6 +609,7 @@ def evaluate(through: str | None = None, today: str | None = None, bets: pd.Data
     by_game = dict(tuple(o.groupby("game_key", sort=False))) if len(o) else {}
     for _, b in a.iterrows():
         og = by_game.get(b["game_key"], o.iloc[0:0])
+        og = orient(og, b)   # spread sides from the bet's home team (Nov 2 fix)
         cutoff, _ = tip_cutoff(og, fallback_start(closing, b))
         sc = strict_close(og, b["market"], cutoff)
         strict.append(to_side(b, sc["close"]))

@@ -149,6 +149,8 @@ def build(bet_id: str) -> str:
     o = clv_primary._load_obs(None)
     key = f"{b['date']}|{min(int(b['home_id']), int(b['away_id']))}|{max(int(b['home_id']), int(b['away_id']))}"
     og = o[o["game_key"] == key] if len(o) else o
+    from audit import forward_eval as fe
+    og = fe.orient(og, b)   # spread sides from the bet's home team (Nov 2 fix)
     cutoff = pd.Timestamp(p["cutoff"]) if p["cutoff"] else None
     L = []
     L.append(f"# CLV traced: {b['pick']} ({b['away']} at {b['home']}, {b['date']})\n")

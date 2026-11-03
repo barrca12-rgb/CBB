@@ -1014,3 +1014,30 @@ a5a849f6f7ab7bd2450a51ba9b053770afd9864acf952d6cf072b7171981dc97  cbb/barttorvik
 ```
 c779e188f209c32f11ae15eff7439443f44d4d003b7e7cef5d36ee3b18dcebc8  cbb/injury_sources.py
 ```
+
+## 2026-11-02: Spread CLV read from the wrong team at some neutral sites (bug fix; Chad, Nov 2)
+
+- **What went wrong:** the quote log labels spread sides by the odds feed's home team. ESPN, which the bet log uses,
+  can name the other team at a neutral site. The close was then read from the wrong team. Florida -5.5 (Miami vs
+  Florida) showed close +6.5 and CLV -12.0; the close was Florida -6.5, CLV +1.0.
+- **`audit/forward_eval.py` (fingerprinted; the protocol's own close code):**
+  - `load_obs` adds `feed_home`: the team id of each feed event's "home" side. It comes from `lines/moves.csv`,
+    which records the lower-id team's spread by team id: a "home" quote equal to it at the same book and time
+    means the lower id, its negative means the higher id. It takes the majority over the event's quotes.
+  - `orient` relabels a game's spread quotes from the bet's home team. It is used by the close (`assess`), the
+    execution check and, through `cbb/clv_primary.py` and `audit/clv_example.py`, everything the site shows.
+  - The close rule itself (books, window, ages, median) is unchanged.
+- **Scope:**
+  - Of 114 feed events, the feed's home team differs from ESPN's in 8, all neutral sites. It matches in all 100
+    true home games.
+  - Bets whose primary close changed: Florida -5.5 (open; -12.0 to +1.0), Purdue +4.5 (open; +10.0 to -1.0) and
+    Villanova +7.5 (void, excluded).
+  - No settled main play changed: the official record, its CLV average, the tripwire and every Discord post stand.
+  - Totals are unaffected.
+- **Tests:** `audit/test_clv_orientation.py`.
+- **Discord note:** `2026-11-02-clv-orientation`.
+- **New fingerprint:**
+
+```
+ad963b313e7e36af173dc366089760bc1a18f175a45322d6007d5cdc91f77112  audit/forward_eval.py
+```

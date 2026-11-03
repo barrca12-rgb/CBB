@@ -185,6 +185,7 @@ def primary(b: pd.DataFrame, obs: pd.DataFrame | None = None, closing: pd.DataFr
     for _, r in b.iterrows():
         key = f"{r['date']}|{min(int(r['home_id']), int(r['away_id']))}|{max(int(r['home_id']), int(r['away_id']))}"
         og = by_game.get(key, o.iloc[0:0])
+        og = fe.orient(og, r)   # spread sides from the bet's home team, not the feed's (Nov 2: Miami-Florida)
         cutoff, src = fe.tip_cutoff(og, fe.fallback_start(closing, r))
         sc = fe.strict_close(og, r["market"], cutoff)
         close = fe.to_side(r, sc["close"])
