@@ -168,3 +168,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-03|401920806|total|under,2026-11-03,401920806,total,Under 163.5,under,245,2011,Texas A&M,Alabama State,163.5,163.5,-110.0,FanDuel,3.06,160.44,1.0,yes,2026-11-03T12:00:57+00:00,,,,,,,,open,
 2026-11-04|401917512|spread|home,2026-11-04,401917512,spread,Saint Mary's -12,home,2608,2449,Saint Mary's,North Dakota State,-12.0,-12.0,-110.0,Caesars,2.89,14.89,0.37,yes,2026-11-03T19:21:05+00:00,,,,,,,,open,
 2026-11-06|401920685|spread|home,2026-11-06,401920685,spread,Michigan +5.5,home,130,41,Michigan,UConn,5.5,5.5,-110.0,Fanatics,2.85,-2.65,0.37,yes,2026-11-03T19:31:56+00:00,,,,,,,,open,
+2026-11-04|401917513|spread|home|bandB,2026-11-04,401917513,spread,Santa Clara -16.5,home,2541,270,Santa Clara,Milwaukee,-16.5,-16.5,-120.0,FanDuel,2.4,18.9,0.5,yes,2026-11-03T20:11:42+00:00,,,,,,,,open,bandB
