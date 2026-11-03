@@ -186,3 +186,34 @@ The proposed 15-unit daily cap and any staking change are not part of this work.
 - **Display only** (`cbb/report_html.py`, unfrozen). Past days pick it up through `refresh_past`.
 - **Tests:** `audit/test_same_layout.py`. `audit/test_opposite_side.py` now picks a game with no spread play. Its
   first pick from tonight's live card had gained a spread play, which failed the test with or without this change.
+
+## 2026-11-02: Live scores and a results-only refresh between card runs (Chad, Nov 2)
+
+- **Why:** a final reached the site only through the 10-minute card run, then the publish, then the page's 3-minute
+  check, so up to about 15 minutes after the buzzer.
+- **`cbb/live_refresh.py` + `.github/workflows/live_refresh.yml` (new; display only):** runs after every 3-minute
+  targeted quote poll.
+  - It reads ESPN's free scoreboard for live and final scores and the game clock, and grades finished plays with
+    the card's own grader (`tracker.settle`, run on the runner only).
+  - It rebuilds the record block (tiles, record table, recent results) and today's, the coming week's and the last
+    few past days' cards. When a play was graded, it also rebuilds the record page. Then it publishes.
+  - After 8 pm ET the current card is tomorrow's, so the day before also gets live scores.
+  - **No credits:** no Odds API, SportsGameOdds, KenPom or Barttorvik call, and no model run. Picks, lines and
+    logged numbers are untouched.
+  - **Never commits:** the bet log, Discord results and phone alerts stay with the card run, which grades the same
+    games and remains the record of truth. The workflow has no secrets, so it cannot post or alert.
+  - It publishes only when something changed, and skips publishing if a card run saved a newer card meanwhile.
+- **Card (`cbb/report_html.py`):**
+  - Play rows and band B rows show the score with the clock (red dot while live), then a W/L/P badge once final,
+    graded the way the bet log grades. The odds board shows live scores too.
+  - The record block is built by `report_html.record_block`, shared with the card build, so both show the same
+    numbers.
+  - The card's "Updated" time stays the card run's (when lines were last pulled).
+- **`cbb/autorefresh.py`:** open pages check for a newer copy every minute (was 3).
+- **Unchanged:** no fingerprinted file changed (`update.yml`, `run_day.py` and `tracker.py` as they were).
+- **Tests:** `audit/test_live_refresh.py`:
+  - the site build matches the card run's;
+  - the workflow has no secrets, push or commit, and the module imports no odds or posting code;
+  - scores, clock and record land on the right days;
+  - the card's own time is kept;
+  - play rows grade W and L like the bet log.

@@ -1,7 +1,7 @@
 """Auto refresh for the published pages (display only; the card's numbers, plays and logs are untouched).
 
 Each page carries its build time in <meta name="otg-built">. While the page is on screen, a small script fetches the
-page again every 3 minutes, a few seconds after it opens, and whenever the tab or phone app comes back into view. If
+page again every minute (Nov 2; was 3), a few seconds after it opens, and whenever the tab or phone app comes back into view. If
 the published copy is newer, the page reloads in place: same scroll position, and on the card the same odds-board tab
 and "Plays only" setting (the play sort is already remembered). It never reloads while someone is typing, and if a
 reload lands on an older copy (a cache serving behind), it waits 10 minutes before trying that build again.
@@ -12,7 +12,7 @@ import html
 
 import pandas as pd
 
-EVERY_MS = 180_000
+EVERY_MS = 60_000
 
 
 def stamp(at: pd.Timestamp | None = None) -> str:

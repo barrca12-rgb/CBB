@@ -210,11 +210,6 @@ def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, 
     card = _first_open_view(card, day)
     if not replay:
         card = _venue_view(card, day, fetch=record is not None)
-    clv = _clv_view() if record else None
-    clv_recent = clv.pop("recent", None) if clv else None
-    if record and clv_recent is None:   # primary close unreadable: show no CLV, never the grader's as CLV
-        clv_recent = [dict(r, close_line=None, clv_pts=None, clv_same_book=r.get("clv_pts"),
-                           clv_reason="primary close unavailable this run") for r in record["recent"]]
     games = [{k: _clean(v) for k, v in r.items()} for r in card.to_dict("records")]
     t = rt.reset_index(names="espn_id")
     t["rank"] = range(1, len(t) + 1)
@@ -229,12 +224,7 @@ def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, 
     data = {"date": f"{day:%Y-%m-%d}", "season": season, "replay": replay, "repo": REPO, "nfl": NFL_SITE,
             "prerule": prerule, "prerule_res": _prerule_results(f"{day:%Y-%m-%d}") if not replay else {},
             "generated_at": built, "games": games, "ratings": rat,
-            "record": {"status": record["status"], "tripwire": record.get("tripwire"), "clv": clv,
-                       "recent": [{k: _clean(v) for k, v in r.items()} for r in
-                                  (clv_recent if clv_recent is not None else record["recent"])],
-                       "review": json.loads(json.dumps(record.get("review") or {}, default=_clean)),
-                       "band_b": _band_b_view()}
-            if record else None}
+            "record": record_block(record) if record else None}
     payload = json.dumps(data).replace("</", "<\\/")
     title = f"Off The Glass · College Basketball · {day:%a %b} {day.day}"
     return (TEMPLATE.replace("__HEAD__", HEAD).replace("__BRAND__", BRAND).replace("__X__", X_HANDLE)
@@ -243,6 +233,21 @@ def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, 
             .replace("__BUILT__", "" if replay else autorefresh.meta(built))
             .replace("__AUTOREFRESH__", "" if replay else autorefresh.SCRIPT))
 
+
+
+def record_block(record: dict) -> dict:
+    """The card's record block (data["record"]) from run_day's record dict (status, recent, review, tripwire): the
+    tiles, the record table, the recent results and band B's own line. Shared by the card build and the results-only
+    refresh (cbb/live_refresh.py), so both show the same numbers."""
+    clv = _clv_view()
+    clv_recent = clv.pop("recent", None) if clv else None
+    if clv_recent is None:   # primary close unreadable: show no CLV, never the grader's as CLV
+        clv_recent = [dict(r, close_line=None, clv_pts=None, clv_same_book=r.get("clv_pts"),
+                           clv_reason="primary close unavailable this run") for r in record["recent"]]
+    return {"status": record["status"], "tripwire": record.get("tripwire"), "clv": clv,
+            "recent": [{k: _clean(v) for k, v in r.items()} for r in clv_recent],
+            "review": json.loads(json.dumps(record.get("review") or {}, default=_clean)),
+            "band_b": _band_b_view()}
 
 
 REPORTS_DIR = os.path.join(os.path.dirname(__file__), "..", "reports")
@@ -448,6 +453,8 @@ label.chk { display: inline-flex; gap: 6px; align-items: center; color: var(--mu
 .board tbody.g tr:first-child td { border-bottom: 0 }
 .board tbody.g:last-child tr:last-child td { border-bottom: 0 }
 .board .team { font-weight: 500 }
+.score { font-size: 12px; font-weight: 600; margin-top: 2px } .score .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #d64545; margin-right: 5px; vertical-align: 1px }
+.score .res { display: inline-block; margin-left: 6px; padding: 0 6px; border-radius: 4px; font-weight: 800 } .score .res.W { background: #e3f3e8; color: #1d7a3e } .score .res.L { background: #fbe4e4; color: #b42318 } .score .res.P { background: var(--line) }
 .inj { color: var(--warn); font-size: 11px; font-weight: 500; white-space: normal; max-width: 340px; margin-top: 1px } .board .tm { width: 72px; color: var(--muted); font-size: 12px }
 .board .pts { color: var(--muted); width: 40px }
 .odd { display: inline-flex; flex-direction: column; align-items: flex-end; min-width: 56px; padding: 3px 6px; border-radius: 6px; line-height: 1.25; color: var(--text); text-decoration: none }
@@ -601,6 +608,19 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   const pct = (x) => x == null ? "–" : (100 * x).toFixed(1) + "%";
   const day = new Date(D.date + "T12:00:00");
   const tip = (g) => g.start ? new Date(g.start).toLocaleTimeString("en-US", {hour: "numeric", minute: "2-digit", timeZone: "America/New_York"}) : "";
+  // live and final scores (Chad, Nov 2: "can you add live scores"); the clock comes from the results refresh
+  // (cbb/live_refresh.py, every ~3 minutes during games)
+  const started = (g) => (g.state === "in" || g.state === "post") && g.home_score != null && g.away_score != null;
+  const clock = (g) => g.state === "post" ? (/final/i.test(g.clock || "") ? g.clock : "Final") : (g.clock || "Live");
+  // a play's result at its own number from the final score, graded the way the bet log grades it (tracker.settle)
+  const cover = (g, kind, side, line) => {
+    if (g.state !== "post" || !started(g) || line == null || !side) return null;
+    const hs = Number(g.home_score), as = Number(g.away_score), l = Number(line);
+    const r = kind === "Spread" ? (side === "home" ? hs - as : as - hs) + l : (hs + as - l) * (side === "over" ? 1 : -1);
+    return r > 0 ? "W" : r < 0 ? "L" : "P"; };
+  const scoreTag = (g, res) => started(g) ? "<div class='score'>" + (g.state === "in" ? "<span class='dot'></span>" : "") +
+    esc(clock(g)) + " · " + esc(g.away) + " " + esc(g.away_score) + ", " + esc(g.home) + " " + esc(g.home_score) +
+    (res ? "<span class='res " + res + "'>" + res + "</span>" : "") + "</div>" : "";
   const matchup = (g) => g.away + (g.neutral ? " vs " : " @ ") + g.home;
   // phones: each row of these tables becomes a small card; each cell is labeled with its column header
   const stack = (id) => { const t = $(id); if (!t) return; const hs = [...t.querySelectorAll("thead th")].map((h) => h.textContent.trim());
@@ -754,6 +774,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     "<th></th>";
   $("t-plays").innerHTML = P.length ? "<thead><tr>" + bar + "</tr></thead><tbody>" +
     P.map((p, i) => (i ? "<tr class='rephead'>" + bar + "</tr>" : "") + "<tr data-gid='" + p.g.game_id + "' data-mk='" + p.kind.toLowerCase() + "'><td><div class='b pick'>" + logo(pickId(p.g, p.kind, p.side), 20) + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
+      scoreTag(p.g, cover(p.g, p.kind, p.side, p.line)) +
       (p.kind === "Total" && p.g.crew ? "<div class='f' style='font-size:11px'>Refs: " + esc(p.g.crew) + "</div>" : "") +
       (D.replay ? "" : venueTag(p.g) + freshTag(p.g, p.kind)) +
       (p.status ? "<div class='f' style='font-size:12px'>" + esc(p.status) + "</div>" : "") +
@@ -846,7 +867,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     (bbr.clv != null ? " · Alert CLV " + clvf(bbr.clv) + " on " + bbr.clv_n : "") + (bbr.open ? " · " + bbr.open + " open" : "") +
     ". A separate bet type on spreads only, never counted in the record above: v1's edge of 2-2.49 points with v1's +2% EV rule, 0.5 unit flat.";
   $("t-bandb").innerHTML = BB.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r'>Edge</th><th class='r'>Units</th><th class='r'>Result</th><th></th></tr></thead><tbody>" +
-    BB.map((p) => "<tr><td><div class='b pick'><span class='tag'>Band B</span> " + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
+    BB.map((p) => "<tr><td><div class='b pick'><span class='tag'>Band B</span> " + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" + scoreTag(p.g, null) +
       venueTag(p.g) + freshTag(p.g, p.kind) +
       "</td><td>" +
       esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r'>" + sgn(p.edge) + "</td><td class='r'>" + num(p.units, 2) +
@@ -953,10 +974,10 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
           const top = Math.max(...prices.filter((v) => v != null));
           bookCells = BOOKS.map((bk, j) => { const x = bl(g, bk); return x && x[sd + "_ml"] != null ? cell(odds(x[sd + "_ml"]), null, x[sd + "_ml_link"], prices[j] === top && prices.filter((v) => v != null).length > 1) : cell(null); });
         }
-        return "<tr>" + (i === 0 ? "<td class='tm' rowspan='2'>" + esc(tip(g)) + (g.state === "post" ? "<div class='f'>Final</div>" : "") + "</td>" : "") +
-          "<td class='team'>" + (i === 0 ? "<div class='tm-sm'>" + esc(tip(g)) + (g.state === "post" ? " · Final" : "") + "</div>" : "") +
+        return "<tr>" + (i === 0 ? "<td class='tm' rowspan='2'>" + esc(tip(g)) + (started(g) ? "<div class='f'>" + esc(clock(g)) + "</div>" : "") + "</td>" : "") +
+          "<td class='team'>" + (i === 0 ? "<div class='tm-sm'>" + esc(tip(g)) + (started(g) ? " · " + esc(clock(g)) : "") + "</div>" : "") +
           (i === 1 && !g.neutral ? "<span class='f'>@ </span>" : "") + logo(g[sd + "_id"], 18) + esc(team) +
-          (g.state === "post" ? " <span class='m'>" + esc(g[sd + "_score"]) + "</span>" : "") +
+          (started(g) ? " <span class='" + (g.state === "in" ? "b" : "m") + "'>" + esc(g[sd + "_score"]) + "</span>" : "") +
           (g[sd + "_injuries"] ? "<div class='inj'>" + esc(g[sd + "_injuries"]) + "</div>" : "") + "</td><td class='r pts'>" + pts + "</td><td class='r b'>" + model + "</td>" +
           bookCells.map((c, j) => "<td class='bk" + (j >= 4 ? " bk-minor" : "") + "'>" + c + "</td>").join("") +
           "<td class='bestc'>" + best(g, sd, i) + "</td><td class='r edge'>" + edge + "</td></tr>";

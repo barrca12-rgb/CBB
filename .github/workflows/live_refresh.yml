@@ -1,0 +1,75 @@
+# Results-only refresh of the site (cbb/live_refresh.py; Chad, Nov 2). Runs after every targeted quote poll (every 3
+# minutes): ESPN's free scoreboard -> live scores and the game clock, finished plays graded with the card's own grader,
+# the record tiles, the record page -> publish. No odds pull of any kind (no Odds API credits), no model run, no new
+# play, and nothing is committed: the bet log, Discord results and phone alerts stay with the 10-minute card run. No
+# Discord or phone secret is passed, so nothing here can post or alert.
+name: Live results refresh
+
+on:
+  workflow_run:
+    workflows: ["Targeted quote poll"]
+    types: [completed]
+    branches: [claude/college-basketball-model-nmztcl]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: live-refresh
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: claude/college-basketball-model-nmztcl     # the newest card on the branch head
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - run: pip install -r requirements.txt
+
+      - name: Scores, results and record
+        id: live
+        run: python -m cbb.live_refresh
+
+      # the same site as the card run's "Build site" step (.github/workflows/update.yml); a test keeps the two equal
+      - name: Build site
+        if: steps.live.outputs.publish == 'true'
+        run: |
+          mkdir -p _site
+          cp reports/cbb_*.html reports/days.json reports/record.html _site/ 2>/dev/null || true
+          CUR=$(python -c "import json; print('cbb_' + json.load(open('reports/days.json'))['current'] + '.html')" 2>/dev/null || true)
+          if [ -n "$CUR" ] && [ -f "reports/$CUR" ]; then cp "reports/$CUR" _site/index.html
+          else echo '<!doctype html><meta charset="utf-8"><title>CBB card</title><p>No card yet.</p>' > _site/index.html; fi
+          mkdir -p _site/assets && cp site/assets/* _site/assets/   # Off The Glass logo, banner, icons, link-preview image
+          mkdir -p _site/record && if [ -d site/record ]; then cp -r site/record/. _site/record/; fi   # weekly charts (cbb/record_chart.py)
+          if [ -f reports/verify.html ]; then cp reports/verify.html _site/record/verify.html; fi      # unlisted verification page
+          touch _site/.nojekyll
+
+      # a card run that saved a newer card meanwhile publishes it itself: never put an older card back up
+      - name: Skip if a newer card was saved
+        id: fresh
+        if: steps.live.outputs.publish == 'true'
+        run: |
+          git fetch -q --depth=1 origin claude/college-basketball-model-nmztcl
+          if git diff --quiet HEAD FETCH_HEAD -- reports; then echo "ok=true" >> "$GITHUB_OUTPUT"
+          else echo "A newer card was saved; it publishes itself."; echo "ok=false" >> "$GITHUB_OUTPUT"; fi
+
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.live.outputs.publish == 'true' && steps.fresh.outputs.ok == 'true'
+        with:
+          path: _site
+
+      - id: deploy
+        if: steps.live.outputs.publish == 'true' && steps.fresh.outputs.ok == 'true'
+        uses: actions/deploy-pages@v4
