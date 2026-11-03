@@ -14,12 +14,13 @@ on:
 
 permissions:
   contents: read
+  actions: read        # to see whether a card run is publishing (below)
   pages: write
   id-token: write
 
 concurrency:
   group: live-refresh
-  cancel-in-progress: true
+  cancel-in-progress: false   # never cancel a refresh mid-publish (Nov 3: "Unable to find artifact" failures)
 
 jobs:
   refresh:
@@ -56,20 +57,32 @@ jobs:
           if [ -f reports/verify.html ]; then cp reports/verify.html _site/record/verify.html; fi      # unlisted verification page
           touch _site/.nojekyll
 
-      # a card run that saved a newer card meanwhile publishes it itself: never put an older card back up
-      - name: Skip if a newer card was saved
+      # a card run that saved a newer card meanwhile publishes it itself: never put an older card back up. GitHub Pages
+      # takes one publish at a time, so the refresh also stands aside while a card run is going (Nov 3: card runs at
+      # 04:50, 08:50 and 12:50 UTC failed with "in progress deployment" while a refresh was publishing)
+      - name: Skip if a newer card was saved or a card run is publishing
         id: fresh
         if: steps.live.outputs.publish == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git fetch -q --depth=1 origin claude/college-basketball-model-nmztcl
-          if git diff --quiet HEAD FETCH_HEAD -- reports; then echo "ok=true" >> "$GITHUB_OUTPUT"
-          else echo "A newer card was saved; it publishes itself."; echo "ok=false" >> "$GITHUB_OUTPUT"; fi
+          busy=$(curl -fsS -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/update.yml/runs?per_page=5" \
+            | python -c "import sys, json; print(sum(r['status'] != 'completed' for r in json.load(sys.stdin)['workflow_runs']))" \
+            || echo 0)
+          if ! git diff --quiet HEAD FETCH_HEAD -- reports; then echo "A newer card was saved; it publishes itself."; echo "ok=false" >> "$GITHUB_OUTPUT"
+          elif [ "$busy" != "0" ]; then echo "A card run is going; it publishes the site itself."; echo "ok=false" >> "$GITHUB_OUTPUT"
+          else echo "ok=true" >> "$GITHUB_OUTPUT"; fi
 
       - uses: actions/upload-pages-artifact@v3
         if: steps.live.outputs.publish == 'true' && steps.fresh.outputs.ok == 'true'
         with:
           path: _site
 
+      # a refresh is best effort: the next one is 3 minutes away, so a GitHub-side publish hiccup (Nov 3, 05:00 UTC:
+      # "Failed to get ID Token: socket hang up") is logged here, never a failed run
       - id: deploy
         if: steps.live.outputs.publish == 'true' && steps.fresh.outputs.ok == 'true'
+        continue-on-error: true
         uses: actions/deploy-pages@v4

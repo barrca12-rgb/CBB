@@ -156,10 +156,14 @@ def win_probs(s: pd.DataFrame) -> pd.DataFrame:
 # picks
 # ---------------------------------------------------------------------------------------------------------------
 def load_picks() -> pd.DataFrame:
-    return pd.read_csv(PICKS) if os.path.exists(PICKS) else pd.DataFrame(columns=PICK_COLS)
+    # "result" is text (W / L / void / empty): read as text, or a file with no result yet loads it as numbers and
+    # the first "W" fails to write (Nov 3, 03:30 UTC run: "Invalid value 'W' for dtype 'float64'")
+    return pd.read_csv(PICKS, dtype={"result": "object"}) if os.path.exists(PICKS) else pd.DataFrame(columns=PICK_COLS)
 
 
 def grade(p: pd.DataFrame, s: pd.DataFrame) -> pd.DataFrame:
+    p = p.copy()
+    p["result"] = p["result"].astype("object")
     g = s.set_index("game_id")
     for i, r in p.iterrows():
         if pd.notna(r["result"]) and r["result"] in ("W", "L"):

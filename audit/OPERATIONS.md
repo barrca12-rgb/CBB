@@ -260,3 +260,18 @@ The proposed 15-unit daily cap and any staking change are not part of this work.
 - **Fix (`cbb/autorefresh.py`, display only):** links between the site's pages (date bar, record, charts, back to
   the card) open the newest copy (`?t=` added on click and dropped again on arrival).
 - **Test:** `audit/test_autorefresh.py`.
+
+## 2026-11-03: Run failures overnight (8 of 800 runs since 03:00 UTC)
+
+- **Publish collisions (5):** GitHub Pages takes one publish at a time.
+  - The card runs at 04:50, 08:50 and 12:50 UTC failed with "in progress deployment" while a results refresh was
+    publishing.
+  - Refreshes at 05:15 and 09:15 failed with "Unable to find artifact", the same collision from the other side.
+  - Each card was built and saved; the next publish caught up.
+  - **Fix (`.github/workflows/live_refresh.yml`, not fingerprinted):** the refresh does not publish while a card
+    run is going, since the card run publishes itself. It no longer cancels an earlier refresh mid-publish. A
+    GitHub-side publish error is logged instead of failing the run; the next refresh is 3 minutes away.
+- **GitHub hiccup (1):** the refresh at 05:00 hit "Failed to get ID Token: socket hang up", covered by the change above.
+- **Survivor (1):** the 03:30 run failed writing "W" into an empty result column (pandas 3 typing). `load_picks` and
+  `grade` keep that column as text. Test: `audit/test_survivor_grade.py`.
+- **Cancelled refresh (1):** replaced by a newer one; that no longer happens.
