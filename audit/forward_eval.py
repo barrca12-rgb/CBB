@@ -18,7 +18,7 @@ import numpy as np
 import pandas as pd
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
-PROTOCOL_VERSION = "2.3"
+PROTOCOL_VERSION = "2.5"   # v2.4 opener rule; v2.5 actual-tip cutoff and spread sides (Nov 2)
 
 # --- model versions (protocol sections 1 and 8) ------------------------------------------------------------------
 # Model v1 = the live card at the freeze commit (committed 2026-10-26T19:20:50Z). A switch to v2 at a checkpoint sets
@@ -306,14 +306,32 @@ def fallback_start(closing: pd.DataFrame, b) -> pd.Timestamp | None:
     return st if pd.notna(st) else None
 
 
-def tip_cutoff(og: pd.DataFrame, fallback) -> tuple[pd.Timestamp | None, str]:
+def tip_cutoff(og: pd.DataFrame, fallback, actual=None) -> tuple[pd.Timestamp | None, str]:
     """The scheduled start as last reported before it: the start carried by the latest observation made before its
     own reported start. Delays and reschedules move it; a game never observed pregame uses `fallback` (closing.csv's
-    start). Actual tip times are not observed, and nothing at or after the cutoff is used."""
+    start). Nothing at or after the cutoff is used.
+    actual (Nov 2): the verified actual tip (cbb/tipoff.py, ESPN play-by-play, "jump ball" quality only). When it is
+    earlier than the scheduled cutoff, the ball was already up, so the cutoff is the actual tip: no in-play quote can
+    be a close. A later actual tip never moves the cutoff later."""
     pre = og[og["t"] < og["st"]] if len(og) else og
     if len(pre):
-        return pre["st"].iloc[-1], "latest pregame report"
-    return (fallback, "closing.csv start") if fallback is not None else (None, "unknown")
+        cut, src = pre["st"].iloc[-1], "latest pregame report"
+    elif fallback is not None:
+        cut, src = fallback, "closing.csv start"
+    else:
+        cut, src = None, "unknown"
+    if actual is not None and pd.notna(actual) and (cut is None or pd.isna(cut) or actual < cut):
+        return actual, "actual tip (ESPN play-by-play)"
+    return cut, src
+
+
+def actual_tips() -> dict:
+    """game_id -> verified actual tip (cbb/tipoff.py's cache); empty when unavailable."""
+    try:
+        from cbb import tipoff
+        return tipoff.load()
+    except Exception:
+        return {}
 
 
 # ================================================================================================================
@@ -414,11 +432,12 @@ def delay_windows(sig: pd.DataFrame, obs: pd.DataFrame, closing: pd.DataFrame,
     never replaces an unavailable or stale first one; no observation in the window is "missing"."""
     al = alert_times(alerts)
     by_game = dict(tuple(obs.groupby("game_key", sort=False))) if len(obs) else {}
+    tips = actual_tips()
     rows = []
     for _, b in sig.iterrows():
         og = by_game.get(b["game_key"], obs.iloc[0:0])
         og = orient(og, b)   # spread sides from the bet's home team (Nov 2 fix)
-        cutoff, _ = tip_cutoff(og, fallback_start(closing, b))
+        cutoff, _ = tip_cutoff(og, fallback_start(closing, b), tips.get(int(b["game_id"])) if "game_id" in b else None)
         if b["bet_id"] in al.index:
             t0, src = al.loc[b["bet_id"], "alert_at"], al.loc[b["bet_id"], "alert_source"]
         else:
@@ -607,10 +626,11 @@ def evaluate(through: str | None = None, today: str | None = None, bets: pd.Data
 
     strict, bench, books_used = [], [], []
     by_game = dict(tuple(o.groupby("game_key", sort=False))) if len(o) else {}
+    tips = actual_tips()
     for _, b in a.iterrows():
         og = by_game.get(b["game_key"], o.iloc[0:0])
         og = orient(og, b)   # spread sides from the bet's home team (Nov 2 fix)
-        cutoff, _ = tip_cutoff(og, fallback_start(closing, b))
+        cutoff, _ = tip_cutoff(og, fallback_start(closing, b), tips.get(int(b["game_id"])) if "game_id" in b else None)
         sc = strict_close(og, b["market"], cutoff)
         strict.append(to_side(b, sc["close"]))
         bench.append(to_side(b, bench_close(closing, b)[0]))

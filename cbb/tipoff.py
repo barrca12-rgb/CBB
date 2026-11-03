@@ -24,6 +24,7 @@ CACHE = os.path.join(ROOT, "lines", "tipoffs.csv")
 SUMMARY = "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/summary?event={}"
 COLS = ["game_id", "actual_tip", "quality", "reason", "source", "fetched_at"]
 RETRY = pd.Timedelta(hours=1)        # a game with no timed play yet is asked again after this long
+RETRY_LIVE = pd.Timedelta(minutes=5)  # a game ESPN shows as started or final, still without a usable tip
 
 
 def load() -> dict:
@@ -43,7 +44,7 @@ def _secs(clock) -> float | None:
         return None
 
 
-def classify(plays: pd.DataFrame | None, scheduled: pd.Timestamp | None = None) -> dict:
+def classify(plays: pd.DataFrame | None, scheduled: pd.Timestamp | None = None, final: bool = True) -> dict:
     """The actual tip from one game's play-by-play, or why there is none. plays: sequence_number, period_number,
     clock_display_value, type_text, text, wallclock (the cached play-by-play's columns; summary() converts the live
     feed). quality: "jump ball" (usable), "ambiguous" or "missing"; only "jump ball" is ever used as the tip.
@@ -56,7 +57,8 @@ def classify(plays: pd.DataFrame | None, scheduled: pd.Timestamp | None = None) 
     times); no scheduled start, or a tip more than 30 min before or 60 min after it (in the 2024-25 records about one
     game in five carries a whole-hour offset, a time-zone error in the stamps); a game shorter than 60 or longer than
     300 minutes on the wall clock ("ambiguous"). A real delay of over an hour is therefore "unverified", never
-    "verified"."""
+    "verified". final=False (a game still in progress, Nov 2): only the 300-minute ceiling applies to its length, so
+    the tip is known while the game is on instead of only after it ends."""
     out = {"quality": "missing", "reason": "no play-by-play", "tip": None, "has_wallclock": False,
            "start_to_jump_s": np.nan, "min_slack_s": np.nan, "length_min": np.nan}
     if plays is None or not len(plays):
@@ -96,7 +98,7 @@ def classify(plays: pd.DataFrame | None, scheduled: pd.Timestamp | None = None) 
         out["reason"] = ("tip more than 30 min before or 60 min after the scheduled start"
                          + (" (a whole-hour offset: a time-zone error in the stamps)" if late >= 0.9 and
                             abs(late - round(late)) <= 10 / 60 else ""))
-    elif not 60 <= out["length_min"] <= 300:
+    elif not (60 if final else 0) <= out["length_min"] <= 300:
         out["reason"] = "game length on the wall clock outside 60-300 min"
     else:
         out.update(quality="jump ball", reason="", tip=tip)
@@ -120,7 +122,8 @@ def first_play(summary: dict) -> pd.Timestamp | None:
 def fetch_summary(summary: dict) -> dict:
     comp = ((summary.get("header") or {}).get("competitions") or [{}])[0]
     sched = pd.to_datetime(comp.get("date"), utc=True, errors="coerce")
-    return classify(summary_plays(summary), sched if pd.notna(sched) else None)
+    final = bool(((comp.get("status") or {}).get("type") or {}).get("completed", True))
+    return classify(summary_plays(summary), sched if pd.notna(sched) else None, final=final)
 
 
 def fetch(game_id: int) -> dict:
@@ -129,16 +132,37 @@ def fetch(game_id: int) -> dict:
         return fetch_summary(json.load(r))
 
 
-def refresh(b: pd.DataFrame, now: pd.Timestamp | None = None) -> int:
-    """Fetch the actual tip of every settled bet's game not yet cached (or cached without one more than RETRY ago).
-    Never raises; returns how many games were asked."""
+def _started(b: pd.DataFrame, now: pd.Timestamp, slate=None) -> set:
+    """Open bets' games that ESPN shows as started or final (one scoreboard call per date), so a tip is known while
+    the game is on, not only once the bet is graded (Nov 2: tip-time conflicts)."""
+    if slate is None:
+        from .run_day import slate
+    today = now.tz_convert("America/New_York").strftime("%Y-%m-%d")
+    o = b[(b["status"] == "open") & (b["date"].astype(str) <= today)]
+    out = set()
+    for d in sorted(o["date"].astype(str).unique()):
+        try:
+            s = slate(pd.Timestamp(d))
+        except Exception as e:
+            print(f"tipoff: scoreboard for {d} unavailable ({e}).")
+            continue
+        if len(s):
+            out |= {int(g) for g in s.loc[s["state"].isin(["in", "post"]), "game_id"]}
+    return out & {int(g) for g in o["game_id"]}
+
+
+def refresh(b: pd.DataFrame, now: pd.Timestamp | None = None, slate=None) -> int:
+    """Fetch the actual tip of every settled bet's game, and of every open bet's game ESPN shows as started, not yet
+    cached (or cached without one: settled games after RETRY, started ones after RETRY_LIVE). Never raises; returns
+    how many games were asked."""
     now = now or pd.Timestamp.now(tz="UTC")
     try:
         c = pd.read_csv(CACHE) if os.path.exists(CACHE) else pd.DataFrame(columns=COLS)
         done = set(c.loc[c["actual_tip"].notna(), "game_id"].astype(int))
         last = c.groupby("game_id")["fetched_at"].max().map(lambda x: pd.Timestamp(x)).to_dict() if len(c) else {}
-        want = {int(g) for g in b.loc[b["status"] == "settled", "game_id"]} - done
-        want = {g for g in want if g not in last or now - last[g] >= RETRY}
+        live = _started(b, now, slate) - done
+        want = ({int(g) for g in b.loc[b["status"] == "settled", "game_id"]} - done) | live
+        want = {g for g in want if g not in last or now - last[g] >= (RETRY_LIVE if g in live else RETRY)}
         rows = []
         for g in sorted(want):
             try:

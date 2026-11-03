@@ -36,8 +36,9 @@ COLS = ["bet_id", "cohort", "cutoff", "cutoff_source", "espn_start", "start_gap_
         "obs_before_cutoff_s", "clv_status", "clv_reason", "price_vs_close", "close_espn_start", "clv_espn_start",
         "books_espn_start", "actual_tip", "pregame_check", "pregame_note", "q_pregame", "q_buffer", "q_near_tip",
         "secs_before_tip"]
-# Tip-time diagnostics (never change the cutoff, which is the protocol's): the cutoff is compared with ESPN's scheduled
-# start and with the feed's latest reported start (lines/closing.csv). Over START_GAP_FLAG_MIN: "review" (shown per
+# Tip-time diagnostics: the scheduled cutoff is compared with ESPN's scheduled start and with the feed's latest reported
+# start (lines/closing.csv). Since Nov 2 a verified actual tip earlier than the scheduled cutoff becomes the cutoff
+# (forward_eval.tip_cutoff), and a play whose actual tip is known reads "resolved" instead of "review" / "conflict". Over START_GAP_FLAG_MIN: "review" (shown per
 # play and sent for review before tip). At or over START_GAP_CONFLICT_MIN: "conflict" (escalated; a different rule
 # would be a protocol change). 10 sits below the 15-minute closing window: a gap over 15 minutes means the window the
 # protocol uses and the window around the other start do not overlap at all.
@@ -186,27 +187,31 @@ def primary(b: pd.DataFrame, obs: pd.DataFrame | None = None, closing: pd.DataFr
         key = f"{r['date']}|{min(int(r['home_id']), int(r['away_id']))}|{max(int(r['home_id']), int(r['away_id']))}"
         og = by_game.get(key, o.iloc[0:0])
         og = fe.orient(og, r)   # spread sides from the bet's home team, not the feed's (Nov 2: Miami-Florida)
-        cutoff, src = fe.tip_cutoff(og, fe.fallback_start(closing, r))
+        at = tips.get(int(r["game_id"]))
+        # a verified actual tip earlier than the scheduled cutoff ends the close there (Nov 2: tip-time conflicts)
+        cutoff, src = fe.tip_cutoff(og, fe.fallback_start(closing, r), at)
+        sched, _ = fe.tip_cutoff(og, fe.fallback_start(closing, r))   # the scheduled cutoff, for the start checks
         sc = fe.strict_close(og, r["market"], cutoff)
         close = fe.to_side(r, sc["close"])
         clv = fe.line_value(r, close)
         cohort = "v1" if pd.Timestamp(r["logged_at"]) >= fe.PROTOCOL_START else "pre-freeze"
         es = espn.get(int(r["game_id"]))
-        gap = round((cutoff - es).total_seconds() / 60) if es is not None and pd.notna(es) and cutoff is not None \
-            and pd.notna(cutoff) else None
+        gap = round((sched - es).total_seconds() / 60) if es is not None and pd.notna(es) and sched is not None \
+            and pd.notna(sched) else None
         fl = None
         if len(cl):
             m = cl[(cl["date"] == r["date"]) & (((cl["home_id"] == r["home_id"]) & (cl["away_id"] == r["away_id"])) |
                                                 ((cl["home_id"] == r["away_id"]) & (cl["away_id"] == r["home_id"])))]
             fl = m["_st"].max() if len(m) and m["_st"].notna().any() else None
-        fgap = round((cutoff - fl).total_seconds() / 60) if fl is not None and cutoff is not None and pd.notna(cutoff) else None
+        fgap = round((sched - fl).total_seconds() / 60) if fl is not None and sched is not None and pd.notna(sched) else None
         worst = max([abs(x) for x in (gap, fgap) if x is not None] or [0])
         tip = "conflict" if worst >= START_GAP_CONFLICT_MIN else "review" if worst > START_GAP_FLAG_MIN else "ok"
+        if at is not None and tip != "ok":   # the ball's actual tip settles which start was right (Nov 2)
+            tip = "resolved"
         dg = {"close": np.nan, "books": 0}
         if tip == "conflict" and es is not None and pd.notna(es):
             dg = fe.strict_close(og.assign(st=es), r["market"], es)     # same rule, cutoff = ESPN's start
         dclose = fe.to_side(r, dg["close"])
-        at = tips.get(int(r["game_id"]))
         pg = pregame(close, cutoff, sc.get("obs_before_cutoff_s", []), [cutoff, es, fl], at)
         if str(r.get("status")) == "void":
             st, why = "void", "void: excluded from every metric"
@@ -214,8 +219,11 @@ def primary(b: pd.DataFrame, obs: pd.DataFrame | None = None, closing: pd.DataFr
             st, why = _reason(fe, og, r["market"], cutoff, now)
         else:
             st, why = "ok", f"{sc['books']} book(s)"
+        if src.startswith("actual tip"):
+            why += f"; cutoff = actual tip {cutoff:%H:%M} UTC, before the scheduled {sched:%H:%M}" if sched is not None \
+                and pd.notna(sched) else f"; cutoff = actual tip {cutoff:%H:%M} UTC"
         if gap is not None and abs(gap) > START_GAP_FLAG_MIN:
-            why += (f"; tip time {tip}: the cutoff (the feed's reported start) is {abs(gap)} min "
+            why += (f"; tip time {tip}: the scheduled cutoff (the feed's reported start) is {abs(gap)} min "
                     f"{'before' if gap < 0 else 'after'} ESPN's scheduled start")
         if fgap is not None and abs(fgap) > START_GAP_FLAG_MIN:
             why += (f"; tip time {tip}: the cutoff is {abs(fgap)} min {'before' if fgap < 0 else 'after'} the feed's "

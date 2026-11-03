@@ -1041,3 +1041,38 @@ c779e188f209c32f11ae15eff7439443f44d4d003b7e7cef5d36ee3b18dcebc8  cbb/injury_sou
 ```
 ad963b313e7e36af173dc366089760bc1a18f175a45322d6007d5cdc91f77112  audit/forward_eval.py
 ```
+
+## 2026-11-02: Tip-time conflicts settled by the actual tip (protocol v2.5; Chad, Nov 2)
+
+- **What was open:**
+  - Five plays tonight had the feed's start 15 to 40 minutes after ESPN's. Two were "conflict", three "review".
+  - 47 closes were "unverified" and 23 had "in-play risk": the actual tip was fetched only once a play was graded.
+  - A game still in progress was rejected as "shorter than 60 minutes".
+  - Where the real tip came before the feed's start, the close could include in-play quotes (Over 148.5: feed
+    01:30, tip 01:19; Alcorn State +31.5: feed 01:45, tip 01:32).
+- **`cbb/tipoff.py` (not fingerprinted):**
+  - The actual tip is fetched for every open play's game that ESPN shows as started, every 5 minutes until found,
+    as well as for graded plays.
+  - A game in progress keeps every check except the 60-minute minimum length.
+- **`audit/forward_eval.py` (fingerprinted):**
+  - `tip_cutoff` takes the verified actual tip ("jump ball" quality only) when it is earlier than the scheduled
+    cutoff; a later tip never moves the cutoff. It is used by the close and the execution check.
+  - `PROTOCOL_VERSION` is "2.5" (it still read 2.3).
+- **`cbb/clv_primary.py`:**
+  - The start checks compare the scheduled cutoff.
+  - A play whose actual tip is known reads "resolved" instead of "review" or "conflict".
+  - The reason line names an actual-tip cutoff.
+- **`FORWARD_TEST_PROTOCOL.md` (v2.5):** section 7 states the actual-tip cutoff and the spread-sides rule.
+- **Result on tonight's log:** pregame verified 39 to 93, unverified 47 to 4, in-play risk 23 to 3 (games not yet
+  tipped).
+  - Over 148.5 and Alcorn State +31.5 close at their actual tips ("resolved").
+  - Ohio State and Florida A&M resolve when they tip.
+  - No settled main play's close changed: the record, tripwire and Discord posts stand.
+- **Tests:** `audit/test_tip_cutoff.py`.
+- **Discord note:** `2026-11-02-tip-cutoff`.
+- **New fingerprints:**
+
+```
+c4040ab035bd573aad7bd3ff977500ae48a5e437b9d4d16f405ad9e6c4fffb50  audit/forward_eval.py
+63dff849dc7bcb865fbe9a6e3afeba8046053ce72a2bb4405d32feb5c414970b  FORWARD_TEST_PROTOCOL.md
+```

@@ -1,4 +1,4 @@
-# Forward-test protocol, v2.4 (declared Oct 26, 2026, before the season's first games on Nov 1; v2.1 Oct 28; v2.2 Oct 29; v2.3 Oct 30; v2.4 Nov 2)
+# Forward-test protocol, v2.5 (declared Oct 26, 2026, before the season's first games on Nov 1; v2.1 Oct 28; v2.2 Oct 29; v2.3 Oct 30; v2.4 Nov 2; v2.5 Nov 2)
 
 This file fixes how the 2026-27 live record is collected and judged. It is fingerprinted in `MODEL_FREEZE.md`
 together with its evaluation code, `audit/forward_eval.py`, and that code's tests, `audit/test_forward_eval.py`.
@@ -213,7 +213,11 @@ observed.
 **Tip cutoff:** the scheduled start carried by the latest observation made before its own reported start.
 - **Delays and reschedules:** they move the cutoff.
 - **Never observed pregame:** the game uses `closing.csv`'s scheduled start.
-- **Actual tip times:** not observed and not used.
+- **Actual tip times (v2.5, Nov 2):** a verified actual tip (ESPN play-by-play, `cbb/tipoff.py`, "jump ball" quality
+  only) earlier than the scheduled cutoff becomes the cutoff, so no in-play quote can be a close. A later actual tip
+  never moves the cutoff later; a game without a verified tip keeps the scheduled cutoff.
+- **Spread sides (v2.5, Nov 2):** a feed event's spread quotes are read from the bet's home team, whichever team
+  the feed lists as home (neutral sites; `forward_eval.orient`).
 - **Postponed or cancelled games:** void.
 - **Games moved to another date:** close missing, counted.
 
