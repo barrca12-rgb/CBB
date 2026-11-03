@@ -166,3 +166,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-03|401921819|total|under,2026-11-03,401921819,total,Under 150.5,under,2579,56,South Carolina,Stetson,150.5,150.5,-110.0,FanDuel,3.14,147.36,1.0,yes,2026-11-03T07:31:01+00:00,,,,,,,,open,
 2026-11-03|401906757|total|under,2026-11-03,401906757,total,Under 172,under,333,2534,Alabama,Sam Houston,172.0,172.0,-110.0,Caesars,4.3,167.7,1.0,yes,2026-11-03T07:50:45+00:00,,,,,,,,open,
 2026-11-03|401920806|total|under,2026-11-03,401920806,total,Under 163.5,under,245,2011,Texas A&M,Alabama State,163.5,163.5,-110.0,FanDuel,3.06,160.44,1.0,yes,2026-11-03T12:00:57+00:00,,,,,,,,open,
+2026-11-04|401917512|spread|home,2026-11-04,401917512,spread,Saint Mary's -12,home,2608,2449,Saint Mary's,North Dakota State,-12.0,-12.0,-110.0,Caesars,2.89,14.89,0.37,yes,2026-11-03T19:21:05+00:00,,,,,,,,open,
