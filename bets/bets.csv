@@ -23,7 +23,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-02|401909705|spread|away,2026-11-02,401909705,spread,Rider +30,away,221,2520,Pittsburgh,Rider,30.0,30.0,-110.0,Caesars,3.4,26.6,1.0,yes,2026-10-31T07:41:33+00:00,27.5,2.5,0.08724297620558874,95.0,57.0,L,-1.0,settled,
 2026-11-02|401920959|spread|home,2026-11-02,401920959,spread,Western Kentucky -16.5,home,98,2413,Western Kentucky,Morehead State,-16.5,-16.5,-110.0,Caesars,2.7,19.2,1.0,yes,2026-10-31T07:41:33+00:00,,,,,,,,open,
 2026-11-02|401910996|spread|home,2026-11-02,401910996,spread,UL Monroe +4.5,home,2433,2117,UL Monroe,Central Michigan,4.5,4.5,-110.0,Caesars,3.11,-1.39,1.0,yes,2026-10-31T07:41:33+00:00,,,,,,,,open,
-2026-11-02|401909522|spread|away,2026-11-02,401909522,spread,Mercyhurst +30.5,away,269,2385,Marquette,Mercyhurst,30.5,30.5,-110.0,Caesars,2.69,27.81,1.0,yes,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401909522|spread|away,2026-11-02,401909522,spread,Mercyhurst +30.5,away,269,2385,Marquette,Mercyhurst,30.5,30.5,-110.0,Caesars,2.69,27.81,1.0,yes,2026-10-31T07:41:33+00:00,31.5,-1.0,-0.03513455315346398,78.0,43.0,L,-1.0,settled,
 2026-11-02|401919047|spread|away,2026-11-02,401919047,spread,Lindenwood +30.5,away,2628,2815,TCU,Lindenwood,30.5,30.5,-110.0,Caesars,3.83,26.67,1.0,yes,2026-10-31T07:41:33+00:00,,,,,,,,open,
 2026-11-02|401925683|spread|away,2026-11-02,401925683,spread,Alcorn State +31.5,away,145,2016,Ole Miss,Alcorn State,31.5,31.5,-110.0,Caesars,2.59,28.91,1.0,yes,2026-10-31T07:41:33+00:00,,,,,,,,open,
 2026-11-02|401909694|spread|away,2026-11-02,401909694,spread,Florida A&M +25,away,52,50,Florida State,Florida A&M,25.0,25.0,-110.0,Caesars,4.49,20.51,1.0,yes,2026-10-31T07:41:33+00:00,,,,,,,,open,
