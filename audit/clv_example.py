@@ -148,8 +148,9 @@ def build(bet_id: str) -> str:
     p = clv_primary.primary(bets[bets["bet_id"] == bet_id]).iloc[0]
     o = clv_primary._load_obs(None)
     key = f"{b['date']}|{min(int(b['home_id']), int(b['away_id']))}|{max(int(b['home_id']), int(b['away_id']))}"
-    og = o[o["game_key"] == key] if len(o) else o
     from audit import forward_eval as fe
+    og = fe.game_obs(dict(tuple(o.groupby("game_key", sort=False))) if len(o) else {}, dict(b, game_key=key), o.iloc[0:0]) \
+        if len(o) else o
     og = fe.orient(og, b)   # spread sides from the bet's home team (Nov 2 fix)
     cutoff = pd.Timestamp(p["cutoff"]) if p["cutoff"] else None
     L = []

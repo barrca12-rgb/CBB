@@ -29,6 +29,7 @@ jobs:
       - name: Poll watched games
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          SGO_API_KEY: ${{ secrets.SGO_API_KEY }}     # closing-window poll of games The Odds API does not carry (Nov 3)
         run: python -m cbb.poll_targets
       - name: Save the log
         run: |

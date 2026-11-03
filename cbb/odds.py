@@ -80,7 +80,9 @@ def usage(api_key: str | None = None) -> dict:
         return {}
 
 
-def fetch(api_key: str | None = None, max_events: int = 1500) -> pd.DataFrame:
+def fetch(api_key: str | None = None, max_events: int = 1500, event_ids: list | None = None) -> pd.DataFrame:
+    """event_ids (Nov 3, logging only): ask SGO for just these events, so the closing-window poll of a game only SGO
+    carries costs one entity per game, not the whole slate (cbb/poll_targets.py). The card run never passes it."""
     api_key = api_key or os.environ.get("SGO_API_KEY", "")
     u = usage(api_key)
     fetch.usage = u
@@ -89,6 +91,8 @@ def fetch(api_key: str | None = None, max_events: int = 1500) -> pd.DataFrame:
     events, cursor = [], None
     while len(events) < max_events:
         q = {"leagueID": "NCAAB", "oddsAvailable": "true", "limit": 100, "oddID": ",".join(ODDS)}
+        if event_ids:
+            q["eventIDs"] = ",".join(str(e) for e in event_ids)
         if cursor:
             q["cursor"] = cursor
         headers = {"User-Agent": "cbb-model"}

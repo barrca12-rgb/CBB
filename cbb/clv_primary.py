@@ -187,7 +187,7 @@ def primary(b: pd.DataFrame, obs: pd.DataFrame | None = None, closing: pd.DataFr
     rows = []
     for _, r in b.iterrows():
         key = f"{r['date']}|{min(int(r['home_id']), int(r['away_id']))}|{max(int(r['home_id']), int(r['away_id']))}"
-        og = by_game.get(key, o.iloc[0:0])
+        og = fe.game_obs(by_game, dict(r, game_key=key), o.iloc[0:0])   # + the next day's key (feed after midnight ET)
         og = fe.orient(og, r)   # spread sides from the bet's home team, not the feed's (Nov 2: Miami-Florida)
         at = tips.get(int(r["game_id"]))
         # a verified actual tip earlier than the scheduled cutoff ends the close there (Nov 2: tip-time conflicts)

@@ -293,3 +293,11 @@ The proposed 15-unit daily cap and any staking change are not part of this work.
 - `audit/CLV_VERIFICATION.md` records the sign-off. The section 7 caveats stay listed: the meaning of the provider
   timestamp, ESPN's stamp lag, and 6 of 7 books.
 - Discord note: `2026-11-03-clv-verified`.
+
+## 2026-11-03: Every play's CLV audited; closing-line collection gaps fixed
+
+- `audit/clv_audit_all.py` recomputes every play's close and CLV independently (standard library, protocol v2.5) and
+  compares with the site. Result: 125 of 125 closes match to the decimal.
+- 7 graded plays had no close. One was a game the feed starts after midnight ET (filed under the next day). Six were
+  games only SGO carries (no SGO quote in the last 15 minutes). Both are fixed for future games (MODEL_FREEZE, Nov 3).
+- Re-run any time with `python -m audit.clv_audit_all`.

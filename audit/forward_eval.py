@@ -273,6 +273,20 @@ def _feed_home(o: pd.DataFrame, moves: pd.DataFrame | None = None) -> pd.Series:
     return o["event_id"].map(who).astype(float)
 
 
+def game_obs(by_game: dict, b, empty: pd.DataFrame) -> pd.DataFrame:
+    """A bet's observations: its game key, plus the same two teams' key one day later, which is where a feed that
+    starts the game after midnight ET files it (Nov 3 fix; Nov 2, Hawai'i-Seattle U, 11:59 pm ET on ESPN)."""
+    key = b["game_key"] if "game_key" in b and isinstance(b["game_key"], str) else \
+        f"{b['date']}|{min(int(b['home_id']), int(b['away_id']))}|{max(int(b['home_id']), int(b['away_id']))}"
+    d, lo, hi = key.split("|")
+    nxt = f"{(pd.Timestamp(d) + pd.Timedelta(days=1)):%Y-%m-%d}|{lo}|{hi}"
+    parts = [by_game[k] for k in (key, nxt) if k in by_game]
+    if not parts:
+        return empty
+    return parts[0] if len(parts) == 1 else pd.concat(parts).sort_values(
+        ["t", "_lr", "_sr", "upd", "line", "price"], na_position="first", kind="mergesort")
+
+
 def orient(og: pd.DataFrame, b) -> pd.DataFrame:
     """A game's observations with spread sides labelled from the bet's home team (Nov 2 fix): quotes from a feed
     event whose home team is the bet's away team swap "home" and "away"."""
@@ -435,7 +449,7 @@ def delay_windows(sig: pd.DataFrame, obs: pd.DataFrame, closing: pd.DataFrame,
     tips = actual_tips()
     rows = []
     for _, b in sig.iterrows():
-        og = by_game.get(b["game_key"], obs.iloc[0:0])
+        og = game_obs(by_game, b, obs.iloc[0:0])
         og = orient(og, b)   # spread sides from the bet's home team (Nov 2 fix)
         cutoff, _ = tip_cutoff(og, fallback_start(closing, b), tips.get(int(b["game_id"])) if "game_id" in b else None)
         if b["bet_id"] in al.index:
@@ -628,7 +642,7 @@ def evaluate(through: str | None = None, today: str | None = None, bets: pd.Data
     by_game = dict(tuple(o.groupby("game_key", sort=False))) if len(o) else {}
     tips = actual_tips()
     for _, b in a.iterrows():
-        og = by_game.get(b["game_key"], o.iloc[0:0])
+        og = game_obs(by_game, b, o.iloc[0:0])
         og = orient(og, b)   # spread sides from the bet's home team (Nov 2 fix)
         cutoff, _ = tip_cutoff(og, fallback_start(closing, b), tips.get(int(b["game_id"])) if "game_id" in b else None)
         sc = strict_close(og, b["market"], cutoff)

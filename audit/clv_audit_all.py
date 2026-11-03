@@ -132,7 +132,9 @@ def main() -> None:
     rows_out, L = [], []
     for _, b in bets.iterrows():
         key = f"{b['date']}|{min(int(b['home_id']), int(b['away_id']))}|{max(int(b['home_id']), int(b['away_id']))}"
-        rows = obs.get(key, [])
+        d0 = datetime.fromisoformat(str(b["date"]))
+        nxt = f"{(d0 + timedelta(days=1)):%Y-%m-%d}|{key.split('|', 1)[1]}"   # a feed that starts it after midnight ET
+        rows = obs.get(key, []) + obs.get(nxt, [])
         if key not in fh_cache:
             fh_cache[key] = feed_home(rows, moves)
         mine = recompute(b.to_dict(), rows, fh_cache[key], tips.get(int(b["game_id"])))

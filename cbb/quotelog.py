@@ -141,7 +141,12 @@ def watched_games(observed_at: pd.Timestamp) -> set:
             for (_, r), ta in zip(b.iterrows(), t):
                 lo, hi = sorted((int(r["home_id"]), int(r["away_id"])))
                 gk = f"{r['date']}|{lo}|{hi}"
+                # a game the feed starts after midnight ET carries the next day's date in its key (Nov 2: Hawai'i,
+                # 11:59 pm ET on ESPN, 12:00 am on the feed): watch it under the feed's key too
+                alt = next_day_key(gk)
                 st = starts.get(gk)
+                if st is None and alt in starts:
+                    st, gk = starts[alt], alt
                 es = espn.get(r["bet_id"])
                 if es is not None and st is not None and abs(es - st) >= TIP_CONFLICT and \
                         es - TIP_WATCH <= observed_at < es:
@@ -154,6 +159,12 @@ def watched_games(observed_at: pd.Timestamp) -> set:
     except Exception as e:
         print(f"quotelog.watched_games failed ({e}); continuing.")
     return keys
+
+
+def next_day_key(gk: str) -> str:
+    """The same two teams one day later: the key a feed gives a game it starts after midnight ET."""
+    d, lo, hi = gk.split("|")
+    return f"{(pd.Timestamp(d) + pd.Timedelta(days=1)):%Y-%m-%d}|{lo}|{hi}"
 
 
 def _espn_starts(b: pd.DataFrame) -> dict:

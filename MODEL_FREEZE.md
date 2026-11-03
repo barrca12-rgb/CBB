@@ -1098,3 +1098,35 @@ c4040ab035bd573aad7bd3ff977500ae48a5e437b9d4d16f405ad9e6c4fffb50  audit/forward_
 ```
 2236dc3da92cdefd81dd216c7782f5b2cf8eb6e3a44b0f056c3727fd56cdbfed  cbb/tracker.py
 ```
+
+## 2026-11-03: Closing lines collected for every play (logging; Chad approved the extra SGO pulls, Nov 3)
+
+The audit of every play's CLV (`audit/clv_audit_all.py`) found two collection gaps: 7 of 132 graded plays had no close.
+Every close that was collected matched the site to the decimal (125 of 125).
+
+- **Games a feed starts after midnight ET (1 play: Hawai'i-Seattle U, 11:59 pm ET on ESPN).** The quote log files a
+  game under the ET date of the feed's start, so this one was filed under Nov 3 while the bet was dated Nov 2. The
+  pre-tip polls never watched it, and the close could not find its quotes.
+  - `cbb/quotelog.py` (fingerprinted, logging): `watched_games` also matches the next day's key.
+  - `audit/forward_eval.py` (fingerprinted): `game_obs` reads a bet's key and the same teams' key one day later.
+    It is used by the close and the execution check, and through `cbb/clv_primary.py` and `audit/clv_example.py`.
+- **Games only SportsGameOdds carries (6 plays on Nov 2).** The 3-minute pre-tip polls use The Odds API, and SGO was
+  pulled at most every 25 minutes, so no quote landed in the final 15 minutes.
+  - `cbb/poll_targets.py` (fingerprinted, logging): a game in its last 20 minutes with no Odds API quote is polled
+    from SGO by event id, one entity per game.
+  - If SGO returns far more events than asked, the poll stands down and logs it.
+  - `cbb/odds.py` (fingerprinted, logging): `fetch(event_ids=...)`. The card run never passes it.
+  - `.github/workflows/quotes.yml` (fingerprinted): passes `SGO_API_KEY`.
+  - SGO's 95% monthly stop still applies.
+- **Unchanged:** the card, picks, staking, the close rule itself and the bet log. Plays already graded without a
+  close stay "no close": their quotes were never collected, and the protocol never substitutes `closing.csv`.
+- **Tests:** `audit/test_close_coverage.py`. All 192 audit tests pass.
+- **New fingerprints:**
+
+```
+121af7536c03dd577cbc1d1942711175e39b820f4f65ee1443c4157a59391302  audit/forward_eval.py
+99f034f70be0a0ff4b40bf185da4d513faca71f8bed2c1506fd2a09efcd8a03d  cbb/quotelog.py
+e39b5c9f0718696bce4e2250034543219f77b4bc5226c57f9fb1f4053257fb42  cbb/poll_targets.py
+afdf2c2e24e68904e25b85e6caf43c3a11dc07e1f7b3a95ad4369f7cc50d7c36  cbb/odds.py
+c21b8b7367e66c4e701a03a2eb73c4df3a5c8e3ada02146c985bcf43fe52b20d  .github/workflows/quotes.yml
+```
