@@ -19,7 +19,10 @@ import re
 import subprocess
 import sys
 import tempfile
+import shutil
 import threading
+
+import pytest
 
 from cbb import autorefresh, report_html
 
@@ -135,3 +138,38 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+
+
+NAV = r"""
+const {chromium} = require('playwright');
+(async () => { const b = await chromium.launch(); const p = await b.newPage(); const reqs = [];
+  p.on('request', (r) => { if (r.resourceType() === 'document') reqs.push(r.url()); });
+  await p.goto(process.argv[2] + '/a.html'); await p.click('#l'); await p.waitForLoadState('load'); await p.waitForTimeout(300);
+  console.log(JSON.stringify({requested: reqs, final: p.url()})); await b.close(); })();
+"""
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="needs node + playwright")
+def test_links_between_pages_open_the_newest_copy(tmp_path):
+    """Chad, Nov 2 ("records aren't matching on all tabs"): a tab opened from the browser's cache showed an older
+    record. Links between the site's pages now request a fresh copy and drop the query on arrival."""
+    import functools
+    import http.server
+    import threading
+    for name, other in (("a.html", "b.html"), ("b.html", "a.html")):
+        (tmp_path / name).write_text("<!doctype html><html><head>" + autorefresh.meta("2026-11-03T02:00:00+00:00") +
+                                     f"</head><body><a id=l href='{other}'>go</a>" + autorefresh.SCRIPT + "</body></html>")
+    srv = http.server.ThreadingHTTPServer(("127.0.0.1", 0), functools.partial(http.server.SimpleHTTPRequestHandler,
+                                                                            directory=str(tmp_path)))
+    threading.Thread(target=srv.serve_forever, daemon=True).start()
+    try:
+        js = tmp_path / "nav.js"
+        js.write_text(NAV)
+        env = dict(os.environ, NODE_PATH=subprocess.run(["npm", "root", "-g"], capture_output=True, text=True).stdout.strip())
+        r = subprocess.run(["node", str(js), f"http://127.0.0.1:{srv.server_address[1]}"], capture_output=True, text=True,
+                           timeout=120, env=env)
+    finally:
+        srv.shutdown()
+    assert r.returncode == 0, r.stderr
+    o = json.loads(r.stdout.strip().splitlines()[-1])
+    assert re.search(r"/b\.html\?t=\d+$", o["requested"][-1]) and o["final"].endswith("/b.html")

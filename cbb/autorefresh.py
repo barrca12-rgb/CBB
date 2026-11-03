@@ -65,6 +65,19 @@ SCRIPT = r"""<script>
     } catch (e) {}
     busy = false;
   };
+  // links between the site's pages open the newest copy, never one the browser kept from minutes ago (Chad, Nov 2:
+  // "records aren't matching on all tabs": a tab opened from the browser's cache showed an older record). The query
+  // is dropped again on arrival (above).
+  document.addEventListener("click", (e) => {
+    const a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a || a.target === "_blank" || e.defaultPrevented) return;
+    try {
+      const u = new URL(a.getAttribute("href"), location.href);
+      if (u.origin !== location.origin || !/(\.html|\/)$/.test(u.pathname)) return;
+      u.searchParams.set("t", String(Date.now()));
+      a.href = u.toString();
+    } catch (err) {}
+  }, true);
   setTimeout(check, 3000);
   setInterval(check, EVERY);
   document.addEventListener("visibilitychange", () => { if (!document.hidden) check(); });

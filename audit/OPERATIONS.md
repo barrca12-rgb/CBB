@@ -251,3 +251,12 @@ The proposed 15-unit daily cap and any staking change are not part of this work.
 - **Unchanged:** run_day still builds, prices and logs tomorrow's card exactly as before; no fingerprinted file
   changed.
 - **Tests:** `audit/test_live_refresh.py`.
+
+## 2026-11-02: Records not matching across tabs
+
+- **What it was:** every published page carried the same record (checked live: 15-13, +0.54 units on each date tab
+  and the record page). The site is served with a 10-minute browser cache, though. A date tab opened from a copy
+  the browser had kept showed an older record until the page's own refresh replaced it a few seconds later.
+- **Fix (`cbb/autorefresh.py`, display only):** links between the site's pages (date bar, record, charts, back to
+  the card) open the newest copy (`?t=` added on click and dropped again on arrival).
+- **Test:** `audit/test_autorefresh.py`.
