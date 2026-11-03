@@ -9,7 +9,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-02|401909771|total|over,2026-11-02,401909771,total,Over 152.5,over,66,235,Iowa State,Memphis,152.5,152.5,-115.0,DraftKings,4.5,157.0,1.0,yes,2026-10-26T17:20:55+00:00,,,,,,,,open,
 2026-11-02|401906769|total|over,2026-11-02,401906769,total,Over 159.5,over,57,2390,Florida,Miami,159.5,159.5,-110.0,Fanatics,3.01,162.51,1.0,yes,2026-10-27T00:20:47+00:00,,,,,,,,open,
 2026-11-01|401920982|spread|home,2026-11-01,401920982,spread,Villanova +7.5,home,222,87,Villanova,Notre Dame,7.5,7.5,,BetMGM,14.8,7.3,1.0,,2026-10-30T15:50:41+00:00,,,,,,,,void,
-2026-11-02|401919014|total|over,2026-11-02,401919014,total,Over 149.5,over,2377,5,McNeese,UAB,149.5,149.5,-110.0,Caesars,3.23,152.73,1.0,yes,2026-10-31T07:41:33+00:00,,,,,,,,open,
+2026-11-02|401919014|total|over,2026-11-02,401919014,total,Over 149.5,over,2377,5,McNeese,UAB,149.5,149.5,-110.0,Caesars,3.23,152.73,1.0,yes,2026-10-31T07:41:33+00:00,153.5,4.0,0.09577427411304962,99.0,78.0,W,0.909,settled,
 2026-11-02|401925733|spread|away,2026-11-02,401925733,spread,Oakland +29,away,130,2473,Michigan,Oakland,29.0,29.0,-110.0,Caesars,2.98,26.02,1.0,yes,2026-10-31T07:41:33+00:00,,,,,,,,open,
 2026-11-02|401925818|spread|home,2026-11-02,401925818,spread,Indiana State +5,home,282,2429,Indiana State,Charlotte,5.0,5.0,-110.0,Caesars,2.58,-2.42,1.0,yes,2026-10-31T07:41:33+00:00,,,,,,,,open,
 2026-11-02|401921766|spread|away,2026-11-02,401921766,spread,Niagara +29,away,277,315,West Virginia,Niagara,29.0,29.0,-110.0,Caesars,3.79,25.21,1.0,yes,2026-10-31T07:41:33+00:00,,,,,,,,open,
@@ -146,3 +146,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-03|401906757|spread|home|bandB,2026-11-03,401906757,spread,Alabama -25.5,home,333,2534,Alabama,Sam Houston,-25.5,-25.5,-110.0,FanDuel,2.36,27.86,0.5,yes,2026-11-02T23:01:28+00:00,,,,,,,,open,bandB
 2026-11-03|401920304|spread|away,2026-11-03,401920304,spread,Hampton +16,away,59,2261,Georgia Tech,Hampton,16.0,16.0,-110.0,Caesars,3.14,12.86,1.0,yes,2026-11-02T23:31:29+00:00,,,,,,,,open,
 2026-11-03|401921165|total|over,2026-11-03,401921165,total,Over 158.5,over,142,325,Missouri,Cleveland State,158.5,158.5,-110.0,DraftKings,3.56,162.06,0.97,yes,2026-11-03T00:01:19+00:00,,,,,,,,open,
+2026-11-03|401924911|total|over,2026-11-03,401924911,total,Over 148.5,over,2439,2464,UNLV,Northern Arizona,148.5,148.5,-110.0,Caesars,3.06,151.56,1.0,yes,2026-11-03T00:41:29+00:00,,,,,,,,open,
