@@ -123,7 +123,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-02|401924856|spread|home,2026-11-02,401924856,spread,Michigan State -29.5,home,127,2514,Michigan State,Quinnipiac,-29.5,-29.5,-110.0,Caesars,2.8,32.3,1.0,yes,2026-11-02T11:31:06+00:00,,,,,,,,open,
 2026-11-02|401906779|spread|away,2026-11-02,401906779,spread,North Carolina Central +37.5,away,61,2428,Georgia,North Carolina Central,37.5,37.5,-105.0,DraftKings,2.82,34.68,1.0,yes,2026-11-02T14:01:01+00:00,,,,,,,,open,
 2026-11-02|401918967|total|under,2026-11-02,401918967,total,Under 158.5,under,2567,2582,SMU,Southern,158.5,158.5,-108.0,DraftKings,4.8,153.7,1.0,yes,2026-11-02T14:11:02+00:00,,,,,,,,open,
-2026-11-02|401909562|total|under,2026-11-02,401909562,total,Under 157.5,under,150,349,Duke,Army,157.5,157.5,-110.0,Caesars,9.78,147.72,0.97,yes,2026-11-02T20:31:20+00:00,,,,,,,,open,
+2026-11-02|401909562|total|under,2026-11-02,401909562,total,Under 157.5,under,150,349,Duke,Army,157.5,157.5,-110.0,Caesars,9.78,147.72,0.97,yes,2026-11-02T20:31:20+00:00,157.5,0.0,0.0,84.0,50.0,W,0.882,settled,
 2026-11-02|401920842|spread|home,2026-11-02,401920842,spread,Presbyterian +3.5,home,2506,2900,Presbyterian,St. Thomas,3.5,3.5,-108.0,DraftKings,4.83,1.33,1.0,yes,2026-11-02T20:31:20+00:00,,,,,,,,open,
 2026-11-02|401912207|spread|away,2026-11-02,401912207,spread,American University +25.5,away,2132,44,Cincinnati,American University,25.5,25.5,-110.0,theScore Bet,2.92,22.58,1.0,yes,2026-11-02T20:31:20+00:00,,,,,,,,open,
 2026-11-02|401912207|total|under,2026-11-02,401912207,total,Under 153.5,under,2132,44,Cincinnati,American University,153.5,153.5,-108.0,FanDuel,5.94,147.56,0.97,yes,2026-11-02T20:31:20+00:00,,,,,,,,open,
