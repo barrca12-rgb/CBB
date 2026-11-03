@@ -217,3 +217,14 @@ The proposed 15-unit daily cap and any staking change are not part of this work.
   - scores, clock and record land on the right days;
   - the card's own time is kept;
   - play rows grade W and L like the bet log.
+
+## 2026-11-02: "Line time not recorded" on the card
+
+- **What it was:** the card's freshness note is about each game's current line. Once a game tips, books take their
+  lines down, so every started game read "line time not recorded", as did pregame games with no line up anywhere.
+  The plays themselves were fine: each logged play keeps its own number, price and logged time in the bet log.
+- **Fix (`cbb/report_html.py`, display only):**
+  - no freshness note once a game has started;
+  - a pregame game says "no book has a line up right now", or "no current line at <book>" when other books have one.
+  - Freshness alerts and `bets/inputs.csv` are unchanged.
+- **Test:** `audit/test_live_refresh.py`.

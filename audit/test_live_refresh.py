@@ -128,3 +128,13 @@ def test_play_rows_show_the_score_and_grade_like_the_bet_log(tmp_path):
     assert by[(str(b["game_id"]), "spread")].startswith("Final/OT ·") and by[(str(b["game_id"]), "spread")].endswith("L")
     assert by[(str(c["game_id"]), "spread")].startswith("2nd half · 8:41 left ·") and "40" in by[(str(c["game_id"]), "spread")]
     assert not by[(str(c["game_id"]), "spread")].endswith(("W", "L", "P"))
+
+
+def test_no_line_time_label_once_a_game_starts():
+    """Chad, Nov 2: the card's line-freshness note is about the current line; started games have none (books take
+    lines down at tip), and a pregame game with no line says so plainly."""
+    t = report_html.TEMPLATE
+    i = t.index("const freshTag")
+    body = t[i:t.index("};", i)]
+    assert 'if (g.state === "in" || g.state === "post") return "";' in body
+    assert "no book has a line up right now" in body and "no current line at " in body

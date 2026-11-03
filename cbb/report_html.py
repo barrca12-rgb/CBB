@@ -730,10 +730,15 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   const freshTag = (g, kind) => {
     const mk = kind === "Spread" ? "spread" : "total", s = g[mk + "_fresh"];
     if (!s || s === "fresh") return "";
+    // books take lines down at tip: once a game starts there is no current line to time, and a logged play keeps
+    // its own logged number and time (Chad, Nov 2: "why are they all saying line time not recorded")
+    if (g.state === "in" || g.state === "post") return "";
     const ts = (k, lab) => g["fresh_" + k] ? lab + " " + new Date(g["fresh_" + k]).toLocaleString("en-US", {timeZone: "America/New_York", month: "short", day: "numeric", hour: "numeric", minute: "2-digit"}) : lab + " –";
     const ttl = "Inputs used: " + [ts("kenpom_at", "KenPom"), ts("barttorvik_at", "Barttorvik"), ts("injuries_at", "injuries"), ts("schedule_at", "schedule"),
       g[mk + "_line_at"] ? "line (" + (g[mk + "_line_book"] || "") + ") " + new Date(g[mk + "_line_at"]).toLocaleTimeString("en-US", {timeZone: "America/New_York", hour: "numeric", minute: "2-digit"}) : "line –"].join(" · ");
-    const why = g[mk + "_stale_inputs"] || "an input has no timestamp";
+    const bk = g[mk + "_line_book"] || g[mk + "_logged_book"] || g[mk + "_book"];
+    const why = String(g[mk + "_stale_inputs"] || "an input has no timestamp").replace("line time not recorded",
+      !g.n_books ? "no book has a line up right now" : "no current line at " + (bk || "the play's book"));
     return s === "stale" ? "<div class='inj' title='" + esc(ttl) + "'>&#9888; Old input: " + esc(why) + "</div>"
       : "<div class='f' style='font-size:12px' title='" + esc(ttl) + "'>" + esc(why.charAt(0).toUpperCase() + why.slice(1)) + "</div>";
   };
