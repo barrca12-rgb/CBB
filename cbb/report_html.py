@@ -611,7 +611,15 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   // live and final scores (Chad, Nov 2: "can you add live scores"); the clock comes from the results refresh
   // (cbb/live_refresh.py, every ~3 minutes during games)
   const started = (g) => (g.state === "in" || g.state === "post") && g.home_score != null && g.away_score != null;
-  const clock = (g) => g.state === "post" ? (/final/i.test(g.clock || "") ? g.clock : "Final") : (g.clock || "Live");
+  // ESPN's short status ("15:48 - 2nd", "0:42 - OT", "Halftime") read as "2nd half · 15:48 left" (Chad, Nov 2)
+  const clock = (g) => {
+    if (g.state === "post") return /final/i.test(g.clock || "") ? g.clock : "Final";
+    const c = String(g.clock || ""), m = /^(\d{1,2}:\d{2}(?:\.\d)?) - (1st|2nd|\d*OT)$/i.exec(c);
+    if (m) return (/OT/i.test(m[2]) ? m[2] : m[2] + " half") + " · " + m[1] + " left";
+    if (/^half/i.test(c)) return "Halftime";
+    const e = /^end of (1st|2nd)/i.exec(c);
+    if (e) return "End of " + e[1] + " half";
+    return c || "Live"; };
   // a play's result at its own number from the final score, graded the way the bet log grades it (tracker.settle)
   const cover = (g, kind, side, line) => {
     if (g.state !== "post" || !started(g) || line == null || !side) return null;

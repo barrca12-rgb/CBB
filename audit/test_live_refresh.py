@@ -126,5 +126,5 @@ def test_play_rows_show_the_score_and_grade_like_the_bet_log(tmp_path):
     by = {(x["gid"], x["mk"]): x["score"] for x in o["rows"]}
     assert by[(str(a["game_id"]), "spread")].startswith("Final ·") and by[(str(a["game_id"]), "spread")].endswith("W")
     assert by[(str(b["game_id"]), "spread")].startswith("Final/OT ·") and by[(str(b["game_id"]), "spread")].endswith("L")
-    assert by[(str(c["game_id"]), "spread")].startswith("8:41 - 2nd ·") and "40" in by[(str(c["game_id"]), "spread")]
+    assert by[(str(c["game_id"]), "spread")].startswith("2nd half · 8:41 left ·") and "40" in by[(str(c["game_id"]), "spread")]
     assert not by[(str(c["game_id"]), "spread")].endswith(("W", "L", "P"))
