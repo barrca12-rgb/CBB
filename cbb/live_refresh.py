@@ -84,6 +84,22 @@ def clocks(day: pd.Timestamp) -> dict[str, str]:
     return out
 
 
+def _relisted(data: dict, day: str) -> None:
+    """A page built before a logged spread's game was relisted with the other team at home (Nov 2, Purdue +4.5):
+    the play is shown from the card's side, the same correction the card build makes (report_html._logged_sides)."""
+    games = data.get("games") or []
+    if not any(g.get("spread_logged_side") for g in games):
+        return
+    cols = ["game_id", "home_id", "away_id", "model_margin", "spread_logged_side", "spread_logged_line",
+            "spread_logged_odds", "spread_now_edge", "spread_now_p", "spread_now_ev", "spread_logged_bid_side"]
+    df = pd.DataFrame([{c: g.get(c) for c in cols} for g in games])
+    fixed = report_html._logged_sides(df, pd.Timestamp(day))
+    for g, (_, r) in zip(games, fixed.iterrows()):
+        if r["spread_logged_side"] != g.get("spread_logged_side"):
+            for c in ("spread_logged_side", "spread_now_edge", "spread_now_p", "spread_now_ev", "spread_logged_bid_side"):
+                g[c] = report_html._clean(r[c])
+
+
 def refresh_cards(scores, reports: str | None = None, rec: dict | None = None) -> list[str]:
     """The cards from the day before the current one through the coming week. Yesterday's and today's get live
     scores, states and the game clock (after 8 pm ET the current card is tomorrow's while tonight's games still
@@ -132,6 +148,7 @@ def refresh_cards(scores, reports: str | None = None, rec: dict | None = None) -
                     if pd.notna(r.get(k)):
                         g[k] = report_html._clean(r.get(k))
             data["prerule_res"] = report_html._prerule_results(d)
+            _relisted(data, d)
         if d >= cur and rec is not None and data.get("record") is not None:
             data["record"] = rec
         if json.dumps(data, sort_keys=True) != before:

@@ -42,3 +42,15 @@ def test_card_shows_the_team_actually_bet(tmp_path, monkeypatch):
     c = report_html._logged_sides(card, pd.Timestamp("2026-11-02")).iloc[0]
     assert c["spread_logged_side"] == "away" and c["spread_logged_bid_side"] == "home"
     assert abs(c["spread_now_edge"] - 1.0) < 1e-9                                    # Purdue +4.5 vs model Purdue +3.5
+
+
+def test_pages_built_before_the_fix_are_corrected(tmp_path, monkeypatch):
+    from cbb import live_refresh
+    _log(tmp_path, monkeypatch)
+    data = {"games": [{"game_id": 7, "home_id": 2250, "away_id": 2509, "model_margin": 3.5, "spread_logged_side": "home",
+                       "spread_logged_line": 4.5, "spread_logged_odds": -110.0, "spread_now_edge": 8.0}]}
+    live_refresh._relisted(data, "2026-11-02")
+    g = data["games"][0]
+    assert g["spread_logged_side"] == "away" and g["spread_logged_bid_side"] == "home" and abs(g["spread_now_edge"] - 1.0) < 1e-9
+    live_refresh._relisted(data, "2026-11-02")
+    assert data["games"][0]["spread_logged_side"] == "away"                  # applied once, not flipped back

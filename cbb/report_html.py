@@ -356,6 +356,11 @@ def refresh_past(scores, reports: str | None = None, today_record: dict | None =
             for k in ("home_score", "away_score"):
                 if pd.notna(r.get(k)):
                     g[k] = _clean(r.get(k))
+        try:   # a logged spread whose game was relisted with the other team at home: shown from the team bet
+            from .live_refresh import _relisted
+            _relisted(data, d)
+        except Exception as e:
+            print(f"Relisted-home check for {d} failed ({e}).")
         if today_record is not None:
             data["record"] = today_record
         data["prerule"] = sorted(i for i in tracker.prerule_ids() if i.startswith(f"{d}|"))
