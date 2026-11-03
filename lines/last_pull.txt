@@ -1,1 +1,1 @@
-2026-11-03 04:00 UTC  events 0  book-game rows 42 (0 SGO, 42 The Odds API)  unmatched teams: CSU Fullerton Titans, Fort Wayne Mastodons, Sam Houston St Bearkats, Seattle Redhawks  The Odds API credits left: 97732
+2026-11-03 04:10 UTC  events 0  book-game rows 55 (0 SGO, 55 The Odds API)  unmatched teams: CSU Fullerton Titans, Fort Wayne Mastodons, New Orleans Privateers, Sam Houston St Bearkats, Seattle Redhawks  The Odds API credits left: 97723
