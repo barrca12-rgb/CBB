@@ -232,3 +232,36 @@ def test_card_run_applies_the_hold_after_its_own_build():
     src = open(os.path.join(ROOT, "cbb", "card_features.py")).read()
     main = src[src.index('if __name__ == "__main__":'):]
     assert main.index("run_day.main()") < main.index("refresh_past") < main.index("hold_tonight(fresh_card=True)")
+
+
+RELIST = r"""
+const {chromium} = require('playwright');
+(async () => {
+  const [file, gid, home, away] = process.argv.slice(2);
+  const b = await chromium.launch(); const p = await b.newPage({viewport: {width: 1300, height: 900}});
+  await p.route(/site\.api\.espn\.com/, (r) => r.fulfill({status: 200, contentType: 'application/json',
+    headers: {'access-control-allow-origin': '*'}, body: JSON.stringify({events: [{id: gid, status: {type: {state: 'in',
+    shortDetail: '6:43 - 1st'}}, competitions: [{competitors: [{homeAway: 'home', team: {id: away}, score: '15'},
+    {homeAway: 'away', team: {id: home}, score: '34'}]}]}]})}));
+  await p.goto('file://' + file); await p.waitForTimeout(2500);
+  console.log(JSON.stringify(await p.$$eval(".sc[data-g='" + gid + "']", (es) => es.map((e) => [e.dataset.sd, e.textContent]))));
+  await b.close();
+})();
+"""
+
+
+@pytest.mark.skipif(shutil.which("node") is None, reason="needs node + playwright")
+def test_the_page_puts_live_scores_on_the_right_team_when_espn_relists_home(tmp_path):
+    src = open(os.path.join(REPORTS, "cbb_2026-11-02.html")).read()
+    D = json.loads(DATA.search(src).group(1))
+    g = D["games"][0]
+    g.update(state="in", home_score=0, away_score=0)
+    f = tmp_path / "card.html"
+    f.write_text(live_refresh._page(src, D))
+    js = tmp_path / "t.js"
+    js.write_text(RELIST)
+    env = dict(os.environ, NODE_PATH=subprocess.run(["npm", "root", "-g"], capture_output=True, text=True).stdout.strip())
+    r = subprocess.run(["node", str(js), str(f), str(g["game_id"]), str(g["home_id"]), str(g["away_id"])],
+                       capture_output=True, text=True, timeout=120, env=env)
+    assert r.returncode == 0, r.stderr
+    assert dict(json.loads(r.stdout.strip().splitlines()[-1])) == {"home": "34", "away": "15"}   # ESPN's "home" is our away

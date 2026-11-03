@@ -144,9 +144,7 @@ def refresh_cards(scores, reports: str | None = None, rec: dict | None = None) -
                 if r is None:
                     continue
                 g["state"] = r.get("state", g.get("state"))
-                for k in ("home_score", "away_score"):
-                    if pd.notna(r.get(k)):
-                        g[k] = report_html._clean(r.get(k))
+                report_html.put_scores(g, r)
             data["prerule_res"] = report_html._prerule_results(d)
             _relisted(data, d)
         if d >= cur and rec is not None and data.get("record") is not None:

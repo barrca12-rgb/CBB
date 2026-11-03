@@ -54,3 +54,15 @@ def test_pages_built_before_the_fix_are_corrected(tmp_path, monkeypatch):
     assert g["spread_logged_side"] == "away" and g["spread_logged_bid_side"] == "home" and abs(g["spread_now_edge"] - 1.0) < 1e-9
     live_refresh._relisted(data, "2026-11-02")
     assert data["games"][0]["spread_logged_side"] == "away"                  # applied once, not flipped back
+
+
+def test_scores_land_on_the_right_team_when_espn_relists_home():
+    """Nov 2: Florida State-Florida A&M was relisted with Florida A&M at home after the card was built with Florida
+    State at home; the refresh copied ESPN's home score onto the card's home team, showing the scores swapped."""
+    g = {"home_id": 52, "away_id": 50, "home": "Florida State", "away": "Florida A&M"}
+    report_html.put_scores(g, pd.Series({"home_id": 50, "away_id": 52, "home_score": 15, "away_score": 34}))
+    assert (g["home_score"], g["away_score"]) == (34, 15)
+    report_html.put_scores(g, pd.Series({"home_id": 52, "away_id": 50, "home_score": 40, "away_score": 20}))
+    assert (g["home_score"], g["away_score"]) == (40, 20)
+    report_html.put_scores(g, {"home_score": 41, "away_score": 22})                   # no ids: as listed
+    assert (g["home_score"], g["away_score"]) == (41, 22)

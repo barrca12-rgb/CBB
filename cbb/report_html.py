@@ -307,6 +307,21 @@ def _prerule_results(day: str) -> dict:
         return {}
     b = b[(b["date"] == day) & (b["status"] == "settled")]
     return {r["bet_id"]: {"res": r["result"], "profit": _clean(float(r["profit"]))} for _, r in b.iterrows()}
+def put_scores(g: dict, r) -> None:
+    """A scoreboard row's scores onto a card game by team, not by ESPN's home/away label: a game ESPN has since relisted
+    with the other team at home (neutral sites; Nov 2, Florida State-Florida A&M) gets its scores the right way round."""
+    hs, as_ = r.get("home_score"), r.get("away_score")
+    try:
+        if pd.notna(r.get("home_id")) and g.get("away_id") is not None and int(r.get("home_id")) == int(g["away_id"]):
+            hs, as_ = as_, hs
+    except (TypeError, ValueError):
+        pass
+    if pd.notna(hs):
+        g["home_score"] = _clean(hs)
+    if pd.notna(as_):
+        g["away_score"] = _clean(as_)
+
+
 PAST_DAYS = 3
 
 
@@ -353,9 +368,7 @@ def refresh_past(scores, reports: str | None = None, today_record: dict | None =
             if r is None:
                 continue
             g["state"] = r.get("state", g.get("state"))
-            for k in ("home_score", "away_score"):
-                if pd.notna(r.get(k)):
-                    g[k] = _clean(r.get(k))
+            put_scores(g, r)
         try:   # a logged spread whose game was relisted with the other team at home: shown from the team bet
             from .live_refresh import _relisted
             _relisted(data, d)
@@ -1214,7 +1227,9 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
         (d.events || []).forEach((ev) => {
           const g = GI[String(ev.id)]; if (!g) return;
           const st = ((ev.status || {}).type) || {}, c = (ev.competitions || [{}])[0] || {}, side = {};
-          (c.competitors || []).forEach((t) => { side[t.homeAway] = t; });
+          // by team, not by ESPN's home/away label (a game relisted with the other team at home; Nov 2)
+          (c.competitors || []).forEach((t) => { const id = Number((t.team || {}).id);
+            side[id === Number(g.home_id) ? "home" : id === Number(g.away_id) ? "away" : t.homeAway] = t; });
           if (st.state) g.state = st.state;
           ["home", "away"].forEach((sd) => { const v = side[sd] && side[sd].score; if (v != null && v !== "") g[sd + "_score"] = Number(v); });
           if (st.shortDetail) g.clock = st.shortDetail;
