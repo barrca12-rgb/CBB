@@ -275,3 +275,11 @@ The proposed 15-unit daily cap and any staking change are not part of this work.
 - **Survivor (1):** the 03:30 run failed writing "W" into an empty result column (pandas 3 typing). `load_picks` and
   `grade` keep that column as text. Test: `audit/test_survivor_grade.py`.
 - **Cancelled refresh (1):** replaced by a newer one; that no longer happens.
+
+## 2026-11-03: Charts tab returned 404
+
+- **Cause:** `record/charts.html` is built on the runner by `record_page.write` and never saved in the repo. A results
+  refresh that graded nothing published the site without it. Every 3 minutes the Charts tab disappeared until the
+  next card run rebuilt it. This began with the results refresh (Nov 2).
+- **Fix (`cbb/live_refresh.py`):** every refresh builds the Charts page before publishing (about half a second).
+- **Test:** `audit/test_live_refresh.py`.

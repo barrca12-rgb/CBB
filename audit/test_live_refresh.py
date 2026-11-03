@@ -265,3 +265,16 @@ def test_the_page_puts_live_scores_on_the_right_team_when_espn_relists_home(tmp_
                        capture_output=True, text=True, timeout=120, env=env)
     assert r.returncode == 0, r.stderr
     assert dict(json.loads(r.stdout.strip().splitlines()[-1])) == {"home": "34", "away": "15"}   # ESPN's "home" is our away
+
+
+def test_every_refresh_publishes_the_charts_page(tmp_path, monkeypatch):
+    """Nov 3 ("charts page doesn't work"): record/charts.html is built on the runner, never saved in the repo; a refresh
+    that graded nothing published the site without it, so the Charts tab returned 404 until the next card run."""
+    from cbb import record_page, tracker
+    monkeypatch.setattr(record_page, "CHARTS", str(tmp_path / "record" / "charts.html"))
+    monkeypatch.setattr(tracker, "settle", lambda *a, **k: 0)
+    monkeypatch.setattr(live_refresh, "hold_tonight", lambda *a, **k: json.load(open(os.path.join(REPORTS, "days.json")))["current"])
+    monkeypatch.setattr(live_refresh, "refresh_cards", lambda *a, **k: [])
+    monkeypatch.setattr(report_html, "refresh_past", lambda *a, **k: [])
+    live_refresh.main()
+    assert (tmp_path / "record" / "charts.html").read_text().startswith("<!doctype html>")

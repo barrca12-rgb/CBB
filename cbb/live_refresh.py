@@ -226,12 +226,21 @@ def main() -> bool:
     rec = record(prev) if n else None   # nothing graded: the record block cannot have changed
     cards = refresh_cards(run_day.slate, rec=rec)
     past = report_html.refresh_past(run_day.slate)
+    from . import record_page
     if n:
         try:
-            from . import record_page
             record_page.write()
         except Exception as e:
             print(f"Record page failed ({e}); continuing.")
+    else:
+        # the Charts tab is built on the runner and never saved in the repo: every publish must carry it, or the site
+        # loses record/charts.html until the next card run (Nov 3: "charts page doesn't work")
+        try:
+            os.makedirs(os.path.dirname(record_page.CHARTS), exist_ok=True)
+            with open(record_page.CHARTS, "w") as fh:
+                fh.write(record_page.build_charts())
+        except Exception as e:
+            print(f"Charts page failed ({e}); continuing.")
     print(f"Graded {n} play(s); cards rewritten: {cards or 'none'}; past days: {past or 'none'}.")
     return bool(n or cards or past or held)
 
