@@ -133,7 +133,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-02|401911389|spread|home,2026-11-02,401911389,spread,Grand Canyon -28.5,home,2253,2640,Grand Canyon,Texas Southern,-28.5,-28.5,-110.0,DraftKings,2.58,31.08,1.0,yes,2026-11-02T20:31:20+00:00,-28.5,0.0,0.0,103.0,79.0,L,-1.0,settled,
 2026-11-02|401911389|total|over,2026-11-02,401911389,total,Over 143.5,over,2253,2640,Grand Canyon,Texas Southern,143.5,143.5,-105.0,DraftKings,4.44,147.94,0.97,yes,2026-11-02T20:31:20+00:00,144.5,1.0,0.024163526633169896,103.0,79.0,W,0.924,settled,
 2026-11-02|401921060|spread|away,2026-11-02,401921060,spread,Radford +13.5,away,2539,2515,San Francisco,Radford,13.5,13.5,-110.0,FanDuel,3.18,10.32,1.0,yes,2026-11-02T20:31:20+00:00,13.5,0.0,0.0,76.0,62.0,L,-1.0,settled,
-2026-11-02|401917506|total|over,2026-11-02,401917506,total,Over 142.5,over,62,2547,Hawai'i,Seattle U,142.5,142.5,-105.0,BetMGM,3.82,146.32,0.97,yes,2026-11-02T20:31:20+00:00,,,,,,,,open,
+2026-11-02|401917506|total|over,2026-11-02,401917506,total,Over 142.5,over,62,2547,Hawai'i,Seattle U,142.5,142.5,-105.0,BetMGM,3.82,146.32,0.97,yes,2026-11-02T20:31:20+00:00,,,,74.0,73.0,W,0.924,settled,
 2026-11-02|401919803|spread|home|bandB,2026-11-02,401919803,spread,Florida Atlantic -11.5,home,2226,112358,Florida Atlantic,Long Island University,-11.5,-11.5,-108.0,DraftKings,2.47,13.97,0.5,yes,2026-11-02T20:31:30+00:00,-11.5,0.0,0.0,74.0,60.0,W,0.463,settled,bandB
 2026-11-03|401906848|spread|home,2026-11-03,401906848,spread,Tennessee -27.5,home,2633,2747,Tennessee,Wofford,-27.5,-27.5,-110.0,FanDuel,3.08,30.58,1.0,yes,2026-11-02T22:31:28+00:00,,,,,,,,open,
 2026-11-03|401921801|spread|home,2026-11-03,401921801,spread,Kentucky -30.5,home,96,2363,Kentucky,Manhattan,-30.5,-30.5,-110.0,FanDuel,3.66,34.16,1.0,yes,2026-11-02T22:31:28+00:00,,,,,,,,open,
@@ -163,3 +163,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-03|401921808|spread|home|bandB,2026-11-03,401921808,spread,LSU -20.5,home,99,2443,LSU,LSU New Orleans,-20.5,-20.5,-118.0,FanDuel,2.14,22.64,0.5,yes,2026-11-03T04:20:51+00:00,,,,,,,,open,bandB
 2026-11-03|401920806|spread|home|bandB,2026-11-03,401920806,spread,Texas A&M -27.5,home,245,2011,Texas A&M,Alabama State,-27.5,-27.5,-105.0,DraftKings,2.07,29.57,0.5,yes,2026-11-03T04:20:51+00:00,,,,,,,,open,bandB
 2026-11-03|401929372|total|under,2026-11-03,401929372,total,Under 164.5,under,8,2029,Arkansas,Arkansas-Pine Bluff,164.5,164.5,-110.0,FanDuel,3.27,161.23,1.0,yes,2026-11-03T05:10:43+00:00,,,,,,,,open,
+2026-11-03|401921819|total|under,2026-11-03,401921819,total,Under 150.5,under,2579,56,South Carolina,Stetson,150.5,150.5,-110.0,FanDuel,3.14,147.36,1.0,yes,2026-11-03T07:31:01+00:00,,,,,,,,open,
