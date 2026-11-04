@@ -179,3 +179,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-04|401917514|total|over,2026-11-04,401917514,total,Over 157.5,over,2351,2511,Loyola Marymount,Queens University,157.5,157.5,-110.0,FanDuel,3.64,161.14,1.0,yes,2026-11-03T23:21:11+00:00,,,,,,,,open,
 2026-11-05|401917177|spread|home,2026-11-05,401917177,spread,Penn State -15.5,home,213,236,Penn State,Chattanooga,-15.5,-15.5,-110.0,FanDuel,4.02,19.52,0.5,yes,2026-11-04T17:53:41+00:00,,,,,,,,open,
 2026-11-05|401909563|spread|away,2026-11-05,401909563,spread,Coastal Carolina +38.5,away,150,324,Duke,Coastal Carolina,38.5,38.5,-105.0,Fanatics,4.86,33.64,0.5,yes,2026-11-04T17:53:41+00:00,,,,,,,,open,
+2026-11-05|401909726|total|under,2026-11-05,401909726,total,Under 154.5,under,238,154,Vanderbilt,Wake Forest,154.5,154.5,-110.0,theScore Bet,3.28,151.22,1.0,yes,2026-11-04T18:11:17+00:00,,,,,,,,open,
+2026-11-05|401920377|spread|home,2026-11-05,401920377,spread,Virginia Tech -19,home,259,2382,Virginia Tech,Mercer,-19.0,-19.0,-105.0,Fanatics,3.23,22.23,0.5,yes,2026-11-04T18:11:17+00:00,,,,,,,,open,
