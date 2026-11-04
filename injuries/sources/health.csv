@@ -6382,3 +6382,7 @@ pulled_at,source,ok,rows,teams_matched,players_matched,unmatched_teams,error,sec
 2026-11-04T03:40:32+00:00,rotowire,True,5,0.8,0.8,Texas A&M-Commerce,,0.4,1291.0
 2026-11-04T03:40:32+00:00,covers,True,102,0.931,0.0,Miami (FL) Hurricanes; San Jose State Spartans; UNLV Runnin' Rebels; Utah Runnin' Utes,,1.2,1426616.0
 2026-11-04T03:40:32+00:00,cbs,True,0,,,,,0.7,461348.0
+2026-11-04T03:50:37+00:00,espn,True,0,,,,,1.2,149.0
+2026-11-04T03:50:37+00:00,rotowire,True,5,0.8,0.8,Texas A&M-Commerce,,0.5,1298.0
+2026-11-04T03:50:37+00:00,covers,True,102,0.931,0.0,Miami (FL) Hurricanes; San Jose State Spartans; UNLV Runnin' Rebels; Utah Runnin' Utes,,1.1,1426616.0
+2026-11-04T03:50:37+00:00,cbs,True,0,,,,,0.3,461348.0
