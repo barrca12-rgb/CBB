@@ -1,1 +1,1 @@
-2026-11-04 02:20 UTC  events 0  book-game rows 58 (0 SGO, 58 The Odds API)  unmatched teams: CSU Fullerton Titans, CSU Northridge Matadors, Cal Baptist Lancers  The Odds API credits left: 96827
+2026-11-04 02:26 UTC  events 0  book-game rows 58 (0 SGO, 58 The Odds API)  unmatched teams: CSU Fullerton Titans, CSU Northridge Matadors, Cal Baptist Lancers  The Odds API credits left: 96824
