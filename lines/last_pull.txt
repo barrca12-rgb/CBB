@@ -1,1 +1,1 @@
-2026-11-04 21:28 UTC  events 0  book-game rows 117 (0 SGO, 117 The Odds API)  unmatched teams: CSU Northridge Matadors, Loyola (Chi) Ramblers  The Odds API credits left: 96313
+2026-11-04 21:33 UTC  events 0  book-game rows 120 (0 SGO, 120 The Odds API)  unmatched teams: CSU Northridge Matadors, Loyola (Chi) Ramblers  The Odds API credits left: 96306
