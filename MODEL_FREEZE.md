@@ -1153,3 +1153,49 @@ c21b8b7367e66c4e701a03a2eb73c4df3a5c8e3ada02146c985bcf43fe52b20d  .github/workfl
 dbde82c9455c32510b675f8b7e594f35e9cc0f71f76ae321c26974623af8dcb0  cbb/run_day.py
 d4cbbc9931bf8a57ae77532ebe50fd6b5e17d8e333ca0fc738c6beaad84af666  FORWARD_TEST_PROTOCOL.md
 ```
+
+## 2026-11-04: Input snapshots per alert and the morning shadow (logging only; Chad, Nov 4: "Go ahead with 1-3")
+
+**Unchanged:**
+- Live selection, thresholds, staking, alerts, Discord posts and the bet log.
+- The complete-ratings rule stays off (`run_day.RATINGS_RULE = False`).
+- No fingerprinted code file changed.
+
+**`cbb/snapshots.py` (new).** Every logged play gets one row per input in `bets/input_snapshots.csv`:
+- the input and its source;
+- its date label;
+- the sha256 of the exact table;
+- where the table is stored;
+- retrieval time;
+- first observed by our system (`bets/snapshots/seen.csv`, written every run);
+- `provider_published_at` = unknown;
+- code and model version.
+
+Where the tables are kept:
+- Public tables (Barttorvik, stage-1 ratings, injuries, referees, market context, features, the play's quotes) are
+  stored once per hash under `bets/snapshots/`.
+- Licensed KenPom tables stay out of the repo. They are kept in the private runner cache `cbb/cache/snapshots/`,
+  which is not permanent (`audit/TIMING_AUDIT.md` section 5).
+
+**`cbb/morning_shadow.py` (new).** The pre-registered morning shadow (`research/morning_shadow/PLAN.md`). One
+decision per game and market on game day, copied from the live card's own output at the first morning run with
+updated inputs, to `bets/shadow_morning.csv`. It logs no play and sends nothing.
+
+**`cbb/card_features.py`** installs both hooks in the card run. They pass every result through unchanged, and a
+failure prints and continues.
+
+**`FORWARD_TEST_PROTOCOL.md` Appendix D:** a status paragraph:
+- the rule stays off;
+- the morning shadow's Jan 15 read is descriptive and its Mar 14 review is the decision;
+- the weekly early-plays read is description only (the 40-close trigger is withdrawn).
+
+**Also:**
+- `audit/TIMING_AUDIT.md`: the timing audit.
+- Tests: `audit/test_snapshots.py` and `audit/test_morning_shadow.py`.
+- Discord note: `2026-11-04-input-snapshots`.
+
+**New fingerprint:**
+
+```
+e8c9fa8e8eeca99904904a8fc53949956946d037f0b4077495e1247275add259  FORWARD_TEST_PROTOCOL.md
+```

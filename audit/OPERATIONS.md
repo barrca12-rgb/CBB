@@ -301,3 +301,14 @@ The proposed 15-unit daily cap and any staking change are not part of this work.
 - 7 graded plays had no close. One was a game the feed starts after midnight ET (filed under the next day). Six were
   games only SGO carries (no SGO quote in the last 15 minutes). Both are fixed for future games (MODEL_FREEZE, Nov 3).
 - Re-run any time with `python -m audit.clv_audit_all`.
+
+## 2026-11-04: Input snapshots, morning shadow and the timing audit
+
+- Each logged play now records the exact input tables behind it (`bets/input_snapshots.csv`). The tables are in
+  `bets/snapshots/`; KenPom's are in the private runner cache only.
+- The morning shadow writes `bets/shadow_morning.csv` from 9 am ET on each game day. It is research only. Run
+  `python -m research.morning_shadow.compare`.
+- The timing audit for every changing input is `audit/TIMING_AUDIT.md`: confirmed vs assumed, safeguards and the
+  historical odds inventory.
+- The weekly health task's early-plays line is now description only (the 40-close trigger is withdrawn). It also
+  reports the morning shadow and the snapshots.

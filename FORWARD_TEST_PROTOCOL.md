@@ -478,6 +478,18 @@ evidence was checked: on Nov 2 to 3 the early plays that would not have qualifie
 the close by +2.13 points (72% of 25), and plays logged on game day by -0.22 (20% of 15). It waits for Chad's
 decision after that evidence; until then plays log and alert as before.
 
+**Nov 4, Chad: it stays off, and live selection is unchanged.** The question it was meant to answer, whether
+waiting for the overnight update pays, moves to a pre-registered morning shadow (`research/morning_shadow/PLAN.md`).
+The shadow logs, alerts and stakes nothing:
+- **Jan 15:** a descriptive read.
+- **Mar 14:** the fixed decision review.
+- **Insufficient evidence then** is inconclusive, and nothing changes.
+
+The weekly read of early plays (`audit/ratings_shift.py`) is description only, with no trigger.
+
+From Nov 4 each logged play also records the exact input tables behind it (`cbb/snapshots.py`,
+`bets/input_snapshots.csv`). See `audit/TIMING_AUDIT.md` for what each input's date means.
+
 **Why.** The backtest that justifies v1 bet each opener with ratings from the day before the game. Live, plays were
 logged as soon as a line posted, sometimes while the previous day's games were still being played. On Nov 2 to 3 the
 first full night of the season moved KenPom's totals about 4 points overnight. 9 of Nov 3's 27 main plays no longer

@@ -263,6 +263,12 @@ def memoize_run_fetches() -> None:
 if __name__ == "__main__":
     run_day.plays = _plays_and_log      # only the card run logs moneylines (not tests or other importers)
     memoize_run_fetches()
+    try:   # logging only (Chad, Nov 4): each alert's input tables (cbb/snapshots.py) and the morning shadow
+        from . import morning_shadow, snapshots
+        snapshots.install()
+        morning_shadow.install()
+    except Exception as e:   # never affects the card
+        print(f"Snapshot / morning-shadow hooks not installed ({e}); continuing.")
     run_day.main()
     try:   # past days: final scores, the current record and today's layout (display only; picks unchanged)
         from . import report_html

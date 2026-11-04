@@ -7,6 +7,8 @@ Groups (main plays, not void):
 - logged earlier and still qualifying at the morning model (the card built nearest after 12:00 UTC on game day);
 - logged earlier and NOT qualifying at the morning model (the plays the rule would have blocked).
 "Qualifies" means the morning model's edge at the logged number meets the threshold (2.5 spreads, 3 totals).
+Description only (Chad, Nov 4): no trigger. Whether to wait for updated ratings is decided by the pre-registered morning
+shadow's Mar 14 review (research/morning_shadow/PLAN.md), never by this read.
 
     python -m audit.ratings_shift [--through YYYY-MM-DD]    # -> audit/out/ratings_shift.txt
 """
