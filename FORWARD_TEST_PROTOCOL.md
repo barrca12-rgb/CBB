@@ -1,4 +1,4 @@
-# Forward-test protocol, v2.5 (declared Oct 26, 2026, before the season's first games on Nov 1; v2.1 Oct 28; v2.2 Oct 29; v2.3 Oct 30; v2.4 Nov 2; v2.5 Nov 2)
+# Forward-test protocol, v2.6 (declared Oct 26, 2026, before the season's first games on Nov 1; v2.1 Oct 28; v2.2 Oct 29; v2.3 Oct 30; v2.4 Nov 2; v2.5 Nov 2; v2.6 Nov 4)
 
 This file fixes how the 2026-27 live record is collected and judged. It is fingerprinted in `MODEL_FREEZE.md`
 together with its evaluation code, `audit/forward_eval.py`, and that code's tests, `audit/test_forward_eval.py`.
@@ -31,6 +31,7 @@ Logging and reporting changes that leave every prediction and selection unchange
 | Opening week | the season's first 7 days: totals shifted to KenPom's average scoring level (`run_day.opening_week_totals`) |
 | Line feeds | SportsGameOdds (`odds.py`; every third run, stops at 95% of its monthly allowance, subscription ends Nov 25) and The Odds API (`odds_api.py`; every run, `ODDS_API_EVERY_RUN=1`). Both ignore quotes untouched for 12 hours. After SGO ends or stops, The Odds API alone |
 | Selection | each card run: for each game, the side and book with the best EV at the book's price across the 7 books (DraftKings, FanDuel, BetMGM, Caesars, Fanatics, bet365, theScore Bet; ties go to DraftKings). A BET needs spread edge >= 2.5 or total edge >= 3.0, and EV >= +2% (`run_day.plays`; win chance from `run_day.WIN_PROB`) |
+| Complete-ratings rule (v2.6, Nov 4) | a play for a game on ET date D is logged and alerted only once the ratings include every game played before D: at or after 6:00 am ET on D, with Barttorvik's file for D-1 in use (or, if Barttorvik has not posted it, at or after 10:00 am ET on D). Before that, a qualifying signal is shown as pending and is not logged, alerted or posted (Appendix D) |
 | Opener rule (v2.4, Nov 2) | a signal that qualifies at the current number is logged only if it also qualifies against the game's opener with the current model (Appendix C). One that does not is research only (`research/linemove/signals.csv`), never logged, alerted or posted |
 | Logging | the first run in which a side qualifies logs one signal (`bet_id` = date, game, market, side) at that book's number and price (`tracker.log`). A logged signal is never re-priced, re-selected or deleted |
 | Stakes | the card's units follow the live record (`tracker.status`). This protocol evaluates flat 1 unit per signal. Staking is not part of the test and is not changed by it |
@@ -469,3 +470,29 @@ no tolerance.
   - Thresholds, the EV rule, the win-probability rule, stakes, books, the log format and grading are unchanged.
   - Every v1 result is now computed without the 38. One v1 play had been graded when this was written
     (Under 149.5, a win), and it is not among the 38.
+
+## Appendix D. Complete-ratings rule (v2.6, approved by Chad and written Nov 4, 2026, before any play under it)
+
+**Why.** The backtest that justifies v1 bet each opener with ratings from the day before the game. Live, plays were
+logged as soon as a line posted, sometimes while the previous day's games were still being played. On Nov 2 to 3 the
+first full night of the season moved KenPom's totals about 4 points overnight. 9 of Nov 3's 27 main plays no longer
+qualified at the updated model, and Chad bets at the alert, so a later re-check cannot help.
+
+**The rule.** A signal (v1 BET or band B) for a game on ET date D is logged, alerted and posted only when the ratings
+include every game played before D:
+- the run is at or after 06:00 ET on D (KenPom's overnight update has the previous day's games), and
+- Barttorvik's file dated D-1 or later is the one in use. If Barttorvik has not posted it, the play may log from
+  10:00 ET on D on KenPom's update alone, the same fallback the model already uses for a missing file.
+- On the season's first game date there are no earlier games and the rule is met.
+
+**Before that.** A qualifying signal is shown on the card as pending ("waits for the overnight ratings update"), is
+not logged, alerted or posted, and is not a research signal. Every later run re-evaluates it from scratch with the
+updated ratings, the current lines and the opener rule (Appendix C). It becomes a play only if it still qualifies.
+
+**Unchanged.** Thresholds, the EV rule, staking, the opener rule, books and every play already logged. Plays logged
+before this rule stand as logged; the record never changes after the fact.
+
+**Read (Mar 14 with the other decision reads, and weekly from Nov 9).** Plays logged under this rule vs the pre-rule
+cohort (Nov 1 to Nov 3): primary CLV and win rate. Also, as a diagnostic, the pre-rule plays that would not have
+qualified at the next morning's model.
+
