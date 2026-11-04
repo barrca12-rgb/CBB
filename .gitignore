@@ -18,3 +18,4 @@ research/game_state/out/*.parquet
 research/winprob/out/recorded_*.csv
 research/speed/out/pulls.parquet
 research/stake_bands/out/plays.csv
+out/
