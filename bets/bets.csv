@@ -209,3 +209,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-05|401921094|spread|home,2026-11-05,401921094,spread,Rice -3.5,home,242,2837,Rice,East Texas A&M,-3.5,-3.5,-110.0,FanDuel,2.88,6.38,0.5,yes,2026-11-04T22:51:02+00:00,,,,,,,,open,
 2026-11-05|401921094|total|under,2026-11-05,401921094,total,Under 145.5,under,242,2837,Rice,East Texas A&M,145.5,145.5,-110.0,FanDuel,3.35,142.15,1.0,yes,2026-11-04T22:51:02+00:00,,,,,,,,open,
 2026-11-05|401909491|spread|home,2026-11-05,401909491,spread,Creighton -26.5,home,156,2330,Creighton,Le Moyne,-26.5,-26.5,-120.0,FanDuel,2.71,29.21,0.5,yes,2026-11-04T22:51:02+00:00,,,,,,,,open,
+2026-11-04|401902276|total|under,2026-11-04,401902276,total,Under 156.5,under,2086,161,Butler,Fairleigh Dickinson,156.5,156.5,-105.0,DraftKings,8.63,147.87,1.0,yes,2026-11-04T23:10:45+00:00,,,,,,,,open,
