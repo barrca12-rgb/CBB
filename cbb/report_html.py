@@ -487,7 +487,7 @@ h1 { font-family: var(--display); font-weight: 400; font-size: 26px; letter-spac
 .notice { border: 1px solid var(--line); background: var(--warn-bg); color: var(--warn); border-radius: 8px; padding: 10px 12px; margin-bottom: 16px; font-size: 13px }
 
 /* KPI strip */
-.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); border: 1px solid var(--line); border-top: 3px solid var(--text); border-radius: 10px; background: var(--surface); margin-bottom: 24px; overflow: hidden; box-shadow: 0 1px 2px rgba(10,44,73,.06) }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); border: 1px solid var(--line); border-top: 3px solid var(--text); border-radius: 10px; background: var(--surface); margin-bottom: 24px; overflow: hidden; box-shadow: 0 1px 2px rgba(10,44,73,.06) }
 .kpi { padding: 12px 16px; border-right: 1px solid var(--line) } .kpi:last-child { border-right: 0 }
 .kpi .k { color: var(--muted); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em } .kpi .v { font-size: 21px; font-weight: 800; margin-top: 3px; letter-spacing: -.01em }
 .kpi .v small { font-size: 12px; color: var(--muted); font-weight: 500; margin-left: 4px }
@@ -994,7 +994,20 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   // the official record, both markets together (Chad, Nov 2: "show the total record up top")
   const all = st ? ["w", "l", "p"].reduce((o, k) => (o[k] = (st.spread[k] || 0) + (st.total[k] || 0), o), {}) : null;
   const allRec = all && all.w + all.l + all.p ? all.w + "–" + all.l + (all.p ? "–" + all.p : "") : "0–0";
+  // this date's own record: the day's logged main plays, graded from the final scores (Chad, Nov 4: "add today's
+  // record to each date tab"); units at each play's logged price and stake, the plays still to finish counted apart
+  const dayRec = (() => { const L = P.filter((p) => p.bid); const r = {w: 0, l: 0, p: 0, u: 0, open: 0};
+    L.forEach((p) => { const x = cover(p.g, p.kind, p.side, p.line); const st = Number(p.units) || 1, o = Number(p.price) || -110;
+      if (x === "W") { r.w++; r.u += st * (o > 0 ? o / 100 : 100 / -o); } else if (x === "L") { r.l++; r.u -= st; }
+      else if (x === "P") r.p++; else r.open++; });
+    return {n: L.length, ...r}; })();
+  const etToday = new Date().toLocaleDateString("en-CA", {timeZone: "America/New_York"});
+  const dayLab = D.date === etToday ? "Today's record" : new Date(D.date + "T12:00:00").toLocaleDateString("en-US", {month: "short", day: "numeric"}) + " record";
+  const dayVal = !dayRec.n ? "–<small>no plays</small>" : dayRec.w + "–" + dayRec.l + (dayRec.p ? "–" + dayRec.p : "") +
+    "<small>" + (dayRec.w + dayRec.l + dayRec.p ? "<span class='" + (dayRec.u > 0 ? "pos" : dayRec.u < 0 ? "neg" : "") + "'>" + sgn(dayRec.u, 2) + "u</span>" : "") +
+    "</small>" + (dayRec.open ? "<small class='blk'>" + dayRec.open + " to go</small>" : "");
   const kp = [["Season record", allRec + "<small>" + (all && all.w + all.l ? pct(all.w / (all.w + all.l)) : "") + "</small>", "wide"],
+    [dayLab, dayVal],
     ["Plays today", P.length + "<small>" + P.reduce((s, p) => s + (p.units || 0), 0).toFixed(1).replace(/\.0$/, "") + "u</small>"],
     ["Spreads", rec(st && st.spread) + "<small>" + (st && st.spread.win != null ? pct(st.spread.win) : "") + "</small>"],
     ["Totals", rec(st && st.total) + "<small>" + (st && st.total.win != null ? pct(st.total.win) : "") + "</small>"],
