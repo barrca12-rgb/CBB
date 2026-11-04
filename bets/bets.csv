@@ -143,7 +143,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-03|401921165|spread|home,2026-11-03,401921165,spread,Missouri -23.5,home,142,325,Missouri,Cleveland State,-23.5,-23.5,-110.0,FanDuel,4.73,28.23,1.0,yes,2026-11-02T22:41:11+00:00,,,,,,,,open,
 2026-11-03|401909796|spread|home,2026-11-03,401909796,spread,Kansas State -11.5,home,2306,2571,Kansas State,South Dakota State,-11.5,-11.5,-105.0,FanDuel,5.84,17.34,1.0,yes,2026-11-02T22:41:11+00:00,,,,,,,,open,
 2026-11-03|401920155|spread|home,2026-11-03,401920155,spread,San Diego State -15.5,home,21,2239,San Diego State,Cal State Fullerton,-15.5,-15.5,-120.0,FanDuel,3.93,19.43,1.0,yes,2026-11-02T23:01:26+00:00,,,,,,,,open,
-2026-11-03|401906757|spread|home|bandB,2026-11-03,401906757,spread,Alabama -25.5,home,333,2534,Alabama,Sam Houston,-25.5,-25.5,-110.0,FanDuel,2.36,27.86,0.5,yes,2026-11-02T23:01:28+00:00,,,,,,,,open,bandB
+2026-11-03|401906757|spread|home|bandB,2026-11-03,401906757,spread,Alabama -25.5,home,333,2534,Alabama,Sam Houston,-25.5,-25.5,-110.0,FanDuel,2.36,27.86,0.5,yes,2026-11-02T23:01:28+00:00,-27.5,2.0,0.06999712412436032,96.0,74.0,L,-0.5,settled,bandB
 2026-11-03|401920304|spread|away,2026-11-03,401920304,spread,Hampton +16,away,59,2261,Georgia Tech,Hampton,16.0,16.0,-110.0,Caesars,3.14,12.86,1.0,yes,2026-11-02T23:31:29+00:00,14.0,2.0,0.06999712412436032,75.0,55.0,L,-1.0,settled,
 2026-11-03|401921165|total|over,2026-11-03,401921165,total,Over 158.5,over,142,325,Missouri,Cleveland State,158.5,158.5,-110.0,DraftKings,3.56,162.06,0.97,yes,2026-11-03T00:01:19+00:00,,,,,,,,open,
 2026-11-03|401924911|total|over,2026-11-03,401924911,total,Over 148.5,over,2439,2464,UNLV,Northern Arizona,148.5,148.5,-110.0,Caesars,3.06,151.56,1.0,yes,2026-11-03T00:41:29+00:00,,,,,,,,open,
@@ -164,7 +164,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-03|401920806|spread|home|bandB,2026-11-03,401920806,spread,Texas A&M -27.5,home,245,2011,Texas A&M,Alabama State,-27.5,-27.5,-105.0,DraftKings,2.07,29.57,0.5,yes,2026-11-03T04:20:51+00:00,,,,,,,,open,bandB
 2026-11-03|401929372|total|under,2026-11-03,401929372,total,Under 164.5,under,8,2029,Arkansas,Arkansas-Pine Bluff,164.5,164.5,-110.0,FanDuel,3.27,161.23,1.0,yes,2026-11-03T05:10:43+00:00,,,,,,,,open,
 2026-11-03|401921819|total|under,2026-11-03,401921819,total,Under 150.5,under,2579,56,South Carolina,Stetson,150.5,150.5,-110.0,FanDuel,3.14,147.36,1.0,yes,2026-11-03T07:31:01+00:00,148.5,2.0,0.048238488214981334,81.0,55.0,W,0.909,settled,
-2026-11-03|401906757|total|under,2026-11-03,401906757,total,Under 172,under,333,2534,Alabama,Sam Houston,172.0,172.0,-110.0,Caesars,4.3,167.7,1.0,yes,2026-11-03T07:50:45+00:00,,,,,,,,open,
+2026-11-03|401906757|total|under,2026-11-03,401906757,total,Under 172,under,333,2534,Alabama,Sam Houston,172.0,172.0,-110.0,Caesars,4.3,167.7,1.0,yes,2026-11-03T07:50:45+00:00,172.5,-0.5,-0.01208731007414493,96.0,74.0,W,0.909,settled,
 2026-11-03|401920806|total|under,2026-11-03,401920806,total,Under 163.5,under,245,2011,Texas A&M,Alabama State,163.5,163.5,-110.0,FanDuel,3.06,160.44,1.0,yes,2026-11-03T12:00:57+00:00,,,,,,,,open,
 2026-11-04|401917512|spread|home,2026-11-04,401917512,spread,Saint Mary's -12,home,2608,2449,Saint Mary's,North Dakota State,-12.0,-12.0,-110.0,Caesars,2.89,14.89,0.37,yes,2026-11-03T19:21:05+00:00,,,,,,,,open,
 2026-11-06|401920685|spread|home,2026-11-06,401920685,spread,Michigan +5.5,home,130,41,Michigan,UConn,5.5,5.5,-110.0,Fanatics,2.85,-2.65,0.37,yes,2026-11-03T19:31:56+00:00,,,,,,,,open,
