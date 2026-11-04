@@ -177,3 +177,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-04|401920410|total|under,2026-11-04,401920410,total,Under 151,under,2272,2379,High Point,Maryland Eastern Shore,151.0,151.0,-110.0,Fanatics,6.12,144.88,1.0,yes,2026-11-03T23:21:11+00:00,,,,,,,,open,
 2026-11-04|401918052|total|under,2026-11-04,401918052,total,Under 158,under,25,2515,California,Radford,158.0,158.0,-110.0,Fanatics,3.2,154.8,1.0,yes,2026-11-03T23:21:11+00:00,,,,,,,,open,
 2026-11-04|401917514|total|over,2026-11-04,401917514,total,Over 157.5,over,2351,2511,Loyola Marymount,Queens University,157.5,157.5,-110.0,FanDuel,3.64,161.14,1.0,yes,2026-11-03T23:21:11+00:00,,,,,,,,open,
+2026-11-05|401917177|spread|home,2026-11-05,401917177,spread,Penn State -15.5,home,213,236,Penn State,Chattanooga,-15.5,-15.5,-110.0,FanDuel,4.02,19.52,0.5,yes,2026-11-04T17:44:13+00:00,,,,,,,,open,
+2026-11-05|401909563|spread|away,2026-11-05,401909563,spread,Coastal Carolina +38.5,away,150,324,Duke,Coastal Carolina,38.5,38.5,-105.0,Fanatics,4.86,33.64,0.5,yes,2026-11-04T17:44:13+00:00,,,,,,,,open,
