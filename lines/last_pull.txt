@@ -1,1 +1,1 @@
-2026-11-04 16:40 UTC  events 0  book-game rows 48 (0 SGO, 48 The Odds API)  unmatched teams: CSU Northridge Matadors  The Odds API credits left: 96548
+2026-11-04 16:50 UTC  events 0  book-game rows 58 (0 SGO, 58 The Odds API)  unmatched teams: CSU Northridge Matadors  The Odds API credits left: 96545
