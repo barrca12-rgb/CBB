@@ -1,0 +1,7 @@
+input,sha256,source,source_date,first_observed_at,run_id
+box_scores,5c27e4540ed93f4e36947f129225ececd7f5d07b30fbfe4fccc9107d57a6d728,"hoopR schedule + team box 2027 (files not kept: public, re-downloadable)",2026-11-02,2026-11-04T02:17:27+00:00,41759703165
+kenpom_ratings,8e725c15f858d5c8d5ae6cd510694a5e432092f692e7baaa0d24989a8e5dd076,KenPom ratings y=2027,"Tuesday, November 3",2026-11-04T02:17:27+00:00,41759703165
+injuries,c48e5394d1826e951e4fabe7c45375a07a250bfa0443344bf9fb4a60b40f2b1d,ESPN injury report via injuries.adjustment,,2026-11-04T02:17:27+00:00,41759703165
+referees,ff0c759e62c86db10e831ec8173cbe629d64ae8594cfcd0e28c0e4bac51ca30b,ESPN officials via context.live_referees,,2026-11-04T02:17:27+00:00,41759703165
+barttorvik,c62227cdc1b6411866a3f22708112ed63b516378973f136915a8c29415040ea2,Barttorvik time-machine file 2026-11-02,2026-11-02,2026-11-04T02:17:27+00:00,41759703165
+barttorvik,53f641ced7be3210b1bde60124b6f87c9ca7c25f6af44b921d18efb679d2db64,Barttorvik live ratings file 2027,live,2026-11-04T02:18:22+00:00,41759703165
