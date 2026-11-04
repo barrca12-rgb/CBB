@@ -69,6 +69,36 @@ BAD = []               # skips from the last plays() call, written by build() on
 # quote's price) if any, else the largest edge. A signal that clears the live rule but fails this test is not logged,
 # alerted or posted: it goes to research/linemove/signals.csv only. The test gates; the number bet is unchanged.
 OPENER_RULE = True     # the switch the replay check (research/linemove/replay.py) turns off to compare
+# Complete-ratings rule (Chad, Nov 4; protocol v2.6 Appendix D): a play for a game on ET date D is logged and alerted
+# only once the ratings include every game before D: from READY_HOUR ET on D with Barttorvik's file for D-1 in use, or
+# from BT_GRACE_HOUR ET on D if Barttorvik has not posted it. Earlier, a qualifying signal shows as pending.
+RATINGS_RULE = False   # built and tested; OFF pending Chad (Nov 4 evidence: see MODEL_FREEZE)
+READY_HOUR, BT_GRACE_HOUR = 6, 10
+
+
+def ratings_ready(day, now: pd.Timestamp | None = None, bt_snapshot: str | None = None, first_day=None) -> bool:
+    """True when a play for ET date `day` may be logged (Appendix D). bt_snapshot: the newest Barttorvik file in use
+    (freshness.SEEN); first_day: the season's first game date (no earlier games: always ready)."""
+    d = pd.Timestamp(str(day)[:10])
+    if first_day is not None and d <= pd.Timestamp(str(first_day)[:10]):
+        return True
+    now_et = (now or pd.Timestamp.now(tz="UTC")).tz_convert("America/New_York").tz_localize(None)
+    if now_et < d + pd.Timedelta(hours=READY_HOUR):
+        return False
+    if bt_snapshot is not None and pd.Timestamp(str(bt_snapshot)[:10]) >= d - pd.Timedelta(days=1):
+        return True
+    return now_et >= d + pd.Timedelta(hours=BT_GRACE_HOUR)
+
+
+def _season_first_day(day) -> pd.Timestamp | None:
+    try:
+        sch = data.fetch("schedule", season_of(pd.Timestamp(str(day)[:10])))
+        sch = sch[~sch["status_type_name"].isin(["STATUS_POSTPONED", "STATUS_CANCELED"])]
+        first = pd.to_datetime(sch["date"], utc=True).dt.tz_convert("America/New_York").min()
+        return None if pd.isna(first) else first.tz_localize(None).normalize()
+    except Exception:
+        return None
+READY = {}             # complete-ratings rule: ET date -> ready, per plays() call
 GATED = []             # signals stopped by the opener rule in the last plays() call, written by build() on live runs
 LINEMOVE_SIGNALS = os.path.join(os.path.dirname(__file__), "..", "research", "linemove", "signals.csv")
 LINEMOVE_COLS = ["seen_at", "date", "game_id", "start", "home_id", "away_id", "home", "away", "market", "side",
@@ -390,9 +420,10 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame, live: bool = True, fq: pd.DataFr
     """One row per game: the best spread and total play across books. live: apply the no-price and off-market
     guards and the opener rule (replays of past days have one priceless ESPN line per game). fq: first quotes for the
     opener rule (default: read from lines/moves.csv)."""
-    global BAD, GATED
+    global BAD, GATED, READY
     BAD = []
     GATED = []
+    READY = {}
     if live and fq is None:
         try:
             fq = first_quotes()
@@ -482,6 +513,22 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame, live: bool = True, fq: pd.DataFr
                 if bandb and not ok_b:
                     bandb = False
                 return v, units, bandb, gated
+            def ready_gate(mk, v2, u2, b2):
+                """Appendix D: a qualifying play (BET or band B) before the ratings include the previous day's games
+                is pending: shown as a watch, not logged, alerted or posted."""
+                if not live or not RATINGS_RULE or not (v2 == "BET" or b2):
+                    return None
+                st_ = pd.to_datetime(g.get("start"), utc=True, errors="coerce")
+                gday = str(g.get("date", ""))[:10] or (str(st_.tz_convert("America/New_York").date()) if pd.notna(st_) else "")
+                if not gday:
+                    return None
+                if gday not in READY:
+                    from . import freshness
+                    READY[gday] = ratings_ready(gday, pd.Timestamp(now), (freshness.SEEN.get("barttorvik") or {}).get("snapshot"),
+                                                _season_first_day(gday))
+                if READY[gday]:
+                    return None
+                return ("WATCH" if v2 == "BET" else v2), 0.0, False
             # spread: home edge at line s is m + s; away edge is -(m + s)
             sp = _best(ls, "spread", {"home": ("home_spread", lambda s_: m + s_, "home_spread_odds"),
                                       "away": ("home_spread", lambda s_: -(m + s_), "away_spread_odds")}, live, skip("spread"))
@@ -506,6 +553,9 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame, live: bool = True, fq: pd.DataFr
                 v2, u2, b2, gated = gate("spread", side, row, edge, value, v, units, r["spread_bandb"], ls)
                 if gated or (v2, u2, b2) != (v, units, r["spread_bandb"]):
                     r.update(spread_verdict=v2, spread_units=u2, spread_bandb=b2, spread_gate="opener rule")
+                rg = ready_gate("spread", v2, u2, b2)
+                if rg:
+                    r.update(spread_verdict=rg[0], spread_units=rg[1], spread_bandb=rg[2], spread_gate="ratings update")
             to = _best(lt, "total", {"over": ("total", lambda x: t - x, "over_odds"),
                                      "under": ("total", lambda x: x - t, "under_odds")}, live, skip("total"))
             if to:
@@ -526,6 +576,9 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame, live: bool = True, fq: pd.DataFr
                 v2, u2, b2, gated = gate("total", side, row, edge, value, v, units, r["total_bandb"], lt)
                 if gated or (v2, u2, b2) != (v, units, r["total_bandb"]):
                     r.update(total_verdict=v2, total_units=u2, total_bandb=b2, total_gate="opener rule")
+                rg = ready_gate("total", v2, u2, b2)
+                if rg:
+                    r.update(total_verdict=rg[0], total_units=rg[1], total_bandb=rg[2], total_gate="ratings update")
         out.append(r)
     return pd.DataFrame(out)
 

@@ -686,6 +686,9 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   const num = (x, d = 1) => x == null ? "–" : Number(x).toFixed(d).replace(/\.0$/, "");
   // The half-point line a WATCH becomes a BET at (good_to is the exact number; books post halves).
   const gp = (o) => o == null ? "" : ", " + odds(o) + " or better";   // price a WATCH needs at that number
+  // complete-ratings rule (protocol v2.6, Appendix D): qualifies now, but not a play until the overnight ratings
+  // update has the previous day's games (from 6 am ET on game day); never alerted or logged before that
+  const pendTag = (e) => "<span class='tag' title='Qualifies now. It becomes a play only if it still qualifies after the overnight ratings update (from 6 am ET on game day); nothing is alerted or logged before then.'>PENDING " + sgn(e) + "</span>";
   const playAt = (v, higherBetter) => v == null ? null : (higherBetter ? Math.ceil(v * 2 - 1e-9) : Math.floor(v * 2 + 1e-9)) / 2;
   const watchTag = (text) => "<span class='tag'>Watch · " + text + "</span>";
   const odds = (x) => x == null ? "" : (x > 0 ? "+" : "−") + Math.abs(Math.round(x));
@@ -1061,6 +1064,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
             return cell(ln(v), x[sd + "_spread_odds"], x[sd + "_spread_link"], pick && g.spread_book === bk && v === g.spread_line); });
           if (loggedSide(g, "spread") === sd) edge = loggedTag(g, "spread");
           else if (pick && g.spread_verdict === "BET") edge = "<span class='tag bet'>BET " + sgn(g.spread_edge) + "</span>";
+          else if (pick && g.spread_gate === "ratings update") edge = pendTag(g.spread_edge);
           else if (pick && g.spread_verdict === "REVIEW") edge = "<span class='tag' title='Edge above the maximum: likely a bad quote. Never a play.'>REVIEW " + sgn(g.spread_edge) + "</span>";
           else if (pick) { const at = playAt(g.spread_good_to, true);
             edge = watchTag(g.spread_line >= at ? "better price" : "bet at " + ln(at) + gp(g.spread_good_price)); }
@@ -1072,6 +1076,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
             return cell((i === 0 ? "o" : "u") + num(x.total), x[ou + "_odds"], x[ou + "_link"], pick && g.total_book === bk && x.total === g.total_line); });
           if (loggedSide(g, "total") === ou) edge = loggedTag(g, "total");
           else if (pick && g.total_verdict === "BET") edge = "<span class='tag bet'>BET " + sgn(g.total_edge) + "</span>";
+          else if (pick && g.total_gate === "ratings update") edge = pendTag(g.total_edge);
           else if (pick && g.total_verdict === "REVIEW") edge = "<span class='tag' title='Edge above the maximum: likely a bad quote. Never a play.'>REVIEW " + sgn(g.total_edge) + "</span>";
           else if (pick) { const at = playAt(g.total_good_to, ou === "under");
             edge = watchTag((ou === "under" ? g.total_line >= at : g.total_line <= at) ? "better price" : "bet at " + ou[0] + num(at) + gp(g.total_good_price)); }

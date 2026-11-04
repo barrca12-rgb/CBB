@@ -1130,3 +1130,26 @@ e39b5c9f0718696bce4e2250034543219f77b4bc5226c57f9fb1f4053257fb42  cbb/poll_targe
 afdf2c2e24e68904e25b85e6caf43c3a11dc07e1f7b3a95ad4369f7cc50d7c36  cbb/odds.py
 c21b8b7367e66c4e701a03a2eb73c4df3a5c8e3ada02146c985bcf43fe52b20d  .github/workflows/quotes.yml
 ```
+
+## 2026-11-04: Complete-ratings rule built, switched off pending Chad's decision (protocol v2.6 Appendix D)
+
+- **Approved by Chad (Nov 4).** A play for a game on ET date D logs and alerts only once the ratings include every
+  game before D: from 6 am ET on D with Barttorvik's file for D-1 in use, or from 10 am ET if Barttorvik has not
+  posted it. Before that it shows as pending on the card.
+- **`cbb/run_day.py` (fingerprinted):** `ratings_ready` and a gate in `plays()` beside the opener rule
+  (`RATINGS_RULE`). With the switch off, selection is unchanged.
+- **`cbb/report_html.py`:** a "PENDING" tag for gated signals.
+- **Tests:** `audit/test_ratings_rule.py`. `audit/conftest.py` keeps the clock-dependent rule off in other tests.
+  All 196 audit tests pass.
+- **Why it is off.** Before switching it on, the promised check of live plays (Nov 2 to 3) was run:
+  - early plays that would not qualify the next morning: CLV +2.13, 72% beat the close (25 plays);
+  - early plays that still qualify: +1.66, 67% (57);
+  - plays logged on game day: -0.22, 20% (15).
+  - The market moved toward the early numbers. Switching it on now would drop the strongest-CLV plays and move the
+    rest to later, worse numbers. Chad decides; it is a one-line switch.
+- **New fingerprints:**
+
+```
+dbde82c9455c32510b675f8b7e594f35e9cc0f71f76ae321c26974623af8dcb0  cbb/run_day.py
+d4cbbc9931bf8a57ae77532ebe50fd6b5e17d8e333ca0fc738c6beaad84af666  FORWARD_TEST_PROTOCOL.md
+```

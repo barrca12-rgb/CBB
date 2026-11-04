@@ -31,7 +31,7 @@ Logging and reporting changes that leave every prediction and selection unchange
 | Opening week | the season's first 7 days: totals shifted to KenPom's average scoring level (`run_day.opening_week_totals`) |
 | Line feeds | SportsGameOdds (`odds.py`; every third run, stops at 95% of its monthly allowance, subscription ends Nov 25) and The Odds API (`odds_api.py`; every run, `ODDS_API_EVERY_RUN=1`). Both ignore quotes untouched for 12 hours. After SGO ends or stops, The Odds API alone |
 | Selection | each card run: for each game, the side and book with the best EV at the book's price across the 7 books (DraftKings, FanDuel, BetMGM, Caesars, Fanatics, bet365, theScore Bet; ties go to DraftKings). A BET needs spread edge >= 2.5 or total edge >= 3.0, and EV >= +2% (`run_day.plays`; win chance from `run_day.WIN_PROB`) |
-| Complete-ratings rule (v2.6, Nov 4) | a play for a game on ET date D is logged and alerted only once the ratings include every game played before D: at or after 6:00 am ET on D, with Barttorvik's file for D-1 in use (or, if Barttorvik has not posted it, at or after 10:00 am ET on D). Before that, a qualifying signal is shown as pending and is not logged, alerted or posted (Appendix D) |
+| Complete-ratings rule (v2.6, Nov 4; written, not in force) | a play for a game on ET date D is logged and alerted only once the ratings include every game played before D: at or after 6:00 am ET on D, with Barttorvik's file for D-1 in use (or, if Barttorvik has not posted it, at or after 10:00 am ET on D). Before that, a qualifying signal is shown as pending and is not logged, alerted or posted (Appendix D) |
 | Opener rule (v2.4, Nov 2) | a signal that qualifies at the current number is logged only if it also qualifies against the game's opener with the current model (Appendix C). One that does not is research only (`research/linemove/signals.csv`), never logged, alerted or posted |
 | Logging | the first run in which a side qualifies logs one signal (`bet_id` = date, game, market, side) at that book's number and price (`tracker.log`). A logged signal is never re-priced, re-selected or deleted |
 | Stakes | the card's units follow the live record (`tracker.status`). This protocol evaluates flat 1 unit per signal. Staking is not part of the test and is not changed by it |
@@ -472,6 +472,11 @@ no tolerance.
     (Under 149.5, a win), and it is not among the 38.
 
 ## Appendix D. Complete-ratings rule (v2.6, approved by Chad and written Nov 4, 2026, before any play under it)
+
+**Status: not in force.** Built and tested on Nov 4 (`run_day.RATINGS_RULE`, off). Before switching it on, the live
+evidence was checked: on Nov 2 to 3 the early plays that would not have qualified at the next morning's model beat
+the close by +2.13 points (72% of 25), and plays logged on game day by -0.22 (20% of 15). It waits for Chad's
+decision after that evidence; until then plays log and alert as before.
 
 **Why.** The backtest that justifies v1 bet each opener with ratings from the day before the game. Live, plays were
 logged as soon as a line posted, sometimes while the previous day's games were still being played. On Nov 2 to 3 the
