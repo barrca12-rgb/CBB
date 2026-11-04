@@ -135,7 +135,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-02|401921060|spread|away,2026-11-02,401921060,spread,Radford +13.5,away,2539,2515,San Francisco,Radford,13.5,13.5,-110.0,FanDuel,3.18,10.32,1.0,yes,2026-11-02T20:31:20+00:00,13.5,0.0,0.0,76.0,62.0,L,-1.0,settled,
 2026-11-02|401917506|total|over,2026-11-02,401917506,total,Over 142.5,over,62,2547,Hawai'i,Seattle U,142.5,142.5,-105.0,BetMGM,3.82,146.32,0.97,yes,2026-11-02T20:31:20+00:00,,,,74.0,73.0,W,0.924,settled,
 2026-11-02|401919803|spread|home|bandB,2026-11-02,401919803,spread,Florida Atlantic -11.5,home,2226,112358,Florida Atlantic,Long Island University,-11.5,-11.5,-108.0,DraftKings,2.47,13.97,0.5,yes,2026-11-02T20:31:30+00:00,-11.5,0.0,0.0,74.0,60.0,W,0.463,settled,bandB
-2026-11-03|401906848|spread|home,2026-11-03,401906848,spread,Tennessee -27.5,home,2633,2747,Tennessee,Wofford,-27.5,-27.5,-110.0,FanDuel,3.08,30.58,1.0,yes,2026-11-02T22:31:28+00:00,,,,,,,,open,
+2026-11-03|401906848|spread|home,2026-11-03,401906848,spread,Tennessee -27.5,home,2633,2747,Tennessee,Wofford,-27.5,-27.5,-110.0,FanDuel,3.08,30.58,1.0,yes,2026-11-02T22:31:28+00:00,-25.5,-2.0,-0.06999712412436032,90.0,59.0,W,0.909,settled,
 2026-11-03|401921801|spread|home,2026-11-03,401921801,spread,Kentucky -30.5,home,96,2363,Kentucky,Manhattan,-30.5,-30.5,-110.0,FanDuel,3.66,34.16,1.0,yes,2026-11-02T22:31:28+00:00,,,,,,,,open,
 2026-11-03|401925779|spread|home,2026-11-03,401925779,spread,Duquesne -10.5,home,2184,2870,Duquesne,Purdue Fort Wayne,-10.5,-10.5,-120.0,FanDuel,4.65,15.15,1.0,yes,2026-11-02T22:31:28+00:00,,,,,,,,open,
 2026-11-03|401925779|total|over,2026-11-03,401925779,total,Over 152.5,over,2184,2870,Duquesne,Purdue Fort Wayne,152.5,152.5,-110.0,FanDuel,3.88,156.38,0.97,yes,2026-11-02T22:31:28+00:00,,,,,,,,open,
@@ -149,7 +149,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-03|401924911|total|over,2026-11-03,401924911,total,Over 148.5,over,2439,2464,UNLV,Northern Arizona,148.5,148.5,-110.0,Caesars,3.06,151.56,1.0,yes,2026-11-03T00:41:29+00:00,,,,,,,,open,
 2026-11-03|401909796|total|over,2026-11-03,401909796,total,Over 158.5,over,2306,2571,Kansas State,South Dakota State,158.5,158.5,-110.0,FanDuel,3.01,161.51,1.0,yes,2026-11-03T01:20:50+00:00,,,,,,,,open,
 2026-11-03|401920422|total|under,2026-11-03,401920422,total,Under 143,under,258,2182,Virginia,Drexel,143.0,143.0,-110.0,Fanatics,3.09,139.91,1.0,yes,2026-11-03T02:35:02+00:00,,,,,,,,open,
-2026-11-03|401906848|total|under,2026-11-03,401906848,total,Under 155,under,2633,2747,Tennessee,Wofford,155.0,155.0,-110.0,Caesars,3.08,151.92,1.0,yes,2026-11-03T03:30:51+00:00,,,,,,,,open,
+2026-11-03|401906848|total|under,2026-11-03,401906848,total,Under 155,under,2633,2747,Tennessee,Wofford,155.0,155.0,-110.0,Caesars,3.08,151.92,1.0,yes,2026-11-03T03:30:51+00:00,155.0,0.0,0.0,90.0,59.0,W,0.909,settled,
 2026-11-03|401921819|spread|home,2026-11-03,401921819,spread,South Carolina -16,home,2579,56,South Carolina,Stetson,-16.0,-16.0,-110.0,Fanatics,3.01,19.01,0.76,yes,2026-11-03T04:10:50+00:00,,,,,,,,open,
 2026-11-03|401920376|spread|home,2026-11-03,401920376,spread,Virginia Tech -30,home,259,2154,Virginia Tech,Coppin State,-30.0,-30.0,-110.0,Fanatics,3.58,33.58,0.76,yes,2026-11-03T04:10:50+00:00,,,,,,,,open,
 2026-11-03|401920376|total|under,2026-11-03,401920376,total,Under 151.5,under,259,2154,Virginia Tech,Coppin State,151.5,151.5,-110.0,FanDuel,3.33,148.17,1.0,yes,2026-11-03T04:10:50+00:00,,,,,,,,open,
