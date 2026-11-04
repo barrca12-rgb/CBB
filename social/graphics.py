@@ -1,8 +1,9 @@
 """X graphics for @OffTheGlassHQ: last night's recap and today's top plays (1600x900 PNG + a caption).
 
-Every number comes from the official bet log (bets/bets.csv, main plays only, never band B) and the primary close
-(cbb/clv_primary.py), the same figures as the site's record page. Display only: nothing here changes a pick, a number,
-the bet log or the card.
+Dark box-score style (Chad, Nov 4: "look much less like AI"; picked the dark mock): condensed type, hard rules, every
+play listed with its result, no rounded cards, badges or emoji. Every number comes from the official bet log
+(bets/bets.csv, main plays only, never band B) and the primary close (cbb/clv_primary.py), the same figures as the
+site's record page. Display only: nothing here changes a pick, a number, the bet log or the card.
 
     python -m social.graphics recap [--date YYYY-MM-DD]   # default: yesterday (ET)   -> out/social/recap_<date>.png/.txt
     python -m social.graphics top   [--date YYYY-MM-DD]   # default: today (ET)       -> out/social/top_<date>.png/.txt
@@ -14,6 +15,7 @@ from __future__ import annotations
 import argparse
 import base64
 import html
+import math
 import os
 import subprocess
 
@@ -26,54 +28,42 @@ OUT = os.path.join(ROOT, "out", "social")
 LOGO = os.path.join(ROOT, "site", "assets", "otg-logo-512.png")
 HANDLE = "@OffTheGlassHQ"
 MINUS = "−"
+DASH = "–"
 
+FONTS = ("<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@500;600;"
+         "700;800&family=Barlow:wght@500;600;700&display=swap'>")
 CSS = """
-:root{--bg:#fbf6ea;--navy:#0a2c49;--muted:#56627a;--line:#ebe1cd;--pos:#0f7b4b;--neg:#c2352b;--brand:#fd6c0f;--accent:#b84a08}
-*{box-sizing:border-box;margin:0;padding:0}
-body{width:1600px;height:900px;background:var(--bg);font-family:Inter,sans-serif;color:var(--navy);overflow:hidden;position:relative}
-.top{height:120px;background:var(--navy);display:flex;align-items:center;padding:0 56px;border-bottom:8px solid var(--brand)}
-.top img{height:84px;width:84px;object-fit:contain;border-radius:14px;display:block}
-.brand{font-family:Graduate,serif;color:#fbf6ea;font-size:44px;margin-left:24px;letter-spacing:.03em}
-.date{margin-left:auto;text-align:right;color:#fbf6ea}
-.date .k{font-size:20px;font-weight:700;letter-spacing:.14em;color:#b7c3d3}
-.date .v{font-family:Graduate,serif;font-size:40px;margin-top:4px}
-.pos{color:var(--pos)} .neg{color:var(--neg)}
-.foot{position:absolute;left:56px;right:56px;bottom:26px;display:flex;align-items:center;font-size:21px;color:var(--muted);font-weight:600;border-top:2px solid var(--line);padding-top:16px}
-.foot b{color:var(--navy)} .foot .r{margin-left:auto;color:var(--accent);font-weight:800}
-/* recap */
-.main{display:grid;grid-template-columns:560px 1fr;gap:40px;padding:62px 56px 0}
-.hero .k{font-size:22px;font-weight:800;letter-spacing:.16em;color:var(--muted)}
-.hero .rec{font-family:Graduate,serif;font-size:150px;line-height:1;margin-top:10px}
-.hero .u{font-size:58px;font-weight:800;margin-top:8px}
-.hero .u small{font-size:28px;color:var(--muted);font-weight:600;margin-left:10px}
-.pills{display:flex;gap:20px;margin-top:40px}
-.pill{flex:1;background:#fff;border:2px solid var(--line);border-radius:16px;padding:24px}
-.pill .k{font-size:18px;font-weight:800;letter-spacing:.14em;color:var(--muted)}
-.pill .v{font-size:46px;font-weight:800;margin-top:6px}
-.pill .s{font-size:24px;font-weight:700;margin-top:2px}
-.right .k{font-size:22px;font-weight:800;letter-spacing:.16em;color:var(--muted);margin-bottom:14px}
-.right .k span{color:#8a93a3;font-weight:700;letter-spacing:.06em}
-.right .row{display:flex;align-items:center;background:#fff;border:2px solid var(--line);border-radius:14px;padding:0 22px;height:86px;margin-bottom:15px}
-.right .p{font-size:30px;font-weight:800;width:300px}
-.right .g{flex:1;font-size:22px;font-weight:600;color:var(--muted)}
-.right .b{font-size:26px;font-weight:800;color:var(--pos);background:#e6f4ed;border-radius:10px;padding:6px 14px}
-.clv{display:flex;align-items:center;gap:24px;background:var(--navy);border-radius:16px;padding:22px 28px;margin-top:10px;color:#fbf6ea}
-.clv .big{font-family:Graduate,serif;font-size:56px;color:var(--brand)}
-.clv .t{font-size:24px;font-weight:700}
-.clv small{display:block;font-size:17px;font-weight:500;color:#b7c3d3;margin-top:6px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1600px;height:900px;background:#101317;color:#eef0f2;font-family:Barlow,sans-serif;overflow:hidden;position:relative}
+body:before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.018) 0 2px,transparent 2px 6px);pointer-events:none}
+.l{position:absolute;left:64px;top:56px;width:500px}
+.brand{display:flex;align-items:center;gap:14px;font-family:'Barlow Condensed';font-weight:800;font-size:26px;letter-spacing:.04em;color:#fd6c0f}
+.brand img{width:46px;height:46px;display:block}
+.day{font-family:'Barlow Condensed';font-weight:700;font-size:40px;margin-top:46px;color:#9aa3ad}
+.big{font-family:Anton;font-size:210px;line-height:.92;margin-top:6px}
+.big.sm{font-size:150px}
+.u{font-family:Anton;font-size:84px;line-height:1;margin-top:14px}
+.split{margin-top:40px;font-family:'Barlow Condensed';font-weight:600;font-size:30px;line-height:1.45;color:#c9ced4;border-top:3px solid #eef0f2;padding-top:16px}
+.split b{color:#fff;font-weight:800}
+.org{color:#fd6c0f} .W{color:#3ccf7e} .L{color:#ff5a4f} .P{color:#9aa3ad}
+.rt{position:absolute;left:620px;right:64px;top:62px;display:grid;column-gap:36px}
+.r{display:grid;align-items:baseline;column-gap:10px;border-bottom:1px solid #2a2f36}
+.m{font-family:'Barlow Condensed';font-weight:800}
+.p{font-family:'Barlow Condensed';font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.s{color:#8f98a2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.x{text-align:right;font-family:'Barlow Condensed';font-weight:700}
+.more{font-family:'Barlow Condensed';font-weight:600;font-size:20px;color:#8f98a2;margin-top:10px}
+.f{position:absolute;left:64px;right:64px;bottom:34px;display:flex;font-family:'Barlow Condensed';font-weight:600;font-size:22px;color:#8f98a2}
+.f b{color:#eef0f2} .f .h{margin-left:auto;color:#fd6c0f;font-weight:800}
 /* top plays */
-.head{padding:34px 56px 16px;display:flex;align-items:baseline}
-.head .t{font-size:24px;font-weight:800;letter-spacing:.16em;color:var(--muted)}
-.head .s{margin-left:auto;font-size:20px;font-weight:600;color:#8a93a3}
-.list{padding:0 56px}
-.list .row{display:flex;align-items:center;background:#fff;border:2px solid var(--line);border-radius:16px;padding:16px 26px;margin-bottom:12px;height:104px}
-.n{font-family:Graduate,serif;font-size:46px;color:var(--brand);width:64px}
-.pk{flex:1} .pk .p{font-size:34px;font-weight:800} .pk .g{font-size:21px;font-weight:600;color:var(--muted);margin-top:4px}
-.m{width:440px;font-size:22px;font-weight:700;text-align:right;padding-right:34px}
-.bk{font-size:19px;font-weight:600;color:#8a93a3;margin-top:4px}
-.e{width:150px;text-align:center;background:#e6f4ed;border-radius:12px;padding:10px 0}
-.ev{font-size:38px;font-weight:800;color:var(--pos);line-height:1}
-.el{font-size:15px;font-weight:800;letter-spacing:.1em;color:var(--pos);margin-top:4px;text-transform:uppercase}
+.tp{position:absolute;left:620px;right:64px;top:62px}
+.tr{display:grid;grid-template-columns:44px 1fr 150px;align-items:center;border-bottom:1px solid #2a2f36;padding:13px 0}
+.tr .n{font-family:Anton;font-size:40px;color:#fd6c0f}
+.tr .p{font-size:40px;line-height:1.05}
+.tr .s{font-size:19px;margin-top:4px;white-space:normal}
+.tr .s b{color:#c9ced4;font-weight:600}
+.tr .e{text-align:right;font-family:Anton;font-size:44px;line-height:1}
+.tr .e small{display:block;font-family:'Barlow Condensed';font-weight:700;font-size:17px;color:#8f98a2;letter-spacing:.06em;margin-top:4px}
 """
 
 
@@ -82,8 +72,7 @@ def _today_et() -> pd.Timestamp:
 
 
 def _num(x: float, d: int = 1) -> str:
-    s = f"{x:+.{d}f}".rstrip("0").rstrip(".") if d else f"{x:+.0f}"
-    return s.replace("-", MINUS)
+    return f"{x:+.{d}f}".rstrip("0").rstrip(".").replace("-", MINUS)
 
 
 def _units(x: float) -> str:
@@ -91,20 +80,24 @@ def _units(x: float) -> str:
 
 
 def _rec(w: int, l: int, p: int = 0) -> str:
-    return f"{w}–{l}" + (f"–{p}" if p else "")
+    return f"{w}{DASH}{l}" + (f"{DASH}{p}" if p else "")
 
 
 def _pick(s: str) -> str:
     return html.escape(str(s)).replace(" -", f" {MINUS}")
 
 
-def _page(body: str, kicker: str, day: pd.Timestamp) -> str:
+def _day_label(day: pd.Timestamp) -> str:
+    return f"{day:%A}, {day:%b}. {day.day}".upper().replace("MAY.", "MAY")
+
+
+def _page(body: str) -> str:
+    return f"<!doctype html><html><head><meta charset='utf-8'>{FONTS}<style>{CSS}</style></head><body>{body}</body></html>"
+
+
+def _brand() -> str:
     logo = base64.b64encode(open(LOGO, "rb").read()).decode()
-    return ("<!doctype html><html><head><meta charset='utf-8'>"
-            "<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Graduate&family=Inter:wght@400;500;600;700;800&display=swap'>"
-            f"<style>{CSS}</style></head><body><div class='top'><img src='data:image/png;base64,{logo}'>"
-            f"<div class='brand'>OFF THE GLASS</div><div class='date'><div class='k'>COLLEGE BASKETBALL · {kicker}</div>"
-            f"<div class='v'>{day.strftime('%a').upper()} · {day.strftime('%b').upper()} {day.day}</div></div></div>{body}</body></html>")
+    return f"<div class='brand'><img src='data:image/png;base64,{logo}'>OFF THE GLASS</div>"
 
 
 def _render(page: str, stem: str) -> str:
@@ -130,6 +123,34 @@ def _past(r) -> float:
     return (hs + as_ - float(r["line"])) * (1 if r["side"] == "over" else -1)
 
 
+def _ledger(d: pd.DataFrame) -> str:
+    """Every play, wins first then losses (each by margin), in columns sized to the slate: 2 columns with final scores
+    up to 30 plays, 3 columns without scores up to 48, 4 up to 72; beyond that the last line says how many more."""
+    n = len(d)
+    cols, scores = (2, True) if n <= 30 else (3, False) if n <= 48 else (4, False)
+    cap = 72
+    shown = d.head(cap)
+    per = math.ceil(len(shown) / cols)
+    row_h = min(44 if scores else 40, int(700 / max(per, 1)))
+    fs = 23 if cols <= 2 else 21 if cols == 3 else 17
+    tmpl = "30px max-content minmax(0,1fr) 58px" if scores else ("26px minmax(0,1fr) 52px" if cols == 3 else "20px minmax(0,1fr) 42px")
+    out = []
+    for c in range(cols):
+        part = shown.iloc[c * per:(c + 1) * per]
+        rows = []
+        for _, r in part.iterrows():
+            res = r["result"]
+            sc = (f"<span class='s' style='font-size:15px;text-align:right'>{html.escape(r['away'])} {int(r['away_score'])}, "
+                  f"{html.escape(r['home'])} {int(r['home_score'])}</span>") if scores else ""
+            body = (f"<span class='m {res}' style='font-size:{fs - 3}px'>{res}</span><span class='p' style='font-size:{fs}px'>"
+                    f"{_pick(r['pick'])}</span>{sc}<span class='x {res}' style='font-size:{fs - 2}px'>{_num(r['past'])}</span>")
+            rows.append(f"<div class='r' style='grid-template-columns:{tmpl};height:{row_h}px'>{body}</div>")
+        out.append(f"<div>{''.join(rows)}</div>")
+    more = f"<div class='more'>+{n - cap} more plays on the record page</div>" if n > cap else ""
+    gap = 36 if cols <= 3 else 22
+    return f"<div class='rt' style='grid-template-columns:repeat({cols},minmax(0,1fr));column-gap:{gap}px'>{''.join(out)}</div>{more}"
+
+
 def recap(day: str) -> tuple[str, str]:
     """(png path, caption) for the main plays of ET date `day`; every one of the day's plays must be graded."""
     b = tracker.load("v1")
@@ -139,32 +160,35 @@ def recap(day: str) -> tuple[str, str]:
     if (d["status"] != "settled").any():
         raise SystemExit(f"{int((d['status'] != 'settled').sum())} play(s) on {day} are not graded yet.")
     w, l, p, u = int((d["result"] == "W").sum()), int((d["result"] == "L").sum()), int((d["result"] == "P").sum()), float(d["profit"].sum())
-    mk = {m: d[d["market"] == m] for m in ("total", "spread")}
     d["past"] = d.apply(_past, axis=1)
-    top = d[d["result"] == "W"].sort_values("past", ascending=False).head(4)
+    d["_o"] = d["result"].map({"W": 0, "P": 1, "L": 2})
+    d = d.sort_values(["_o", "past"], ascending=[True, False])
+    mk = {m: d[d["market"] == m] for m in ("total", "spread")}
     cl = clv_primary.primary(d).set_index("bet_id")["clv_primary"].dropna()
     sea = _season(day)
     dt = pd.Timestamp(day)
-    lab = f"{dt:%b} {dt.day}".upper()
-    pills = "".join(
-        f"<div class='pill'><div class='k'>{lab} {m.upper()}S</div><div class='v'>{_rec((x['result'] == 'W').sum(), (x['result'] == 'L').sum(), (x['result'] == 'P').sum())}</div>"
-        f"<div class='s {'pos' if x['profit'].sum() >= 0 else 'neg'}'>{_units(x['profit'].sum())}</div></div>" for m, x in mk.items() if len(x))
-    rows = "".join(f"<div class='row'><div class='p'>{_pick(r['pick'])}</div><div class='g'>{html.escape(r['away'])} {int(r['away_score'])}, "
-                   f"{html.escape(r['home'])} {int(r['home_score'])}</div><div class='b'>{_num(r['past'])}</div></div>" for _, r in top.iterrows())
-    clvbox = (f"<div class='clv'><div class='big'>{100 * (cl > 0).mean():.0f}%</div><div class='t'>of {dt:%b} {dt.day} plays beat the closing line, "
-              f"{_num(cl.mean(), 2)} pts on average<small>vs. the consensus close of 6+ sportsbooks in the final 15 minutes before tip</small></div></div>"
-              if len(cl) else "")
-    body = (f"<div class='main'><div class='hero'><div class='k'>OFFICIAL RECORD · {lab}</div><div class='rec'>{_rec(w, l, p)}</div>"
-            f"<div class='u {'pos' if u >= 0 else 'neg'}'>{_units(u)}<small>{100 * w / max(w + l, 1):.1f}% wins</small></div>"
-            f"<div class='pills'>{pills}</div></div><div class='right'>"
-            + (f"<div class='k'>BIGGEST CASHES <span>· POINTS PAST THE NUMBER</span></div>{rows}" if len(top) else "")
-            + f"{clvbox}</div></div><div class='foot'><span>Season <b>{_rec(sea['w'], sea['l'], sea['p'])} · {_units(sea['u'])}</b> · "
-            f"every play logged and timestamped before tip</span><span class='r'>{HANDLE}</span></div>")
-    png = _render(_page(body, "DAY RECAP", dt), f"recap_{day}")
-    parts = [f"{x.capitalize()}s {_rec((v['result'] == 'W').sum(), (v['result'] == 'L').sum())}" for x, v in mk.items() if len(v)]
-    cap = (f"{dt:%A}: {_rec(w, l, p)}, {_units(u)} \U0001F3C0\n\n{', '.join(parts)}."
-           + (f" {100 * (cl > 0).mean():.0f}% of plays beat the closing line." if len(cl) else "")
-           + f"\n\nSeason: {_rec(sea['w'], sea['l'], sea['p'])}, {_units(sea['u'])}. Every play logged before tip.")
+    parts = [f"{m.capitalize()}s <b>{_rec((x['result'] == 'W').sum(), (x['result'] == 'L').sum(), (x['result'] == 'P').sum())}</b> "
+             f"({_units(x['profit'].sum())})" for m, x in mk.items() if len(x)]
+    clv_line = (f"<br><b>{100 * (cl > 0).mean():.0f}%</b> beat the closing line (avg <b>{_num(cl.mean(), 2)}</b>)"
+                if len(cl) else "")
+    body = (f"<div class='l'>{_brand()}<div class='day'>{_day_label(dt)}</div><div class='big'>{_rec(w, l, p)}</div>"
+            f"<div class='u {'org' if u >= 0 else 'L'}'>{_units(u).upper()}</div>"
+            f"<div class='split'>{' &nbsp;·&nbsp; '.join(parts)}{clv_line}</div></div>{_ledger(d)}"
+            f"<div class='f'><span>Season <b>{_rec(sea['w'], sea['l'], sea['p'])}, {_units(sea['u'])}</b>. Every play posted before tip. "
+            f"Number at right = points past the line.</span><span class='h'>{HANDLE}</span></div>")
+    png = _render(_page(body), f"recap_{day}")
+    best = d[d["result"] == "W"].head(1)
+    worst = d[d["result"] == "L"].tail(1)
+    lines = [f"{dt:%A}: {_rec(w, l, p)}, {_units(u)}."]
+    if len(best):
+        lines.append(f"{str(best['pick'].iloc[0]).replace(' -', ' ' + MINUS)} cashed by {abs(best['past'].iloc[0]):g}.")
+    if len(worst):
+        lines.append(f"Worst miss: {str(worst['pick'].iloc[0]).replace(' -', ' ' + MINUS)} by {abs(worst['past'].iloc[0]):g}.")
+    lines.append(", ".join(f"{m}s {_rec((x['result'] == 'W').sum(), (x['result'] == 'L').sum())}" for m, x in mk.items() if len(x)) + ".")
+    if len(cl):
+        lines.append(f"{100 * (cl > 0).mean():.0f}% beat the close.")
+    lines[3] = lines[3][0].upper() + lines[3][1:]
+    cap = " ".join(lines[:3]) + "\n\n" + " ".join(lines[3:]) + f"\n\nSeason {_rec(sea['w'], sea['l'], sea['p'])}, {_units(sea['u'])}."
     open(os.path.join(OUT, f"recap_{day}.txt"), "w").write(cap + "\n")
     return png, cap
 
@@ -183,24 +207,28 @@ def top_plays(day: str, n: int = 5) -> tuple[str, str]:
         tip = f" · {st.tz_convert('America/New_York'):%-I:%M %p} ET" if pd.notna(st) else ""
         if r["market"] == "spread":
             team, tm = (r["home"], r["model"]) if r["side"] == "home" else (r["away"], -r["model"])
-            model = f"Model: {html.escape(team)} {_num(-tm)}"
+            model = f"model {html.escape(team)} {_num(-tm)}"
         else:
-            model = f"Model: {r['model']:.1f} total"
+            model = f"model total {r['model']:.1f}"
         price = f"{int(r['odds']):+d}".replace("-", MINUS) if pd.notna(r["odds"]) else ""
-        rows.append(f"<div class='row'><div class='n'>{i}</div><div class='pk'><div class='p'>{_pick(r['pick'])}</div>"
-                    f"<div class='g'>{html.escape(r['away'])} at {html.escape(r['home'])}{tip}</div></div>"
-                    f"<div class='m'>{model}<div class='bk'>{html.escape(str(r['book']))} {price}</div></div>"
-                    f"<div class='e'><div class='ev'>{_num(r['edge'])}</div><div class='el'>pt edge</div></div></div>")
+        rows.append(f"<div class='tr'><div class='n'>{i}</div><div><div class='p'>{_pick(r['pick'])}</div>"
+                    f"<div class='s'>{html.escape(r['away'])} at {html.escape(r['home'])}{tip} &nbsp;·&nbsp; "
+                    f"<b>{html.escape(str(r['book']))} {price}</b> &nbsp;·&nbsp; {model}</div></div>"
+                    f"<div class='e org'>{_num(r['edge'])}<small>POINT EDGE</small></div></div>")
+    total = int(((b["date"] == day) & (b["status"] != "void")).sum())
     sea = _season((pd.Timestamp(day) - pd.Timedelta(days=1)).strftime("%Y-%m-%d"))
-    body = (f"<div class='head'><div class='t'>TOP {len(d)} PLAYS · BIGGEST MODEL EDGE</div><div class='s'>Numbers and prices when the "
-            f"play was logged · lines move</div></div><div class='list'>{''.join(rows)}</div><div class='foot'><span>Season <b>"
-            f"{_rec(sea['w'], sea['l'], sea['p'])} · {_units(sea['u'])}</b> · every play logged and timestamped before tip</span>"
-            f"<span class='r'>{HANDLE}</span></div>")
     dt = pd.Timestamp(day)
-    png = _render(_page(body, "TODAY", dt), f"top_{day}")
-    cap = (f"Tonight's top {len(d)} \U0001F3C0 biggest model edges:\n\n"
-           + "\n".join(f"{i}. {str(r['pick']).replace(' -', ' ' + MINUS)}" for i, (_, r) in enumerate(d.iterrows(), 1))
-           + f"\n\nSeason: {_rec(sea['w'], sea['l'], sea['p'])}, {_units(sea['u'])}. Logged before tip, graded in public.")
+    body = (f"<div class='l'>{_brand()}<div class='day'>{_day_label(dt)}</div><div class='big sm'>TOP {len(d)}</div>"
+            f"<div class='u org' style='font-size:64px'>OF {total} PLAYS</div>"
+            f"<div class='split'>Biggest edges between our number and the market, at the line and price when each play "
+            f"was posted. Lines move.</div></div><div class='tp'>{''.join(rows)}</div>"
+            f"<div class='f'><span>Season <b>{_rec(sea['w'], sea['l'], sea['p'])}, {_units(sea['u'])}</b>. Every play posted before tip "
+            f"and graded in public.</span><span class='h'>{HANDLE}</span></div>")
+    png = _render(_page(body), f"top_{day}")
+    cap = (f"{dt:%A}'s top {len(d)} of {total}, by edge:\n\n"
+           + "\n".join(f"{str(r['pick']).replace(' -', ' ' + MINUS)} ({r['book']} {f'{int(r.odds):+d}'.replace('-', MINUS)})"
+                       for _, r in d.iterrows())
+           + f"\n\nSeason {_rec(sea['w'], sea['l'], sea['p'])}, {_units(sea['u'])}.")
     open(os.path.join(OUT, f"top_{day}.txt"), "w").write(cap + "\n")
     return png, cap
 
