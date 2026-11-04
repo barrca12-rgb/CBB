@@ -189,3 +189,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-05|401921747|total|under,2026-11-05,401921747,total,Under 151,under,2132,2739,Cincinnati,Green Bay,151.0,151.0,-110.0,Caesars,3.3,147.7,1.0,yes,2026-11-04T21:40:51+00:00,,,,,,,,open,
 2026-11-05|401921747|spread|away|bandB,2026-11-05,401921747,spread,Green Bay +24.5,away,2132,2739,Cincinnati,Green Bay,24.5,24.5,-105.0,DraftKings,2.01,22.49,0.5,yes,2026-11-04T21:40:53+00:00,,,,,,,,open,bandB
 2026-11-05|401909563|total|under,2026-11-05,401909563,total,Under 148.5,under,150,324,Duke,Coastal Carolina,148.5,148.5,-105.0,theScore Bet,3.19,145.31,1.0,yes,2026-11-04T21:51:13+00:00,,,,,,,,open,
+2026-11-05|401925754|spread|away|bandB,2026-11-05,401925754,spread,Toledo +26.5,away,127,2649,Michigan State,Toledo,26.5,26.5,-110.0,theScore Bet,2.03,24.47,0.5,yes,2026-11-04T22:01:16+00:00,,,,,,,,open,bandB
