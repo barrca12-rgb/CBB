@@ -312,3 +312,11 @@ The proposed 15-unit daily cap and any staking change are not part of this work.
   historical odds inventory.
 - The weekly health task's early-plays line is now description only (the 40-close trigger is withdrawn). It also
   reports the morning shadow and the snapshots.
+
+## 2026-11-04: Card-run publish retries when Pages is busy
+
+- Card runs at 18:50 and 19:00 UTC failed at the last step: the site publish collided with a live-results refresh
+  ("in progress deployment"). The card, bet log and alerts were already saved, but the failure made the shadow
+  tests skip.
+- `update.yml` now retries the publish twice (after 45 s and 90 s). After that it logs a warning instead of
+  failing the run.

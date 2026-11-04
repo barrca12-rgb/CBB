@@ -1219,3 +1219,21 @@ e8c9fa8e8eeca99904904a8fc53949956946d037f0b4077495e1247275add259  FORWARD_TEST_P
 ```
 c3772c044b4754b2616b4db93f80d2fd860df88bd2bde90e478ecd7857980983  cbb/run_day.py
 ```
+
+## 2026-11-04: Card run retries a busy site publish instead of failing (operational)
+
+- **Problem.** GitHub Pages takes one publish at a time. When a live-results refresh was still publishing, the card
+  run's own publish failed with "in progress deployment": 4 runs on Nov 3 and 2 on Nov 4 (18:50 and 19:00 UTC).
+  The card, bet log and alerts were already saved, but the run showed as failed and the shadow tests skipped that
+  cycle.
+- **Fix in `.github/workflows/update.yml`.**
+  - The publish step is retried after 45 seconds, then after 90 more.
+  - If it still cannot publish, the run logs a warning instead of failing.
+  - The next refresh or card run publishes the site.
+- **Unchanged:** picks, logging, alerts and every other step.
+- **Discord note:** `2026-11-04-site-publish`.
+- **New fingerprint:**
+
+```
+00664478f36d8d34125c6d63cc0946ffe8fc30ec03c4b918deebca4e590809ca  .github/workflows/update.yml
+```

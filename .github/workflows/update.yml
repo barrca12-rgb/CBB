@@ -43,7 +43,7 @@ jobs:
     timeout-minutes: 30
     environment:
       name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
+      url: ${{ steps.deploy.outputs.page_url || steps.deploy2.outputs.page_url || steps.deploy3.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -126,5 +126,26 @@ jobs:
         with:
           path: _site
 
+      # GitHub Pages takes one publish at a time; a live-results refresh (every ~3 min) can still be publishing when
+      # the card gets here ("in progress deployment", Nov 3-4). The card is already saved above, so a busy Pages is
+      # retried twice, then logged, never a failed run (a failed run also made the shadow tests skip that cycle)
       - id: deploy
+        continue-on-error: true
         uses: actions/deploy-pages@v4
+      - name: Wait for the other publish to finish
+        if: steps.deploy.outcome == 'failure'
+        run: sleep 45
+      - id: deploy2
+        if: steps.deploy.outcome == 'failure'
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+      - name: Wait again
+        if: steps.deploy2.outcome == 'failure'
+        run: sleep 90
+      - id: deploy3
+        if: steps.deploy2.outcome == 'failure'
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+      - name: Report a publish that never went through
+        if: steps.deploy3.outcome == 'failure'
+        run: echo "::warning::Site publish failed three times (Pages busy); the card is saved and the next refresh or card run publishes it."
