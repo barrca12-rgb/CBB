@@ -278,3 +278,18 @@ def test_every_refresh_publishes_the_charts_page(tmp_path, monkeypatch):
     monkeypatch.setattr(report_html, "refresh_past", lambda *a, **k: [])
     live_refresh.main()
     assert (tmp_path / "record" / "charts.html").read_text().startswith("<!doctype html>")
+
+
+def test_logged_plays_show_the_model_from_when_they_were_logged():
+    """Nov 3: an Over logged at +3 sat beside today's model total below the line. The Model column is the model when
+    the play was logged (matching its edge); today's model and edge are on the line underneath."""
+    t = report_html.TEMPLATE
+    assert 'g[mk + "_logged_model"]' in t and "(edge now " in t
+    src = open(os.path.join(REPORTS, "cbb_2026-11-03.html")).read()
+    D = json.loads(DATA.search(src).group(1))
+    for g in D["games"]:
+        g.pop("total_logged_model", None)
+        g.pop("spread_logged_model", None)
+    live_refresh._fill_logged_models(D["games"], "2026-11-03")
+    g = next(x for x in D["games"] if x["game_id"] == 401909796)
+    assert abs(g["total_logged_model"] - 161.51) < 0.01

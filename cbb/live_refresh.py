@@ -84,10 +84,29 @@ def clocks(day: pd.Timestamp) -> dict[str, str]:
     return out
 
 
+def _fill_logged_models(games: list, day: str) -> None:
+    """Pages built before Nov 3 lack {market}_logged_model (the model when the play was logged): add it."""
+    if not any(g.get("spread_logged_side") or g.get("total_logged_side") for g in games):
+        return
+    try:
+        b = tracker.load("all")
+    except Exception:
+        return
+    m = {str(k): v for k, v in zip(b["bet_id"], b["model"])}
+    for g in games:
+        for mk in ("spread", "total"):
+            sd = g.get(f"{mk}_logged_bid_side") or g.get(f"{mk}_logged_side")
+            if isinstance(sd, str) and g.get(f"{mk}_logged_model") is None:
+                v = m.get(f"{day}|{g.get('game_id')}|{mk}|{sd}")
+                if v is not None and pd.notna(v):
+                    g[f"{mk}_logged_model"] = report_html._clean(v)
+
+
 def _relisted(data: dict, day: str) -> None:
     """A page built before a logged spread's game was relisted with the other team at home (Nov 2, Purdue +4.5):
     the play is shown from the card's side, the same correction the card build makes (report_html._logged_sides)."""
     games = data.get("games") or []
+    _fill_logged_models(games, day)
     if not any(g.get("spread_logged_side") for g in games):
         return
     cols = ["game_id", "home_id", "away_id", "model_margin", "spread_logged_side", "spread_logged_line",

@@ -236,10 +236,31 @@ def _logged_sides(card: pd.DataFrame, day: pd.Timestamp) -> pd.DataFrame:
     return card
 
 
+def _logged_models(card: pd.DataFrame, day: pd.Timestamp) -> pd.DataFrame:
+    """{market}_logged_model: the model's number when each logged play was logged (bets.csv "model"), so the card's
+    Model column matches the logged edge beside it (Nov 3). Display only."""
+    from . import tracker
+    try:
+        b = tracker.load("all")
+    except Exception:
+        return card
+    m = {str(k): v for k, v in zip(b["bet_id"], b["model"])}
+    card = card.copy()
+    for mk in ("spread", "total"):
+        if f"{mk}_logged_side" not in card:
+            continue
+        bid_side = card.get(f"{mk}_logged_bid_side", pd.Series(index=card.index, dtype=object))
+        side = bid_side.where(bid_side.notna(), card[f"{mk}_logged_side"]) if bid_side is not None else card[f"{mk}_logged_side"]
+        card[f"{mk}_logged_model"] = [m.get(f"{day:%Y-%m-%d}|{g}|{mk}|{sd}") if isinstance(sd, str) else None
+                                      for g, sd in zip(card["game_id"], side)]
+    return card
+
+
 def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, replay: bool = False,
           record: dict | None = None) -> str:
     if not replay:
         card = _logged_sides(card, day)
+        card = _logged_models(card, day)
     card = _logged_view(card)
     card = _first_open_view(card, day)
     if not replay:
@@ -756,12 +777,19 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     // today's model number from the bet's side, in the same form as the bet (spread: the team's line; total: points)
     const mnow = mk === "spread" ? (g.model_margin == null ? null : "model now " + (side === "home" ? g.home : g.away) + " " + ln(-(side === "home" ? g.model_margin : -g.model_margin)))
       : (g.model_total == null ? null : "model now " + num(g.model_total));
-    const now = (still ? "still available at " + cur + " (" + g[mk + "_book"] + ")" : "line now " + (cur ?? "–")) + (mnow ? " · " + mnow : "");
+    // the model's number when the play was logged (bets.csv "model": a total, or the bet side's margin for a favorite /
+    // its line for an underdog), shown in the Model column beside the logged edge (Chad, Nov 3: the column showed
+    // today's model next to the logged edge, so an Over at +3 sat beside a model total below the line)
+    const lm = g[mk + "_logged_model"], ll = Number(g[mk + "_logged_line"]);
+    const modelAt = lm == null ? null : mk === "spread" ? ln(ll > 0 ? lm : -lm) : num(lm);
+    const edgeNow = !pre && modelAt != null && g[mk + "_now_edge"] != null ? " (edge now " + sgn(g[mk + "_now_edge"]) + ")" : "";
+    const now = (still ? "still available at " + cur + " (" + g[mk + "_book"] + ")" : "line now " + (cur ?? "–")) + (mnow ? " · " + mnow + edgeNow : "");
     P.push({g, kind: mk === "spread" ? "Spread" : "Total", side, bet: pick, price: g[mk + "_logged_odds"], book: g[mk + "_logged_book"],
       link: still ? g[mk + "_link"] : null, warn: g[mk + "_warn"],
       // plays logged before the Oct 26 revision show the edge vs today's model at the placed number; others as logged
       edge: pre ? g[mk + "_now_edge"] : g[mk + "_logged_edge"] ?? g[mk + "_now_edge"],
-      p: pre ? g[mk + "_now_p"] : g[mk + "_logged_p"] ?? g[mk + "_now_p"], ev: pre ? g[mk + "_now_ev"] : g[mk + "_logged_ev"] ?? g[mk + "_now_ev"], model: mk === "spread" ? (side === "home" ? ln(-g.model_margin) : ln(g.model_margin)) : num(g.model_total),
+      p: pre ? g[mk + "_now_p"] : g[mk + "_logged_p"] ?? g[mk + "_now_p"], ev: pre ? g[mk + "_now_ev"] : g[mk + "_logged_ev"] ?? g[mk + "_now_ev"],
+      model: !pre && modelAt != null ? modelAt : mk === "spread" ? (side === "home" ? ln(-g.model_margin) : ln(g.model_margin)) : num(g.model_total),
       to: still ? (mk === "spread" ? ln(g.spread_good_to) : num(g.total_good_to)) : "–",
       now: nowLine(g, mk, side), at: g[mk + "_logged_at"] || null,
       open: firstOpen(g, mk, side, g[mk + "_logged_book"]),
