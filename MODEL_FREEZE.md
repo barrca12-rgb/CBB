@@ -1199,3 +1199,23 @@ failure prints and continues.
 ```
 e8c9fa8e8eeca99904904a8fc53949956946d037f0b4077495e1247275add259  FORWARD_TEST_PROTOCOL.md
 ```
+
+## 2026-11-04: Box-score failure holds plays instead of silently rating on the preseason prior (Chad, Nov 4)
+
+- **Before.** If the box-score download failed after the season started, `run_day.project` caught the error with
+  no message. It rated every team on the preseason prior alone, zeroed market context, and still logged and alerted
+  plays.
+- **Now** (`run_day.load_box_scores`):
+  1. A failed download falls back to the last downloaded copy, which is still valid input, with a log line.
+  2. Only if no valid copy loads, and games have been played, the card day is held (`INPUT_HOLD`). A qualifying
+     play shows on the card as "HELD" and is not logged, alerted or posted. The missed-play safety net skips it.
+     One phone alert per held day says what failed and which plays are held.
+  3. Before the season's first game, no box scores is normal and holds nothing.
+- **Unchanged.** A source that has not published yet never holds anything, and every other selection rule is the
+  same.
+- **Tests:** `audit/test_input_hold.py`. Discord note: `2026-11-04-input-hold`.
+- **New fingerprint:**
+
+```
+c3772c044b4754b2616b4db93f80d2fd860df88bd2bde90e478ecd7857980983  cbb/run_day.py
+```

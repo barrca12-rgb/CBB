@@ -170,6 +170,8 @@ def missed_plays(card: pd.DataFrame, lines: pd.DataFrame) -> pd.DataFrame:
         for mk, col, thr in (("spread", "home_spread", run_day.SPREAD_CALLS[0][0]), ("total", "total", run_day.TOTAL_CALLS[0][0])):
             if g.get(f"{mk}_verdict") == "BET" or (isinstance(g.get(f"{mk}_logged_pick"), str) and g.get(f"{mk}_logged_pick")):
                 continue
+            if g.get(f"{mk}_gate") == "input failure":     # held on purpose (run_day.INPUT_HOLD): never a miss
+                continue
             off = set(run_day._off_market(l, col).index)
             m = g["model_margin"] if mk == "spread" else g["model_total"]
             for i, x in l.iterrows():

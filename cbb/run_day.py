@@ -99,6 +99,11 @@ def _season_first_day(day) -> pd.Timestamp | None:
     except Exception:
         return None
 READY = {}             # complete-ratings rule: ET date -> ready, per plays() call
+# Input-failure hold (Chad, Nov 4): ET date -> reason, when a card day's box scores could not be loaded at all (no
+# download and no valid earlier copy) after games have been played. Its plays are held: shown as a watch, not logged,
+# alerted or posted, and one phone alert says why. A source that simply has not updated yet never holds anything.
+INPUT_HOLD = {}
+HOLD_ALERTED = os.path.join(os.path.dirname(__file__), "..", "bets", "input_hold_alerted.json")
 GATED = []             # signals stopped by the opener rule in the last plays() call, written by build() on live runs
 LINEMOVE_SIGNALS = os.path.join(os.path.dirname(__file__), "..", "research", "linemove", "signals.csv")
 LINEMOVE_COLS = ["seen_at", "date", "game_id", "start", "home_id", "away_id", "home", "away", "market", "side",
@@ -162,13 +167,43 @@ def slate(day: pd.Timestamp) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def load_box_scores(season: int, day, schedule: pd.DataFrame | None, refresh: bool = False):
+    """(games, team games) for the stage-1 ratings, or (None, None). Before the season's first game no box scores is
+    expected. After it: a failed download falls back to the last downloaded copy (valid input, printed); with no valid
+    copy at all the card day is held (INPUT_HOLD), never silently rated on the preseason prior alone."""
+    try:
+        return data.season_games(season, refresh=refresh)
+    except Exception as e:
+        if not games_played_before(schedule, day):
+            return None, None
+        try:
+            out = data.season_games(season, refresh=False)
+            print(f"Box-score download failed ({e}); using the last downloaded copy.")
+            return out
+        except Exception as e2:
+            INPUT_HOLD[f"{pd.Timestamp(day):%Y-%m-%d}"] = f"box scores could not be loaded ({e2})"
+            print(f"INPUT FAILURE: box scores for {season} could not be loaded ({e2}). Plays for {pd.Timestamp(day):%Y-%m-%d} "
+                  f"are held: not logged, alerted or posted.")
+            return None, None
+
+
+def games_played_before(schedule: pd.DataFrame | None, day) -> bool:
+    """True when the schedule has a completed game before ET date `day` (the stage-1 ratings need box scores)."""
+    try:
+        done = schedule[schedule["status_type_completed"].fillna(False).astype(bool)]
+        d = pd.to_datetime(done["date"], utc=True).dt.tz_convert("America/New_York").dt.tz_localize(None).dt.normalize()
+        return bool((d < pd.Timestamp(str(day)[:10])).any())
+    except Exception:
+        return True            # cannot tell: treat as played, so a failure is never silent
+
+
 def project(day: pd.Timestamp, games: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Final margin and total for each game, and the ratings table, using only games before `day`."""
     season = season_of(day)
-    data.fetch("schedule", season, refresh=day >= today_et() - pd.Timedelta(days=1))
-    try:
-        hist, tg = data.season_games(season, refresh=day >= today_et() - pd.Timedelta(days=1))
-    except Exception:          # season hasn't started: no box scores yet
+    INPUT_HOLD.pop(f"{day:%Y-%m-%d}", None)
+    sch_all = data.fetch("schedule", season, refresh=day >= today_et() - pd.Timedelta(days=1))
+    hist, tg = load_box_scores(season, day, sch_all, refresh=day >= today_et() - pd.Timedelta(days=1))
+    if hist is None:
         hist = pd.DataFrame({"home_pts": [], "away_pts": [], "date": pd.to_datetime([])})
         tg = pd.DataFrame({c: [] for c in ["team_id", "opp_id", "venue", "ppp", "pace"] + ratings.FACTORS}).assign(
             date=pd.to_datetime([]))
@@ -529,6 +564,15 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame, live: bool = True, fq: pd.DataFr
                 if READY[gday]:
                     return None
                 return ("WATCH" if v2 == "BET" else v2), 0.0, False
+            def hold_gate(v2, b2):
+                """Input-failure hold: a qualifying play on a day whose box scores could not be loaded is held."""
+                if not live or not (v2 == "BET" or b2):
+                    return None
+                st_ = pd.to_datetime(g.get("start"), utc=True, errors="coerce")
+                gday = str(g.get("date", ""))[:10] or (str(st_.tz_convert("America/New_York").date()) if pd.notna(st_) else "")
+                if gday not in INPUT_HOLD:
+                    return None
+                return ("WATCH" if v2 == "BET" else v2), 0.0, False
             # spread: home edge at line s is m + s; away edge is -(m + s)
             sp = _best(ls, "spread", {"home": ("home_spread", lambda s_: m + s_, "home_spread_odds"),
                                       "away": ("home_spread", lambda s_: -(m + s_), "away_spread_odds")}, live, skip("spread"))
@@ -556,6 +600,9 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame, live: bool = True, fq: pd.DataFr
                 rg = ready_gate("spread", v2, u2, b2)
                 if rg:
                     r.update(spread_verdict=rg[0], spread_units=rg[1], spread_bandb=rg[2], spread_gate="ratings update")
+                hg = hold_gate(r["spread_verdict"], r["spread_bandb"])
+                if hg:
+                    r.update(spread_verdict=hg[0], spread_units=hg[1], spread_bandb=hg[2], spread_gate="input failure")
             to = _best(lt, "total", {"over": ("total", lambda x: t - x, "over_odds"),
                                      "under": ("total", lambda x: x - t, "under_odds")}, live, skip("total"))
             if to:
@@ -579,6 +626,9 @@ def plays(f: pd.DataFrame, lines: pd.DataFrame, live: bool = True, fq: pd.DataFr
                 rg = ready_gate("total", v2, u2, b2)
                 if rg:
                     r.update(total_verdict=rg[0], total_units=rg[1], total_bandb=rg[2], total_gate="ratings update")
+                hg = hold_gate(r["total_verdict"], r["total_bandb"])
+                if hg:
+                    r.update(total_verdict=hg[0], total_units=hg[1], total_bandb=hg[2], total_gate="input failure")
         out.append(r)
     return pd.DataFrame(out)
 
@@ -743,6 +793,27 @@ def attach_logged(card: pd.DataFrame, day: pd.Timestamp) -> pd.DataFrame:
     return card
 
 
+def alert_input_hold(day: pd.Timestamp, card: pd.DataFrame) -> bool:
+    """One phone alert per held card day (INPUT_HOLD): what failed and which qualifying plays are held."""
+    key = f"{day:%Y-%m-%d}"
+    try:
+        done = json.load(open(HOLD_ALERTED)) if os.path.exists(HOLD_ALERTED) else {}
+        if key in done:
+            return False
+        held = [str(card.at[i, f"{mk}_pick"]) + " " + (f"{card.at[i, mk + '_line']:+g}" if mk == "spread" else f"{card.at[i, mk + '_line']:g}")
+                for mk in ("spread", "total") if f"{mk}_gate" in card
+                for i in card.index[card[f"{mk}_gate"] == "input failure"]]
+        body = (f"{INPUT_HOLD[key]}. Plays for {key} are held: not logged, alerted or posted until the data loads. "
+                + (f"Held: {', '.join(held)}." if held else "No play qualifies right now.") + " Don't bet the card for this day yet.")
+        if notify.message(f"CBB: plays held for {key} (input failure)", body):
+            done[key] = INPUT_HOLD[key]
+            json.dump(done, open(HOLD_ALERTED, "w"))
+            return True
+    except Exception as e:
+        print(f"Input-hold alert failed ({e}); continuing.")
+    return False
+
+
 def attach_band_b(card: pd.DataFrame, day: pd.Timestamp) -> pd.DataFrame:
     """The day's logged band B plays (not void) as {market}_bandb_* columns, for the card's band B block."""
     b = tracker.load("bandB_logged")
@@ -769,6 +840,8 @@ def build(day: pd.Timestamp, games: pd.DataFrame, lines: pd.DataFrame | None, re
     if replay:
         lines = replay_lines(day, f)
     card = plays(f, lines, live=not replay)
+    if not replay and INPUT_HOLD.get(f"{day:%Y-%m-%d}"):
+        alert_input_hold(day, card)
     if not replay:
         log_bad_quotes(BAD)
         log_linemove(GATED)

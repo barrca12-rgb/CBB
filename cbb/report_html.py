@@ -688,6 +688,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   const gp = (o) => o == null ? "" : ", " + odds(o) + " or better";   // price a WATCH needs at that number
   // complete-ratings rule (protocol v2.6, Appendix D): qualifies now, but not a play until the overnight ratings
   // update has the previous day's games (from 6 am ET on game day); never alerted or logged before that
+  const heldTag = (e) => "<span class='tag' title='Qualifies, but held: an input failed to load (box scores), so it is not logged or alerted. Do not bet it until the hold clears.'>HELD " + sgn(e) + "</span>";
   const pendTag = (e) => "<span class='tag' title='Qualifies now. It becomes a play only if it still qualifies after the overnight ratings update (from 6 am ET on game day); nothing is alerted or logged before then.'>PENDING " + sgn(e) + "</span>";
   const playAt = (v, higherBetter) => v == null ? null : (higherBetter ? Math.ceil(v * 2 - 1e-9) : Math.floor(v * 2 + 1e-9)) / 2;
   const watchTag = (text) => "<span class='tag'>Watch · " + text + "</span>";
@@ -1065,6 +1066,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
           if (loggedSide(g, "spread") === sd) edge = loggedTag(g, "spread");
           else if (pick && g.spread_verdict === "BET") edge = "<span class='tag bet'>BET " + sgn(g.spread_edge) + "</span>";
           else if (pick && g.spread_gate === "ratings update") edge = pendTag(g.spread_edge);
+          else if (pick && g.spread_gate === "input failure") edge = heldTag(g.spread_edge);
           else if (pick && g.spread_verdict === "REVIEW") edge = "<span class='tag' title='Edge above the maximum: likely a bad quote. Never a play.'>REVIEW " + sgn(g.spread_edge) + "</span>";
           else if (pick) { const at = playAt(g.spread_good_to, true);
             edge = watchTag(g.spread_line >= at ? "better price" : "bet at " + ln(at) + gp(g.spread_good_price)); }
@@ -1077,6 +1079,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
           if (loggedSide(g, "total") === ou) edge = loggedTag(g, "total");
           else if (pick && g.total_verdict === "BET") edge = "<span class='tag bet'>BET " + sgn(g.total_edge) + "</span>";
           else if (pick && g.total_gate === "ratings update") edge = pendTag(g.total_edge);
+          else if (pick && g.total_gate === "input failure") edge = heldTag(g.total_edge);
           else if (pick && g.total_verdict === "REVIEW") edge = "<span class='tag' title='Edge above the maximum: likely a bad quote. Never a play.'>REVIEW " + sgn(g.total_edge) + "</span>";
           else if (pick) { const at = playAt(g.total_good_to, ou === "under");
             edge = watchTag((ou === "under" ? g.total_line >= at : g.total_line <= at) ? "better price" : "bet at " + ou[0] + num(at) + gp(g.total_good_price)); }
