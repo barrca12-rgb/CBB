@@ -7,6 +7,9 @@ site's record page. Display only: nothing here changes a pick, a number, the bet
 
     python -m social.graphics recap [--date YYYY-MM-DD]   # default: yesterday (ET)   -> out/social/recap_<date>.png/.txt
     python -m social.graphics top   [--date YYYY-MM-DD]   # default: today (ET)       -> out/social/top_<date>.png/.txt
+    python -m social.graphics marquee  [--date]   # today's biggest game: our number vs the market (play or not)
+    python -m social.graphics ratings  [--date]   # our power ratings top 25 next to the AP poll (Mondays)
+    python -m social.graphics receipts [--date]   # today's plays whose closing line moved 2+ points our way
 
 Rendering uses headless Chromium through Node's Playwright (social/render.js).
 """
@@ -63,6 +66,19 @@ body:before{content:'';position:absolute;inset:0;background:repeating-linear-gra
 .tr .s{font-size:19px;margin-top:4px;white-space:normal}
 .tr .s b{color:#c9ced4;font-weight:600}
 .tr .e{text-align:right;font-family:Anton;font-size:44px;line-height:1}
+.mq{position:absolute;left:620px;right:64px;top:70px}
+.mq .match{font-family:Anton;font-size:76px;line-height:1.02}
+.mq .meta{font-family:'Barlow Condensed';font-weight:600;font-size:28px;color:#9aa3ad;margin-top:10px}
+.mq table{width:100%;border-collapse:collapse;margin-top:34px}
+.mq td{font-family:'Barlow Condensed';font-weight:700;font-size:40px;padding:14px 0;border-bottom:1px solid #2a2f36}
+.mq td.k{color:#8f98a2;font-size:26px;font-weight:600;width:240px}
+.mq .verdict{margin-top:30px;font-family:'Barlow Condensed';font-weight:700;font-size:34px;line-height:1.3}
+.pr{position:absolute;left:620px;right:64px;top:58px;display:grid;grid-template-columns:1fr 1fr;column-gap:36px}
+.pr .r{grid-template-columns:44px minmax(0,1fr) 70px 60px;height:56px}
+.pr .rk{font-family:Anton;font-size:26px;color:#fd6c0f}
+.pr .t{font-family:'Barlow Condensed';font-weight:700;font-size:25px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pr .nt{text-align:right;font-family:'Barlow Condensed';font-weight:700;font-size:22px;color:#c9ced4}
+.pr .ap{text-align:right;font-family:'Barlow Condensed';font-weight:700;font-size:20px;color:#8f98a2}
 .tr .e small{display:block;font-family:'Barlow Condensed';font-weight:700;font-size:17px;color:#8f98a2;letter-spacing:.06em;margin-top:4px}
 """
 
@@ -233,12 +249,209 @@ def top_plays(day: str, n: int = 5) -> tuple[str, str]:
     return png, cap
 
 
+ESPN = "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/"
+NATIONAL = {"ESPN", "ESPN2", "ABC", "CBS", "FOX", "FS1", "TNT", "TBS", "truTV", "NBC", "Peacock", "BTN", "SEC Network", "SECN",
+            "ACC Network", "ACCN", "CBSSN", "ESPNU", "Big Ten Network", "USA Net"}
+
+
+def _espn(path: str) -> dict:
+    import json
+    import urllib.request
+    req = urllib.request.Request(ESPN + path, headers={"User-Agent": "cbb-model"})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        return json.load(r)
+
+
+def _card(day: str) -> pd.DataFrame:
+    return pd.read_csv(os.path.join(ROOT, "reports", f"cbb_{day}.csv"))
+
+
+def _card_data(day: str) -> dict:
+    import json
+    import re
+    src = open(os.path.join(ROOT, "reports", f"cbb_{day}.html")).read()
+    return json.loads(re.search(r'<script id="data" type="application/json">(.*?)</script>', src, re.S).group(1))
+
+
+def _market(day: str, h: int, a: int) -> tuple[float | None, float | None, int]:
+    """Median home spread and total across books from each book's latest pull for the game (our own line log)."""
+    c = pd.read_csv(os.path.join(ROOT, "lines", "closing.csv"))
+    c = c[c["date"] == day]
+    same = c[(c["home_id"] == h) & (c["away_id"] == a)]
+    flip = c[(c["home_id"] == a) & (c["away_id"] == h)].assign(home_spread=lambda x: -x["home_spread"])
+    g = pd.concat([same, flip]).sort_values("pulled_at").drop_duplicates("book", keep="last")
+    if not len(g):
+        return None, None, 0
+    def consensus(x):      # the most common number across books; a tie goes to the one nearest the median
+        if not len(x):
+            return None
+        m = x.mode()
+        return float(min(m, key=lambda v: abs(v - x.median())))
+    return consensus(g["home_spread"].dropna()), consensus(g["total"].dropna()), len(g)
+
+
+def _line(team: str, x: float) -> str:
+    return f"{team} {_num(x)}" if x else f"{team} PK"
+
+
+def marquee(day: str) -> tuple[str, str]:
+    """Today's biggest game: AP-ranked teams first, then national TV, then the best matchup in our own ratings.
+    Our number vs the market, and whether it is an official play (never presented as one when it is not)."""
+    card = _card(day)
+    card = card[card["state"].astype(str) == "pre"] if "state" in card else card
+    if not len(card):
+        raise SystemExit(f"No games left to play on {day}.")
+    net = {r["team"]: r["net"] for r in _card_data(day).get("ratings", [])}
+    sb = _espn(f"scoreboard?dates={day.replace('-', '')}&groups=50&limit=500")
+    info = {}
+    for e in sb.get("events", []):
+        c = e["competitions"][0]
+        rk = [t.get("curatedRank", {}).get("current", 99) for t in c["competitors"]]
+        nets = [n for b in c.get("broadcasts", []) for n in b.get("names", [])]
+        info[int(e["id"])] = (rk, nets)
+    def score(g):
+        rk, tv = info.get(int(g["game_id"]), ([99, 99], []))
+        ranked = sum(26 - r for r in rk if r and r <= 25)
+        both = 30 if all(r and r <= 25 for r in rk) else 0
+        nat = 15 if any(n in NATIONAL for n in tv) else 0
+        q = min(net.get(g["home"], -30), net.get(g["away"], -30))
+        return ranked + both + nat + q / 3
+    card = card.assign(_s=card.apply(score, axis=1)).sort_values("_s", ascending=False)
+    for _, g in card.iterrows():
+        h, a = int(g["home_id"]), int(g["away_id"])
+        sp, tot, nb = _market(day, h, a)
+        if sp is not None:
+            break
+    else:
+        raise SystemExit(f"No game on {day} has a market line yet.")
+    rk, tv = info.get(int(g["game_id"]), ([99, 99], []))
+    name = lambda team, r: (f"#{r} " if r and r <= 25 else "") + team
+    home_r, away_r = (rk + [99, 99])[:2]
+    comp = next((e["competitions"][0] for e in sb.get("events", []) if int(e["id"]) == int(g["game_id"])), None)
+    if comp:
+        side = {t["homeAway"]: t.get("curatedRank", {}).get("current", 99) for t in comp["competitors"]}
+        home_r, away_r = side.get("home", 99), side.get("away", 99)
+    st = pd.to_datetime(g["start"], utc=True, errors="coerce")
+    tip = f"{st.tz_convert('America/New_York'):%-I:%M %p} ET" if pd.notna(st) else ""
+    mm, mt = float(g["model_margin"]), float(g["model_total"])
+    fav_mkt = g["home"] if sp <= 0 else g["away"]
+    fav_mod = g["home"] if mm >= 0 else g["away"]
+    b = tracker.load("v1")
+    off = b[(b["date"] == day) & (b["game_id"] == g["game_id"]) & (b["status"] != "void")]
+    if len(off):
+        verdict = "OFFICIAL PLAY: " + ", ".join(_pick(x) + f" ({html.escape(str(bk))} {int(o):+d})".replace("-", MINUS)
+                                                for x, bk, o in zip(off["pick"], off["book"], off["odds"]))
+    else:
+        verdict = "Not an official play: the gap is under our betting threshold. This is our number, not a pick."
+    dsp = mm + sp            # home edge vs the market spread (model margin minus the market's home margin)
+    lean = (f"Our number is {abs(dsp):.1f} points {'better for ' + html.escape(g['home']) if dsp > 0 else 'better for ' + html.escape(g['away'])} "
+            f"than the market; total {abs(mt - tot):.1f} {'over' if mt > tot else 'under'} the market." if tot is not None else "")
+    body = (f"<div class='l'>{_brand()}<div class='day'>{_day_label(pd.Timestamp(day))}</div><div class='big sm'>GAME OF</div>"
+            f"<div class='big sm org' style='margin-top:0'>THE NIGHT</div><div class='split'>Our number vs. the betting market on "
+            f"tonight's biggest game, play or not.</div></div>"
+            f"<div class='mq'><div class='match'>{html.escape(name(g['away'], away_r))}<br><span style='color:#9aa3ad'>at</span> "
+            f"{html.escape(name(g['home'], home_r))}</div><div class='meta'>{tip}{(' · ' + ', '.join(tv[:2])) if tv else ''}</div>"
+            f"<table><tr><td class='k'>MARKET</td><td>{html.escape(_line(fav_mkt, -abs(sp)))}</td><td>Total {tot:g}</td></tr>"
+            f"<tr><td class='k'>OUR NUMBER</td><td class='org'>{html.escape(_line(fav_mod, -abs(round(mm * 2) / 2)))}</td>"
+            f"<td class='org'>Total {round(mt * 2) / 2:g}</td></tr></table>"
+            f"<div class='verdict'>{lean}<br><span style='color:#c9ced4'>{verdict}</span></div></div>"
+            f"<div class='f'><span>Market = the consensus number across {nb} sportsbooks at the latest pull. Our number = the model, rounded to the half point."
+            f"</span><span class='h'>{HANDLE}</span></div>")
+    png = _render(_page(body), f"marquee_{day}")
+    cap = (f"Game of the night: {name(g['away'], away_r)} at {name(g['home'], home_r)}{', ' + tip if tip else ''}.\n\n"
+           f"Market: {_line(fav_mkt, -abs(sp))}, total {tot:g}.\nOur number: {_line(fav_mod, -abs(round(mm * 2) / 2))}, "
+           f"total {round(mt * 2) / 2:g}.\n\n"
+           + (("Official play: " + ", ".join(str(x).replace(' -', ' ' + MINUS) for x in off['pick']) + ".") if len(off)
+              else "Not an official play. Where do you have it?"))
+    open(os.path.join(OUT, f"marquee_{day}.txt"), "w").write(cap + "\n")
+    return png, cap
+
+
+def power_ratings(day: str, n: int = 25) -> tuple[str, str]:
+    """Our power ratings (the card's ratings table: points per 100 possessions better than an average team) next
+    to the current AP poll; the caption names the biggest disagreements."""
+    rt = pd.DataFrame(_card_data(day).get("ratings", []))
+    if not len(rt):
+        raise SystemExit(f"No ratings table on the {day} card.")
+    rt = rt.sort_values("net", ascending=False).reset_index(drop=True)
+    rt["ours"] = rt.index + 1
+    ap = {}
+    for poll in _espn("rankings").get("rankings", []):
+        if "AP" in poll.get("name", ""):
+            ap = {t["team"]["location"]: int(t["current"]) for t in poll.get("ranks", [])}
+            apname = "AP Top 25" + (" (preseason)" if "reseason" in (poll.get("headline") or poll.get("name") or "") else "")
+            break
+    else:
+        apname = "AP poll unavailable"
+    top = rt.head(n)
+    half = (len(top) + 1) // 2
+    def col(part):
+        return "".join(f"<div class='r'><span class='rk'>{int(r['ours'])}</span><span class='t'>{html.escape(r['team'])}</span>"
+                       f"<span class='nt'>{_num(r['net'])}</span><span class='ap'>{('AP ' + str(ap[r['team']])) if r['team'] in ap else 'NR'}</span></div>"
+                       for _, r in part.iterrows())
+    under = [t for t in top["team"] if t not in ap][:3]
+    over = sorted(((t, r, int(rt.loc[rt["team"] == t, "ours"].iloc[0]) if (rt["team"] == t).any() else None) for t, r in ap.items()),
+                  key=lambda x: -((x[2] or 400) - x[1]))
+    over = [(t, r, o) for t, r, o in over if o is None or o > 25][:3]
+    split = ("<b>Higher on:</b> " + ", ".join(html.escape(t) for t in under) + "<br>" if under else "") + (
+        "<b>Lower on:</b> " + ", ".join(f"{html.escape(t)} (AP {r}, ours {o or 'NR'})" for t, r, o in over) if over else "")
+    body = (f"<div class='l'>{_brand()}<div class='day'>WEEK OF {f'{pd.Timestamp(day):%b}'.upper()}. {pd.Timestamp(day).day}</div>"
+            f"<div class='big sm'>POWER</div><div class='big sm org' style='margin-top:0'>RATINGS</div>"
+            f"<div class='split'>{split}</div></div><div class='pr'><div>{col(top.iloc[:half])}</div><div>{col(top.iloc[half:])}</div></div>"
+            f"<div class='f'><span>Rating = points per 100 possessions better than an average D-I team (our model). Right: {html.escape(apname)}."
+            f"</span><span class='h'>{HANDLE}</span></div>")
+    png = _render(_page(body), f"ratings_{day}")
+    cap = (f"Our top {n} vs the AP poll.\n\n"
+           + (f"Higher on: {', '.join(under)}.\n" if under else "")
+           + (f"Lower on: {', '.join(f'{t} (AP {r})' for t, r, o in over)}.\n" if over else "")
+           + "\nWho are we wrong about?")
+    open(os.path.join(OUT, f"ratings_{day}.txt"), "w").write(cap + "\n")
+    return png, cap
+
+
+def receipts(day: str, min_move: float = 2.0) -> tuple[str, str]:
+    """The day's main plays whose primary close moved min_move+ points toward our number: posted line and time,
+    closing line, move. Nothing when no play qualifies."""
+    b = tracker.load("v1")
+    d = b[(b["date"] == day) & (b["status"] != "void")].copy()
+    if not len(d):
+        raise SystemExit(f"No main plays on {day}.")
+    p = clv_primary.primary(d).set_index("bet_id")
+    d["close"], d["clv"] = d["bet_id"].map(p["close_primary"]), d["bet_id"].map(p["clv_primary"])
+    q = d[d["clv"] >= min_move].sort_values("clv", ascending=False).head(10)
+    if not len(q):
+        raise SystemExit(f"No {day} play moved {min_move:g}+ points our way (yet).")
+    rows = []
+    for _, r in q.iterrows():
+        t = pd.Timestamp(r["logged_at"]).tz_convert("America/New_York")
+        close = (f"{r['close']:+g}".replace("-", MINUS) if r["market"] == "spread" else f"{r['close']:g}")
+        rows.append(f"<div class='r' style='grid-template-columns:minmax(0,1fr) 230px 120px 90px;height:58px'>"
+                    f"<span class='p' style='font-size:28px'>{_pick(r['pick'])}</span>"
+                    f"<span class='s' style='font-size:19px'>posted {t:%a %-I:%M %p}</span>"
+                    f"<span class='x' style='font-size:24px;color:#c9ced4'>close {close}</span>"
+                    f"<span class='x org' style='font-size:28px'>{_num(r['clv'])}</span></div>")
+    n_all = int(d["clv"].notna().sum())
+    beat = int((d["clv"] > 0).sum())
+    body = (f"<div class='l'>{_brand()}<div class='day'>{_day_label(pd.Timestamp(day))}</div><div class='big sm'>THE LINE</div>"
+            f"<div class='big sm org' style='margin-top:0'>MOVED TO US</div><div class='split'><b>{beat} of {n_all}</b> plays beat the "
+            f"closing line. These moved {min_move:g}+ points our way between the post and tip.</div></div>"
+            f"<div class='rt' style='grid-template-columns:1fr'><div>{''.join(rows)}</div></div>"
+            f"<div class='f'><span>Close = median of 6+ sportsbooks in the last 15 minutes before tip.</span><span class='h'>{HANDLE}</span></div>")
+    png = _render(_page(body), f"receipts_{day}")
+    top = q.iloc[0]
+    cap = (f"We posted {str(top['pick']).replace(' -', ' ' + MINUS)}. It closed "
+           f"{format(top['close'], '+g').replace('-', MINUS) if top['market'] == 'spread' else format(top['close'], 'g')}.\n\n"
+           f"{len(q)} of tonight's plays moved {min_move:g}+ points our way before tip; {beat} of {n_all} beat the close.")
+    open(os.path.join(OUT, f"receipts_{day}.txt"), "w").write(cap + "\n")
+    return png, cap
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("kind", choices=["recap", "top"])
+    ap.add_argument("kind", choices=["recap", "top", "marquee", "ratings", "receipts"])
     ap.add_argument("--date")
     a = ap.parse_args()
     day = a.date or f"{_today_et() - pd.Timedelta(days=1 if a.kind == 'recap' else 0):%Y-%m-%d}"
-    png, cap = (recap if a.kind == "recap" else top_plays)(day)
+    png, cap = {"recap": recap, "top": top_plays, "marquee": marquee, "ratings": power_ratings, "receipts": receipts}[a.kind](day)
     print(png)
     print(cap)
