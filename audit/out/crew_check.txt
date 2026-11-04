@@ -1,0 +1,18 @@
+Referee crews, 2026-27 (audit/crew_check.py)
+  live: crew on the card before tip: 9 games; crew shift -1.6 to +2.2 (mean +0.29)
+    points: actual minus model-without-crew on the crew shift, slope -1.60 (se 6.24); 1 = right size, 0 = noise
+    low-scoring crews (shift <= -1): 1 games, predicted -1.64, actual vs model-without-crew -4.20
+    high-scoring crews (shift >= +1): 3 games, predicted +1.65, actual vs model-without-crew -0.66
+    accuracy: totals average miss 17.55 with the crew shift, 17.54 without
+    fouls: actual fouls vs average on the crew's foul tendency, slope 2.24 (se 3.19); the tendency is shrunk, so above 1 is expected if it is real
+  season backtest: actual crews, pre-season crew table, pre-tip model: 133 games; crew shift -3.1 to +2.9 (mean +0.34)
+    points: actual minus model-without-crew on the crew shift, slope 1.28 (se 1.24); 1 = right size, 0 = noise
+    low-scoring crews (shift <= -1): 18 games, predicted -1.81, actual vs model-without-crew -8.62
+    high-scoring crews (shift >= +1): 42 games, predicted +1.59, actual vs model-without-crew +0.69
+    accuracy: totals average miss 13.28 with the crew shift, 13.35 without
+    fouls: actual fouls vs average on the crew's foul tendency, slope 1.49 (se 0.68); the tendency is shrunk, so above 1 is expected if it is real
+    officials with history in the table: 391 of 399
+  main total plays logged with a crew posted: 1; made by the crew: 1, graded 0: 0-0, +0.00u
+      date        pick   home                away  edge  edge_without_crew  opener_rule_before  crew_made_it status result  profit
+2026-11-04 Under 156.5 Butler Fairleigh Dickinson  8.63               6.55                True          True   open    NaN     NaN
+  Read: description only until there are a few hundred crew games; the shift is a model input, decided only at a pre-registered review.
