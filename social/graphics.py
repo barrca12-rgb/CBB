@@ -73,6 +73,15 @@ body:before{content:'';position:absolute;inset:0;background:repeating-linear-gra
 .mq td{font-family:'Barlow Condensed';font-weight:600;font-size:30px;padding:12px 0;border-bottom:1px solid #2a2f36}
 .mq td.k{color:#8f98a2;font-size:21px;font-weight:600;width:220px}
 .mq .verdict{margin-top:28px;font-family:'Barlow Condensed';font-weight:600;font-size:25px;line-height:1.4}
+.mq.has .match{font-size:38px}
+.mq.has .meta{font-size:21px;margin-top:6px}
+.opbox{margin-top:26px;border-left:6px solid #fd6c0f;background:#181d24;padding:20px 28px}
+.opk{font-family:'Barlow Condensed';font-weight:700;font-size:20px;letter-spacing:.14em;color:#fd6c0f}
+.op{margin-top:10px} .op + .op{margin-top:16px;padding-top:14px;border-top:1px solid #2a2f36}
+.opp{font-family:'Barlow Condensed';font-weight:800;font-size:60px;line-height:1.02;color:#fff}
+.ops{font-family:'Barlow Condensed';font-weight:600;font-size:22px;color:#9aa3ad;margin-top:4px}
+.mq.has table{margin-top:22px} .mq.has td{font-size:24px;padding:9px 0} .mq.has td.k{font-size:18px}
+.mq.has .verdict{font-size:20px;margin-top:16px;color:#9aa3ad}
 .pr{position:absolute;left:620px;right:64px;top:58px;display:grid;grid-template-columns:1fr 1fr;column-gap:36px}
 .pr .r{grid-template-columns:44px minmax(0,1fr) 70px 60px;height:56px}
 .pr .rk{font-family:'Barlow Condensed';font-weight:700;font-size:22px;color:#fd6c0f}
@@ -315,7 +324,9 @@ def marquee(day: str) -> tuple[str, str]:
         both = 30 if all(r and r <= 25 for r in rk) else 0
         nat = 15 if any(n in NATIONAL for n in tv) else 0
         q = min(net.get(g["home"], -30), net.get(g["away"], -30))
-        return ranked + both + nat + q / 3
+        return ranked + both + nat + q / 3 + (12 if int(g["game_id"]) in played else 0)
+    bl = tracker.load("v1")
+    played = set(bl[(bl["date"] == day) & (bl["status"] != "void")]["game_id"].astype(int))
     card = card.assign(_s=card.apply(score, axis=1)).sort_values("_s", ascending=False)
     for _, g in card.iterrows():
         h, a = int(g["home_id"]), int(g["away_id"])
@@ -339,30 +350,39 @@ def marquee(day: str) -> tuple[str, str]:
     b = tracker.load("v1")
     off = b[(b["date"] == day) & (b["game_id"] == g["game_id"]) & (b["status"] != "void")]
     if len(off):
-        verdict = "OFFICIAL PLAY: " + ", ".join(_pick(x) + f" ({html.escape(str(bk))} {int(o):+d})".replace("-", MINUS)
-                                                for x, bk, o in zip(off["pick"], off["book"], off["odds"]))
+        plays = "".join(
+            f"<div class='op'><div class='opp'>{_pick(r['pick'])}</div><div class='ops'>{html.escape(str(r['book']))} "
+            f"{f'{int(r.odds):+d}'.replace('-', MINUS)} &nbsp;\u00b7&nbsp; {_num(r['edge'])} point edge &nbsp;\u00b7&nbsp; posted "
+            f"{pd.Timestamp(r['logged_at']).tz_convert('America/New_York'):%a %-I:%M %p} ET</div></div>" for _, r in off.iterrows())
+        verdict = ""
+        hero = f"<div class='opbox'><div class='opk'>OFFICIAL PLAY{'S' if len(off) > 1 else ''}</div>{plays}</div>"
     else:
         verdict = "Not an official play: the gap is under our betting threshold. This is our number, not a pick."
+        hero = ""
     dsp = mm + sp            # home edge vs the market spread (model margin minus the market's home margin)
     lean = (f"Our number is {abs(dsp):.1f} points {'better for ' + html.escape(g['home']) if dsp > 0 else 'better for ' + html.escape(g['away'])} "
             f"than the market; total {abs(mt - tot):.1f} {'over' if mt > tot else 'under'} the market." if tot is not None else "")
     body = (f"<div class='l'>{_brand()}<div class='day'>{_day_label(pd.Timestamp(day))}</div><div class='big sm'>GAME OF</div>"
             f"<div class='big sm org' style='margin-top:0'>THE NIGHT</div><div class='split'>Our number vs. the betting market on "
             f"tonight's biggest game, play or not.</div></div>"
-            f"<div class='mq'><div class='match'>{html.escape(name(g['away'], away_r))}<br><span style='color:#9aa3ad'>at</span> "
-            f"{html.escape(name(g['home'], home_r))}</div><div class='meta'>{tip}{(' · ' + ', '.join(tv[:2])) if tv else ''}</div>"
+            f"<div class='mq{' has' if hero else ''}'><div class='match'>{html.escape(name(g['away'], away_r))}{'<br>' if not hero else ' '}"
+            f"<span style='color:#9aa3ad'>at</span> {html.escape(name(g['home'], home_r))}</div>"
+            f"<div class='meta'>{tip}{(' · ' + ', '.join(tv[:2])) if tv else ''}</div>{hero}"
             f"<table><tr><td class='k'>MARKET</td><td>{html.escape(_line(fav_mkt, -abs(sp)))}</td><td>Total {tot:g}</td></tr>"
             f"<tr><td class='k'>OUR NUMBER</td><td class='org'>{html.escape(_line(fav_mod, -abs(round(mm * 2) / 2)))}</td>"
             f"<td class='org'>Total {round(mt * 2) / 2:g}</td></tr></table>"
-            f"<div class='verdict'>{lean}<br><span style='color:#c9ced4'>{verdict}</span></div></div>"
+            f"<div class='verdict'>{lean}{('<br><span style=\'color:#c9ced4\'>' + verdict + '</span>') if verdict else ''}</div></div>"
             f"<div class='f'><span>Market = the consensus number across {nb} sportsbooks at the latest pull. Our number = the model, rounded to the half point."
             f"</span><span class='h'>{HANDLE}</span></div>")
     png = _render(_page(body), f"marquee_{day}")
-    cap = (f"Game of the night: {name(g['away'], away_r)} at {name(g['home'], home_r)}{', ' + tip if tip else ''}.\n\n"
-           f"Market: {_line(fav_mkt, -abs(sp))}, total {tot:g}.\nOur number: {_line(fav_mod, -abs(round(mm * 2) / 2))}, "
-           f"total {round(mt * 2) / 2:g}.\n\n"
-           + (("Official play: " + ", ".join(str(x).replace(' -', ' ' + MINUS) for x in off['pick']) + ".") if len(off)
-              else "Not an official play. Where do you have it?"))
+    head = f"Game of the night: {name(g['away'], away_r)} at {name(g['home'], home_r)}{', ' + tip if tip else ''}."
+    nums = (f"Market now: {_line(fav_mkt, -abs(sp))}, total {tot:g}. Our number: {_line(fav_mod, -abs(round(mm * 2) / 2))}, "
+            f"total {round(mt * 2) / 2:g}.")
+    if len(off):
+        ps = [f"{str(r['pick']).replace(' -', ' ' + MINUS)} ({r['book']} {f'{int(r.odds):+d}'.replace('-', MINUS)})" for _, r in off.iterrows()]
+        cap = f"{head}\n\nOfficial play{'s' if len(ps) > 1 else ''}: {' and '.join(ps)}.\n\n{nums}"
+    else:
+        cap = f"{head}\n\n{nums}\n\nNot an official play. Where do you have it?"
     open(os.path.join(OUT, f"marquee_{day}.txt"), "w").write(cap + "\n")
     return png, cap
 
