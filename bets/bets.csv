@@ -196,3 +196,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-05|401919804|total|under,2026-11-05,401919804,total,Under 141.5,under,2550,112358,Seton Hall,Long Island University,141.5,141.5,-110.0,FanDuel,3.24,138.26,1.0,yes,2026-11-04T22:21:05+00:00,,,,,,,,open,
 2026-11-05|401920691|total|under,2026-11-05,401920691,total,Under 141.5,under,2217,261,Fairfield,Vermont,141.5,141.5,-105.0,FanDuel,4.07,137.43,1.0,yes,2026-11-04T22:21:05+00:00,,,,,,,,open,
 2026-11-05|401919804|spread|home|bandB,2026-11-05,401919804,spread,Seton Hall -17.5,home,2550,112358,Seton Hall,Long Island University,-17.5,-17.5,-110.0,FanDuel,2.21,19.71,0.5,yes,2026-11-04T22:22:52+00:00,,,,,,,,open,bandB
+2026-11-05|401924718|spread|home,2026-11-05,401924718,spread,Lehigh +1.5,home,2329,172,Lehigh,Cornell,1.5,1.5,-110.0,FanDuel,3.68,2.18,0.5,yes,2026-11-04T22:31:11+00:00,,,,,,,,open,

@@ -68,3 +68,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-04T21:51:06+00:00,2026-11-05,401909739,2026-11-06T03:30Z,12,13,Arizona,Cal Poly,total,under,v1,Under 171.5,168.5,-105.0,FanDuel,2026-11-04T18:30:46+00:00,171.5,-108.0,DraftKings,3.0,200.3,0.08,3.08,168.42
 2026-11-04T22:10:50+00:00,2026-11-05,401926780,2026-11-06T01:00Z,6,55,South Alabama,Jacksonville State,spread,away,bandB,Jacksonville State +2.5,1.5,100.0,theScore Bet,2026-11-04T20:50:40+00:00,2.5,100.0,theScore Bet,1.0,80.2,1.22,2.22,0.28
 2026-11-04T22:10:50+00:00,2026-11-05,401909739,2026-11-06T03:30Z,12,13,Arizona,Cal Poly,spread,away,bandB,Cal Poly +31.5,29.5,-105.0,DraftKings,2026-11-04T21:40:33+00:00,31.5,-110.0,theScore Bet,2.0,30.3,0.49,2.49,29.01
+2026-11-04T22:31:03+00:00,2026-11-05,401913526,2026-11-06T01:30Z,356,219,Illinois,Pennsylvania,spread,away,bandB,Pennsylvania +30,29.5,-108.0,DraftKings,2026-11-04T22:30:46+00:00,30.0,-110.0,Fanatics,0.5,0.3,1.9,2.4,27.6
