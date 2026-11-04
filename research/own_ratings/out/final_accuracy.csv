@@ -1,0 +1,13 @@
+variant,part,games,margin MAE,total MAE
+base,days 0-20,11750,9.174,13.732
+base,all,65282,8.77,13.245
+A level60,days 0-20,11750,9.175,13.745
+A level60,all,65282,8.77,13.248
+B1 no_bt,days 0-20,11750,9.175,13.731
+B1 no_bt,all,65282,8.772,13.244
+B2 no_kp,days 0-20,11750,9.177,13.744
+B2 no_kp,all,65282,8.77,13.25
+B3 own_stage2,days 0-20,11750,9.179,13.739
+B3 own_stage2,all,65282,8.772,13.251
+B4 own_only,days 0-20,11750,9.771,13.917
+B4 own_only,all,65282,8.965,13.29
