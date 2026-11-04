@@ -42,17 +42,17 @@ body:before{content:'';position:absolute;inset:0;background:repeating-linear-gra
 .l{position:absolute;left:64px;top:56px;width:500px}
 .brand{display:flex;align-items:center;gap:14px;font-family:'Barlow Condensed';font-weight:800;font-size:26px;letter-spacing:.04em;color:#fd6c0f}
 .brand img{width:46px;height:46px;display:block}
-.day{font-family:'Barlow Condensed';font-weight:700;font-size:40px;margin-top:46px;color:#9aa3ad}
-.big{font-family:Anton;font-size:210px;line-height:.92;margin-top:6px}
-.big.sm{font-size:150px}
-.u{font-family:Anton;font-size:84px;line-height:1;margin-top:14px}
-.split{margin-top:40px;font-family:'Barlow Condensed';font-weight:600;font-size:30px;line-height:1.45;color:#c9ced4;border-top:3px solid #eef0f2;padding-top:16px}
+.day{font-family:'Barlow Condensed';font-weight:700;font-size:28px;margin-top:44px;color:#9aa3ad;letter-spacing:.02em}
+.big{font-family:'Barlow Condensed';font-weight:800;font-size:132px;line-height:.95;margin-top:8px}
+.big.sm{font-size:76px;line-height:1}
+.u{font-family:'Barlow Condensed';font-weight:700;font-size:46px;line-height:1;margin-top:10px}
+.split{margin-top:34px;font-family:'Barlow Condensed';font-weight:600;font-size:24px;line-height:1.45;color:#c9ced4;border-top:1px solid #3a4048;padding-top:16px}
 .split b{color:#fff;font-weight:800}
 .org{color:#fd6c0f} .W{color:#3ccf7e} .L{color:#ff5a4f} .P{color:#9aa3ad}
 .rt{position:absolute;left:620px;right:64px;top:62px;display:grid;column-gap:36px}
 .r{display:grid;align-items:baseline;column-gap:10px;border-bottom:1px solid #2a2f36}
 .m{font-family:'Barlow Condensed';font-weight:800}
-.p{font-family:'Barlow Condensed';font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.p{font-family:'Barlow Condensed';font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .s{color:#8f98a2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .x{text-align:right;font-family:'Barlow Condensed';font-weight:700}
 .more{font-family:'Barlow Condensed';font-weight:600;font-size:20px;color:#8f98a2;margin-top:10px}
@@ -60,26 +60,26 @@ body:before{content:'';position:absolute;inset:0;background:repeating-linear-gra
 .f b{color:#eef0f2} .f .h{margin-left:auto;color:#fd6c0f;font-weight:800}
 /* top plays */
 .tp{position:absolute;left:620px;right:64px;top:62px}
-.tr{display:grid;grid-template-columns:44px 1fr 150px;align-items:center;border-bottom:1px solid #2a2f36;padding:13px 0}
-.tr .n{font-family:Anton;font-size:40px;color:#fd6c0f}
-.tr .p{font-size:40px;line-height:1.05}
-.tr .s{font-size:19px;margin-top:4px;white-space:normal}
+.tr{display:grid;grid-template-columns:40px 1fr 130px;align-items:center;border-bottom:1px solid #2a2f36;padding:14px 0}
+.tr .n{font-family:'Barlow Condensed';font-weight:700;font-size:28px;color:#fd6c0f}
+.tr .p{font-size:30px;line-height:1.1}
+.tr .s{font-size:18px;margin-top:5px;white-space:normal}
 .tr .s b{color:#c9ced4;font-weight:600}
-.tr .e{text-align:right;font-family:Anton;font-size:44px;line-height:1}
+.tr .e{text-align:right;font-family:'Barlow Condensed';font-weight:700;font-size:32px;line-height:1}
 .mq{position:absolute;left:620px;right:64px;top:70px}
-.mq .match{font-family:Anton;font-size:76px;line-height:1.02}
-.mq .meta{font-family:'Barlow Condensed';font-weight:600;font-size:28px;color:#9aa3ad;margin-top:10px}
+.mq .match{font-family:'Barlow Condensed';font-weight:700;font-size:52px;line-height:1.08}
+.mq .meta{font-family:'Barlow Condensed';font-weight:600;font-size:24px;color:#9aa3ad;margin-top:10px}
 .mq table{width:100%;border-collapse:collapse;margin-top:34px}
-.mq td{font-family:'Barlow Condensed';font-weight:700;font-size:40px;padding:14px 0;border-bottom:1px solid #2a2f36}
-.mq td.k{color:#8f98a2;font-size:26px;font-weight:600;width:240px}
-.mq .verdict{margin-top:30px;font-family:'Barlow Condensed';font-weight:700;font-size:34px;line-height:1.3}
+.mq td{font-family:'Barlow Condensed';font-weight:600;font-size:30px;padding:12px 0;border-bottom:1px solid #2a2f36}
+.mq td.k{color:#8f98a2;font-size:21px;font-weight:600;width:220px}
+.mq .verdict{margin-top:28px;font-family:'Barlow Condensed';font-weight:600;font-size:25px;line-height:1.4}
 .pr{position:absolute;left:620px;right:64px;top:58px;display:grid;grid-template-columns:1fr 1fr;column-gap:36px}
 .pr .r{grid-template-columns:44px minmax(0,1fr) 70px 60px;height:56px}
-.pr .rk{font-family:Anton;font-size:26px;color:#fd6c0f}
-.pr .t{font-family:'Barlow Condensed';font-weight:700;font-size:25px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pr .rk{font-family:'Barlow Condensed';font-weight:700;font-size:22px;color:#fd6c0f}
+.pr .t{font-family:'Barlow Condensed';font-weight:600;font-size:23px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pr .nt{text-align:right;font-family:'Barlow Condensed';font-weight:700;font-size:22px;color:#c9ced4}
 .pr .ap{text-align:right;font-family:'Barlow Condensed';font-weight:700;font-size:20px;color:#8f98a2}
-.tr .e small{display:block;font-family:'Barlow Condensed';font-weight:700;font-size:17px;color:#8f98a2;letter-spacing:.06em;margin-top:4px}
+.tr .e small{display:block;font-family:'Barlow Condensed';font-weight:600;font-size:15px;color:#8f98a2;letter-spacing:.06em;margin-top:4px}
 """
 
 
@@ -235,7 +235,7 @@ def top_plays(day: str, n: int = 5) -> tuple[str, str]:
     sea = _season((pd.Timestamp(day) - pd.Timedelta(days=1)).strftime("%Y-%m-%d"))
     dt = pd.Timestamp(day)
     body = (f"<div class='l'>{_brand()}<div class='day'>{_day_label(dt)}</div><div class='big sm'>TOP {len(d)}</div>"
-            f"<div class='u org' style='font-size:64px'>OF {total} PLAYS</div>"
+            f"<div class='u org'>OF {total} PLAYS</div>"
             f"<div class='split'>Biggest edges between our number and the market, at the line and price when each play "
             f"was posted. Lines move.</div></div><div class='tp'>{''.join(rows)}</div>"
             f"<div class='f'><span>Season <b>{_rec(sea['w'], sea['l'], sea['p'])}, {_units(sea['u'])}</b>. Every play posted before tip "
@@ -426,10 +426,10 @@ def receipts(day: str, min_move: float = 2.0) -> tuple[str, str]:
         t = pd.Timestamp(r["logged_at"]).tz_convert("America/New_York")
         close = (f"{r['close']:+g}".replace("-", MINUS) if r["market"] == "spread" else f"{r['close']:g}")
         rows.append(f"<div class='r' style='grid-template-columns:minmax(0,1fr) 230px 120px 90px;height:58px'>"
-                    f"<span class='p' style='font-size:28px'>{_pick(r['pick'])}</span>"
+                    f"<span class='p' style='font-size:24px'>{_pick(r['pick'])}</span>"
                     f"<span class='s' style='font-size:19px'>posted {t:%a %-I:%M %p}</span>"
                     f"<span class='x' style='font-size:24px;color:#c9ced4'>close {close}</span>"
-                    f"<span class='x org' style='font-size:28px'>{_num(r['clv'])}</span></div>")
+                    f"<span class='x org' style='font-size:24px'>{_num(r['clv'])}</span></div>")
     n_all = int(d["clv"].notna().sum())
     beat = int((d["clv"] > 0).sum())
     body = (f"<div class='l'>{_brand()}<div class='day'>{_day_label(pd.Timestamp(day))}</div><div class='big sm'>THE LINE</div>"
