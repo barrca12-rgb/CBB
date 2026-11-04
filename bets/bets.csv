@@ -197,3 +197,11 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-05|401920691|total|under,2026-11-05,401920691,total,Under 141.5,under,2217,261,Fairfield,Vermont,141.5,141.5,-105.0,FanDuel,4.07,137.43,1.0,yes,2026-11-04T22:21:05+00:00,,,,,,,,open,
 2026-11-05|401919804|spread|home|bandB,2026-11-05,401919804,spread,Seton Hall -17.5,home,2550,112358,Seton Hall,Long Island University,-17.5,-17.5,-110.0,FanDuel,2.21,19.71,0.5,yes,2026-11-04T22:22:52+00:00,,,,,,,,open,bandB
 2026-11-05|401924718|spread|home,2026-11-05,401924718,spread,Lehigh +1.5,home,2329,172,Lehigh,Cornell,1.5,1.5,-110.0,FanDuel,3.68,2.18,0.5,yes,2026-11-04T22:31:11+00:00,,,,,,,,open,
+2026-11-05|401925819|total|under,2026-11-05,401925819,total,Under 152.5,under,2429,2247,Charlotte,Georgia State,152.5,152.5,-110.0,theScore Bet,3.42,149.08,1.0,yes,2026-11-04T22:41:09+00:00,,,,,,,,open,
+2026-11-05|401921681|spread|away,2026-11-05,401921681,spread,New Hampshire +1.5,away,2520,160,Rider,New Hampshire,1.5,1.5,-115.0,FanDuel,3.12,-1.62,0.5,yes,2026-11-04T22:41:09+00:00,,,,,,,,open,
+2026-11-05|401921680|spread|home,2026-11-05,401921680,spread,Quinnipiac -5.5,home,2514,2803,Quinnipiac,Bryant,-5.5,-5.5,-110.0,FanDuel,2.71,8.21,0.5,yes,2026-11-04T22:41:09+00:00,,,,,,,,open,
+2026-11-05|401919823|total|under,2026-11-05,401919823,total,Under 141.5,under,87,2385,Notre Dame,Mercyhurst,141.5,141.5,-105.0,FanDuel,3.4,138.1,1.0,yes,2026-11-04T22:41:09+00:00,,,,,,,,open,
+2026-11-05|401926780|total|under,2026-11-05,401926780,total,Under 145.5,under,6,55,South Alabama,Jacksonville State,145.5,145.5,-110.0,DraftKings,5.18,140.32,1.0,yes,2026-11-04T22:41:09+00:00,,,,,,,,open,
+2026-11-05|401920913|total|over,2026-11-05,401920913,total,Over 151.5,over,202,2459,Tulsa,Northern Illinois,151.5,151.5,-110.0,FanDuel,4.88,156.38,1.0,yes,2026-11-04T22:41:09+00:00,,,,,,,,open,
+2026-11-05|401919823|spread|home|bandB,2026-11-05,401919823,spread,Notre Dame -19.5,home,87,2385,Notre Dame,Mercyhurst,-19.5,-19.5,-110.0,FanDuel,2.09,21.59,0.5,yes,2026-11-04T22:41:18+00:00,,,,,,,,open,bandB
+2026-11-05|401926780|spread|away|bandB,2026-11-05,401926780,spread,Jacksonville State +2.5,away,6,55,South Alabama,Jacksonville State,2.5,2.5,100.0,theScore Bet,2.22,0.28,0.5,yes,2026-11-04T22:41:18+00:00,,,,,,,,open,bandB
