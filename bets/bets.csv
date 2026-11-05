@@ -234,3 +234,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-06|401906758|spread|home,2026-11-06,401906758,spread,Alabama -25.5,home,333,2032,Alabama,Arkansas State,-25.5,-25.5,-110.0,FanDuel,3.78,29.28,0.4,yes,2026-11-05T20:01:08+00:00,,,,,,,,open,
 2026-11-06|401920894|spread|away|bandB,2026-11-06,401920894,spread,Delaware +24.5,away,275,48,Wisconsin,Delaware,24.5,24.5,-105.0,Fanatics,2.06,22.44,0.5,yes,2026-11-05T20:11:17+00:00,,,,,,,,open,bandB
 2026-11-06|401921802|spread|away,2026-11-06,401921802,spread,James Madison +24.5,away,96,256,Kentucky,James Madison,24.5,24.5,-110.0,theScore Bet,2.65,21.85,0.4,yes,2026-11-05T20:51:23+00:00,,,,,,,,open,
+2026-11-06|401920894|spread|away,2026-11-06,401920894,spread,Delaware +25.5,away,275,48,Wisconsin,Delaware,25.5,25.5,-120.0,theScore Bet,3.06,22.44,0.4,yes,2026-11-05T21:21:22+00:00,,,,,,,,open,
+2026-11-06|401922261|spread|home,2026-11-06,401922261,spread,Colorado State -15.5,home,36,70,Colorado State,Idaho,-15.5,-15.5,-115.0,theScore Bet,2.58,18.08,0.4,yes,2026-11-05T21:21:22+00:00,,,,,,,,open,
+2026-11-06|401921061|spread|away,2026-11-06,401921061,spread,North Dakota State +8.5,away,2539,2449,San Francisco,North Dakota State,8.5,8.5,-115.0,theScore Bet,2.79,5.71,0.4,yes,2026-11-05T21:21:22+00:00,,,,,,,,open,
+2026-11-06|401909797|spread|home|bandB,2026-11-06,401909797,spread,Kansas State -9.5,home,2306,2463,Kansas State,Cal State Northridge,-9.5,-9.5,-115.0,theScore Bet,2.33,11.83,0.5,yes,2026-11-05T21:21:27+00:00,,,,,,,,open,bandB
