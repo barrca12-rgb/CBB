@@ -218,10 +218,13 @@ def recap(day: str) -> tuple[str, str]:
     return png, cap
 
 
-def top_plays(day: str, n: int = 5) -> tuple[str, str]:
-    """(png path, caption): the day's n main plays with the biggest logged edge, at the logged number and price."""
+def top_plays(day: str, n: int = 5, ids: list[str] | None = None,
+              blurb: str = "Biggest edges between our number and the market") -> tuple[str, str]:
+    """(png path, caption): the day's n main plays with the biggest logged edge (or the given bet ids), at the logged
+    number and price."""
     b = tracker.load("v1")
-    d = b[(b["date"] == day) & (b["status"] != "void")].sort_values("edge", ascending=False).head(n)
+    d = b[(b["date"] == day) & (b["status"] != "void")]
+    d = (d[d["bet_id"].isin(ids)] if ids else d).sort_values("edge", ascending=False).head(n)
     if not len(d):
         raise SystemExit(f"No main plays logged for {day} yet.")
     card = os.path.join(ROOT, "reports", f"cbb_{day}.csv")
@@ -232,7 +235,7 @@ def top_plays(day: str, n: int = 5) -> tuple[str, str]:
         tip = f" · {st.tz_convert('America/New_York'):%-I:%M %p} ET" if pd.notna(st) else ""
         if r["market"] == "spread":
             team, tm = (r["home"], r["model"]) if r["side"] == "home" else (r["away"], -r["model"])
-            model = f"model {html.escape(team)} {_num(-tm)}"
+            model = "model pick'em" if abs(tm) < 0.05 else f"model {html.escape(team)} {_num(-tm)}"
         else:
             model = f"model total {r['model']:.1f}"
         price = f"{int(r['odds']):+d}".replace("-", MINUS) if pd.notna(r["odds"]) else ""
@@ -245,7 +248,7 @@ def top_plays(day: str, n: int = 5) -> tuple[str, str]:
     dt = pd.Timestamp(day)
     body = (f"<div class='l'>{_brand()}<div class='day'>{_day_label(dt)}</div><div class='big sm'>TOP {len(d)}</div>"
             f"<div class='u org'>OF {total} PLAYS</div>"
-            f"<div class='split'>Biggest edges between our number and the market, at the line and price when each play "
+            f"<div class='split'>{html.escape(blurb)}, at the line and price when each play "
             f"was posted. Lines move.</div></div><div class='tp'>{''.join(rows)}</div>"
             f"<div class='f'><span>Season <b>{_rec(sea['w'], sea['l'], sea['p'])}, {_units(sea['u'])}</b>. Every play posted before tip "
             f"and graded in public.</span><span class='h'>{HANDLE}</span></div>")
