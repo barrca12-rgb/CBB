@@ -238,4 +238,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-06|401922261|spread|home,2026-11-06,401922261,spread,Colorado State -15.5,home,36,70,Colorado State,Idaho,-15.5,-15.5,-115.0,theScore Bet,2.58,18.08,0.4,yes,2026-11-05T21:21:22+00:00,,,,,,,,open,
 2026-11-06|401921061|spread|away,2026-11-06,401921061,spread,North Dakota State +8.5,away,2539,2449,San Francisco,North Dakota State,8.5,8.5,-115.0,theScore Bet,2.79,5.71,0.4,yes,2026-11-05T21:21:22+00:00,,,,,,,,open,
 2026-11-06|401909797|spread|home|bandB,2026-11-06,401909797,spread,Kansas State -9.5,home,2306,2463,Kansas State,Cal State Northridge,-9.5,-9.5,-115.0,theScore Bet,2.33,11.83,0.5,yes,2026-11-05T21:21:27+00:00,,,,,,,,open,bandB
-2026-11-06|401909772|spread|away|bandB,2026-11-06,401909772,spread,Southern Miss +30.5,away,66,2572,Iowa State,Southern Miss,30.5,30.5,-110.0,theScore Bet,2.07,28.43,0.5,yes,2026-11-05T21:31:35+00:00,,,,,,,,open,bandB
+2026-11-06|401909772|spread|away|bandB,2026-11-06,401909772,spread,Southern Miss +30.5,away,66,2572,Iowa State,Southern Miss,30.5,30.5,-110.0,theScore Bet,2.07,28.43,0.5,yes,2026-11-05T21:34:53+00:00,,,,,,,,open,bandB
