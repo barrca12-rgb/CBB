@@ -1237,3 +1237,24 @@ c3772c044b4754b2616b4db93f80d2fd860df88bd2bde90e478ecd7857980983  cbb/run_day.py
 ```
 00664478f36d8d34125c6d63cc0946ffe8fc30ec03c4b918deebca4e590809ca  .github/workflows/update.yml
 ```
+
+## 2026-11-05: BetRivers shown on the odds board; bet365 removed (display and book list)
+
+- **BetRivers (Chad, Nov 5: "add bet rivers to the odds board for plays").**
+  - `cbb/odds_api.py` requests `betrivers` as a show-only book (DISPLAY_BOOKS, beside Novig) in the same card call.
+    The call stays within one region, so it costs no extra credits.
+  - Its prices go to `lines/novig_latest.csv` only. They never reach the card's lines, the quote log or a close,
+    so BetRivers never picks a play, sets its book or number, or enters CLV.
+  - The card's odds board has a BetRivers column, and it appears in line shopping ("Also:") and the "Best" cell.
+  - `display_quote` takes a `book` argument; the phone alert's Novig line stays Novig only.
+- **bet365 (Chad, Nov 5: "remove bet365").** Removed from both feeds' book lists (`cbb/odds.py`,
+  `cbb/odds_api.py`) and from the board. Neither feed ever returned a bet365 price (no rows in any line file), so no
+  play, number or close changes.
+- **Tests:** `audit/test_novig.py::test_betrivers_is_show_only_and_kept_apart_from_novig`.
+- **Discord note:** `2026-11-05-books`.
+- **New fingerprints:**
+
+```
+a589adfa5985cd18402ae2c77c7ef6b7833a371a06d295d5bcecc74de5c4ad65  cbb/odds_api.py
+56939f803f56c9fcf27ff1da9e6cc2acfe765a5dd9f74ab8efe006a24a885e96  cbb/odds.py
+```

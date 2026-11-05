@@ -34,9 +34,12 @@ from . import quotelog, teams
 
 API = "https://api.the-odds-api.com/v4/sports/basketball_ncaab/odds"
 BOOKS = {"draftkings": "DraftKings", "fanduel": "FanDuel", "betmgm": "BetMGM", "williamhill_us": "Caesars",
-         "fanatics": "Fanatics", "bet365": "bet365", "espnbet": "theScore Bet"}   # up to 10 books cost one region
+         "fanatics": "Fanatics", "espnbet": "theScore Bet"}   # up to 10 books cost one region
+# bet365 removed Nov 5 (Chad: "remove bet365"): the key was accepted but no game ever came back priced
 CORE = ["draftkings", "fanduel", "betmgm", "williamhill_us"]
-DISPLAY_BOOKS = {"novig": "Novig"}   # show-only: never in the card's lines, the quote log or a close
+# show-only: never in the card's lines, the quote log or a close. BetRivers added Nov 5 (Chad: "add bet rivers to
+# the odds board for plays"): shown on the odds board and in line shopping only; 9 books still cost one region
+DISPLAY_BOOKS = {"novig": "Novig", "betrivers": "BetRivers"}
 NOVIG_LATEST = os.path.join(os.path.dirname(__file__), "..", "lines", "novig_latest.csv")
 NOVIG_LOG = os.path.join(os.path.dirname(__file__), "..", "lines", "novig_log.csv")
 DISPLAY_COLS = ["book", "event_id", "start", "home_id", "away_id", "home_spread", "home_spread_odds", "away_spread_odds",
@@ -238,13 +241,15 @@ def save_display(d: pd.DataFrame) -> None:
         new.to_csv(NOVIG_LOG, mode="a", header=not os.path.exists(NOVIG_LOG), index=False)
 
 
-def display_quote(home_id: int, away_id: int, d: pd.DataFrame | None = None, max_age_h: float = 2.0) -> dict | None:
+def display_quote(home_id: int, away_id: int, d: pd.DataFrame | None = None, max_age_h: float = 2.0,
+                  book: str = "Novig") -> dict | None:
     """The latest show-only (Novig) prices for a game, oriented to the given home and away ids (the feed may list
     a neutral-site game the other way round). None when there is no row or the pull is older than max_age_h."""
     if d is None:
         if not os.path.exists(NOVIG_LATEST):
             return None
         d = pd.read_csv(NOVIG_LATEST)
+    d = d[d["book"] == book] if "book" in d else d
     if not len(d):
         return None
     for flip in (False, True):

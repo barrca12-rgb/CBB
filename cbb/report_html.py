@@ -256,6 +256,36 @@ def _logged_models(card: pd.DataFrame, day: pd.Timestamp) -> pd.DataFrame:
     return card
 
 
+# Show-only books on the odds board (Chad, Nov 5: "add bet rivers to the odds board for plays"): their prices come
+# from the card's own Odds API call (cbb/odds_api.DISPLAY_BOOKS -> lines/novig_latest.csv), never from the card's
+# lines, so they never pick a play, set its book or number, or enter a close. They do appear in line shopping.
+DISPLAY_BOARD = ["BetRivers"]
+
+
+def _add_display_books(games: list[dict], max_age_h: float = 2.0) -> None:
+    """Each pregame game's show-only quotes added to its book_lines, oriented to the card's home team."""
+    from . import odds_api
+    try:
+        d = pd.read_csv(odds_api.NOVIG_LATEST) if os.path.exists(odds_api.NOVIG_LATEST) else pd.DataFrame()
+    except Exception:
+        return
+    if not len(d) or "book" not in d:
+        return
+    for g in games:
+        if g.get("state") not in (None, "pre") or g.get("home_id") is None:
+            continue
+        have = {x.get("book") for x in (g.get("book_lines") or [])}
+        for bk in DISPLAY_BOARD:
+            if bk in have:
+                continue
+            q = odds_api.display_quote(int(g["home_id"]), int(g["away_id"]), d, max_age_h, book=bk)
+            if not q:
+                continue
+            row = {"book": bk, "show_only": True, **{k: q[k] for k in ("home_spread", "home_spread_odds", "away_spread_odds",
+                                                                      "total", "over_odds", "under_odds")}}
+            g["book_lines"] = list(g.get("book_lines") or []) + [{k: _clean(v) for k, v in row.items()}]
+
+
 def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, replay: bool = False,
           record: dict | None = None) -> str:
     if not replay:
@@ -266,6 +296,8 @@ def build(card: pd.DataFrame, rt: pd.DataFrame, day: pd.Timestamp, season: int, 
     if not replay:
         card = _venue_view(card, day, fetch=record is not None)
     games = [{k: _clean(v) for k, v in r.items()} for r in card.to_dict("records")]
+    if not replay:
+        _add_display_books(games)
     if not replay and any(g.get("state") in ("in", "post") for g in games):
         # the game clock ("2nd half · 15:48 left") from ESPN's free scoreboard, so a card run keeps what the results
         # refresh (cbb/live_refresh.py) shows between runs; display only, never fails the build
@@ -730,7 +762,8 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     "' onerror=\"this.closest('picture').remove()\"></picture>";
   const matchupL = (g) => logo(g.away_id, 14) + esc(g.away) + (g.neutral ? " vs " : " @ ") + logo(g.home_id, 14) + esc(g.home);
   const pickId = (g, kind, side) => kind === "Spread" ? (side === "home" ? g.home_id : side === "away" ? g.away_id : null) : null;
-  const BOOKS = ["FanDuel", "DraftKings", "BetMGM", "Caesars", "Fanatics", "bet365", "theScore Bet"];
+  const BOOKS = ["FanDuel", "DraftKings", "BetMGM", "Caesars", "Fanatics", "theScore Bet", "BetRivers"];
+  const SHOW_ONLY = {"BetRivers": 1};   // shown for shopping only: never picks a play or sets its number
   const bl = (g, bk) => (g.book_lines || []).find((x) => x.book === bk);
 
   $("nfl-link").href = D.nfl;
@@ -1060,7 +1093,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     const G = games.slice().sort((a, b) => String(a.start).localeCompare(String(b.start)) || a.home.localeCompare(b.home));
     const mh = {spread: "Model", total: "Model", ml: "Win %"}[market];
     let h = "<thead><tr><th class='tm'>Time</th><th>Team</th><th class='r pts'>Proj</th><th class='r'>" + mh + "</th>" +
-      BOOKS.map((b, j) => "<th class='bk" + (j >= 4 ? " bk-minor" : "") + "'>" + b + "</th>").join("") +
+      BOOKS.map((b, j) => "<th class='bk" + (j >= 4 ? " bk-minor" : "") + "'" + (SHOW_ONLY[b] ? " title='Shown for line shopping only; the model picks plays from the other books'" : "") + ">" + b + "</th>").join("") +
       "<th class='bestc'>Best</th><th class='r edge'>Edge</th></tr></thead>";
     if (!G.length) { table.innerHTML = h + "<tbody><tr><td class='empty' colspan='" + (BOOKS.length + 5) + "'>" + esc(empty) + "</td></tr></tbody>"; return; }
     h += G.map((g) => {

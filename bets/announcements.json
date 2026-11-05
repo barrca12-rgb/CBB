@@ -138,5 +138,10 @@
   "id": "2026-11-04-site-publish",
   "date": "2026-11-04",
   "text": "Housekeeping, Nov 4: the card update now retries publishing the website when another update is still publishing, instead of stopping. Picks, alerts and the record are unchanged."
+ },
+ {
+  "id": "2026-11-05-books",
+  "date": "2026-11-05",
+  "text": "Housekeeping, Nov 5: the card's odds board now shows BetRivers for line shopping (it never picks a play or sets a number), and bet365 is gone from the board since it never posted prices. Picks, alerts and the record are unchanged."
  }
 ]

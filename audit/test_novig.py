@@ -50,3 +50,35 @@ def test_compare_labels():
     assert notify.compare("spread", "away", 5.0, -110, 4.5, -110) == "better number"
     assert notify.compare("total", "over", 140.0, -115, 140.5, -110) == "better number, worse price"
     assert notify.compare("total", "under", 140.5, -115, 140.5, -110) == ""
+
+
+def _event_br():
+    e = _event()
+    br = dict(e["bookmakers"][0], key="betrivers", title="BetRivers")
+    br["markets"] = [{"key": "spreads", "outcomes": [{"name": "Home U", "price": -105, "point": -4.0}, {"name": "Away U", "price": -115, "point": 4.0}]},
+                     {"key": "totals", "outcomes": [{"name": "Over", "price": -108, "point": 141.0}, {"name": "Under", "price": -112, "point": 141.0}]}]
+    e["bookmakers"].append(br)
+    return e
+
+
+def test_betrivers_is_show_only_and_kept_apart_from_novig(tmp_path, monkeypatch):
+    # BetRivers (Chad, Nov 5): never in the card's lines or the quote log; its own rows in the show-only file
+    df, _ = odds_api.parse([_event_br()], LOOK)
+    assert list(df["book"]) == ["DraftKings"]
+    assert {o["book"] for o in odds_api.parse.observations} == {"DraftKings"}
+    d = odds_api.parse_display([_event_br()], LOOK)
+    assert set(d["book"]) == {"Novig", "BetRivers"}
+    # the phone alert's Novig line stays Novig; the board asks for BetRivers by name
+    assert odds_api.display_side(odds_api.display_quote(10, 20, d), "spread", "home") == (-4.5, -102)
+    assert odds_api.display_side(odds_api.display_quote(20, 10, d, book="BetRivers"), "spread", "away") == (-4.0, -105)
+    # the board: a BetRivers column added to a pregame game's book_lines, oriented to the card's home team
+    from cbb import report_html
+    monkeypatch.setattr(odds_api, "NOVIG_LATEST", str(tmp_path / "latest.csv"))
+    d.to_csv(odds_api.NOVIG_LATEST, index=False)
+    games = [{"state": "pre", "home_id": 20, "away_id": 10, "book_lines": [{"book": "DraftKings", "home_spread": 4.5}]},
+             {"state": "in", "home_id": 10, "away_id": 20, "book_lines": []}]
+    report_html._add_display_books(games)
+    br = [x for x in games[0]["book_lines"] if x["book"] == "BetRivers"][0]
+    assert br["home_spread"] == 4.0 and br["home_spread_odds"] == -115 and br["over_odds"] == -108 and br["show_only"]
+    assert not [x for x in games[0]["book_lines"] if x["book"] == "Novig"]
+    assert games[1]["book_lines"] == []
