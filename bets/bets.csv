@@ -224,3 +224,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-06|401909552|total|over,2026-11-06,401909552,total,Over 145.5,over,103,113,Boston College,Massachusetts,145.5,145.5,-110.0,Fanatics,3.49,148.99,1.0,yes,2026-11-05T18:31:13+00:00,,,,,,,,open,
 2026-11-06|401920726|spread|away,2026-11-06,401920726,spread,Eastern Illinois +35.5,away,2294,2197,Iowa,Eastern Illinois,35.5,35.5,-110.0,Fanatics,5.43,30.07,0.4,yes,2026-11-05T18:41:05+00:00,,,,,,,,open,
 2026-11-06|401909523|spread|away|bandB,2026-11-06,401909523,spread,Detroit Mercy +30.5,away,269,2174,Marquette,Detroit Mercy,30.5,30.5,-110.0,FanDuel,2.46,28.04,0.5,yes,2026-11-05T18:51:17+00:00,,,,,,,,open,bandB
+2026-11-06|401921754|spread|home,2026-11-06,401921754,spread,UCF -10.5,home,2116,43,UCF,Yale,-10.5,-10.5,-120.0,FanDuel,3.02,13.52,0.4,yes,2026-11-05T19:11:00+00:00,,,,,,,,open,
+2026-11-06|401913100|spread|home|bandB,2026-11-06,401913100,spread,North Carolina -22.5,home,153,2747,North Carolina,Wofford,-22.5,-22.5,-120.0,FanDuel,2.38,24.88,0.5,yes,2026-11-05T19:11:03+00:00,,,,,,,,open,bandB
