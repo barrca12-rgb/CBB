@@ -233,3 +233,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-06|401921140|spread|home|bandB,2026-11-06,401921140,spread,Elon -7.5,home,2210,2430,Elon,UNC Greensboro,-7.5,-7.5,-110.0,FanDuel,2.48,9.98,0.5,yes,2026-11-05T19:51:20+00:00,,,,,,,,open,bandB
 2026-11-06|401906758|spread|home,2026-11-06,401906758,spread,Alabama -25.5,home,333,2032,Alabama,Arkansas State,-25.5,-25.5,-110.0,FanDuel,3.78,29.28,0.4,yes,2026-11-05T20:01:08+00:00,,,,,,,,open,
 2026-11-06|401920894|spread|away|bandB,2026-11-06,401920894,spread,Delaware +24.5,away,275,48,Wisconsin,Delaware,24.5,24.5,-105.0,Fanatics,2.06,22.44,0.5,yes,2026-11-05T20:11:17+00:00,,,,,,,,open,bandB
+2026-11-06|401921802|spread|away,2026-11-06,401921802,spread,James Madison +24.5,away,96,256,Kentucky,James Madison,24.5,24.5,-110.0,theScore Bet,2.65,21.85,0.4,yes,2026-11-05T20:51:23+00:00,,,,,,,,open,
