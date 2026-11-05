@@ -217,3 +217,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-05|401924718|total|under,2026-11-05,401924718,total,Under 159.5,under,2329,172,Lehigh,Cornell,159.5,159.5,-105.0,FanDuel,3.12,156.38,1.0,yes,2026-11-05T02:30:56+00:00,,,,,,,,open,
 2026-11-05|401917177|total|under,2026-11-05,401917177,total,Under 159.5,under,213,236,Penn State,Chattanooga,159.5,159.5,-115.0,DraftKings,3.29,156.21,1.0,yes,2026-11-05T03:10:59+00:00,,,,,,,,open,
 2026-11-05|401906792|spread|away|bandB,2026-11-05,401906792,spread,Northwestern State +23.5,away,344,2466,Mississippi State,Northwestern State,23.5,23.5,-110.0,theScore Bet,2.23,21.27,0.5,yes,2026-11-05T04:01:10+00:00,,,,,,,,open,bandB
+2026-11-05|401911195|spread|home,2026-11-05,401911195,spread,Fordham -16.5,home,2230,284,Fordham,Stonehill,-16.5,-16.5,-108.0,DraftKings,2.76,19.26,0.4,yes,2026-11-05T06:51:02+00:00,,,,,,,,open,
