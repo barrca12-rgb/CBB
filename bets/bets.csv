@@ -228,3 +228,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-06|401913100|spread|home|bandB,2026-11-06,401913100,spread,North Carolina -22.5,home,153,2747,North Carolina,Wofford,-22.5,-22.5,-120.0,FanDuel,2.38,24.88,0.5,yes,2026-11-05T19:11:03+00:00,,,,,,,,open,bandB
 2026-11-06|401928823|spread|home|bandB,2026-11-06,401928823,spread,UIC -10.5,home,82,2523,UIC,Robert Morris,-10.5,-10.5,-120.0,FanDuel,2.39,12.89,0.5,yes,2026-11-05T19:21:24+00:00,,,,,,,,open,bandB
 2026-11-06|401911249|spread|home,2026-11-06,401911249,spread,Missouri -3.5,home,142,139,Missouri,Saint Louis,-3.5,-3.5,-102.0,FanDuel,3.76,7.26,0.4,yes,2026-11-05T19:31:17+00:00,,,,,,,,open,
+2026-11-06|401920305|spread|home,2026-11-06,401920305,spread,Georgia Tech -15.5,home,59,290,Georgia Tech,Georgia Southern,-15.5,-15.5,-110.0,FanDuel,4.16,19.66,0.4,yes,2026-11-05T19:41:00+00:00,,,,,,,,open,
+2026-11-06|401921802|spread|away|bandB,2026-11-06,401921802,spread,James Madison +24,away,96,256,Kentucky,James Madison,24.0,24.0,-110.0,Fanatics,2.15,21.85,0.5,yes,2026-11-05T19:41:03+00:00,,,,,,,,open,bandB
