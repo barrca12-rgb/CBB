@@ -184,7 +184,7 @@ def alerts(h: pd.DataFrame, fp: dict, o: pd.DataFrame, mc: pd.Series) -> pd.Data
     al = al[(al["channel"] == "ntfy") & al["ok"].astype(str).eq("True")]
     sent = dict(zip(al["id"], pd.to_datetime(al["sent_at"], utc=True, format="ISO8601")))
     sl = os.path.join(ROOT, "bets", "signal_log.csv")
-    sig = pd.read_csv(sl).set_index("bet_id") if os.path.exists(sl) else pd.DataFrame()
+    sig = pd.read_csv(sl).drop_duplicates("bet_id").set_index("bet_id") if os.path.exists(sl) else pd.DataFrame()
     rows = []
     for _, r in b.iterrows():
         lo, hi = sorted((int(r["home_id"]), int(r["away_id"])))

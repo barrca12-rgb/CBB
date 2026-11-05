@@ -2,6 +2,13 @@
 
 Dated findings from each review, newest first. "Nothing new" is a valid entry.
 
+## 2026-11-05: speed to the opener
+
+- Alerts arrive a median 4.7 min after a book posts (10-min polling), plus 30 s processing; 77% in the first run
+  that shows the number.
+- Alerted numbers: 97% still up at 10 min, 88% at 30 min, 82% at 1 hour, 63% at 4 hours, 38% near tip. Noon-11 pm
+  alerts decay fastest. Execution, not polling, is where the edge leaks. Placement times are not recorded yet.
+
 ## 2026-11-05 (live Nov 1-4)
 
 - **All games:** model total miss 13.31 vs closing line 12.96; margin 10.18 vs 10.08. The gap to the close is

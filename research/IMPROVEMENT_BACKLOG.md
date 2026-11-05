@@ -3,14 +3,14 @@
 Ranked by expected gain and how soon it can be tested. Update after every weekly review. Closed items stay at the
 bottom with their verdict, so nothing is retested by accident.
 
-Last updated Nov 5, 2026.
+Last updated Nov 5, 2026 (speed read added).
 
 ## Open
 
 | # | Idea | Evidence so far | First step |
 |---|---|---|---|
 | 1 | **Our own roster-based preseason ratings** (returning minutes, transfers, recruits) | Last season's results alone are a much weaker prior: opener spreads ~53% vs 57.5% (own_ratings B4). November-December plays lean on outside preseason numbers. | Inventory free roster data (CBBD players and stints from 2023-24, rosters, transfer lists); pre-register a prior built from returning minutes x player value |
-| 2 | **Speed to the opener** | The edge lives at the opener: ~60% at the opener vs ~52% at the close; first book to post 58.5% vs later books 54.4% (research/SUMMARY.md). Live: plays posted 18h+ before tip beat the close by +1.86, later ones by about 0. | Measure live minutes from a book's first quote to our alert for every play; find gaps in the poll schedule around when openers post |
+| 2 | **Speed to the opener** | Measured Nov 5 (research/speed/LIVE_REPORT.md): alerts ~5 min after a book posts; 97% of numbers last 10 min, 88% 30 min, 63% 4 hours; afternoon/evening alerts decay fastest. Polling is not the bottleneck; placing the bet is. No placement times recorded (accepted.csv empty). | Record real fills (Placed button or Pikkit export); then decide on a 3-5 min opener cadence |
 | 3 | **Opening-day scoring level** (stage-1 intercept shrunk toward last season) | Ready: live opening week 15.9 -> 13.5, history unchanged (own_ratings Study A) | Proposal to Chad for next season's opener |
 | 4 | **Late-posted plays** (crew posted, injury, line move after the open) | 14-7 live but no line-move check possible (posted too close to tip) | Grade late plays against the close at our book and against Novig; read at Jan 15 |
 | 5 | **Early underdogs where Barttorvik agrees and KenPom doesn't** | ~42% on 50 historical plays; found after the fact (early_dogs) | Pre-register on 2027 live plays; read at Jan 15 |
