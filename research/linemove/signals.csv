@@ -76,3 +76,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-05T04:40:50+00:00,2026-11-05,401913526,2026-11-06T01:30Z,356,219,Illinois,Pennsylvania,total,under,v1,Under 167.5,165.5,-112.0,DraftKings,2026-11-04T22:30:46+00:00,167.5,-110.0,theScore Bet,2.0,370.1,2.01,4.01,163.49
 2026-11-05T05:20:43+00:00,2026-11-05,401909739,2026-11-06T03:30Z,12,13,Arizona,Cal Poly,spread,away,v1,Cal Poly +31.5,30.5,-105.0,BetMGM,2026-11-04T22:50:38+00:00,31.5,-110.0,theScore Bet,1.0,390.1,1.69,2.69,28.81
 2026-11-05T06:00:46+00:00,2026-11-05,401925819,2026-11-06T00:00Z,2429,2247,Charlotte,Georgia State,spread,home,bandB,Charlotte -10.5,-11.5,-110.0,Caesars,2026-11-04T17:56:07+00:00,-10.5,-121.0,BetRivers,1.0,724.6,1.46,2.46,12.96
+2026-11-05T12:50:42+00:00,2026-11-05,401925031,2026-11-05T22:00Z,249,2377,North Texas,McNeese,spread,home,bandB,North Texas +2.5,1.5,-107.0,BetRivers,2026-11-05T02:30:43+00:00,2.5,-110.0,FanDuel,1.0,620.0,1.14,2.14,-0.36
