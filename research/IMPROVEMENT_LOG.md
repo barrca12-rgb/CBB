@@ -2,6 +2,11 @@
 
 Dated findings from each review, newest first. "Nothing new" is a valid entry.
 
+## 2026-11-05: roster-based preseason ratings (v2)
+
+- Development, transfer level and lineup values: correlation 0.805 -> 0.812, RMSE 5.00 -> 4.92. Gate needed +0.010
+  or -0.10: stopped. Larger gain in 2024-26 (0.810 -> 0.823), noted after the result. Missing piece: recruits.
+
 ## 2026-11-05: roster-based preseason ratings (v1)
 
 - Step 1: roster prior correlation with final ratings 0.805 (KenPom/Barttorvik 0.830, last season 0.754).

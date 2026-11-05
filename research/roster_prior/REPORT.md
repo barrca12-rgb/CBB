@@ -55,3 +55,36 @@ order I would try next:
 
 The leak noted in the plan (rosters from the first 5 games) helps the roster prior, so the real gap is if anything
 a little larger.
+
+# Version 2 (pre-registered in PLAN_v2.md, Nov 5, 2026): development, transfer level, better player values
+
+Rerun: `python -m research.roster_prior.build_v2 check` (output in `out/v2_step1.txt`, `out/v2_step1.csv`).
+
+## Verdict: stopped at the step-1 gate. No step 2, no proposal.
+
+| Prior vs final margin rating, 2016-2026 | RMSE | Correlation |
+|---|---|---|
+| KenPom/Barttorvik preseason | 6.24 | 0.830 |
+| Roster v1 | 5.00 | 0.805 |
+| **Roster V2a** (development + transfer level + level/relative features) | 4.92 | 0.812 |
+| Roster V2b (V2a + lineup ratings, 2025-26 priors) | 4.92 | 0.812 |
+
+The gate needed +0.010 in correlation or -0.10 in RMSE over v1. V2a gave +0.007 and -0.08. By the rule, step 2 does
+not run.
+
+## What the additions did
+
+- **Development:** players with 200+ minutes in both seasons gain 6.0 rating points after their first season, 4.1
+  after the second and about 3.4 after that. Part of this is selection (players who keep minutes are the ones who
+  improved), which the ridge then partly corrects.
+- **Transfer level:** a transfer's rating falls 0.50 points for each point of team margin he moves up, as expected.
+- **Lineup ratings (3b):** a small further gain where available (2025-26 RMSE 5.13 -> 5.10).
+- **By season (correlation, found after the result):** V2a's gain is larger in recent seasons: 2024-2026 average
+  0.823 against v1's 0.810, closing about half the remaining gap to KenPom/Barttorvik (0.834). In 2021, the COVID
+  season, every roster version beat KenPom/Barttorvik (0.79 vs 0.76).
+
+## Reading
+
+The three additions help, mostly in the transfer-portal years, but not by enough to pass the bar set in advance.
+The biggest piece still missing is freshman and recruit quality: every newcomer gets one value, while KenPom and
+Barttorvik use recruiting rankings. That needs a data source Chad approves.
