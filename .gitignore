@@ -21,3 +21,4 @@ research/stake_bands/out/plays.csv
 /out/
 research/own_ratings/out/stage1_*.csv
 research/own_ratings/out/log_*.txt
+research/roster_prior/out/stage1_*.csv
