@@ -1,0 +1,56 @@
+Early-season underdog spread plays (PLAN.md, pre-registered Nov 5, 2026). Openers at an assumed -110.
+
+2014-17
+  Early (days 0-20) spread plays:
+    favorites                                    plays   518  win  56.5%  move +1.33  units   +38.1
+    underdogs (V0)                               plays   455  win  57.3%  move +0.89  units   +39.3
+    underdogs kept by V1 (own rating agrees)     plays   455  win  57.3%  move +0.89  units   +39.3
+    underdogs removed by V1                      plays     0  win   nan%  move +nan  units    +0.0
+  Early underdogs by who is on our side:
+    own Y / KenPom n / Barttorvik n              plays     5  win  40.0%  move -0.55  units    -0.7
+    own Y / KenPom n / Barttorvik Y              plays    38  win  39.5%  move +0.53  units    -6.1
+    own Y / KenPom Y / Barttorvik n              plays    41  win  57.5%  move +0.62  units    +3.7
+    own Y / KenPom Y / Barttorvik Y              plays   371  win  59.3%  move +0.98  units   +42.4
+  Totals:
+    early spreads, V0                            plays   988  win  56.7%  move +1.14  units   +75.8
+    early spreads, V1                            plays   988  win  56.7%  move +1.14  units   +75.8
+    full-season spreads, V0                      plays  4140  win  56.1%  move +1.11  units  +244.3
+    full-season spreads, V1                      plays  4140  win  56.1%  move +1.11  units  +244.3
+
+2024-26
+  Early (days 0-20) spread plays:
+    favorites                                    plays   589  win  57.9%  move +0.97  units   +35.9
+    underdogs (V0)                               plays   365  win  55.2%  move +0.54  units   +19.9
+    underdogs kept by V1 (own rating agrees)     plays   363  win  55.0%  move +0.53  units   +19.0
+    underdogs removed by V1                      plays     2  win 100.0%  move +1.25  units    +0.9
+  Early underdogs by who is on our side:
+    own n / KenPom n / Barttorvik n              plays     1  win 100.0%  move -0.50  units    +0.5
+    own n / KenPom n / Barttorvik Y              plays     1  win 100.0%  move +3.00  units    +0.5
+    own Y / KenPom n / Barttorvik n              plays     1  win   0.0%  move -2.00  units    -1.0
+    own Y / KenPom n / Barttorvik Y              plays    12  win  50.0%  move +0.17  units    +1.0
+    own Y / KenPom Y / Barttorvik n              plays    50  win  57.1%  move +0.62  units    +4.4
+    own Y / KenPom Y / Barttorvik Y              plays   300  win  55.0%  move +0.54  units   +14.6
+  Totals:
+    early spreads, V0                            plays   956  win  56.9%  move +0.80  units   +56.2
+    early spreads, V1                            plays   954  win  56.8%  move +0.80  units   +55.3
+    full-season spreads, V0                      plays  3801  win  56.3%  move +0.95  units  +257.0
+    full-season spreads, V1                      plays  3799  win  56.2%  move +0.95  units  +256.1
+
+Pooled: removed {'plays': 2, 'win %': np.float64(100.0), 'move': np.float64(1.25), 'units': np.float64(0.9)}, kept underdogs {'plays': 818, 'win %': np.float64(56.2), 'move': np.float64(0.73), 'units': np.float64(58.3)}
+Proposal rule: enough plays no (2); removed plays weak no; no harm {'2014-17': np.True_, '2024-26': np.False_} -> too few to tell
+
+V2 (secondary): stage 2 refit without Barttorvik, early underdog plays (audit/out frames, 2015-2026)
+  2014-17:
+    with Barttorvik (base): early underdogs      plays   507  win  59.0%  move +0.78  units   +66.8
+    with Barttorvik (base): early favorites      plays   502  win  56.1%  move +1.33  units   +35.7
+    with Barttorvik (base): all early spreads    plays  1025  win  57.3%  move +1.06  units  +101.4
+    without Barttorvik: early underdogs          plays   495  win  59.2%  move +0.75  units   +67.9
+    without Barttorvik: early favorites          plays   515  win  56.0%  move +1.35  units   +35.8
+    without Barttorvik: all early spreads        plays  1025  win  57.4%  move +1.07  units  +102.5
+  2024-26:
+    with Barttorvik (base): early underdogs      plays   357  win  54.2%  move +0.51  units   +12.3
+    with Barttorvik (base): early favorites      plays   574  win  57.1%  move +0.99  units   +34.5
+    with Barttorvik (base): all early spreads    plays   933  win  56.0%  move +0.80  units   +46.8
+    without Barttorvik: early underdogs          plays   345  win  54.1%  move +0.52  units   +11.9
+    without Barttorvik: early favorites          plays   627  win  56.7%  move +0.96  units   +34.2
+    without Barttorvik: all early spreads        plays   974  win  55.8%  move +0.80  units   +46.5
