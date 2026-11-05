@@ -230,3 +230,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-06|401911249|spread|home,2026-11-06,401911249,spread,Missouri -3.5,home,142,139,Missouri,Saint Louis,-3.5,-3.5,-102.0,FanDuel,3.76,7.26,0.4,yes,2026-11-05T19:31:17+00:00,,,,,,,,open,
 2026-11-06|401920305|spread|home,2026-11-06,401920305,spread,Georgia Tech -15.5,home,59,290,Georgia Tech,Georgia Southern,-15.5,-15.5,-110.0,FanDuel,4.16,19.66,0.4,yes,2026-11-05T19:41:00+00:00,,,,,,,,open,
 2026-11-06|401921802|spread|away|bandB,2026-11-06,401921802,spread,James Madison +24,away,96,256,Kentucky,James Madison,24.0,24.0,-110.0,Fanatics,2.15,21.85,0.5,yes,2026-11-05T19:41:03+00:00,,,,,,,,open,bandB
+2026-11-06|401921140|spread|home|bandB,2026-11-06,401921140,spread,Elon -7.5,home,2210,2430,Elon,UNC Greensboro,-7.5,-7.5,-110.0,FanDuel,2.48,9.98,0.5,yes,2026-11-05T19:51:20+00:00,,,,,,,,open,bandB
