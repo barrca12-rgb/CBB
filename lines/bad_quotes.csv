@@ -119,3 +119,4 @@ first_seen,date,game_id,market,side,book,number,price,median_others,books,reason
 2026-11-05T14:21:17+00:00,2026-11-05,401911273,total,-,Caesars,135.5,,138.5,7,off-market
 2026-11-05T14:21:17+00:00,2026-11-05,401911195,total,-,Caesars,144.5,,140.5,7,off-market
 2026-11-05T14:21:17+00:00,2026-11-05,401913526,total,-,Caesars,169.5,,172.5,7,off-market
+2026-11-05T14:50:50+00:00,2026-11-05,401911273,total,-,BetRivers,139.5,,136.5,7,off-market
