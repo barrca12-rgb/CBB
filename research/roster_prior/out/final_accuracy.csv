@@ -1,0 +1,11 @@
+variant,part,games,margin MAE,total MAE
+base,days 0-20,11750,9.174,13.732
+base,all,65282,8.77,13.245
+"B4 last season x0.6, no outside",days 0-20,11750,9.771,13.917
+"B4 last season x0.6, no outside",all,65282,8.965,13.29
+"R1 roster prior, no outside",days 0-20,11750,9.488,13.878
+"R1 roster prior, no outside",all,65282,8.875,13.282
+R2 roster prior + outside in stage 2,days 0-20,11750,9.19,13.824
+R2 roster prior + outside in stage 2,all,65282,8.792,13.267
+R3 blended prior + outside in stage 2,days 0-20,11750,9.165,13.759
+R3 blended prior + outside in stage 2,all,65282,8.771,13.249

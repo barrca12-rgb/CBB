@@ -1,0 +1,21 @@
+variant,market,seasons,plays,win%,ROI%@-110,mean move our way,same plays win% at close
+base,spread,2015-2017,2039,57.51,9.56,1.33,53.06
+base,spread,2024-2026,2271,57.69,10.1,1.18,53.53
+base,total,2015-2017,3822,58.35,11.21,1.18,55.06
+base,total,2024-2026,4256,57.54,9.82,1.45,53.63
+"B4 last season x0.6, no outside",spread,2015-2017,3437,53.0,1.15,0.65,50.28
+"B4 last season x0.6, no outside",spread,2024-2026,5592,53.41,1.95,0.53,51.14
+"B4 last season x0.6, no outside",total,2015-2017,3978,57.23,9.14,1.12,54.62
+"B4 last season x0.6, no outside",total,2024-2026,4559,56.0,6.88,1.22,52.69
+"R1 roster prior, no outside",spread,2015-2017,2495,55.0,4.85,0.9,51.39
+"R1 roster prior, no outside",spread,2024-2026,4350,54.7,4.41,0.69,52.1
+"R1 roster prior, no outside",total,2015-2017,4120,57.88,10.37,1.1,55.12
+"R1 roster prior, no outside",total,2024-2026,4502,57.09,8.96,1.32,53.65
+R2 roster prior + outside in stage 2,spread,2015-2017,2248,55.43,5.68,0.99,51.72
+R2 roster prior + outside in stage 2,spread,2024-2026,2329,56.57,7.97,1.0,52.62
+R2 roster prior + outside in stage 2,total,2015-2017,3914,57.56,9.76,1.1,54.86
+R2 roster prior + outside in stage 2,total,2024-2026,4032,57.64,10.01,1.39,54.0
+R3 blended prior + outside in stage 2,spread,2015-2017,1937,56.81,8.24,1.27,52.33
+R3 blended prior + outside in stage 2,spread,2024-2026,2290,57.27,9.31,1.13,53.17
+R3 blended prior + outside in stage 2,total,2015-2017,3816,58.23,11.01,1.16,55.15
+R3 blended prior + outside in stage 2,total,2024-2026,4060,57.94,10.59,1.46,53.89

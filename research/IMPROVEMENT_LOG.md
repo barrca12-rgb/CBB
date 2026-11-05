@@ -2,6 +2,12 @@
 
 Dated findings from each review, newest first. "Nothing new" is a valid entry.
 
+## 2026-11-05: roster-based preseason ratings (v1)
+
+- Step 1: roster prior correlation with final ratings 0.805 (KenPom/Barttorvik 0.830, last season 0.754).
+- Step 2: replacing the outside numbers, early margin miss 9.49 (base 9.17, last season only 9.77); opener spreads
+  55.0/54.7% (base 57.5/57.7%). Blending did not beat base under the rule. No proposal; v2 ideas in the backlog.
+
 ## 2026-11-05: speed to the opener
 
 - Alerts arrive a median 4.7 min after a book posts (10-min polling), plus 30 s processing; 77% in the first run

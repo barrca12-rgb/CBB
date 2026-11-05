@@ -1,0 +1,36 @@
+
+== final_accuracy
+                              variant      part  games  margin MAE  total MAE
+                                 base days 0-20  11750       9.174     13.732
+                                 base       all  65282       8.770     13.245
+      B4 last season x0.6, no outside days 0-20  11750       9.771     13.917
+      B4 last season x0.6, no outside       all  65282       8.965     13.290
+          R1 roster prior, no outside days 0-20  11750       9.488     13.878
+          R1 roster prior, no outside       all  65282       8.875     13.282
+ R2 roster prior + outside in stage 2 days 0-20  11750       9.190     13.824
+ R2 roster prior + outside in stage 2       all  65282       8.792     13.267
+R3 blended prior + outside in stage 2 days 0-20  11750       9.165     13.759
+R3 blended prior + outside in stage 2       all  65282       8.771     13.249
+
+== opener_plays
+                              variant market   seasons  plays  win%  ROI%@-110  mean move our way  same plays win% at close
+                                 base spread 2015-2017   2039 57.51       9.56               1.33                     53.06
+                                 base spread 2024-2026   2271 57.69      10.10               1.18                     53.53
+                                 base  total 2015-2017   3822 58.35      11.21               1.18                     55.06
+                                 base  total 2024-2026   4256 57.54       9.82               1.45                     53.63
+      B4 last season x0.6, no outside spread 2015-2017   3437 53.00       1.15               0.65                     50.28
+      B4 last season x0.6, no outside spread 2024-2026   5592 53.41       1.95               0.53                     51.14
+      B4 last season x0.6, no outside  total 2015-2017   3978 57.23       9.14               1.12                     54.62
+      B4 last season x0.6, no outside  total 2024-2026   4559 56.00       6.88               1.22                     52.69
+          R1 roster prior, no outside spread 2015-2017   2495 55.00       4.85               0.90                     51.39
+          R1 roster prior, no outside spread 2024-2026   4350 54.70       4.41               0.69                     52.10
+          R1 roster prior, no outside  total 2015-2017   4120 57.88      10.37               1.10                     55.12
+          R1 roster prior, no outside  total 2024-2026   4502 57.09       8.96               1.32                     53.65
+ R2 roster prior + outside in stage 2 spread 2015-2017   2248 55.43       5.68               0.99                     51.72
+ R2 roster prior + outside in stage 2 spread 2024-2026   2329 56.57       7.97               1.00                     52.62
+ R2 roster prior + outside in stage 2  total 2015-2017   3914 57.56       9.76               1.10                     54.86
+ R2 roster prior + outside in stage 2  total 2024-2026   4032 57.64      10.01               1.39                     54.00
+R3 blended prior + outside in stage 2 spread 2015-2017   1937 56.81       8.24               1.27                     52.33
+R3 blended prior + outside in stage 2 spread 2024-2026   2290 57.27       9.31               1.13                     53.17
+R3 blended prior + outside in stage 2  total 2015-2017   3816 58.23      11.01               1.16                     55.15
+R3 blended prior + outside in stage 2  total 2024-2026   4060 57.94      10.59               1.46                     53.89
