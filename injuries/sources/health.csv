@@ -7374,3 +7374,19 @@ pulled_at,source,ok,rows,teams_matched,players_matched,unmatched_teams,error,sec
 2026-11-05T14:10:31+00:00,rotowire,True,5,1.0,1.0,,,0.5,1331.0
 2026-11-05T14:10:31+00:00,covers,True,98,0.929,0.0,Miami (FL) Hurricanes; San Jose State Spartans; UNLV Runnin' Rebels; Utah Runnin' Utes,,1.0,1901301.0
 2026-11-05T14:10:31+00:00,cbs,True,0,,,,,0.5,454809.0
+2026-11-05T14:20:37+00:00,espn,True,0,,,,,8.6,149.0
+2026-11-05T14:20:37+00:00,rotowire,True,5,1.0,1.0,,,0.4,1331.0
+2026-11-05T14:20:37+00:00,covers,True,98,0.929,0.0,Miami (FL) Hurricanes; San Jose State Spartans; UNLV Runnin' Rebels; Utah Runnin' Utes,,1.2,1901301.0
+2026-11-05T14:20:37+00:00,cbs,True,0,,,,,0.7,454842.0
+2026-11-05T14:30:45+00:00,espn,True,0,,,,,11.7,149.0
+2026-11-05T14:30:45+00:00,rotowire,True,5,1.0,1.0,,,0.5,1331.0
+2026-11-05T14:30:45+00:00,covers,True,98,0.929,0.0,Miami (FL) Hurricanes; San Jose State Spartans; UNLV Runnin' Rebels; Utah Runnin' Utes,,1.4,1901301.0
+2026-11-05T14:30:45+00:00,cbs,True,0,,,,,0.8,454850.0
+2026-11-05T14:40:34+00:00,espn,True,0,,,,,11.1,149.0
+2026-11-05T14:40:34+00:00,rotowire,True,5,1.0,1.0,,,0.4,1331.0
+2026-11-05T14:40:34+00:00,covers,True,98,0.929,0.0,Miami (FL) Hurricanes; San Jose State Spartans; UNLV Runnin' Rebels; Utah Runnin' Utes,,1.5,1905962.0
+2026-11-05T14:40:34+00:00,cbs,True,0,,,,,0.2,454850.0
+2026-11-05T14:50:33+00:00,espn,True,0,,,,,2.7,149.0
+2026-11-05T14:50:33+00:00,rotowire,True,5,1.0,1.0,,,0.5,1331.0
+2026-11-05T14:50:33+00:00,covers,True,98,0.929,0.0,Miami (FL) Hurricanes; San Jose State Spartans; UNLV Runnin' Rebels; Utah Runnin' Utes,,1.6,1905962.0
+2026-11-05T14:50:33+00:00,cbs,True,0,,,,,0.8,454848.0
