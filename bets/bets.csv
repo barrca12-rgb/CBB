@@ -211,3 +211,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-05|401909491|spread|home,2026-11-05,401909491,spread,Creighton -26.5,home,156,2330,Creighton,Le Moyne,-26.5,-26.5,-120.0,FanDuel,2.71,29.21,0.5,yes,2026-11-04T22:51:02+00:00,,,,,,,,open,
 2026-11-04|401902276|total|under,2026-11-04,401902276,total,Under 156.5,under,2086,161,Butler,Fairleigh Dickinson,156.5,156.5,-105.0,DraftKings,8.63,147.87,1.0,yes,2026-11-04T23:10:45+00:00,,,,,,,,open,
 2026-11-05|401911273|total|under,2026-11-05,401911273,total,Under 139.5,under,2612,2066,Saint Peter's,Binghamton,139.5,139.5,-110.0,FanDuel,3.53,135.97,1.0,yes,2026-11-04T23:21:02+00:00,,,,,,,,open,
+2026-11-05|401921679|spread|home,2026-11-05,401921679,spread,Merrimack -7.5,home,2771,2349,Merrimack,UMass Lowell,-7.5,-7.5,-105.0,Fanatics,2.72,10.22,0.5,yes,2026-11-05T00:01:11+00:00,,,,,,,,open,
