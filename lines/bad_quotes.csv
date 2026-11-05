@@ -108,3 +108,4 @@ first_seen,date,game_id,market,side,book,number,price,median_others,books,reason
 2026-11-05T13:40:47+00:00,2026-11-05,401909491,spread,-,BetRivers,-25.5,,-29.5,7,off-market
 2026-11-05T13:40:47+00:00,2026-11-05,401921133,spread,-,FanDuel,-26.5,,-29.5,7,off-market
 2026-11-05T13:40:47+00:00,2026-11-05,401921133,spread,-,BetRivers,-26.5,,-29.5,7,off-market
+2026-11-05T13:50:53+00:00,2026-11-05,401921698,total,-,Caesars,141.5,,138.5,7,off-market
