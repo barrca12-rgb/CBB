@@ -1,0 +1,39 @@
+Totals scoring level (PLAN.md). Final total average miss and bias (model - actual), 2015-2026:
+              variant       part  games  total MAE  bias
+              T0 base  days 0-20  11750     13.732  0.07
+              T0 base days 21-60  16919     13.119  0.13
+              T0 base        all  65282     13.245 -0.02
+T1 k=0.5 7d (primary)  days 0-20  11750     13.720  0.13
+T1 k=0.5 7d (primary) days 21-60  16919     13.112  0.04
+T1 k=0.5 7d (primary)        all  65282     13.235  0.01
+         T1 k=0.25 7d  days 0-20  11750     13.720  0.10
+         T1 k=0.25 7d days 21-60  16919     13.113  0.09
+         T1 k=0.25 7d        all  65282     13.236 -0.00
+          T1 k=1.0 7d  days 0-20  11750     13.765  0.19
+          T1 k=1.0 7d days 21-60  16919     13.127 -0.04
+          T1 k=1.0 7d        all  65282     13.253  0.04
+         T1 k=0.5 14d  days 0-20  11750     13.733  0.33
+         T1 k=0.5 14d days 21-60  16919     13.111  0.01
+         T1 k=0.5 14d        all  65282     13.237  0.03
+T2 smooth environment  days 0-20  11750     13.727  0.08
+T2 smooth environment days 21-60  16919     13.123  0.08
+T2 smooth environment        all  65282     13.247 -0.07
+
+Opener totals at 3+ (assumed -110):
+              variant market   seasons  plays  win%  ROI%@-110  mean move our way  same plays win% at close
+              T0 base  total 2015-2017   3822 58.35      11.21               1.18                     55.06
+              T0 base  total 2024-2026   4256 57.54       9.82               1.45                     53.63
+T1 k=0.5 7d (primary)  total 2015-2017   3850 58.00      10.55               1.29                     55.01
+T1 k=0.5 7d (primary)  total 2024-2026   4491 56.84       8.48               1.40                     53.15
+         T1 k=0.25 7d  total 2015-2017   3771 58.18      10.89               1.27                     55.05
+         T1 k=0.25 7d  total 2024-2026   4308 57.13       9.03               1.44                     53.19
+          T1 k=1.0 7d  total 2015-2017   4245 57.27       9.19               1.24                     54.34
+          T1 k=1.0 7d  total 2024-2026   5076 55.75       6.40               1.29                     52.50
+         T1 k=0.5 14d  total 2015-2017   3833 58.48      11.47               1.30                     55.54
+         T1 k=0.5 14d  total 2024-2026   4400 57.05       8.88               1.42                     53.26
+T2 smooth environment  total 2015-2017   4009 57.11       8.90               1.16                     54.13
+T2 smooth environment  total 2024-2026   4244 57.49       9.73               1.45                     53.60
+
+Proposal rule:
+  T1 k=0.5 7d (primary): misses lower True; win % within 0.3 False; higher somewhere False -> no
+  T2 smooth environment: misses lower False; win % within 0.3 False; higher somewhere False -> no

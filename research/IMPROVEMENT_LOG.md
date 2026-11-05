@@ -2,6 +2,12 @@
 
 Dated findings from each review, newest first. "Nothing new" is a valid entry.
 
+## 2026-11-05: totals scoring level; weekly review set up
+
+- Totals: no historical scoring-level bias (within 0.1 point all season). Recent-miss correction cut misses by 0.01
+  but cost 0.35-0.70 points of opener totals win %; smooth environment no better. No proposal.
+- Weekly review: `python -m research.weekly_review`, scheduled Mondays 1:17 pm ET (first Nov 9).
+
 ## 2026-11-05: roster-based preseason ratings (v2)
 
 - Development, transfer level and lineup values: correlation 0.805 -> 0.812, RMSE 5.00 -> 4.92. Gate needed +0.010
