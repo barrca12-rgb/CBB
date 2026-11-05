@@ -61,24 +61,14 @@ def _event_br():
     return e
 
 
-def test_betrivers_is_show_only_and_kept_apart_from_novig(tmp_path, monkeypatch):
-    # BetRivers (Chad, Nov 5): never in the card's lines or the quote log; its own rows in the show-only file
+def test_betrivers_is_a_card_book_and_novig_stays_show_only():
+    # BetRivers (Chad, Nov 5: "betrivers can be a play"): in the card's lines and the quote log like any of our books
     df, _ = odds_api.parse([_event_br()], LOOK)
-    assert list(df["book"]) == ["DraftKings"]
-    assert {o["book"] for o in odds_api.parse.observations} == {"DraftKings"}
+    assert sorted(df["book"]) == ["BetRivers", "DraftKings"]
+    br = df[df["book"] == "BetRivers"].iloc[0]
+    assert br["home_spread"] == -4.0 and br["home_spread_odds"] == -105 and br["over_odds"] == -108
+    assert {o["book"] for o in odds_api.parse.observations} == {"BetRivers", "DraftKings"}
     d = odds_api.parse_display([_event_br()], LOOK)
-    assert set(d["book"]) == {"Novig", "BetRivers"}
-    # the phone alert's Novig line stays Novig; the board asks for BetRivers by name
+    assert list(d["book"]) == ["Novig"]
     assert odds_api.display_side(odds_api.display_quote(10, 20, d), "spread", "home") == (-4.5, -102)
-    assert odds_api.display_side(odds_api.display_quote(20, 10, d, book="BetRivers"), "spread", "away") == (-4.0, -105)
-    # the board: a BetRivers column added to a pregame game's book_lines, oriented to the card's home team
-    from cbb import report_html
-    monkeypatch.setattr(odds_api, "NOVIG_LATEST", str(tmp_path / "latest.csv"))
-    d.to_csv(odds_api.NOVIG_LATEST, index=False)
-    games = [{"state": "pre", "home_id": 20, "away_id": 10, "book_lines": [{"book": "DraftKings", "home_spread": 4.5}]},
-             {"state": "in", "home_id": 10, "away_id": 20, "book_lines": []}]
-    report_html._add_display_books(games)
-    br = [x for x in games[0]["book_lines"] if x["book"] == "BetRivers"][0]
-    assert br["home_spread"] == 4.0 and br["home_spread_odds"] == -115 and br["over_odds"] == -108 and br["show_only"]
-    assert not [x for x in games[0]["book_lines"] if x["book"] == "Novig"]
-    assert games[1]["book_lines"] == []
+    assert odds_api.display_quote(10, 20, d, book="BetRivers") is None

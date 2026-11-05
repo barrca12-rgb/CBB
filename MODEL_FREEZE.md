@@ -1258,3 +1258,22 @@ c3772c044b4754b2616b4db93f80d2fd860df88bd2bde90e478ecd7857980983  cbb/run_day.py
 a589adfa5985cd18402ae2c77c7ef6b7833a371a06d295d5bcecc74de5c4ad65  cbb/odds_api.py
 56939f803f56c9fcf27ff1da9e6cc2acfe765a5dd9f74ab8efe006a24a885e96  cbb/odds.py
 ```
+
+## 2026-11-05 (later): BetRivers becomes a play book (selection)
+
+- **Change (Chad, Nov 5: "betrivers can be a play").** `cbb/odds_api.py` moves `betrivers` from DISPLAY_BOOKS into
+  BOOKS. BetRivers prices from The Odds API now enter the card's lines and the quote log like the other six books,
+  so a play can be logged at BetRivers when it has the best number or price. The SGO feed (`cbb/odds.py`) is
+  unchanged: BetRivers comes from The Odds API only.
+- **Cost:** none. Seven play books plus Novig stay within one region.
+- **Close and CLV:** unchanged. The frozen protocol's close (`audit/forward_eval.BOOKS`) still takes the last valid
+  quote across its own book list, which does not include BetRivers. A BetRivers play is graded against that close
+  like any other play.
+- **Card:** the BetRivers column is now a normal book column; the show-only path from earlier today is removed.
+- **Tests:** `audit/test_novig.py::test_betrivers_is_a_card_book_and_novig_stays_show_only`.
+- **Discord note:** `2026-11-05-betrivers-play`.
+- **New fingerprint:**
+
+```
+c8a9865f7838b6078306152e16ea506f4848b79f3ab0950a19384193cf7f0a89  cbb/odds_api.py
+```

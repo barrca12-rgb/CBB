@@ -34,12 +34,11 @@ from . import quotelog, teams
 
 API = "https://api.the-odds-api.com/v4/sports/basketball_ncaab/odds"
 BOOKS = {"draftkings": "DraftKings", "fanduel": "FanDuel", "betmgm": "BetMGM", "williamhill_us": "Caesars",
-         "fanatics": "Fanatics", "espnbet": "theScore Bet"}   # up to 10 books cost one region
-# bet365 removed Nov 5 (Chad: "remove bet365"): the key was accepted but no game ever came back priced
+         "fanatics": "Fanatics", "espnbet": "theScore Bet", "betrivers": "BetRivers"}   # up to 10 books cost one region
+# bet365 removed Nov 5 (Chad: "remove bet365"): the key was accepted but no game ever came back priced.
+# BetRivers added Nov 5 (Chad: "betrivers can be a play"): a full card book like the others, from this feed only
 CORE = ["draftkings", "fanduel", "betmgm", "williamhill_us"]
-# show-only: never in the card's lines, the quote log or a close. BetRivers added Nov 5 (Chad: "add bet rivers to
-# the odds board for plays"): shown on the odds board and in line shopping only; 9 books still cost one region
-DISPLAY_BOOKS = {"novig": "Novig", "betrivers": "BetRivers"}
+DISPLAY_BOOKS = {"novig": "Novig"}   # show-only: never in the card's lines, the quote log or a close
 NOVIG_LATEST = os.path.join(os.path.dirname(__file__), "..", "lines", "novig_latest.csv")
 NOVIG_LOG = os.path.join(os.path.dirname(__file__), "..", "lines", "novig_log.csv")
 DISPLAY_COLS = ["book", "event_id", "start", "home_id", "away_id", "home_spread", "home_spread_odds", "away_spread_odds",
