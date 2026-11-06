@@ -22,6 +22,7 @@ import math
 import os
 import subprocess
 
+import numpy as np
 import pandas as pd
 
 from cbb import clv_pinnacle, clv_primary, tracker
@@ -472,12 +473,59 @@ def receipts(day: str, min_move: float = 2.0) -> tuple[str, str]:
     return png, cap
 
 
+def movers(day: str, n: int = 5) -> tuple[str, str]:
+    """Today's main plays the market has moved toward most since we posted: our number vs the median across books
+    now (the card's Moved column, reports/cbb_<day>.csv). Pregame games with a current line only."""
+    b = tracker.load("v1")
+    d = b[(b["date"] == day) & (b["status"] == "open")].copy()
+    if not len(d):
+        raise SystemExit(f"No open main plays on {day}.")
+    c = pd.read_csv(os.path.join(ROOT, "reports", f"cbb_{day}.csv"))
+    c = c[c["state"] == "pre"].set_index("game_id")
+    d = d[d["game_id"].isin(c.index)]
+    hs, tot = d["game_id"].map(c["line_home_spread"]), d["game_id"].map(c["line_total"])
+    sp = d["market"] == "spread"
+    d["now"] = np.where(sp, np.where(d["side"] == "home", hs, -hs), tot)
+    d["moved"] = np.where(sp | (d["side"] == "under"), d["line"] - d["now"], d["now"] - d["line"])
+    q = d.dropna(subset=["moved"]).query("moved > 0").sort_values(["moved", "logged_at"], ascending=[False, True]).head(n)
+    if not len(q):
+        raise SystemExit(f"No {day} play has moved our way (yet).")
+    rows = []
+    for _, r in q.iterrows():
+        t = pd.Timestamp(r["logged_at"]).tz_convert("America/New_York")
+        now = f"{r['now']:+g}".replace("-", MINUS) if r["market"] == "spread" else f"{r['now']:g}"
+        game = html.escape(f"{r['away']} at {r['home']}")
+        rows.append(f"<div class='r' style='grid-template-columns:minmax(0,1fr) 230px 130px 90px;height:112px'>"
+                    f"<span class='p' style='font-size:30px;line-height:1.15'>{_pick(r['pick'])}"
+                    f"<br><span class='s' style='font-size:18px'>{game}</span></span>"
+                    f"<span class='s' style='font-size:19px'>posted {t:%a %-I:%M %p}</span>"
+                    f"<span class='x' style='font-size:24px;color:#c9ced4'>now {now}</span>"
+                    f"<span class='x org' style='font-size:26px'>{_num(r['moved'])}</span></div>")
+    n_all = int(d["moved"].notna().sum())
+    ours = int((d["moved"] > 0).sum())
+    body = (f"<div class='l'>{_brand()}<div class='day'>{_day_label(pd.Timestamp(day))}</div><div class='big sm'>TODAY'S</div>"
+            f"<div class='big sm org' style='margin-top:0'>BIGGEST MOVES</div><div class='split'><b>{ours} of {n_all}</b> of today's "
+            f"plays already have a better number than the market does now. These moved the most since we posted.</div></div>"
+            f"<div class='rt' style='grid-template-columns:1fr'><div>{''.join(rows)}</div></div>"
+            f"<div class='f'><span>Now = median of the sportsbooks' current lines. Games still to tip.</span><span class='h'>{HANDLE}</span></div>")
+    png = _render(_page(body), f"movers_{day}")
+    top = q.iloc[0]
+    cap = (f"Today's biggest moves since we posted.\n\n" +
+           "\n".join(f"{str(r['pick']).replace(' -', ' ' + MINUS)}"
+                     f"{' (' + r['away'] + '/' + r['home'] + ')' if r['market'] == 'total' else ''} → now "
+                     f"{format(r['now'], '+g').replace('-', MINUS) if r['market'] == 'spread' else format(r['now'], 'g')} "
+                     f"({_num(r['moved'])})" for _, r in q.iterrows()) +
+           f"\n\n{ours} of {n_all} plays today already beat the current market.")
+    open(os.path.join(OUT, f"movers_{day}.txt"), "w").write(cap + "\n")
+    return png, cap
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("kind", choices=["recap", "top", "marquee", "ratings", "receipts"])
+    ap.add_argument("kind", choices=["recap", "top", "marquee", "ratings", "receipts", "movers"])
     ap.add_argument("--date")
     a = ap.parse_args()
     day = a.date or f"{_today_et() - pd.Timedelta(days=1 if a.kind == 'recap' else 0):%Y-%m-%d}"
-    png, cap = {"recap": recap, "top": top_plays, "marquee": marquee, "ratings": power_ratings, "receipts": receipts}[a.kind](day)
+    png, cap = {"recap": recap, "top": top_plays, "marquee": marquee, "ratings": power_ratings, "receipts": receipts, "movers": movers}[a.kind](day)
     print(png)
     print(cap)
