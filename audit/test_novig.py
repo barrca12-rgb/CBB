@@ -97,6 +97,7 @@ def _event_pin(start):
 def test_pinnacle_is_logged_apart_and_never_reaches_the_card(tmp_path, monkeypatch):
     # Pinnacle (Chad, Nov 6): no-vig close only; never a card line, an observation or a show-only book
     monkeypatch.setattr(odds_api, "PINNACLE_LOG", str(tmp_path / "pin.csv"))
+    monkeypatch.setattr(odds_api, "PINNACLE_LOG_TARGETED", str(tmp_path / "pin_targeted.csv"))
     far = (pd.Timestamp.now(tz="UTC") + pd.Timedelta(hours=5)).isoformat()
     df, _ = odds_api.parse([_event_pin(far)], LOOK)
     assert "Pinnacle" not in set(df["book"]) and "pinnacle" not in set(df["book"])
