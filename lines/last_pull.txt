@@ -1,1 +1,1 @@
-2026-11-06 01:10 UTC  events 0  book-game rows 207 (0 SGO, 207 The Odds API)  unmatched teams: American Eagles, CSU Northridge Matadors, Cal Baptist Lancers, N Colorado Bears, St. Thomas (MN) Tommies, UMKC Kangaroos  The Odds API credits left: 95022
+2026-11-06 01:20 UTC  events 0  book-game rows 207 (0 SGO, 207 The Odds API)  unmatched teams: American Eagles, CSU Northridge Matadors, Cal Baptist Lancers, N Colorado Bears, St. Thomas (MN) Tommies, UMKC Kangaroos  The Odds API credits left: 95013
