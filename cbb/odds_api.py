@@ -39,6 +39,14 @@ BOOKS = {"draftkings": "DraftKings", "fanduel": "FanDuel", "betmgm": "BetMGM", "
 # BetRivers added Nov 5 (Chad: "betrivers can be a play"): a full card book like the others, from this feed only
 CORE = ["draftkings", "fanduel", "betmgm", "williamhill_us"]
 DISPLAY_BOOKS = {"novig": "Novig"}   # show-only: never in the card's lines, the quote log or a close
+# Pinnacle (EU book; Chad, Nov 6: "I only want to measure CLV with Pinnacle's no-vig close"): logged only, for the
+# no-vig close (cbb/clv_pinnacle.py). Never a play book, never on the board, never in the card's lines or the quote
+# log. It rides the card call and the targeted poll; both stay at 10 books or fewer, so no extra credits.
+PINNACLE = "pinnacle"
+PINNACLE_LOG = os.path.join(os.path.dirname(__file__), "..", "lines", "pinnacle_log.csv")
+PINNACLE_COLS = ["event_id", "start", "home_id", "away_id", "home_spread", "home_spread_odds", "away_spread_odds",
+                 "total", "over_odds", "under_odds", "spread_updated", "total_updated", "observed_at", "source"]
+PINNACLE_NEAR = pd.Timedelta(minutes=45)   # every quote within this of the start is logged, changed or not
 NOVIG_LATEST = os.path.join(os.path.dirname(__file__), "..", "lines", "novig_latest.csv")
 NOVIG_LOG = os.path.join(os.path.dirname(__file__), "..", "lines", "novig_log.csv")
 DISPLAY_COLS = ["book", "event_id", "start", "home_id", "away_id", "home_spread", "home_spread_odds", "away_spread_odds",
@@ -241,6 +249,53 @@ def save_display(d: pd.DataFrame) -> None:
         new.to_csv(NOVIG_LOG, mode="a", header=not os.path.exists(NOVIG_LOG), index=False)
 
 
+def log_pinnacle(events: list, source: str, lookup: dict | None = None) -> int:
+    """Append Pinnacle's spread and total for pregame events to lines/pinnacle_log.csv: a row when the quote changed
+    since its last logged row, and every row within PINNACLE_NEAR of the start (the closing window). Oriented to our
+    home and away ids. Returns rows written. Never raises into the card."""
+    lookup = lookup or _lookup()
+    now = pd.Timestamp.now(tz="UTC")
+    rows = []
+    for ev in events:
+        st = pd.to_datetime(ev.get("commence_time"), utc=True)
+        if st <= now:
+            continue
+        hn, an = ev.get("home_team"), ev.get("away_team")
+        h, a = lookup.get(teams.norm(hn or "")), lookup.get(teams.norm(an or ""))
+        if h is None or a is None:
+            continue
+        for bk in ev.get("bookmakers") or []:
+            if bk.get("key") != PINNACLE:
+                continue
+            r = {"event_id": ev.get("id"), "start": ev.get("commence_time"), "home_id": h, "away_id": a,
+                 "observed_at": now.isoformat(timespec="seconds"), "source": source}
+            for m in bk.get("markets") or []:
+                upd = m.get("last_update") or bk.get("last_update")
+                for o in m.get("outcomes") or []:
+                    name, price = o.get("name"), o.get("price")
+                    if m.get("key") == "spreads":
+                        if name == hn:
+                            r["home_spread"], r["home_spread_odds"], r["spread_updated"] = o.get("point"), price, upd
+                        elif name == an:
+                            r["away_spread_odds"] = price
+                    elif m.get("key") == "totals" and str(name).lower() in ("over", "under"):
+                        r[f"{str(name).lower()}_odds"], r["total"], r["total_updated"] = price, o.get("point"), upd
+            rows.append(r)
+    if not rows:
+        return 0
+    d = pd.DataFrame(rows).reindex(columns=PINNACLE_COLS)
+    key = ["home_spread", "home_spread_odds", "away_spread_odds", "total", "over_odds", "under_odds"]
+    near = (pd.to_datetime(d["start"], utc=True) - now) <= PINNACLE_NEAR
+    if os.path.exists(PINNACLE_LOG):
+        last = pd.read_csv(PINNACLE_LOG).drop_duplicates("event_id", keep="last").set_index("event_id")[key]
+        prev = last.reindex(d["event_id"])
+        same = (prev.to_numpy(dtype=float) == d[key].to_numpy(dtype=float)) | (prev.isna().to_numpy() & d[key].isna().to_numpy())
+        d = d[~same.all(axis=1) | near.to_numpy()]
+    if len(d):
+        d.to_csv(PINNACLE_LOG, mode="a", header=not os.path.exists(PINNACLE_LOG), index=False)
+    return len(d)
+
+
 def display_quote(home_id: int, away_id: int, d: pd.DataFrame | None = None, max_age_h: float = 2.0,
                   book: str = "Novig") -> dict | None:
     """The latest show-only (Novig) prices for a game, oriented to the given home and away ids (the feed may list
@@ -290,8 +345,12 @@ def fetch_quotes(api_key: str | None = None) -> tuple[list, dict]:
     api_key = api_key or os.environ.get("ODDS_API_KEY", "")
     refused = set(json.load(open(REFUSED))) if os.path.exists(REFUSED) else set()
     events, hdr = _get({"apiKey": api_key, "regions": "us", "markets": "spreads,totals", "oddsFormat": "american",
-                        "bookmakers": ",".join(b for b in BOOKS if b not in refused)})
+                        "bookmakers": ",".join([b for b in BOOKS if b not in refused] + [PINNACLE])})
     parse(events)
+    try:   # Pinnacle's own log for the no-vig close; never reaches the observations
+        log_pinnacle(events, "targeted")
+    except Exception as e:
+        print(f"Pinnacle log failed ({e}); continuing.")
     left = hdr.get("x-requests-remaining")
     return parse.observations, {"observed_at": parse.observed_at, "events": len(events),
                                 "cost": int(float(hdr["x-requests-last"])) if hdr.get("x-requests-last") else None,
@@ -301,7 +360,7 @@ def fetch_quotes(api_key: str | None = None) -> tuple[list, dict]:
 def fetch(api_key: str | None = None) -> pd.DataFrame:
     api_key = api_key or os.environ.get("ODDS_API_KEY", "")
     refused = set(json.load(open(REFUSED))) if os.path.exists(REFUSED) else set()
-    books = [b for b in list(BOOKS) + list(DISPLAY_BOOKS) if b not in refused]   # show-only books ride the same call
+    books = [b for b in list(BOOKS) + list(DISPLAY_BOOKS) + [PINNACLE] if b not in refused]   # show-only books ride the same call
     params = {"apiKey": api_key, "regions": "us", "markets": "spreads,totals,h2h", "oddsFormat": "american",
               "bookmakers": ",".join(books), "includeLinks": "true"}
     try:
@@ -332,6 +391,10 @@ def fetch(api_key: str | None = None) -> pd.DataFrame:
         save_display(parse_display(events))
     except Exception as e:
         print(f"Show-only prices failed ({e}); continuing.")
+    try:   # Pinnacle's own log for the no-vig close
+        log_pinnacle(events, "card")
+    except Exception as e:
+        print(f"Pinnacle log failed ({e}); continuing.")
     fetch.events = len(events)
     fetch.observations, fetch.observed_at = parse.observations, parse.observed_at
     fetch.last_cost = int(float(hdr["x-requests-last"])) if hdr.get("x-requests-last") else None

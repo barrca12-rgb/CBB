@@ -83,3 +83,29 @@ def test_change_log_handles_a_missing_number(tmp_path, monkeypatch):
     odds_api.save_display(d)
     odds_api.save_display(d)
     assert len(pd.read_csv(odds_api.NOVIG_LOG)) == 1
+
+
+def _event_pin(start):
+    e = _event(start)
+    pin = {"key": "pinnacle", "title": "Pinnacle", "last_update": pd.Timestamp.now(tz="UTC").isoformat(), "markets": [
+        {"key": "spreads", "last_update": "x", "outcomes": [{"name": "Home U", "price": -108, "point": -5.0}, {"name": "Away U", "price": 102, "point": 5.0}]},
+        {"key": "totals", "last_update": "x", "outcomes": [{"name": "Over", "price": -104, "point": 141.0}, {"name": "Under", "price": -106, "point": 141.0}]}]}
+    e["bookmakers"].append(pin)
+    return e
+
+
+def test_pinnacle_is_logged_apart_and_never_reaches_the_card(tmp_path, monkeypatch):
+    # Pinnacle (Chad, Nov 6): no-vig close only; never a card line, an observation or a show-only book
+    monkeypatch.setattr(odds_api, "PINNACLE_LOG", str(tmp_path / "pin.csv"))
+    far = (pd.Timestamp.now(tz="UTC") + pd.Timedelta(hours=5)).isoformat()
+    df, _ = odds_api.parse([_event_pin(far)], LOOK)
+    assert "Pinnacle" not in set(df["book"]) and "pinnacle" not in set(df["book"])
+    assert {o["book"] for o in odds_api.parse.observations} == {"DraftKings"}
+    assert list(odds_api.parse_display([_event_pin(far)], LOOK)["book"]) == ["Novig"]
+    assert odds_api.log_pinnacle([_event_pin(far)], "card", LOOK) == 1
+    assert odds_api.log_pinnacle([_event_pin(far)], "card", LOOK) == 0          # unchanged and far from the start
+    r = pd.read_csv(odds_api.PINNACLE_LOG).iloc[0]
+    assert (r["home_spread"], r["home_spread_odds"], r["away_spread_odds"], r["total"], r["under_odds"]) == (-5.0, -108, 102, 141.0, -106)
+    near = (pd.Timestamp.now(tz="UTC") + pd.Timedelta(minutes=20)).isoformat()
+    assert odds_api.log_pinnacle([_event_pin(near)], "targeted", LOOK) == 1
+    assert odds_api.log_pinnacle([_event_pin(near)], "targeted", LOOK) == 1     # closing window: every quote

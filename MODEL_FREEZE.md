@@ -1318,3 +1318,19 @@ ef3744b1a4c7be3ae2bf2142c6883a19f9182b88a67a4411ca53ca3af3d8ce2c  .github/workfl
   After each card run it logs what the F2 blended prior (research/roster_prior PLAN_v4) would play, next to the live
   model and a matched refit, to `bets/shadow_rp4/`. Read plan: `research/roster_prior/SHADOW_PLAN.md`.
 - **Unchanged:** the live model, the card, picks, stakes, alerts, the bet log and every fingerprinted file.
+
+## 2026-11-06: Pinnacle quotes logged for a no-vig close (logging only)
+
+- **Why (Chad, Nov 6):** "I only want to measure clv with pinnacles no vig close". Test call (2 credits): The Odds
+  API prices college basketball at Pinnacle (34 of 56 events with spreads and totals; DraftKings 47).
+- **Change (`cbb/odds_api.py`):** the card call and the targeted poll also request `pinnacle` (9 and 8 books,
+  so no extra credits). Its quotes go only to `lines/pinnacle_log.csv` (a row on any change, and every quote in
+  the 45 minutes before the start). Pinnacle never reaches the card's lines, the board, the quote log, a close or
+  any pick.
+- **Unchanged:** picks, books, stakes, alerts, closes and the official CLV, until the Pinnacle measure is built.
+- **Tests:** `audit/test_novig.py::test_pinnacle_is_logged_apart_and_never_reaches_the_card`.
+- **New fingerprint:**
+
+```
+a2e08b50ed4ac26994be2c2f1705674cf684a0336c8724736f5d7bbd23653c52  cbb/odds_api.py
+```
