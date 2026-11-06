@@ -221,7 +221,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-05|401926780|spread|away,2026-11-05,401926780,spread,Jacksonville State +5.5,away,6,55,South Alabama,Jacksonville State,5.5,5.5,-105.0,theScore Bet,5.5,-0.0,0.4,yes,2026-11-05T11:50:56+00:00,5.5,0.0,0.0,83.0,80.0,W,0.381,settled,
 2026-11-05|401909706|spread|away|bandB,2026-11-05,401909706,spread,Buffalo +19.5,away,221,2084,Pittsburgh,Buffalo,19.5,19.5,-110.0,theScore Bet,2.1,17.4,0.5,yes,2026-11-05T11:50:59+00:00,17.5,2.0,0.06999712412436032,80.0,61.0,W,0.455,settled,bandB
 2026-11-05|401925031|spread|home|bandB,2026-11-05,401925031,spread,North Texas +2.5,home,249,2377,North Texas,McNeese,2.5,2.5,-105.0,Fanatics,2.14,-0.36,0.5,yes,2026-11-05T16:21:06+00:00,2.0,0.5,0.01758434989146518,77.0,67.0,W,0.476,settled,bandB
-2026-11-06|401909552|total|over,2026-11-06,401909552,total,Over 145.5,over,103,113,Boston College,Massachusetts,145.5,145.5,-110.0,Fanatics,3.49,148.99,1.0,yes,2026-11-05T18:31:13+00:00,,,,,,,,open,
+2026-11-06|401909552|total|over,2026-11-06,401909552,total,Over 145.5,over,103,113,Boston College,Massachusetts,145.5,145.5,-110.0,Fanatics,3.49,148.99,1.0,yes,2026-11-05T18:31:13+00:00,143.5,-2.0,-0.048238488214981334,71.0,55.0,L,-1.0,settled,
 2026-11-06|401920726|spread|away,2026-11-06,401920726,spread,Eastern Illinois +35.5,away,2294,2197,Iowa,Eastern Illinois,35.5,35.5,-110.0,Fanatics,5.43,30.07,0.4,yes,2026-11-05T18:41:05+00:00,,,,,,,,open,
 2026-11-06|401909523|spread|away|bandB,2026-11-06,401909523,spread,Detroit Mercy +30.5,away,269,2174,Marquette,Detroit Mercy,30.5,30.5,-110.0,FanDuel,2.46,28.04,0.5,yes,2026-11-05T18:51:17+00:00,,,,,,,,open,bandB
 2026-11-06|401921754|spread|home,2026-11-06,401921754,spread,UCF -10.5,home,2116,43,UCF,Yale,-10.5,-10.5,-120.0,FanDuel,3.02,13.52,0.4,yes,2026-11-05T19:11:00+00:00,,,,,,,,open,
@@ -302,3 +302,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-07|401911470|spread|home|bandB,2026-11-07,401911470,spread,UC Irvine -5.5,home,300,23,UC Irvine,San José State,-5.5,-5.5,-115.0,theScore Bet,2.34,7.84,0.5,yes,2026-11-06T20:31:34+00:00,,,,,,,,open,bandB
 2026-11-07|401909532|spread|home,2026-11-07,401909532,spread,Nebraska -3,home,158,2507,Nebraska,Providence,-3.0,-3.0,-110.0,Caesars,2.99,5.99,0.45,yes,2026-11-06T20:51:22+00:00,,,,,,,,open,
 2026-11-06|401920717|total|over,2026-11-06,401920717,total,Over 150.5,over,2483,331,Oregon,Eastern Washington,150.5,150.5,-105.0,DraftKings,5.45,155.95,1.0,yes,2026-11-06T22:11:09+00:00,,,,,,,,open,
+2026-11-06|401921285|total|under,2026-11-06,401921285,total,Under 151.5,under,222,107,Villanova,Holy Cross,151.5,151.5,-108.0,BetRivers,4.09,147.41,1.0,yes,2026-11-06T23:11:09+00:00,,,,,,,,open,
