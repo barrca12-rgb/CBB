@@ -179,7 +179,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-04|401917514|total|over,2026-11-04,401917514,total,Over 157.5,over,2351,2511,Loyola Marymount,Queens University,157.5,157.5,-110.0,FanDuel,3.64,161.14,1.0,yes,2026-11-03T23:21:11+00:00,161.5,4.0,0.09577427411304962,95.0,96.0,W,0.909,settled,
 2026-11-05|401917177|spread|home,2026-11-05,401917177,spread,Penn State -15.5,home,213,236,Penn State,Chattanooga,-15.5,-15.5,-110.0,FanDuel,4.02,19.52,0.5,yes,2026-11-04T17:53:41+00:00,,,,,,,,open,
 2026-11-05|401909563|spread|away,2026-11-05,401909563,spread,Coastal Carolina +38.5,away,150,324,Duke,Coastal Carolina,38.5,38.5,-105.0,Fanatics,4.86,33.64,0.5,yes,2026-11-04T17:53:41+00:00,,,,,,,,open,
-2026-11-05|401909726|total|under,2026-11-05,401909726,total,Under 154.5,under,238,154,Vanderbilt,Wake Forest,154.5,154.5,-110.0,theScore Bet,3.28,151.22,1.0,yes,2026-11-04T18:11:17+00:00,,,,,,,,open,
+2026-11-05|401909726|total|under,2026-11-05,401909726,total,Under 154.5,under,238,154,Vanderbilt,Wake Forest,154.5,154.5,-110.0,theScore Bet,3.28,151.22,1.0,yes,2026-11-04T18:11:17+00:00,155.5,-1.0,-0.02416352663316984,74.0,51.0,W,0.909,settled,
 2026-11-05|401920377|spread|home,2026-11-05,401920377,spread,Virginia Tech -19,home,259,2382,Virginia Tech,Mercer,-19.0,-19.0,-105.0,Fanatics,3.23,22.23,0.5,yes,2026-11-04T18:11:17+00:00,,,,,,,,open,
 2026-11-05|401921698|total|under,2026-11-05,401921698,total,Under 140.5,under,254,119,Utah,Towson,140.5,140.5,-110.0,FanDuel,3.45,137.05,1.0,yes,2026-11-04T18:31:12+00:00,,,,,,,,open,
 2026-11-05|401918968|spread|home,2026-11-05,401918968,spread,SMU -23.5,home,2567,2678,SMU,VMI,-23.5,-23.5,-120.0,FanDuel,3.82,27.32,0.5,yes,2026-11-04T18:51:02+00:00,,,,,,,,open,
@@ -191,8 +191,8 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-05|401909563|total|under,2026-11-05,401909563,total,Under 148.5,under,150,324,Duke,Coastal Carolina,148.5,148.5,-105.0,theScore Bet,3.19,145.31,1.0,yes,2026-11-04T21:51:13+00:00,,,,,,,,open,
 2026-11-05|401925754|spread|away|bandB,2026-11-05,401925754,spread,Toledo +26.5,away,127,2649,Michigan State,Toledo,26.5,26.5,-110.0,theScore Bet,2.03,24.47,0.5,yes,2026-11-04T22:01:16+00:00,,,,,,,,open,bandB
 2026-11-05|401925031|total|under,2026-11-05,401925031,total,Under 144,under,249,2377,North Texas,McNeese,144.0,144.0,-110.0,Fanatics,3.13,140.87,1.0,yes,2026-11-04T22:21:05+00:00,139.0,5.0,0.11906661590587608,77.0,67.0,P,0.0,settled,
-2026-11-05|401916287|spread|home,2026-11-05,401916287,spread,Indiana -26.5,home,84,91,Indiana,Bellarmine,-26.5,-26.5,-110.0,FanDuel,2.67,29.17,0.5,yes,2026-11-04T22:21:05+00:00,,,,,,,,open,
-2026-11-05|401916287|total|under,2026-11-05,401916287,total,Under 153.5,under,84,91,Indiana,Bellarmine,153.5,153.5,-110.0,FanDuel,3.63,149.87,1.0,yes,2026-11-04T22:21:05+00:00,,,,,,,,open,
+2026-11-05|401916287|spread|home,2026-11-05,401916287,spread,Indiana -26.5,home,84,91,Indiana,Bellarmine,-26.5,-26.5,-110.0,FanDuel,2.67,29.17,0.5,yes,2026-11-04T22:21:05+00:00,-29.5,3.0,0.10432203080282465,92.0,69.0,L,-0.5,settled,
+2026-11-05|401916287|total|under,2026-11-05,401916287,total,Under 153.5,under,84,91,Indiana,Bellarmine,153.5,153.5,-110.0,FanDuel,3.63,149.87,1.0,yes,2026-11-04T22:21:05+00:00,153.5,0.0,0.0,92.0,69.0,L,-1.0,settled,
 2026-11-05|401919804|total|under,2026-11-05,401919804,total,Under 141.5,under,2550,112358,Seton Hall,Long Island University,141.5,141.5,-110.0,FanDuel,3.24,138.26,1.0,yes,2026-11-04T22:21:05+00:00,,,,,,,,open,
 2026-11-05|401920691|total|under,2026-11-05,401920691,total,Under 141.5,under,2217,261,Fairfield,Vermont,141.5,141.5,-105.0,FanDuel,4.07,137.43,1.0,yes,2026-11-04T22:21:05+00:00,,,,,,,,open,
 2026-11-05|401919804|spread|home|bandB,2026-11-05,401919804,spread,Seton Hall -17.5,home,2550,112358,Seton Hall,Long Island University,-17.5,-17.5,-110.0,FanDuel,2.21,19.71,0.5,yes,2026-11-04T22:22:52+00:00,,,,,,,,open,bandB
