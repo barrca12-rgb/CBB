@@ -1311,3 +1311,10 @@ b3375e4f142675a95e9c0d93f35d041dba4c5b4a33a655b1a0b5ea2513dfe87c  .github/workfl
 ```
 ef3744b1a4c7be3ae2bf2142c6883a19f9182b88a67a4411ca53ca3af3d8ce2c  .github/workflows/update.yml
 ```
+
+## 2026-11-06: roster-prior shadow added (research only, no live change)
+
+- New: `cbb/shadow_rp4.py`, `.github/workflows/shadow_rp4.yml`, `data/shadow_rp4.json`, `data/shadow_rp4_base.json`.
+  After each card run it logs what the F2 blended prior (research/roster_prior PLAN_v4) would play, next to the live
+  model and a matched refit, to `bets/shadow_rp4/`. Read plan: `research/roster_prior/SHADOW_PLAN.md`.
+- **Unchanged:** the live model, the card, picks, stakes, alerts, the bet log and every fingerprinted file.
