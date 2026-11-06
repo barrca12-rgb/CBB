@@ -2,6 +2,14 @@
 
 Dated findings from each review, newest first. "Nothing new" is a valid entry.
 
+## 2026-11-06: duplicate alerts fixed; one-game check; absence values
+
+- Duplicate alerts (4 plays this season): a queued card run checked out its trigger commit, not the branch tip. Fixed.
+- One-game rosters are not why the 2026-27 replay shifted mismatches (gap -0.27 vs 1.5 threshold). The replay used
+  the current model's stage-2 weights; the blend's own weights offset most of the shift. A fair live test needs the
+  blend's own stage 2.
+- Absences by learned values: margin miss slightly lower, opener spreads slightly lower. No proposal.
+
 ## 2026-11-06: roster prior v4 (different fits)
 
 - F2 (learned box rates + v3 features) chosen on 2016-21, confirmed on 2022-26 (0.826 vs 0.816).

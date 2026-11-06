@@ -1,0 +1,19 @@
+Absence values (PLAN.md). Top-10% threshold |miss_impact_diff| = 0.17
+                   variant            games     n  margin MAE
+                   M0 base              all 65282      8.7699
+                   M0 base top 10% |impact|  6529      8.6167
+     M1 + impact (primary)              all 65282      8.7666
+     M1 + impact (primary) top 10% |impact|  6529      8.5936
+M2 impact replaces minutes              all 65282      8.7750
+M2 impact replaces minutes top 10% |impact|  6529      8.6325
+
+Opener spreads at 2.5+:
+                   variant market   seasons  plays  win%  ROI%@-110  mean move our way  same plays win% at close
+                   M0 base spread 2015-2017   2039 57.51       9.56               1.33                     53.06
+                   M0 base spread 2024-2026   2271 57.69      10.10               1.18                     53.53
+     M1 + impact (primary) spread 2015-2017   2092 57.34       9.25               1.35                     52.96
+     M1 + impact (primary) spread 2024-2026   2254 57.50       9.74               1.20                     53.25
+M2 impact replaces minutes spread 2015-2017   2069 56.51       7.70               1.30                     51.98
+M2 impact replaces minutes spread 2024-2026   2131 57.34       9.44               1.16                     53.41
+
+Proposal rule (M1): margin miss lower True; win % within 0.3 True; higher somewhere False -> no
