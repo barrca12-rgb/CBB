@@ -305,3 +305,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-06|401921285|total|under,2026-11-06,401921285,total,Under 151.5,under,222,107,Villanova,Holy Cross,151.5,151.5,-108.0,BetRivers,4.09,147.41,1.0,yes,2026-11-06T23:11:09+00:00,,,,,,,,open,
 2026-11-07|401920770|total|under,2026-11-07,401920770,total,Under 146.5,under,2182,2142,Drexel,Colgate,146.5,146.5,-105.0,FanDuel,4.27,142.23,1.0,yes,2026-11-06T23:21:39+00:00,,,,,,,,open,
 2026-11-07|401920411|spread|home|bandB,2026-11-07,401920411,spread,High Point -10.5,home,2272,265,High Point,Washington State,-10.5,-10.5,-110.0,FanDuel,2.4,12.9,0.5,yes,2026-11-06T23:31:21+00:00,,,,,,,,open,bandB
+2026-11-07|401919805|spread|home|bandB,2026-11-07,401919805,spread,La Salle -4.5,home,2325,112358,La Salle,Long Island University,-4.5,-4.5,-120.0,FanDuel,2.24,6.74,0.5,yes,2026-11-06T23:41:54+00:00,,,,,,,,open,bandB
