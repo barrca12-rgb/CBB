@@ -1,1 +1,1 @@
-2026-11-06 00:15 UTC  events 0  book-game rows 279 (0 SGO, 279 The Odds API)  unmatched teams: CSU Northridge Matadors, Cal Baptist Lancers, Gardner-Webb Bulldogs, Loyola (Chi) Ramblers, N Colorado Bears, St. Thomas (MN) Tommies, UMKC Kangaroos  The Odds API credits left: 95078
+2026-11-06 00:20 UTC  events 0  book-game rows 279 (0 SGO, 279 The Odds API)  unmatched teams: CSU Northridge Matadors, Cal Baptist Lancers, Gardner-Webb Bulldogs, Loyola (Chi) Ramblers, N Colorado Bears, St. Thomas (MN) Tommies, UMKC Kangaroos  The Odds API credits left: 95071
