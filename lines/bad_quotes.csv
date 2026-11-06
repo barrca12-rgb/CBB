@@ -189,3 +189,4 @@ first_seen,date,game_id,market,side,book,number,price,median_others,books,reason
 2026-11-06T19:11:23+00:00,2026-11-07,401909532,spread,-,Caesars,-4.0,,0.25,3,off-market
 2026-11-06T19:11:23+00:00,2026-11-07,401909532,spread,-,DraftKings,-4.5,,0.5,3,off-market
 2026-11-06T19:11:23+00:00,2026-11-07,401909532,spread,-,Fanatics,5.0,,-4.25,3,off-market
+2026-11-06T19:21:32+00:00,2026-11-07,401909532,spread,-,Fanatics,4.0,,-4.25,3,off-market
