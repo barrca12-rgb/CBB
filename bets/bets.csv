@@ -297,3 +297,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-07|401924895|total|under,2026-11-07,401924895,total,Under 154.5,under,167,2464,New Mexico,Northern Arizona,154.5,154.5,-115.0,theScore Bet,3.5,151.0,1.0,yes,2026-11-06T20:21:24+00:00,,,,,,,,open,
 2026-11-07|401911262|spread|home,2026-11-07,401911262,spread,Canisius +11.5,home,2099,179,Canisius,St. Bonaventure,11.5,11.5,-105.0,theScore Bet,3.15,-8.35,0.45,yes,2026-11-06T20:21:24+00:00,,,,,,,,open,
 2026-11-07|401917519|spread|away,2026-11-07,401917519,spread,Sacramento State +19.5,away,2541,16,Santa Clara,Sacramento State,19.5,19.5,-105.0,theScore Bet,4.53,14.97,0.45,yes,2026-11-06T20:21:24+00:00,,,,,,,,open,
+2026-11-07|401920435|total|under,2026-11-07,401920435,total,Under 154.5,under,2692,3084,Weber State,Utah Valley,154.5,154.5,-110.0,theScore Bet,4.37,150.13,1.0,yes,2026-11-06T20:31:30+00:00,,,,,,,,open,
+2026-11-07|401920435|spread|away|bandB,2026-11-07,401920435,spread,Utah Valley -7.5,away,2692,3084,Weber State,Utah Valley,-7.5,-7.5,-110.0,theScore Bet,2.4,-9.9,0.5,yes,2026-11-06T20:31:34+00:00,,,,,,,,open,bandB
+2026-11-07|401911470|spread|home|bandB,2026-11-07,401911470,spread,UC Irvine -5.5,home,300,23,UC Irvine,San José State,-5.5,-5.5,-115.0,theScore Bet,2.34,7.84,0.5,yes,2026-11-06T20:31:34+00:00,,,,,,,,open,bandB
