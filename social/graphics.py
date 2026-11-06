@@ -24,7 +24,7 @@ import subprocess
 
 import pandas as pd
 
-from cbb import clv_primary, tracker
+from cbb import clv_pinnacle, clv_primary, tracker
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 OUT = os.path.join(ROOT, "out", "social")
@@ -97,6 +97,8 @@ def _today_et() -> pd.Timestamp:
 
 
 def _num(x: float, d: int = 1) -> str:
+    if round(x, d) == 0:
+        return "0"
     return f"{x:+.{d}f}".rstrip("0").rstrip(".").replace("-", MINUS)
 
 
@@ -189,12 +191,13 @@ def recap(day: str) -> tuple[str, str]:
     d["_o"] = d["result"].map({"W": 0, "P": 1, "L": 2})
     d = d.sort_values(["_o", "past"], ascending=[True, False])
     mk = {m: d[d["market"] == m] for m in ("total", "spread")}
-    cl = clv_primary.primary(d).set_index("bet_id")["clv_primary"].dropna()
+    pa = clv_pinnacle.attach(d)
+    cl = pd.to_numeric(pa.loc[pa["pin_status"] == "ok", "pin_clv"], errors="coerce").dropna()
     sea = _season(day)
     dt = pd.Timestamp(day)
     parts = [f"{m.capitalize()}s <b>{_rec((x['result'] == 'W').sum(), (x['result'] == 'L').sum(), (x['result'] == 'P').sum())}</b> "
              f"({_units(x['profit'].sum())})" for m, x in mk.items() if len(x)]
-    clv_line = (f"<br><b>{100 * (cl > 0).mean():.0f}%</b> beat the closing line (avg <b>{_num(cl.mean(), 2)}</b>)"
+    clv_line = (f"<br><b>{int((cl > 0).sum())} of {len(cl)}</b> beat Pinnacle's no-vig close (avg <b>{cl.mean():+.1f}%</b> CLV)"
                 if len(cl) else "")
     body = (f"<div class='l'>{_brand()}<div class='day'>{_day_label(dt)}</div><div class='big'>{_rec(w, l, p)}</div>"
             f"<div class='u {'org' if u >= 0 else 'L'}'>{_units(u).upper()}</div>"
@@ -209,9 +212,9 @@ def recap(day: str) -> tuple[str, str]:
         lines.append(f"{str(best['pick'].iloc[0]).replace(' -', ' ' + MINUS)} cashed by {abs(best['past'].iloc[0]):g}.")
     if len(worst):
         lines.append(f"Worst miss: {str(worst['pick'].iloc[0]).replace(' -', ' ' + MINUS)} by {abs(worst['past'].iloc[0]):g}.")
-    lines.append(", ".join(f"{m}s {_rec((x['result'] == 'W').sum(), (x['result'] == 'L').sum())}" for m, x in mk.items() if len(x)) + ".")
+    lines.append(", ".join(f"{m}s {_rec((x['result'] == 'W').sum(), (x['result'] == 'L').sum(), (x['result'] == 'P').sum())}" for m, x in mk.items() if len(x)) + ".")
     if len(cl):
-        lines.append(f"{100 * (cl > 0).mean():.0f}% beat the close.")
+        lines.append(f"{int((cl > 0).sum())} of {len(cl)} beat Pinnacle's no-vig close.")
     lines[3] = lines[3][0].upper() + lines[3][1:]
     cap = " ".join(lines[:3]) + "\n\n" + " ".join(lines[3:]) + f"\n\nSeason {_rec(sea['w'], sea['l'], sea['p'])}, {_units(sea['u'])}."
     open(os.path.join(OUT, f"recap_{day}.txt"), "w").write(cap + "\n")
