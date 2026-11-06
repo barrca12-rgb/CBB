@@ -200,10 +200,10 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-05|401925819|total|under,2026-11-05,401925819,total,Under 152.5,under,2429,2247,Charlotte,Georgia State,152.5,152.5,-110.0,theScore Bet,3.42,149.08,1.0,yes,2026-11-04T22:41:09+00:00,,,,,,,,open,
 2026-11-05|401921681|spread|away,2026-11-05,401921681,spread,New Hampshire +1.5,away,2520,160,Rider,New Hampshire,1.5,1.5,-115.0,FanDuel,3.12,-1.62,0.5,yes,2026-11-04T22:41:09+00:00,,,,,,,,open,
 2026-11-05|401921680|spread|home,2026-11-05,401921680,spread,Quinnipiac -5.5,home,2514,2803,Quinnipiac,Bryant,-5.5,-5.5,-110.0,FanDuel,2.71,8.21,0.5,yes,2026-11-04T22:41:09+00:00,,,,,,,,open,
-2026-11-05|401919823|total|under,2026-11-05,401919823,total,Under 141.5,under,87,2385,Notre Dame,Mercyhurst,141.5,141.5,-105.0,FanDuel,3.4,138.1,1.0,yes,2026-11-04T22:41:09+00:00,,,,,,,,open,
+2026-11-05|401919823|total|under,2026-11-05,401919823,total,Under 141.5,under,87,2385,Notre Dame,Mercyhurst,141.5,141.5,-105.0,FanDuel,3.4,138.1,1.0,yes,2026-11-04T22:41:09+00:00,136.5,5.0,0.11906661590587608,83.0,56.0,W,0.952,settled,
 2026-11-05|401926780|total|under,2026-11-05,401926780,total,Under 145.5,under,6,55,South Alabama,Jacksonville State,145.5,145.5,-110.0,DraftKings,5.18,140.32,1.0,yes,2026-11-04T22:41:09+00:00,,,,,,,,open,
 2026-11-05|401920913|total|over,2026-11-05,401920913,total,Over 151.5,over,202,2459,Tulsa,Northern Illinois,151.5,151.5,-110.0,FanDuel,4.88,156.38,1.0,yes,2026-11-04T22:41:09+00:00,,,,,,,,open,
-2026-11-05|401919823|spread|home|bandB,2026-11-05,401919823,spread,Notre Dame -19.5,home,87,2385,Notre Dame,Mercyhurst,-19.5,-19.5,-110.0,FanDuel,2.09,21.59,0.5,yes,2026-11-04T22:41:18+00:00,,,,,,,,open,bandB
+2026-11-05|401919823|spread|home|bandB,2026-11-05,401919823,spread,Notre Dame -19.5,home,87,2385,Notre Dame,Mercyhurst,-19.5,-19.5,-110.0,FanDuel,2.09,21.59,0.5,yes,2026-11-04T22:41:18+00:00,-21.5,2.0,0.06999712412436032,83.0,56.0,W,0.455,settled,bandB
 2026-11-05|401926780|spread|away|bandB,2026-11-05,401926780,spread,Jacksonville State +2.5,away,6,55,South Alabama,Jacksonville State,2.5,2.5,100.0,theScore Bet,2.22,0.28,0.5,yes,2026-11-04T22:41:18+00:00,,,,,,,,open,bandB
 2026-11-05|401921678|total|under,2026-11-05,401921678,total,Under 151.5,under,2363,399,Manhattan,UAlbany,151.5,151.5,-110.0,FanDuel,5.88,145.62,1.0,yes,2026-11-04T22:51:02+00:00,,,,,,,,open,
 2026-11-05|401921094|spread|home,2026-11-05,401921094,spread,Rice -3.5,home,242,2837,Rice,East Texas A&M,-3.5,-3.5,-110.0,FanDuel,2.88,6.38,0.5,yes,2026-11-04T22:51:02+00:00,,,,,,,,open,
