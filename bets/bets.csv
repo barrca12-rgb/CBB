@@ -281,3 +281,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-06|401906802|spread|away,2026-11-06,401906802,spread,Mississippi Valley State +40.5,away,201,2400,Oklahoma,Mississippi Valley State,40.5,40.5,-110.0,BetMGM,3.5,37.0,0.45,yes,2026-11-06T13:41:12+00:00,,,,,,,,open,
 2026-11-06|401921809|spread|away|bandB,2026-11-06,401921809,spread,Texas Southern +31.5,away,99,2640,LSU,Texas Southern,31.5,31.5,-110.0,FanDuel,2.21,29.29,0.5,yes,2026-11-06T13:51:15+00:00,,,,,,,,open,bandB
 2026-11-06|401911305|total|under,2026-11-06,401911305,total,Under 147.5,under,225,104,Brown,Boston University,147.5,147.5,-110.0,Caesars,9.49,138.01,1.0,yes,2026-11-06T15:07:13+00:00,,,,,,,,open,
+2026-11-06|401919015|spread|away,2026-11-06,401919015,spread,Nicholls +15.5,away,5,2447,UAB,Nicholls,15.5,15.5,-108.0,FanDuel,2.95,12.55,0.45,yes,2026-11-06T16:11:20+00:00,,,,,,,,open,
+2026-11-06|401920952|spread|away,2026-11-06,401920952,spread,Southern Illinois +1.5,away,140,79,Kansas City,Southern Illinois,1.5,1.5,-110.0,BetMGM,3.8,-2.3,0.45,yes,2026-11-06T16:11:20+00:00,,,,,,,,open,
