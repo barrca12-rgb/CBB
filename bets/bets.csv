@@ -271,3 +271,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-06|401909523|spread|away,2026-11-06,401909523,spread,Detroit Mercy +31.5,away,269,2174,Marquette,Detroit Mercy,31.5,31.5,-104.0,FanDuel,3.49,28.01,0.45,yes,2026-11-06T07:19:35+00:00,,,,,,,,open,
 2026-11-06|401929356|spread|home,2026-11-06,401929356,spread,Portland +0.5,home,2501,250,Portland,UT Arlington,0.5,0.5,-106.0,BetRivers,2.76,2.26,0.45,yes,2026-11-06T08:01:02+00:00,,,,,,,,open,
 2026-11-06|401922248|total|under,2026-11-06,401922248,total,Under 158.5,under,2229,2697,Florida International,West Florida,158.5,158.5,-110.0,DraftKings,6.91,151.59,1.0,yes,2026-11-06T09:11:06+00:00,,,,,,,,open,
+2026-11-06|401919040|total|under,2026-11-06,401919040,total,Under 175.5,under,197,2511,Oklahoma State,Queens University,175.5,175.5,-110.0,theScore Bet,3.99,171.51,1.0,yes,2026-11-06T09:21:13+00:00,,,,,,,,open,
