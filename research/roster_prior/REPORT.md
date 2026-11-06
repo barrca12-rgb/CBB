@@ -207,3 +207,27 @@ The blend lowers the home side's margin by 1.3 points on average (it rates misma
 its spread plays into underdogs, the segment losing this season. Four days; roster from games so far; 77 teams fall
 back to the current prior. A warning sign worth a backtest check of the blend's favorite/underdog split on big
 spreads, not a verdict.
+
+## Version 4: underdog/mismatch check (pre-registered in PLAN_v4_check.md, Nov 6, 2026)
+
+Opener spreads at 2.5+, 2015-2026 (`out/v4_check.csv`):
+
+| Days 0-20 | Base plays / win % | Blend plays / win % |
+|---|---|---|
+| Favorites, all | 730 / 56.1 | 662 / **58.7** |
+| Favorites, spread 7-14.5 | 272 / 51.7 | 249 / **57.0** |
+| Underdogs, all | 480 / 57.6 | 512 / 57.9 |
+| Underdogs, spread 15+ | 129 / 60.9 | 149 / 59.5 |
+| Underdog share of plays | 39.4% | 43.2% |
+
+Full season: underdog share 51.8% vs 54.1%; underdogs 58.4% vs 58.5%; favorites 56.6% vs 57.5%.
+
+- **Red flag not triggered.** The blend's early underdog plays on 15+ spreads win 59.5% (flag: below 52.4%), and its
+  underdog share is 3.8 points above base (flag: more than 10 with a lower underdog win %).
+- **Compression is mild historically:** in days 0-20 the blend moves the favorite's margin by -0.40 points on 15-19.5
+  spreads and -0.35 on 20+ spreads. In the 2026-27 replay the average shift was -1.3, about three times the
+  historical size, which is why it turned so many plays into underdogs this week. Why this season's shift is larger
+  (rosters from only 1-2 games so far, 77 teams falling back, or a wider preseason scale this year) is the open
+  question.
+- **The blend's backtest gain comes mostly from better favorite plays** (fewer, and stronger in the 7-14.5 band), not
+  from underdogs.
