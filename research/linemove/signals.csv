@@ -143,3 +143,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-06T15:42:14+00:00,2026-11-06,401917515,2026-11-07T02:30Z,301,2627,San Diego,Tarleton State,spread,away,v1,Tarleton State +7.5,6.0,-115.0,Fanatics,2026-11-05T18:20:46+00:00,7.5,-110.0,FanDuel,1.5,1281.5,1.29,2.79,4.71
 2026-11-06T16:01:03+00:00,2026-11-06,401926135,2026-11-07T00:00Z,164,2441,Rutgers,New Haven,total,over,v1,Over 137.5,141.5,-115.0,BetMGM,2026-11-06T13:20:40+00:00,137.5,-110.0,FanDuel,4.0,160.4,-0.0,4.0,141.5
 2026-11-06T16:40:43+00:00,2026-11-06,401919048,2026-11-07T01:00Z,2628,2582,TCU,Southern,spread,away,bandB,Southern +27.5,25.5,-110.0,FanDuel,2026-11-06T13:50:41+00:00,27.5,-105.0,theScore Bet,2.0,170.0,0.17,2.17,25.33
+2026-11-06T18:50:46+00:00,2026-11-06,401921767,2026-11-07T00:00Z,277,56,West Virginia,Stetson,spread,away,bandB,Stetson +27.5,24.5,-105.0,BetMGM,2026-11-06T13:20:40+00:00,27.5,-105.0,DraftKings,3.0,330.1,-0.57,2.43,25.07
