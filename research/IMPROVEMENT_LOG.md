@@ -2,6 +2,12 @@
 
 Dated findings from each review, newest first. "Nothing new" is a valid entry.
 
+## 2026-11-06: roster prior v3 (xRAPM-style)
+
+- Learned box weights predict held-out 2026 lineup impact 0.53 vs Game Score 0.38.
+- Team priors: correlation 0.812 -> 0.817 (gate needed 0.822): stopped. 2025-26: 0.836 vs KenPom/Barttorvik 0.841.
+- Box-anchored lineup ratings added nothing. New lead: absences valued by learned weights (backlog 1b).
+
 ## 2026-11-05: totals scoring level; weekly review set up
 
 - Totals: no historical scoring-level bias (within 0.1 point all season). Recent-miss correction cut misses by 0.01

@@ -1,0 +1,53 @@
+exit 0
+Step 0: predicting 2026 lineup ratings (players with 300+ possessions, possession-weighted correlation)
+  learned weights (fit on 2024-2025): 0.529   Game Score fixed weights: 0.379   players 818
+  learned weights, 2024-2026, points per 100 possessions per unit of each stat per 100 (off / def):
+    off: pts +0.118, fga2 -0.099, fga3 -0.070, fta -0.043, oreb +0.079, dreb +0.003, ast +0.141, stl +0.073, blk -0.009, tov -0.230, pf -0.014
+    def: pts +0.032, fga2 -0.038, fga3 -0.037, fta -0.011, oreb +0.030, dreb +0.048, ast +0.077, stl +0.182, blk +0.128, tov -0.119, pf +0.026
+
+Step 1: priors vs the season's final margin rating, 2016-2026
+                               n   rmse   corr
+prior                 tier                    
+(a) KenPom/Barttorvik all   3917  6.239  0.830
+                      high  1300  6.700  0.726
+                      low   1298  6.302  0.623
+                      mid   1291  5.550  0.595
+(d) roster V2a        all   3890  4.920  0.812
+                      high  1300  4.947  0.685
+                      low   1298  5.013  0.556
+                      mid   1292  4.796  0.555
+(f) roster V3a        all   3890  4.857  0.817
+                      high  1300  4.801  0.704
+                      low   1298  4.961  0.568
+                      mid   1292  4.807  0.554
+(g) roster V3b        all   3890  4.882  0.816
+                      high  1300  4.849  0.699
+                      low   1298  4.979  0.565
+                      mid   1292  4.816  0.552
+
+2025-2026 only (where V3b differs):
+                              n   rmse   corr
+prior                 tier                   
+(a) KenPom/Barttorvik all   729  6.114  0.841
+(d) roster V2a        all   726  5.129  0.827
+(f) roster V3a        all   726  5.000  0.836
+(g) roster V3b        all   726  5.128  0.827
+
+By season (correlation):
+prior   (a) KenPom/Barttorvik  (d) roster V2a  (f) roster V3a  (g) roster V3b
+season                                                                       
+2016                    0.857           0.824           0.826           0.826
+2017                    0.856           0.814           0.825           0.825
+2018                    0.842           0.814           0.817           0.817
+2019                    0.832           0.823           0.827           0.827
+2020                    0.837           0.819           0.827           0.827
+2021                    0.757           0.789           0.788           0.788
+2022                    0.829           0.791           0.793           0.793
+2023                    0.814           0.793           0.800           0.800
+2024                    0.820           0.815           0.816           0.816
+2025                    0.840           0.826           0.836           0.826
+2026                    0.842           0.828           0.836           0.827
+
+Gate: V3a corr 0.817 vs V2a 0.812; RMSE 4.857 vs 4.920 -> STOP
+
+[exited with code 0]

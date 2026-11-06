@@ -88,3 +88,45 @@ not run.
 The three additions help, mostly in the transfer-portal years, but not by enough to pass the bar set in advance.
 The biggest piece still missing is freshman and recruit quality: every newcomer gets one value, while KenPom and
 Barttorvik use recruiting rankings. That needs a data source Chad approves.
+
+# Version 3 (pre-registered in PLAN_v3.md, Nov 6, 2026): learned box weights and box-anchored lineup ratings
+
+Prompted by the xRAPM article (roycewebb.com, NBA). Rerun: `python -m research.roster_prior.build_v3 check` (output in
+`out/v3_step1.txt`, `out/v3_step1.csv`).
+
+## Verdict: stopped at the step-1 gate. No step 2, no proposal.
+
+## Step 0: learned weights value players much better
+
+Predicting 2026 lineup ratings (818 players with 300+ possessions, possession-weighted correlation):
+
+| Player rating | Correlation |
+|---|---|
+| Game Score fixed weights (current) | 0.379 |
+| **Learned weights, fit on 2024-2025 lineup data** | **0.529** |
+
+The learned weights (2024-2026) reward assists, offensive rebounds and steals; penalize turnovers heavily (offense
+-0.23 and defense -0.12 per turnover per 100 possessions) and missed shots; and give defensive credit to steals,
+blocks and defensive rebounds. Points alone earn far less than in Game Score once shot attempts are charged.
+
+## Step 1: team priors
+
+| Prior vs final margin rating, 2016-2026 | RMSE | Correlation | 2025-2026 correlation |
+|---|---|---|---|
+| KenPom/Barttorvik | 6.24 | 0.830 | 0.841 |
+| Roster V2a | 4.92 | 0.812 | 0.827 |
+| **Roster V3a** (learned weights) | 4.86 | 0.817 | **0.836** |
+| Roster V3b (+ box-anchored lineup ratings) | 4.88 | 0.816 | 0.827 |
+
+The gate needed +0.010 correlation or -0.10 RMSE over V2a; V3a gave +0.005 and -0.06. Step 2 does not run.
+
+## Reading
+
+- The learned weights are a clear improvement in valuing players (0.38 -> 0.53 on a held-out season), but most of
+  that gain washes out at the team level: a roster average smooths over individual errors.
+- Box-anchored lineup ratings (V3b) add nothing on top of the learned weights; on two seasons of lineup data the
+  lineup part is still noise.
+- Found after the result: in 2025-2026, V3a's correlation (0.836) is within 0.005 of KenPom/Barttorvik (0.841). Across
+  all seasons, roster ratings have moved 0.805 -> 0.812 -> 0.817 (v1 -> v2 -> v3) against 0.830.
+- The learned weights are reusable: injury absences are valued today with minutes only (`miss_diff`); valuing an
+  absent player by learned-weight impact is a separate, testable idea (backlog).
