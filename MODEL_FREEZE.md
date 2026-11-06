@@ -1353,3 +1353,20 @@ a2e08b50ed4ac26994be2c2f1705674cf684a0336c8724736f5d7bbd23653c52  cbb/odds_api.p
 e5837fad5b54ec8d4806e0b992a844a63e2054297b14c1cebb54ef8df99201b4  cbb/odds_api.py
 308c9e7003432cc52e55f81c8708d1fb57fa96e071f5078fc60e3206a6d2acb5  .github/workflows/quotes.yml
 ```
+
+## 2026-11-06: The Odds API team names (Chad: "add the names")
+
+- **Why:** 13 schools' games were dropped from The Odds API because their names there did not match ours (listed
+  as unmatched in lines/last_pull.txt). They reached the card only through SGO: 5 books, pulled every 30 minutes.
+  Example: Mississippi Valley State +40.5 at BetMGM while Caesars was at +42 (Chad, Nov 6).
+- **Change (`data/team_aliases.csv`):** 13 `oddsapi` rows (American, Boston University, CSUN, Cal Baptist, FIU,
+  Loyola Maryland, Mississippi Valley State, Mount St. Mary's, Northern Colorado, Nicholls, St. Thomas,
+  Texas A&M-Corpus Christi, Kansas City). Each was checked to map to the right ESPN id.
+- **Effect:** those games now get all 7 play books, refreshed every card run. The model, edges, thresholds and
+  stakes are unchanged; a play's book or number can change because more books are seen. Discord note:
+  `2026-11-06-oddsapi-names`.
+- **New fingerprint:**
+
+```
+766dde543fe3481a3c1e41cec8c3b39812b4c2da5f8888d0e90848fa45748584  data/team_aliases.csv
+```
