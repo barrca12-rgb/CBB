@@ -140,3 +140,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-06T15:25:47+00:00,2026-11-06,401922219,2026-11-07T03:30Z,26,2454,UCLA,North Florida,spread,away,v1,North Florida +35,32.5,-114.0,BetRivers,2026-11-06T07:00:52+00:00,35.0,-110.0,Fanatics,2.5,504.9,1.2,3.7,31.3
 2026-11-06T15:35:55+00:00,2026-11-06,401912208,2026-11-07T00:00Z,228,44,Clemson,American University,spread,home,v1,Clemson -15.5,-17.5,-110.0,FanDuel,2026-11-06T00:30:50+00:00,-15.5,-110.0,FanDuel,2.0,905.1,0.75,2.75,18.25
 2026-11-06T15:35:55+00:00,2026-11-06,401921732,2026-11-07T02:00Z,9,2458,Arizona State,Northern Colorado,total,over,v1,Over 144,149.5,-115.0,theScore Bet,2026-11-05T21:20:45+00:00,144.0,-110.0,Caesars,5.5,1095.2,-2.07,3.43,147.43
+2026-11-06T15:42:14+00:00,2026-11-06,401917515,2026-11-07T02:30Z,301,2627,San Diego,Tarleton State,spread,away,v1,Tarleton State +7.5,6.0,-115.0,Fanatics,2026-11-05T18:20:46+00:00,7.5,-110.0,FanDuel,1.5,1281.5,1.29,2.79,4.71
