@@ -124,7 +124,6 @@ game_id,actual_tip,quality,reason,source,fetched_at
 401906848,,ambiguous,wall clocks out of order (more than 5 s backwards),"espn play-by-play, earliest period-1 play at 20:00",2026-11-05T23:41:26+00:00
 401921423,,ambiguous,wall clocks out of order (more than 5 s backwards),"espn play-by-play, earliest period-1 play at 20:00",2026-11-05T23:41:26+00:00
 401924894,,ambiguous,wall clocks out of order (more than 5 s backwards),"espn play-by-play, earliest period-1 play at 20:00",2026-11-05T23:41:26+00:00
-401920377,,missing,no play-by-play,"espn play-by-play, earliest period-1 play at 20:00",2026-11-06T00:01:29+00:00
 401909706,2026-11-06T00:01:25+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-06T00:02:17+00:00
 401919823,2026-11-06T00:01:25+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-06T00:02:17+00:00
 401925819,2026-11-06T00:02:30+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-06T00:02:51+00:00
@@ -132,3 +131,8 @@ game_id,actual_tip,quality,reason,source,fetched_at
 401911273,2026-11-06T00:03:12+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-06T00:03:43+00:00
 401921680,2026-11-06T00:03:10+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-06T00:03:43+00:00
 401921679,2026-11-06T00:03:35+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-06T00:03:57+00:00
+401920377,2026-11-06T00:01:15+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-06T00:10:45+00:00
+401921678,2026-11-06T00:04:25+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-06T00:10:45+00:00
+401921681,2026-11-06T00:06:51+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-06T00:10:45+00:00
+401921747,,missing,no play-by-play,"espn play-by-play, earliest period-1 play at 20:00",2026-11-06T00:10:45+00:00
+401924718,2026-11-06T00:03:40+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-06T00:10:45+00:00
