@@ -1,7 +1,8 @@
 """CLV against Pinnacle's no-vig close (Chad, Nov 6: "I only want to measure clv with pinnacles no vig close").
 
 For each play:
-  1. Pinnacle close: the last Pinnacle quote observed in the 15 minutes before the feed's start (lines/pinnacle_log.csv
+  1. Pinnacle close: the last Pinnacle quote observed in the 15 minutes before tip: the earlier of the feed's start and
+     the actual jump ball (lines/tipoffs.csv, ESPN play-by-play), so an in-game quote can never count (lines/pinnacle_log.csv
      and lines/pinnacle_log_targeted.csv, live from Nov 6; lines/pinnacle_hist.csv, the historical backfill for earlier plays).
   2. No-vig: both sides' implied probabilities scaled to sum to 1 (multiplicative), giving our side's fair chance at
      Pinnacle's number.
@@ -46,12 +47,24 @@ def quotes() -> pd.DataFrame:
     return q.dropna(subset=["t", "st"])
 
 
-def one(r: pd.Series, q: pd.DataFrame) -> dict:
+def tips() -> pd.Series:
+    """game_id -> actual jump ball (UTC) from lines/tipoffs.csv; empty when the file is missing."""
+    p = os.path.join(ROOT, "lines", "tipoffs.csv")
+    if not os.path.exists(p):
+        return pd.Series(dtype="datetime64[ns, UTC]")
+    t = pd.read_csv(p, usecols=["game_id", "actual_tip"]).dropna().drop_duplicates("game_id", keep="last")
+    return pd.Series(pd.to_datetime(t["actual_tip"], utc=True, errors="coerce", format="ISO8601").to_numpy(),
+                     index=t["game_id"].astype(str)).dropna()
+
+
+def one(r: pd.Series, q: pd.DataFrame, tip: pd.Timestamp | None = None) -> dict:
     g = q[((q["home_id"] == r["home_id"]) & (q["away_id"] == r["away_id"])) |
           ((q["home_id"] == r["away_id"]) & (q["away_id"] == r["home_id"]))]
     if not len(g):
         return {"status": "no Pinnacle line"}
     st = g["st"].max()
+    if tip is not None and not pd.isna(tip):
+        st = min(st, tip)   # the feed's start can run minutes past the real jump ball (Nov 2-3 backfill: up to 8)
     w = g[(g["t"] < st) & (g["t"] >= st - WINDOW)].sort_values("t")
     col = ["home_spread", "home_spread_odds", "away_spread_odds"] if r["market"] == "spread" else ["total", "over_odds", "under_odds"]
     w = w.dropna(subset=col)
@@ -80,9 +93,10 @@ def one(r: pd.Series, q: pd.DataFrame) -> dict:
 def table(since: str = "2026-11-01") -> pd.DataFrame:
     b = pd.read_csv(os.path.join(ROOT, "bets", "bets.csv"))
     b = b[(b["status"] != "void") & (b["date"].astype(str) >= since)]
-    q = quotes()
+    q, tp = quotes(), tips()
     rows = [{"bet_id": r["bet_id"], "kind": "band B" if r.get("bet_type") == "bandB" else "main", "pick": r["pick"],
-             "book": r["book"], "odds": r["odds"], "result": r["result"], **one(r, q)} for _, r in b.iterrows()]
+             "book": r["book"], "odds": r["odds"], "result": r["result"], **one(r, q, tp.get(str(r["game_id"])))}
+            for _, r in b.iterrows()]
     return pd.DataFrame(rows)
 
 
@@ -105,8 +119,8 @@ if __name__ == "__main__":
 
 def attach(b: pd.DataFrame) -> pd.DataFrame:
     """b with pin_status, pin_clv (expected ROI %, + = beat the no-vig close), pin_points and pin_close per bet."""
-    q = quotes()
-    res = [one(r, q) if len(q) else {"status": "no Pinnacle line"} for _, r in b.iterrows()]
+    q, tp = quotes(), tips()
+    res = [one(r, q, tp.get(str(r["game_id"]))) if len(q) else {"status": "no Pinnacle line"} for _, r in b.iterrows()]
     b = b.copy()
     b["pin_status"] = [r["status"] for r in res]
     b["pin_clv"] = [r.get("clv_ev") for r in res]
