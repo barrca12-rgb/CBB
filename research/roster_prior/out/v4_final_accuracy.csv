@@ -1,0 +1,9 @@
+variant,part,games,margin MAE,total MAE
+base,days 0-20,11750,9.174,13.732
+base,all,65282,8.77,13.245
+"R1 v1 roster prior, no outside",days 0-20,11750,9.488,13.878
+"R1 v1 roster prior, no outside",all,65282,8.875,13.282
+"R1v4 F2 prior, no outside",days 0-20,11750,9.395,13.817
+"R1v4 F2 prior, no outside",all,65282,8.848,13.267
+R3v4 F2 blended prior + outside,days 0-20,11750,9.15,13.737
+R3v4 F2 blended prior + outside,all,65282,8.766,13.243

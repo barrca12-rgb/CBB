@@ -130,3 +130,47 @@ The gate needed +0.010 correlation or -0.10 RMSE over V2a; V3a gave +0.005 and -
   all seasons, roster ratings have moved 0.805 -> 0.812 -> 0.817 (v1 -> v2 -> v3) against 0.830.
 - The learned weights are reusable: injury absences are valued today with minutes only (`miss_diff`); valuing an
   absent player by learned-weight impact is a separate, testable idea (backlog).
+
+# Version 4 (pre-registered in PLAN_v4.md, Nov 6, 2026): different fits, chosen on 2016-2021, judged on 2022-2026
+
+Rerun: `python -m research.roster_prior.build_v4`, then `... priors`, `... stage1 prior`, `... stage1 blend`,
+`... score` (output in `out/v4.txt`, `out/v4_step2.txt`, `out/v4_*.csv`).
+
+## Step 1: F2 chosen and confirmed on the holdout
+
+| Fit | Corr 2016-21 (choice) | Corr 2022-26 (holdout) | RMSE 2022-26 |
+|---|---|---|---|
+| F0 V3a as run | 0.818 | 0.816 | 4.973 |
+| F1 end-to-end box rates | 0.815 | 0.808 | 5.077 |
+| **F2 F1 + V3a features** | **0.821** | **0.826** | **4.854** |
+| F3 gradient boosting | 0.806 | 0.819 | 4.930 |
+| F4 / F5 ridge alpha 10 / 0.1 | 0.817 / 0.818 | 0.816 / 0.816 | 4.969 / 4.974 |
+
+F2 passed (+0.010 correlation, -0.12 RMSE on the holdout). In 2025 and 2026 its correlation (0.843, 0.845) was
+above KenPom/Barttorvik's (0.840, 0.842); noted after the result.
+
+## Step 2: the full model
+
+| Variant | Margin miss, days 0-20 / all | Total miss, days 0-20 / all | Spreads win % 15-17 / 24-26 | Totals win % 15-17 / 24-26 |
+|---|---|---|---|---|
+| Base | 9.174 / 8.770 | 13.732 / 13.245 | 57.51 / 57.69 | 58.35 / 57.54 |
+| R1 v1 roster, no outside | 9.488 / 8.875 | 13.878 / 13.282 | 55.00 / 54.70 | 57.88 / 57.09 |
+| **R1v4 F2, no outside** | 9.395 / 8.848 | 13.817 / 13.267 | 55.25 / 55.47 | 57.60 / 57.54 |
+| **R3v4 F2 blend + outside** | **9.150** / 8.766 | 13.737 / 13.243 | **57.63 / 58.28** | 58.27 / **58.39** |
+
+Opener ROI at -110 for R3v4: spreads 9.75% / 11.23% (base 9.56 / 10.10), totals 11.07% / 11.43% (base 11.21 / 9.82).
+
+Against the reading in PLAN_v2.md:
+- **R1v4 replaces the outside prior?** No. Early margin miss 0.22 above base (allowed 0.10), opener spreads 2.2
+  points lower (allowed 1.5). Closest yet: it closes 63% of the early-margin gap between last season only (9.77)
+  and base.
+- **R3v4 improves the model?** **No, by 0.005.** Early margin miss is lower (9.150 vs 9.174) and no opener win %
+  falls by more than 0.5, but early total miss is 13.737 against 13.732, and the rule needs both misses lower.
+  Opener results are higher in three of four cells, by up to 0.85 points (2024-26 totals).
+
+## Reading
+
+By the rule set in advance, no variant goes live. The blended prior is the first version to improve early margins
+and recent opener results together, failing only on a 0.005-point tie in early totals. The right next test is live:
+run R3v4 as a shadow alongside the card (logged, never alerted or staked), and read it with the forward test
+on Jan 15 and Mar 14. That needs a live roster feed (ESPN team rosters) and Chad's approval.

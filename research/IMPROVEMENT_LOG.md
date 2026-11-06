@@ -2,6 +2,12 @@
 
 Dated findings from each review, newest first. "Nothing new" is a valid entry.
 
+## 2026-11-06: roster prior v4 (different fits)
+
+- F2 (learned box rates + v3 features) chosen on 2016-21, confirmed on 2022-26 (0.826 vs 0.816).
+- Full model: the F2 blend improved early margins and recent opener results but missed its rule by 0.005 in early
+  totals. No live change; proposed a live shadow.
+
 ## 2026-11-06: roster prior v3 (xRAPM-style)
 
 - Learned box weights predict held-out 2026 lineup impact 0.53 vs Game Score 0.38.
