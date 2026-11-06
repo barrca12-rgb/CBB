@@ -263,3 +263,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-06|401922248|spread|home,2026-11-06,401922248,spread,Florida International -14.5,home,2229,2697,Florida International,West Florida,-14.5,-14.5,-102.0,DraftKings,4.93,19.43,0.45,yes,2026-11-06T05:41:02+00:00,,,,,,,,open,
 2026-11-06|401921809|total|under,2026-11-06,401921809,total,Under 159.5,under,99,2640,LSU,Texas Southern,159.5,159.5,-110.0,DraftKings,6.5,153.0,1.0,yes,2026-11-06T05:51:05+00:00,,,,,,,,open,
 2026-11-06|401919048|total|under,2026-11-06,401919048,total,Under 152.5,under,2628,2582,TCU,Southern,152.5,152.5,-110.0,DraftKings,3.37,149.13,1.0,yes,2026-11-06T05:51:05+00:00,,,,,,,,open,
+2026-11-06|401920305|total|under,2026-11-06,401920305,total,Under 157.5,under,59,290,Georgia Tech,Georgia Southern,157.5,157.5,-110.0,FanDuel,6.05,151.45,1.0,yes,2026-11-06T06:01:08+00:00,,,,,,,,open,
+2026-11-06|401920072|total|under,2026-11-06,401920072,total,Under 142.5,under,2244,2154,George Mason,Coppin State,142.5,142.5,-115.0,DraftKings,3.28,139.22,1.0,yes,2026-11-06T06:01:08+00:00,,,,,,,,open,
+2026-11-06|401921719|spread|home|bandB,2026-11-06,401921719,spread,Miami -31.5,home,2390,2681,Miami,Wagner,-31.5,-31.5,-115.0,DraftKings,2.08,33.58,0.5,yes,2026-11-06T06:01:12+00:00,,,,,,,,open,bandB
