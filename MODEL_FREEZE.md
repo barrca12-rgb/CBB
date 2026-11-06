@@ -1334,3 +1334,22 @@ ef3744b1a4c7be3ae2bf2142c6883a19f9182b88a67a4411ca53ca3af3d8ce2c  .github/workfl
 ```
 a2e08b50ed4ac26994be2c2f1705674cf684a0336c8724736f5d7bbd23653c52  cbb/odds_api.py
 ```
+
+## 2026-11-06: targeted quote poll fixed (ops only, no change to plays)
+
+- **Why:** from 14:54 UTC every targeted quote poll failed at push ("cannot pull with rebase: You have unstaged
+  changes"). The poll also logs Pinnacle (entry above) to `lines/pinnacle_log.csv`, a file its workflow never
+  committed, so `git pull --rebase` refused to run. Those runs' quote observations and Pinnacle rows were lost.
+- **Change:**
+  - `cbb/odds_api.py`: the targeted poll's Pinnacle rows go to their own `lines/pinnacle_log_targeted.csv`. That keeps
+    two jobs from appending to one CSV and conflicting on push.
+  - `.github/workflows/quotes.yml`: commits that file, and pulls with `--autostash` so a stray file can't block a
+    push again.
+  - `cbb/clv_pinnacle.py`: reads both logs.
+- **Unchanged:** picks, books, stakes, alerts, closes, the card and the Pinnacle CLV method.
+- **New fingerprints:**
+
+```
+e5837fad5b54ec8d4806e0b992a844a63e2054297b14c1cebb54ef8df99201b4  cbb/odds_api.py
+308c9e7003432cc52e55f81c8708d1fb57fa96e071f5078fc60e3206a6d2acb5  .github/workflows/quotes.yml
+```

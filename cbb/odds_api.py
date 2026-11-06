@@ -44,6 +44,9 @@ DISPLAY_BOOKS = {"novig": "Novig"}   # show-only: never in the card's lines, the
 # log. It rides the card call and the targeted poll; both stay at 10 books or fewer, so no extra credits.
 PINNACLE = "pinnacle"
 PINNACLE_LOG = os.path.join(os.path.dirname(__file__), "..", "lines", "pinnacle_log.csv")
+# the targeted poll keeps its own file: two jobs appending to one CSV conflict on push and a poll run failed on the
+# file it did not commit (Nov 6)
+PINNACLE_LOG_TARGETED = os.path.join(os.path.dirname(__file__), "..", "lines", "pinnacle_log_targeted.csv")
 PINNACLE_COLS = ["event_id", "start", "home_id", "away_id", "home_spread", "home_spread_odds", "away_spread_odds",
                  "total", "over_odds", "under_odds", "spread_updated", "total_updated", "observed_at", "source"]
 PINNACLE_NEAR = pd.Timedelta(minutes=45)   # every quote within this of the start is logged, changed or not
@@ -250,9 +253,11 @@ def save_display(d: pd.DataFrame) -> None:
 
 
 def log_pinnacle(events: list, source: str, lookup: dict | None = None) -> int:
-    """Append Pinnacle's spread and total for pregame events to lines/pinnacle_log.csv: a row when the quote changed
-    since its last logged row, and every row within PINNACLE_NEAR of the start (the closing window). Oriented to our
-    home and away ids. Returns rows written. Never raises into the card."""
+    """Append Pinnacle's spread and total for pregame events to lines/pinnacle_log.csv (the targeted poll:
+    lines/pinnacle_log_targeted.csv): a row when the quote changed since its last logged row, and every row within
+    PINNACLE_NEAR of the start (the closing window). Oriented to our home and away ids. Returns rows written. Never
+    raises into the card."""
+    path = PINNACLE_LOG_TARGETED if source == "targeted" else PINNACLE_LOG
     lookup = lookup or _lookup()
     now = pd.Timestamp.now(tz="UTC")
     rows = []
@@ -286,13 +291,13 @@ def log_pinnacle(events: list, source: str, lookup: dict | None = None) -> int:
     d = pd.DataFrame(rows).reindex(columns=PINNACLE_COLS)
     key = ["home_spread", "home_spread_odds", "away_spread_odds", "total", "over_odds", "under_odds"]
     near = (pd.to_datetime(d["start"], utc=True) - now) <= PINNACLE_NEAR
-    if os.path.exists(PINNACLE_LOG):
-        last = pd.read_csv(PINNACLE_LOG).drop_duplicates("event_id", keep="last").set_index("event_id")[key]
+    if os.path.exists(path):
+        last = pd.read_csv(path).drop_duplicates("event_id", keep="last").set_index("event_id")[key]
         prev = last.reindex(d["event_id"])
         same = (prev.to_numpy(dtype=float) == d[key].to_numpy(dtype=float)) | (prev.isna().to_numpy() & d[key].isna().to_numpy())
         d = d[~same.all(axis=1) | near.to_numpy()]
     if len(d):
-        d.to_csv(PINNACLE_LOG, mode="a", header=not os.path.exists(PINNACLE_LOG), index=False)
+        d.to_csv(path, mode="a", header=not os.path.exists(path), index=False)
     return len(d)
 
 

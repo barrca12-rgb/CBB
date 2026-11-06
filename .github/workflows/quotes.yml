@@ -35,12 +35,12 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898+github-actions[bot]@users.noreply.github.com"
-          for p in lines/polls_targeted.csv lines/obs_targeted; do if [ -e "$p" ]; then git add -A -- "$p"; fi; done
+          for p in lines/polls_targeted.csv lines/obs_targeted lines/pinnacle_log_targeted.csv; do if [ -e "$p" ]; then git add -A -- "$p"; fi; done
           git diff --cached --quiet || git commit -m "Quote poll ($(date -u +'%Y-%m-%d %H:%M') UTC)"
           # retry: another job may push between this job's pull and push; fail only if every try fails
           ok=0
           for i in 1 2 3 4 5 6; do
-            if git pull --rebase -X theirs origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}"; then ok=1; break; fi
+            if git pull --rebase --autostash -X theirs origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}"; then ok=1; break; fi
             git rebase --abort 2>/dev/null || true
             sleep $((i * 4))
           done

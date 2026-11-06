@@ -1,8 +1,8 @@
 """CLV against Pinnacle's no-vig close (Chad, Nov 6: "I only want to measure clv with pinnacles no vig close").
 
 For each play:
-  1. Pinnacle close: the last Pinnacle quote observed in the 15 minutes before the feed's start (lines/pinnacle_log.csv,
-     live from Nov 6; lines/pinnacle_hist.csv, the historical backfill for earlier plays).
+  1. Pinnacle close: the last Pinnacle quote observed in the 15 minutes before the feed's start (lines/pinnacle_log.csv
+     and lines/pinnacle_log_targeted.csv, live from Nov 6; lines/pinnacle_hist.csv, the historical backfill for earlier plays).
   2. No-vig: both sides' implied probabilities scaled to sum to 1 (multiplicative), giving our side's fair chance at
      Pinnacle's number.
   3. Our number: that chance moved to the number we took with a normal approximation of the result around the close
@@ -22,7 +22,7 @@ import numpy as np
 import pandas as pd
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
-LOGS = [os.path.join(ROOT, "lines", "pinnacle_log.csv"), os.path.join(ROOT, "lines", "pinnacle_hist.csv")]
+LOGS = [os.path.join(ROOT, "lines", f) for f in ("pinnacle_log.csv", "pinnacle_log_targeted.csv", "pinnacle_hist.csv")]
 WINDOW = pd.Timedelta(minutes=15)
 SD = {"spread": 11.19, "total": 16.5}
 N = NormalDist()
