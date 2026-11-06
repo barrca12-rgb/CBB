@@ -231,3 +231,22 @@ Full season: underdog share 51.8% vs 54.1%; underdogs 58.4% vs 58.5%; favorites 
   question.
 - **The blend's backtest gain comes mostly from better favorite plays** (fewer, and stronger in the 7-14.5 band), not
   from underdogs.
+
+## Why the 2026-27 replay shift is larger (diagnosis, Nov 6)
+
+| Blend - current, favorite's margin, by opener spread | Days 0-20, 2015-2026 | 2026-27 so far |
+|---|---|---|
+| Under 7 | +0.03 | -0.25 |
+| 7-14.5 | -0.16 | -0.52 |
+| 15-19.5 | -0.40 | -1.38 |
+| 20+ | -0.35 | -2.59 |
+
+- **Not centering:** re-centering F2 on the same teams' current-prior average left every game unchanged (both teams in
+  each graded game have an F2 rating, so the offset cancels).
+- **Not only the mix of games** (43% of this week's games are 20+ spreads): the shift is 3-7 times larger within every
+  size band.
+- **Likely causes:** rosters built from a median of 1 game (the fit was trained on 5-game rosters), and a wider
+  KenPom/Barttorvik preseason scale this season (sd 12.2 against 10.7-11.5 before), so averaging with F2 pulls
+  mismatches in further.
+- **Consequence:** this week's replay is not a fair test of the blend. Any live shadow should start once teams have
+  about 5 games (around Nov 20), and the 1-game-roster effect can be checked in the backtest first.
