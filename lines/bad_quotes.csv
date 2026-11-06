@@ -195,3 +195,4 @@ first_seen,date,game_id,market,side,book,number,price,median_others,books,reason
 2026-11-06T21:01:00+00:00,2026-11-06,401922248,total,under,Caesars,164.0,-110.0,,,review: edge 12.5
 2026-11-06T21:05:04+00:00,2026-11-06,401922248,total,under,BetMGM,163.5,-105.0,,,review: edge 12.8
 2026-11-06T21:05:41+00:00,2026-11-07,401909513,spread,-,FanDuel,1.5,,-1.5,4,off-market
+2026-11-06T21:30:48+00:00,2026-11-06,401922248,total,under,Fanatics,164.0,-110.0,,,review: edge 13.3
