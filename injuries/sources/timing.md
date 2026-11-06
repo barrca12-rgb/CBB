@@ -1,6 +1,6 @@
 # Injury sources: who reports first
 
-Updated 2026-11-06 00:40 UTC by `cbb/injury_sources.py`. Logging since 2026-10-26; 5 game day(s) so far. Model's injury input: **espn** (recommendation after 7 game days with 30+ line-matched injuries, or 14 game days; the switch needs Chad's approval).
+Updated 2026-11-06 00:50 UTC by `cbb/injury_sources.py`. Logging since 2026-10-26; 5 game day(s) so far. Model's injury input: **espn** (recommendation after 7 game days with 30+ line-matched injuries, or 14 game days; the switch needs Chad's approval).
 
 Material injuries: Out / Doubtful / Questionable, player with 10%+ of team minutes, first reported after logging began and before the team's next game. A line move is the spread moving 1+ point against the team at any book. Times are poll times (one run = 30 minutes).
 
@@ -17,7 +17,7 @@ Last pull per source:
 
 | Source | OK | Rows | Teams matched | Unmatched teams | Error |
 |---|---|---:|---:|---|---|
-| espn | no | 0 |  |  | URLError: <urlopen error [Errno 104] Connection reset by peer> |
+| espn | yes | 0 |  |  |  |
 | rotowire | yes | 5 | 100% |  |  |
 | covers | yes | 99 | 93% | Miami (FL) Hurricanes; San Jose State Spartans; UNLV Runnin' Rebels; Utah Runnin' Utes |  |
 | cbs | yes | 0 |  |  |  |
