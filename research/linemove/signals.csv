@@ -103,3 +103,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-06T01:20:44+00:00,2026-11-06,401909695,2026-11-07T00:00Z,52,2653,Florida State,Troy,total,under,v1,Under 158.5,157.5,-110.0,Caesars,2026-11-06T00:15:36+00:00,158.5,-110.0,FanDuel,1.0,65.1,2.01,3.01,155.49
 2026-11-06T01:20:44+00:00,2026-11-06,401920807,2026-11-07T01:00Z,245,94,Texas A&M,Northern Kentucky,spread,away,v1,Northern Kentucky +27.5,25.5,-105.0,Caesars,2026-11-06T01:10:41+00:00,27.5,-115.0,DraftKings,2.0,10.1,0.75,2.75,24.75
 2026-11-06T01:20:44+00:00,2026-11-06,401917914,2026-11-07T01:30Z,145,2110,Ole Miss,Central Arkansas,total,under,v1,Under 151.5,150.5,-108.0,DraftKings,2026-11-05T23:50:43+00:00,151.5,-108.0,DraftKings,1.0,90.0,2.37,3.37,148.13
+2026-11-06T01:30:55+00:00,2026-11-06,401916304,2026-11-07T01:00Z,135,2900,Minnesota,St. Thomas,total,under,v1,Under 149.5,148.5,-110.0,FanDuel,2026-11-05T19:20:44+00:00,149.5,-105.0,DraftKings,1.0,370.2,2.74,3.74,145.76
