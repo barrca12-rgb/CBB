@@ -1,0 +1,47 @@
+# One-off Pinnacle backfill (cbb/research_pinnacle_backfill.py; approved by Chad Nov 6, about 1,050 credits, capped at
+# 1,200). Runs when data/research/pinnacle_backfill_request.txt changes, or from the Actions tab.
+name: Research backfill (Pinnacle closes)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [claude/college-basketball-model-nmztcl]
+    paths:
+      - "data/research/pinnacle_backfill_request.txt"
+
+permissions:
+  contents: write
+
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: claude/college-basketball-model-nmztcl
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - run: pip install -r requirements.txt
+      - name: Backfill
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: python -m cbb.research_pinnacle_backfill
+      - name: Save the result
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898+github-actions[bot]@users.noreply.github.com"
+          git add -A lines/pinnacle_hist.csv data/research/pinnacle_backfill.json 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "Research: Pinnacle close backfill ($(date -u +'%Y-%m-%d %H:%M') UTC)"
+          git checkout -- . 2>/dev/null || true
+          ok=0
+          for i in 1 2 3 4 5 6 7 8; do
+            if git pull --rebase -X theirs origin claude/college-basketball-model-nmztcl && git push origin HEAD:claude/college-basketball-model-nmztcl; then ok=1; break; fi
+            git rebase --abort 2>/dev/null || true
+            sleep $((i * 5))
+          done
+          [ "$ok" = 1 ]
