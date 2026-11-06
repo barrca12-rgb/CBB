@@ -250,3 +250,18 @@ Full season: underdog share 51.8% vs 54.1%; underdogs 58.4% vs 58.5%; favorites 
   mismatches in further.
 - **Consequence:** this week's replay is not a fair test of the blend. Any live shadow should start once teams have
   about 5 games (around Nov 20), and the 1-game-roster effect can be checked in the backtest first.
+
+## One-game rosters and the replay's flaw (Nov 6; one-game check pre-registered in PLAN_v4_onegame.md)
+
+- **One-game rosters are not the cause** (`check_onegame.py`, `out/v4_onegame.csv`): with rosters from each team's
+  first game instead of five, the F2 prior's favorite-underdog gap on 15+ spreads shrinks by 0.27 points per 100
+  (threshold 1.5) and its correlation with final ratings is unchanged (2024-26: 0.825/0.843/0.844 vs
+  0.826/0.843/0.845).
+- **The 2026-27 replay was unfair to the blend.** It put the blend's stage-1 change through the current model's
+  stage-2 weights. In the backtest, stage 2 is refit on the blend and leans more on KenPom/Barttorvik early
+  (early KenPom weight 0.31 vs 0.27, Barttorvik 0.20 vs 0.15), which offsets most of the mismatch compression. With
+  the blend's own weights on the changed inputs, the favorite-side shift becomes +0.06 / +0.62 / +0.46 / +0.27 by
+  size band instead of -0.25 / -0.52 / -1.38 / -2.59, and this week's spreads come out about 26-25 instead of 21-30.
+  That approximation leaves out stage 2's intercept and other inputs, so its totals are not usable.
+- **Consequence:** a fair live test has to run the blend with its own stage-2 coefficients, which is what a shadow
+  would do.
