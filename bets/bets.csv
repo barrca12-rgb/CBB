@@ -260,3 +260,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-06|401921719|total|under,2026-11-06,401921719,total,Under 147.5,under,2390,2681,Miami,Wagner,147.5,147.5,-115.0,FanDuel,6.08,141.42,1.0,yes,2026-11-06T03:37:17+00:00,,,,,,,,open,
 2026-11-06|401919040|spread|home|bandB,2026-11-06,401919040,spread,Oklahoma State -18.5,home,197,2511,Oklahoma State,Queens University,-18.5,-18.5,-115.0,FanDuel,2.15,20.65,0.5,yes,2026-11-06T03:53:55+00:00,,,,,,,,open,bandB
 2026-11-06|401906780|total|under,2026-11-06,401906780,total,Under 156.5,under,61,2506,Georgia,Presbyterian,156.5,156.5,-115.0,DraftKings,3.93,152.57,1.0,yes,2026-11-06T05:31:15+00:00,,,,,,,,open,
+2026-11-06|401922248|spread|home,2026-11-06,401922248,spread,Florida International -14.5,home,2229,2697,Florida International,West Florida,-14.5,-14.5,-102.0,DraftKings,4.93,19.43,0.45,yes,2026-11-06T05:41:02+00:00,,,,,,,,open,
