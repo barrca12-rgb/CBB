@@ -231,7 +231,8 @@ def save_display(d: pd.DataFrame) -> None:
         y = x[key].copy()
         for c in key[1:]:
             y[c] = pd.to_numeric(y[c], errors="coerce").astype(float)
-        return y.astype(str).agg("|".join, axis=1)
+        # str() each value: under pandas 3, astype(str) keeps a missing number as NaN and the join failed (Nov 5)
+        return y.apply(lambda r: "|".join(str(v) for v in r), axis=1)
     new = d
     if os.path.exists(NOVIG_LOG):
         last = pd.read_csv(NOVIG_LOG).drop_duplicates(["book", "home_id", "away_id"], keep="last")

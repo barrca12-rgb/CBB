@@ -72,3 +72,14 @@ def test_betrivers_is_a_card_book_and_novig_stays_show_only():
     assert list(d["book"]) == ["Novig"]
     assert odds_api.display_side(odds_api.display_quote(10, 20, d), "spread", "home") == (-4.5, -102)
     assert odds_api.display_quote(10, 20, d, book="BetRivers") is None
+
+
+def test_change_log_handles_a_missing_number(tmp_path, monkeypatch):
+    # Nov 5: a Novig row with no spread made the change log fail ("expected str instance, float found")
+    monkeypatch.setattr(odds_api, "NOVIG_LATEST", str(tmp_path / "latest.csv"))
+    monkeypatch.setattr(odds_api, "NOVIG_LOG", str(tmp_path / "log.csv"))
+    d = odds_api.parse_display([_event()], LOOK)
+    d.loc[0, "home_spread"] = None
+    odds_api.save_display(d)
+    odds_api.save_display(d)
+    assert len(pd.read_csv(odds_api.NOVIG_LOG)) == 1

@@ -1277,3 +1277,22 @@ a589adfa5985cd18402ae2c77c7ef6b7833a371a06d295d5bcecc74de5c4ad65  cbb/odds_api.p
 ```
 c8a9865f7838b6078306152e16ea506f4848b79f3ab0950a19384193cf7f0a89  cbb/odds_api.py
 ```
+
+## 2026-11-05: Novig change log fix and longer push retries (operational)
+
+- **Novig change log (`cbb/odds_api.py`).** Under pandas 3, a Novig row with a missing number (no spread posted)
+  made the change log fail ("Show-only prices failed ... expected str instance, float found"). The latest-prices
+  file still updated; only `lines/novig_log.csv` missed those pulls. Each value is now turned into text before the
+  join. Test: `audit/test_novig.py::test_change_log_handles_a_missing_number`.
+- **Card run push (`.github/workflows/update.yml`).** GitHub rejected every push for about a minute and a half on
+  Nov 5 at 23:22 UTC ("fatal error in commit_refs"), so that card run failed after 6 tries. The loop now makes 10
+  tries over about 5 minutes. The next run's card and log were complete; the failed run's work was redone 10
+  minutes later.
+- **Unchanged:** picks, lines, stakes, alerts and closes.
+- **Discord note:** none (no effect on plays).
+- **New fingerprints:**
+
+```
+358e403da049f5bded46b8c94bd9e6f4dfa6835515a5ac74f816e52123c7745e  cbb/odds_api.py
+b3375e4f142675a95e9c0d93f35d041dba4c5b4a33a655b1a0b5ea2513dfe87c  .github/workflows/update.yml
+```
