@@ -277,3 +277,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-06|401922059|spread|away|bandB,2026-11-06,401922059,spread,South Carolina State +8,away,2908,2569,South Carolina Upstate,South Carolina State,8.0,8.0,-115.0,Fanatics,2.1,5.9,0.5,yes,2026-11-06T11:41:23+00:00,,,,,,,,open,bandB
 2026-11-06|401923260|spread|away|bandB,2026-11-06,401923260,spread,Florida Atlantic +3.5,away,2750,2226,Wright State,Florida Atlantic,3.5,3.5,-106.0,FanDuel,2.07,1.43,0.5,yes,2026-11-06T11:41:23+00:00,,,,,,,,open,bandB
 2026-11-06|401920807|spread|away|bandB,2026-11-06,401920807,spread,Northern Kentucky +26.5,away,245,94,Texas A&M,Northern Kentucky,26.5,26.5,-106.0,FanDuel,2.18,24.32,0.5,yes,2026-11-06T11:41:23+00:00,,,,,,,,open,bandB
+2026-11-06|401911305|spread|home,2026-11-06,401911305,spread,Brown -2.5,home,225,104,Brown,Boston University,-2.5,-2.5,-118.0,BetMGM,3.26,5.76,0.45,yes,2026-11-06T13:41:12+00:00,,,,,,,,open,
+2026-11-06|401906802|spread|away,2026-11-06,401906802,spread,Mississippi Valley State +40.5,away,201,2400,Oklahoma,Mississippi Valley State,40.5,40.5,-110.0,BetMGM,3.5,37.0,0.45,yes,2026-11-06T13:41:12+00:00,,,,,,,,open,
