@@ -300,3 +300,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-07|401920435|total|under,2026-11-07,401920435,total,Under 154.5,under,2692,3084,Weber State,Utah Valley,154.5,154.5,-110.0,theScore Bet,4.37,150.13,1.0,yes,2026-11-06T20:31:30+00:00,,,,,,,,open,
 2026-11-07|401920435|spread|away|bandB,2026-11-07,401920435,spread,Utah Valley -7.5,away,2692,3084,Weber State,Utah Valley,-7.5,-7.5,-110.0,theScore Bet,2.4,-9.9,0.5,yes,2026-11-06T20:31:34+00:00,,,,,,,,open,bandB
 2026-11-07|401911470|spread|home|bandB,2026-11-07,401911470,spread,UC Irvine -5.5,home,300,23,UC Irvine,San José State,-5.5,-5.5,-115.0,theScore Bet,2.34,7.84,0.5,yes,2026-11-06T20:31:34+00:00,,,,,,,,open,bandB
+2026-11-07|401909532|spread|home,2026-11-07,401909532,spread,Nebraska -3,home,158,2507,Nebraska,Providence,-3.0,-3.0,-110.0,Caesars,2.99,5.99,0.45,yes,2026-11-06T20:51:22+00:00,,,,,,,,open,
