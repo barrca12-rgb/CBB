@@ -56,3 +56,21 @@ Dated findings from each review, newest first. "Nothing new" is a valid entry.
 - **Same-game pairs:** nearly independent (research/correlated_pairs). Correction to the claim that favorite +
   Under pairs hedge.
 - **Late-posted plays:** 14-7; they can't be judged by line movement. Added to the backlog.
+
+## 2026-11-06: Pinnacle CLV audit (Chad: "are you sure you're measuring Pinnacle CLV correct")
+
+- **Close:** every play matched its own game; the quote used is a median 7 min before the real jump ball. Pinnacle's
+  close vs the books' median close: mean +0.05 points; 1 of 124 plays differs by 1.5 or more.
+- **In-game quotes:** 16 backfilled plays used a quote stamped after the real tip, because the feed's start ran up to
+  8 min late. Each was identical to the last pregame quote, so the numbers did not change. The window now ends at the
+  earlier of the feed start and the actual tip (lines/tipoffs.csv).
+- **Points to percent:** one sd of 11.19 for every spread overvalued points on big spreads. In 2020-2026 closes,
+  2 extra points are worth 3.7% a point on spreads under 20, 2.7% on spreads of 20 or more and 2.4% on totals
+  (`python -m cbb.clv_pinnacle --calibrate`). The sds are now 10.8 / 14.7 / 16.5.
+- **Correction:** official plays' Pinnacle CLV goes from +5.21% to **+4.47%** (beat the no-vig close 61.8% -> 59.3%;
+  points unchanged at +1.71). Expected units from CLV: +4.94 vs +11.33 actual. Totals +2.46 expected vs +11.98
+  actual; spreads +2.49 vs -0.65.
+- **Correction to my own chat claim:** a first check (window density) said totals and small spreads were also
+  overvalued. Half-point lines skewed that method. Only big spreads were.
+- **Published post:** the Nov 5 recap posted on X said "18 of 30 beat Pinnacle's no-vig close"; on the corrected
+  measure it is 17 of 30.

@@ -6,12 +6,16 @@ For each play:
      and lines/pinnacle_log_targeted.csv, live from Nov 6; lines/pinnacle_hist.csv, the historical backfill for earlier plays).
   2. No-vig: both sides' implied probabilities scaled to sum to 1 (multiplicative), giving our side's fair chance at
      Pinnacle's number.
-  3. Our number: that chance moved to the number we took with a normal approximation of the result around the close
-     (sd 11.19 points for spreads, 16.5 for totals: 2020-2026 games, the final result minus the closing line).
+  3. Our number: that chance moved to the number we took with a normal approximation of the result around the close.
+     The sd is set so a point is worth what it was worth in 2020-2026 games (37,424 closes; the cover chance gained
+     by 2 extra points, pushes counted half; `--calibrate` reruns it): 10.8 for spreads under 20 (3.7% a point),
+     14.7 for spreads of 20 or more (2.7%), 16.5 for totals (2.4%). Until Nov 6 one sd of 11.19 was used for every
+     spread, which overvalued points on big spreads.
   4. CLV: expected ROI at our price = p x payout - (1 - p), in percent. Also the point difference to Pinnacle's number.
 A play with no Pinnacle quote in the window has no Pinnacle CLV (counted, never zero).
 
     python -m cbb.clv_pinnacle [--since 2026-11-01]
+    python -m cbb.clv_pinnacle --calibrate
 """
 from __future__ import annotations
 
@@ -25,7 +29,14 @@ import pandas as pd
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 LOGS = [os.path.join(ROOT, "lines", f) for f in ("pinnacle_log.csv", "pinnacle_log_targeted.csv", "pinnacle_hist.csv")]
 WINDOW = pd.Timedelta(minutes=15)
-SD = {"spread": 11.19, "total": 16.5}
+SD_SPREAD, SD_SPREAD_BIG, SD_TOTAL = 10.8, 14.7, 16.5
+BIG = 20.0   # a closing spread of this many points or more uses SD_SPREAD_BIG
+
+
+def sd(market: str, close: float) -> float:
+    if market == "total":
+        return SD_TOTAL
+    return SD_SPREAD_BIG if abs(close) >= BIG else SD_SPREAD
 N = NormalDist()
 
 
@@ -84,7 +95,7 @@ def one(r: pd.Series, q: pd.DataFrame, tip: pd.Timestamp | None = None) -> dict:
         diff = (float(r["line"]) - pin_line) if r["side"] == "under" else (pin_line - float(r["line"]))
     pm, po = implied(float(mine)), implied(float(other))
     p_fair = pm / (pm + po)
-    p = N.cdf(N.inv_cdf(p_fair) + diff / SD[r["market"]])
+    p = N.cdf(N.inv_cdf(p_fair) + diff / sd(r["market"], float(pin_line)))
     ev = p * payout(float(r["odds"])) - (1 - p)
     return {"status": "ok", "pin_close": pin_line, "pin_price": mine, "pin_fair": round(p_fair, 4), "points": round(diff, 2),
             "p_at_ours": round(p, 4), "clv_ev": round(100 * ev, 2), "observed": c["t"].isoformat()}
@@ -100,10 +111,45 @@ def table(since: str = "2026-11-01") -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def calibrate(seasons=range(2020, 2027), extra: float = 2.0) -> dict:
+    """The sd that makes `extra` points worth what they were in past games: the cover chance gained (pushes half, both
+    sides averaged) at ESPN's closing number (DraftKings, else consensus, ESPN BET, Caesars, FanDuel)."""
+    from . import data
+    rows = []
+    for s in seasons:
+        p = os.path.join(ROOT, "data", "lines", f"espn_{s}.csv")
+        if not os.path.exists(p):
+            continue
+        l = pd.read_csv(p)
+        l = l[l["book"].isin(["DraftKings", "consensus", "ESPN BET", "Caesars", "FanDuel"])].dropna(subset=["home_spread", "total"])
+        sch = data.fetch("schedule", s)[["game_id", "home_score", "away_score"]].dropna()
+        rows.append(l.sort_values("book").drop_duplicates("game_id").merge(sch, on="game_id"))
+    d = pd.concat(rows, ignore_index=True)
+    d = d[d["home_score"] > 0]
+    rs = (d["home_score"] - d["away_score"] + d["home_spread"]).to_numpy(float)
+    rt = (d["home_score"] + d["away_score"] - d["total"]).to_numpy(float)
+    big = d["home_spread"].abs().to_numpy(float) >= BIG
+
+    def gain(x):
+        w = lambda D: ((x + D > 0).mean() + 0.5 * (x + D == 0).mean() + (-x + D > 0).mean() + 0.5 * (-x + D == 0).mean()) / 2
+        return (w(extra) - w(0.0)) / extra
+
+    out = {}
+    for k, x in (("spread", rs[~big]), ("spread_big", rs[big]), ("total", rt)):
+        g = gain(x)
+        out[k] = {"n": int(len(x)), "per_point": round(float(g), 4), "sd": round(float(1 / (g * np.sqrt(2 * np.pi))), 2)}
+    return out
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--since", default="2026-11-01")
-    t = table(ap.parse_args().since)
+    ap.add_argument("--calibrate", action="store_true")
+    a = ap.parse_args()
+    if a.calibrate:
+        print(calibrate())
+        return
+    t = table(a.since)
     pd.set_option("display.width", 250)
     for kind, x in t.groupby("kind"):
         ok = x[x["status"] == "ok"]
