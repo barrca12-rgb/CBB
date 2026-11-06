@@ -188,8 +188,24 @@ def _clv_view() -> dict:
     out["all"] = clv_primary.coverage(s)
     out["all"]["text"] = clv_primary.coverage_text(out["all"])
     out["status"] = clv_primary.VERIFICATION_STATUS
+    # Pinnacle no-vig CLV (Chad, Nov 6: "put pinnacle clv on the site instead of alert clv"): the site's CLV figure.
+    # The primary close above stays for the stake cap and tripwire, which are unchanged.
+    try:
+        from . import clv_pinnacle
+        pa = clv_pinnacle.attach(a)
+        ps = pa[pa["status"] == "settled"]
+        out["pin"] = {mk: clv_pinnacle.coverage(ps[ps["market"] == mk]) for mk in ("spread", "total")}
+        out["pin"]["all"] = clv_pinnacle.coverage(ps)
+        bb = clv_pinnacle.attach(tracker.load("bandB"))
+        out["pin_bandb"] = clv_pinnacle.coverage(bb[bb["status"] == "settled"])
+        s = s.join(ps.set_index("bet_id")[["pin_status", "pin_clv", "pin_points", "pin_close", "pin_price"]], on="bet_id")
+    except Exception as e:
+        out["pin"] = {"error": str(e)}
+        for c in ("pin_status", "pin_clv", "pin_points", "pin_close", "pin_price"):
+            s[c] = None
     cols = ["date", "home", "away", "market", "pick", "book", "odds", "close_line", "clv_pts", "home_score",
-            "away_score", "result", "profit", "books_primary", "clv_reason", "clv_same_book", "pregame_check"]
+            "away_score", "result", "profit", "books_primary", "clv_reason", "clv_same_book", "pregame_check",
+            "pin_status", "pin_clv", "pin_points", "pin_close", "pin_price"]
     out["recent"] = s.sort_values(["date", "logged_at"], ascending=False).head(30)[cols].to_dict("records")
     return out
 
@@ -646,7 +662,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   </section>
 
   <section class="panel" aria-labelledby="rec-h" id="rec-sec" hidden>
-    <div class="panel-h"><h2 id="rec-h">Record</h2><span class="note">Every play graded at the number it first appeared. Alert CLV = points from the alert number to the consensus close; prices shown separately.</span></div>
+    <div class="panel-h"><h2 id="rec-h">Record</h2><span class="note">Every play graded at the number it first appeared. CLV = expected ROI against Pinnacle's no-vig close.</span></div>
     <div class="scroll"><table id="t-rec"></table></div>
   </section>
 
@@ -977,7 +993,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   $("bandb-sec").hidden = D.replay;
   const bbr = D.record && D.record.band_b;   // band B's own season record (tracker.band_b_status), never pooled
   if (bbr) $("bandb-rec").textContent = "Season: " + bbr.w + "–" + bbr.l + (bbr.p ? "–" + bbr.p : "") + " · " + sgn(bbr.units, 2) + "u" +
-    (bbr.clv != null ? " · Alert CLV " + clvf(bbr.clv) + " on " + bbr.clv_n : "") + (bbr.open ? " · " + bbr.open + " open" : "") +
+    ((D.record.clv && D.record.clv.pin_bandb && D.record.clv.pin_bandb.clv != null) ? " · Pinnacle CLV " + sgn(D.record.clv.pin_bandb.clv, 2) + "% on " + D.record.clv.pin_bandb.with_close : "") + (bbr.open ? " · " + bbr.open + " open" : "") +
     ". A separate bet type on spreads only, never counted in the record above: v1's edge of 2-2.49 points with v1's +2% EV rule, 0.5 unit flat.";
   $("t-bandb").innerHTML = BB.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r'>Edge</th><th class='r'>Units</th><th class='r'>Result</th><th></th></tr></thead><tbody>" +
     BB.map((p) => "<tr><td><div class='b pick'><span class='tag'>Band B</span> " + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" + scoreTag(p.g, p.kind, p.side, p.line, false) +
@@ -1023,12 +1039,12 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
         : m.state === "collecting" ? "Collecting<small class='blk'>" + (m.with_close != null ? m.with_close : m.n) + "/" + (m.min || 150) + " closes" + miss + "</small>"
         : "<span class='" + (m.state === "ok" ? "pos" : "neg") + "'>" + {ok: "OK", review: "Review", pause: "Pause"}[m.state] + "</span><small>CLV " + clvf(m.clv) + " · last " + m.n + miss + "</small>";
       return lab + (e.state === "review" ? "<small class='neg'> · slippage " + sgn(e.slip, 2) + "</small>" : ""); })()],
-    ["Alert CLV", (() => { const c = D.record && D.record.clv; if (!c || c.error || !c.all) return "–<small>CLV unavailable</small>";
-      // primary (consensus) close, decided plays with a close; coverage and status on one short line, the full
-      // breakdown (books, pregame check) on hover (Chad, Nov 2: the tile was dragging the row down)
-      const short = c.all.decided ? c.all.with_close + "/" + c.all.decided + " closed" : "no graded plays yet";
-      return "<span title='" + esc(c.all.text + " · " + c.status) + "'>" + (c.all.clv != null ? clvf(c.all.clv) + "<small>pts</small>" : "–") +
-        "<small class='blk'>" + esc(short) + (/not verified/.test(String(c.status)) ? " · " + esc(String(c.status).replace("built, ", "")) : "") + "</small></span>"; })()]];
+    ["Pinnacle CLV", (() => { const c = D.record && D.record.clv && D.record.clv.pin; if (!c || c.error || !c.all) return "–<small>CLV unavailable</small>";
+      // expected ROI at our price against Pinnacle's no-vig close (Chad, Nov 6); points vs Pinnacle's number on hover
+      const x = c.all, short = x.decided ? x.with_close + "/" + x.decided + " with a Pinnacle close" : "no graded plays yet";
+      return "<span title='Expected ROI at our price against Pinnacle&#39;s no-vig closing line (last quote in the 15 minutes before tip); " +
+        (x.points != null ? "mean " + sgn(x.points, 2) + " points vs Pinnacle&#39;s number; " : "") + (x.beat != null ? Math.round(100 * x.beat) + "% beat the no-vig close" : "") + "'>" +
+        (x.clv != null ? sgn(x.clv, 2) + "<small>%</small>" : "–") + "<small class='blk'>" + esc(short) + "</small></span>"; })()]];
   $("kpis").innerHTML = kp.map(([k, v, c]) => "<div class='kpi" + (c ? " " + c : "") + "'><div class='k'>" + k + "</div><div class='v'>" + v + "</div></div>").join("");
 
   // Odds board
@@ -1146,21 +1162,21 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   // Record
   if (st) {
     $("rec-sec").hidden = false;
-    $("t-rec").innerHTML = "<thead><tr><th>Market</th><th class='r'>Record</th><th class='r'>Win %</th><th class='r'>Units</th><th class='r'>ROI</th><th class='r'>Avg CLV</th><th class='r'>Beat close</th><th class='r'>Close coverage</th><th class='r'>Stake</th><th class='r'>Open</th></tr></thead><tbody>" +
-      Object.entries(st).map(([mk, s]) => { const c = (D.record.clv && D.record.clv[mk]) || {};
+    $("t-rec").innerHTML = "<thead><tr><th>Market</th><th class='r'>Record</th><th class='r'>Win %</th><th class='r'>Units</th><th class='r'>ROI</th><th class='r'>Pinnacle CLV</th><th class='r'>Beat no-vig close</th><th class='r'>Pinnacle closes</th><th class='r'>Stake</th><th class='r'>Open</th></tr></thead><tbody>" +
+      Object.entries(st).map(([mk, s]) => { const c = (D.record.clv && D.record.clv.pin && D.record.clv.pin[mk]) || {};
         return "<tr><td>" + mk[0].toUpperCase() + mk.slice(1) + "</td><td class='r'>" + rec(s) + "</td><td class='r'>" + pct(s.win) + "</td><td class='r " +
-        (s.units > 0 ? "pos" : s.units < 0 ? "neg" : "") + "'>" + sgn(s.units, 2) + "</td><td class='r'>" + pct(s.roi) + "</td><td class='r'>" + clvf(c.clv) +
+        (s.units > 0 ? "pos" : s.units < 0 ? "neg" : "") + "'>" + sgn(s.units, 2) + "</td><td class='r'>" + pct(s.roi) + "</td><td class='r'>" + (c.clv == null ? "–" : sgn(c.clv, 2) + "%") +
         "</td><td class='r'>" + pct(c.beat) + "</td><td class='r'>" + (c.decided ? c.with_close + "/" + c.decided : "–") +
         "</td><td class='r'>" + Math.round(100 * s.multiplier) + "%" + capText(s.cap) + "</td><td class='r m'>" + s.open + "</td></tr>"; }).join("") + "</tbody>" +
-      "<caption class='f' style='caption-side:bottom;text-align:left;padding:8px 12px;font-size:12px'>Alert CLV (points): the alert number against the consensus close (median of each book's last fresh quote in the 15 minutes before tip), decided plays with a close; close coverage = decided plays with one. CLV tracking: " + esc((D.record.clv && D.record.clv.status) || "") + ".</caption>";
+      "<caption class='f' style='caption-side:bottom;text-align:left;padding:8px 12px;font-size:12px'>Pinnacle CLV: expected ROI at our number and price against Pinnacle's no-vig closing line (its last quote in the 15 minutes before tip), decided plays with a Pinnacle close; Pinnacle does not price every game.</caption>";
     const R = D.record.recent || [];
     if (R.length) {
       $("recent-sec").hidden = false;
-      $("t-recent").innerHTML = "<thead><tr><th>Date</th><th>Game</th><th>Bet</th><th>Book</th><th class='r'>Close</th><th class='r'>Alert CLV (pts)</th><th class='r hide-sm'>Same-book CLV (diagnostic)</th><th class='r'>Final</th><th class='r'>Result</th><th class='r'>Units</th></tr></thead><tbody>" +
+      $("t-recent").innerHTML = "<thead><tr><th>Date</th><th>Game</th><th>Bet</th><th>Book</th><th class='r'>Pinnacle close</th><th class='r'>Pinnacle CLV</th><th class='r'>Final</th><th class='r'>Result</th><th class='r'>Units</th></tr></thead><tbody>" +
         R.map((x) => "<tr><td class='m'>" + esc(x.date) + "</td><td>" + esc(x.away + " @ " + x.home) + "</td><td class='b'>" + esc(x.pick) + "</td><td>" + esc(x.book || "–") +
-          "</td><td class='r'>" + (x.close_line == null ? "<span title='" + esc(x.clv_reason || "") + "'>n/a</span>" : num(x.close_line) + "<small> (" + x.books_primary + (x.books_primary === 1 ? " book: one-book close" : "") + "; pregame " + esc(x.pregame_check || "not checked") + ")</small>") +
-          "</td><td class='r'>" + (x.clv_pts == null ? "<span title='" + esc(x.clv_reason || "") + "'>n/a</span>" : clvf(x.clv_pts)) +
-          "</td><td class='r m hide-sm'>" + clvf(x.clv_same_book) + "</td><td class='r m'>" + esc(x.away_score) + "–" + esc(x.home_score) +
+          "</td><td class='r'>" + (x.pin_close == null ? "<span title='" + esc(x.pin_status || "") + "'>n/a</span>" : num(x.pin_close) + (x.pin_price != null ? "<small> (" + odds(x.pin_price) + ")</small>" : "")) +
+          "</td><td class='r'>" + (x.pin_clv == null ? "<span title='" + esc(x.pin_status || "") + "'>n/a</span>" : sgn(x.pin_clv, 2) + "%" + (x.pin_points != null ? "<small> " + sgn(x.pin_points, 1) + " pts</small>" : "")) +
+          "</td><td class='r m'>" + esc(x.away_score) + "–" + esc(x.home_score) +
           "</td><td class='r b " + (x.result === "W" ? "pos" : x.result === "L" ? "neg" : "") + "'>" + esc(x.result) + "</td><td class='r'>" + sgn(x.profit, 2) + "</td></tr>").join("") + "</tbody>";
     }
   }

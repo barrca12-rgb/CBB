@@ -14,7 +14,7 @@ import os
 import numpy as np
 import pandas as pd
 
-from . import autorefresh, clv_primary, report_html, tracker
+from . import clv_pinnacle, autorefresh, clv_primary, report_html, tracker
 
 OUT = os.path.join(tracker.ROOT, "reports", "record.html")
 VERIFY = os.path.join(tracker.ROOT, "reports", "verify.html")      # published unlisted at record/verify.html
@@ -34,7 +34,9 @@ def summary(s: pd.DataFrame) -> dict:
     w, l, p = (s["result"] == "W").sum(), (s["result"] == "L").sum(), (s["result"] == "P").sum()
     staked = s["stake"].astype(float).sum()
     units = float(s["profit"].astype(float).sum())
-    cv = clv_primary.coverage(s)   # primary close; decided plays with a close; missing counted, never zero
+    # Pinnacle no-vig CLV (Chad, Nov 6: "put pinnacle clv on the site instead of alert clv"); decided plays with a
+    # Pinnacle close, missing counted, never zero
+    cv = clv_pinnacle.coverage(s) if "pin_status" in s else clv_primary.coverage(s)
     return {"bets": int(len(s)), "rec": f"{w}-{l}" + (f"-{p}" if p else ""), "win": w / (w + l) if w + l else None,
             "units": units, "roi": units / staked if staked else None, "clv": cv["clv"], "beat": cv["beat"],
             "cov": f"{cv['with_close']}/{cv['decided']}" if cv["decided"] else "–", "cv": cv}
@@ -63,16 +65,35 @@ def _close_cell(r) -> str:
             f"{html.escape(str(r.get('pregame_check') or 'not checked'))})</small></span>")
 
 
+def _pin_close(r) -> str:
+    if r.get("status") != "settled":
+        return "–"
+    if r.get("pin_close") is None or pd.isna(r.get("pin_close")):
+        return f"<span title='{html.escape(str(r.get('pin_status') or 'no Pinnacle close'))}'>n/a</span>"
+    pr = r.get("pin_price")
+    return f"{r['pin_close']:g}" + (f"<small class='hide-sm hide-md'> ({pr:+.0f})</small>" if pr is not None and not pd.isna(pr) else "")
+
+
+def _pin_clv(r) -> str:
+    if r.get("status") != "settled":
+        return "–"
+    v = r.get("pin_clv")
+    if v is None or pd.isna(v):
+        return f"<span title='{html.escape(str(r.get('pin_status') or 'no Pinnacle close'))}'>n/a</span>"
+    pts = r.get("pin_points")
+    return f"{v:+.2f}%" + (f"<small class='hide-sm hide-md'> {pts:+.1f} pts</small>" if pts is not None and not pd.isna(pts) else "")
+
+
 def _row(label: str, s: dict) -> str:
     cls = "pos" if s["units"] > 0 else "neg" if s["units"] < 0 else ""
     return (f"<tr><td class='b'>{html.escape(label)}</td><td class='r'>{s['bets']}</td><td class='r'>{s['rec']}</td>"
             f"<td class='r'>{_num(s['win'], '{:.1%}')}</td><td class='r {cls}'>{_num(s['units'])}</td>"
-            f"<td class='r'>{_num(s['roi'], '{:+.1%}')}</td><td class='r'>{_num(s['clv'])}</td>"
+            f"<td class='r'>{_num(s['roi'], '{:+.1%}')}</td><td class='r'>{_num(s['clv'], '{:+.2f}%')}</td>"
             f"<td class='r'>{_num(s['beat'], '{:.0%}')}</td><td class='r'>{s['cov']}</td></tr>")
 
 
 HEAD = ("<thead><tr><th></th><th class='r'>Plays</th><th class='r'>W-L</th><th class='r'>Win %</th><th class='r'>Units</th>"
-        "<th class='r'>ROI</th><th class='r'>Alert CLV pts</th><th class='r'>Beat close</th><th class='r'>Close coverage</th></tr></thead>")
+        "<th class='r'>ROI</th><th class='r' title='Expected ROI against Pinnacle&#39;s no-vig close'>Pinnacle CLV</th><th class='r'>Beat close</th><th class='r' title='Decided plays with a Pinnacle close'>Closes</th></tr></thead>")
 
 
 def _chart(s: pd.DataFrame) -> str:
@@ -315,7 +336,7 @@ def _plays_table(live: pd.DataFrame, empty: str) -> str:
         logged = pd.Timestamp(r["logged_at"]).tz_convert("America/New_York")
         res_k = {"W": "W", "L": "L", "P": "P"}.get(str(r["result"]), "O")
         keys = {"date": f"{r['date']} {r['logged_at']}", "game": f"{r['away']} at {r['home']}", "play": str(r["pick"]),
-                "book": str(r["book"]), "edge": r["edge"], "close": r.get("close_line"), "clv": r.get("clv_pts"),
+                "book": str(r["book"]), "edge": r["edge"], "close": r.get("pin_close"), "clv": r.get("pin_clv"),
                 "sb": r.get("clv_same_book"), "res": res_k, "units": r["profit"] if r["status"] == "settled" else None,
                 "logged": str(r["logged_at"]), "mk": r["market"], "stake": r["stake"]}
         attrs = " ".join(f"data-{k}='{html.escape('' if v is None or (isinstance(v, float) and np.isnan(v)) else str(v))}'"
@@ -324,16 +345,14 @@ def _plays_table(live: pd.DataFrame, empty: str) -> str:
             f"<tr {attrs}><td class='m'>{r['date']}</td><td>{_logo(r['away_id'])}{html.escape(str(r['away']))} at {_logo(r['home_id'])}{html.escape(str(r['home']))}</td>"
             f"<td class='b'>{html.escape(str(r['pick']))}</td><td>{html.escape(str(r['book']))} "
             f"<span class='m'>{_num(r['odds'], '{:+.0f}')}</span></td><td class='r'>{_num(r['edge'], '{:.1f}')}</td>"
-            f"<td class='r'>{_close_cell(r)}</td><td class='r'>{_num(r['clv_pts'], '{:+.2f}', _na(r))}</td>"
-            f"<td class='r m hide-sm hide-md'>{_num(r.get('clv_same_book'), '{:+.2f}')}</td>"
+            f"<td class='r'>{_pin_close(r)}</td><td class='r'>{_pin_clv(r)}</td>"
             f"<td>{res}</td><td class='r'>{units}</td>"
             f"<td class='m hide-sm hide-md'>{logged:%b %-d %-I:%M %p} ET</td></tr>")
     th = lambda k, t, c="", tip="": (f"<th data-k='{k}' class='{c}' tabindex='0' role='button'"
                                        + (f" title='{tip}'" if tip else "") + f">{t}</th>")
     return ("<thead><tr>" + th("date", "Date") + th("game", "Game") + th("play", "Play") + th("book", "Book")
-            + th("edge", "Edge", "r") + th("close", "Close", "r")
-            + th("clv", "Alert CLV", "r", "Points the line moved our way from the alert number to the close (primary close)")
-            + th("sb", "Same-book CLV", "r hide-sm hide-md", "Diagnostic only: the close at the play's own book")
+            + th("edge", "Edge", "r") + th("close", "Pinnacle close", "r")
+            + th("clv", "Pinnacle CLV", "r", "Expected ROI at our number and price against Pinnacle's no-vig close")
             + th("res", "Result") + th("units", "Units", "r") + th("logged", "Logged", "hide-sm hide-md")
             + "</tr></thead><tbody>" + "".join(plays) + "</tbody>") if plays else \
         f"<tbody><tr><td class='empty'>{empty}</td></tr></tbody>"
@@ -343,7 +362,7 @@ def _band_b_section() -> str:
     """Band B (cbb/tracker.py BAND_B): its own summary and plays, never pooled with v1. Always shown (Chad, Oct 30),
     with an empty table until the first band B play."""
     b = tracker.load(tracker.BAND_B)
-    b = clv_primary.attach(b) if len(b) else b.assign(clv_pts=np.nan, close_line=np.nan, clv_same_book=np.nan)
+    b = clv_pinnacle.attach(clv_primary.attach(b)) if len(b) else b.assign(clv_pts=np.nan, close_line=np.nan, clv_same_book=np.nan)
     live = b[(b["status"] != "void") & (b["placed"].astype(str).str.lower() != "no")]
     s = live[live["status"] == "settled"]
     rows = [_row("Band B spreads", summary(s))]
@@ -362,7 +381,7 @@ def _linemove_section() -> str:
     own cell, never pooled with v1 or band B."""
     from . import linemove
     b = tracker.load(tracker.LINEMOVE)
-    b = clv_primary.attach(b) if len(b) else b.assign(clv_pts=np.nan, close_line=np.nan, clv_same_book=np.nan)
+    b = clv_pinnacle.attach(clv_primary.attach(b)) if len(b) else b.assign(clv_pts=np.nan, close_line=np.nan, clv_same_book=np.nan)
     live = b[(b["status"] != "void") & (b["placed"].astype(str).str.lower() != "no")]
     rows = [_row("Logged before Nov 2", summary(live[live["status"] == "settled"]))]
     try:
@@ -385,7 +404,7 @@ def _linemove_section() -> str:
 
 def build() -> str:
     # CLV and the close shown are the forward-test protocol's primary close (cbb/clv_primary.py), as the weekly chart
-    b = clv_primary.attach(tracker.load())
+    b = clv_pinnacle.attach(clv_primary.attach(tracker.load()))
     # Every play counts as placed (Chad bets them all, Oct 27) unless marked placed = "no"; voids are out.
     live = b[(b["status"] != "void") & (b["placed"].astype(str).str.lower() != "no")]
     s = live[live["status"] == "settled"]
@@ -397,11 +416,10 @@ def build() -> str:
     kp = [("Record", tot["rec"]), ("Win %", _num(tot["win"], "{:.1%}")), ("Units", _num(tot["units"])),
           ("ROI", _num(tot["roi"], "{:+.1%}")),
           # one short line; the full coverage breakdown on hover (Chad, Nov 2)
-          ("Alert CLV", f"<span title='{html.escape(clv_primary.coverage_text(tot['cv']) + ' · ' + clv_primary.VERIFICATION_STATUS)}'>"
-                      + _num(tot["clv"], "{:+.2f} pts")
-                      + f"<small class='blk'>{(str(tot['cv']['with_close']) + '/' + str(tot['cv']['decided']) + ' closed') if tot['cv']['decided'] else 'no graded plays yet'}"
-                      + ("" if clv_primary.VERIFIED else f" · {html.escape(clv_primary.VERIFICATION_STATUS.replace('built, ', ''))}")
-                      + "</small></span>"),
+          ("Pinnacle CLV", "<span title='Expected ROI at our number and price against Pinnacle&#39;s no-vig close (its last quote in the 15 minutes before tip)"
+                         + (f"; mean {tot['cv']['points']:+.2f} points vs Pinnacle&#39;s number" if tot['cv'].get('points') is not None else "") + "'>"
+                         + _num(tot["clv"], "{:+.2f}%")
+                         + f"<small class='blk'>{(str(tot['cv']['with_close']) + '/' + str(tot['cv']['decided']) + ' with a Pinnacle close') if tot['cv']['decided'] else 'no graded plays yet'}</small></span>"),
           ("Open plays", str(int((live["status"] == "open").sum())))]
     kpis = "".join(f"<div class='kpi'><div class='k'>{k}</div><div class='v'>{v}</div></div>" for k, v in kp)
 
@@ -447,7 +465,7 @@ def build() -> str:
     <div class="sub">Bets placed on the model's plays, at the logged number and price. Updated {now:%b %-d, %-I:%M %p} ET.</div></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="pagebtn" href="./">&larr; Card</a><a class="pagebtn" href="record/charts.html">Charts</a><a class="pagebtn" href="record/survivor.html">Survivor</a></div></div>
   <div class="kpis">{kpis}</div>
-  <section class="panel"><div class="panel-h"><h2>Summary</h2><span class="note">Settled bets placed. Alert CLV = points the line moved our way from the alert (logged) number to the close; prices are shown separately and not converted (the forward test's primary close: each book's last fresh quote in the 15 minutes before tip, median). Break-even at -110 is 52.4%.</span></div>
+  <section class="panel"><div class="panel-h"><h2>Summary</h2><span class="note">Settled bets placed. Pinnacle CLV = expected ROI at our number and price against Pinnacle's no-vig closing line (its last quote in the 15 minutes before tip); Pinnacle does not price every game. Break-even at -110 is 52.4%.</span></div>
     <div class="scroll"><table>{HEAD}<tbody>{''.join(rows)}</tbody></table></div>{_chart(s)}</section>
   {f"<section class='panel'><div class='panel-h'><h2>By month</h2></div><div class='scroll'><table>{HEAD}<tbody>{months}</tbody></table></div></section>" if months else ""}
   <section class="panel"><div class="panel-h"><h2>Bets placed</h2><span class="note">Newest first.</span></div>

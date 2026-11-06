@@ -101,3 +101,27 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+
+def attach(b: pd.DataFrame) -> pd.DataFrame:
+    """b with pin_status, pin_clv (expected ROI %, + = beat the no-vig close), pin_points and pin_close per bet."""
+    q = quotes()
+    res = [one(r, q) if len(q) else {"status": "no Pinnacle line"} for _, r in b.iterrows()]
+    b = b.copy()
+    b["pin_status"] = [r["status"] for r in res]
+    b["pin_clv"] = [r.get("clv_ev") for r in res]
+    b["pin_points"] = [r.get("points") for r in res]
+    b["pin_close"] = [r.get("pin_close") for r in res]
+    b["pin_price"] = [r.get("pin_price") for r in res]
+    return b
+
+
+def coverage(s: pd.DataFrame) -> dict:
+    """Decided plays (W or L): how many have a Pinnacle close, their mean Pinnacle CLV (%), the share beating the
+    no-vig close and the mean points against Pinnacle's number. Missing closes are counted, never zero."""
+    d = s[s["result"].isin(["W", "L"])] if "result" in s else s.iloc[0:0]
+    c = d[d["pin_status"] == "ok"] if len(d) else d
+    v = pd.to_numeric(c["pin_clv"], errors="coerce").dropna() if len(c) else pd.Series(dtype=float)
+    pts = pd.to_numeric(c["pin_points"], errors="coerce").dropna() if len(c) else pd.Series(dtype=float)
+    return {"decided": int(len(d)), "with_close": int(len(v)), "clv": round(float(v.mean()), 2) if len(v) else None,
+            "beat": float((v > 0).mean()) if len(v) else None, "points": round(float(pts.mean()), 2) if len(pts) else None}
