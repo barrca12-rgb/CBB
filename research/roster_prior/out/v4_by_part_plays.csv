@@ -1,0 +1,25 @@
+variant,market,part,plays,win%,ROI%
+base,spread,a days 0-20,1219,56.74,8.26
+base,spread,b days 21-60,1221,56.67,8.04
+base,spread,c day 61+,1870,58.78,12.05
+base,spread,d full season,4310,57.6,9.84
+base,total,a days 0-20,1556,57.6,9.86
+base,total,b days 21-60,1912,59.54,13.52
+base,total,c day 61+,4610,57.36,9.43
+base,total,d full season,8078,57.92,10.48
+F2 blend,spread,a days 0-20,1185,58.24,11.05
+F2 blend,spread,b days 21-60,1206,56.67,8.04
+F2 blend,spread,c day 61+,1843,58.68,11.88
+F2 blend,spread,d full season,4234,57.99,10.56
+F2 blend,total,a days 0-20,1590,58.65,11.84
+F2 blend,total,b days 21-60,1839,60.08,14.55
+F2 blend,total,c day 61+,4530,57.51,9.72
+F2 blend,total,d full season,7959,58.33,11.26
+F2 no outside,spread,a days 0-20,2134,53.7,2.49
+F2 no outside,spread,b days 21-60,2044,53.91,2.86
+F2 no outside,spread,c day 61+,2364,58.19,10.91
+F2 no outside,spread,d full season,6542,55.39,5.65
+F2 no outside,total,a days 0-20,1884,55.87,6.59
+F2 no outside,total,b days 21-60,2018,59.66,13.76
+F2 no outside,total,c day 61+,4785,57.36,9.43
+F2 no outside,total,d full season,8687,57.57,9.82

@@ -174,3 +174,20 @@ By the rule set in advance, no variant goes live. The blended prior is the first
 and recent opener results together, failing only on a 0.005-point tie in early totals. The right next test is live:
 run R3v4 as a shadow alongside the card (logged, never alerted or staked), and read it with the forward test
 on Jan 15 and Mar 14. That needs a live roster feed (ESPN team rosters) and Chad's approval.
+
+## Version 4, full-season view (Chad, Nov 6: "evaluate on full season not just early"; computed after the result)
+
+All seasons 2015-2026 (`out/v4_by_part_accuracy.csv`, `out/v4_by_part_plays.csv`):
+
+| Part of season | Margin miss: base / F2 blend | Total miss: base / F2 blend | Opener spreads win %: base / blend | Opener totals win %: base / blend |
+|---|---|---|---|---|
+| Days 0-20 | 9.174 / **9.150** | **13.732** / 13.737 | 56.74 / **58.24** | 57.60 / **58.65** |
+| Days 21-60 | **8.919** / 8.924 | 13.119 / **13.111** | 56.67 / 56.67 | 59.54 / **60.08** |
+| Day 61+ | 8.571 / **8.570** | 13.147 / **13.146** | **58.78** / 58.68 | 57.36 / **57.51** |
+| **Full season** | 8.770 / **8.766** | 13.245 / **13.243** | 57.60 / **57.99** | 57.92 / **58.33** |
+
+Full-season ROI at -110: spreads 9.84% -> 10.56%, totals 10.48% -> 11.26%. The gain is concentrated in the first 20
+days (as it should be: the prior fades as games come in) and is essentially zero after day 60, which is a sanity
+check that the blend changes nothing it should not. Over the full season, the blend is lower on both misses and
+higher on both opener win rates. The pre-registered rule was the early-season one; this view was requested after
+the result and is reported as such.

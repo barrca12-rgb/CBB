@@ -1,0 +1,13 @@
+variant,part,margin MAE,total MAE
+base,a days 0-20,9.174,13.732
+base,b days 21-60,8.919,13.119
+base,c day 61+,8.571,13.147
+base,d full season,8.77,13.245
+F2 blend,a days 0-20,9.15,13.737
+F2 blend,b days 21-60,8.924,13.111
+F2 blend,c day 61+,8.57,13.146
+F2 blend,d full season,8.766,13.243
+F2 no outside,a days 0-20,9.395,13.817
+F2 no outside,b days 21-60,9.026,13.131
+F2 no outside,c day 61+,8.59,13.153
+F2 no outside,d full season,8.848,13.267
