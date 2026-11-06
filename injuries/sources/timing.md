@@ -19,5 +19,5 @@ Last pull per source:
 |---|---|---:|---:|---|---|
 | espn | yes | 0 |  |  |  |
 | rotowire | yes | 5 | 100% |  |  |
-| covers | yes | 99 | 93% | Miami (FL) Hurricanes; San Jose State Spartans; UNLV Runnin' Rebels; Utah Runnin' Utes |  |
+| covers | yes | 98 | 93% | Miami (FL) Hurricanes; San Jose State Spartans; UNLV Runnin' Rebels; Utah Runnin' Utes |  |
 | cbs | yes | 0 |  |  |  |
