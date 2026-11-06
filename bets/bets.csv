@@ -287,3 +287,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-07|401921154|spread|away|bandB,2026-11-07,401921154,spread,North Carolina A&T +13.5,away,195,2448,Ohio,North Carolina A&T,13.5,13.5,-110.0,Fanatics,2.01,11.49,0.5,yes,2026-11-06T19:40:32+00:00,,,,,,,,open,bandB
 2026-11-10|401913527|total|under,2026-11-10,401913527,total,Under 160,under,2641,356,Texas Tech,Illinois,160.0,160.0,-110.0,Caesars,3.34,156.66,1.0,yes,2026-11-06T19:41:12+00:00,,,,,,,,open,
 2026-11-07|401920856|spread|away,2026-11-07,401920856,spread,Toledo +2.5,away,276,2649,Marshall,Toledo,2.5,2.5,-110.0,theScore Bet,3.5,-1.0,0.45,yes,2026-11-06T19:51:26+00:00,,,,,,,,open,
+2026-11-07|401928352|spread|home,2026-11-07,401928352,spread,UC Santa Barbara -10.5,home,2540,2473,UC Santa Barbara,Oakland,-10.5,-10.5,-110.0,theScore Bet,2.82,13.32,0.45,yes,2026-11-06T20:01:20+00:00,,,,,,,,open,
+2026-11-07|401928352|total|under,2026-11-07,401928352,total,Under 152.5,under,2540,2473,UC Santa Barbara,Oakland,152.5,152.5,-105.0,theScore Bet,3.56,148.94,1.0,yes,2026-11-06T20:01:20+00:00,,,,,,,,open,
+2026-11-07|401924912|spread|home,2026-11-07,401924912,spread,UNLV -12.5,home,2439,2535,UNLV,Samford,-12.5,-12.5,-110.0,theScore Bet,3.12,15.62,0.45,yes,2026-11-06T20:01:20+00:00,,,,,,,,open,
