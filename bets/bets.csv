@@ -258,3 +258,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-06|401921285|spread|home,2026-11-06,401921285,spread,Villanova -31.5,home,222,107,Villanova,Holy Cross,-31.5,-31.5,-105.0,FanDuel,2.65,34.15,0.59,yes,2026-11-06T03:18:19+00:00,,,,,,,,open,
 2026-11-06|401921767|total|under,2026-11-06,401921767,total,Under 144,under,277,56,West Virginia,Stetson,144.0,144.0,-110.0,Fanatics,3.39,140.61,1.0,yes,2026-11-06T03:21:22+00:00,,,,,,,,open,
 2026-11-06|401921719|total|under,2026-11-06,401921719,total,Under 147.5,under,2390,2681,Miami,Wagner,147.5,147.5,-115.0,FanDuel,6.08,141.42,1.0,yes,2026-11-06T03:37:17+00:00,,,,,,,,open,
+2026-11-06|401919040|spread|home|bandB,2026-11-06,401919040,spread,Oklahoma State -18.5,home,197,2511,Oklahoma State,Queens University,-18.5,-18.5,-115.0,FanDuel,2.15,20.65,0.5,yes,2026-11-06T03:53:55+00:00,,,,,,,,open,bandB
