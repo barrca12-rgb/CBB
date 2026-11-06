@@ -268,3 +268,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-06|401921719|spread|home|bandB,2026-11-06,401921719,spread,Miami -31.5,home,2390,2681,Miami,Wagner,-31.5,-31.5,-115.0,DraftKings,2.08,33.58,0.5,yes,2026-11-06T06:01:12+00:00,,,,,,,,open,bandB
 2026-11-06|401906802|total|under,2026-11-06,401906802,total,Under 148.5,under,201,2400,Oklahoma,Mississippi Valley State,148.5,148.5,-105.0,DraftKings,3.4,145.1,1.0,yes,2026-11-06T06:11:11+00:00,,,,,,,,open,
 2026-11-06|401909695|spread|away,2026-11-06,401909695,spread,Troy +22.5,away,52,2653,Florida State,Troy,22.5,22.5,-108.0,DraftKings,3.47,19.03,0.45,yes,2026-11-06T06:31:15+00:00,,,,,,,,open,
+2026-11-06|401909523|spread|away,2026-11-06,401909523,spread,Detroit Mercy +31.5,away,269,2174,Marquette,Detroit Mercy,31.5,31.5,-104.0,FanDuel,3.49,28.01,0.45,yes,2026-11-06T07:19:35+00:00,,,,,,,,open,
