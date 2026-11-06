@@ -80,8 +80,16 @@ def _pin_clv(r) -> str:
     v = r.get("pin_clv")
     if v is None or pd.isna(v):
         return f"<span title='{html.escape(str(r.get('pin_status') or 'no Pinnacle close'))}'>n/a</span>"
-    pts = r.get("pin_points")
-    return f"{v:+.2f}%" + (f"<small class='hide-sm hide-md'> {pts:+.1f} pts</small>" if pts is not None and not pd.isna(pts) else "")
+    return f"{v:+.2f}%"   # the points are their own column (Moved)
+
+
+def _moved(r) -> str:
+    """Points our number beat Pinnacle's close by (+ = the line moved our way); a dash until settled."""
+    v = r.get("pin_points")
+    if r.get("status") != "settled" or v is None or pd.isna(v):
+        return "–"
+    cls = "pos b" if v > 0 else "neg" if v < 0 else "m"
+    return f"<span class='{cls}'>{'0' if v == 0 else f'{v:+g}'}</span>"
 
 
 def _row(label: str, s: dict) -> str:
@@ -282,7 +290,7 @@ document.querySelectorAll("table.rec").forEach((t) => {
   const tb = t.tBodies[0], rows = [...tb.rows].filter((r) => r.dataset.date !== undefined);
   if (!rows.length) return;
   const ctl = document.querySelector(".recctl[data-for='" + t.id + "']");
-  const KEY = "otg-rec-sort:" + t.id, NUM = ["edge", "close", "clv", "sb", "units"];
+  const KEY = "otg-rec-sort:" + t.id, NUM = ["edge", "close", "clv", "sb", "units", "moved"];
   const RES = {W: 0, L: 1, P: 2, O: 3};
   let sort = {k: "date", dir: -1};
   try { const v = JSON.parse(localStorage.getItem(KEY) || "null"); if (v && v.k) sort = v; } catch (e) {}
@@ -311,7 +319,7 @@ document.querySelectorAll("table.rec").forEach((t) => {
   };
   t.querySelectorAll("th[data-k]").forEach((h) => {
     const go = () => { const k = h.dataset.k;
-      sort = sort.k === k ? {k, dir: -sort.dir} : {k, dir: ["date", "logged", "edge", "clv", "sb", "units", "close"].includes(k) ? -1 : 1};
+      sort = sort.k === k ? {k, dir: -sort.dir} : {k, dir: ["date", "logged", "edge", "clv", "sb", "units", "close", "moved"].includes(k) ? -1 : 1};
       try { localStorage.setItem(KEY, JSON.stringify(sort)); } catch (e) {}
       render(); };
     h.addEventListener("click", go);
@@ -337,6 +345,7 @@ def _plays_table(live: pd.DataFrame, empty: str) -> str:
         res_k = {"W": "W", "L": "L", "P": "P"}.get(str(r["result"]), "O")
         keys = {"date": f"{r['date']} {r['logged_at']}", "game": f"{r['away']} at {r['home']}", "play": str(r["pick"]),
                 "book": str(r["book"]), "edge": r["edge"], "close": r.get("pin_close"), "clv": r.get("pin_clv"),
+                "moved": r.get("pin_points") if r["status"] == "settled" else None,
                 "sb": r.get("clv_same_book"), "res": res_k, "units": r["profit"] if r["status"] == "settled" else None,
                 "logged": str(r["logged_at"]), "mk": r["market"], "stake": r["stake"]}
         attrs = " ".join(f"data-{k}='{html.escape('' if v is None or (isinstance(v, float) and np.isnan(v)) else str(v))}'"
@@ -345,13 +354,14 @@ def _plays_table(live: pd.DataFrame, empty: str) -> str:
             f"<tr {attrs}><td class='m'>{r['date']}</td><td>{_logo(r['away_id'])}{html.escape(str(r['away']))} at {_logo(r['home_id'])}{html.escape(str(r['home']))}</td>"
             f"<td class='b'>{html.escape(str(r['pick']))}</td><td>{html.escape(str(r['book']))} "
             f"<span class='m'>{_num(r['odds'], '{:+.0f}')}</span></td><td class='r'>{_num(r['edge'], '{:.1f}')}</td>"
-            f"<td class='r'>{_pin_close(r)}</td><td class='r'>{_pin_clv(r)}</td>"
+            f"<td class='r hide-md'>{_pin_close(r)}</td><td class='r'>{_moved(r)}</td><td class='r'>{_pin_clv(r)}</td>"
             f"<td>{res}</td><td class='r'>{units}</td>"
             f"<td class='m hide-sm hide-md'>{logged:%b %-d %-I:%M %p} ET</td></tr>")
     th = lambda k, t, c="", tip="": (f"<th data-k='{k}' class='{c}' tabindex='0' role='button'"
                                        + (f" title='{tip}'" if tip else "") + f">{t}</th>")
     return ("<thead><tr>" + th("date", "Date") + th("game", "Game") + th("play", "Play") + th("book", "Book")
-            + th("edge", "Edge", "r") + th("close", "Pinnacle close", "r")
+            + th("edge", "Edge", "r") + th("close", "Pinnacle close", "r hide-md")
+            + th("moved", "Moved", "r", "Points our number beat Pinnacle&#39;s close by (+ = the line moved our way)")
             + th("clv", "Pinnacle CLV", "r", "Expected ROI at our number and price against Pinnacle's no-vig close")
             + th("res", "Result") + th("units", "Units", "r") + th("logged", "Logged", "hide-sm hide-md")
             + "</tr></thead><tbody>" + "".join(plays) + "</tbody>") if plays else \

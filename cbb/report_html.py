@@ -630,7 +630,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
 
   <section class="panel" aria-labelledby="plays-h">
     <div class="panel-h"><h2 id="plays-h">Plays</h2>
-      <div class="ctrls"><label class="chk" style="font-size:12px">Sort <select id="play-sort" style="font:inherit;font-size:12px;padding:2px 4px;border:1px solid var(--line-strong);border-radius:6px;background:var(--surface);color:var(--text)"><option value="bet">Tip time</option><option value="at">Newest play</option><option value="edge">Edge</option><option value="ev">EV</option><option value="book">Book</option></select></label><span class="chip" id="plays-count"></span><button type="button" class="chipbtn" id="rules-btn" aria-expanded="false" aria-controls="plays-rules">Rules</button></div>
+      <div class="ctrls"><label class="chk" style="font-size:12px">Sort <select id="play-sort" style="font:inherit;font-size:12px;padding:2px 4px;border:1px solid var(--line-strong);border-radius:6px;background:var(--surface);color:var(--text)"><option value="bet">Tip time</option><option value="at">Newest play</option><option value="edge">Edge</option><option value="ev">EV</option><option value="moved">Line moved our way</option><option value="book">Book</option></select></label><span class="chip" id="plays-count"></span><button type="button" class="chipbtn" id="rules-btn" aria-expanded="false" aria-controls="plays-rules">Rules</button></div>
     </div>
     <div class="rules" id="plays-rules" hidden>Spread edge 2.5+ pts · total edge 3+ pts · +2% EV at the price · 1 unit each. Win % = backtest rate for that edge. A logged play stays a play: its edge, win % and EV are as they were when it was logged (plays logged before the Oct 26 model update show them against today's model at your number); the line under it says where the line and the model are now.</div>
     <div class="scroll"><table id="t-plays"></table></div>
@@ -873,12 +873,19 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   const PRE = new Set(D.prerule || []);
   const LM = P.filter((p) => PRE.has(p.bid)).map((p) => Object.assign({type: "v1"}, p));
   for (let i = P.length - 1; i >= 0; i--) if (PRE.has(P[i].bid)) P.splice(i, 1);
+  // points the market moved our way since the play: our number vs the median across books now (+ = toward us;
+  // Chad, Nov 6: "sort by biggest line movement in our direction"); blank once no book has a line up
+  const moved = (p) => {
+    const now = numOf(p.now), ours = Number(p.line);
+    if (now == null || p.line == null || !isFinite(ours)) return null;
+    return p.kind === "Spread" || p.side !== "over" ? ours - now : now - ours;
+  };
   // sortable columns: click a header to sort by it, again to reverse; the default is tip time, then edge
   const byTime = (a, b) => String(a.g.start).localeCompare(String(b.g.start)) || b.edge - a.edge;
   const numOf = (v) => { if (v == null) return null; const m = String(v).replace(/\u2212/g, "-").match(/[-+]?\d+(\.\d+)?/); return m ? Number(m[0]) : null; };
   const SORT = {bet: (p) => String(p.g.start || ""), book: (p) => String(p.book || "").toLowerCase(), model: (p) => numOf(p.model),
     edge: (p) => p.edge, p: (p) => p.p, ev: (p) => p.ev, to: (p) => numOf(p.to), open: (p) => numOf(p.open), now: (p) => numOf(p.now), units: (p) => p.units,
-    at: (p) => p.at ? Date.parse(p.at) : null};
+    at: (p) => p.at ? Date.parse(p.at) : null, moved: (p) => moved(p)};
   let playSort = {key: "bet", dir: 1};
   try { const v = JSON.parse(localStorage.getItem("cbb-play-sort") || "null"); if (v && SORT[v.key]) playSort = v; } catch (e) {}
   const sortPlays = () => P.sort((a, b) => {
@@ -899,7 +906,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   // the column bar, repeated above every play after the first (Chad, Nov 1: "easier to follow"); hidden on phones,
   // where each play is a card with its own labels
   const bar = th("bet", "Bet") + th("book", "Book") + th("model", "Model", "r hide-sm hide-md") + th("edge", "Edge", "r") +
-    th("p", "Win %", "r hide-sm") + th("ev", "EV", "r") + th("to", "Bet to", "r") + th("open", "Opened", "r hide-sm hide-md") + th("now", "Now", "r") + th("units", "Units", "r hide-sm hide-md") + th("at", "Logged", "r hide-sm") +
+    th("p", "Win %", "r hide-sm") + th("ev", "EV", "r") + th("to", "Bet to", "r") + th("open", "Opened", "r hide-sm hide-md") + th("now", "Now", "r") + th("moved", "Moved", "r") + th("units", "Units", "r hide-sm hide-md") + th("at", "Logged", "r hide-sm") +
     "<th></th>";
   $("t-plays").innerHTML = P.length ? "<thead><tr>" + bar + "</tr></thead><tbody>" +
     P.map((p, i) => (i ? "<tr class='rephead'>" + bar + "</tr>" : "") + "<tr data-gid='" + p.g.game_id + "' data-mk='" + p.kind.toLowerCase() + "'><td><div class='b pick'>" + logo(pickId(p.g, p.kind, p.side), 20) + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
@@ -913,7 +920,8 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
       [["away", p.g.away], ["home", p.g.home]].filter(([sd]) => p.g[sd + "_injuries"]).map(([sd, nm]) => "<div class='inj'>" + esc(nm) + ": " + esc(p.g[sd + "_injuries"]) + "</div>").join("") + "</td><td>" +
       esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r m hide-sm hide-md'>" + esc(p.model) + "</td><td class='r " + (p.edge >= (p.kind === "Spread" ? 2.5 : 3) ? "pos b" : p.edge < 0 ? "neg" : "m") + "'>" + sgn(p.edge) +
       "</td><td class='r m hide-sm'>" + pct(p.p) + "</td><td class='r'>" + (p.ev == null ? "–" : sgn(100 * p.ev) + "%") +
-      "</td><td class='r'>" + esc(p.to) + "</td><td class='r m hide-sm hide-md' title='First number posted (the play&#39;s book if it was among the first)'>" + esc(p.open ?? "–") + "</td><td class='r m' title='Median across books now'>" + esc(p.now ?? "–") + "</td><td class='r hide-sm hide-md'>" + num(p.units, 2) + "</td><td class='r m hide-sm' style='white-space:nowrap'>" +
+      "</td><td class='r'>" + esc(p.to) + "</td><td class='r m hide-sm hide-md' title='First number posted (the play&#39;s book if it was among the first)'>" + esc(p.open ?? "–") + "</td><td class='r m' title='Median across books now'>" + esc(p.now ?? "–") + "</td><td class='r " + (moved(p) > 0 ? "pos b" : moved(p) < 0 ? "neg" : "m") + "' title='Points the market moved our way since the play (our number vs the median across books now)'>" +
+      (moved(p) == null ? "–" : moved(p) === 0 ? "0" : sgn(moved(p))) + "</td><td class='r hide-sm hide-md'>" + num(p.units, 2) + "</td><td class='r m hide-sm' style='white-space:nowrap'>" +
       (p.at ? esc(new Date(p.at).toLocaleString("en-US", {timeZone: "America/New_York", month: "short", day: "numeric", hour: "numeric", minute: "2-digit"})) : "–") + "</td><td class='r'>" +
       (p.g.news_url ? "<a class='f' style='font-size:12px;margin-right:8px' href='" + esc(p.g.news_url) + "' target='_blank' rel='noopener'>News</a>" : "") +
       "</td></tr>").join("") + "</tbody>"
@@ -926,7 +934,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
   syncSel();
   sel.onchange = () => {
     const k = sel.value;
-    playSort = {key: k, dir: ["edge", "p", "ev", "units", "at"].includes(k) ? -1 : 1};
+    playSort = {key: k, dir: ["edge", "p", "ev", "units", "at", "moved"].includes(k) ? -1 : 1};
     try { localStorage.setItem("cbb-play-sort", JSON.stringify(playSort)); } catch (e) {}
     sortPlays();
     renderPlays();
@@ -935,7 +943,7 @@ footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 8
     const h = ev.target.closest("th[data-sort]");
     if (!h) return;
     const k = h.dataset.sort;
-    playSort = playSort.key === k ? {key: k, dir: -playSort.dir} : {key: k, dir: ["edge", "p", "ev", "units", "at"].includes(k) ? -1 : 1};
+    playSort = playSort.key === k ? {key: k, dir: -playSort.dir} : {key: k, dir: ["edge", "p", "ev", "units", "at", "moved"].includes(k) ? -1 : 1};
     try { localStorage.setItem("cbb-play-sort", JSON.stringify(playSort)); } catch (e) {}
     sortPlays();
     renderPlays();
