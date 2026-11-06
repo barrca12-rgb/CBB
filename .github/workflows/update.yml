@@ -45,7 +45,12 @@ jobs:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url || steps.deploy2.outputs.page_url || steps.deploy3.outputs.page_url }}
     steps:
+      # the branch tip when the job starts, not the commit that triggered the run: a run that waited behind another
+      # in the concurrency queue otherwise works from a bet log without the previous run's plays and alerts them
+      # again (Alabama Under 173.5, Nov 6 01:48 and 01:51 UTC)
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
 
       - uses: actions/setup-python@v5
         with:

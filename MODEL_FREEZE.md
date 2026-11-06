@@ -1296,3 +1296,18 @@ c8a9865f7838b6078306152e16ea506f4848b79f3ab0950a19384193cf7f0a89  cbb/odds_api.p
 358e403da049f5bded46b8c94bd9e6f4dfa6835515a5ac74f816e52123c7745e  cbb/odds_api.py
 b3375e4f142675a95e9c0d93f35d041dba4c5b4a33a655b1a0b5ea2513dfe87c  .github/workflows/update.yml
 ```
+
+## 2026-11-06: card runs check out the latest branch commit (operational)
+
+- **Problem.** A card run that waited in the concurrency queue still checked out the commit that triggered it, so it
+  worked from a bet log without the previous run's plays and alerted them again. Four plays were alerted twice
+  (Nov 2 Over 401910998; Nov 4 Coastal Carolina +38.5 and Penn State -15.5; Nov 6 Alabama Under 173.5). The
+  second run's row replaced the first, so each play is logged once, with the later time.
+- **Fix in `.github/workflows/update.yml`:** `actions/checkout` now checks out the branch tip when the job starts.
+- **Unchanged:** picks, lines, stakes and the bet log format.
+- **Discord note:** none.
+- **New fingerprint:**
+
+```
+ef3744b1a4c7be3ae2bf2142c6883a19f9182b88a67a4411ca53ca3af3d8ce2c  .github/workflows/update.yml
+```
