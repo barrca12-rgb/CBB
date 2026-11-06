@@ -283,3 +283,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-06|401911305|total|under,2026-11-06,401911305,total,Under 147.5,under,225,104,Brown,Boston University,147.5,147.5,-110.0,Caesars,9.49,138.01,1.0,yes,2026-11-06T15:07:13+00:00,,,,,,,,open,
 2026-11-06|401919015|spread|away,2026-11-06,401919015,spread,Nicholls +15.5,away,5,2447,UAB,Nicholls,15.5,15.5,-108.0,FanDuel,2.95,12.55,0.45,yes,2026-11-06T16:11:20+00:00,,,,,,,,open,
 2026-11-06|401920952|spread|away,2026-11-06,401920952,spread,Southern Illinois +1.5,away,140,79,Kansas City,Southern Illinois,1.5,1.5,-110.0,BetMGM,3.8,-2.3,0.45,yes,2026-11-06T16:11:20+00:00,,,,,,,,open,
+2026-11-07|401918948|spread|away,2026-11-07,401918948,spread,Morehead State +36.5,away,97,2413,Louisville,Morehead State,36.5,36.5,-110.0,Fanatics,3.37,33.13,0.45,yes,2026-11-06T19:40:28+00:00,,,,,,,,open,
+2026-11-07|401921154|spread|away|bandB,2026-11-07,401921154,spread,North Carolina A&T +13.5,away,195,2448,Ohio,North Carolina A&T,13.5,13.5,-110.0,Fanatics,2.01,11.49,0.5,yes,2026-11-06T19:40:32+00:00,,,,,,,,open,bandB
+2026-11-10|401913527|total|under,2026-11-10,401913527,total,Under 160,under,2641,356,Texas Tech,Illinois,160.0,160.0,-110.0,Caesars,3.34,156.66,1.0,yes,2026-11-06T19:41:12+00:00,,,,,,,,open,
