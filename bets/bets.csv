@@ -290,3 +290,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-07|401928352|spread|home,2026-11-07,401928352,spread,UC Santa Barbara -10.5,home,2540,2473,UC Santa Barbara,Oakland,-10.5,-10.5,-110.0,theScore Bet,2.82,13.32,0.45,yes,2026-11-06T20:01:20+00:00,,,,,,,,open,
 2026-11-07|401928352|total|under,2026-11-07,401928352,total,Under 152.5,under,2540,2473,UC Santa Barbara,Oakland,152.5,152.5,-105.0,theScore Bet,3.56,148.94,1.0,yes,2026-11-06T20:01:20+00:00,,,,,,,,open,
 2026-11-07|401924912|spread|home,2026-11-07,401924912,spread,UNLV -12.5,home,2439,2535,UNLV,Samford,-12.5,-12.5,-110.0,theScore Bet,3.12,15.62,0.45,yes,2026-11-06T20:01:20+00:00,,,,,,,,open,
+2026-11-07|401928788|spread|away,2026-11-07,401928788,spread,New Mexico State +26.5,away,2250,166,Gonzaga,New Mexico State,26.5,26.5,100.0,theScore Bet,3.42,23.08,0.45,yes,2026-11-06T20:11:27+00:00,,,,,,,,open,
+2026-11-07|401926201|spread|home,2026-11-07,401926201,spread,UTSA -5.5,home,2636,2678,UTSA,VMI,-5.5,-5.5,-115.0,theScore Bet,2.56,8.06,0.45,yes,2026-11-06T20:11:27+00:00,,,,,,,,open,
+2026-11-07|401926112|total|under,2026-11-07,401926112,total,Under 147.5,under,231,2460,Furman,Northern Iowa,147.5,147.5,-110.0,theScore Bet,3.91,143.59,1.0,yes,2026-11-06T20:11:27+00:00,,,,,,,,open,
+2026-11-07|401924264|spread|home|bandB,2026-11-07,401924264,spread,Montana State -10.5,home,147,299,Montana State,Long Beach State,-10.5,-10.5,-115.0,theScore Bet,2.37,12.87,0.5,yes,2026-11-06T20:11:33+00:00,,,,,,,,open,bandB
