@@ -191,3 +191,19 @@ days (as it should be: the prior fades as games come in) and is essentially zero
 check that the blend changes nothing it should not. Over the full season, the blend is lower on both misses and
 higher on both opener win rates. The pre-registered rule was the early-season one; this view was requested after
 the result and is reported as such.
+
+## Version 4, this season so far (Nov 1-5, 2026; asked after the result)
+
+Script: `live_replay_2027.py` (adjustment per game in `out/f2_delta_2027.csv`). Card model numbers plus the blend's
+stage-1 change carried through the frozen stage-2 coefficients; plays = 2.5+ off the opening spread or 3+ off the
+opening total (lines/openers.csv), graded at the opener; 138 games.
+
+| | Spreads | Totals |
+|---|---|---|
+| Current model | 22-20 (+0.0u); favorites 17-15, underdogs 5-5 | 12-10 (+0.9u) |
+| F2 blend | 20-30 (-11.8u); favorites 3-7, underdogs 17-23 | 19-15 (+2.3u) |
+
+The blend lowers the home side's margin by 1.3 points on average (it rates mismatches closer), which turns most of
+its spread plays into underdogs, the segment losing this season. Four days; roster from games so far; 77 teams fall
+back to the current prior. A warning sign worth a backtest check of the blend's favorite/underdog split on big
+spreads, not a verdict.
