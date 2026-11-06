@@ -266,3 +266,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-06|401920305|total|under,2026-11-06,401920305,total,Under 157.5,under,59,290,Georgia Tech,Georgia Southern,157.5,157.5,-110.0,FanDuel,6.05,151.45,1.0,yes,2026-11-06T06:01:08+00:00,,,,,,,,open,
 2026-11-06|401920072|total|under,2026-11-06,401920072,total,Under 142.5,under,2244,2154,George Mason,Coppin State,142.5,142.5,-115.0,DraftKings,3.28,139.22,1.0,yes,2026-11-06T06:01:08+00:00,,,,,,,,open,
 2026-11-06|401921719|spread|home|bandB,2026-11-06,401921719,spread,Miami -31.5,home,2390,2681,Miami,Wagner,-31.5,-31.5,-115.0,DraftKings,2.08,33.58,0.5,yes,2026-11-06T06:01:12+00:00,,,,,,,,open,bandB
+2026-11-06|401906802|total|under,2026-11-06,401906802,total,Under 148.5,under,201,2400,Oklahoma,Mississippi Valley State,148.5,148.5,-105.0,DraftKings,3.4,145.1,1.0,yes,2026-11-06T06:11:11+00:00,,,,,,,,open,
