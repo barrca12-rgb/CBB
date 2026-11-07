@@ -306,3 +306,8 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-07|401920770|total|under,2026-11-07,401920770,total,Under 146.5,under,2182,2142,Drexel,Colgate,146.5,146.5,-105.0,FanDuel,4.27,142.23,1.0,yes,2026-11-06T23:21:39+00:00,,,,,,,,open,
 2026-11-07|401920411|spread|home|bandB,2026-11-07,401920411,spread,High Point -10.5,home,2272,265,High Point,Washington State,-10.5,-10.5,-110.0,FanDuel,2.4,12.9,0.5,yes,2026-11-06T23:31:21+00:00,,,,,,,,open,bandB
 2026-11-07|401919805|spread|home|bandB,2026-11-07,401919805,spread,La Salle -4.5,home,2325,112358,La Salle,Long Island University,-4.5,-4.5,-120.0,FanDuel,2.24,6.74,0.5,yes,2026-11-06T23:41:54+00:00,,,,,,,,open,bandB
+2026-11-07|401925772|total|under,2026-11-07,401925772,total,Under 150.5,under,2166,2382,Davidson,Mercer,150.5,150.5,-110.0,FanDuel,3.92,146.58,1.0,yes,2026-11-07T00:01:28+00:00,,,,,,,,open,
+2026-11-07|401924951|total|under,2026-11-07,401924951,total,Under 139.5,under,2710,2277,Western Illinois,Houston Christian,139.5,139.5,-110.0,FanDuel,3.65,135.85,1.0,yes,2026-11-07T00:01:28+00:00,,,,,,,,open,
+2026-11-07|401917518|total|under,2026-11-07,401917518,total,Under 144.5,under,71,279,Bradley,Pacific,144.5,144.5,-105.0,FanDuel,4.05,140.45,1.0,yes,2026-11-07T00:01:28+00:00,,,,,,,,open,
+2026-11-07|401917519|total|over,2026-11-07,401917519,total,Over 163.5,over,2541,16,Santa Clara,Sacramento State,163.5,163.5,-115.0,FanDuel,3.28,166.78,1.0,yes,2026-11-07T00:01:28+00:00,,,,,,,,open,
+2026-11-07|401911470|spread|home,2026-11-07,401911470,spread,UC Irvine -4.5,home,300,23,UC Irvine,San José State,-4.5,-4.5,-120.0,FanDuel,3.34,7.84,0.45,yes,2026-11-07T00:01:28+00:00,,,,,,,,open,
