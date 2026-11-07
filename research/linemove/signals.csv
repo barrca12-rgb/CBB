@@ -185,3 +185,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-07T18:30:47+00:00,2026-11-07,401920062,2026-11-07T21:00Z,227,2405,Rhode Island,Monmouth,total,over,v1,Over 143.5,144.5,-115.0,theScore Bet,2026-11-06T20:00:45+00:00,143.5,-115.0,BetRivers,1.0,1350.0,2.3,3.3,146.8
 2026-11-07T18:40:42+00:00,2026-11-07,401911262,2026-11-08T00:00Z,2099,179,Canisius,St. Bonaventure,total,under,v1,Under 150.5,147.5,-110.0,FanDuel,2026-11-07T00:00:44+00:00,150.5,-117.0,BetRivers,3.0,1120.0,0.7,3.7,146.8
 2026-11-07T19:00:59+00:00,2026-11-07,401924843,2026-11-07T23:30Z,315,2415,Niagara,Morgan State,total,over,v1,Over 148.5,150.0,-110.0,Fanatics,2026-11-07T04:40:40+00:00,148.5,-108.0,FanDuel,1.5,860.3,1.66,3.16,151.66
+2026-11-07T20:10:49+00:00,2026-11-07,401922044,2026-11-07T20:00Z,2344,2428,Longwood,North Carolina Central,total,under,v1,Under 151.5,148.5,-115.0,DraftKings,2026-11-07T01:14:57+00:00,151.5,-114.0,FanDuel,3.0,1135.9,0.79,3.79,147.71
