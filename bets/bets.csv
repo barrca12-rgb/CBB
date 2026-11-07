@@ -328,3 +328,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-07|401920435|spread|away,2026-11-07,401920435,spread,Utah Valley -6.5,away,2692,3084,Weber State,Utah Valley,-6.5,-6.5,-110.0,theScore Bet,3.64,-10.14,0.03,yes,2026-11-07T05:41:07+00:00,,,,,,,,open,
 2026-11-07|401925077|total|under,2026-11-07,401925077,total,Under 153.5,under,93,2466,Murray State,Northwestern State,153.5,153.5,-109.0,BetRivers,3.25,150.25,1.0,yes,2026-11-07T08:11:07+00:00,,,,,,,,open,
 2026-11-07|401926201|total|under,2026-11-07,401926201,total,Under 163.5,under,2636,2678,UTSA,VMI,163.5,163.5,-105.0,DraftKings,4.04,159.46,1.0,yes,2026-11-07T08:30:57+00:00,,,,,,,,open,
+2026-11-07|401919805|spread|home,2026-11-07,401919805,spread,La Salle -4.5,home,2325,112358,La Salle,Long Island University,-4.5,-4.5,-110.0,theScore Bet,2.75,7.25,0.03,yes,2026-11-07T11:41:00+00:00,,,,,,,,open,
+2026-11-07|401920703|spread|home|bandB,2026-11-07,401920703,spread,Lipscomb -5.5,home,288,2565,Lipscomb,SIU Edwardsville,-5.5,-5.5,-110.0,DraftKings,2.19,7.69,0.5,yes,2026-11-07T11:41:03+00:00,,,,,,,,open,bandB
+2026-11-07|401924951|spread|home|bandB,2026-11-07,401924951,spread,Western Illinois +9.5,home,2710,2277,Western Illinois,Houston Christian,9.5,9.5,-110.0,DraftKings,2.1,-7.4,0.5,yes,2026-11-07T11:41:03+00:00,,,,,,,,open,bandB
+2026-11-10|401909786|spread|away,2026-11-10,401909786,spread,Kansas -5,away,96,2305,Kentucky,Kansas,-5.0,-5.0,-110.0,Caesars,3.86,-8.86,0.03,yes,2026-11-07T11:41:46+00:00,,,,,,,,open,
