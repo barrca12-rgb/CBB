@@ -40,8 +40,41 @@ def pinnacle():
     print(json.dumps(out, indent=1))
 
 
+NCAAF_OUT = os.path.join(os.path.dirname(__file__), "..", "data", "research", "ncaaf_check.json")
+PLAY_BOOKS = "draftkings,fanduel,betmgm,williamhill_us,fanatics,espnbet,betrivers"
+
+
+def ncaaf(team: str):
+    """One college football spread lookup (Chad, Nov 7: "yes run it"): every play book's spread for `team`'s game.
+    One market at up to 10 books = about 1 credit. Writes data/research/ncaaf_check.json."""
+    q = {"apiKey": os.environ["ODDS_API_KEY"], "bookmakers": PLAY_BOOKS, "markets": "spreads", "oddsFormat": "american"}
+    url = "https://api.the-odds-api.com/v4/sports/americanfootball_ncaaf/odds?" + urllib.parse.urlencode(q)
+    with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "cbb-model"}), timeout=60) as r:
+        ev = json.load(r)
+        used, left = r.headers.get("x-requests-last"), r.headers.get("x-requests-remaining")
+    games = []
+    for e in ev:
+        if team.lower() not in f"{e.get('home_team')} {e.get('away_team')}".lower():
+            continue
+        books = []
+        for b in e.get("bookmakers") or []:
+            for m in b.get("markets") or []:
+                if m["key"] == "spreads":
+                    books.append({"book": b.get("title"), "last_update": m.get("last_update"),
+                                  "outcomes": [{"team": o.get("name"), "point": o.get("point"), "price": o.get("price")}
+                                               for o in m.get("outcomes") or []]})
+        games.append({"game": f"{e.get('away_team')} at {e.get('home_team')}", "start": e.get("commence_time"), "books": books})
+    out = {"team": team, "events_listed": len(ev), "credits": used, "remaining": left, "games": games}
+    os.makedirs(os.path.dirname(NCAAF_OUT), exist_ok=True)
+    json.dump(out, open(NCAAF_OUT, "w"), indent=1)
+    print(json.dumps(out, indent=1))
+
+
 def main():
-    if os.path.exists(REQ) and "pinnacle" in open(REQ).read().lower():
+    txt = open(REQ).read().lower() if os.path.exists(REQ) else ""
+    if "ncaaf:" in txt:
+        return ncaaf(txt.split("ncaaf:", 1)[1].split("\n")[0].strip())
+    if "pinnacle" in txt:
         return pinnacle()
     q = {"apiKey": os.environ["ODDS_API_KEY"], "regions": "us,us2,us_ex", "markets": "spreads", "oddsFormat": "american"}
     url = "https://api.the-odds-api.com/v4/sports/basketball_ncaab/odds?" + urllib.parse.urlencode(q)
