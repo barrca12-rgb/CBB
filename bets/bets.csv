@@ -326,3 +326,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-07|401911007|total|under,2026-11-07,401911007,total,Under 159.5,under,193,91,Miami (OH),Bellarmine,159.5,159.5,-110.0,DraftKings,3.19,156.31,1.0,yes,2026-11-07T05:01:12+00:00,,,,,,,,open,
 2026-11-07|401926825|spread|away,2026-11-07,401926825,spread,Hampton +20.5,away,45,2261,George Washington,Hampton,20.5,20.5,-110.0,Caesars,2.89,17.61,0.03,yes,2026-11-07T05:41:07+00:00,,,,,,,,open,
 2026-11-07|401920435|spread|away,2026-11-07,401920435,spread,Utah Valley -6.5,away,2692,3084,Weber State,Utah Valley,-6.5,-6.5,-110.0,theScore Bet,3.64,-10.14,0.03,yes,2026-11-07T05:41:07+00:00,,,,,,,,open,
+2026-11-07|401925077|total|under,2026-11-07,401925077,total,Under 153.5,under,93,2466,Murray State,Northwestern State,153.5,153.5,-109.0,BetRivers,3.25,150.25,1.0,yes,2026-11-07T08:11:07+00:00,,,,,,,,open,
