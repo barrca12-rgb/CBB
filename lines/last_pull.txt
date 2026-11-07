@@ -1,1 +1,1 @@
-2026-11-07 01:20 UTC  events 0  book-game rows 244 (0 SGO, 244 The Odds API)  unmatched teams: CSU Fullerton Titans, GW Revolutionaries, Grand Canyon Antelopes, IUPUI Jaguars, LIU Sharks, Long Beach St 49ers, Seattle Redhawks, Tenn-Martin Skyhawks  The Odds API credits left: 92800
+2026-11-07 01:30 UTC  events 0  book-game rows 229 (0 SGO, 229 The Odds API)  unmatched teams: CSU Fullerton Titans, GW Revolutionaries, Grand Canyon Antelopes, IUPUI Jaguars, LIU Sharks, Long Beach St 49ers, Seattle Redhawks, Tenn-Martin Skyhawks  The Odds API credits left: 92789
