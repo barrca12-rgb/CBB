@@ -181,6 +181,10 @@ def stamp(card: pd.DataFrame, day: pd.Timestamp, lines: pd.DataFrame | None, run
     kp_at, kp_dt = _kenpom_at(last_game_day)
     bt = SEEN.get("barttorvik")
     bt_at = _end_of_day_et(bt["snapshot"]) if bt else (SEEN.get("barttorvik_live") or {}).get("at")
+    # a live game whose time-machine file was stale used the live ratings instead (barttorvik.LIVE_IF_OLDER_THAN)
+    from . import barttorvik as _bt
+    if bt and _bt.LAST.get("live_used") and SEEN.get("barttorvik_live"):
+        bt_at = SEEN["barttorvik_live"]["at"]
     inputs = {"kenpom": kp_at, "barttorvik": bt_at, "injuries": _injuries_at(), "schedule": _schedule_at(games_played, season)}
     refs = SEEN.get("referees")
     pulled = {}

@@ -1370,3 +1370,24 @@ e5837fad5b54ec8d4806e0b992a844a63e2054297b14c1cebb54ef8df99201b4  cbb/odds_api.p
 ```
 766dde543fe3481a3c1e41cec8c3b39812b4c2da5f8888d0e90848fa45748584  data/team_aliases.csv
 ```
+
+## 2026-11-06: Barttorvik stale file falls back to his live ratings (Chad: "do both")
+
+- **Why:** on Nov 6 the card used Barttorvik's Nov 4 time-machine file for Nov 6 and Nov 7 games, because the Nov 5
+  and Nov 6 files never downloaded. The site flagged it "Barttorvik 44h". The code did not record why a file was
+  missing.
+- **Change (`cbb/barttorvik.py`):**
+  - Each missing day's reason is recorded and printed in the run log: not published (404), refused (HTTP code),
+    not a ratings file, network error, or still missing at the hourly retry.
+  - For live games, when the newest time-machine file is more than one day older than the games, the model uses
+    Barttorvik's live ratings file instead (fetched before tip, same columns).
+  - Past days and backtests still use the time machine only.
+- **Change (`cbb/freshness.py`):** the Barttorvik input time is the live file's fetch time when it was used.
+- **Effect:** Barttorvik's inputs to the model are current instead of up to several days old. KenPom, the model's
+  weights, thresholds and stakes are unchanged. Discord note: `2026-11-06-barttorvik-live`.
+- **New fingerprints:**
+
+```
+bcf75b0897c2a361188d30bd524fb7c25854b9187a23f47edfd4ede270e0f026  cbb/barttorvik.py
+d5e3cb8a9a1e8ad8b957ef4ed5ef363a8d9247d8aa60c47c86d933ed7ea101d1  cbb/freshness.py
+```

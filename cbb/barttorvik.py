@@ -38,6 +38,10 @@ RETRY_DAYS, RETRY_SECONDS = 10, 3600
 # columns here (local/fetch_barttorvik.py); a file here is read before any request
 REPO = os.path.join(os.path.dirname(__file__), "..", "data", "barttorvik_tm")
 LAST = {}          # what the last live lookup used, for the run log
+WHY = {}           # YYYY-MM-DD -> why that day's time-machine file was not used (run log; Chad, Nov 6: "why is Bart stale")
+# Live games use Barttorvik's live ratings (fetched before tip) when the newest time-machine file is older than the
+# day before the games (Chad, Nov 6: "do both"); the time machine stays the source for past days and backtests
+LIVE_IF_OLDER_THAN = pd.Timedelta(days=1)
 # Each season's preseason ratings, saved before the first game (the live file changes once games are played)
 PRESEASON = os.path.join(os.path.dirname(__file__), "..", "data", "barttorvik_preseason_{}.csv")
 FIRST_SEASON = 2015
@@ -46,6 +50,7 @@ FIRST_SEASON = 2015
 def snapshot(day) -> pd.DataFrame | None:
     """Ratings file for one date (None if Barttorvik has no file that day)."""
     d = pd.Timestamp(day).strftime("%Y%m%d")
+    key = pd.Timestamp(day).strftime("%Y-%m-%d")
     path = os.path.join(CACHE, d + ".parquet")
     t = pd.read_parquet(path) if os.path.exists(path) else None
     if t is not None and len(t):
@@ -57,6 +62,7 @@ def snapshot(day) -> pd.DataFrame | None:
         t["espn_id"] = t["team"].map(lambda n: ids.get(teams.norm(n))).astype("Int64")
         return t if len(t) else None
     if t is not None and (not _recent(day) or time.time() - os.path.getmtime(path) < RETRY_SECONDS):
+        WHY[key] = f"missing when last asked {pd.Timestamp(os.path.getmtime(path), unit='s', tz='UTC'):%b %-d %H:%M} UTC (asked again hourly)"
         return None
     req = urllib.request.Request(URL.format(d), headers=headers())
     try:
@@ -64,9 +70,12 @@ def snapshot(day) -> pd.DataFrame | None:
             raw = r.read()
     except urllib.error.HTTPError as e:
         if e.code != 404:
+            WHY[key] = f"refused (HTTP {e.code})"
             return None          # refused or down: treat as missing (not cached), projection falls back to KenPom
+        WHY[key] = "not published (404)"
         rows = []
-    except OSError:
+    except OSError as e:
+        WHY[key] = f"network error ({e})"
         return None
     else:
         try:
@@ -78,6 +87,7 @@ def snapshot(day) -> pd.DataFrame | None:
         except (ValueError, TypeError, IndexError, KeyError):
             # not a ratings file (e.g. a bot-check page served with 200, Oct 30): treat as missing, never crash the card;
             # a recent date is marked missing so it is asked again at most hourly, an older one is not cached at all
+            WHY[key] = f"not a ratings file ({len(raw)} bytes; starts {raw[:40]!r})"
             if _recent(day):
                 os.makedirs(CACHE, exist_ok=True)
                 pd.DataFrame(columns=["team", "adj_oe", "adj_de", "adj_tempo", "espn_id"]).to_parquet(path)
@@ -120,6 +130,18 @@ def predict(games: pd.DataFrame, live_season: int | None = None) -> pd.DataFrame
         if t is not None:
             src = "repo copy from Chad's machine" if os.path.exists(os.path.join(REPO, LAST["file"].replace("-", "") + ".csv")) else "download"
             used = f"time-machine file {LAST['file']} ({src})"
+            age = pd.Timestamp(day).normalize() - pd.Timestamp(LAST["file"])
+            if live_season and age > LIVE_IF_OLDER_THAN:
+                lv = current(live_season)
+                gaps = "; ".join(f"{k}: {v}" for k, v in sorted(WHY.items())
+                                 if pd.Timestamp(LAST["file"]) < pd.Timestamp(k) < pd.Timestamp(day))
+                if lv is not None:
+                    LAST["live_used"] = True
+                    t, used = lv.drop(columns="record", errors="ignore"), (f"live ratings file (newest time-machine file "
+                                                                          f"{LAST['file']} is {age.days} days old")
+                else:
+                    used += f", {age.days} days old (live file {LAST.get('current')})"
+                used += f"; missing days: {gaps or 'no reason recorded'})" if lv is not None else f"; missing days: {gaps or 'no reason recorded'}"
         if t is None and live_season:
             t = current(live_season)
             used = "live ratings file" if t is not None else f"none (time machine: no file in the 7 days before; live file: {LAST.get('current')}); KenPom fills"

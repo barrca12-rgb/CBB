@@ -153,5 +153,10 @@
   "id": "2026-11-06-oddsapi-names",
   "date": "2026-11-06",
   "text": "Update, Nov 6: 13 schools' games were reaching us from only one odds feed (5 books, numbers up to 30 minutes old) because a team name didn't match. They now get every play book, updated every 10 minutes: American, Boston University, CSUN, Cal Baptist, FIU, Loyola Maryland, Mississippi Valley State, Mount St. Mary's, Northern Colorado, Nicholls, St. Thomas, Texas A&M-Corpus Christi and Kansas City. How plays are picked and graded is unchanged."
+ },
+ {
+  "id": "2026-11-06-barttorvik-live",
+  "date": "2026-11-06",
+  "text": "Update, Nov 6: when one of our outside team-ratings inputs hasn't published its daily file for the day before a game, the model now uses that source's current ratings (pulled before tip) instead of an older file. How plays are picked and graded is unchanged."
  }
 ]
