@@ -1,0 +1,7 @@
+games,model,n,margin MAE,total MAE,total bias
+all games,base,22948,8.8854,13.071,0.33
+all games,corrected,22948,8.8841,13.066,0.29
+model margin 20+,base,1545,9.9113,13.3046,2.13
+model margin 20+,corrected,1545,9.893,13.2365,1.58
+model margin 25+,base,689,9.9194,13.5176,3.43
+model margin 25+,corrected,689,9.8751,13.378,2.49

@@ -16,13 +16,13 @@ Last updated Nov 5, 2026 (speed read added).
 | 4 | **Late-posted plays** (crew posted, injury, line move after the open) | 14-7 live but no line-move check possible (posted too close to tip) | Grade late plays against the close at our book and against Novig; read at Jan 15 |
 | 5 | **Early underdogs where Barttorvik agrees and KenPom doesn't** | ~42% on 50 historical plays; found after the fact (early_dogs) | Pre-register on 2027 live plays; read at Jan 15 |
 | 6 | **Novig as a sharp reference** | Novig prices logged since Oct 30 (lines/novig_log.csv) | Does Novig's price at our alert predict the close better than the books do? Jan 15 read |
-| 1a | **Blowout correction: model under-projects big favorites** | research/blowout_unders Part 2 (Nov 7): at 25+ favorites outscore the model by 1.6-2.5 pts (margin +1.4/+2.2, total +1.9/+2.8), mostly 2023-26. Live: dogs getting 25+ 9-12, CLV -4 to -5%; favorites laying 15+ 21-12, CLV +7 to +14% | PLAN + backtest of a stage-2 mismatch term (fallback: higher edge bar for big dogs) |
 | 7 | **Totals in November** | Scoring-level tracking tested Nov 5 (research/totals_level): no historical level bias; recent-miss correction and a smooth environment both hurt opener totals. Live under-the-close run is a market effect. | Watch only; next totals idea must be game-specific (lineups, pace matchups at the opener) |
 
 ## Closed (verdicts)
 
 | Idea | Verdict | Where |
 |---|---|---|
+| Blowout correction (favorite under-projected in big mismatches) | Shipped Nov 7: 20+ errors down, opener win % held; watch live big-dog and Under CLV | research/blowout_fix |
 | Skip Unders in big mismatches (15+ spread) | No: 61.2% / 57.0% at openers, close moves our way | research/blowout_unders |
 | Absences valued by learned player weights | No: tiny margin gain, opener spreads slightly lower | research/absence_values |
 | Totals scoring-level tracking (recent-miss correction, smooth environment) | No: hurts opener totals | research/totals_level |

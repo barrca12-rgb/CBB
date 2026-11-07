@@ -1391,3 +1391,26 @@ e5837fad5b54ec8d4806e0b992a844a63e2054297b14c1cebb54ef8df99201b4  cbb/odds_api.p
 bcf75b0897c2a361188d30bd524fb7c25854b9187a23f47edfd4ede270e0f026  cbb/barttorvik.py
 d5e3cb8a9a1e8ad8b957ef4ed5ef363a8d9247d8aa60c47c86d933ed7ea101d1  cbb/freshness.py
 ```
+
+## 2026-11-07: blowout correction in the live model (Chad: "make the correction to the live model")
+
+- **Why:** research/blowout_unders Part 2. When the model projects a big margin, the favorite outscores the
+  projection (1.6 points at 25-30, 2.5 at 30+ in 2015-26 closes; mostly 2023-26), so the margin is too small and the
+  total too low. Live: dogs getting 25+ were 9-12 with Pinnacle CLV -4% to -5%.
+- **Change (`cbb/projection.py`, `apply_saved` -> `blowout`):** x = 0.16 x max(0, |projected margin| - 16) extra
+  points for the favorite, added to the favorite's margin and to the total. Logged as `blowout_pts` in the saved
+  stage-2 output.
+- **Test (research/blowout_fix, plan written first):** walk-forward on 2023-2026 (each season fit on the three
+  before). Games with projected margin 20+: margin error 9.911 -> 9.893, total error 13.305 -> 13.237 (bias +2.13 ->
+  +1.58). All games: 8.8854 -> 8.8841 and 13.0710 -> 13.0660. Opener plays 2024-26: spreads 57.77% -> 57.79%, totals
+  57.39% -> 57.52%; at |spread| 20+ the close now moves our way more (spreads +0.88 -> +1.28, totals +1.32 -> +1.62).
+  Ship rule met. Live constants from the fit on 2023-2026: T = 16, k = 0.16.
+- **Effect:** at a 30-point projected margin the favorite gets +2.2 points (margin and total); nothing below 16.
+  Fewer big-dog and big-mismatch Under plays. Stage-2 weights, thresholds, stakes and books are unchanged. Plays
+  already logged keep their numbers. Shadows that refit stage 2 themselves (ridge-1,000) do not carry the correction.
+  Discord note: `2026-11-07-blowout-correction`.
+- **New fingerprint:**
+
+```
+128e00d5b450d18cac0421181e3be87bf225190e21f2e8863dcfc2ec546a0b55  cbb/projection.py
+```

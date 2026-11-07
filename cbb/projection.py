@@ -218,14 +218,27 @@ def fit(b: pd.DataFrame, next_season: int) -> dict:
     return out
 
 
+# Blowout correction (Chad, Nov 7: "make the correction to the live model"; research/blowout_fix): when the projected
+# margin passes BLOWOUT_T, the favorite scores more than stage 2 says. The favorite gets BLOWOUT_K points per point
+# of projected margin past BLOWOUT_T, added to both its margin and the total. Fit on 2023-2026 (walk-forward test:
+# 20+ margin and total errors down, opener win % unchanged or up).
+BLOWOUT_T, BLOWOUT_K = 16.0, 0.16
+
+
+def blowout(b: pd.DataFrame) -> pd.DataFrame:
+    x = BLOWOUT_K * np.maximum(0.0, b["final_margin"].abs() - BLOWOUT_T)
+    s = np.sign(b["final_margin"]).replace(0, 1)
+    return b.assign(final_margin=b["final_margin"] + s * x, final_total=b["final_total"] + x, blowout_pts=x)
+
+
 def apply_saved(b: pd.DataFrame) -> pd.DataFrame:
-    """Final margin and total from the saved coefficients (live runs)."""
+    """Final margin and total from the saved coefficients (live runs), with the blowout correction."""
     with open(SAVED) as f:
         c = json.load(f)
     b = b.copy()
     b["final_margin"] = c["margin"]["intercept"] + sum(b[k] * v for k, v in c["margin"].items() if k != "intercept")
     b["final_total"] = c["total"]["intercept"] + sum(b[k] * v for k, v in c["total"].items() if k != "intercept")
-    return b
+    return blowout(b)
 
 
 def saved_team_hca() -> pd.Series:

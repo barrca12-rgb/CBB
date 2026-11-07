@@ -1,0 +1,24 @@
+Walk-forward fits (season: T, k): 2023: 26, 0.12, 2024: 24, 0.1, 2025: 20, 0.1, 2026: 16, 0.1
+Live fit on 2023-2026: T, k = (16, np.float64(0.16))
+
+Accuracy 2023-2026 (out of sample):
+           games     model     n  margin MAE  total MAE  total bias
+       all games      base 22948      8.8854    13.0710        0.33
+       all games corrected 22948      8.8841    13.0660        0.29
+model margin 20+      base  1545      9.9113    13.3046        2.13
+model margin 20+ corrected  1545      9.8930    13.2365        1.58
+model margin 25+      base   689      9.9194    13.5176        3.43
+model margin 25+ corrected   689      9.8751    13.3780        2.49
+
+Opener plays 2024-26:
+    model market        plays    n  win%  ROI%  move to us
+     base spread          all 2229 57.77 10.25        1.07
+     base spread |spread| 20+  333 57.36  9.50        0.88
+     base  total          all 4256 57.39  9.53        1.45
+     base  total |spread| 20+  312 55.77  6.47        1.32
+corrected spread          all 2230 57.79 10.28        1.12
+corrected spread |spread| 20+  322 57.76 10.28        1.28
+corrected  total          all 4242 57.52  9.78        1.47
+corrected  total |spread| 20+  302 57.14  9.06        1.62
+
+Ship rule: 20+ errors fall True; all-games errors not worse True; opener win % within 0.3 True -> SHIP

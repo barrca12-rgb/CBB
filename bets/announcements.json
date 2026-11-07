@@ -158,5 +158,10 @@
   "id": "2026-11-06-barttorvik-live",
   "date": "2026-11-06",
   "text": "Update, Nov 6: when one of our outside team-ratings inputs hasn't published its daily file for the day before a game, the model now uses that source's current ratings (pulled before tip) instead of an older file. How plays are picked and graded is unchanged."
+ },
+ {
+  "id": "2026-11-07-blowout-correction",
+  "date": "2026-11-07",
+  "text": "Model update, Nov 7: in big mismatches the model was projecting the favorite to score too few points, which made big underdogs and Unders look better than they are. When the projected margin passes 16 points, the favorite now gets extra points (0.16 per point past 16, about 2 points at a 30-point spread), added to both the margin and the total. Tested on 2023-26 seasons it was not fit on: projections in 20+ point games got more accurate and opener results held up. Plays already posted keep their numbers."
  }
 ]
