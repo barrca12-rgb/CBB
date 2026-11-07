@@ -74,3 +74,10 @@ Dated findings from each review, newest first. "Nothing new" is a valid entry.
   overvalued. Half-point lines skewed that method. Only big spreads were.
 - **Published post:** the Nov 5 recap posted on X said "18 of 30 beat Pinnacle's no-vig close"; on the corrected
   measure it is 17 of 30.
+
+## 2026-11-07: Friday 20-33-1 (-11.0u) and Unders in big mismatches
+
+- Friday: Pinnacle CLV -3.6% (35% beat the no-vig close), points vs Pinnacle +0.02; expected -1.7u, actual -11.0u.
+  Unders 11-17-1 with totals landing exactly on our number on average.
+- Tested whether Unders lose in big mismatches (research/blowout_unders): no. 15+ spread Unders won 61.2% (2015-17)
+  and 57.0% (2024-26) at openers. Lead added to the backlog: the model's total runs 1.4-2.3 points low at 20+.
