@@ -187,3 +187,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-07T19:00:59+00:00,2026-11-07,401924843,2026-11-07T23:30Z,315,2415,Niagara,Morgan State,total,over,v1,Over 148.5,150.0,-110.0,Fanatics,2026-11-07T04:40:40+00:00,148.5,-108.0,FanDuel,1.5,860.3,1.66,3.16,151.66
 2026-11-07T20:10:49+00:00,2026-11-07,401922044,2026-11-07T20:00Z,2344,2428,Longwood,North Carolina Central,total,under,v1,Under 151.5,148.5,-115.0,DraftKings,2026-11-07T01:14:57+00:00,151.5,-114.0,FanDuel,3.0,1135.9,0.79,3.79,147.71
 2026-11-07T20:41:24+00:00,2026-11-08,401918053,2026-11-09T01:30Z,25,248,California,Houston,spread,home,bandB,California +19.5,15.5,-105.0,Fanatics,2026-11-07T19:50:44+00:00,19.5,-115.0,theScore Bet,4.0,50.7,-1.52,2.48,-17.02
+2026-11-07T21:01:31+00:00,2026-11-08,401911238,2026-11-08T22:00Z,218,257,Temple,Richmond,spread,away,bandB,Richmond +1.5,-1.5,100.0,theScore Bet,2026-11-07T20:30:44+00:00,1.5,-120.0,theScore Bet,3.0,30.8,-0.71,2.29,-0.79
