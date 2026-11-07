@@ -332,3 +332,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-07|401920703|spread|home|bandB,2026-11-07,401920703,spread,Lipscomb -5.5,home,288,2565,Lipscomb,SIU Edwardsville,-5.5,-5.5,-110.0,DraftKings,2.19,7.69,0.5,yes,2026-11-07T11:41:03+00:00,,,,,,,,open,bandB
 2026-11-07|401924951|spread|home|bandB,2026-11-07,401924951,spread,Western Illinois +9.5,home,2710,2277,Western Illinois,Houston Christian,9.5,9.5,-110.0,DraftKings,2.1,-7.4,0.5,yes,2026-11-07T11:41:03+00:00,,,,,,,,open,bandB
 2026-11-10|401909786|spread|away,2026-11-10,401909786,spread,Kansas -5,away,96,2305,Kentucky,Kansas,-5.0,-5.0,-110.0,Caesars,3.86,-8.86,0.03,yes,2026-11-07T11:41:46+00:00,,,,,,,,open,
+2026-11-07|401920411|spread|home,2026-11-07,401920411,spread,High Point -10.5,home,2272,265,High Point,Washington State,-10.5,-10.5,-115.0,DraftKings,2.6,13.1,0.03,yes,2026-11-07T12:21:02+00:00,,,,,,,,open,
