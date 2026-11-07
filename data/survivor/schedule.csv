@@ -373,24 +373,24 @@ game_id,start,home_id,away_id,home,away,neutral,state,completed,winner_id,cancel
 401917516,2026-11-07T03:00Z,2351,124946,Loyola Marymount,Lincoln (CA),False,post,True,2351.0,False,2026-11-06
 401922219,2026-11-07T03:30Z,26,2454,UCLA,North Florida,False,post,True,26.0,False,2026-11-06
 401929001,2026-11-07T04:59Z,62,3246,Hawai'i,Bethesda,False,post,True,62.0,False,2026-11-06
-401918948,2026-11-07T17:00Z,97,2413,Louisville,Morehead State,False,pre,False,,False,2026-11-07
-401925707,2026-11-07T17:00Z,2737,155,Winthrop,North Dakota,False,pre,False,,False,2026-11-07
-401919758,2026-11-07T17:00Z,161,170,Fairleigh Dickinson,City College NY,False,pre,False,,False,2026-11-07
-401929449,2026-11-07T18:00Z,2247,134851,Georgia State,Andrew,False,pre,False,,False,2026-11-07
-401921154,2026-11-07T18:00Z,195,2448,Ohio,North Carolina A&T,False,pre,False,,False,2026-11-07
-401926793,2026-11-07T19:00Z,2335,109700,Liberty,Boyce,False,pre,False,,False,2026-11-07
-401925047,2026-11-07T19:00Z,2443,100,LSU New Orleans,Loyola New Orleans,False,pre,False,,False,2026-11-07
-401920856,2026-11-07T19:00Z,276,2649,Marshall,Toledo,False,pre,False,,False,2026-11-07
-401920770,2026-11-07T19:00Z,2182,2142,Drexel,Colgate,False,pre,False,,False,2026-11-07
-401920156,2026-11-07T19:00Z,233,2239,South Dakota,Cal State Fullerton,False,pre,False,,False,2026-11-07
-401918977,2026-11-07T19:00Z,151,350,East Carolina,UNC Wilmington,False,pre,False,,False,2026-11-07
-401917962,2026-11-07T19:00Z,2000,2320,Abilene Christian,Lamar,False,pre,False,,False,2026-11-07
-401924264,2026-11-07T20:00Z,147,299,Montana State,Long Beach State,False,pre,False,,False,2026-11-07
-401922044,2026-11-07T20:00Z,2344,2428,Longwood,North Carolina Central,False,pre,False,,False,2026-11-07
-401918986,2026-11-07T20:00Z,235,2670,Memphis,VCU,False,pre,False,,False,2026-11-07
-401928793,2026-11-07T20:30Z,2534,2758,Sam Houston,Howard Payne,False,pre,False,,False,2026-11-07
-401919805,2026-11-07T20:30Z,2325,112358,La Salle,Long Island University,False,pre,False,,False,2026-11-07
-401909760,2026-11-07T20:30Z,38,21,Colorado,San Diego State,True,pre,False,,False,2026-11-07
+401918948,2026-11-07T17:00Z,97,2413,Louisville,Morehead State,False,post,True,97.0,False,2026-11-07
+401925707,2026-11-07T17:00Z,2737,155,Winthrop,North Dakota,False,post,True,155.0,False,2026-11-07
+401919758,2026-11-07T17:00Z,161,170,Fairleigh Dickinson,City College NY,False,post,True,161.0,False,2026-11-07
+401929449,2026-11-07T18:00Z,2247,134851,Georgia State,Andrew,False,post,True,2247.0,False,2026-11-07
+401921154,2026-11-07T18:00Z,195,2448,Ohio,North Carolina A&T,False,post,True,195.0,False,2026-11-07
+401920856,2026-11-07T19:00Z,276,2649,Marshall,Toledo,False,in,False,,False,2026-11-07
+401920770,2026-11-07T19:00Z,2182,2142,Drexel,Colgate,False,in,False,,False,2026-11-07
+401920156,2026-11-07T19:00Z,233,2239,South Dakota,Cal State Fullerton,False,in,False,,False,2026-11-07
+401918977,2026-11-07T19:00Z,151,350,East Carolina,UNC Wilmington,False,in,False,,False,2026-11-07
+401917962,2026-11-07T19:00Z,2000,2320,Abilene Christian,Lamar,False,in,False,,False,2026-11-07
+401926793,2026-11-07T19:00Z,2335,109700,Liberty,Boyce,False,post,True,2335.0,False,2026-11-07
+401925047,2026-11-07T19:00Z,2443,100,LSU New Orleans,Loyola New Orleans,False,post,True,2443.0,False,2026-11-07
+401924264,2026-11-07T20:00Z,147,299,Montana State,Long Beach State,False,in,False,,False,2026-11-07
+401922044,2026-11-07T20:00Z,2344,2428,Longwood,North Carolina Central,False,in,False,,False,2026-11-07
+401918986,2026-11-07T20:00Z,235,2670,Memphis,VCU,False,in,False,,False,2026-11-07
+401928793,2026-11-07T20:30Z,2534,2758,Sam Houston,Howard Payne,False,in,False,,False,2026-11-07
+401919805,2026-11-07T20:30Z,2325,112358,La Salle,Long Island University,False,in,False,,False,2026-11-07
+401909760,2026-11-07T20:30Z,38,21,Colorado,San Diego State,True,in,False,,False,2026-11-07
 401929293,2026-11-07T21:00Z,328,2437,Utah State,Omaha,False,pre,False,,False,2026-11-07
 401928352,2026-11-07T21:00Z,2540,2473,UC Santa Barbara,Oakland,False,pre,False,,False,2026-11-07
 401924912,2026-11-07T21:00Z,2439,2535,UNLV,Samford,False,pre,False,,False,2026-11-07
