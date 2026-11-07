@@ -317,3 +317,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-07|401922044|spread|home,2026-11-07,401922044,spread,Longwood -11.5,home,2344,2428,Longwood,North Carolina Central,-11.5,-11.5,-120.0,FanDuel,2.85,14.35,0.5,yes,2026-11-07T00:11:53+00:00,,,,,,,,open,
 2026-11-07|401929293|spread|home,2026-11-07,401929293,spread,Utah State -23.5,home,328,2437,Utah State,Omaha,-23.5,-23.5,-110.0,FanDuel,3.26,26.76,0.5,yes,2026-11-07T00:11:53+00:00,,,,,,,,open,
 2026-11-07|401920192|total|under,2026-11-07,401920192,total,Under 146.5,under,2603,322,Saint Joseph's,Lafayette,146.5,146.5,-110.0,FanDuel,4.6,141.9,1.0,yes,2026-11-07T00:11:53+00:00,,,,,,,,open,
+2026-11-07|401925772|spread|home,2026-11-07,401925772,spread,Davidson -10.5,home,2166,2382,Davidson,Mercer,-10.5,-10.5,-118.0,DraftKings,2.81,13.31,0.49,yes,2026-11-07T01:31:04+00:00,,,,,,,,open,
