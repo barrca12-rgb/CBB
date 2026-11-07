@@ -1,0 +1,22 @@
+Mean absolute error, walk-forward (choose on 2019-22, judge on 2023-26):
+                   model  2019-22 margin  2019-22 total  2023-26 margin  2023-26 total
+        live (penalty 1)          8.8547        13.2530          8.8853        13.0682
+             ridge-1,000          8.8589        13.2540          8.8923        13.0694
+ridge-1,000, half-life 1          8.8566        13.2372          8.8893        13.0653
+ridge-1,000, half-life 2          8.8562        13.2419          8.8901        13.0670
+ridge-1,000, half-life 3          8.8566        13.2448          8.8908        13.0681
+ridge-1,000, half-life 5          8.8573        13.2478          8.8914        13.0689
+ridge-1,000, half-life 8          8.8578        13.2499          8.8917        13.0692
+
+Chosen on 2019-22: ridge-1,000, half-life 1
+
+Opener plays 2024-26:
+                   model market  plays  win%  ROI%  move to us
+        live (penalty 1) spread   2281 57.68 10.08       1.091
+        live (penalty 1)  total   4226 57.19  9.16       1.487
+             ridge-1,000 spread   2016 57.34  9.44       1.050
+             ridge-1,000  total   4179 57.20  9.17       1.488
+ridge-1,000, half-life 1 spread   1941 56.80  8.41       1.074
+ridge-1,000, half-life 1  total   4200 57.35  9.47       1.496
+
+Shadow rule: 2023-26 errors below ridge-1,000 True; opener win % within 0.3 False -> do not run

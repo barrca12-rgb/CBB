@@ -5,6 +5,10 @@ and the latest pull in lines/closing.csv. Prices every game twice against the sa
 (run_day.opening_week_totals, then run_day.plays: best EV across books, spread 2.5+ / total 3+, EV +2%):
   v1     the live coefficients (data/projection.json), recomputed from the saved inputs as a check
   r1000  the same inputs with ridge-penalty-1,000 coefficients (data/shadow_r1000.json)
+  r1000b ridge-1,000 plus the live model's blowout correction (research/r1000w, variant 2; added Nov 7, Chad: "another
+         shadow of ridge 1000 ... while keeping the current ridge 1000"); its rows carry its own numbers in the
+         r1000_margin / r1000_total columns and other_model_signal compares it with r1000
+v1 includes the live blowout correction (projection.blowout, live since Nov 7), as the card does.
 Each new BET from either version is logged once to bets/shadow_r1000/signals.csv. Never alerts, posts, stakes or
 touches bets/bets.csv, the card, the site's record or any frozen file.
 
@@ -79,8 +83,9 @@ def main(now: pd.Timestamp | None = None) -> None:
             run["days"] += 1
             run["games"] += len(f)
             day = pd.Timestamp(d)
-            v1 = run_day.opening_week_totals(apply(f, live), day)
+            v1 = run_day.opening_week_totals(projection.blowout(apply(f, live)), day)
             rk = run_day.opening_week_totals(apply(f, r1k), day)
+            rb = run_day.opening_week_totals(projection.blowout(apply(f, r1k)), day)
             diffs.append(float((v1["final_margin"] - f["final_margin"]).abs().max()))
             st = pd.to_datetime(f["start"], utc=True, errors="coerce")
             for i in range(len(f)):
@@ -89,15 +94,18 @@ def main(now: pd.Timestamp | None = None) -> None:
                                "home": f["home"].iloc[i], "away": f["away"].iloc[i],
                                "v1_margin": round(float(v1["final_margin"].iloc[i]), 3), "r1000_margin": round(float(rk["final_margin"].iloc[i]), 3),
                                "v1_total": round(float(v1["final_total"].iloc[i]), 3), "r1000_total": round(float(rk["final_total"].iloc[i]), 3),
+                               "r1000b_margin": round(float(rb["final_margin"].iloc[i]), 3), "r1000b_total": round(float(rb["final_total"].iloc[i]), 3),
                                "updated_at": now.isoformat(timespec="seconds")})
             if not len(lines):
                 continue
             pre = st > now
             b1 = bets(run_day.plays(v1[pre.to_numpy()], lines))
             bk = bets(run_day.plays(rk[pre.to_numpy()], lines))
+            bb = bets(run_day.plays(rb[pre.to_numpy()], lines))
             mv1 = v1.set_index("game_id")
-            mrk = rk.set_index("game_id")
-            for model, mine, other in (("v1", b1, bk), ("r1000", bk, b1)):
+            mods = {"r1000": rk.set_index("game_id"), "r1000b": rb.set_index("game_id")}
+            for model, mine, other in (("v1", b1, bk), ("r1000", bk, b1), ("r1000b", bb, bk)):
+                mrk = mods["r1000b" if model == "r1000b" else "r1000"]
                 for (mk, gid), r in mine.items():
                     side = r["spread_side"] if mk == "spread" else str(r["total_pick"]).lower()
                     bid = f"{d}|{gid}|{mk}|{side}|{model}"

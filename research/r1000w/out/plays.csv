@@ -1,0 +1,7 @@
+model,market,plays,win%,ROI%,move to us
+live (penalty 1),spread,2281,57.68,10.08,1.091
+live (penalty 1),total,4226,57.19,9.16,1.487
+"ridge-1,000",spread,2016,57.34,9.44,1.05
+"ridge-1,000",total,4179,57.2,9.17,1.488
+"ridge-1,000, half-life 1",spread,1941,56.8,8.41,1.074
+"ridge-1,000, half-life 1",total,4200,57.35,9.47,1.496

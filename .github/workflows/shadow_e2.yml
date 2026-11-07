@@ -3,11 +3,9 @@
 # no stakes; never touches bets/bets.csv, the card or any frozen file. No schedule of its own.
 name: Shadow E2 (totals)
 
+# Retired Nov 7, 2026 (Chad: "retire e2"): 89-85-3, -3.7u at 1u, Pinnacle CLV -2.1% (29% beat the close) through
+# Nov 6. No longer runs after card runs; logs in bets/shadow_e2/ are kept.
 on:
-  workflow_run:
-    workflows: ["Update CBB card"]
-    types: [completed]
-    branches: [claude/college-basketball-model-nmztcl]
   workflow_dispatch:
 
 permissions:

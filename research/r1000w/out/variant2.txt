@@ -1,0 +1,5 @@
+Fits (season: T, k): 2023: 28, 0.1, 2024: 24, 0.08, 2025: 20, 0.08, 2026: 16, 0.1; live fit (16, np.float64(0.16))
+                model  2023-26 margin  2023-26 total  20+ margin  20+ total  spread plays  spread win%  spread move  total plays  total win%  total move
+          ridge-1,000          8.8923        13.0694      9.9459    13.2685          2016        57.34        1.050         4179        57.2       1.488
+ridge-1,000 + blowout          8.8913        13.0645      9.9088    13.1503          2016        57.14        1.098         4157        57.4       1.514
+Shadow rule: errors below ridge-1,000 True; opener win % within 0.3 True -> RUN AS SHADOW

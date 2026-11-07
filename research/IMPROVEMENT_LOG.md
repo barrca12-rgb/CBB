@@ -81,3 +81,11 @@ Dated findings from each review, newest first. "Nothing new" is a valid entry.
   Unders 11-17-1 with totals landing exactly on our number on average.
 - Tested whether Unders lose in big mismatches (research/blowout_unders): no. 15+ spread Unders won 61.2% (2015-17)
   and 57.0% (2024-26) at openers. Lead added to the backlog: the model's total runs 1.4-2.3 points low at 20+.
+
+## 2026-11-07: shadows
+
+- Shadow records through Nov 6 (1u flat, Pinnacle CLV): live v1 official 101-92-2 / +3.1%; ridge-1,000 124-102-3,
+  +9.8u / +1.9% (its paired v1 +6.3u / +1.9%); v2 lineup 90-88, -8.1u / +2.3%; E2 89-85-3, -3.7u / -2.1%; roster
+  prior (from Nov 5) 20-33-1 / -1.4%.
+- E2 retired (Chad). New ridge-1,000 shadow r1000b = ridge-1,000 + blowout term (research/r1000w, variant 2 passed;
+  variant 1, recency weights, failed on opener spreads).
