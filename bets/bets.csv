@@ -345,3 +345,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-08|401902277|spread|home,2026-11-08,401902277,spread,Boise State -1,home,68,2086,Boise State,Butler,-1.0,-1.0,-105.0,Fanatics,4.81,5.81,0.0,yes,2026-11-07T20:11:19+00:00,,,,,,,,open,
 2026-11-08|401902277|total|under,2026-11-08,401902277,total,Under 152,under,68,2086,Boise State,Butler,152.0,152.0,-110.0,Fanatics,3.18,148.82,1.0,yes,2026-11-07T20:11:19+00:00,,,,,,,,open,
 2026-11-08|401921820|spread|home|bandB,2026-11-08,401921820,spread,South Carolina -17.5,home,2579,2546,South Carolina,Southeast Missouri State,-17.5,-17.5,-115.0,theScore Bet,2.05,19.55,0.5,yes,2026-11-07T20:11:27+00:00,,,,,,,,open,bandB
+2026-11-08|401920739|total|over,2026-11-08,401920739,total,Over 146.5,over,2711,2097,Western Michigan,Campbell,146.5,146.5,-110.0,theScore Bet,3.93,150.43,1.0,yes,2026-11-07T20:21:37+00:00,,,,,,,,open,
