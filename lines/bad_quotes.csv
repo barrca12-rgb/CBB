@@ -225,3 +225,4 @@ first_seen,date,game_id,market,side,book,number,price,median_others,books,reason
 2026-11-07T02:45:11+00:00,2026-11-07,401911186,total,-,FanDuel,150.5,,145.5,5,off-market
 2026-11-07T02:45:11+00:00,2026-11-07,401917519,total,-,FanDuel,164.5,,167.5,6,off-market
 2026-11-07T02:51:08+00:00,2026-11-07,401911186,total,-,FanDuel,149.5,,145.5,5,off-market
+2026-11-07T03:30:57+00:00,2026-11-07,401909760,spread,-,Fanatics,12.5,,2.5,7,off-market
