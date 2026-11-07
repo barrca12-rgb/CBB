@@ -1,0 +1,126 @@
+{
+ "team": "penn state",
+ "events_listed": 58,
+ "credits": "1",
+ "remaining": "91869",
+ "games": [
+  {
+   "game": "Penn State Nittany Lions at Washington Huskies",
+   "start": "2026-11-07T20:30:00Z",
+   "books": [
+    {
+     "book": "FanDuel",
+     "last_update": "2026-11-07T19:36:59Z",
+     "outcomes": [
+      {
+       "team": "Penn State Nittany Lions",
+       "point": 2.5,
+       "price": -110
+      },
+      {
+       "team": "Washington Huskies",
+       "point": -2.5,
+       "price": -110
+      }
+     ]
+    },
+    {
+     "book": "BetRivers",
+     "last_update": "2026-11-07T19:37:00Z",
+     "outcomes": [
+      {
+       "team": "Penn State Nittany Lions",
+       "point": 2.5,
+       "price": -114
+      },
+      {
+       "team": "Washington Huskies",
+       "point": -2.5,
+       "price": -109
+      }
+     ]
+    },
+    {
+     "book": "theScore Bet",
+     "last_update": "2026-11-07T19:37:03Z",
+     "outcomes": [
+      {
+       "team": "Penn State Nittany Lions",
+       "point": 2.5,
+       "price": -120
+      },
+      {
+       "team": "Washington Huskies",
+       "point": -2.5,
+       "price": 100
+      }
+     ]
+    },
+    {
+     "book": "DraftKings",
+     "last_update": "2026-11-07T19:36:34Z",
+     "outcomes": [
+      {
+       "team": "Penn State Nittany Lions",
+       "point": 2.5,
+       "price": -115
+      },
+      {
+       "team": "Washington Huskies",
+       "point": -2.5,
+       "price": -105
+      }
+     ]
+    },
+    {
+     "book": "Caesars",
+     "last_update": "2026-11-07T19:36:06Z",
+     "outcomes": [
+      {
+       "team": "Penn State Nittany Lions",
+       "point": 2.5,
+       "price": -113
+      },
+      {
+       "team": "Washington Huskies",
+       "point": -2.5,
+       "price": -107
+      }
+     ]
+    },
+    {
+     "book": "BetMGM",
+     "last_update": "2026-11-07T19:36:11Z",
+     "outcomes": [
+      {
+       "team": "Penn State Nittany Lions",
+       "point": 2.5,
+       "price": -110
+      },
+      {
+       "team": "Washington Huskies",
+       "point": -2.5,
+       "price": -108
+      }
+     ]
+    },
+    {
+     "book": "Fanatics",
+     "last_update": "2026-11-07T19:36:58Z",
+     "outcomes": [
+      {
+       "team": "Penn State Nittany Lions",
+       "point": 2.5,
+       "price": -110
+      },
+      {
+       "team": "Washington Huskies",
+       "point": -2.5,
+       "price": -110
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
