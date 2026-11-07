@@ -338,3 +338,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-07|401920192|spread|home|bandB,2026-11-07,401920192,spread,Saint Joseph's -17.5,home,2603,322,Saint Joseph's,Lafayette,-17.5,-17.5,-110.0,DraftKings,2.17,19.67,0.5,yes,2026-11-07T14:51:12+00:00,,,,,,,,open,bandB
 2026-11-07|401925707|total|over,2026-11-07,401925707,total,Over 159.5,over,2737,155,Winthrop,North Dakota,159.5,159.5,-105.0,theScore Bet,3.12,162.62,1.0,yes,2026-11-07T16:50:55+00:00,,,,,,,,open,
 2026-11-08|401911453|spread|home|bandB,2026-11-08,401911453,spread,Nevada +2,home,2440,2608,Nevada,Saint Mary's,2.0,2.0,-110.0,Caesars,2.06,0.06,0.5,yes,2026-11-07T17:41:34+00:00,,,,,,,,open,bandB
+2026-11-08|401919029|total|under,2026-11-08,401919029,total,Under 159.5,under,2724,30,Wichita State,USC,159.5,159.5,-110.0,Caesars,5.16,154.34,1.0,yes,2026-11-07T17:51:12+00:00,,,,,,,,open,
