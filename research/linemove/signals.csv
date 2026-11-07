@@ -191,3 +191,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-07T21:40:51+00:00,2026-11-07,401911007,2026-11-07T22:00Z,193,91,Miami (OH),Bellarmine,spread,home,v1,Miami (OH) -18.5,-20.5,-110.0,Caesars,2026-11-07T06:30:45+00:00,-18.5,-115.0,DraftKings,2.0,910.1,0.92,2.92,21.42
 2026-11-07T21:41:24+00:00,2026-11-08,401924734,2026-11-08T18:00Z,2561,163,Siena,Princeton,spread,away,bandB,Princeton -1,-1.5,-115.0,theScore Bet,2026-11-07T20:20:45+00:00,-1.0,-110.0,Fanatics,0.5,80.7,1.71,2.21,-3.21
 2026-11-07T22:01:22+00:00,2026-11-08,401920424,2026-11-08T18:00Z,258,8,Virginia,Arkansas,total,under,v1,Under 160.5,159.5,-110.0,Caesars,2026-11-07T16:50:38+00:00,160.5,-110.0,theScore Bet,1.0,310.7,2.31,3.31,157.19
+2026-11-07T23:20:49+00:00,2026-11-07,401924843,2026-11-07T23:30Z,315,2415,Niagara,Morgan State,spread,home,v1,Niagara -2.5,-3.5,-105.0,BetMGM,2026-11-07T13:40:35+00:00,-2.5,-122.0,BetRivers,1.0,580.2,1.87,2.87,5.37
