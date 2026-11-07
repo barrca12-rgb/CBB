@@ -305,7 +305,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-06|401921285|total|under,2026-11-06,401921285,total,Under 151.5,under,222,107,Villanova,Holy Cross,151.5,151.5,-108.0,BetRivers,4.09,147.41,1.0,yes,2026-11-06T23:11:09+00:00,151.5,0.0,0.0,95.0,66.0,L,-1.0,settled,
 2026-11-07|401920770|total|under,2026-11-07,401920770,total,Under 146.5,under,2182,2142,Drexel,Colgate,146.5,146.5,-105.0,FanDuel,4.27,142.23,1.0,yes,2026-11-06T23:21:39+00:00,140.5,6.0,0.14193521557221733,77.0,74.0,L,-1.0,settled,
 2026-11-07|401920411|spread|home|bandB,2026-11-07,401920411,spread,High Point -10.5,home,2272,265,High Point,Washington State,-10.5,-10.5,-110.0,FanDuel,2.4,12.9,0.5,yes,2026-11-06T23:31:21+00:00,,,,,,,,open,bandB
-2026-11-07|401919805|spread|home|bandB,2026-11-07,401919805,spread,La Salle -4.5,home,2325,112358,La Salle,Long Island University,-4.5,-4.5,-120.0,FanDuel,2.24,6.74,0.5,yes,2026-11-06T23:41:54+00:00,,,,,,,,open,bandB
+2026-11-07|401919805|spread|home|bandB,2026-11-07,401919805,spread,La Salle -4.5,home,2325,112358,La Salle,Long Island University,-4.5,-4.5,-120.0,FanDuel,2.24,6.74,0.5,yes,2026-11-06T23:41:54+00:00,-4.5,0.0,0.0,88.0,80.0,W,0.417,settled,bandB
 2026-11-07|401925772|total|under,2026-11-07,401925772,total,Under 150.5,under,2166,2382,Davidson,Mercer,150.5,150.5,-110.0,FanDuel,3.92,146.58,1.0,yes,2026-11-07T00:01:28+00:00,,,,,,,,open,
 2026-11-07|401924951|total|under,2026-11-07,401924951,total,Under 139.5,under,2710,2277,Western Illinois,Houston Christian,139.5,139.5,-110.0,FanDuel,3.65,135.85,1.0,yes,2026-11-07T00:01:28+00:00,,,,,,,,open,
 2026-11-07|401917518|total|under,2026-11-07,401917518,total,Under 144.5,under,71,279,Bradley,Pacific,144.5,144.5,-105.0,FanDuel,4.05,140.45,1.0,yes,2026-11-07T00:01:28+00:00,,,,,,,,open,
@@ -328,7 +328,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-07|401920435|spread|away,2026-11-07,401920435,spread,Utah Valley -6.5,away,2692,3084,Weber State,Utah Valley,-6.5,-6.5,-110.0,theScore Bet,3.64,-10.14,0.03,yes,2026-11-07T05:41:07+00:00,,,,,,,,open,
 2026-11-07|401925077|total|under,2026-11-07,401925077,total,Under 153.5,under,93,2466,Murray State,Northwestern State,153.5,153.5,-109.0,BetRivers,3.25,150.25,1.0,yes,2026-11-07T08:11:07+00:00,,,,,,,,open,
 2026-11-07|401926201|total|under,2026-11-07,401926201,total,Under 163.5,under,2636,2678,UTSA,VMI,163.5,163.5,-105.0,DraftKings,4.04,159.46,1.0,yes,2026-11-07T08:30:57+00:00,,,,,,,,open,
-2026-11-07|401919805|spread|home,2026-11-07,401919805,spread,La Salle -4.5,home,2325,112358,La Salle,Long Island University,-4.5,-4.5,-110.0,theScore Bet,2.75,7.25,0.03,yes,2026-11-07T11:41:00+00:00,,,,,,,,open,
+2026-11-07|401919805|spread|home,2026-11-07,401919805,spread,La Salle -4.5,home,2325,112358,La Salle,Long Island University,-4.5,-4.5,-110.0,theScore Bet,2.75,7.25,0.03,yes,2026-11-07T11:41:00+00:00,-4.5,0.0,0.0,88.0,80.0,W,0.027,settled,
 2026-11-07|401920703|spread|home|bandB,2026-11-07,401920703,spread,Lipscomb -5.5,home,288,2565,Lipscomb,SIU Edwardsville,-5.5,-5.5,-110.0,DraftKings,2.19,7.69,0.5,yes,2026-11-07T11:41:03+00:00,,,,,,,,open,bandB
 2026-11-07|401924951|spread|home|bandB,2026-11-07,401924951,spread,Western Illinois +9.5,home,2710,2277,Western Illinois,Houston Christian,9.5,9.5,-110.0,DraftKings,2.1,-7.4,0.5,yes,2026-11-07T11:41:03+00:00,,,,,,,,open,bandB
 2026-11-10|401909786|spread|away,2026-11-10,401909786,spread,Kansas -5,away,96,2305,Kentucky,Kansas,-5.0,-5.0,-110.0,Caesars,3.86,-8.86,0.03,yes,2026-11-07T11:41:46+00:00,,,,,,,,open,
@@ -349,3 +349,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-08|401920134|spread|away,2026-11-08,401920134,spread,North Dakota State +2.5,away,2934,2449,Cal State Bakersfield,North Dakota State,2.5,2.5,-110.0,theScore Bet,5.51,-3.01,0.0,yes,2026-11-07T20:41:30+00:00,,,,,,,,open,
 2026-11-08|401920134|total|under,2026-11-08,401920134,total,Under 153.5,under,2934,2449,Cal State Bakersfield,North Dakota State,153.5,153.5,-110.0,theScore Bet,3.94,149.56,1.0,yes,2026-11-07T20:41:30+00:00,,,,,,,,open,
 2026-11-08|401929002|total|under,2026-11-08,401929002,total,Under 150.5,under,62,250,Hawai'i,UT Arlington,150.5,150.5,-110.0,theScore Bet,4.85,145.65,1.0,yes,2026-11-07T22:31:35+00:00,,,,,,,,open,
+2026-11-08|401918053|total|under,2026-11-08,401918053,total,Under 146.5,under,25,248,California,Houston,146.5,146.5,-110.0,FanDuel,3.87,142.63,1.0,yes,2026-11-07T22:41:02+00:00,,,,,,,,open,
