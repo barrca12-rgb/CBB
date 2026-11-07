@@ -283,7 +283,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-06|401911305|total|under,2026-11-06,401911305,total,Under 147.5,under,225,104,Brown,Boston University,147.5,147.5,-110.0,Caesars,9.49,138.01,1.0,yes,2026-11-06T15:07:13+00:00,143.5,4.0,0.09577427411304962,67.0,72.0,W,0.909,settled,
 2026-11-06|401919015|spread|away,2026-11-06,401919015,spread,Nicholls +15.5,away,5,2447,UAB,Nicholls,15.5,15.5,-108.0,FanDuel,2.95,12.55,0.45,yes,2026-11-06T16:11:20+00:00,14.5,1.0,0.03513455315346392,70.0,63.0,W,0.417,settled,
 2026-11-06|401920952|spread|away,2026-11-06,401920952,spread,Southern Illinois +1.5,away,140,79,Kansas City,Southern Illinois,1.5,1.5,-110.0,BetMGM,3.8,-2.3,0.45,yes,2026-11-06T16:11:20+00:00,1.5,0.0,0.0,100.0,93.0,L,-0.45,settled,
-2026-11-07|401918948|spread|away,2026-11-07,401918948,spread,Morehead State +36.5,away,97,2413,Louisville,Morehead State,36.5,36.5,-110.0,Fanatics,3.37,33.13,0.45,yes,2026-11-06T19:40:28+00:00,,,,,,,,open,
+2026-11-07|401918948|spread|away,2026-11-07,401918948,spread,Morehead State +36.5,away,97,2413,Louisville,Morehead State,36.5,36.5,-110.0,Fanatics,3.37,33.13,0.45,yes,2026-11-06T19:40:28+00:00,37.0,-0.5,-0.01758434989146518,107.0,57.0,L,-0.45,settled,
 2026-11-07|401921154|spread|away|bandB,2026-11-07,401921154,spread,North Carolina A&T +13.5,away,195,2448,Ohio,North Carolina A&T,13.5,13.5,-110.0,Fanatics,2.01,11.49,0.5,yes,2026-11-06T19:40:32+00:00,,,,,,,,open,bandB
 2026-11-10|401913527|total|under,2026-11-10,401913527,total,Under 160,under,2641,356,Texas Tech,Illinois,160.0,160.0,-110.0,Caesars,3.34,156.66,1.0,yes,2026-11-06T19:41:12+00:00,,,,,,,,open,
 2026-11-07|401920856|spread|away,2026-11-07,401920856,spread,Toledo +2.5,away,276,2649,Marshall,Toledo,2.5,2.5,-110.0,theScore Bet,3.5,-1.0,0.45,yes,2026-11-06T19:51:26+00:00,,,,,,,,open,
@@ -339,3 +339,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-07|401925707|total|over,2026-11-07,401925707,total,Over 159.5,over,2737,155,Winthrop,North Dakota,159.5,159.5,-105.0,theScore Bet,3.12,162.62,1.0,yes,2026-11-07T16:50:55+00:00,,,,,,,,open,
 2026-11-08|401911453|spread|home|bandB,2026-11-08,401911453,spread,Nevada +2,home,2440,2608,Nevada,Saint Mary's,2.0,2.0,-110.0,Caesars,2.06,0.06,0.5,yes,2026-11-07T17:41:34+00:00,,,,,,,,open,bandB
 2026-11-08|401919029|total|under,2026-11-08,401919029,total,Under 159.5,under,2724,30,Wichita State,USC,159.5,159.5,-110.0,Caesars,5.16,154.34,1.0,yes,2026-11-07T17:51:12+00:00,,,,,,,,open,
+2026-11-07|401924264|total|over,2026-11-07,401924264,total,Over 145.5,over,147,299,Montana State,Long Beach State,145.5,145.5,-105.0,BetMGM,6.14,151.64,1.0,yes,2026-11-07T19:11:05+00:00,,,,,,,,open,
