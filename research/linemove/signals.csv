@@ -165,3 +165,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-07T05:40:52+00:00,2026-11-07,401909513,2026-11-08T00:30Z,46,120,Georgetown,Maryland,total,over,v1,Over 145.5,146.5,-110.0,BetMGM,2026-11-07T01:42:54+00:00,145.5,-115.0,DraftKings,1.0,238.0,2.27,3.27,148.77
 2026-11-07T06:50:42+00:00,2026-11-07,401917518,2026-11-08T01:00Z,71,279,Bradley,Pacific,spread,away,bandB,Pacific +2.5,2.0,-110.0,Fanatics,2026-11-06T23:30:42+00:00,2.5,-110.0,theScore Bet,0.5,440.0,1.68,2.18,0.32
 2026-11-07T07:30:51+00:00,2026-11-07,401925077,2026-11-08T01:00Z,93,2466,Murray State,Northwestern State,total,under,v1,Under 153.5,153.5,-115.0,DraftKings,2026-11-07T04:30:49+00:00,153.5,-110.0,DraftKings,0.0,180.0,3.25,3.25,150.25
+2026-11-07T12:10:49+00:00,2026-11-07,401925707,2026-11-07T17:00Z,2737,155,Winthrop,North Dakota,spread,home,bandB,Winthrop -8.5,-9.5,-110.0,FanDuel,2026-11-06T23:20:41+00:00,-8.5,-110.0,DraftKings,1.0,770.1,1.36,2.36,10.86
