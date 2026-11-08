@@ -355,3 +355,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-08|401921820|spread|home,2026-11-08,401921820,spread,South Carolina -16.5,home,2579,2546,South Carolina,Southeast Missouri State,-16.5,-16.5,-120.0,FanDuel,3.07,19.57,0.0,yes,2026-11-08T02:11:07+00:00,,,,,,,,open,
 2026-11-08|401911335|spread|home|bandB,2026-11-08,401911335,spread,Air Force -5.5,home,2005,304,Air Force,Idaho State,-5.5,-5.5,-110.0,FanDuel,2.04,7.54,0.5,yes,2026-11-08T02:20:59+00:00,,,,,,,,open,bandB
 2026-11-08|401918053|spread|home|bandB,2026-11-08,401918053,spread,California +19.5,home,25,248,California,Houston,19.5,19.5,-110.0,theScore Bet,2.48,-17.02,0.5,yes,2026-11-08T03:21:04+00:00,,,,,,,,open,bandB
+2026-11-08|401924646|spread|away,2026-11-08,401924646,spread,Iona +28.5,away,2599,314,St. John's,Iona,28.5,28.5,-105.0,theScore Bet,2.56,25.94,0.17,yes,2026-11-08T11:40:52+00:00,,,,,,,,open,
+2026-11-08|401918053|spread|home,2026-11-08,401918053,spread,California +19.5,home,25,248,California,Houston,19.5,19.5,-108.0,DraftKings,2.62,-16.88,0.17,yes,2026-11-08T11:40:52+00:00,,,,,,,,open,
