@@ -378,3 +378,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-09|401929003|total|under,2026-11-09,401929003,total,Under 157.5,under,62,2501,Hawai'i,Portland,157.5,157.5,-105.0,DraftKings,4.66,152.84,0.94,yes,2026-11-08T22:21:31+00:00,,,,,,,,open,
 2026-11-09|401926181|spread|home|bandB,2026-11-09,401926181,spread,UIC -18,home,82,2430,UIC,UNC Greensboro,-18.0,-18.0,-110.0,Fanatics,2.15,20.15,0.5,yes,2026-11-08T22:21:37+00:00,,,,,,,,open,bandB
 2026-11-09|401921095|spread|away|bandB,2026-11-09,401921095,spread,Rice +20,away,24,242,Stanford,Rice,20.0,20.0,-115.0,Fanatics,2.3,17.7,0.5,yes,2026-11-08T22:21:37+00:00,,,,,,,,open,bandB
+2026-11-08|401925894|total|under,2026-11-08,401925894,total,Under 158.5,under,2729,2450,William & Mary,Norfolk State,158.5,158.5,-105.0,theScore Bet,4.15,154.35,0.94,yes,2026-11-08T22:40:44+00:00,,,,,,,,open,
