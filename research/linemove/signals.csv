@@ -207,3 +207,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-08T15:10:53+00:00,2026-11-08,401921685,2026-11-08T18:00Z,160,2529,New Hampshire,Sacred Heart,spread,home,v1,New Hampshire -1.5,-2.5,-113.0,BetRivers,2026-11-08T13:10:41+00:00,-1.5,-102.0,DraftKings,1.0,120.2,1.82,2.82,4.32
 2026-11-08T15:30:45+00:00,2026-11-08,401925894,2026-11-08T23:00Z,2729,2450,William & Mary,Norfolk State,total,under,v1,Under 158.5,157.5,-110.0,Fanatics,2026-11-08T13:00:50+00:00,158.5,-110.0,FanDuel,1.0,149.9,2.11,3.11,155.39
 2026-11-08T15:40:49+00:00,2026-11-08,401929352,2026-11-09T00:00Z,2638,2916,UTEP,Incarnate Word,total,over,v1,Over 140.5,142.5,-110.0,Fanatics,2026-11-08T13:00:50+00:00,140.5,-115.0,BetMGM,2.0,160.0,1.77,3.77,144.27
+2026-11-08T17:30:51+00:00,2026-11-08,401911238,2026-11-08T22:00Z,218,257,Temple,Richmond,total,under,v1,Under 153.5,152.5,-115.0,BetRivers,2026-11-08T04:10:44+00:00,153.5,-110.0,theScore Bet,1.0,800.1,2.11,3.11,150.39
