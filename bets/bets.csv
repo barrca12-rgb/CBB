@@ -358,3 +358,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-08|401924646|spread|away,2026-11-08,401924646,spread,Iona +28.5,away,2599,314,St. John's,Iona,28.5,28.5,-105.0,theScore Bet,2.56,25.94,0.17,yes,2026-11-08T11:40:52+00:00,,,,,,,,open,
 2026-11-08|401918053|spread|home,2026-11-08,401918053,spread,California +19.5,home,25,248,California,Houston,19.5,19.5,-108.0,DraftKings,2.62,-16.88,0.17,yes,2026-11-08T11:40:52+00:00,,,,,,,,open,
 2026-11-08|401921685|total|over,2026-11-08,401921685,total,Over 143.5,over,160,2529,New Hampshire,Sacred Heart,143.5,143.5,-110.0,Fanatics,3.56,147.06,0.83,yes,2026-11-08T12:50:58+00:00,,,,,,,,open,
+2026-11-08|401920692|spread|home,2026-11-08,401920692,spread,Vermont -6.5,home,261,2514,Vermont,Quinnipiac,-6.5,-6.5,-110.0,Fanatics,3.05,9.55,0.17,yes,2026-11-08T13:01:11+00:00,,,,,,,,open,
+2026-11-08|401925894|spread|home,2026-11-08,401925894,spread,William & Mary -7.5,home,2729,2450,William & Mary,Norfolk State,-7.5,-7.5,-110.0,Fanatics,2.96,10.46,0.17,yes,2026-11-08T13:01:11+00:00,,,,,,,,open,
+2026-11-08|401920865|spread|home|bandB,2026-11-08,401920865,spread,NJIT +1,home,2885,2612,NJIT,Saint Peter's,1.0,1.0,-110.0,Fanatics,2.04,1.04,0.5,yes,2026-11-08T13:01:17+00:00,,,,,,,,open,bandB
