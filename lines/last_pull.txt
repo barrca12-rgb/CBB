@@ -1,1 +1,1 @@
-2026-11-08 02:25 UTC  events 0  book-game rows 117 (0 SGO, 117 The Odds API)  unmatched teams: CSU Bakersfield Roadrunners, SE Missouri St Redhawks, Seattle Redhawks  The Odds API credits left: 91496
+2026-11-08 02:30 UTC  events 0  book-game rows 117 (0 SGO, 117 The Odds API)  unmatched teams: CSU Bakersfield Roadrunners, SE Missouri St Redhawks, Seattle Redhawks  The Odds API credits left: 91489
