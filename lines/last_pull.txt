@@ -1,1 +1,1 @@
-2026-11-08 19:00 UTC  events 0  book-game rows 98 (0 SGO, 98 The Odds API)  unmatched teams: Appalachian St Mountaineers, CSU Bakersfield Roadrunners  The Odds API credits left: 90848
+2026-11-08 19:10 UTC  events 0  book-game rows 98 (0 SGO, 98 The Odds API)  unmatched teams: Appalachian St Mountaineers, CSU Bakersfield Roadrunners  The Odds API credits left: 90845
