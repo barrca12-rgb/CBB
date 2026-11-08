@@ -1,1 +1,1 @@
-2026-11-08 00:50 UTC  events 0  book-game rows 137 (0 SGO, 137 The Odds API)  unmatched teams: Arkansas-Little Rock Trojans, CSU Bakersfield Roadrunners, Grand Canyon Antelopes, SE Missouri St Redhawks, Seattle Redhawks  The Odds API credits left: 91584
+2026-11-08 01:00 UTC  events 0  book-game rows 124 (0 SGO, 124 The Odds API)  unmatched teams: Arkansas-Little Rock Trojans, CSU Bakersfield Roadrunners, SE Missouri St Redhawks, Seattle Redhawks  The Odds API credits left: 91575
