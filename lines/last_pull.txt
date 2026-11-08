@@ -1,1 +1,1 @@
-2026-11-08 18:00 UTC  events 0  book-game rows 140 (0 SGO, 140 The Odds API)  unmatched teams: Albany Great Danes, CSU Bakersfield Roadrunners, Central Connecticut St Blue Devils  The Odds API credits left: 90901
+2026-11-08 18:06 UTC  events 0  book-game rows 133 (0 SGO, 133 The Odds API)  unmatched teams: Albany Great Danes, CSU Bakersfield Roadrunners, Central Connecticut St Blue Devils  The Odds API credits left: 90898

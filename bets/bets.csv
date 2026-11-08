@@ -369,3 +369,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-08|401920865|total|over,2026-11-08,401920865,total,Over 130,over,2885,2612,NJIT,Saint Peter's,130.0,130.0,-110.0,Fanatics,3.01,133.01,0.83,yes,2026-11-08T14:11:04+00:00,,,,,,,,open,
 2026-11-08|401921686|spread|home,2026-11-08,401921686,spread,UAlbany +2.5,home,399,2771,UAlbany,Merrimack,2.5,2.5,-110.0,FanDuel,2.7,0.2,0.17,yes,2026-11-08T14:21:00+00:00,,,,,,,,open,
 2026-11-08|401921683|total|under,2026-11-08,401921683,total,Under 146.5,under,2803,2217,Bryant,Fairfield,146.5,146.5,-110.0,FanDuel,4.75,141.75,0.83,yes,2026-11-08T17:10:56+00:00,,,,,,,,open,
+2026-11-08|401920843|total|over,2026-11-08,401920843,total,Over 149,over,2900,2739,St. Thomas,Green Bay,149.0,149.0,-110.0,Fanatics,3.26,152.26,0.83,yes,2026-11-08T18:06:27+00:00,,,,,,,,open,
