@@ -309,3 +309,4 @@ first_seen,date,game_id,market,side,book,number,price,median_others,books,reason
 2026-11-08T02:11:00+00:00,2026-11-08,401911335,total,under,theScore Bet,160.5,-110.0,,,review: edge 14.0
 2026-11-08T02:20:49+00:00,2026-11-08,401924734,total,under,FanDuel,155.5,-110,,,review: edge 12.4
 2026-11-08T02:20:49+00:00,2026-11-08,401911335,total,under,FanDuel,160.5,-105,,,review: edge 14.0
+2026-11-08T02:40:40+00:00,2026-11-08,401911335,total,under,FanDuel,160.5,-105.0,,,review: edge 14.1
