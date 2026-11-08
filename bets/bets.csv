@@ -340,7 +340,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-08|401911453|spread|home|bandB,2026-11-08,401911453,spread,Nevada +2,home,2440,2608,Nevada,Saint Mary's,2.0,2.0,-110.0,Caesars,2.06,0.06,0.5,yes,2026-11-07T17:41:34+00:00,,,,,,,,open,bandB
 2026-11-08|401919029|total|under,2026-11-08,401919029,total,Under 159.5,under,2724,30,Wichita State,USC,159.5,159.5,-110.0,Caesars,5.16,154.34,1.0,yes,2026-11-07T17:51:12+00:00,,,,,,,,open,
 2026-11-07|401924264|total|over,2026-11-07,401924264,total,Over 145.5,over,147,299,Montana State,Long Beach State,145.5,145.5,-105.0,BetMGM,6.14,151.64,1.0,yes,2026-11-07T19:11:05+00:00,144.5,-1.0,-0.02416352663316984,83.0,70.0,W,0.952,settled,
-2026-11-08|401924646|total|over,2026-11-08,401924646,total,Over 144,over,2599,314,St. John's,Iona,144.0,144.0,-110.0,Fanatics,4.7,148.7,1.0,yes,2026-11-07T20:11:19+00:00,,,,,,,,open,
+2026-11-08|401924646|total|over,2026-11-08,401924646,total,Over 144,over,2599,314,St. John's,Iona,144.0,144.0,-110.0,Fanatics,4.7,148.7,1.0,yes,2026-11-07T20:11:19+00:00,150.5,6.5,0.15318710748479192,104.0,65.0,W,0.909,settled,
 2026-11-08|401924734|total|under,2026-11-08,401924734,total,Under 151,under,2561,163,Siena,Princeton,151.0,151.0,-110.0,Fanatics,7.97,143.03,1.0,yes,2026-11-07T20:11:19+00:00,,,,,,,,open,
 2026-11-08|401902277|spread|home,2026-11-08,401902277,spread,Boise State -1,home,68,2086,Boise State,Butler,-1.0,-1.0,-105.0,Fanatics,4.81,5.81,0.0,yes,2026-11-07T20:11:19+00:00,,,,,,,,open,
 2026-11-08|401902277|total|under,2026-11-08,401902277,total,Under 152,under,68,2086,Boise State,Butler,152.0,152.0,-110.0,Fanatics,3.18,148.82,1.0,yes,2026-11-07T20:11:19+00:00,,,,,,,,open,
@@ -355,7 +355,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-08|401921820|spread|home,2026-11-08,401921820,spread,South Carolina -16.5,home,2579,2546,South Carolina,Southeast Missouri State,-16.5,-16.5,-120.0,FanDuel,3.07,19.57,0.0,yes,2026-11-08T02:11:07+00:00,,,,,,,,open,
 2026-11-08|401911335|spread|home|bandB,2026-11-08,401911335,spread,Air Force -5.5,home,2005,304,Air Force,Idaho State,-5.5,-5.5,-110.0,FanDuel,2.04,7.54,0.5,yes,2026-11-08T02:20:59+00:00,,,,,,,,open,bandB
 2026-11-08|401918053|spread|home|bandB,2026-11-08,401918053,spread,California +19.5,home,25,248,California,Houston,19.5,19.5,-110.0,theScore Bet,2.48,-17.02,0.5,yes,2026-11-08T03:21:04+00:00,,,,,,,,open,bandB
-2026-11-08|401924646|spread|away,2026-11-08,401924646,spread,Iona +28.5,away,2599,314,St. John's,Iona,28.5,28.5,-105.0,theScore Bet,2.56,25.94,0.17,yes,2026-11-08T11:40:52+00:00,,,,,,,,open,
+2026-11-08|401924646|spread|away,2026-11-08,401924646,spread,Iona +28.5,away,2599,314,St. John's,Iona,28.5,28.5,-105.0,theScore Bet,2.56,25.94,0.17,yes,2026-11-08T11:40:52+00:00,27.5,1.0,0.03513455315346392,104.0,65.0,L,-0.17,settled,
 2026-11-08|401918053|spread|home,2026-11-08,401918053,spread,California +19.5,home,25,248,California,Houston,19.5,19.5,-108.0,DraftKings,2.62,-16.88,0.17,yes,2026-11-08T11:40:52+00:00,,,,,,,,open,
 2026-11-08|401921685|total|over,2026-11-08,401921685,total,Over 143.5,over,160,2529,New Hampshire,Sacred Heart,143.5,143.5,-110.0,Fanatics,3.56,147.06,0.83,yes,2026-11-08T12:50:58+00:00,,,,,,,,open,
 2026-11-08|401920692|spread|home,2026-11-08,401920692,spread,Vermont -6.5,home,261,2514,Vermont,Quinnipiac,-6.5,-6.5,-110.0,Fanatics,3.05,9.55,0.17,yes,2026-11-08T13:01:11+00:00,,,,,,,,open,
