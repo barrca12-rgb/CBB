@@ -361,3 +361,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-08|401920692|spread|home,2026-11-08,401920692,spread,Vermont -6.5,home,261,2514,Vermont,Quinnipiac,-6.5,-6.5,-110.0,Fanatics,3.05,9.55,0.17,yes,2026-11-08T13:01:11+00:00,,,,,,,,open,
 2026-11-08|401925894|spread|home,2026-11-08,401925894,spread,William & Mary -7.5,home,2729,2450,William & Mary,Norfolk State,-7.5,-7.5,-110.0,Fanatics,2.96,10.46,0.17,yes,2026-11-08T13:01:11+00:00,,,,,,,,open,
 2026-11-08|401920865|spread|home|bandB,2026-11-08,401920865,spread,NJIT +1,home,2885,2612,NJIT,Saint Peter's,1.0,1.0,-110.0,Fanatics,2.04,1.04,0.5,yes,2026-11-08T13:01:17+00:00,,,,,,,,open,bandB
+2026-11-08|401911306|total|under,2026-11-08,401911306,total,Under 140.5,under,2329,225,Lehigh,Brown,140.5,140.5,-110.0,FanDuel,3.2,137.3,0.83,yes,2026-11-08T13:11:01+00:00,,,,,,,,open,
+2026-11-08|401911306|spread|home|bandB,2026-11-08,401911306,spread,Lehigh -2.5,home,2329,225,Lehigh,Brown,-2.5,-2.5,-115.0,Caesars,2.21,4.71,0.5,yes,2026-11-08T13:11:06+00:00,,,,,,,,open,bandB
