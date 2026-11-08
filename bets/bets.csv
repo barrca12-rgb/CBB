@@ -363,3 +363,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-08|401920865|spread|home|bandB,2026-11-08,401920865,spread,NJIT +1,home,2885,2612,NJIT,Saint Peter's,1.0,1.0,-110.0,Fanatics,2.04,1.04,0.5,yes,2026-11-08T13:01:17+00:00,,,,,,,,open,bandB
 2026-11-08|401911306|total|under,2026-11-08,401911306,total,Under 140.5,under,2329,225,Lehigh,Brown,140.5,140.5,-110.0,FanDuel,3.2,137.3,0.83,yes,2026-11-08T13:11:01+00:00,,,,,,,,open,
 2026-11-08|401911306|spread|home|bandB,2026-11-08,401911306,spread,Lehigh -2.5,home,2329,225,Lehigh,Brown,-2.5,-2.5,-115.0,Caesars,2.21,4.71,0.5,yes,2026-11-08T13:11:06+00:00,,,,,,,,open,bandB
+2026-11-08|401920865|spread|home,2026-11-08,401920865,spread,NJIT +1.5,home,2885,2612,NJIT,Saint Peter's,1.5,1.5,-115.0,FanDuel,2.54,1.04,0.17,yes,2026-11-08T13:31:01+00:00,,,,,,,,open,
+2026-11-08|401924734|spread|away|bandB,2026-11-08,401924734,spread,Princeton -1.5,away,2561,163,Siena,Princeton,-1.5,-1.5,-102.0,FanDuel,2.23,-3.73,0.5,yes,2026-11-08T13:31:06+00:00,,,,,,,,open,bandB
