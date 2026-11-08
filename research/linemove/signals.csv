@@ -200,3 +200,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-08T02:10:59+00:00,2026-11-08,401924734,2026-11-08T18:00Z,2561,163,Siena,Princeton,spread,away,v1,Princeton +1,-1.5,102.0,DraftKings,2026-11-07T22:00:48+00:00,1.0,-110.0,Caesars,2.5,250.2,1.71,4.21,-3.21
 2026-11-08T05:50:40+00:00,2026-11-08,401929002,2026-11-09T04:00Z,62,250,Hawai'i,UT Arlington,spread,away,v1,UT Arlington +11.5,9.5,-105.0,theScore Bet,2026-11-07T22:30:44+00:00,11.5,-120.0,BetRivers,2.0,439.9,0.76,2.76,8.74
 2026-11-08T13:10:49+00:00,2026-11-08,401927362,2026-11-08T20:00Z,2181,2582,Drake,Southern,spread,away,bandB,Southern +15.5,14.0,-115.0,Fanatics,2026-11-08T13:00:50+00:00,15.5,-105.0,Fanatics,1.5,10.0,0.52,2.02,13.48
+2026-11-08T13:40:53+00:00,2026-11-08,401920865,2026-11-08T21:00Z,2885,2612,NJIT,Saint Peter's,total,over,v1,Over 129.5,132.0,-110.0,Fanatics,2026-11-08T13:00:50+00:00,129.5,-110.0,Fanatics,2.5,40.0,1.01,3.51,133.01
