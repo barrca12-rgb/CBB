@@ -333,3 +333,4 @@ first_seen,date,game_id,market,side,book,number,price,median_others,books,reason
 2026-11-08T15:01:06+00:00,2026-11-08,401921685,total,-,BetRivers,149.5,,146.5,6.0,off-market
 2026-11-08T15:01:06+00:00,2026-11-08,401911335,total,under,theScore Bet,161.5,-110.0,,,review: edge 14.7
 2026-11-08T15:20:55+00:00,2026-11-08,401921687,total,-,BetRivers,146.5,,143.5,7.0,off-market
+2026-11-08T15:40:52+00:00,2026-11-08,401924734,total,under,BetRivers,154.5,-109.0,,,review: edge 11.1
