@@ -353,3 +353,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-08|401920424|total|under,2026-11-08,401920424,total,Under 160.5,under,258,8,Virginia,Arkansas,160.5,160.5,-105.0,BetMGM,3.29,157.21,1.0,yes,2026-11-07T23:01:19+00:00,,,,,,,,open,
 2026-11-15|401920136|total|under,2026-11-15,401920136,total,Under 155.5,under,2449,2934,North Dakota State,Cal State Bakersfield,155.5,155.5,-110.0,DraftKings,5.84,149.66,1.0,yes,2026-11-08T01:13:22+00:00,,,,,,,,open,
 2026-11-08|401921820|spread|home,2026-11-08,401921820,spread,South Carolina -16.5,home,2579,2546,South Carolina,Southeast Missouri State,-16.5,-16.5,-120.0,FanDuel,3.07,19.57,0.0,yes,2026-11-08T02:11:07+00:00,,,,,,,,open,
+2026-11-08|401911335|spread|home|bandB,2026-11-08,401911335,spread,Air Force -5.5,home,2005,304,Air Force,Idaho State,-5.5,-5.5,-110.0,FanDuel,2.04,7.54,0.5,yes,2026-11-08T02:20:59+00:00,,,,,,,,open,bandB
