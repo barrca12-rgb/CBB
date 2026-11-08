@@ -367,3 +367,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-08|401924734|spread|away|bandB,2026-11-08,401924734,spread,Princeton -1.5,away,2561,163,Siena,Princeton,-1.5,-1.5,-102.0,FanDuel,2.23,-3.73,0.5,yes,2026-11-08T13:31:06+00:00,,,,,,,,open,bandB
 2026-11-15|401920136|spread|home,2026-11-15,401920136,spread,North Dakota State -3,home,2449,2934,North Dakota State,Cal State Bakersfield,-3.0,-3.0,-110.0,Caesars,7.56,10.56,0.17,yes,2026-11-08T13:52:49+00:00,,,,,,,,open,
 2026-11-08|401920865|total|over,2026-11-08,401920865,total,Over 130,over,2885,2612,NJIT,Saint Peter's,130.0,130.0,-110.0,Fanatics,3.01,133.01,0.83,yes,2026-11-08T14:11:04+00:00,,,,,,,,open,
+2026-11-08|401921686|spread|home,2026-11-08,401921686,spread,UAlbany +2.5,home,399,2771,UAlbany,Merrimack,2.5,2.5,-110.0,FanDuel,2.7,0.2,0.17,yes,2026-11-08T14:21:00+00:00,,,,,,,,open,
