@@ -163,5 +163,10 @@
   "id": "2026-11-07-blowout-correction",
   "date": "2026-11-07",
   "text": "Model update, Nov 7: in big mismatches the model was projecting the favorite to score too few points, which made big underdogs and Unders look better than they are. When the projected margin passes 16 points, the favorite now gets extra points (0.16 per point past 16, about 2 points at a 30-point spread), added to both the margin and the total. Tested on 2023-26 seasons it was not fit on: projections in 20+ point games got more accurate and opener results held up. Plays already posted keep their numbers."
+ },
+ {
+  "id": "2026-11-09-edge-stakes",
+  "date": "2026-11-09",
+  "text": "Staking update, Nov 9: plays are now sized by edge. 1 unit at our minimum edge, 1.5 units when the edge is a point bigger, 2 units when it is two points bigger. In six seasons of backtests our biggest edges won 59-61% while plays at the minimum won about 57%, so more of the money now goes where the edge is largest. Which plays we post is unchanged."
  }
 ]

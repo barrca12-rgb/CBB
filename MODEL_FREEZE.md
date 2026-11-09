@@ -1414,3 +1414,22 @@ d5e3cb8a9a1e8ad8b957ef4ed5ef363a8d9247d8aa60c47c86d933ed7ea101d1  cbb/freshness.
 ```
 128e00d5b450d18cac0421181e3be87bf225190e21f2e8863dcfc2ec546a0b55  cbb/projection.py
 ```
+
+## 2026-11-09: stakes by edge (Chad: "improve the results now", then "push it")
+
+- **Test (research/selection_cut, plan written first):** walk-forward frame with the blowout correction, seasons
+  2015-17 and 2024-26. Stake 1u at the bar (spreads 2.5, totals 3), 1.5u from bar + 1, 2u from bar + 2:
+  spreads 191.0u -> 271.7u (ROI 9.09% -> 9.83%) and 249.1u -> 325.1u (10.44% -> 11.02%); totals 426.7u -> 648.0u
+  (11.18% -> 11.38%) and 422.0u -> 662.4u (9.77% -> 11.02%). Rule (more units AND higher ROI in both periods) met.
+- **Not adopted (same plan):** a higher edge bar (fewer units in every case); dropping plays at the closing number
+  (2024-26 win 52.0-53.4%, rule not met for spreads; the opener rule already limits plays to openers).
+- **Change:** `cbb/run_day.py` `_call` multiplies a BET's units by `edge_tier` (1 / 1.5 / 2); `cbb/tracker.py` logs
+  the card's units (tier x stake multiplier) as the stake, else the multiplier. Thresholds, EV rule, selection, the
+  stake multiplier and the stake cap are unchanged. 219 tests pass.
+- Discord note: `2026-11-09-edge-stakes`.
+- **New fingerprints:**
+
+```
+dc8604d87794a5cc49c9edc93978cd66895f73a63452168de8eadc76780257a7  cbb/run_day.py
+8c027a0fcd447a99ed76089bdbf711741d3dd2185f66a09542c6909540dc3c3a  cbb/tracker.py
+```

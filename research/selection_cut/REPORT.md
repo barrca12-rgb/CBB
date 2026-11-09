@@ -9,6 +9,6 @@ Plan: PLAN.md (tests 1-2 first; test 3 added before it ran). Numbers: out/result
 3. **Stakes by edge (1 / 1.5 / 2u):** more units and higher ROI in both periods and both markets
    (spreads 2024-26 +249.1u -> +325.1u, totals +422.0u -> +662.4u). Passed.
 
-**Status: not live.** The change (`live_patch.diff`: `cbb/run_day.py` edge tiers, `cbb/tracker.py` logs the card's
+**Status: live Nov 9 (MODEL_FREEZE.md).**
 units) passed all 219 tests but is waiting on Chad's go-ahead to deploy (with a MODEL_FREEZE entry and a Discord
 note).

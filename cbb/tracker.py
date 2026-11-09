@@ -113,6 +113,19 @@ def payout(odds) -> float:
     return o / 100 if o > 0 else 100 / -o
 
 
+def _stake(g, mk: str, stakes: dict) -> float:
+    """The card's units for the play (edge tier x stake multiplier, run_day.edge_tier, Nov 9); the market multiplier
+    alone when the card carries no units."""
+    u = g.get(f"{mk}_units")
+    try:
+        u = float(u)
+    except (TypeError, ValueError):
+        u = None
+    if u is None or not np.isfinite(u) or u <= 0:
+        return stakes.get(mk, 1.0)
+    return round(u, 2)
+
+
 def log(card: pd.DataFrame, day: pd.Timestamp, stakes: dict | None = None) -> list[dict]:
     """Record today's BET plays that aren't logged yet. Returns the bets added.
 
@@ -141,7 +154,7 @@ def log(card: pd.DataFrame, day: pd.Timestamp, stakes: dict | None = None) -> li
                         "away": g["away"], "line": g[f"{mk}_line"], "alert_line": g[f"{mk}_line"], "odds": g.get(f"{mk}_odds"), "book": g.get(f"{mk}_book"),
                         "edge": round(float(g[f"{mk}_edge"]), 2),
                         "model": round(float(g["model_margin"] if mk == "spread" else g["model_total"]), 2),
-                        "stake": stakes.get(mk, 1.0), "placed": "yes", "logged_at": now, "status": "open"})
+                        "stake": _stake(g, mk, stakes), "placed": "yes", "logged_at": now, "status": "open"})
     if new:
         b = pd.concat([b, pd.DataFrame(new)], ignore_index=True) if len(b) else pd.DataFrame(new)
         save(b.reindex(columns=COLS))

@@ -324,10 +324,23 @@ def _best(lines: pd.DataFrame, market: str, sides: dict, live: bool = False, ski
     return best[:5] if best else None
 
 
+# Stake by edge (Chad, Nov 9: "improve the results now"; research/selection_cut test 3): 1u at the bar, 1.5u from
+# bar + 1, 2u from bar + 2. Backtest 2015-17 and 2024-26, both markets: more units and higher ROI than flat 1u;
+# the largest edges won 59.5-61.3%. The stake multiplier (tracker.status) still scales every stake.
+EDGE_TIERS = ((2.0, 2.0), (1.0, 1.5))
+
+
+def edge_tier(edge: float, thr: float) -> float:
+    for over, mult in EDGE_TIERS:
+        if edge >= thr + over:
+            return mult
+    return 1.0
+
+
 def _call(edge: float, value: float, calls) -> tuple[str, float]:
     thr, name, units = calls[0]
     if edge >= thr and value >= MIN_EV:
-        return name, units
+        return name, units * edge_tier(edge, thr)
     if edge >= thr - WATCH_BELOW:   # close on the number, or there on the number but not the price
         return "WATCH", 0.0
     return "PASS", 0.0
