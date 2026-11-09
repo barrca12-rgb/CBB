@@ -40,6 +40,10 @@ CLOSING = os.path.join(ROOT, "lines", "closing.csv")
 MARKETS = {"spread": {"backtest": 0.571, "sd": 11.34}, "total": {"backtest": 0.565, "sd": 16.5}}
 BREAKEVEN = 110 / 210
 PRIOR_BETS = 100
+# The win-rate shutoff counts a market's plays from its current model on (Chad, Nov 9: the spread model changed at
+# 14:40 UTC that day, roster-based spreads; the 131 spread plays before it described the old model). The CLV stake cap
+# still reads every play.
+MULT_SINCE = {"spread": "2026-11-09T14:40:00+00:00"}
 MIN_CLV_BETS = 25
 CLV_TARGET = 0.5 * (2 * BREAKEVEN - 1)
 CAP_MULT = 0.5                    # the stake cap: multiplier held at this when primary-close CLV averages below 0 ...
@@ -345,8 +349,10 @@ def status(b: pd.DataFrame | None = None) -> dict:
     for mk, cfg in MARKETS.items():
         s = b[(b["market"] == mk) & (b["status"] == "settled")]
         w, l, p = (s["result"] == "W").sum(), (s["result"] == "L").sum(), (s["result"] == "P").sum()
+        sm = s[pd.to_datetime(s["logged_at"], utc=True, errors="coerce") >= pd.Timestamp(MULT_SINCE[mk])] if mk in MULT_SINCE else s
         n = w + l
-        post = (cfg["backtest"] * PRIOR_BETS + w) / (PRIOR_BETS + n)
+        wm, nm = (sm["result"] == "W").sum(), (sm["result"] == "W").sum() + (sm["result"] == "L").sum()
+        post = (cfg["backtest"] * PRIOR_BETS + wm) / (PRIOR_BETS + nm)
         mult = float(np.clip((post - BREAKEVEN) / (cfg["backtest"] - BREAKEVEN), 0, 1))
         cap = _cap(s, mk, last)
         cap["refreshed_at"] = last.get("refreshed_at")   # last successful refresh of the persisted state

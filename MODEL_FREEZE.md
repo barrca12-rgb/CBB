@@ -1494,3 +1494,18 @@ cb0a50cb8a786851aad92fe44ae3d86eb3ed9ea49b24d1ddb99090f9bb7c279b  data/team_alia
 ```
 e58f864b0340fe4924f934bacbd9883ff0f811fc3ab35e20204f889addebceca  data/projection.json
 ```
+
+## 2026-11-09: spread stake shutoff restarts with the new spread model (Chad: "do #2")
+
+- **Why:** the win-rate shutoff had spread stakes at 0.1 from the old model's 65-66 spread record. The spread model
+  changed at 14:40 UTC Nov 9 (roster-based spreads), so that record no longer describes it.
+- **Change (`cbb/tracker.py`):** `MULT_SINCE` = spreads from 2026-11-09 14:40 UTC: the multiplier's posterior counts
+  only spread plays logged since then (the 100-bet backtest prior at 57.1% is unchanged). Totals unchanged (0.62).
+  The CLV stake cap (0.5 when primary-close CLV < 0 after 25 bets) and the CLV tripwires still read every play.
+  Displayed records are unchanged. Spread multiplier now 1.0. 219 tests pass.
+- Discord note: `2026-11-09-spread-stakes`.
+- **New fingerprint:**
+
+```
+c1d0b039ceb88d7c5a343ff01847e0e4256788ac7b9f1846256243764084b206  cbb/tracker.py
+```

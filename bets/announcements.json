@@ -183,5 +183,10 @@
   "id": "2026-11-09-totals-recency",
   "date": "2026-11-09",
   "text": "Model update, Nov 9: our totals model now weights recent seasons more heavily when it learns how much to trust each input, so it follows how scoring has changed in the last few years. Tested on seasons it was not fit on: totals projections got slightly more accurate and opening-line results held. Spreads and how plays are picked are unchanged."
+ },
+ {
+  "id": "2026-11-09-spread-stakes",
+  "date": "2026-11-09",
+  "text": "Staking update, Nov 9: our spread model changed today (roster-based ratings), so the automatic spread stake reduction, which was based on the old model's spread record, now starts fresh with the new model. Spread plays go back to full stakes, still sized by edge, and still cut in half automatically if the new model's plays stop beating the closing line."
  }
 ]
