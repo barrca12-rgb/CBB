@@ -222,3 +222,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-09T03:50:53+00:00,2026-11-09,401906803,2026-11-10T01:00Z,201,2453,Oklahoma,North Alabama,spread,away,v1,North Alabama +28.5,27.0,-110.0,Fanatics,2026-11-08T22:20:44+00:00,28.5,-112.0,DraftKings,1.5,330.1,1.88,3.38,25.12
 2026-11-09T04:30:51+00:00,2026-11-09,401920887,2026-11-10T02:00Z,2429,2550,Charlotte,Seton Hall,total,over,v1,Over 131.5,134.5,-110.0,Caesars,2026-11-09T00:20:41+00:00,131.5,-105.0,DraftKings,3.0,250.2,2.72,5.72,137.22
 2026-11-09T08:40:41+00:00,2026-11-09,401909502,2026-11-10T02:00Z,305,2010,DePaul,Alabama A&M,total,over,v1,Over 138.5,141.5,-110.0,Caesars,2026-11-09T03:50:46+00:00,138.5,-110.0,DraftKings,3.0,289.9,0.02,3.02,141.52
+2026-11-09T11:10:48+00:00,2026-11-09,401906803,2026-11-10T01:00Z,201,2453,Oklahoma,North Alabama,spread,away,bandB,North Alabama +27.5,27.0,-110.0,Fanatics,2026-11-08T22:20:44+00:00,27.5,-105.0,DraftKings,0.5,770.1,1.58,2.08,25.42
