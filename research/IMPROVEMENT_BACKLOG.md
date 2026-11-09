@@ -3,12 +3,13 @@
 Ranked by expected gain and how soon it can be tested. Update after every weekly review. Closed items stay at the
 bottom with their verdict, so nothing is retested by accident.
 
-Last updated Nov 5, 2026 (speed read added).
+Last updated Nov 9, 2026 (weekly review; sharp-market lead).
 
 ## Open
 
 | # | Idea | Evidence so far | First step |
 |---|---|---|---|
+| 0 | **Sharp market already up and disagreeing** | Novig up at posting, our number ~3 pts better: 22-31, -10.8u, Pinnacle CLV -2.15%, 36% beat close (63 plays). With no sharper line up: 98-86, CLV +3.67%. Pinnacle up: 21 plays, CLV -2.5 to -5.0%. BetOnline now logged (free slot) to see if an early sharp number exists | Shadow a gate (skip or minimum stake when Novig/Pinnacle disagree by 2+), read after 2 weeks; Chad's call on going live |
 | 1b | **Absences valued by learned player weights** | Tested Nov 6 (research/absence_values): margin miss 8.7699 -> 8.7666 (top-10% absences -0.023) but opener spreads -0.17/-0.19; does not pass | Closed unless a new absence source (injury reports before tip) appears |
 | 2 | **Speed to the opener** | Measured Nov 5 (research/speed/LIVE_REPORT.md): alerts ~5 min after a book posts; 97% of numbers last 10 min, 88% 30 min, 63% 4 hours; afternoon/evening alerts decay fastest. Polling is not the bottleneck; placing the bet is. No placement times recorded (accepted.csv empty). | Record real fills (Placed button or Pikkit export); then decide on a 3-5 min opener cadence |
 | 3 | **Opening-day scoring level** (stage-1 intercept shrunk toward last season) | Ready: live opening week 15.9 -> 13.5, history unchanged (own_ratings Study A) | Proposal to Chad for next season's opener |

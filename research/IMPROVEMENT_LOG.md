@@ -2,6 +2,18 @@
 
 Dated findings from each review, newest first. "Nothing new" is a valid entry.
 
+## 2026-11-09: weekly review (Nov 2-8)
+
+- **Main 130-123, -2.72u (flat-unit staked), line move +1.18** (backtest +0.95). Band B 43-27.
+- **Outside the backtest range:** spreads 49.6% (backtest 56.3%); spread underdogs 50.0% with line move only +0.34
+  (favorites 56.5%, +1.61; backtest dogs 56.4%); spreads under 7 points 47.2%; Unders 50.0% (Overs 61.8%); totals at
+  edge 3-4 48.1% vs 4+ 64.3%; plays posted under 18 hours before tip moved only +0.22/+0.25 our way (18h+ +1.39).
+- **All games vs the close:** totals gap +0.57 (backtest +0.68), margins +0.17 (+0.18): in line with the backtest.
+- **New lead:** when a sharper market (Novig, Pinnacle) was already up and our number still beat it, the plays lost
+  (Novig: 22-31, Pinnacle CLV -2.15%, 36% beat the close; Pinnacle: CLV -2.5 to -5.0%). research/pinnacle_agree.
+- **Shipped this week (MODEL_FREEZE.md):** blowout correction; roster-based spreads; totals recency weights; stakes by
+  edge; spread shutoff restarted with the new spread model; 41 team names matched across the feeds.
+
 ## 2026-11-06: duplicate alerts fixed; one-game check; absence values
 
 - Duplicate alerts (4 plays this season): a queued card run checked out its trigger commit, not the branch tip. Fixed.
