@@ -50,6 +50,10 @@ PINNACLE_LOG_TARGETED = os.path.join(os.path.dirname(__file__), "..", "lines", "
 PINNACLE_COLS = ["event_id", "start", "home_id", "away_id", "home_spread", "home_spread_odds", "away_spread_odds",
                  "total", "over_odds", "under_odds", "spread_updated", "total_updated", "observed_at", "source"]
 PINNACLE_NEAR = pd.Timedelta(minutes=45)   # every quote within this of the start is logged, changed or not
+# BetOnline (Chad, Nov 9: "yes run step 1"): a sharper book that opens college basketball early, logged only, in the card
+# call's 10th book slot (no extra credits), to learn when a sharp number is up before our plays. Never a play book.
+BETONLINE = "betonlineag"
+BETONLINE_LOG = os.path.join(os.path.dirname(__file__), "..", "lines", "betonline_log.csv")
 NOVIG_LATEST = os.path.join(os.path.dirname(__file__), "..", "lines", "novig_latest.csv")
 NOVIG_LOG = os.path.join(os.path.dirname(__file__), "..", "lines", "novig_log.csv")
 DISPLAY_COLS = ["book", "event_id", "start", "home_id", "away_id", "home_spread", "home_spread_odds", "away_spread_odds",
@@ -252,12 +256,12 @@ def save_display(d: pd.DataFrame) -> None:
         new.to_csv(NOVIG_LOG, mode="a", header=not os.path.exists(NOVIG_LOG), index=False)
 
 
-def log_pinnacle(events: list, source: str, lookup: dict | None = None) -> int:
+def log_pinnacle(events: list, source: str, lookup: dict | None = None, book: str = PINNACLE, path: str | None = None) -> int:
     """Append Pinnacle's spread and total for pregame events to lines/pinnacle_log.csv (the targeted poll:
     lines/pinnacle_log_targeted.csv): a row when the quote changed since its last logged row, and every row within
     PINNACLE_NEAR of the start (the closing window). Oriented to our home and away ids. Returns rows written. Never
     raises into the card."""
-    path = PINNACLE_LOG_TARGETED if source == "targeted" else PINNACLE_LOG
+    path = path or (PINNACLE_LOG_TARGETED if source == "targeted" else PINNACLE_LOG)
     lookup = lookup or _lookup()
     now = pd.Timestamp.now(tz="UTC")
     rows = []
@@ -270,7 +274,7 @@ def log_pinnacle(events: list, source: str, lookup: dict | None = None) -> int:
         if h is None or a is None:
             continue
         for bk in ev.get("bookmakers") or []:
-            if bk.get("key") != PINNACLE:
+            if bk.get("key") != book:
                 continue
             r = {"event_id": ev.get("id"), "start": ev.get("commence_time"), "home_id": h, "away_id": a,
                  "observed_at": now.isoformat(timespec="seconds"), "source": source}
@@ -365,7 +369,7 @@ def fetch_quotes(api_key: str | None = None) -> tuple[list, dict]:
 def fetch(api_key: str | None = None) -> pd.DataFrame:
     api_key = api_key or os.environ.get("ODDS_API_KEY", "")
     refused = set(json.load(open(REFUSED))) if os.path.exists(REFUSED) else set()
-    books = [b for b in list(BOOKS) + list(DISPLAY_BOOKS) + [PINNACLE] if b not in refused]   # show-only books ride the same call
+    books = [b for b in list(BOOKS) + list(DISPLAY_BOOKS) + [PINNACLE, BETONLINE] if b not in refused]   # show-only books ride the same call (10 = one region)
     params = {"apiKey": api_key, "regions": "us", "markets": "spreads,totals,h2h", "oddsFormat": "american",
               "bookmakers": ",".join(books), "includeLinks": "true"}
     try:
@@ -398,6 +402,7 @@ def fetch(api_key: str | None = None) -> pd.DataFrame:
         print(f"Show-only prices failed ({e}); continuing.")
     try:   # Pinnacle's own log for the no-vig close
         log_pinnacle(events, "card")
+        log_pinnacle(events, "card", book=BETONLINE, path=BETONLINE_LOG)
     except Exception as e:
         print(f"Pinnacle log failed ({e}); continuing.")
     fetch.events = len(events)

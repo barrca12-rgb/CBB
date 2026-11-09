@@ -1509,3 +1509,14 @@ e58f864b0340fe4924f934bacbd9883ff0f811fc3ab35e20204f889addebceca  data/projectio
 ```
 c1d0b039ceb88d7c5a343ff01847e0e4256788ac7b9f1846256243764084b206  cbb/tracker.py
 ```
+
+## 2026-11-09: BetOnline logged (logging only; Chad: "yes run step 1")
+
+- `cbb/odds_api.py`: the card call also requests `betonlineag` (10 books = one region, no extra credits) and logs its
+  spread and total to `lines/betonline_log.csv` with the Pinnacle logger (`log_pinnacle(book=, path=)`). Never a play
+  book, never on the board, the card's lines, a close or any pick. Step-1 read: research/pinnacle_agree/STEP1.md.
+- **New fingerprint:**
+
+```
+bf289706fa894d4f8f8a713c4c5ee8d95476ab5f28dd4e8639e52457a5843245  cbb/odds_api.py
+```
