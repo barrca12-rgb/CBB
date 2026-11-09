@@ -436,3 +436,8 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-09|401925737|spread|home,2026-11-09,401925737,spread,Washington -32.5,home,264,2400,Washington,Mississippi Valley State,-32.5,-32.5,-118.0,FanDuel,2.52,35.02,1.0,yes,2026-11-09T21:51:07+00:00,,,,,,,,open,
 2026-11-10|401909752|spread|away,2026-11-10,401909752,spread,Yale +21.5,away,239,43,Baylor,Yale,21.5,21.5,-115.0,FanDuel,2.84,18.66,1.0,yes,2026-11-09T21:51:38+00:00,,,,,,,,open,
 2026-11-10|401920895|spread|away|bandB,2026-11-10,401920895,spread,Fairfield +23.5,away,275,2217,Wisconsin,Fairfield,23.5,23.5,-110.0,FanDuel,2.08,21.42,0.5,yes,2026-11-09T21:51:43+00:00,,,,,,,,open,bandB
+2026-11-10|401921062|spread|away,2026-11-10,401921062,spread,Montana +11.5,away,2539,149,San Francisco,Montana,11.5,11.5,-110.0,Fanatics,3.41,8.09,1.0,yes,2026-11-09T22:11:33+00:00,,,,,,,,open,
+2026-11-10|401921062|total|under,2026-11-10,401921062,total,Under 148.5,under,2539,149,San Francisco,Montana,148.5,148.5,-110.0,FanDuel,3.7,144.8,0.62,yes,2026-11-09T22:11:33+00:00,,,,,,,,open,
+2026-11-10|401925940|spread|home|bandB,2026-11-10,401925940,spread,Utah State -25.5,home,328,3101,Utah State,Utah Tech,-25.5,-25.5,-110.0,FanDuel,2.31,27.81,0.5,yes,2026-11-09T22:11:39+00:00,,,,,,,,open,bandB
+2026-11-10|401924896|spread|home|bandB,2026-11-10,401924896,spread,New Mexico -20.5,home,167,2031,New Mexico,Little Rock,-20.5,-20.5,-110.0,FanDuel,2.39,22.89,0.5,yes,2026-11-09T22:11:39+00:00,,,,,,,,open,bandB
+2026-11-10|401921733|spread|away|bandB,2026-11-10,401921733,spread,Hofstra +16,away,9,2275,Arizona State,Hofstra,16.0,16.0,-110.0,Fanatics,2.09,13.91,0.5,yes,2026-11-09T22:11:39+00:00,,,,,,,,open,bandB
