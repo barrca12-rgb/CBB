@@ -1,0 +1,15 @@
+sequential CLV reads through 2026-11-08 (2026-11-09 19:44 UTC); closing history: 2317 pulls
+
+lineup v2 vs v1, spreads
+  games where picks differ: 76; with a close for every pick: 75; no close: 1
+  result vs the close, lineup v2 side minus v1 side per differing game: -0.67 pts over 75 settled games (condition 1: must be >= 0 at a decision read)
+  lineup v2 minus v1 CLV per differing game: -0.387 pts (date-clustered SE 0.345); z = -1.12; interim boundary |z| >= 3.29 (Haybittle-Peto, max 18 interim looks): not crossed
+  lineup v2-only picks 45, v1-only 25, opposite sides 5; dates 8
+
+E2 vs v1, totals
+  games where picks differ: 102; with a close for every pick: 99; no close: 3
+  result vs the close, E2 side minus v1 side per differing game: -1.06 pts over 99 settled games (condition 1: must be >= 0 at a decision read)
+  E2 minus v1 CLV per differing game: -0.258 pts (date-clustered SE 0.228); z = -1.13; interim boundary |z| >= 3.29 (Haybittle-Peto, max 18 interim looks): not crossed
+  E2-only picks 75, v1-only 21, opposite sides 3; dates 8
+
+a crossing is a proposal only (Amendment 3 / research/e2_shadow/PLAN.md): Chad's approval, a MODEL_FREEZE entry and a Discord note; nothing live changes by itself.
