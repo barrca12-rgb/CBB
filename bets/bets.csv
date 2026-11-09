@@ -400,3 +400,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-09|401906781|total|under,2026-11-09,401906781,total,Under 161.5,under,61,526,Georgia,Florida Gulf Coast,161.5,161.5,-110.0,DraftKings,4.98,156.52,0.69,yes,2026-11-09T02:50:59+00:00,,,,,,,,open,
 2026-11-09|401906793|total|under,2026-11-09,401906793,total,Under 158.5,under,344,2296,Mississippi State,Jackson State,158.5,158.5,-105.0,DraftKings,3.23,155.27,0.69,yes,2026-11-09T02:50:59+00:00,,,,,,,,open,
 2026-11-09|401920686|spread|away|bandB,2026-11-09,401920686,spread,Wagner +38.5,away,41,2681,UConn,Wagner,38.5,38.5,-115.0,DraftKings,2.02,36.48,0.5,yes,2026-11-09T02:51:05+00:00,,,,,,,,open,bandB
+2026-11-09|401920686|spread|away,2026-11-09,401920686,spread,Wagner +39.5,away,41,2681,UConn,Wagner,39.5,39.5,-118.0,BetMGM,3.02,36.48,0.06,yes,2026-11-09T03:01:07+00:00,,,,,,,,open,
