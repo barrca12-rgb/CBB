@@ -1460,3 +1460,19 @@ dc8604d87794a5cc49c9edc93978cd66895f73a63452168de8eadc76780257a7  cbb/run_day.py
 0688be9010cee69f389cadb601c5de624b1257c248fd3288fb322823d272a469  cbb/shadow_rp4.py
 ffe70f4835b50220d8050f2134df31c94f4d1544d2f417bfe51e0ad928e02708  data/shadow_rp4.json
 ```
+
+## 2026-11-09: every unmatched feed team name (Chad: "do all and test")
+
+- **Why:** the card's pull log (lines/last_pull.txt, 400 runs back) still listed 17 Odds API names and 11 SGO names
+  that matched no team, so those games came from one feed only (fewer books, older numbers).
+- **Change (`data/team_aliases.csv`):** 38 rows: the 17 Odds API names (LIU, IUPUI, Seattle, GW, Grand Canyon,
+  Tenn-Martin, CSU Bakersfield, Appalachian St, Long Beach St, CSU Fullerton, Arkansas-Little Rock, SE Missouri St,
+  Prairie View, Grambling St, Albany, Citadel, Central Connecticut St) and the 11 SGO-style names, under both feeds.
+  Each was checked to map to its ESPN id through each feed's own lookup.
+- **Effect:** those games get every play book at every card run. Model, thresholds, stakes unchanged.
+  Discord note: `2026-11-09-more-names`.
+- **New fingerprint:**
+
+```
+cb0a50cb8a786851aad92fe44ae3d86eb3ed9ea49b24d1ddb99090f9bb7c279b  data/team_aliases.csv
+```

@@ -173,5 +173,10 @@
   "id": "2026-11-09-roster-spreads",
   "date": "2026-11-09",
   "text": "Model update, Nov 9: our spread numbers now start each team's season from its actual roster, not just last year's team. Early in the season this is where the model was missing: teams that lost or added players through transfers were rated as if they hadn't. In backtests this lifted opening-line spread results in both periods tested and made early-season margins more accurate. Totals are unchanged."
+ },
+ {
+  "id": "2026-11-09-more-names",
+  "date": "2026-11-09",
+  "text": "Update, Nov 9: 28 more schools whose names didn't match one of our odds feeds now get every play book, updated every run (among them LIU, IU Indy, Seattle U, George Washington, Grand Canyon, UT Martin, CSU Bakersfield, App State, Long Beach State, CSU Fullerton, Little Rock, SE Missouri State, Prairie View, Grambling, UAlbany and The Citadel). How plays are picked and graded is unchanged."
  }
 ]
