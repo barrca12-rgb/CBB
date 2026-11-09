@@ -1,0 +1,23 @@
+Morning shadow vs live v1 (research/morning_shadow/PLAN.md), games 2026-11-04 to 2026-11-08
+Universe: 378 game-markets with a final score; decision kinds: fallback 272, ready 106
+C plays outside the universe (no shadow row, or no final score yet): 0
+
+Cells: neither 220, C only 80, both, same side 78
+
+                C (live) M (morning)
+bets                 158          78
+graded               158          78
+W-L-P            74-82-2     38-40-0
+risked (flat)      158.0        78.0
+profit (flat)     -14.57       -4.61
+ROI (flat)         -9.2%       -5.9%
+risked (staked)   113.07       54.93
+profit (staked)   -11.98       -2.99
+with close           158          78
+mean CLV            1.01        0.31
+beat close           57%         42%
+
+Primary: M minus C, flat profit +9.96 u, 95% [-8.90, +29.42] (bootstrap by game date, 2000 draws)
+M minus C, mean CLV per play: 95% [-1.60, -0.04]
+Disagreeing game-markets: 80 (decision needs 200)
+This read is descriptive only (PLAN.md section 4): no decision.

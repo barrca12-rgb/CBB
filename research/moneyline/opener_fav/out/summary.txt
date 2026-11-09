@@ -1,1 +1,11 @@
-Opener favorite moneylines (EV +5% at Phi(margin / 11), first price at a book): 8 qualifying quotes, 6 game-sides, 0 graded
+Opener favorite moneylines (EV +5% at Phi(margin / 11), first price at a book): 172 qualifying quotes, 52 game-sides, 16 graded
+  first qualifying quote per game-side: {'bets': 16, 'win %': np.float64(68.8), 'exp win %': np.float64(71.8), 'avg price': -180.0, 'units': 0.5, 'ROI %': 2.98, '95% lo': -38.67, '95% hi': 49.59}; mean moneyline CLV +1.75 pp on 16
+  every qualifying quote, by book:
+        book  bets  win %  exp win %  avg price  units  ROI %  95% lo  95% hi
+      BetMGM     6   83.3       70.4     -210.0    1.6  25.91  -10.00   43.86
+   BetRivers     5   60.0       74.8     -220.0   -1.0 -19.22 -100.00   34.63
+     Caesars    13   76.9       70.9     -195.0    2.3  17.49  -58.33   51.19
+  DraftKings     6   66.7       68.3     -180.0    0.2   3.06  -40.00   46.13
+     FanDuel     8   50.0       69.6     -174.0   -2.2 -27.15  -71.67   47.05
+    Fanatics     4   75.0       72.6     -218.0    0.6  16.00 -100.00   54.66
+theScore Bet    13   69.2       74.7     -200.0    0.0   0.04  -48.51   46.92

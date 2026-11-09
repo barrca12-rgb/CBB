@@ -1,12 +1,12 @@
-Complete-ratings rule, weekly read (main plays; rule OFF)
+Complete-ratings rule, weekly read (main plays, through 2026-11-08; rule OFF)
                                      plays    W-L  units  with close  avg CLV beat close
 group                                                                                   
-early, NOT qualifying next morning      26    9-8   0.16          24     2.21        79%
-early, still qualifies next morning     67  22-18   1.82          53     1.66        72%
-logged on game day (rule's timing)      15    9-5   3.35           8    -0.22        38%
+early, NOT qualifying next morning      48  29-18   8.71          48     2.02        69%
+early, still qualifies next morning    160  74-85 -15.37         160     1.20        63%
+logged on game day (rule's timing)      48  28-20   4.84          42     0.42        45%
 
 By market, plays the rule would have blocked:
-        plays  W-L  units  with close  avg CLV beat close
-group                                                    
-spread      9  2-4  -2.18           9     1.00        67%
-total      17  7-4   2.34          15     2.93        87%
+        plays    W-L  units  with close  avg CLV beat close
+group                                                      
+spread     16    8-8  -0.44          16     1.25        69%
+total      32  21-10   9.15          32     2.41        69%
