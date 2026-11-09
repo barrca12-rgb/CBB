@@ -396,3 +396,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-09|401906793|spread|home,2026-11-09,401906793,spread,Mississippi State -22.5,home,344,2296,Mississippi State,Jackson State,-22.5,-22.5,-110.0,Fanatics,2.84,25.34,0.06,yes,2026-11-09T02:10:57+00:00,,,,,,,,open,
 2026-11-09|401921720|spread|home,2026-11-09,401921720,spread,Miami -30.5,home,2390,2454,Miami,North Florida,-30.5,-30.5,-110.0,FanDuel,4.98,35.48,0.06,yes,2026-11-09T02:21:06+00:00,,,,,,,,open,
 2026-11-09|401921720|total|over,2026-11-09,401921720,total,Over 158.5,over,2390,2454,Miami,North Florida,158.5,158.5,-110.0,DraftKings,3.69,162.19,0.69,yes,2026-11-09T02:30:53+00:00,,,,,,,,open,
+2026-11-09|401906781|spread|away,2026-11-09,401906781,spread,Florida Gulf Coast +24.5,away,61,526,Georgia,Florida Gulf Coast,24.5,24.5,-110.0,theScore Bet,2.76,21.74,0.06,yes,2026-11-09T02:36:17+00:00,,,,,,,,open,
