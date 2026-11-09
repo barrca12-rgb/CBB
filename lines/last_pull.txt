@@ -1,1 +1,1 @@
-2026-11-09 00:30 UTC  events 0  book-game rows 117 (0 SGO, 117 The Odds API)  unmatched teams: Appalachian St Mountaineers  The Odds API credits left: 90560
+2026-11-09 00:40 UTC  events 0  book-game rows 121 (0 SGO, 121 The Odds API)  unmatched teams: Appalachian St Mountaineers  The Odds API credits left: 90551

@@ -383,3 +383,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-09|401920799|spread|away|bandB,2026-11-09,401920799,spread,App State +25.5,away,2,2026,Auburn,App State,25.5,25.5,100.0,theScore Bet,2.19,23.31,0.5,yes,2026-11-08T22:51:32+00:00,,,,,,,,open,bandB
 2026-11-08|401929352|total|over,2026-11-08,401929352,total,Over 142.5,over,2638,2916,UTEP,Incarnate Word,142.5,142.5,-105.0,BetMGM,3.18,145.68,0.94,yes,2026-11-08T23:10:55+00:00,,,,,,,,open,
 2026-11-09|401916315|total|under,2026-11-09,401916315,total,Under 160.5,under,194,276,Ohio State,Marshall,160.5,160.5,-115.0,DraftKings,3.35,157.15,0.88,yes,2026-11-08T23:31:21+00:00,,,,,,,,open,
+2026-11-09|401920734|total|under,2026-11-09,401920734,total,Under 147.5,under,77,104,Northwestern,Boston University,147.5,147.5,-110.0,FanDuel,6.08,141.42,0.88,yes,2026-11-09T00:41:13+00:00,,,,,,,,open,
