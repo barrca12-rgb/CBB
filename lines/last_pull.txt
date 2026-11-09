@@ -1,1 +1,1 @@
-2026-11-09 02:00 UTC  events 0  book-game rows 138 (0 SGO, 138 The Odds API)  unmatched teams: Appalachian St Mountaineers, Grambling St Tigers, LIU Sharks  The Odds API credits left: 90470
+2026-11-09 02:10 UTC  events 0  book-game rows 145 (0 SGO, 145 The Odds API)  unmatched teams: Appalachian St Mountaineers, Grambling St Tigers, LIU Sharks  The Odds API credits left: 90461
