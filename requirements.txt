@@ -2,3 +2,5 @@ pandas
 numpy
 pyarrow
 beautifulsoup4
+scikit-learn
+scipy

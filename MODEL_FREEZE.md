@@ -1476,3 +1476,21 @@ ffe70f4835b50220d8050f2134df31c94f4d1544d2f417bfe51e0ad928e02708  data/shadow_rp
 ```
 cb0a50cb8a786851aad92fe44ae3d86eb3ed9ea49b24d1ddb99090f9bb7c279b  data/team_aliases.csv
 ```
+
+## 2026-11-09: totals weights with recency, and the roster model's missing package (Chad: "do all and test")
+
+- **Totals (research/totals_recency, plan written first):** the stage-2 totals weights refit on 2013-2026 with each
+  season weighted 0.5^(2026 - season) (half-life 1 season, chosen on 2019-22). Out of sample 2023-26 total error
+  13.0606 -> 13.0540; opener totals 56.59% -> 56.68% (2015-17) and 57.28% -> 57.16% (2024-26), within the rule.
+  `data/projection.json` "total" replaced (equal weights reproduce the old block exactly, checked); margins unchanged.
+  Totals on the Nov 9-11 cards move +0.69 on average (mean absolute 1.26). Discord note: `2026-11-09-totals-recency`.
+- **Roster-based spreads were not active yet:** the first live run logged "No module named 'sklearn'" and used v1
+  margins, as designed. `requirements.txt` now includes scikit-learn and scipy (the rp4 shadow installs them in its
+  own workflow), so the card can build the roster prior.
+- **Tested and not adopted the same day:** crew pass for totals (2024-26 new plays 51.88%); a Pinnacle gate at
+  posting (read only: 81 of 102 plays posted before Pinnacle had a line).
+- **New fingerprint:**
+
+```
+e58f864b0340fe4924f934bacbd9883ff0f811fc3ab35e20204f889addebceca  data/projection.json
+```

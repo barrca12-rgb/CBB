@@ -1,0 +1,9 @@
+2019-22 total error: H=None: 13.2668, H=1: 13.2477, H=2: 13.2531, H=3: 13.2564, H=5: 13.2598
+chosen H = 1
+2023-26 total error: base 13.0606 -> recency 13.0540
+  model  period  plays  win%  units  move
+   base 2015-17   4930 56.59  390.8 1.036
+   base 2024-26   4281 57.28  398.9 1.513
+recency 2015-17   4909 56.68  397.5 1.046
+recency 2024-26   4229 57.16  384.9 1.549
+Ship rule: error lower True; win% change +0.09 / -0.12 -> SHIP
