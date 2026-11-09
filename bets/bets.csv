@@ -421,3 +421,9 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-10|401917979|spread|home,2026-11-10,401917979,spread,TCU -33.5,home,2628,2433,TCU,UL Monroe,-33.5,-33.5,-110.0,theScore Bet,3.81,37.31,1.5,yes,2026-11-09T20:42:00+00:00,,,,,,,,open,
 2026-11-10|401917520|spread|home|bandB,2026-11-10,401917520,spread,Troy +1.5,home,2653,2351,Troy,Loyola Marymount,1.5,1.5,-110.0,theScore Bet,2.41,0.91,0.5,yes,2026-11-09T20:42:09+00:00,,,,,,,,open,bandB
 2026-11-10|401928828|spread|home,2026-11-10,401928828,spread,Toledo +1.5,home,2649,2750,Toledo,Wright State,1.5,1.5,-110.0,FanDuel,2.69,1.19,1.0,yes,2026-11-09T21:02:04+00:00,,,,,,,,open,
+2026-11-10|401925781|total|over,2026-11-10,401925781,total,Over 147.5,over,2184,265,Duquesne,Washington State,147.5,147.5,-110.0,theScore Bet,3.16,150.66,0.62,yes,2026-11-09T21:11:58+00:00,,,,,,,,open,
+2026-11-10|401920356|spread|away,2026-11-10,401920356,spread,Harvard -2.5,away,111,108,Northeastern,Harvard,-2.5,-2.5,-115.0,theScore Bet,2.53,-5.03,1.0,yes,2026-11-09T21:11:58+00:00,,,,,,,,open,
+2026-11-10|401920306|total|under,2026-11-10,401920306,total,Under 159.5,under,59,2198,Georgia Tech,Eastern Kentucky,159.5,159.5,-105.0,FanDuel,3.93,155.57,0.62,yes,2026-11-09T21:11:58+00:00,,,,,,,,open,
+2026-11-10|401911187|spread|home,2026-11-10,401911187,spread,Dayton -13.5,home,2168,2561,Dayton,Siena,-13.5,-13.5,-105.0,Fanatics,2.88,16.38,1.0,yes,2026-11-09T21:11:58+00:00,,,,,,,,open,
+2026-11-10|401921755|spread|home|bandB,2026-11-10,401921755,spread,UCF -16.5,home,2116,6,UCF,South Alabama,-16.5,-16.5,-120.0,theScore Bet,2.23,18.73,0.5,yes,2026-11-09T21:12:07+00:00,,,,,,,,open,bandB
+2026-11-10|401913101|spread|away|bandB,2026-11-10,401913101,spread,Wyoming +14.5,away,153,2751,North Carolina,Wyoming,14.5,14.5,-106.0,FanDuel,2.06,12.44,0.5,yes,2026-11-09T21:12:07+00:00,,,,,,,,open,bandB
