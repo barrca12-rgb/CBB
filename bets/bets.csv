@@ -411,3 +411,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-09|401925681|spread|home|bandB,2026-11-09,401925681,spread,Notre Dame -27.5,home,87,2197,Notre Dame,Eastern Illinois,-27.5,-27.5,-120.0,FanDuel,2.44,29.94,0.5,yes,2026-11-09T14:41:57+00:00,,,,,,,,open,bandB
 2026-11-09|401916305|spread|home|bandB,2026-11-09,401916305,spread,Cincinnati -6.5,home,2132,135,Cincinnati,Minnesota,-6.5,-6.5,-110.0,Caesars,2.12,8.62,0.5,yes,2026-11-09T14:41:57+00:00,,,,,,,,open,bandB
 2026-11-10|401909564|total|under,2026-11-10,401909564,total,Under 149.5,under,150,127,Duke,Michigan State,149.5,149.5,-110.0,Caesars,3.26,146.24,0.62,yes,2026-11-09T14:42:29+00:00,,,,,,,,open,
+2026-11-10|401906771|total|under,2026-11-10,401906771,total,Under 165.5,under,52,57,Florida State,Florida,165.5,165.5,-110.0,Fanatics,4.09,161.41,0.93,yes,2026-11-09T19:41:44+00:00,,,,,,,,open,
