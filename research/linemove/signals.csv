@@ -238,3 +238,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-09T15:32:07+00:00,2026-11-09,401925737,2026-11-10T03:00Z,264,2400,Washington,Mississippi Valley State,total,under,v1,Under 156.5,152.5,-105.0,theScore Bet,2026-11-09T03:10:38+00:00,156.5,-105.0,FanDuel,4.0,741.5,0.58,4.58,151.92
 2026-11-09T16:10:46+00:00,2026-11-09,401909718,2026-11-09T23:30Z,84,183,Indiana,Syracuse,spread,away,v1,Syracuse +6,4.5,-110.0,FanDuel,2026-11-09T01:30:48+00:00,6.0,-110.0,Fanatics,1.5,880.0,1.25,2.75,3.25
 2026-11-09T17:01:05+00:00,2026-11-09,401921815,2026-11-10T01:00Z,142,2565,Missouri,SIU Edwardsville,spread,away,bandB,SIU Edwardsville +30.5,29.5,-110.0,BetRivers,2026-11-09T03:40:42+00:00,30.5,-115.0,BetMGM,1.0,800.4,1.24,2.24,28.26
+2026-11-09T22:41:00+00:00,2026-11-10,401920356,2026-11-11T00:00Z,111,108,Northeastern,Harvard,total,over,v1,Over 145.5,146.5,-115.0,FanDuel,2026-11-09T21:01:06+00:00,145.5,-110.0,Caesars,1.0,99.9,2.8,3.8,149.3
