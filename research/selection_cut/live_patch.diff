@@ -1,0 +1,62 @@
+diff --git a/cbb/run_day.py b/cbb/run_day.py
+index 7daec6320..c78c5e454 100644
+--- a/cbb/run_day.py
++++ b/cbb/run_day.py
+@@ -324,10 +324,23 @@ def _best(lines: pd.DataFrame, market: str, sides: dict, live: bool = False, ski
+     return best[:5] if best else None
+ 
+ 
++# Stake by edge (Chad, Nov 9: "improve the results now"; research/selection_cut test 3): 1u at the bar, 1.5u from
++# bar + 1, 2u from bar + 2. Backtest 2015-17 and 2024-26, both markets: more units and higher ROI than flat 1u;
++# the largest edges won 59.5-61.3%. The stake multiplier (tracker.status) still scales every stake.
++EDGE_TIERS = ((2.0, 2.0), (1.0, 1.5))
++
++
++def edge_tier(edge: float, thr: float) -> float:
++    for over, mult in EDGE_TIERS:
++        if edge >= thr + over:
++            return mult
++    return 1.0
++
++
+ def _call(edge: float, value: float, calls) -> tuple[str, float]:
+     thr, name, units = calls[0]
+     if edge >= thr and value >= MIN_EV:
+-        return name, units
++        return name, units * edge_tier(edge, thr)
+     if edge >= thr - WATCH_BELOW:   # close on the number, or there on the number but not the price
+         return "WATCH", 0.0
+     return "PASS", 0.0
+diff --git a/cbb/tracker.py b/cbb/tracker.py
+index 7e549ecd1..f2337598b 100644
+--- a/cbb/tracker.py
++++ b/cbb/tracker.py
+@@ -113,6 +113,19 @@ def payout(odds) -> float:
+     return o / 100 if o > 0 else 100 / -o
+ 
+ 
++def _stake(g, mk: str, stakes: dict) -> float:
++    """The card's units for the play (edge tier x stake multiplier, run_day.edge_tier, Nov 9); the market multiplier
++    alone when the card carries no units."""
++    u = g.get(f"{mk}_units")
++    try:
++        u = float(u)
++    except (TypeError, ValueError):
++        u = None
++    if u is None or not np.isfinite(u) or u <= 0:
++        return stakes.get(mk, 1.0)
++    return round(u, 2)
++
++
+ def log(card: pd.DataFrame, day: pd.Timestamp, stakes: dict | None = None) -> list[dict]:
+     """Record today's BET plays that aren't logged yet. Returns the bets added.
+ 
+@@ -141,7 +154,7 @@ def log(card: pd.DataFrame, day: pd.Timestamp, stakes: dict | None = None) -> li
+                         "away": g["away"], "line": g[f"{mk}_line"], "alert_line": g[f"{mk}_line"], "odds": g.get(f"{mk}_odds"), "book": g.get(f"{mk}_book"),
+                         "edge": round(float(g[f"{mk}_edge"]), 2),
+                         "model": round(float(g["model_margin"] if mk == "spread" else g["model_total"]), 2),
+-                        "stake": stakes.get(mk, 1.0), "placed": "yes", "logged_at": now, "status": "open"})
++                        "stake": _stake(g, mk, stakes), "placed": "yes", "logged_at": now, "status": "open"})
+     if new:
+         b = pd.concat([b, pd.DataFrame(new)], ignore_index=True) if len(b) else pd.DataFrame(new)
+         save(b.reindex(columns=COLS))
