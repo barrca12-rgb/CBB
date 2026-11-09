@@ -388,3 +388,8 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-09|401921180|total|over,2026-11-09,401921180,total,Over 157,over,219,47,Pennsylvania,Howard,157.0,157.0,-110.0,Fanatics,3.04,160.04,0.75,yes,2026-11-09T01:31:02+00:00,,,,,,,,open,
 2026-11-09|401906849|spread|home,2026-11-09,401906849,spread,Tennessee -28,home,2633,2515,Tennessee,Radford,-28.0,-28.0,-110.0,Fanatics,2.84,30.84,0.06,yes,2026-11-09T01:31:02+00:00,,,,,,,,open,
 2026-11-09|401921180|spread|home|bandB,2026-11-09,401921180,spread,Pennsylvania -5.5,home,219,47,Pennsylvania,Howard,-5.5,-5.5,-120.0,FanDuel,2.49,7.99,0.5,yes,2026-11-09T01:31:08+00:00,,,,,,,,open,bandB
+2026-11-09|401920686|total|under,2026-11-09,401920686,total,Under 142.5,under,41,2681,UConn,Wagner,142.5,142.5,-110.0,FanDuel,4.23,138.27,0.75,yes,2026-11-09T01:51:11+00:00,,,,,,,,open,
+2026-11-09|401906865|total|over,2026-11-09,401906865,total,Over 150.5,over,251,2755,Texas,Grambling,150.5,150.5,-110.0,FanDuel,5.48,155.98,0.75,yes,2026-11-09T01:51:11+00:00,,,,,,,,open,
+2026-11-09|401919846|total|under,2026-11-09,401919846,total,Under 147.5,under,171,284,Columbia,Stonehill,147.5,147.5,-110.0,FanDuel,3.51,143.99,0.75,yes,2026-11-09T01:51:11+00:00,,,,,,,,open,
+2026-11-09|401919806|total|under,2026-11-09,401919806,total,Under 141.5,under,119,112358,Towson,Long Island University,141.5,141.5,-105.0,FanDuel,3.41,138.09,0.75,yes,2026-11-09T01:51:11+00:00,,,,,,,,open,
+2026-11-09|401919733|total|under,2026-11-09,401919733,total,Under 150.5,under,2130,2569,Chicago State,South Carolina State,150.5,150.5,-110.0,FanDuel,4.26,146.24,0.75,yes,2026-11-09T01:51:11+00:00,,,,,,,,open,
