@@ -420,3 +420,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-10|401921774|spread|away,2026-11-10,401921774,spread,La Salle +23.5,away,222,2325,Villanova,La Salle,23.5,23.5,-115.0,theScore Bet,3.31,20.19,1.0,yes,2026-11-09T20:42:00+00:00,,,,,,,,open,
 2026-11-10|401917979|spread|home,2026-11-10,401917979,spread,TCU -33.5,home,2628,2433,TCU,UL Monroe,-33.5,-33.5,-110.0,theScore Bet,3.81,37.31,1.5,yes,2026-11-09T20:42:00+00:00,,,,,,,,open,
 2026-11-10|401917520|spread|home|bandB,2026-11-10,401917520,spread,Troy +1.5,home,2653,2351,Troy,Loyola Marymount,1.5,1.5,-110.0,theScore Bet,2.41,0.91,0.5,yes,2026-11-09T20:42:09+00:00,,,,,,,,open,bandB
+2026-11-10|401928828|spread|home,2026-11-10,401928828,spread,Toledo +1.5,home,2649,2750,Toledo,Wright State,1.5,1.5,-110.0,FanDuel,2.69,1.19,1.0,yes,2026-11-09T21:02:04+00:00,,,,,,,,open,
