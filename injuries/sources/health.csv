@@ -10558,3 +10558,7 @@ pulled_at,source,ok,rows,teams_matched,players_matched,unmatched_teams,error,sec
 2026-11-09T05:00:38+00:00,rotowire,True,5,0.8,1.0,Texas-Arlington,,0.4,1269.0
 2026-11-09T05:00:38+00:00,covers,True,104,0.942,0.0,Miami (FL) Hurricanes; San Jose State Spartans; UNLV Runnin' Rebels; Utah Runnin' Utes,,1.0,1915224.0
 2026-11-09T05:00:38+00:00,cbs,True,0,,,,,0.5,458175.0
+2026-11-09T05:10:34+00:00,espn,True,0,,,,,3.6,149.0
+2026-11-09T05:10:34+00:00,rotowire,True,5,0.8,1.0,Texas-Arlington,,0.6,1269.0
+2026-11-09T05:10:34+00:00,covers,True,104,0.942,0.0,Miami (FL) Hurricanes; San Jose State Spartans; UNLV Runnin' Rebels; Utah Runnin' Utes,,1.1,1915224.0
+2026-11-09T05:10:34+00:00,cbs,True,0,,,,,0.8,458175.0
