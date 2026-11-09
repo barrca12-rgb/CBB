@@ -71,7 +71,11 @@ def stats(b: pd.DataFrame, through: pd.Timestamp) -> dict:
     a = a.sort_values(["date", "logged_at"])
     s = a[a["status"] == "settled"]
     w, l, p = int((s["result"] == "W").sum()), int((s["result"] == "L").sum()), int((s["result"] == "P").sum())
-    flat = (s["profit"].astype(float) / s["stake"].astype(float).replace(0, np.nan).fillna(1.0)).fillna(0.0)
+    # flat 1u at the logged price, from the result (a play logged at stake 0 by the stake shutoff still counts 1u;
+    # profit / stake read those as 0, Nov 9)
+    o = s["odds"].astype(float)
+    pay = np.where(o > 0, o / 100, 100 / -o)
+    flat = pd.Series(np.select([s["result"] == "W", s["result"] == "L"], [pay, -1.0], 0.0), index=s.index)
     out = {"through": through, "logged": len(a), "voids": voids, "settled": len(s), "w": w, "l": l, "p": p,
            "units": float(flat.sum()), "series": {}, "tiles": {}}
     # decided plays with a primary close (clv_primary.coverage's rule); missing closes counted, never zero
@@ -143,7 +147,7 @@ def _band_b_tile(st: dict) -> list[tuple[str, str, str]]:
     if not bb:
         return []
     t = bb["tiles"]["spread"]
-    return [("BAND B CLV (SEP.)", _fmt(t["mean"]), f"{bb['w']}-{bb['l']}-{bb['p']} · {_fmt(bb['units'] / 2)} u at 0.5u · n {t['n']}")]
+    return [("BAND B CLV (SEP.)", _fmt(t["mean"]), f"{bb['w']}-{bb['l']}-{bb['p']} · {_fmt(bb['units'] / 2)} u · n {t['n']}")]
 
 
 def _linemove_tile(st: dict) -> list[tuple[str, str, str]]:
