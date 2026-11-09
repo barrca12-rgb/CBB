@@ -402,3 +402,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-09|401920686|spread|away|bandB,2026-11-09,401920686,spread,Wagner +38.5,away,41,2681,UConn,Wagner,38.5,38.5,-115.0,DraftKings,2.02,36.48,0.5,yes,2026-11-09T02:51:05+00:00,,,,,,,,open,bandB
 2026-11-09|401920686|spread|away,2026-11-09,401920686,spread,Wagner +39.5,away,41,2681,UConn,Wagner,39.5,39.5,-118.0,BetMGM,3.02,36.48,0.06,yes,2026-11-09T03:01:07+00:00,,,,,,,,open,
 2026-11-09|401920734|spread|home|bandB,2026-11-09,401920734,spread,Northwestern -15.5,home,77,104,Northwestern,Boston University,-15.5,-15.5,-108.0,DraftKings,2.07,17.57,0.5,yes,2026-11-09T03:31:18+00:00,,,,,,,,open,bandB
+2026-11-09|401920887|total|over,2026-11-09,401920887,total,Over 132.5,over,2429,2550,Charlotte,Seton Hall,132.5,132.5,-106.0,FanDuel,5.14,137.64,0.62,yes,2026-11-09T06:41:05+00:00,,,,,,,,open,
+2026-11-09|401906759|spread|away|bandB,2026-11-09,401906759,spread,Oakland +32.5,away,333,2473,Alabama,Oakland,32.5,32.5,-105.0,DraftKings,2.17,30.33,0.5,yes,2026-11-09T06:41:10+00:00,,,,,,,,open,bandB
