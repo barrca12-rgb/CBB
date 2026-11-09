@@ -427,3 +427,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-10|401911187|spread|home,2026-11-10,401911187,spread,Dayton -13.5,home,2168,2561,Dayton,Siena,-13.5,-13.5,-105.0,Fanatics,2.88,16.38,1.0,yes,2026-11-09T21:11:58+00:00,,,,,,,,open,
 2026-11-10|401921755|spread|home|bandB,2026-11-10,401921755,spread,UCF -16.5,home,2116,6,UCF,South Alabama,-16.5,-16.5,-120.0,theScore Bet,2.23,18.73,0.5,yes,2026-11-09T21:12:07+00:00,,,,,,,,open,bandB
 2026-11-10|401913101|spread|away|bandB,2026-11-10,401913101,spread,Wyoming +14.5,away,153,2751,North Carolina,Wyoming,14.5,14.5,-106.0,FanDuel,2.06,12.44,0.5,yes,2026-11-09T21:12:07+00:00,,,,,,,,open,bandB
+2026-11-10|401925773|total|under,2026-11-10,401925773,total,Under 141.5,under,2166,71,Davidson,Bradley,141.5,141.5,-115.0,FanDuel,3.54,137.96,0.62,yes,2026-11-09T21:22:02+00:00,,,,,,,,open,
+2026-11-10|401913101|spread|away,2026-11-10,401913101,spread,Wyoming +15,away,153,2751,North Carolina,Wyoming,15.0,15.0,-110.0,Fanatics,2.56,12.44,1.0,yes,2026-11-09T21:22:02+00:00,,,,,,,,open,
+2026-11-10|401909543|total|over,2026-11-10,401909543,total,Over 158,over,2752,2174,Xavier,Detroit Mercy,158.0,158.0,-110.0,Fanatics,5.93,163.93,1.24,yes,2026-11-09T21:22:02+00:00,,,,,,,,open,
