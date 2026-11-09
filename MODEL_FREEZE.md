@@ -1433,3 +1433,30 @@ d5e3cb8a9a1e8ad8b957ef4ed5ef363a8d9247d8aa60c47c86d933ed7ea101d1  cbb/freshness.
 dc8604d87794a5cc49c9edc93978cd66895f73a63452168de8eadc76780257a7  cbb/run_day.py
 8c027a0fcd447a99ed76089bdbf711741d3dd2185f66a09542c6909540dc3c3a  cbb/tracker.py
 ```
+
+## 2026-11-09: roster-based spreads live (Chad: "yes do it, test it and push it")
+
+- **Why:** live 2026-27 spreads 65-66; underdogs 24-32 with Pinnacle CLV -2.0%, favorites 41-34 with +6.5%. In the
+  backtest, November underdogs are the weakest group of the portal era (2024-26: 53.7%, 245 plays). Early ratings miss
+  roster turnover.
+- **What:** research/roster_prior R3v4, the blend the rp4 shadow has run since Nov 5. Each team's stage-1 start is
+  the average of the current preseason prior and our roster-based prior (F2, ridge on returning-minutes and box-rate
+  features, walk-forward), with that blend's stage-2 margin weights (`data/shadow_rp4.json`), then the blowout
+  correction. **Spreads only;** totals stay v1 (the blend missed its early-totals rule by 0.005).
+- **Backtest (PLAN_v4.md, plan written first):** opener spreads 57.51% -> 57.63% (2015-17, 1,933 plays) and
+  57.69% -> 58.28% (2024-26, 2,301), ROI 9.56% -> 9.75% and 10.10% -> 11.23%; early-season margin error (days 0-20)
+  9.174 -> 9.150; all games 8.770 -> 8.766.
+- **Live check:** `run_day.roster_spreads` reproduces the shadow's rp4 margins to 0.0005 on all 335 games of Nov 9-16;
+  it moves spreads by 0.6 points on average (max 3.2). The roster prior is built once a day (about 30 s) and cached in
+  `cbb/cache/rp4/`. On any failure the run keeps v1's margin and prints why. 219 tests pass.
+- **Changes:** `cbb/run_day.py` (`project` -> `roster_spreads`; `v1_final_margin` kept beside it); `cbb/shadow_rp4.py` (its
+  v1 check applies the blowout correction like the saved inputs). The rp4 shadow keeps running; its rp4 rows now match
+  live spreads.
+- Discord note: `2026-11-09-roster-spreads`.
+- **New fingerprints:**
+
+```
+82a455feeb33eeee964222b890b44a9436b5f4aa05c5b3ce545be88ffbba6f94  cbb/run_day.py
+0688be9010cee69f389cadb601c5de624b1257c248fd3288fb322823d272a469  cbb/shadow_rp4.py
+ffe70f4835b50220d8050f2134df31c94f4d1544d2f417bfe51e0ad928e02708  data/shadow_rp4.json
+```

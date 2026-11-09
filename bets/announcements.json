@@ -168,5 +168,10 @@
   "id": "2026-11-09-edge-stakes",
   "date": "2026-11-09",
   "text": "Staking update, Nov 9: plays are now sized by edge. 1 unit at our minimum edge, 1.5 units when the edge is a point bigger, 2 units when it is two points bigger. In six seasons of backtests our biggest edges won 59-61% while plays at the minimum won about 57%, so more of the money now goes where the edge is largest. Which plays we post is unchanged."
+ },
+ {
+  "id": "2026-11-09-roster-spreads",
+  "date": "2026-11-09",
+  "text": "Model update, Nov 9: our spread numbers now start each team's season from its actual roster, not just last year's team. Early in the season this is where the model was missing: teams that lost or added players through transfers were rated as if they hadn't. In backtests this lifted opening-line spread results in both periods tested and made early-season margins more accurate. Totals are unchanged."
  }
 ]

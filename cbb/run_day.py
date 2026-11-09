@@ -210,7 +210,8 @@ def project(day: pd.Timestamp, games: pd.DataFrame) -> tuple[pd.DataFrame, pd.Da
     ids = sorted(set(teams.load()["espn_id"]) | set(tg.get("team_id", [])))
     games = games[games["home_id"].isin(ids) & games["away_id"].isin(ids)].copy()
     last = data.season_games(season - 1)
-    r = ratings.fit(tg, day, ids, backtest.preseason_prior(season), league=ratings.league_averages(last[1]))
+    league = ratings.league_averages(last[1])
+    r = ratings.fit(tg, day, ids, backtest.preseason_prior(season), league=league)
     p = ratings.predict(r, games["home_id"], games["away_id"], games["neutral"])
     p.index = games.index
     b = games.join(p.add_prefix("pred_")).assign(season=season, date=day, games_before=r["games"],
@@ -264,7 +265,46 @@ def project(day: pd.Timestamp, games: pd.DataFrame) -> tuple[pd.DataFrame, pd.Da
     live["context"] = ctx.merge(refs[["game_id", "ref_fouls", "ref_pts"]], on="game_id", how="left")
     b = b.merge(refs[["game_id", "crew"]], on="game_id", how="left")
     f = projection.apply_saved(projection.add_features(b, live))
+    f = roster_spreads(f, day, tg, ids, league, season)
     return f, ratings.table(r)
+
+
+# Roster-based spreads (Chad, Nov 9: "yes do it, test it and push it"; research/roster_prior R3v4, the blend the
+# rp4 shadow has run since Nov 5): the spread margin starts each team from the average of the current preseason prior
+# and our roster-based prior (F2) and uses that blend's own stage-2 margin weights (data/shadow_rp4.json), then the
+# blowout correction. Totals stay v1's (the blend did not pass on early totals). The roster prior is built once a day
+# and cached. Any failure keeps v1's margin for the run and says so.
+RP4_COEF = os.path.join(os.path.dirname(__file__), "..", "data", "shadow_rp4.json")
+RP4_CACHE = os.path.join(os.path.dirname(__file__), "cache", "rp4")
+
+
+def _roster_prior(season: int) -> pd.DataFrame:
+    from . import shadow_rp4
+    path = os.path.join(RP4_CACHE, f"f2_{season}_{today_et():%Y%m%d}.csv")
+    if os.path.exists(path):
+        return pd.read_csv(path, index_col=0)
+    f2 = shadow_rp4.roster_prior(season)
+    os.makedirs(RP4_CACHE, exist_ok=True)
+    f2.to_csv(path)
+    return f2
+
+
+def roster_spreads(f: pd.DataFrame, day: pd.Timestamp, tg, ids, league, season: int) -> pd.DataFrame:
+    f = f.assign(v1_final_margin=f["final_margin"])
+    if not len(f) or not len(tg):
+        return f
+    try:
+        from . import shadow_rp4
+        cur = backtest.preseason_prior(season)
+        bl = shadow_rp4.blended(cur, _roster_prior(season))
+        fb = shadow_rp4.with_blend(f, day, tg, ids, league, cur, bl)
+        with open(RP4_COEF) as fh:
+            m = shadow_rp4.apply(fb, json.load(fh))["final_margin"]
+        x = projection.BLOWOUT_K * np.maximum(0.0, m.abs() - projection.BLOWOUT_T)
+        f["final_margin"] = (m + np.sign(m).replace(0, 1) * x).to_numpy()
+    except Exception as e:
+        print(f"Roster-based spreads unavailable for {day:%Y-%m-%d} ({e}); v1 margins used.")
+    return f
 
 
 def opening_week_totals(f: pd.DataFrame, day: pd.Timestamp) -> pd.DataFrame:

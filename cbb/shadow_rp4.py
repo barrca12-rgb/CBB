@@ -159,7 +159,7 @@ def main(now: pd.Timestamp | None = None) -> None:
             run["days"] += 1
             run["games"] += len(f)
             fb = with_blend(f, day, tg, ids, league, cur, bl)
-            V = {"v1": run_day.opening_week_totals(apply(f, live), day),
+            V = {"v1": run_day.opening_week_totals(projection.blowout(apply(f, live)), day),   # as the saved inputs (Nov 7+)
                  "base": run_day.opening_week_totals(apply(f, coef["base"]), day),
                  "rp4": run_day.opening_week_totals(apply(fb, coef["rp4"]), day)}
             diffs.append(float((V["v1"]["final_margin"] - f["final_margin"]).abs().max()))
