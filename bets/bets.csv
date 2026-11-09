@@ -414,3 +414,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-10|401906771|total|under,2026-11-10,401906771,total,Under 165.5,under,52,57,Florida State,Florida,165.5,165.5,-110.0,Fanatics,4.09,161.41,0.93,yes,2026-11-09T19:41:44+00:00,,,,,,,,open,
 2026-11-10|401920378|spread|away,2026-11-10,401920378,spread,Virginia Tech +4.5,away,2294,259,Iowa,Virginia Tech,4.5,4.5,-110.0,FanDuel,2.79,1.71,1.0,yes,2026-11-09T20:01:51+00:00,,,,,,,,open,
 2026-11-10|401906771|spread|home|bandB,2026-11-10,401906771,spread,Florida State +10.5,home,52,57,Florida State,Florida,10.5,10.5,-110.0,FanDuel,2.08,-8.42,0.5,yes,2026-11-09T20:01:56+00:00,,,,,,,,open,bandB
+2026-11-10|401920378|total|under,2026-11-10,401920378,total,Under 143.5,under,2294,259,Iowa,Virginia Tech,143.5,143.5,-115.0,DraftKings,3.41,140.09,0.62,yes,2026-11-09T20:11:21+00:00,,,,,,,,open,
+2026-11-10|401921062|spread|away|bandB,2026-11-10,401921062,spread,Montana +10.5,away,2539,149,San Francisco,Montana,10.5,10.5,-110.0,theScore Bet,2.41,8.09,0.5,yes,2026-11-09T20:11:24+00:00,,,,,,,,open,bandB
