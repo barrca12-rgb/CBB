@@ -417,3 +417,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-10|401920378|total|under,2026-11-10,401920378,total,Under 143.5,under,2294,259,Iowa,Virginia Tech,143.5,143.5,-115.0,DraftKings,3.41,140.09,0.62,yes,2026-11-09T20:11:21+00:00,,,,,,,,open,
 2026-11-10|401921062|spread|away|bandB,2026-11-10,401921062,spread,Montana +10.5,away,2539,149,San Francisco,Montana,10.5,10.5,-110.0,theScore Bet,2.41,8.09,0.5,yes,2026-11-09T20:11:24+00:00,,,,,,,,open,bandB
 2026-11-10|401909492|spread|away,2026-11-10,401909492,spread,Creighton -2.5,away,2306,156,Kansas State,Creighton,-2.5,-2.5,-115.0,theScore Bet,2.93,-5.43,1.0,yes,2026-11-09T20:31:23+00:00,,,,,,,,open,
+2026-11-10|401921774|spread|away,2026-11-10,401921774,spread,La Salle +23.5,away,222,2325,Villanova,La Salle,23.5,23.5,-115.0,theScore Bet,3.31,20.19,1.0,yes,2026-11-09T20:42:00+00:00,,,,,,,,open,
+2026-11-10|401917979|spread|home,2026-11-10,401917979,spread,TCU -33.5,home,2628,2433,TCU,UL Monroe,-33.5,-33.5,-110.0,theScore Bet,3.81,37.31,1.5,yes,2026-11-09T20:42:00+00:00,,,,,,,,open,
+2026-11-10|401917520|spread|home|bandB,2026-11-10,401917520,spread,Troy +1.5,home,2653,2351,Troy,Loyola Marymount,1.5,1.5,-110.0,theScore Bet,2.41,0.91,0.5,yes,2026-11-09T20:42:09+00:00,,,,,,,,open,bandB
