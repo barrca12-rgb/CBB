@@ -1,0 +1,25 @@
+Early season (first 30 days):
+          variant     era  early games  margin MAE  total MAE
+   prior 6 (live) 2014-19         8419      8.9043    14.5031
+   prior 6 (live) 2020-26         9105      9.3606    13.4362
+ prior 3 (faster) 2014-19         8419      8.9165    14.7218
+ prior 3 (faster) 2020-26         9105      9.3685    13.4538
+prior 12 (slower) 2014-19         8419      8.9179    14.3384
+prior 12 (slower) 2020-26         9105      9.3838    13.4213
+
+Opener plays:
+          variant market  period  plays  win%  units
+   prior 6 (live) spread 2015-17   2101 57.25  191.0
+   prior 6 (live)  total 2015-17   3816 58.33  426.7
+   prior 6 (live) spread 2024-26   2385 57.88  249.1
+   prior 6 (live)  total 2024-26   4319 57.52  422.0
+ prior 3 (faster) spread 2015-17   2262 56.20  161.7
+ prior 3 (faster)  total 2015-17   3655 58.47  419.4
+ prior 3 (faster) spread 2024-26   2429 56.98  212.6
+ prior 3 (faster)  total 2024-26   4149 56.99  363.8
+prior 12 (slower) spread 2015-17   1979 57.00  170.1
+prior 12 (slower)  total 2015-17   4038 57.06  354.9
+prior 12 (slower) spread 2024-26   2453 56.55  194.5
+prior 12 (slower)  total 2024-26   4827 57.27  448.6
+prior 3 (faster): early errors lower in both eras False; win% changes ['-1.05', '-0.90', '+0.14', '-0.53'] -> no
+prior 12 (slower): early errors lower in both eras False; win% changes ['-0.25', '-1.33', '-1.27', '-0.25'] -> no

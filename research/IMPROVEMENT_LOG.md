@@ -89,3 +89,10 @@ Dated findings from each review, newest first. "Nothing new" is a valid entry.
   prior (from Nov 5) 20-33-1 / -1.4%.
 - E2 retired (Chad). New ridge-1,000 shadow r1000b = ridge-1,000 + blowout term (research/r1000w, variant 2 passed;
   variant 1, recency weights, failed on opener spreads).
+
+## 2026-11-09: model changes (Chad: "improve the damn model")
+
+- Live: stakes by edge; roster-based spreads (R3v4; first active run 14:46 UTC after scikit-learn was added); totals
+  weights with recency; 28 more team names matched.
+- Tested, not adopted: margin stretch, crew pass, Pinnacle gate (read only), faster or slower prior (6 games stays).
+- Decision measure Chad agreed to watch: Pinnacle CLV by Dec 15.
