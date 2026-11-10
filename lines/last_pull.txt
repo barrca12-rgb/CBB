@@ -1,1 +1,1 @@
-2026-11-10 02:01 UTC  events 257  book-game rows 308 (229 SGO, 79 The Odds API)  unmatched teams: Army Knights, Bethesda Flames, Citadel Bulldogs, IUPUI Jaguars, THE Apprentice Builders  SGO month: 92,951 of 100,000 entities  The Odds API credits left: 89516
+2026-11-10 02:10 UTC  events 0  book-game rows 307 (0 SGO, 307 The Odds API)  unmatched teams: Army Knights  The Odds API credits left: 89507
