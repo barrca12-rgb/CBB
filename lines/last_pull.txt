@@ -1,1 +1,1 @@
-2026-11-10 19:00 UTC  events 0  book-game rows 383 (0 SGO, 383 The Odds API)  unmatched teams: Army Knights, Loyola (Chi) Ramblers, Sam Houston St Bearkats  SGO month: 95,124 of 100,000 entities  The Odds API credits left: 88923
+2026-11-10 19:10 UTC  events 0  book-game rows 383 (0 SGO, 383 The Odds API)  unmatched teams: Army Knights, Loyola (Chi) Ramblers, Sam Houston St Bearkats  SGO month: 95,124 of 100,000 entities  The Odds API credits left: 88920
