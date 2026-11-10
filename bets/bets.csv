@@ -458,3 +458,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-10|401925685|spread|home,2026-11-10,401925685,spread,Murray State -25,home,93,2016,Murray State,Alcorn State,-25.0,-25.0,-110.0,Fanatics,3.98,28.98,1.5,yes,2026-11-10T00:41:33+00:00,,,,,,,,open,
 2026-11-10|401925107|spread|home,2026-11-10,401925107,spread,UT Rio Grande Valley +8.5,home,292,326,UT Rio Grande Valley,Texas State,8.5,8.5,-120.0,FanDuel,2.6,-5.9,1.0,yes,2026-11-10T00:52:00+00:00,,,,,,,,open,
 2026-11-10|401909773|spread|home,2026-11-10,401909773,spread,Iowa State -32.5,home,66,2582,Iowa State,Southern,-32.5,-32.5,-110.0,FanDuel,2.72,35.22,1.0,yes,2026-11-10T00:52:00+00:00,,,,,,,,open,
+2026-11-10|401925107|total|under,2026-11-10,401925107,total,Under 147.5,under,292,326,UT Rio Grande Valley,Texas State,147.5,147.5,-105.0,FanDuel,9.26,138.24,1.34,yes,2026-11-10T01:41:14+00:00,,,,,,,,open,
+2026-11-10|401920704|spread|home|bandB,2026-11-10,401920704,spread,Lipscomb +4.5,home,288,2057,Lipscomb,Belmont,4.5,4.5,-115.0,Caesars,2.11,-2.39,0.5,yes,2026-11-10T01:41:20+00:00,,,,,,,,open,bandB
