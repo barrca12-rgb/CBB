@@ -370,3 +370,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-10|401925940|spread|home,2026-11-10,spread,Utah State -25.5,-25.5,-110.0,2.58,0.74,,,True,1.0,1.58,False,-25.5,0.0,-25.5,0.0,-26.5,1.0
 2026-11-10|401909786|total|over,2026-11-10,total,Over 155.5,155.5,-105.0,3.11,0.93,,,True,0.0,3.11,True,155.5,0.0,155.5,0.0,155.0,-0.5
 2026-11-10|401909773|total|under,2026-11-10,total,Under 148,148.0,-115.0,3.34,0.93,,,True,0.5,2.84,True,147.5,0.5,147.5,0.5,147.5,0.5
+2026-11-11|401920740|spread|home,2026-11-11,spread,East Tennessee State -4.5,-4.5,-120.0,3.05,0.74,,,True,0.5,2.55,True,,,,,-5.0,0.5
