@@ -378,3 +378,6 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-11|401926062|total|over,2026-11-11,total,Over 151.5,151.5,-110.0,3.48,0.93,,,True,-0.5,3.98,True,,,,,151.0,-0.5
 2026-11-11|401917521|total|under,2026-11-11,total,Under 150.5,150.5,-110.0,4.14,1.4,,,True,0.5,3.64,True,,,,,150.0,0.5
 2026-11-11|401917522|total|over,2026-11-11,total,Over 150.5,150.5,-115.0,3.98,0.93,,,True,-0.5,4.48,True,,,,,150.0,-0.5
+2026-11-11|401921175|total|under,2026-11-11,total,Under 160.5,160.5,-105.0,4.64,1.4,,,True,0.5,4.14,True,,,,,160.0,0.5
+2026-11-11|401925702|spread|away,2026-11-11,spread,Jacksonville State +35,35.0,-110.0,2.6,0.74,,,True,0.0,2.6,True,,,,,-35.0,0.0
+2026-11-11|401925915|spread|home,2026-11-11,spread,Colorado State -14.5,-14.5,-115.0,3.01,0.74,,,True,0.5,2.51,True,,,,,-15.0,0.5

@@ -273,3 +273,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-10T16:40:56+00:00,2026-11-10,401920817,2026-11-11T01:30Z,145,2545,Ole Miss,SE Louisiana,spread,away,bandB,SE Louisiana +27.5,25.5,-108.0,BetRivers,2026-11-10T07:40:44+00:00,27.5,-115.0,BetMGM,2.0,540.2,0.01,2.01,25.49
 2026-11-10T19:41:00+00:00,2026-11-10,401909761,2026-11-11T02:00Z,38,301,Colorado,San Diego,spread,home,bandB,Colorado -11.5,-12.5,-110.0,FanDuel,2026-11-09T22:01:02+00:00,-11.5,-115.0,BetRivers,1.0,1300.0,1.26,2.26,13.76
 2026-11-10T21:51:06+00:00,2026-11-10,401909533,2026-11-11T00:00Z,2507,2803,Providence,Bryant,total,under,v1,Under 150.5,149.5,-118.0,BetRivers,2026-11-10T05:50:43+00:00,150.5,-107.0,BetRivers,1.0,960.4,2.83,3.83,146.67
+2026-11-10T22:31:43+00:00,2026-11-11,401928824,2026-11-12T01:00Z,8,2523,Arkansas,Robert Morris,total,under,v1,Under 156.5,155.5,-105.0,theScore Bet,2026-11-10T22:30:53+00:00,156.5,-115,DraftKings,1.0,0.8,2.32,3.32,153.18
