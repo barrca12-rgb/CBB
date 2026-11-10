@@ -487,3 +487,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-11|401921175|total|under,2026-11-11,401921175,total,Under 160.5,under,85,88,IU Indianapolis,Southern Indiana,160.5,160.5,-105.0,FanDuel,4.64,155.86,1.4,yes,2026-11-10T22:31:52+00:00,,,,,,,,open,
 2026-11-11|401925702|spread|away,2026-11-11,401925702,spread,Jacksonville State +35,away,248,55,Houston,Jacksonville State,35.0,35.0,-110.0,Fanatics,2.6,32.4,0.74,yes,2026-11-10T22:31:52+00:00,,,,,,,,open,
 2026-11-11|401925915|spread|home,2026-11-11,401925915,spread,Colorado State -14.5,home,36,2502,Colorado State,Portland State,-14.5,-14.5,-115.0,theScore Bet,3.01,17.51,0.74,yes,2026-11-10T22:31:52+00:00,,,,,,,,open,
+2026-11-10|401921774|total|under,2026-11-10,401921774,total,Under 158,under,222,2325,Villanova,La Salle,158.0,158.0,-110.0,Fanatics,4.77,153.23,1.4,yes,2026-11-10T23:11:10+00:00,,,,,,,,open,
+2026-11-10|401911011|total|over,2026-11-10,401911011,total,Over 151.5,over,2117,2754,Central Michigan,Youngstown State,151.5,151.5,-110.0,Fanatics,3.29,154.79,0.93,yes,2026-11-10T23:11:10+00:00,,,,,,,,open,
+2026-11-10|401909727|total|under,2026-11-10,401909727,total,Under 157.5,under,154,2127,Wake Forest,Charleston Southern,157.5,157.5,-105.0,FanDuel,6.32,151.18,1.86,yes,2026-11-10T23:11:10+00:00,,,,,,,,open,
+2026-11-10|401909533|total|under,2026-11-10,401909533,total,Under 149.5,under,2507,2803,Providence,Bryant,149.5,149.5,-108.0,DraftKings,4.06,145.44,1.4,yes,2026-11-10T23:11:10+00:00,,,,,,,,open,
