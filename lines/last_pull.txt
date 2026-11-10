@@ -1,1 +1,1 @@
-2026-11-10 05:30 UTC  events 236  book-game rows 352 (277 SGO, 75 The Odds API)  unmatched teams: Army Knights, Citadel Bulldogs, IUPUI Jaguars, Penn State Lehigh Valley Nittany Lions, THE Apprentice Builders  SGO month: 94,616 of 100,000 entities  The Odds API credits left: 89320
+2026-11-10 05:40 UTC  events 0  book-game rows 349 (0 SGO, 349 The Odds API)  unmatched teams: Army Knights  The Odds API credits left: 89317
