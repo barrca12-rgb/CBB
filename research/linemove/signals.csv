@@ -269,3 +269,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-10T14:41:00+00:00,2026-11-10,401925940,2026-11-11T02:00Z,328,3101,Utah State,Utah Tech,total,under,v1,Under 157.5,155.5,-117.0,BetRivers,2026-11-10T12:30:46+00:00,157.5,-108.0,BetRivers,2.0,130.2,1.75,3.75,153.75
 2026-11-10T15:13:03+00:00,2026-11-10,401920866,2026-11-10T23:30Z,164,2885,Rutgers,NJIT,total,over,v1,Over 142.5,145.5,-105.0,BetMGM,2026-11-10T04:37:35+00:00,142.5,-110.0,FanDuel,3.0,635.5,0.35,3.35,145.85
 2026-11-10T15:34:02+00:00,2026-11-10,401924952,2026-11-11T01:00Z,233,2277,South Dakota,Houston Christian,spread,away,bandB,Houston Christian +4.5,2.5,-105.0,DraftKings,2026-11-10T05:00:59+00:00,4.5,-105.0,theScore Bet,2.0,633.0,0.44,2.44,2.06
+2026-11-10T16:31:00+00:00,2026-11-10,401921699,2026-11-11T02:00Z,254,2692,Utah,Weber State,spread,home,v1,Utah -16.5,-18.5,-102.0,DraftKings,2026-11-09T23:50:53+00:00,-16.5,-105.0,theScore Bet,2.0,1000.1,0.75,2.75,19.25
