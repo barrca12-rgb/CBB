@@ -405,7 +405,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-09|401920887|total|over,2026-11-09,401920887,total,Over 132.5,over,2429,2550,Charlotte,Seton Hall,132.5,132.5,-106.0,FanDuel,5.14,137.64,0.62,yes,2026-11-09T06:41:05+00:00,,,,,,,,open,
 2026-11-09|401906759|spread|away|bandB,2026-11-09,401906759,spread,Oakland +32.5,away,333,2473,Alabama,Oakland,32.5,32.5,-105.0,DraftKings,2.17,30.33,0.5,yes,2026-11-09T06:41:10+00:00,32.5,0.0,0.0,109.0,68.0,L,-0.5,settled,bandB
 2026-11-09|401906759|spread|away,2026-11-09,401906759,spread,Oakland +32.5,away,333,2473,Alabama,Oakland,32.5,32.5,-110.0,BetMGM,3.04,29.46,0.1,yes,2026-11-09T14:41:48+00:00,32.5,0.0,0.0,109.0,68.0,L,-0.1,settled,
-2026-11-09|401926132|spread|away,2026-11-09,401926132,spread,Illinois State +15.5,away,2509,2287,Purdue,Illinois State,15.5,15.5,-110.0,BetMGM,3.01,12.49,0.1,yes,2026-11-09T14:41:48+00:00,,,,,,,,open,
+2026-11-09|401926132|spread|away,2026-11-09,401926132,spread,Illinois State +15.5,away,2509,2287,Purdue,Illinois State,15.5,15.5,-110.0,BetMGM,3.01,12.49,0.1,yes,2026-11-09T14:41:48+00:00,15.5,0.0,0.0,76.0,59.0,L,-0.1,settled,
 2026-11-09|401920718|spread|away,2026-11-09,401920718,spread,Eastern Washington +16.5,away,204,331,Oregon State,Eastern Washington,16.5,16.5,-105.0,theScore Bet,2.67,13.83,0.1,yes,2026-11-09T14:41:48+00:00,,,,,,,,open,
 2026-11-09|401920718|total|under,2026-11-09,401920718,total,Under 161.5,under,204,331,Oregon State,Eastern Washington,161.5,161.5,-105.0,DraftKings,5.59,155.91,1.24,yes,2026-11-09T14:41:48+00:00,,,,,,,,open,
 2026-11-09|401925681|spread|home|bandB,2026-11-09,401925681,spread,Notre Dame -27.5,home,87,2197,Notre Dame,Eastern Illinois,-27.5,-27.5,-120.0,FanDuel,2.44,29.94,0.5,yes,2026-11-09T14:41:57+00:00,-28.5,1.0,0.03513455315346392,94.0,70.0,L,-0.5,settled,bandB
@@ -463,3 +463,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-10|401919003|total|over,2026-11-10,401919003,total,Over 151.5,over,2655,2447,Tulane,Nicholls,151.5,151.5,-110.0,Fanatics,3.53,155.03,0.65,yes,2026-11-10T02:02:25+00:00,,,,,,,,open,
 2026-11-10|401928828|total|under,2026-11-10,401928828,total,Under 159.5,under,2649,2750,Toledo,Wright State,159.5,159.5,-108.0,DraftKings,3.01,156.49,0.87,yes,2026-11-10T02:31:27+00:00,,,,,,,,open,
 2026-11-10|401912228|spread|home,2026-11-10,401912228,spread,New Haven +2.5,home,2441,349,New Haven,Army,2.5,2.5,-110.0,theScore Bet,4.78,2.28,1.76,yes,2026-11-10T02:31:27+00:00,,,,,,,,open,
+2026-11-10|401917979|total|over,2026-11-10,401917979,total,Over 159.5,over,2628,2433,TCU,UL Monroe,159.5,159.5,-110.0,Caesars,3.34,162.84,0.96,yes,2026-11-10T03:41:15+00:00,,,,,,,,open,
