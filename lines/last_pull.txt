@@ -1,1 +1,1 @@
-2026-11-10 13:30 UTC  events 0  book-game rows 382 (0 SGO, 382 The Odds API)  unmatched teams: Army Knights  SGO month: 95,097 of 100,000 entities  The Odds API credits left: 89109
+2026-11-10 13:40 UTC  events 0  book-game rows 382 (0 SGO, 382 The Odds API)  unmatched teams: Army Knights  SGO month: 95,097 of 100,000 entities  The Odds API credits left: 89106

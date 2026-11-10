@@ -471,3 +471,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-10|401921740|total|under,2026-11-10,401921740,total,Under 181.5,under,252,2511,BYU,Queens University,181.5,181.5,-110.0,DraftKings,3.72,177.78,0.93,yes,2026-11-10T07:31:25+00:00,,,,,,,,open,
 2026-11-10|401925940|spread|home,2026-11-10,401925940,spread,Utah State -25.5,home,328,3101,Utah State,Utah Tech,-25.5,-25.5,-110.0,FanDuel,2.58,28.08,0.74,yes,2026-11-10T07:31:25+00:00,,,,,,,,open,
 2026-11-10|401909786|total|over,2026-11-10,401909786,total,Over 155.5,over,96,2305,Kentucky,Kansas,155.5,155.5,-105.0,DraftKings,3.11,158.61,0.93,yes,2026-11-10T07:31:25+00:00,,,,,,,,open,
+2026-11-10|401919003|spread|away|bandB,2026-11-10,401919003,spread,Nicholls +9.5,away,2655,2447,Tulane,Nicholls,9.5,9.5,-110.0,DraftKings,2.3,7.2,0.5,yes,2026-11-10T13:41:19+00:00,,,,,,,,open,bandB
