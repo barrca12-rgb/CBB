@@ -446,3 +446,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-10|401921733|spread|away,2026-11-10,401921733,spread,Hofstra +16.5,away,9,2275,Arizona State,Hofstra,16.5,16.5,-115.0,theScore Bet,2.61,13.89,1.0,yes,2026-11-09T23:32:00+00:00,,,,,,,,open,
 2026-11-10|401909514|spread|home,2026-11-10,401909514,spread,Georgetown -27.5,home,46,2169,Georgetown,Delaware State,-27.5,-27.5,-110.0,FanDuel,2.61,30.11,1.0,yes,2026-11-09T23:42:01+00:00,,,,,,,,open,
 2026-11-10|401920866|spread|home,2026-11-10,401920866,spread,Rutgers -23.5,home,164,2885,Rutgers,NJIT,-23.5,-23.5,-120.0,FanDuel,2.59,26.09,1.0,yes,2026-11-09T23:51:56+00:00,,,,,,,,open,
+2026-11-10|401911011|spread|away,2026-11-10,401911011,spread,Youngstown State +4.5,away,2117,2754,Central Michigan,Youngstown State,4.5,4.5,-105.0,BetMGM,2.74,1.76,1.0,yes,2026-11-10T00:12:03+00:00,,,,,,,,open,
