@@ -19,7 +19,9 @@ permissions:
   id-token: write
 
 concurrency:
-  group: live-refresh
+  # renamed Nov 10: run 42671566948 (Nov 9, 18:09 UTC) hung in "waiting" and held the old "live-refresh" group, so
+  # every refresh after it queued behind it and was cancelled by the next one; no refresh published for 27 hours
+  group: live-refresh-v2
   cancel-in-progress: false   # never cancel a refresh mid-publish (Nov 3: "Unable to find artifact" failures)
 
 jobs:
