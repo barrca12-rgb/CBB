@@ -242,3 +242,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-10T00:51:43+00:00,2026-11-10,401925781,2026-11-11T00:00Z,2184,265,Duquesne,Washington State,spread,home,v1,Duquesne -3.5,-4.5,-110.0,Caesars,2026-11-09T22:30:59+00:00,-3.5,-114.0,FanDuel,1.0,140.7,1.68,2.68,6.18
 2026-11-10T01:31:13+00:00,2026-11-10,401921025,2026-11-11T00:00Z,290,2382,Georgia Southern,Mercer,total,under,v1,Under 162.5,160.5,-110.0,FanDuel,2026-11-09T21:20:56+00:00,162.5,-110.0,FanDuel,2.0,250.3,1.22,3.22,159.28
 2026-11-10T02:20:55+00:00,2026-11-10,401909564,2026-11-11T00:00Z,150,127,Duke,Michigan State,spread,away,bandB,Michigan State +7.5,6.5,-110.0,DraftKings,2026-11-06T19:30:40+00:00,7.5,-110.0,DraftKings,1.0,4730.2,1.18,2.18,5.32
+2026-11-10T02:43:15+00:00,2026-11-10,401911196,2026-11-11T00:00Z,2230,314,Fordham,Iona,total,over,v1,Over 139.5,141.5,-115.0,BetMGM,2026-11-10T00:10:55+00:00,139.5,-108.0,DraftKings,2.0,152.3,1.01,3.01,142.51
