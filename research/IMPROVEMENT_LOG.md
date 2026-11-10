@@ -108,3 +108,13 @@ Dated findings from each review, newest first. "Nothing new" is a valid entry.
   weights with recency; 28 more team names matched.
 - Tested, not adopted: margin stretch, crew pass, Pinnacle gate (read only), faster or slower prior (6 games stays).
 - Decision measure Chad agreed to watch: Pinnacle CLV by Dec 15.
+
+## 2026-11-10: Monday Nov 9, and the sharp-market shadow
+
+- Monday Nov 9, main plays: 18-13, +3.46u flat (+4.72u staked). Totals 13-5 (+6.91u), spreads 5-8 (-3.45u).
+  Pinnacle CLV +2.65% (55% beat the no-vig close). Band B 4-6 (-2.37u flat).
+- Season, main plays through Nov 9: 168-148-2, +5.01u flat (+8.19u staked), Pinnacle CLV +1.55% (51% beat).
+- Chad chose to shadow the sharp-market gate (not live). Built cbb/shadow_sharp.py; plan in research/sharp_shadow.
+- **Correction:** Novig's feed includes empty exchange quotes at fake lines (prices around -9900). The Nov 9 step-1
+  Novig numbers (22-31) used them. Clean read: flagged 30-38, -10.2u, CLV -3.6%; unflagged 138-110, +15.2u, CLV
+  +3.0%. Forward read Nov 24.

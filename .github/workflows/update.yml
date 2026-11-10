@@ -82,6 +82,12 @@ jobs:
           else python -m cbb.card_features --auto; fi
           if [ "${{ github.event.inputs.test_alert }}" = "true" ]; then python -m cbb.notify; fi
 
+      # Sharp-market shadow (Chad, Nov 10): tags each main play when a sharp line was up and the model was 2+ off it.
+      # Research only: writes bets/shadow_sharp.csv, never touches the card, picks or stakes.
+      - name: Sharp-market shadow
+        continue-on-error: true
+        run: python -m cbb.shadow_sharp
+
       - name: Build site
         run: |
           mkdir -p _site
