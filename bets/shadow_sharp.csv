@@ -377,3 +377,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-11|401928824|spread|away,2026-11-11,spread,Robert Morris +29.5,29.5,-105.0,6.41,1.48,,,True,0.0,6.41,True,,,,,-29.5,0.0
 2026-11-11|401926062|total|over,2026-11-11,total,Over 151.5,151.5,-110.0,3.48,0.93,,,True,-0.5,3.98,True,,,,,151.0,-0.5
 2026-11-11|401917521|total|under,2026-11-11,total,Under 150.5,150.5,-110.0,4.14,1.4,,,True,0.5,3.64,True,,,,,150.0,0.5
+2026-11-11|401917522|total|over,2026-11-11,total,Over 150.5,150.5,-115.0,3.98,0.93,,,True,-0.5,4.48,True,,,,,150.0,-0.5

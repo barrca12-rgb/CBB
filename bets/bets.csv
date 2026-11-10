@@ -482,3 +482,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-11|401926062|total|over,2026-11-11,401926062,total,Over 151.5,over,158,2815,Nebraska,Lindenwood,151.5,151.5,-110.0,theScore Bet,3.48,154.98,0.93,yes,2026-11-10T22:11:38+00:00,,,,,,,,open,
 2026-11-11|401917521|total|under,2026-11-11,401917521,total,Under 150.5,under,2547,2636,Seattle U,UTSA,150.5,150.5,-110.0,DraftKings,4.14,146.36,1.4,yes,2026-11-10T22:11:38+00:00,,,,,,,,open,
 2026-11-11|401917523|spread|home|bandB,2026-11-11,401917523,spread,Long Beach State +6.5,home,299,279,Long Beach State,Pacific,6.5,6.5,-105.0,DraftKings,2.19,-4.31,0.5,yes,2026-11-10T22:11:49+00:00,,,,,,,,open,bandB
+2026-11-11|401917522|total|over,2026-11-11,401917522,total,Over 150.5,over,249,2541,North Texas,Santa Clara,150.5,150.5,-115.0,theScore Bet,3.98,154.48,0.93,yes,2026-11-10T22:21:29+00:00,,,,,,,,open,
+2026-11-11|401925702|spread|away|bandB,2026-11-11,401925702,spread,Jacksonville State +34.5,away,248,55,Houston,Jacksonville State,34.5,34.5,-102.0,FanDuel,2.1,32.4,0.5,yes,2026-11-10T22:21:32+00:00,,,,,,,,open,bandB
