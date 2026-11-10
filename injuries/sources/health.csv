@@ -11366,3 +11366,7 @@ pulled_at,source,ok,rows,teams_matched,players_matched,unmatched_teams,error,sec
 2026-11-10T04:37:29+00:00,rotowire,True,5,0.8,1.0,UNC-Charlotte,,0.5,1268.0
 2026-11-10T04:37:29+00:00,covers,True,103,0.942,0.0,Miami (FL) Hurricanes; San Jose State Spartans; UNLV Runnin' Rebels; Utah Runnin' Utes,,1.5,1904308.0
 2026-11-10T04:37:29+00:00,cbs,True,0,,,,,0.7,458182.0
+2026-11-10T04:44:43+00:00,espn,True,0,,,,,1.1,149.0
+2026-11-10T04:44:43+00:00,rotowire,True,5,0.8,1.0,UNC-Charlotte,,0.4,1268.0
+2026-11-10T04:44:43+00:00,covers,True,103,0.942,0.0,Miami (FL) Hurricanes; San Jose State Spartans; UNLV Runnin' Rebels; Utah Runnin' Utes,,1.0,1904308.0
+2026-11-10T04:44:43+00:00,cbs,True,0,,,,,0.7,458182.0
