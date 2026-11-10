@@ -7,7 +7,7 @@ Material injuries: Out / Doubtful / Questionable, player with 10%+ of team minut
 | Source | Injuries | Coverage | First (or same run) | Median min behind first | Before the move | Median lead on move (min) | Players matched to ESPN ids |
 |---|---:|---:|---:|---:|---:|---:|---:|
 | espn | 0 | 0% |  |  | 0% |  |  |
-| rotowire | 20 | 100% | 100% | 0 | 80% | 1690 | 96% |
+| rotowire | 20 | 100% | 100% | 0 | 80% | 1690 | 97% |
 | covers | 0 | 0% |  |  | 0% |  | 0% |
 | cbs | 0 | 0% |  |  | 0% |  |  |
 
