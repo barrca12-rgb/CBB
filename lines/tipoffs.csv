@@ -256,7 +256,6 @@ game_id,actual_tip,quality,reason,source,fetched_at
 401926181,2026-11-10T00:02:30+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-10T00:10:55+00:00
 401906759,2026-11-10T00:30:38+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-10T00:31:08+00:00
 401906793,2026-11-10T00:31:42+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-10T00:32:29+00:00
-401916315,,ambiguous,wall clocks out of order (more than 5 s backwards),"espn play-by-play, earliest period-1 play at 20:00",2026-11-10T01:01:04+00:00
 401917978,2026-11-10T01:01:30+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-10T01:02:06+00:00
 401921810,2026-11-10T01:01:20+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-10T01:02:06+00:00
 401920734,2026-11-10T01:05:34+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-10T01:10:43+00:00
@@ -266,5 +265,6 @@ game_id,actual_tip,quality,reason,source,fetched_at
 401920191,,ambiguous,wall clocks out of order (more than 5 s backwards),"espn play-by-play, earliest period-1 play at 20:00",2026-11-10T01:42:51+00:00
 401921061,,ambiguous,"wall clock runs more than 30 s faster than the game clock (entry times, not play times)","espn play-by-play, earliest period-1 play at 20:00",2026-11-10T01:42:51+00:00
 401924894,,ambiguous,wall clocks out of order (more than 5 s backwards),"espn play-by-play, earliest period-1 play at 20:00",2026-11-10T01:42:51+00:00
-401916305,,missing,no play-by-play,"espn play-by-play, earliest period-1 play at 20:00",2026-11-10T01:50:57+00:00
 401921423,,ambiguous,wall clocks out of order (more than 5 s backwards),"espn play-by-play, earliest period-1 play at 20:00",2026-11-10T01:50:57+00:00
+401916305,,missing,no play-by-play,"espn play-by-play, earliest period-1 play at 20:00",2026-11-10T02:01:07+00:00
+401916315,,ambiguous,wall clocks out of order (more than 5 s backwards),"espn play-by-play, earliest period-1 play at 20:00",2026-11-10T02:01:07+00:00
