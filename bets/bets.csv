@@ -491,3 +491,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-10|401911011|total|over,2026-11-10,401911011,total,Over 151.5,over,2117,2754,Central Michigan,Youngstown State,151.5,151.5,-110.0,Fanatics,3.29,154.79,0.93,yes,2026-11-10T23:11:10+00:00,,,,,,,,open,
 2026-11-10|401909727|total|under,2026-11-10,401909727,total,Under 157.5,under,154,2127,Wake Forest,Charleston Southern,157.5,157.5,-105.0,FanDuel,6.32,151.18,1.86,yes,2026-11-10T23:11:10+00:00,,,,,,,,open,
 2026-11-10|401909533|total|under,2026-11-10,401909533,total,Under 149.5,under,2507,2803,Providence,Bryant,149.5,149.5,-108.0,DraftKings,4.06,145.44,1.4,yes,2026-11-10T23:11:10+00:00,,,,,,,,open,
+2026-11-10|401911196|total|over,2026-11-10,401911196,total,Over 141.5,over,2230,314,Fordham,Iona,141.5,141.5,-105.0,Fanatics,3.75,145.25,0.93,yes,2026-11-10T23:41:06+00:00,,,,,,,,open,
+2026-11-11|401926863|spread|home,2026-11-11,401926863,spread,UNC Wilmington -5.5,home,350,2309,UNC Wilmington,Kent State,-5.5,-5.5,-110.0,DraftKings,2.6,8.1,0.74,yes,2026-11-10T23:41:35+00:00,,,,,,,,open,
