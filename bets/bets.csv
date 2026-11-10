@@ -454,3 +454,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-10|401920425|spread|home,2026-11-10,401920425,spread,Virginia -36.5,home,258,2083,Virginia,Bucknell,-36.5,-36.5,-108.0,FanDuel,5.55,42.05,2.0,yes,2026-11-10T00:31:54+00:00,,,,,,,,open,
 2026-11-10|401920425|total|over,2026-11-10,401920425,total,Over 148.5,over,258,2083,Virginia,Bucknell,148.5,148.5,-115.0,FanDuel,4.25,152.75,0.93,yes,2026-11-10T00:31:54+00:00,,,,,,,,open,
 2026-11-10|401921740|spread|home,2026-11-10,401921740,spread,BYU -25.5,home,252,2511,BYU,Queens University,-25.5,-25.5,-110.0,FanDuel,3.79,29.29,1.5,yes,2026-11-10T00:31:54+00:00,,,,,,,,open,
+2026-11-10|401920063|spread|home,2026-11-10,401920063,spread,Rhode Island -18,home,227,311,Rhode Island,Maine,-18.0,-18.0,-115.0,Fanatics,4.15,22.15,1.5,yes,2026-11-10T00:41:33+00:00,,,,,,,,open,
+2026-11-10|401925685|spread|home,2026-11-10,401925685,spread,Murray State -25,home,93,2016,Murray State,Alcorn State,-25.0,-25.0,-110.0,Fanatics,3.98,28.98,1.5,yes,2026-11-10T00:41:33+00:00,,,,,,,,open,
