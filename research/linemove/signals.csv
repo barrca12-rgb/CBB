@@ -294,3 +294,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-11T04:01:01+00:00,2026-11-11,401917523,2026-11-12T03:00Z,299,279,Long Beach State,Pacific,total,over,v1,Over 136.5,137.5,-115.0,theScore Bet,2026-11-10T22:10:52+00:00,136.5,-108.0,DraftKings,1.0,350.1,2.0,3.0,139.5
 2026-11-11T04:50:54+00:00,2026-11-11,401926868,2026-11-12T00:00Z,282,270,Indiana State,Milwaukee,spread,home,bandB,Indiana State -4,-4.5,-120.0,theScore Bet,2026-11-10T21:50:57+00:00,-4.0,-110.0,Caesars,0.5,419.9,1.93,2.43,6.43
 2026-11-11T04:50:54+00:00,2026-11-11,401917521,2026-11-12T03:00Z,2547,2636,Seattle U,UTSA,spread,away,bandB,UTSA +17.5,15.5,-102.0,FanDuel,2026-11-11T02:55:06+00:00,17.5,-115.0,theScore Bet,2.0,115.8,0.23,2.23,15.27
+2026-11-11T05:01:19+00:00,2026-11-11,401921005,2026-11-11T17:00Z,50,140,Florida A&M,Kansas City,total,over,v1,Over 145.5,150.5,-110.0,FanDuel,2026-11-11T04:40:47+00:00,145.5,-110.0,BetMGM,5.0,20.5,0.04,5.04,150.54
