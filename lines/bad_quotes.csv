@@ -462,3 +462,5 @@ first_seen,date,game_id,market,side,book,number,price,median_others,books,reason
 2026-11-11T12:11:02+00:00,2026-11-11,401921005,total,-,FanDuel,146.5,,143.5,6.0,off-market
 2026-11-11T12:11:02+00:00,2026-11-11,401921005,total,-,BetRivers,146.5,,143.5,6.0,off-market
 2026-11-11T12:11:02+00:00,2026-11-11,401920202,spread,-,BetRivers,-29.5,,-33.0,7.0,off-market
+2026-11-11T12:21:12+00:00,2026-11-11,401926863,total,-,Fanatics,145.5,,155.5,7.0,off-market
+2026-11-11T12:21:12+00:00,2026-11-11,401911346,total,under,Fanatics,180.0,-110.0,,,review: edge 10.8
