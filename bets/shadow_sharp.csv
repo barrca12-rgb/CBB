@@ -394,7 +394,7 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-11|401926202|total|under,2026-11-11,total,Under 151.5,151.5,-110.0,4.58,1.4,,,False,,,False,,,,,,
 2026-11-11|401921286|spread|away,2026-11-11,spread,Furman -12,-12.0,-110.0,2.73,0.74,,,False,,,False,,,,,,
 2026-11-11|401920202|spread|home,2026-11-11,spread,VCU -28.5,-28.5,-110.0,3.7,1.11,,,False,,,False,,,,,,
-2026-11-11|401921005|spread|home,2026-11-11,spread,Florida A&M +8,8.0,-105.0,3.71,1.03,,,True,0.0,3.71,True,,,,,8.0,0.0
+2026-11-11|401921005|spread|home,2026-11-11,spread,Florida A&M +8,8.0,-105.0,3.71,1.03,L,-1.03,True,0.0,3.71,True,,,,,8.0,0.0
 2026-11-11|401921175|spread|away,2026-11-11,spread,Southern Indiana +7.5,7.5,-110.0,2.69,0.61,,,True,1.0,1.69,False,-6.5,1.0,,,-7.5,0.0
 2026-11-11|401920680|spread|home,2026-11-11,spread,St. John's -25.5,-25.5,-110.0,3.33,0.77,,,True,3.5,-0.17,False,,,,,-29.0,3.5
 2026-11-11|401920680|total|over,2026-11-11,total,Over 155,155.0,-110.0,3.55,1.0,,,True,0.0,3.55,True,,,,,155.0,0.0
