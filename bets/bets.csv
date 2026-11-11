@@ -435,7 +435,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-10|401926731|total|under,2026-11-10,401926731,total,Under 151.5,under,2032,2630,Arkansas State,UT Martin,151.5,151.5,-110.0,FanDuel,5.59,145.91,1.24,yes,2026-11-09T21:41:36+00:00,154.5,-3.0,-0.07213729233996419,65.0,82.0,W,1.127,settled,
 2026-11-09|401925737|spread|home,2026-11-09,401925737,spread,Washington -32.5,home,264,2400,Washington,Mississippi Valley State,-32.5,-32.5,-118.0,FanDuel,2.52,35.02,1.0,yes,2026-11-09T21:51:07+00:00,-31.5,-1.0,-0.03513455315346398,77.0,64.0,L,-1.0,settled,
 2026-11-10|401909752|spread|away,2026-11-10,401909752,spread,Yale +21.5,away,239,43,Baylor,Yale,21.5,21.5,-115.0,FanDuel,2.84,18.66,1.0,yes,2026-11-09T21:51:38+00:00,19.5,2.0,0.06999712412436032,90.0,61.0,L,-1.0,settled,
-2026-11-10|401920895|spread|away|bandB,2026-11-10,401920895,spread,Fairfield +23.5,away,275,2217,Wisconsin,Fairfield,23.5,23.5,-110.0,FanDuel,2.08,21.42,0.5,yes,2026-11-09T21:51:43+00:00,,,,,,,,open,bandB
+2026-11-10|401920895|spread|away|bandB,2026-11-10,401920895,spread,Fairfield +23.5,away,275,2217,Wisconsin,Fairfield,23.5,23.5,-110.0,FanDuel,2.08,21.42,0.5,yes,2026-11-09T21:51:43+00:00,25.5,-2.0,-0.06999712412436032,89.0,42.0,L,-0.5,settled,bandB
 2026-11-10|401921062|spread|away,2026-11-10,401921062,spread,Montana +11.5,away,2539,149,San Francisco,Montana,11.5,11.5,-110.0,Fanatics,3.41,8.09,1.0,yes,2026-11-09T22:11:33+00:00,,,,,,,,open,
 2026-11-10|401921062|total|under,2026-11-10,401921062,total,Under 148.5,under,2539,149,San Francisco,Montana,148.5,148.5,-110.0,FanDuel,3.7,144.8,0.62,yes,2026-11-09T22:11:33+00:00,,,,,,,,open,
 2026-11-10|401925940|spread|home|bandB,2026-11-10,401925940,spread,Utah State -25.5,home,328,3101,Utah State,Utah Tech,-25.5,-25.5,-110.0,FanDuel,2.31,27.81,0.5,yes,2026-11-09T22:11:39+00:00,,,,,,,,open,bandB
@@ -515,3 +515,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-11|401911012|spread|away|bandB,2026-11-11,401911012,spread,UMass Lowell +11,away,113,2349,Massachusetts,UMass Lowell,11.0,11.0,-110.0,Fanatics,2.1,8.9,0.5,yes,2026-11-11T03:11:38+00:00,,,,,,,,open,bandB
 2026-11-11|401925895|total|under,2026-11-11,401925895,total,Under 148.5,under,2450,295,Norfolk State,Old Dominion,148.5,148.5,-110.0,BetMGM,4.6,143.9,1.46,yes,2026-11-11T03:31:22+00:00,,,,,,,,open,
 2026-11-11|401921286|total|over,2026-11-11,401921286,total,Over 147.5,over,107,231,Holy Cross,Furman,147.5,147.5,-115.0,FanDuel,3.29,150.79,0.97,yes,2026-11-11T03:31:22+00:00,,,,,,,,open,
+2026-11-11|401911012|spread|away,2026-11-11,401911012,spread,UMass Lowell +11.5,away,113,2349,Massachusetts,UMass Lowell,11.5,11.5,-118.0,DraftKings,2.6,8.9,0.73,yes,2026-11-11T03:41:16+00:00,,,,,,,,open,
