@@ -430,3 +430,7 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-12|401917524|spread|away,2026-11-12,spread,Loyola Marymount +1,1.0,-115.0,4.03,0.22,,,True,1.0,3.03,True,,,,,0.0,1.0
 2026-11-12|401920064|total|under,2026-11-12,total,Under 146.5,146.5,-110.0,8.02,2.0,,,False,,,False,,,,,,
 2026-11-12|401911307|total|under,2026-11-12,total,Under 141.5,141.5,-110.0,4.98,1.5,,,True,5.0,-0.02,False,,,,,136.5,5.0
+2026-11-12|401921768|spread|away,2026-11-12,spread,Mercer +28.5,28.5,-110.0,5.34,0.3,,,True,1.5,3.84,True,,,,,-27.0,1.5
+2026-11-12|401920566|total|under,2026-11-12,total,Under 139,139.0,-110.0,3.1,1.0,,,False,,,False,,,,,,
+2026-11-12|401920412|total|over,2026-11-12,total,Over 148.5,148.5,-110.0,8.16,2.0,,,False,,,False,,,,,,
+2026-11-12|401917524|total|under,2026-11-12,total,Under 143.5,143.5,-105.0,3.26,1.0,,,True,-0.5,3.76,True,,,,,144.0,-0.5

@@ -541,3 +541,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-12|401916306|spread|home|bandB,2026-11-12,401916306,spread,Minnesota -23.5,home,135,2582,Minnesota,Southern,-23.5,-23.5,-120.0,FanDuel,2.4,25.9,0.5,yes,2026-11-11T22:41:43+00:00,,,,,,,,open,bandB
 2026-11-12|401920064|total|under,2026-11-12,401920064,total,Under 146.5,under,227,2379,Rhode Island,Maryland Eastern Shore,146.5,146.5,-110.0,FanDuel,8.02,138.48,2.0,yes,2026-11-11T22:52:03+00:00,,,,,,,,open,
 2026-11-12|401911307|total|under,2026-11-12,401911307,total,Under 141.5,under,225,2099,Brown,Canisius,141.5,141.5,-110.0,FanDuel,4.98,136.52,1.5,yes,2026-11-11T22:52:03+00:00,,,,,,,,open,
+2026-11-12|401921768|spread|away,2026-11-12,401921768,spread,Mercer +28.5,away,277,2382,West Virginia,Mercer,28.5,28.5,-110.0,FanDuel,5.34,23.16,0.3,yes,2026-11-11T23:12:10+00:00,,,,,,,,open,
+2026-11-12|401920566|total|under,2026-11-12,401920566,total,Under 139,under,119,2352,Towson,Loyola Maryland,139.0,139.0,-110.0,Fanatics,3.1,135.9,1.0,yes,2026-11-11T23:12:10+00:00,,,,,,,,open,
+2026-11-12|401920412|total|over,2026-11-12,401920412,total,Over 148.5,over,2272,253,High Point,Southern Utah,148.5,148.5,-110.0,FanDuel,8.16,156.66,2.0,yes,2026-11-11T23:12:10+00:00,,,,,,,,open,
+2026-11-12|401917524|total|under,2026-11-12,401917524,total,Under 143.5,under,6,2351,South Alabama,Loyola Marymount,143.5,143.5,-105.0,theScore Bet,3.26,140.24,1.0,yes,2026-11-11T23:12:10+00:00,,,,,,,,open,
