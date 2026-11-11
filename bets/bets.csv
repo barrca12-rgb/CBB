@@ -494,3 +494,8 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-10|401911196|total|over,2026-11-10,401911196,total,Over 141.5,over,2230,314,Fordham,Iona,141.5,141.5,-105.0,Fanatics,3.75,145.25,0.93,yes,2026-11-10T23:41:06+00:00,,,,,,,,open,
 2026-11-11|401926863|spread|home,2026-11-11,401926863,spread,UNC Wilmington -5.5,home,350,2309,UNC Wilmington,Kent State,-5.5,-5.5,-110.0,DraftKings,2.6,8.1,0.74,yes,2026-11-10T23:41:35+00:00,,,,,,,,open,
 2026-11-10|401925685|total|under,2026-11-10,401925685,total,Under 165.5,under,93,2016,Murray State,Alcorn State,165.5,165.5,100.0,theScore Bet,4.66,160.84,1.4,yes,2026-11-11T00:21:08+00:00,,,,,,,,open,
+2026-11-11|401919759|spread|home,2026-11-11,401919759,spread,East Texas A&M -10.5,home,2837,161,East Texas A&M,Fairleigh Dickinson,-10.5,-10.5,-110.0,FanDuel,2.54,13.04,0.74,yes,2026-11-11T00:31:34+00:00,,,,,,,,open,
+2026-11-11|401920234|spread|home,2026-11-11,401920234,spread,UAlbany +2,home,399,159,UAlbany,Dartmouth,2.0,2.0,-110.0,Fanatics,3.96,1.96,1.11,yes,2026-11-11T00:31:34+00:00,,,,,,,,open,
+2026-11-11|401920234|total|under,2026-11-11,401920234,total,Under 145.5,under,399,159,UAlbany,Dartmouth,145.5,145.5,-110.0,FanDuel,6.65,138.85,1.86,yes,2026-11-11T00:31:34+00:00,,,,,,,,open,
+2026-11-11|401926202|total|under,2026-11-11,401926202,total,Under 151.5,under,2678,2428,VMI,North Carolina Central,151.5,151.5,-110.0,FanDuel,4.58,146.92,1.4,yes,2026-11-11T00:31:34+00:00,,,,,,,,open,
+2026-11-11|401925717|spread|away|bandB,2026-11-11,401925717,spread,Bethune-Cookman +19.5,away,21,2065,San Diego State,Bethune-Cookman,19.5,19.5,-115.0,Fanatics,2.25,17.25,0.5,yes,2026-11-11T00:31:41+00:00,,,,,,,,open,bandB
