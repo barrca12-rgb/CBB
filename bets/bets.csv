@@ -518,3 +518,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-11|401911012|spread|away,2026-11-11,401911012,spread,UMass Lowell +11.5,away,113,2349,Massachusetts,UMass Lowell,11.5,11.5,-118.0,DraftKings,2.6,8.9,0.73,yes,2026-11-11T03:41:16+00:00,,,,,,,,open,
 2026-11-11|401925858|total|under,2026-11-11,401925858,total,Under 155.5,under,218,232,Temple,Charleston,155.5,155.5,-110.0,theScore Bet,3.71,151.79,1.0,yes,2026-11-11T04:01:16+00:00,,,,,,,,open,
 2026-11-11|401918054|spread|home|bandB,2026-11-11,401918054,spread,California +8.5,home,25,30,California,USC,8.5,8.5,-105.0,DraftKings,2.27,-6.23,0.5,yes,2026-11-11T05:01:57+00:00,,,,,,,,open,bandB
+2026-11-11|401918452|total|under,2026-11-11,401918452,total,Under 165.5,under,2226,2729,Florida Atlantic,William & Mary,165.5,165.5,-110.0,theScore Bet,4.17,161.33,1.5,yes,2026-11-11T05:31:56+00:00,,,,,,,,open,
+2026-11-11|401925702|total|over,2026-11-11,401925702,total,Over 135.5,over,248,55,Houston,Jacksonville State,135.5,135.5,-110.0,DraftKings,4.53,140.03,1.5,yes,2026-11-11T05:31:56+00:00,,,,,,,,open,
+2026-11-11|401917523|total|over,2026-11-11,401917523,total,Over 137.5,over,299,279,Long Beach State,Pacific,137.5,137.5,-105.0,DraftKings,3.78,141.28,1.0,yes,2026-11-11T05:31:56+00:00,,,,,,,,open,
