@@ -528,3 +528,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-11|401925717|total|under,2026-11-11,401925717,total,Under 153.5,under,21,2065,San Diego State,Bethune-Cookman,153.5,153.5,-110.0,FanDuel,4.19,149.31,1.5,yes,2026-11-11T21:05:12+00:00,,,,,,,,open,
 2026-11-12|401916288|spread|away,2026-11-12,401916288,spread,Tennessee Tech +26.5,away,84,2635,Indiana,Tennessee Tech,26.5,26.5,-110.0,theScore Bet,2.84,23.66,0.15,yes,2026-11-11T21:52:02+00:00,,,,,,,,open,
 2026-11-12|401920135|total|under,2026-11-12,401920135,total,Under 150.5,under,2710,2934,Western Illinois,Cal State Bakersfield,150.5,150.5,-115.0,theScore Bet,4.18,146.32,1.5,yes,2026-11-11T22:02:07+00:00,,,,,,,,open,
+2026-11-12|401919041|total|under,2026-11-12,401919041,total,Under 177.5,under,245,197,Texas A&M,Oklahoma State,177.5,177.5,-110.0,theScore Bet,3.09,174.41,1.0,yes,2026-11-11T22:17:56+00:00,,,,,,,,open,
+2026-11-12|401921741|spread|away,2026-11-12,401921741,spread,Montana State +25.5,away,252,147,BYU,Montana State,25.5,25.5,-110.0,theScore Bet,5.64,19.86,0.3,yes,2026-11-11T22:17:56+00:00,,,,,,,,open,
+2026-11-12|401921741|total|under,2026-11-12,401921741,total,Under 163.5,under,252,147,BYU,Montana State,163.5,163.5,-110.0,theScore Bet,4.03,159.47,1.5,yes,2026-11-11T22:17:56+00:00,,,,,,,,open,
