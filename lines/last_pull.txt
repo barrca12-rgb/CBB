@@ -1,1 +1,1 @@
-2026-11-11 19:10 UTC  events 0  book-game rows 302 (0 SGO, 302 The Odds API)  unmatched teams: Fort Wayne Mastodons, Loyola (Chi) Ramblers, Sam Houston St Bearkats  SGO month: 95,156 of 100,000 entities  The Odds API credits left: 88025
+2026-11-11 19:21 UTC  events 0  book-game rows 295 (0 SGO, 295 The Odds API)  unmatched teams: Fort Wayne Mastodons, Loyola (Chi) Ramblers, Sam Houston St Bearkats  SGO month: 95,156 of 100,000 entities  The Odds API credits left: 88022
