@@ -504,3 +504,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-11|401921005|spread|home,2026-11-11,401921005,spread,Florida A&M +8,home,50,140,Florida A&M,Kansas City,8.0,8.0,-105.0,Fanatics,3.71,-4.29,1.03,yes,2026-11-11T02:01:31+00:00,,,,,,,,open,
 2026-11-11|401921175|spread|away,2026-11-11,401921175,spread,Southern Indiana +7.5,away,85,88,IU Indianapolis,Southern Indiana,7.5,7.5,-110.0,Caesars,2.69,4.81,0.61,yes,2026-11-11T02:31:18+00:00,,,,,,,,open,
 2026-11-11|401920680|spread|home,2026-11-11,401920680,spread,St. John's -25.5,home,2599,2142,St. John's,Colgate,-25.5,-25.5,-110.0,FanDuel,3.33,28.83,0.77,yes,2026-11-11T02:41:20+00:00,,,,,,,,open,
+2026-11-11|401920680|total|over,2026-11-11,401920680,total,Over 155,over,2599,2142,St. John's,Colgate,155.0,155.0,-110.0,Fanatics,3.55,158.55,1.0,yes,2026-11-11T02:48:27+00:00,,,,,,,,open,
+2026-11-11|401917522|spread|home,2026-11-11,401917522,spread,North Texas +2.5,home,249,2541,North Texas,Santa Clara,2.5,2.5,-110.0,DraftKings,3.06,0.56,0.77,yes,2026-11-11T02:48:27+00:00,,,,,,,,open,
