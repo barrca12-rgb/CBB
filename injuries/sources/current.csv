@@ -1,225 +1,113 @@
 source,team,team_id,player,player_key,athlete_id,status,status_raw,comment,source_date,pulled_at
-rotowire,Arizona,12.0,Endurance Aiyamenkhue,enduranceaiyamenkhue,5351296.0,questionable,Game Time Decision,Lower Leg,,2026-11-11T00:30:39+00:00
-rotowire,Saint Louis,139.0,Robbie Avila,robbieavila,4917097.0,questionable,Game Time Decision,Not Injury Related,,2026-11-11T00:30:39+00:00
-rotowire,BYU,252.0,Dawson Baker,dawsonbaker,4702626.0,questionable,Game Time Decision,Knee,,2026-11-11T00:30:39+00:00
-rotowire,TCU,2628.0,Luke Bamgboye,lukebamgboye,5061581.0,questionable,Game Time Decision,Undisclosed,,2026-11-11T00:30:39+00:00
-rotowire,Georgetown,46.0,NJ Benson,njbenson,5107903.0,out,Out,Not Injury Related,,2026-11-11T00:30:39+00:00
-covers,Arizona Wildcats,12.0,R. Godfrey,rgodfrey,,out,"Out - Not Injury Related ( Sun, Oct 18)",,,2026-11-11T00:30:39+00:00
-covers,Arizona Wildcats,12.0,E. Aiyamenkhue,eaiyamenkhue,,questionable,"Questionable - Lower Leg ( Sun, Oct 18)",,,2026-11-11T00:30:39+00:00
-covers,Arizona State Sun Devils,9.0,J. Griman,jgriman,,questionable,"Questionable - Back ( Thu, Nov 5)",,,2026-11-11T00:30:39+00:00
-covers,Arizona State Sun Devils,9.0,E. Innocenti,einnocenti,,questionable,"Questionable - Ankle ( Sun, Nov 1)",,,2026-11-11T00:30:39+00:00
-covers,Arizona State Sun Devils,9.0,M. Vaughns,mvaughns,,questionable,"Questionable - Lower Body ( Sun, Nov 1)",,,2026-11-11T00:30:39+00:00
-covers,Boise State Broncos,68.0,L. Washington,lwashington,,questionable,"Questionable - Not Injury Related ( Sun, Oct 18)",,,2026-11-11T00:30:39+00:00
-covers,Boise State Broncos,68.0,K. Tomann,ktomann,,questionable,"Questionable - Achilles ( Fri, Oct 9)",,,2026-11-11T00:30:39+00:00
-covers,Boston College Eagles,103.0,J. Furphy,jfurphy,,out,"Out - Knee ( Mon, Oct 26)",,,2026-11-11T00:30:39+00:00
-covers,California Golden Bears,25.0,L. Dort,ldort,,questionable,"Questionable - Ankle ( Sun, Nov 1)",,,2026-11-11T00:30:39+00:00
-covers,Cincinnati Bearcats,2132.0,J. Hastings,jhastings,,questionable,"Questionable - Shoulder ( Sun, Nov 1)",,,2026-11-11T00:30:39+00:00
-covers,Clemson Tigers,228.0,Z. Foster,zfoster,,out,"Out - Knee ( Mon, Oct 12)",,,2026-11-11T00:30:39+00:00
-covers,Clemson Tigers,228.0,C. Welling,cwelling,,out,"Out - Knee ( Mon, Sep 14)",,,2026-11-11T00:30:39+00:00
-covers,UConn Huskies,41.0,N. Khamenia,nkhamenia,,questionable,"Questionable - Undisclosed ( Sun, Nov 8)",,,2026-11-11T00:30:39+00:00
-covers,UConn Huskies,41.0,S. Ball,sball,,out,"Out - Wrist ( Sun, Apr 19)",,,2026-11-11T00:30:39+00:00
-covers,Dayton Flyers,2168.0,Z. Lowery,zlowery,,questionable,"Questionable - Foot ( Fri, Nov 6)",,,2026-11-11T00:30:39+00:00
-covers,DePaul Blue Demons,305.0,T. Pierre-Justin,tpierrejustin,,questionable,"Questionable - Leg ( Sun, Nov 8)",,,2026-11-11T00:30:39+00:00
-covers,DePaul Blue Demons,305.0,N. Meeusen,nmeeusen,,questionable,"Questionable - Ankle ( Sun, Nov 8)",,,2026-11-11T00:30:39+00:00
-covers,DePaul Blue Demons,305.0,M. Lockett IV,mlockett,,questionable,"Questionable - Foot ( Sun, Oct 18)",,,2026-11-11T00:30:39+00:00
-covers,DePaul Blue Demons,305.0,A. Delalic,adelalic,,out,"Out - Knee ( Thu, Aug 6)",,,2026-11-11T00:30:39+00:00
-covers,Florida State Seminoles,52.0,A. Swinton,aswinton,,out,"Out - Suspension ( Thu, Oct 29)",,,2026-11-11T00:30:39+00:00
-covers,Fresno State Bulldogs,278.0,N. Zulemie,nzulemie,,out,"Out - Knee ( Sun, Oct 4)",,,2026-11-11T00:30:39+00:00
-covers,George Mason Patriots,2244.0,L. Marville,lmarville,,questionable,"Questionable - Undisclosed ( Fri, Oct 16)",,,2026-11-11T00:30:39+00:00
-covers,George Mason Patriots,2244.0,J. Nnaji,jnnaji,,questionable,"Questionable - Not Injury Related ( Fri, Oct 16)",,,2026-11-11T00:30:39+00:00
-covers,Georgetown Hoyas,46.0,V. Miller,miller,,out,"Out - Hand ( Thu, Nov 5)",,,2026-11-11T00:30:39+00:00
-covers,Georgia Tech Yellow Jackets,59.0,C. Kirouac,ckirouac,,questionable,"Questionable - Undisclosed ( Thu, Nov 5)",,,2026-11-11T00:30:39+00:00
-covers,Georgia Tech Yellow Jackets,59.0,M. Diop,mdiop,,questionable,"Questionable - Undisclosed ( Mon, Nov 2)",,,2026-11-11T00:30:39+00:00
-covers,Green Bay Phoenix,2739.0,J. Overway,joverway,,out,"Out - Knee (ACL) ( Sun, Oct 18)",,,2026-11-11T00:30:39+00:00
-covers,Green Bay Phoenix,2739.0,J. Edwards,jedwards,,out,"Out - Knee ( Sat, Sep 5)",,,2026-11-11T00:30:39+00:00
-covers,Hawai'i Rainbow Warriors,62.0,J. Matingou,jmatingou,,questionable,"Questionable - Undisclosed ( Mon, Nov 9)",,,2026-11-11T00:30:39+00:00
-covers,Houston Cougars,248.0,C. Weaver,cweaver,,questionable,"Questionable - Eligibility ( Sun, Nov 1)",,,2026-11-11T00:30:39+00:00
-covers,Illinois Fighting Illini,356.0,J. Davis,jdavis,,out,"Out - Shoulder ( Mon, Nov 2)",,,2026-11-11T00:30:39+00:00
-covers,Illinois Fighting Illini,356.0,D. Mirkovic,dmirkovic,,questionable,"Questionable - Foot ( Thu, Oct 22)",,,2026-11-11T00:30:39+00:00
-covers,Indiana Hoosiers,84.0,P. Moody,pmoody,,out,"Out - Knee ( Mon, Nov 2)",,,2026-11-11T00:30:39+00:00
-covers,Iowa Hawkeyes,2294.0,A. McKeever,amckeever,,questionable,"Questionable - Undisclosed ( Mon, Nov 9)",,,2026-11-11T00:30:39+00:00
-covers,Iowa State Cyclones,66.0,C. Wiggins,cwiggins,,out,"Out - Achilles ( Sun, Oct 18)",,,2026-11-11T00:30:39+00:00
-covers,Iowa State Cyclones,66.0,K. Toure,ktoure,,out,"Out - Shoulder ( Thu, Aug 20)",,,2026-11-11T00:30:39+00:00
-covers,Kansas Jayhawks,2305.0,M. Council Jr.,mcouncil,,out,"Out - Foot ( Sun, Nov 8)",,,2026-11-11T00:30:39+00:00
-covers,Kansas Jayhawks,2305.0,G. Mordini,gmordini,,out,"Out - Quadricep ( Sun, Oct 18)",,,2026-11-11T00:30:39+00:00
-covers,Kansas State Wildcats,2306.0,T. Malovec,tmalovec,,questionable,"Questionable - Undisclosed ( Thu, Oct 22)",,,2026-11-11T00:30:39+00:00
-covers,Kentucky Wildcats,96.0,T. Noah,tnoah,,questionable,"Questionable - Hamstring ( Wed, Oct 21)",,,2026-11-11T00:30:39+00:00
-covers,Kentucky Wildcats,96.0,J. Morton,jmorton,,out,"Out - Knee ( Thu, Oct 15)",,,2026-11-11T00:30:39+00:00
-covers,Liberty Flames,2335.0,D. Claussen,dclaussen,,out,"Out - Knee ( Fri, Nov 6)",,,2026-11-11T00:30:39+00:00
-covers,Louisville Cardinals,97.0,D. Montgomery,dmontgomery,,out,"Out - Undisclosed ( Sun, Nov 1)",,,2026-11-11T00:30:39+00:00
-covers,Louisville Cardinals,97.0,G. Dynes,gdynes,,out,"Out - Shoulder ( Tue, Oct 27)",,,2026-11-11T00:30:39+00:00
-covers,Marquette Golden Eagles,269.0,C. Hamilton,chamilton,,out,"Out - Calf ( Sun, Oct 18)",,,2026-11-11T00:30:39+00:00
-covers,Maryland Terrapins,120.0,G. Del Pino,gdelpino,,questionable,"Questionable - Undisclosed ( Tue, Nov 3)",,,2026-11-11T00:30:39+00:00
-covers,Miami (FL) Hurricanes,,M. Allen,mallen,,out,"Out - Knee (ACL) ( Sun, Oct 18)",,,2026-11-11T00:30:39+00:00
-covers,Miami (FL) Hurricanes,,L. Cason,lcason,,out,"Out - Knee ( Mon, Jul 20)",,,2026-11-11T00:30:39+00:00
-covers,Michigan Wolverines,130.0,J. Hartman,jhartman,,out,"Out - Shoulder ( Thu, Oct 22)",,,2026-11-11T00:30:39+00:00
-covers,Michigan Wolverines,130.0,L. Cosby,lcosby,,out,"Out - Knee (ACL) ( Sun, Oct 18)",,,2026-11-11T00:30:39+00:00
-covers,Michigan Wolverines,130.0,B. McCoy Jr.,bmccoy,,out,"Out - Knee (ACL) ( Sun, Oct 18)",,,2026-11-11T00:30:39+00:00
-covers,Missouri Tigers,142.0,J. Carey,jcarey,,out,"Out - Suspension ( Sun, Nov 1)",,,2026-11-11T00:30:39+00:00
-covers,Missouri Tigers,142.0,A. Chronister,achronister,,out,"Out - Hand ( Sun, Nov 1)",,,2026-11-11T00:30:39+00:00
-covers,Missouri Tigers,142.0,A. Boateng,aboateng,,out,"Out - Leg ( Thu, Oct 22)",,,2026-11-11T00:30:39+00:00
-covers,Mount St. Mary's Mountaineers,116.0,M. So,mso,,questionable,"Questionable - Undisclosed ( Thu, Nov 5)",,,2026-11-11T00:30:39+00:00
-covers,Mount St. Mary's Mountaineers,116.0,J. Hartman,jhartman,,questionable,"Questionable - Undisclosed ( Thu, Nov 5)",,,2026-11-11T00:30:39+00:00
-covers,Mount St. Mary's Mountaineers,116.0,L. Joyce,ljoyce,,questionable,"Questionable - Undisclosed ( Thu, Nov 5)",,,2026-11-11T00:30:39+00:00
-covers,Nevada Wolf Pack,2440.0,J. Mattingly,jmattingly,,questionable,"Questionable - Ankle ( Sun, Nov 1)",,,2026-11-11T00:30:39+00:00
-covers,New Mexico Lobos,167.0,R. Petraitis,rpetraitis,,doubtful,"Doubtful - Ankle ( Mon, Nov 9)",,,2026-11-11T00:30:39+00:00
-covers,New Mexico State Aggies,166.0,S. Payne,spayne,,out,"Out - Not Injury Related ( Wed, Nov 4)",,,2026-11-11T00:30:39+00:00
-covers,New Mexico State Aggies,166.0,G. Warren,gwarren,,out,"Out - Knee ( Wed, Nov 4)",,,2026-11-11T00:30:39+00:00
-covers,North Carolina Tar Heels,153.0,M. Smith,msmith,,out,"Out - Hip ( Sat, Oct 17)",,,2026-11-11T00:30:39+00:00
-covers,North Texas Mean Green,249.0,M. Holmes,mholmes,,questionable,"Questionable - Undisclosed ( Fri, Oct 30)",,,2026-11-11T00:30:39+00:00
-covers,Northwestern Wildcats,77.0,J. Karasinski,jkarasinski,,questionable,"Questionable - Concussion ( Thu, Nov 5)",,,2026-11-11T00:30:39+00:00
-covers,Northwestern Wildcats,77.0,L. McEldon,lmceldon,,out,"Out - Personal ( Sun, Nov 1)",,,2026-11-11T00:30:39+00:00
-covers,Oregon Ducks,2483.0,T. Riley IV,triley,,out,"Out - Hand ( Thu, Nov 5)",,,2026-11-11T00:30:39+00:00
-covers,Penn State Nittany Lions,213.0,R. Blums,rblums,,out,"Out - Finger ( Wed, Nov 4)",,,2026-11-11T00:30:39+00:00
-covers,Providence Friars,2507.0,A. Page,apage,,questionable,"Questionable - Knee ( Mon, Nov 2)",,,2026-11-11T00:30:39+00:00
-covers,Richmond Spiders,257.0,J. McCaffery,jmccaffery,,out,"Out - Illness ( Sat, Nov 7)",,,2026-11-11T00:30:39+00:00
-covers,Rutgers Scarlet Knights,164.0,D. Buca,dbuca,,out,"Out - Knee ( Sat, Oct 17)",,,2026-11-11T00:30:39+00:00
-covers,San Diego State Aztecs,21.0,N. Anderson,nanderson,,out,"Out - Knee ( Thu, Nov 5)",,,2026-11-11T00:30:39+00:00
-covers,San Jose State Spartans,,P. Goodarzi,pgoodarzi,,questionable,"Questionable - Undisclosed ( Sun, Nov 1)",,,2026-11-11T00:30:39+00:00
-covers,San Jose State Spartans,,C. Krueger,ckrueger,,questionable,"Questionable - Undisclosed ( Sun, Nov 1)",,,2026-11-11T00:30:39+00:00
-covers,Siena Saints,2561.0,Y. Steger,ysteger,,out,"Out - Knee ( Fri, Oct 23)",,,2026-11-11T00:30:39+00:00
-covers,South Carolina Gamecocks,2579.0,G. Polk,gpolk,,out,"Out - Lower Leg ( Sat, Oct 24)",,,2026-11-11T00:30:39+00:00
-covers,South Carolina Gamecocks,2579.0,M. Alessanco,malessanco,,out,"Out - Knee (ACL) ( Sun, Oct 18)",,,2026-11-11T00:30:39+00:00
-covers,South Florida Bulls,58.0,J. Lewis,jlewis,,questionable,"Questionable - Knee ( Mon, Oct 19)",,,2026-11-11T00:30:39+00:00
-covers,South Florida Bulls,58.0,A. Dancler,adancler,,out,"Out - Knee ( Sun, Aug 30)",,,2026-11-11T00:30:39+00:00
-covers,St. Bonaventure Bonnies,179.0,J. Grahovac,jgrahovac,,questionable,"Questionable - Leg ( Sun, Nov 1)",,,2026-11-11T00:30:39+00:00
-covers,St. Bonaventure Bonnies,179.0,M. Blackwood,mblackwood,,questionable,"Questionable - Foot ( Tue, Oct 20)",,,2026-11-11T00:30:39+00:00
-covers,St. John's Red Storm,2599.0,D. Freeman,dfreeman,,out,"Out - Achilles ( Tue, Jun 30)",,,2026-11-11T00:30:39+00:00
-covers,Syracuse Orange,183.0,A. Tobiason,atobiason,,out,"Out - Hamstring ( Mon, Oct 19)",,,2026-11-11T00:30:39+00:00
-covers,Tennessee Volunteers,2633.0,J. Washington,jwashington,,questionable,"Questionable - Eligibility ( Mon, Oct 19)",,,2026-11-11T00:30:39+00:00
-covers,Texas Longhorns,251.0,M. Lewis,mlewis,,out,"Out - Foot ( Tue, Sep 29)",,,2026-11-11T00:30:39+00:00
-covers,Texas A&M Aggies,245.0,C. Phillips,cphillips,,questionable,"Questionable - Undisclosed ( Mon, Nov 9)",,,2026-11-11T00:30:39+00:00
-covers,Texas Tech Red Raiders,2641.0,J. Toppin,jtoppin,,out,"Out - Knee ( Mon, Oct 19)",,,2026-11-11T00:30:39+00:00
-covers,Texas Tech Red Raiders,2641.0,J. Stillwell,jstillwell,,questionable,"Questionable - Eligibility ( Mon, Oct 19)",,,2026-11-11T00:30:39+00:00
-covers,UCLA Bruins,26.0,X. Booker,xbooker,,questionable,"Questionable - Concussion ( Thu, Nov 5)",,,2026-11-11T00:30:39+00:00
-covers,UCLA Bruins,26.0,F. Jovic,fjovic,,questionable,"Questionable - Ankle ( Sun, Nov 1)",,,2026-11-11T00:30:39+00:00
-covers,UNLV Runnin' Rebels,,T. Harris,tharris,,questionable,"Questionable - Knee ( Mon, Oct 19)",,,2026-11-11T00:30:39+00:00
-covers,USC Trojans,30.0,J. Cofie,jcofie,,questionable,"Questionable - Back ( Sat, Nov 7)",,,2026-11-11T00:30:39+00:00
-covers,USC Trojans,30.0,E. Reibe,ereibe,,out,"Out - Foot ( Mon, Oct 19)",,,2026-11-11T00:30:39+00:00
-covers,USC Trojans,30.0,C. Collins,ccollins,,questionable,"Questionable - Undisclosed ( Mon, Oct 19)",,,2026-11-11T00:30:39+00:00
-covers,Utah Runnin' Utes,,D. Katoa,dkatoa,,questionable,"Questionable - Undisclosed ( Mon, Oct 19)",,,2026-11-11T00:30:39+00:00
-covers,Utah State Aggies,328.0,C. Mulholland,cmulholland,,questionable,"Questionable - Ankle ( Fri, Nov 6)",,,2026-11-11T00:30:39+00:00
-covers,Utah State Aggies,328.0,C. Turnbull,cturnbull,,out,"Out - Foot ( Mon, Nov 2)",,,2026-11-11T00:30:39+00:00
-covers,Utah State Aggies,328.0,J. Allen,jallen,,questionable,"Questionable - Foot ( Sun, Nov 1)",,,2026-11-11T00:30:39+00:00
-covers,Vanderbilt Commodores,238.0,G. Nesmith,gnesmith,,out,"Out - Ankle ( Sun, Nov 1)",,,2026-11-11T00:30:39+00:00
-covers,VCU Rams,2670.0,J. Tillery,jtillery,,questionable,"Questionable - Leg ( Sun, Nov 1)",,,2026-11-11T00:30:39+00:00
-covers,Villanova Wildcats,222.0,K. Evans Jr.,kevans,,questionable,"Questionable - Hip ( Thu, Nov 5)",,,2026-11-11T00:30:39+00:00
-covers,Villanova Wildcats,222.0,M. Hodge,mhodge,,questionable,"Questionable - Knee ( Mon, Oct 19)",,,2026-11-11T00:30:39+00:00
-covers,Virginia Cavaliers,258.0,D. Roberts,droberts,,questionable,"Questionable - Back ( Mon, Oct 19)",,,2026-11-11T00:30:39+00:00
-covers,West Virginia Mountaineers,277.0,A. Jenkins,ajenkins,,questionable,"Questionable - Shoulder ( Mon, Oct 19)",,,2026-11-11T00:30:39+00:00
-covers,Wichita State Shockers,2724.0,N. Hill,nhill,,out,"Out - Toe ( Mon, Oct 19)",,,2026-11-11T00:30:39+00:00
-covers,Wisconsin Badgers,275.0,L. Fenderson,lfenderson,,out,"Out - Undisclosed ( Fri, Oct 9)",,,2026-11-11T00:30:39+00:00
-covers,Wisconsin Badgers,275.0,J. Manchester,jmanchester,,out,"Out - Shoulder ( Mon, Oct 5)",,,2026-11-11T00:30:39+00:00
-covers,Xavier Musketeers,2752.0,B. Appelhans,bappelhans,,out,"Out - Undisclosed ( Fri, Nov 6)",,,2026-11-11T00:30:39+00:00
-rotowire,Arizona,12.0,Endurance Aiyamenkhue,enduranceaiyamenkhue,5351296.0,questionable,Game Time Decision,Lower Leg,,2026-11-11T00:30:42+00:00
-rotowire,Saint Louis,139.0,Robbie Avila,robbieavila,4917097.0,questionable,Game Time Decision,Not Injury Related,,2026-11-11T00:30:42+00:00
-rotowire,BYU,252.0,Dawson Baker,dawsonbaker,4702626.0,questionable,Game Time Decision,Knee,,2026-11-11T00:30:42+00:00
-rotowire,TCU,2628.0,Luke Bamgboye,lukebamgboye,5061581.0,questionable,Game Time Decision,Undisclosed,,2026-11-11T00:30:42+00:00
-rotowire,Georgetown,46.0,NJ Benson,njbenson,5107903.0,out,Out,Not Injury Related,,2026-11-11T00:30:42+00:00
-covers,Arizona Wildcats,12.0,R. Godfrey,rgodfrey,,out,"Out - Not Injury Related ( Sun, Oct 18)",,,2026-11-11T00:30:42+00:00
-covers,Arizona Wildcats,12.0,E. Aiyamenkhue,eaiyamenkhue,,questionable,"Questionable - Lower Leg ( Sun, Oct 18)",,,2026-11-11T00:30:42+00:00
-covers,Arizona State Sun Devils,9.0,J. Griman,jgriman,,questionable,"Questionable - Back ( Thu, Nov 5)",,,2026-11-11T00:30:42+00:00
-covers,Arizona State Sun Devils,9.0,E. Innocenti,einnocenti,,questionable,"Questionable - Ankle ( Sun, Nov 1)",,,2026-11-11T00:30:42+00:00
-covers,Arizona State Sun Devils,9.0,M. Vaughns,mvaughns,,questionable,"Questionable - Lower Body ( Sun, Nov 1)",,,2026-11-11T00:30:42+00:00
-covers,Boise State Broncos,68.0,L. Washington,lwashington,,questionable,"Questionable - Not Injury Related ( Sun, Oct 18)",,,2026-11-11T00:30:42+00:00
-covers,Boise State Broncos,68.0,K. Tomann,ktomann,,questionable,"Questionable - Achilles ( Fri, Oct 9)",,,2026-11-11T00:30:42+00:00
-covers,Boston College Eagles,103.0,J. Furphy,jfurphy,,out,"Out - Knee ( Mon, Oct 26)",,,2026-11-11T00:30:42+00:00
-covers,California Golden Bears,25.0,L. Dort,ldort,,questionable,"Questionable - Ankle ( Sun, Nov 1)",,,2026-11-11T00:30:42+00:00
-covers,Cincinnati Bearcats,2132.0,J. Hastings,jhastings,,questionable,"Questionable - Shoulder ( Sun, Nov 1)",,,2026-11-11T00:30:42+00:00
-covers,Clemson Tigers,228.0,Z. Foster,zfoster,,out,"Out - Knee ( Mon, Oct 12)",,,2026-11-11T00:30:42+00:00
-covers,Clemson Tigers,228.0,C. Welling,cwelling,,out,"Out - Knee ( Mon, Sep 14)",,,2026-11-11T00:30:42+00:00
-covers,UConn Huskies,41.0,N. Khamenia,nkhamenia,,questionable,"Questionable - Undisclosed ( Sun, Nov 8)",,,2026-11-11T00:30:42+00:00
-covers,UConn Huskies,41.0,S. Ball,sball,,out,"Out - Wrist ( Sun, Apr 19)",,,2026-11-11T00:30:42+00:00
-covers,Dayton Flyers,2168.0,Z. Lowery,zlowery,,questionable,"Questionable - Foot ( Fri, Nov 6)",,,2026-11-11T00:30:42+00:00
-covers,DePaul Blue Demons,305.0,T. Pierre-Justin,tpierrejustin,,questionable,"Questionable - Leg ( Sun, Nov 8)",,,2026-11-11T00:30:42+00:00
-covers,DePaul Blue Demons,305.0,N. Meeusen,nmeeusen,,questionable,"Questionable - Ankle ( Sun, Nov 8)",,,2026-11-11T00:30:42+00:00
-covers,DePaul Blue Demons,305.0,M. Lockett IV,mlockett,,questionable,"Questionable - Foot ( Sun, Oct 18)",,,2026-11-11T00:30:42+00:00
-covers,DePaul Blue Demons,305.0,A. Delalic,adelalic,,out,"Out - Knee ( Thu, Aug 6)",,,2026-11-11T00:30:42+00:00
-covers,Florida State Seminoles,52.0,A. Swinton,aswinton,,out,"Out - Suspension ( Thu, Oct 29)",,,2026-11-11T00:30:42+00:00
-covers,Fresno State Bulldogs,278.0,N. Zulemie,nzulemie,,out,"Out - Knee ( Sun, Oct 4)",,,2026-11-11T00:30:42+00:00
-covers,George Mason Patriots,2244.0,L. Marville,lmarville,,questionable,"Questionable - Undisclosed ( Fri, Oct 16)",,,2026-11-11T00:30:42+00:00
-covers,George Mason Patriots,2244.0,J. Nnaji,jnnaji,,questionable,"Questionable - Not Injury Related ( Fri, Oct 16)",,,2026-11-11T00:30:42+00:00
-covers,Georgetown Hoyas,46.0,V. Miller,miller,,out,"Out - Hand ( Thu, Nov 5)",,,2026-11-11T00:30:42+00:00
-covers,Georgia Tech Yellow Jackets,59.0,C. Kirouac,ckirouac,,questionable,"Questionable - Undisclosed ( Thu, Nov 5)",,,2026-11-11T00:30:42+00:00
-covers,Georgia Tech Yellow Jackets,59.0,M. Diop,mdiop,,questionable,"Questionable - Undisclosed ( Mon, Nov 2)",,,2026-11-11T00:30:42+00:00
-covers,Green Bay Phoenix,2739.0,J. Overway,joverway,,out,"Out - Knee (ACL) ( Sun, Oct 18)",,,2026-11-11T00:30:42+00:00
-covers,Green Bay Phoenix,2739.0,J. Edwards,jedwards,,out,"Out - Knee ( Sat, Sep 5)",,,2026-11-11T00:30:42+00:00
-covers,Hawai'i Rainbow Warriors,62.0,J. Matingou,jmatingou,,questionable,"Questionable - Undisclosed ( Mon, Nov 9)",,,2026-11-11T00:30:42+00:00
-covers,Houston Cougars,248.0,C. Weaver,cweaver,,questionable,"Questionable - Eligibility ( Sun, Nov 1)",,,2026-11-11T00:30:42+00:00
-covers,Illinois Fighting Illini,356.0,J. Davis,jdavis,,out,"Out - Shoulder ( Mon, Nov 2)",,,2026-11-11T00:30:42+00:00
-covers,Illinois Fighting Illini,356.0,D. Mirkovic,dmirkovic,,questionable,"Questionable - Foot ( Thu, Oct 22)",,,2026-11-11T00:30:42+00:00
-covers,Indiana Hoosiers,84.0,P. Moody,pmoody,,out,"Out - Knee ( Mon, Nov 2)",,,2026-11-11T00:30:42+00:00
-covers,Iowa Hawkeyes,2294.0,A. McKeever,amckeever,,questionable,"Questionable - Undisclosed ( Mon, Nov 9)",,,2026-11-11T00:30:42+00:00
-covers,Iowa State Cyclones,66.0,C. Wiggins,cwiggins,,out,"Out - Achilles ( Sun, Oct 18)",,,2026-11-11T00:30:42+00:00
-covers,Iowa State Cyclones,66.0,K. Toure,ktoure,,out,"Out - Shoulder ( Thu, Aug 20)",,,2026-11-11T00:30:42+00:00
-covers,Kansas Jayhawks,2305.0,M. Council Jr.,mcouncil,,out,"Out - Foot ( Sun, Nov 8)",,,2026-11-11T00:30:42+00:00
-covers,Kansas Jayhawks,2305.0,G. Mordini,gmordini,,out,"Out - Quadricep ( Sun, Oct 18)",,,2026-11-11T00:30:42+00:00
-covers,Kansas State Wildcats,2306.0,T. Malovec,tmalovec,,questionable,"Questionable - Undisclosed ( Thu, Oct 22)",,,2026-11-11T00:30:42+00:00
-covers,Kentucky Wildcats,96.0,T. Noah,tnoah,,questionable,"Questionable - Hamstring ( Wed, Oct 21)",,,2026-11-11T00:30:42+00:00
-covers,Kentucky Wildcats,96.0,J. Morton,jmorton,,out,"Out - Knee ( Thu, Oct 15)",,,2026-11-11T00:30:42+00:00
-covers,Liberty Flames,2335.0,D. Claussen,dclaussen,,out,"Out - Knee ( Fri, Nov 6)",,,2026-11-11T00:30:42+00:00
-covers,Louisville Cardinals,97.0,D. Montgomery,dmontgomery,,out,"Out - Undisclosed ( Sun, Nov 1)",,,2026-11-11T00:30:42+00:00
-covers,Louisville Cardinals,97.0,G. Dynes,gdynes,,out,"Out - Shoulder ( Tue, Oct 27)",,,2026-11-11T00:30:42+00:00
-covers,Marquette Golden Eagles,269.0,C. Hamilton,chamilton,,out,"Out - Calf ( Sun, Oct 18)",,,2026-11-11T00:30:42+00:00
-covers,Maryland Terrapins,120.0,G. Del Pino,gdelpino,,questionable,"Questionable - Undisclosed ( Tue, Nov 3)",,,2026-11-11T00:30:42+00:00
-covers,Miami (FL) Hurricanes,,M. Allen,mallen,,out,"Out - Knee (ACL) ( Sun, Oct 18)",,,2026-11-11T00:30:42+00:00
-covers,Miami (FL) Hurricanes,,L. Cason,lcason,,out,"Out - Knee ( Mon, Jul 20)",,,2026-11-11T00:30:42+00:00
-covers,Michigan Wolverines,130.0,J. Hartman,jhartman,,out,"Out - Shoulder ( Thu, Oct 22)",,,2026-11-11T00:30:42+00:00
-covers,Michigan Wolverines,130.0,L. Cosby,lcosby,,out,"Out - Knee (ACL) ( Sun, Oct 18)",,,2026-11-11T00:30:42+00:00
-covers,Michigan Wolverines,130.0,B. McCoy Jr.,bmccoy,,out,"Out - Knee (ACL) ( Sun, Oct 18)",,,2026-11-11T00:30:42+00:00
-covers,Missouri Tigers,142.0,J. Carey,jcarey,,out,"Out - Suspension ( Sun, Nov 1)",,,2026-11-11T00:30:42+00:00
-covers,Missouri Tigers,142.0,A. Chronister,achronister,,out,"Out - Hand ( Sun, Nov 1)",,,2026-11-11T00:30:42+00:00
-covers,Missouri Tigers,142.0,A. Boateng,aboateng,,out,"Out - Leg ( Thu, Oct 22)",,,2026-11-11T00:30:42+00:00
-covers,Mount St. Mary's Mountaineers,116.0,M. So,mso,,questionable,"Questionable - Undisclosed ( Thu, Nov 5)",,,2026-11-11T00:30:42+00:00
-covers,Mount St. Mary's Mountaineers,116.0,J. Hartman,jhartman,,questionable,"Questionable - Undisclosed ( Thu, Nov 5)",,,2026-11-11T00:30:42+00:00
-covers,Mount St. Mary's Mountaineers,116.0,L. Joyce,ljoyce,,questionable,"Questionable - Undisclosed ( Thu, Nov 5)",,,2026-11-11T00:30:42+00:00
-covers,Nevada Wolf Pack,2440.0,J. Mattingly,jmattingly,,questionable,"Questionable - Ankle ( Sun, Nov 1)",,,2026-11-11T00:30:42+00:00
-covers,New Mexico Lobos,167.0,R. Petraitis,rpetraitis,,doubtful,"Doubtful - Ankle ( Mon, Nov 9)",,,2026-11-11T00:30:42+00:00
-covers,New Mexico State Aggies,166.0,S. Payne,spayne,,out,"Out - Not Injury Related ( Wed, Nov 4)",,,2026-11-11T00:30:42+00:00
-covers,New Mexico State Aggies,166.0,G. Warren,gwarren,,out,"Out - Knee ( Wed, Nov 4)",,,2026-11-11T00:30:42+00:00
-covers,North Carolina Tar Heels,153.0,M. Smith,msmith,,out,"Out - Hip ( Sat, Oct 17)",,,2026-11-11T00:30:42+00:00
-covers,North Texas Mean Green,249.0,M. Holmes,mholmes,,questionable,"Questionable - Undisclosed ( Fri, Oct 30)",,,2026-11-11T00:30:42+00:00
-covers,Northwestern Wildcats,77.0,J. Karasinski,jkarasinski,,questionable,"Questionable - Concussion ( Thu, Nov 5)",,,2026-11-11T00:30:42+00:00
-covers,Northwestern Wildcats,77.0,L. McEldon,lmceldon,,out,"Out - Personal ( Sun, Nov 1)",,,2026-11-11T00:30:42+00:00
-covers,Oregon Ducks,2483.0,T. Riley IV,triley,,out,"Out - Hand ( Thu, Nov 5)",,,2026-11-11T00:30:42+00:00
-covers,Penn State Nittany Lions,213.0,R. Blums,rblums,,out,"Out - Finger ( Wed, Nov 4)",,,2026-11-11T00:30:42+00:00
-covers,Providence Friars,2507.0,A. Page,apage,,questionable,"Questionable - Knee ( Mon, Nov 2)",,,2026-11-11T00:30:42+00:00
-covers,Richmond Spiders,257.0,J. McCaffery,jmccaffery,,out,"Out - Illness ( Sat, Nov 7)",,,2026-11-11T00:30:42+00:00
-covers,Rutgers Scarlet Knights,164.0,D. Buca,dbuca,,out,"Out - Knee ( Sat, Oct 17)",,,2026-11-11T00:30:42+00:00
-covers,San Diego State Aztecs,21.0,N. Anderson,nanderson,,out,"Out - Knee ( Thu, Nov 5)",,,2026-11-11T00:30:42+00:00
-covers,San Jose State Spartans,,P. Goodarzi,pgoodarzi,,questionable,"Questionable - Undisclosed ( Sun, Nov 1)",,,2026-11-11T00:30:42+00:00
-covers,San Jose State Spartans,,C. Krueger,ckrueger,,questionable,"Questionable - Undisclosed ( Sun, Nov 1)",,,2026-11-11T00:30:42+00:00
-covers,Siena Saints,2561.0,Y. Steger,ysteger,,out,"Out - Knee ( Fri, Oct 23)",,,2026-11-11T00:30:42+00:00
-covers,South Carolina Gamecocks,2579.0,G. Polk,gpolk,,out,"Out - Lower Leg ( Sat, Oct 24)",,,2026-11-11T00:30:42+00:00
-covers,South Carolina Gamecocks,2579.0,M. Alessanco,malessanco,,out,"Out - Knee (ACL) ( Sun, Oct 18)",,,2026-11-11T00:30:42+00:00
-covers,South Florida Bulls,58.0,J. Lewis,jlewis,,questionable,"Questionable - Knee ( Mon, Oct 19)",,,2026-11-11T00:30:42+00:00
-covers,South Florida Bulls,58.0,A. Dancler,adancler,,out,"Out - Knee ( Sun, Aug 30)",,,2026-11-11T00:30:42+00:00
-covers,St. Bonaventure Bonnies,179.0,J. Grahovac,jgrahovac,,questionable,"Questionable - Leg ( Sun, Nov 1)",,,2026-11-11T00:30:42+00:00
-covers,St. Bonaventure Bonnies,179.0,M. Blackwood,mblackwood,,questionable,"Questionable - Foot ( Tue, Oct 20)",,,2026-11-11T00:30:42+00:00
-covers,St. John's Red Storm,2599.0,D. Freeman,dfreeman,,out,"Out - Achilles ( Tue, Jun 30)",,,2026-11-11T00:30:42+00:00
-covers,Syracuse Orange,183.0,A. Tobiason,atobiason,,out,"Out - Hamstring ( Mon, Oct 19)",,,2026-11-11T00:30:42+00:00
-covers,Tennessee Volunteers,2633.0,J. Washington,jwashington,,questionable,"Questionable - Eligibility ( Mon, Oct 19)",,,2026-11-11T00:30:42+00:00
-covers,Texas Longhorns,251.0,M. Lewis,mlewis,,out,"Out - Foot ( Tue, Sep 29)",,,2026-11-11T00:30:42+00:00
-covers,Texas A&M Aggies,245.0,C. Phillips,cphillips,,questionable,"Questionable - Undisclosed ( Mon, Nov 9)",,,2026-11-11T00:30:42+00:00
-covers,Texas Tech Red Raiders,2641.0,J. Toppin,jtoppin,,out,"Out - Knee ( Mon, Oct 19)",,,2026-11-11T00:30:42+00:00
-covers,Texas Tech Red Raiders,2641.0,J. Stillwell,jstillwell,,questionable,"Questionable - Eligibility ( Mon, Oct 19)",,,2026-11-11T00:30:42+00:00
-covers,UCLA Bruins,26.0,X. Booker,xbooker,,questionable,"Questionable - Concussion ( Thu, Nov 5)",,,2026-11-11T00:30:42+00:00
-covers,UCLA Bruins,26.0,F. Jovic,fjovic,,questionable,"Questionable - Ankle ( Sun, Nov 1)",,,2026-11-11T00:30:42+00:00
-covers,UNLV Runnin' Rebels,,T. Harris,tharris,,questionable,"Questionable - Knee ( Mon, Oct 19)",,,2026-11-11T00:30:42+00:00
-covers,USC Trojans,30.0,J. Cofie,jcofie,,questionable,"Questionable - Back ( Sat, Nov 7)",,,2026-11-11T00:30:42+00:00
-covers,USC Trojans,30.0,E. Reibe,ereibe,,out,"Out - Foot ( Mon, Oct 19)",,,2026-11-11T00:30:42+00:00
-covers,USC Trojans,30.0,C. Collins,ccollins,,questionable,"Questionable - Undisclosed ( Mon, Oct 19)",,,2026-11-11T00:30:42+00:00
-covers,Utah Runnin' Utes,,D. Katoa,dkatoa,,questionable,"Questionable - Undisclosed ( Mon, Oct 19)",,,2026-11-11T00:30:42+00:00
-covers,Utah State Aggies,328.0,C. Mulholland,cmulholland,,questionable,"Questionable - Ankle ( Fri, Nov 6)",,,2026-11-11T00:30:42+00:00
-covers,Utah State Aggies,328.0,C. Turnbull,cturnbull,,out,"Out - Foot ( Mon, Nov 2)",,,2026-11-11T00:30:42+00:00
-covers,Utah State Aggies,328.0,J. Allen,jallen,,questionable,"Questionable - Foot ( Sun, Nov 1)",,,2026-11-11T00:30:42+00:00
-covers,Vanderbilt Commodores,238.0,G. Nesmith,gnesmith,,out,"Out - Ankle ( Sun, Nov 1)",,,2026-11-11T00:30:42+00:00
-covers,VCU Rams,2670.0,J. Tillery,jtillery,,questionable,"Questionable - Leg ( Sun, Nov 1)",,,2026-11-11T00:30:42+00:00
-covers,Villanova Wildcats,222.0,K. Evans Jr.,kevans,,questionable,"Questionable - Hip ( Thu, Nov 5)",,,2026-11-11T00:30:42+00:00
-covers,Villanova Wildcats,222.0,M. Hodge,mhodge,,questionable,"Questionable - Knee ( Mon, Oct 19)",,,2026-11-11T00:30:42+00:00
-covers,Virginia Cavaliers,258.0,D. Roberts,droberts,,questionable,"Questionable - Back ( Mon, Oct 19)",,,2026-11-11T00:30:42+00:00
-covers,West Virginia Mountaineers,277.0,A. Jenkins,ajenkins,,questionable,"Questionable - Shoulder ( Mon, Oct 19)",,,2026-11-11T00:30:42+00:00
-covers,Wichita State Shockers,2724.0,N. Hill,nhill,,out,"Out - Toe ( Mon, Oct 19)",,,2026-11-11T00:30:42+00:00
-covers,Wisconsin Badgers,275.0,L. Fenderson,lfenderson,,out,"Out - Undisclosed ( Fri, Oct 9)",,,2026-11-11T00:30:42+00:00
-covers,Wisconsin Badgers,275.0,J. Manchester,jmanchester,,out,"Out - Shoulder ( Mon, Oct 5)",,,2026-11-11T00:30:42+00:00
-covers,Xavier Musketeers,2752.0,B. Appelhans,bappelhans,,out,"Out - Undisclosed ( Fri, Nov 6)",,,2026-11-11T00:30:42+00:00
+rotowire,Arizona,12.0,Endurance Aiyamenkhue,enduranceaiyamenkhue,5351296.0,questionable,Game Time Decision,Lower Leg,,2026-11-11T00:40:34+00:00
+rotowire,Saint Louis,139.0,Robbie Avila,robbieavila,4917097.0,questionable,Game Time Decision,Not Injury Related,,2026-11-11T00:40:34+00:00
+rotowire,BYU,252.0,Dawson Baker,dawsonbaker,4702626.0,questionable,Game Time Decision,Knee,,2026-11-11T00:40:34+00:00
+rotowire,TCU,2628.0,Luke Bamgboye,lukebamgboye,5061581.0,questionable,Game Time Decision,Undisclosed,,2026-11-11T00:40:34+00:00
+rotowire,Georgetown,46.0,NJ Benson,njbenson,5107903.0,out,Out,Not Injury Related,,2026-11-11T00:40:34+00:00
+covers,Arizona Wildcats,12.0,R. Godfrey,rgodfrey,,out,"Out - Not Injury Related ( Sun, Oct 18)",,,2026-11-11T00:40:34+00:00
+covers,Arizona Wildcats,12.0,E. Aiyamenkhue,eaiyamenkhue,,questionable,"Questionable - Lower Leg ( Sun, Oct 18)",,,2026-11-11T00:40:34+00:00
+covers,Arizona State Sun Devils,9.0,J. Griman,jgriman,,questionable,"Questionable - Back ( Thu, Nov 5)",,,2026-11-11T00:40:34+00:00
+covers,Arizona State Sun Devils,9.0,E. Innocenti,einnocenti,,questionable,"Questionable - Ankle ( Sun, Nov 1)",,,2026-11-11T00:40:34+00:00
+covers,Arizona State Sun Devils,9.0,M. Vaughns,mvaughns,,questionable,"Questionable - Lower Body ( Sun, Nov 1)",,,2026-11-11T00:40:34+00:00
+covers,Boise State Broncos,68.0,L. Washington,lwashington,,questionable,"Questionable - Not Injury Related ( Sun, Oct 18)",,,2026-11-11T00:40:34+00:00
+covers,Boise State Broncos,68.0,K. Tomann,ktomann,,questionable,"Questionable - Achilles ( Fri, Oct 9)",,,2026-11-11T00:40:34+00:00
+covers,Boston College Eagles,103.0,J. Furphy,jfurphy,,out,"Out - Knee ( Mon, Oct 26)",,,2026-11-11T00:40:34+00:00
+covers,California Golden Bears,25.0,L. Dort,ldort,,questionable,"Questionable - Ankle ( Sun, Nov 1)",,,2026-11-11T00:40:34+00:00
+covers,Cincinnati Bearcats,2132.0,J. Hastings,jhastings,,questionable,"Questionable - Shoulder ( Sun, Nov 1)",,,2026-11-11T00:40:34+00:00
+covers,Clemson Tigers,228.0,Z. Foster,zfoster,,out,"Out - Knee ( Mon, Oct 12)",,,2026-11-11T00:40:34+00:00
+covers,Clemson Tigers,228.0,C. Welling,cwelling,,out,"Out - Knee ( Mon, Sep 14)",,,2026-11-11T00:40:34+00:00
+covers,UConn Huskies,41.0,N. Khamenia,nkhamenia,,questionable,"Questionable - Undisclosed ( Sun, Nov 8)",,,2026-11-11T00:40:34+00:00
+covers,UConn Huskies,41.0,S. Ball,sball,,out,"Out - Wrist ( Sun, Apr 19)",,,2026-11-11T00:40:34+00:00
+covers,Dayton Flyers,2168.0,Z. Lowery,zlowery,,questionable,"Questionable - Foot ( Fri, Nov 6)",,,2026-11-11T00:40:34+00:00
+covers,DePaul Blue Demons,305.0,T. Pierre-Justin,tpierrejustin,,questionable,"Questionable - Leg ( Sun, Nov 8)",,,2026-11-11T00:40:34+00:00
+covers,DePaul Blue Demons,305.0,N. Meeusen,nmeeusen,,questionable,"Questionable - Ankle ( Sun, Nov 8)",,,2026-11-11T00:40:34+00:00
+covers,DePaul Blue Demons,305.0,M. Lockett IV,mlockett,,questionable,"Questionable - Foot ( Sun, Oct 18)",,,2026-11-11T00:40:34+00:00
+covers,DePaul Blue Demons,305.0,A. Delalic,adelalic,,out,"Out - Knee ( Thu, Aug 6)",,,2026-11-11T00:40:34+00:00
+covers,Florida State Seminoles,52.0,A. Swinton,aswinton,,out,"Out - Suspension ( Thu, Oct 29)",,,2026-11-11T00:40:34+00:00
+covers,Fresno State Bulldogs,278.0,N. Zulemie,nzulemie,,out,"Out - Knee ( Sun, Oct 4)",,,2026-11-11T00:40:34+00:00
+covers,George Mason Patriots,2244.0,L. Marville,lmarville,,questionable,"Questionable - Undisclosed ( Fri, Oct 16)",,,2026-11-11T00:40:34+00:00
+covers,George Mason Patriots,2244.0,J. Nnaji,jnnaji,,questionable,"Questionable - Not Injury Related ( Fri, Oct 16)",,,2026-11-11T00:40:34+00:00
+covers,Georgetown Hoyas,46.0,V. Miller,miller,,out,"Out - Hand ( Thu, Nov 5)",,,2026-11-11T00:40:34+00:00
+covers,Georgia Tech Yellow Jackets,59.0,C. Kirouac,ckirouac,,questionable,"Questionable - Undisclosed ( Thu, Nov 5)",,,2026-11-11T00:40:34+00:00
+covers,Georgia Tech Yellow Jackets,59.0,M. Diop,mdiop,,questionable,"Questionable - Undisclosed ( Mon, Nov 2)",,,2026-11-11T00:40:34+00:00
+covers,Green Bay Phoenix,2739.0,J. Overway,joverway,,out,"Out - Knee (ACL) ( Sun, Oct 18)",,,2026-11-11T00:40:34+00:00
+covers,Green Bay Phoenix,2739.0,J. Edwards,jedwards,,out,"Out - Knee ( Sat, Sep 5)",,,2026-11-11T00:40:34+00:00
+covers,Hawai'i Rainbow Warriors,62.0,J. Matingou,jmatingou,,questionable,"Questionable - Undisclosed ( Mon, Nov 9)",,,2026-11-11T00:40:34+00:00
+covers,Houston Cougars,248.0,C. Weaver,cweaver,,questionable,"Questionable - Eligibility ( Sun, Nov 1)",,,2026-11-11T00:40:34+00:00
+covers,Illinois Fighting Illini,356.0,J. Davis,jdavis,,out,"Out - Shoulder ( Mon, Nov 2)",,,2026-11-11T00:40:34+00:00
+covers,Illinois Fighting Illini,356.0,D. Mirkovic,dmirkovic,,questionable,"Questionable - Foot ( Thu, Oct 22)",,,2026-11-11T00:40:34+00:00
+covers,Indiana Hoosiers,84.0,P. Moody,pmoody,,out,"Out - Knee ( Mon, Nov 2)",,,2026-11-11T00:40:34+00:00
+covers,Iowa Hawkeyes,2294.0,A. McKeever,amckeever,,questionable,"Questionable - Undisclosed ( Mon, Nov 9)",,,2026-11-11T00:40:34+00:00
+covers,Iowa State Cyclones,66.0,C. Wiggins,cwiggins,,out,"Out - Achilles ( Sun, Oct 18)",,,2026-11-11T00:40:34+00:00
+covers,Iowa State Cyclones,66.0,K. Toure,ktoure,,out,"Out - Shoulder ( Thu, Aug 20)",,,2026-11-11T00:40:34+00:00
+covers,Kansas Jayhawks,2305.0,M. Council Jr.,mcouncil,,out,"Out - Foot ( Sun, Nov 8)",,,2026-11-11T00:40:34+00:00
+covers,Kansas Jayhawks,2305.0,G. Mordini,gmordini,,out,"Out - Quadricep ( Sun, Oct 18)",,,2026-11-11T00:40:34+00:00
+covers,Kansas State Wildcats,2306.0,T. Malovec,tmalovec,,questionable,"Questionable - Undisclosed ( Thu, Oct 22)",,,2026-11-11T00:40:34+00:00
+covers,Kentucky Wildcats,96.0,T. Noah,tnoah,,questionable,"Questionable - Hamstring ( Wed, Oct 21)",,,2026-11-11T00:40:34+00:00
+covers,Kentucky Wildcats,96.0,J. Morton,jmorton,,out,"Out - Knee ( Thu, Oct 15)",,,2026-11-11T00:40:34+00:00
+covers,Liberty Flames,2335.0,D. Claussen,dclaussen,,out,"Out - Knee ( Fri, Nov 6)",,,2026-11-11T00:40:34+00:00
+covers,Louisville Cardinals,97.0,D. Montgomery,dmontgomery,,out,"Out - Undisclosed ( Sun, Nov 1)",,,2026-11-11T00:40:34+00:00
+covers,Louisville Cardinals,97.0,G. Dynes,gdynes,,out,"Out - Shoulder ( Tue, Oct 27)",,,2026-11-11T00:40:34+00:00
+covers,Marquette Golden Eagles,269.0,C. Hamilton,chamilton,,out,"Out - Calf ( Sun, Oct 18)",,,2026-11-11T00:40:34+00:00
+covers,Maryland Terrapins,120.0,G. Del Pino,gdelpino,,questionable,"Questionable - Undisclosed ( Tue, Nov 3)",,,2026-11-11T00:40:34+00:00
+covers,Miami (FL) Hurricanes,,M. Allen,mallen,,out,"Out - Knee (ACL) ( Sun, Oct 18)",,,2026-11-11T00:40:34+00:00
+covers,Miami (FL) Hurricanes,,L. Cason,lcason,,out,"Out - Knee ( Mon, Jul 20)",,,2026-11-11T00:40:34+00:00
+covers,Michigan Wolverines,130.0,J. Hartman,jhartman,,out,"Out - Shoulder ( Thu, Oct 22)",,,2026-11-11T00:40:34+00:00
+covers,Michigan Wolverines,130.0,L. Cosby,lcosby,,out,"Out - Knee (ACL) ( Sun, Oct 18)",,,2026-11-11T00:40:34+00:00
+covers,Michigan Wolverines,130.0,B. McCoy Jr.,bmccoy,,out,"Out - Knee (ACL) ( Sun, Oct 18)",,,2026-11-11T00:40:34+00:00
+covers,Missouri Tigers,142.0,J. Carey,jcarey,,out,"Out - Suspension ( Sun, Nov 1)",,,2026-11-11T00:40:34+00:00
+covers,Missouri Tigers,142.0,A. Chronister,achronister,,out,"Out - Hand ( Sun, Nov 1)",,,2026-11-11T00:40:34+00:00
+covers,Missouri Tigers,142.0,A. Boateng,aboateng,,out,"Out - Leg ( Thu, Oct 22)",,,2026-11-11T00:40:34+00:00
+covers,Mount St. Mary's Mountaineers,116.0,M. So,mso,,questionable,"Questionable - Undisclosed ( Thu, Nov 5)",,,2026-11-11T00:40:34+00:00
+covers,Mount St. Mary's Mountaineers,116.0,J. Hartman,jhartman,,questionable,"Questionable - Undisclosed ( Thu, Nov 5)",,,2026-11-11T00:40:34+00:00
+covers,Mount St. Mary's Mountaineers,116.0,L. Joyce,ljoyce,,questionable,"Questionable - Undisclosed ( Thu, Nov 5)",,,2026-11-11T00:40:34+00:00
+covers,Nevada Wolf Pack,2440.0,J. Mattingly,jmattingly,,questionable,"Questionable - Ankle ( Sun, Nov 1)",,,2026-11-11T00:40:34+00:00
+covers,New Mexico Lobos,167.0,R. Petraitis,rpetraitis,,doubtful,"Doubtful - Ankle ( Mon, Nov 9)",,,2026-11-11T00:40:34+00:00
+covers,New Mexico State Aggies,166.0,S. Payne,spayne,,out,"Out - Not Injury Related ( Wed, Nov 4)",,,2026-11-11T00:40:34+00:00
+covers,New Mexico State Aggies,166.0,G. Warren,gwarren,,out,"Out - Knee ( Wed, Nov 4)",,,2026-11-11T00:40:34+00:00
+covers,North Carolina Tar Heels,153.0,M. Smith,msmith,,out,"Out - Hip ( Sat, Oct 17)",,,2026-11-11T00:40:34+00:00
+covers,North Texas Mean Green,249.0,M. Holmes,mholmes,,questionable,"Questionable - Undisclosed ( Fri, Oct 30)",,,2026-11-11T00:40:34+00:00
+covers,Northwestern Wildcats,77.0,J. Karasinski,jkarasinski,,questionable,"Questionable - Concussion ( Thu, Nov 5)",,,2026-11-11T00:40:34+00:00
+covers,Northwestern Wildcats,77.0,L. McEldon,lmceldon,,out,"Out - Personal ( Sun, Nov 1)",,,2026-11-11T00:40:34+00:00
+covers,Oregon Ducks,2483.0,T. Riley IV,triley,,out,"Out - Hand ( Thu, Nov 5)",,,2026-11-11T00:40:34+00:00
+covers,Penn State Nittany Lions,213.0,R. Blums,rblums,,out,"Out - Finger ( Wed, Nov 4)",,,2026-11-11T00:40:34+00:00
+covers,Providence Friars,2507.0,A. Page,apage,,questionable,"Questionable - Knee ( Mon, Nov 2)",,,2026-11-11T00:40:34+00:00
+covers,Richmond Spiders,257.0,J. McCaffery,jmccaffery,,out,"Out - Illness ( Sat, Nov 7)",,,2026-11-11T00:40:34+00:00
+covers,Rutgers Scarlet Knights,164.0,D. Buca,dbuca,,out,"Out - Knee ( Sat, Oct 17)",,,2026-11-11T00:40:34+00:00
+covers,San Diego State Aztecs,21.0,N. Anderson,nanderson,,out,"Out - Knee ( Thu, Nov 5)",,,2026-11-11T00:40:34+00:00
+covers,San Jose State Spartans,,P. Goodarzi,pgoodarzi,,questionable,"Questionable - Undisclosed ( Sun, Nov 1)",,,2026-11-11T00:40:34+00:00
+covers,San Jose State Spartans,,C. Krueger,ckrueger,,questionable,"Questionable - Undisclosed ( Sun, Nov 1)",,,2026-11-11T00:40:34+00:00
+covers,Siena Saints,2561.0,Y. Steger,ysteger,,out,"Out - Knee ( Fri, Oct 23)",,,2026-11-11T00:40:34+00:00
+covers,South Carolina Gamecocks,2579.0,G. Polk,gpolk,,out,"Out - Lower Leg ( Sat, Oct 24)",,,2026-11-11T00:40:34+00:00
+covers,South Carolina Gamecocks,2579.0,M. Alessanco,malessanco,,out,"Out - Knee (ACL) ( Sun, Oct 18)",,,2026-11-11T00:40:34+00:00
+covers,South Florida Bulls,58.0,J. Lewis,jlewis,,questionable,"Questionable - Knee ( Mon, Oct 19)",,,2026-11-11T00:40:34+00:00
+covers,South Florida Bulls,58.0,A. Dancler,adancler,,out,"Out - Knee ( Sun, Aug 30)",,,2026-11-11T00:40:34+00:00
+covers,St. Bonaventure Bonnies,179.0,J. Grahovac,jgrahovac,,questionable,"Questionable - Leg ( Sun, Nov 1)",,,2026-11-11T00:40:34+00:00
+covers,St. Bonaventure Bonnies,179.0,M. Blackwood,mblackwood,,questionable,"Questionable - Foot ( Tue, Oct 20)",,,2026-11-11T00:40:34+00:00
+covers,St. John's Red Storm,2599.0,D. Freeman,dfreeman,,out,"Out - Achilles ( Tue, Jun 30)",,,2026-11-11T00:40:34+00:00
+covers,Syracuse Orange,183.0,A. Tobiason,atobiason,,out,"Out - Hamstring ( Mon, Oct 19)",,,2026-11-11T00:40:34+00:00
+covers,Tennessee Volunteers,2633.0,J. Washington,jwashington,,questionable,"Questionable - Eligibility ( Mon, Oct 19)",,,2026-11-11T00:40:34+00:00
+covers,Texas Longhorns,251.0,M. Lewis,mlewis,,out,"Out - Foot ( Tue, Sep 29)",,,2026-11-11T00:40:34+00:00
+covers,Texas A&M Aggies,245.0,C. Phillips,cphillips,,questionable,"Questionable - Undisclosed ( Mon, Nov 9)",,,2026-11-11T00:40:34+00:00
+covers,Texas Tech Red Raiders,2641.0,J. Toppin,jtoppin,,out,"Out - Knee ( Mon, Oct 19)",,,2026-11-11T00:40:34+00:00
+covers,Texas Tech Red Raiders,2641.0,J. Stillwell,jstillwell,,questionable,"Questionable - Eligibility ( Mon, Oct 19)",,,2026-11-11T00:40:34+00:00
+covers,UCLA Bruins,26.0,X. Booker,xbooker,,questionable,"Questionable - Concussion ( Thu, Nov 5)",,,2026-11-11T00:40:34+00:00
+covers,UCLA Bruins,26.0,F. Jovic,fjovic,,questionable,"Questionable - Ankle ( Sun, Nov 1)",,,2026-11-11T00:40:34+00:00
+covers,UNLV Runnin' Rebels,,T. Harris,tharris,,questionable,"Questionable - Knee ( Mon, Oct 19)",,,2026-11-11T00:40:34+00:00
+covers,USC Trojans,30.0,J. Cofie,jcofie,,questionable,"Questionable - Back ( Sat, Nov 7)",,,2026-11-11T00:40:34+00:00
+covers,USC Trojans,30.0,E. Reibe,ereibe,,out,"Out - Foot ( Mon, Oct 19)",,,2026-11-11T00:40:34+00:00
+covers,USC Trojans,30.0,C. Collins,ccollins,,questionable,"Questionable - Undisclosed ( Mon, Oct 19)",,,2026-11-11T00:40:34+00:00
+covers,Utah Runnin' Utes,,D. Katoa,dkatoa,,questionable,"Questionable - Undisclosed ( Mon, Oct 19)",,,2026-11-11T00:40:34+00:00
+covers,Utah State Aggies,328.0,C. Mulholland,cmulholland,,questionable,"Questionable - Ankle ( Fri, Nov 6)",,,2026-11-11T00:40:34+00:00
+covers,Utah State Aggies,328.0,C. Turnbull,cturnbull,,out,"Out - Foot ( Mon, Nov 2)",,,2026-11-11T00:40:34+00:00
+covers,Utah State Aggies,328.0,J. Allen,jallen,,questionable,"Questionable - Foot ( Sun, Nov 1)",,,2026-11-11T00:40:34+00:00
+covers,Vanderbilt Commodores,238.0,G. Nesmith,gnesmith,,out,"Out - Ankle ( Sun, Nov 1)",,,2026-11-11T00:40:34+00:00
+covers,VCU Rams,2670.0,J. Tillery,jtillery,,questionable,"Questionable - Leg ( Sun, Nov 1)",,,2026-11-11T00:40:34+00:00
+covers,Villanova Wildcats,222.0,K. Evans Jr.,kevans,,questionable,"Questionable - Hip ( Thu, Nov 5)",,,2026-11-11T00:40:34+00:00
+covers,Villanova Wildcats,222.0,M. Hodge,mhodge,,questionable,"Questionable - Knee ( Mon, Oct 19)",,,2026-11-11T00:40:34+00:00
+covers,Virginia Cavaliers,258.0,D. Roberts,droberts,,questionable,"Questionable - Back ( Mon, Oct 19)",,,2026-11-11T00:40:34+00:00
+covers,West Virginia Mountaineers,277.0,A. Jenkins,ajenkins,,questionable,"Questionable - Shoulder ( Mon, Oct 19)",,,2026-11-11T00:40:34+00:00
+covers,Wichita State Shockers,2724.0,N. Hill,nhill,,out,"Out - Toe ( Mon, Oct 19)",,,2026-11-11T00:40:34+00:00
+covers,Wisconsin Badgers,275.0,L. Fenderson,lfenderson,,out,"Out - Undisclosed ( Fri, Oct 9)",,,2026-11-11T00:40:34+00:00
+covers,Wisconsin Badgers,275.0,J. Manchester,jmanchester,,out,"Out - Shoulder ( Mon, Oct 5)",,,2026-11-11T00:40:34+00:00
+covers,Xavier Musketeers,2752.0,B. Appelhans,bappelhans,,out,"Out - Undisclosed ( Fri, Nov 6)",,,2026-11-11T00:40:34+00:00
