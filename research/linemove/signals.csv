@@ -286,3 +286,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-11T02:55:21+00:00,2026-11-11,401928996,2026-11-12T01:00Z,2571,2674,South Dakota State,Valparaiso,spread,away,bandB,Valparaiso -1,-1.5,-110.0,Caesars,2026-11-11T02:48:01+00:00,-1.0,-105.0,Fanatics,0.5,7.3,1.68,2.18,-3.18
 2026-11-11T02:55:21+00:00,2026-11-11,401918054,2026-11-12T04:00Z,25,30,California,USC,spread,home,bandB,California +8.5,7.5,-108.0,FanDuel,2026-11-10T22:20:44+00:00,8.5,-105.0,DraftKings,1.0,274.6,1.28,2.28,-6.22
 2026-11-11T03:11:11+00:00,2026-11-11,401928996,2026-11-12T01:00Z,2571,2674,South Dakota State,Valparaiso,spread,away,v1,Valparaiso +1.5,-1.5,-110.0,Caesars,2026-11-11T02:48:01+00:00,1.5,-130.0,DraftKings,3.0,23.2,1.68,4.68,-3.18
+2026-11-11T03:20:59+00:00,2026-11-11,401925702,2026-11-12T01:00Z,248,55,Houston,Jacksonville State,total,over,v1,Over 135.5,137.5,-110.0,DraftKings,2026-11-10T22:40:46+00:00,135.5,-115.0,BetMGM,2.0,280.2,1.77,3.77,139.27
