@@ -506,3 +506,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-11|401920680|spread|home,2026-11-11,401920680,spread,St. John's -25.5,home,2599,2142,St. John's,Colgate,-25.5,-25.5,-110.0,FanDuel,3.33,28.83,0.77,yes,2026-11-11T02:41:20+00:00,,,,,,,,open,
 2026-11-11|401920680|total|over,2026-11-11,401920680,total,Over 155,over,2599,2142,St. John's,Colgate,155.0,155.0,-110.0,Fanatics,3.55,158.55,1.0,yes,2026-11-11T02:48:27+00:00,,,,,,,,open,
 2026-11-11|401917522|spread|home,2026-11-11,401917522,spread,North Texas +2.5,home,249,2541,North Texas,Santa Clara,2.5,2.5,-110.0,DraftKings,3.06,0.56,0.77,yes,2026-11-11T02:48:27+00:00,,,,,,,,open,
+2026-11-11|401921037|total|over,2026-11-11,401921037,total,Over 150.5,over,2572,2296,Southern Miss,Jackson State,150.5,150.5,-115.0,theScore Bet,3.37,153.87,1.0,yes,2026-11-11T02:55:42+00:00,,,,,,,,open,
+2026-11-11|401911346|total|under,2026-11-11,401911346,total,Under 179,under,2253,13,Grand Canyon,Cal Poly,179.0,179.0,-110.0,Fanatics,7.24,171.76,2.0,yes,2026-11-11T02:55:42+00:00,,,,,,,,open,
+2026-11-11|401925738|total|over,2026-11-11,401925738,total,Over 148.5,over,2483,2400,Oregon,Mississippi Valley State,148.5,148.5,-110.0,Fanatics,4.08,152.58,1.5,yes,2026-11-11T02:55:42+00:00,,,,,,,,open,
+2026-11-11|401919734|total|under,2026-11-11,401919734,total,Under 143.5,under,2856,2130,California Baptist,Chicago State,143.5,143.5,-110.0,Fanatics,6.03,137.47,2.0,yes,2026-11-11T02:55:42+00:00,,,,,,,,open,
