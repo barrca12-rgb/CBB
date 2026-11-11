@@ -420,16 +420,16 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-10|401921774|spread|away,2026-11-10,401921774,spread,La Salle +23.5,away,222,2325,Villanova,La Salle,23.5,23.5,-115.0,theScore Bet,3.31,20.19,1.0,yes,2026-11-09T20:42:00+00:00,,,,,,,,open,
 2026-11-10|401917979|spread|home,2026-11-10,401917979,spread,TCU -33.5,home,2628,2433,TCU,UL Monroe,-33.5,-33.5,-110.0,theScore Bet,3.81,37.31,1.5,yes,2026-11-09T20:42:00+00:00,,,,,,,,open,
 2026-11-10|401917520|spread|home|bandB,2026-11-10,401917520,spread,Troy +1.5,home,2653,2351,Troy,Loyola Marymount,1.5,1.5,-110.0,theScore Bet,2.41,0.91,0.5,yes,2026-11-09T20:42:09+00:00,,,,,,,,open,bandB
-2026-11-10|401928828|spread|home,2026-11-10,401928828,spread,Toledo +1.5,home,2649,2750,Toledo,Wright State,1.5,1.5,-110.0,FanDuel,2.69,1.19,1.0,yes,2026-11-09T21:02:04+00:00,,,,,,,,open,
+2026-11-10|401928828|spread|home,2026-11-10,401928828,spread,Toledo +1.5,home,2649,2750,Toledo,Wright State,1.5,1.5,-110.0,FanDuel,2.69,1.19,1.0,yes,2026-11-09T21:02:04+00:00,1.5,0.0,0.0,68.0,76.0,L,-1.0,settled,
 2026-11-10|401925781|total|over,2026-11-10,401925781,total,Over 147.5,over,2184,265,Duquesne,Washington State,147.5,147.5,-110.0,theScore Bet,3.16,150.66,0.62,yes,2026-11-09T21:11:58+00:00,,,,,,,,open,
 2026-11-10|401920356|spread|away,2026-11-10,401920356,spread,Harvard -2.5,away,111,108,Northeastern,Harvard,-2.5,-2.5,-115.0,theScore Bet,2.53,-5.03,1.0,yes,2026-11-09T21:11:58+00:00,,,,,,,,open,
 2026-11-10|401920306|total|under,2026-11-10,401920306,total,Under 159.5,under,59,2198,Georgia Tech,Eastern Kentucky,159.5,159.5,-105.0,FanDuel,3.93,155.57,0.62,yes,2026-11-09T21:11:58+00:00,,,,,,,,open,
 2026-11-10|401911187|spread|home,2026-11-10,401911187,spread,Dayton -13.5,home,2168,2561,Dayton,Siena,-13.5,-13.5,-105.0,Fanatics,2.88,16.38,1.0,yes,2026-11-09T21:11:58+00:00,,,,,,,,open,
-2026-11-10|401921755|spread|home|bandB,2026-11-10,401921755,spread,UCF -16.5,home,2116,6,UCF,South Alabama,-16.5,-16.5,-120.0,theScore Bet,2.23,18.73,0.5,yes,2026-11-09T21:12:07+00:00,,,,,,,,open,bandB
-2026-11-10|401913101|spread|away|bandB,2026-11-10,401913101,spread,Wyoming +14.5,away,153,2751,North Carolina,Wyoming,14.5,14.5,-106.0,FanDuel,2.06,12.44,0.5,yes,2026-11-09T21:12:07+00:00,,,,,,,,open,bandB
+2026-11-10|401921755|spread|home|bandB,2026-11-10,401921755,spread,UCF -16.5,home,2116,6,UCF,South Alabama,-16.5,-16.5,-120.0,theScore Bet,2.23,18.73,0.5,yes,2026-11-09T21:12:07+00:00,-13.5,-3.0,-0.10432203080282465,76.0,69.0,L,-0.5,settled,bandB
+2026-11-10|401913101|spread|away|bandB,2026-11-10,401913101,spread,Wyoming +14.5,away,153,2751,North Carolina,Wyoming,14.5,14.5,-106.0,FanDuel,2.06,12.44,0.5,yes,2026-11-09T21:12:07+00:00,11.5,3.0,0.10432203080282465,76.0,63.0,W,0.472,settled,bandB
 2026-11-10|401925773|total|under,2026-11-10,401925773,total,Under 141.5,under,2166,71,Davidson,Bradley,141.5,141.5,-115.0,FanDuel,3.54,137.96,0.62,yes,2026-11-09T21:22:02+00:00,,,,,,,,open,
-2026-11-10|401913101|spread|away,2026-11-10,401913101,spread,Wyoming +15,away,153,2751,North Carolina,Wyoming,15.0,15.0,-110.0,Fanatics,2.56,12.44,1.0,yes,2026-11-09T21:22:02+00:00,,,,,,,,open,
-2026-11-10|401909543|total|over,2026-11-10,401909543,total,Over 158,over,2752,2174,Xavier,Detroit Mercy,158.0,158.0,-110.0,Fanatics,5.93,163.93,1.24,yes,2026-11-09T21:22:02+00:00,,,,,,,,open,
+2026-11-10|401913101|spread|away,2026-11-10,401913101,spread,Wyoming +15,away,153,2751,North Carolina,Wyoming,15.0,15.0,-110.0,Fanatics,2.56,12.44,1.0,yes,2026-11-09T21:22:02+00:00,12.5,2.5,0.08724297620558874,76.0,63.0,W,0.909,settled,
+2026-11-10|401909543|total|over,2026-11-10,401909543,total,Over 158,over,2752,2174,Xavier,Detroit Mercy,158.0,158.0,-110.0,Fanatics,5.93,163.93,1.24,yes,2026-11-09T21:22:02+00:00,156.0,-2.0,-0.048238488214981334,100.0,55.0,L,-1.24,settled,
 2026-11-09|401925737|spread|home|bandB,2026-11-09,401925737,spread,Washington -33,home,264,2400,Washington,Mississippi Valley State,-33.0,-33.0,-110.0,Caesars,2.02,35.02,0.5,yes,2026-11-09T21:41:07+00:00,-31.5,-1.5,-0.05261666195334003,77.0,64.0,L,-0.5,settled,bandB
 2026-11-10|401926731|spread|home,2026-11-10,401926731,spread,Arkansas State -8.5,home,2032,2630,Arkansas State,UT Martin,-8.5,-8.5,-110.0,FanDuel,3.13,11.63,1.0,yes,2026-11-09T21:41:36+00:00,,,,,,,,open,
 2026-11-10|401926731|total|under,2026-11-10,401926731,total,Under 151.5,under,2032,2630,Arkansas State,UT Martin,151.5,151.5,-110.0,FanDuel,5.59,145.91,1.24,yes,2026-11-09T21:41:36+00:00,,,,,,,,open,
@@ -461,7 +461,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-10|401925107|total|under,2026-11-10,401925107,total,Under 147.5,under,292,326,UT Rio Grande Valley,Texas State,147.5,147.5,-105.0,FanDuel,9.26,138.24,1.34,yes,2026-11-10T01:41:14+00:00,,,,,,,,open,
 2026-11-10|401920704|spread|home|bandB,2026-11-10,401920704,spread,Lipscomb +4.5,home,288,2057,Lipscomb,Belmont,4.5,4.5,-115.0,Caesars,2.11,-2.39,0.5,yes,2026-11-10T01:41:20+00:00,,,,,,,,open,bandB
 2026-11-10|401919003|total|over,2026-11-10,401919003,total,Over 151.5,over,2655,2447,Tulane,Nicholls,151.5,151.5,-110.0,Fanatics,3.53,155.03,0.65,yes,2026-11-10T02:02:25+00:00,,,,,,,,open,
-2026-11-10|401928828|total|under,2026-11-10,401928828,total,Under 159.5,under,2649,2750,Toledo,Wright State,159.5,159.5,-108.0,DraftKings,3.01,156.49,0.87,yes,2026-11-10T02:31:27+00:00,,,,,,,,open,
+2026-11-10|401928828|total|under,2026-11-10,401928828,total,Under 159.5,under,2649,2750,Toledo,Wright State,159.5,159.5,-108.0,DraftKings,3.01,156.49,0.87,yes,2026-11-10T02:31:27+00:00,156.5,3.0,0.07213729233996413,68.0,76.0,W,0.806,settled,
 2026-11-10|401912228|spread|home,2026-11-10,401912228,spread,New Haven +2.5,home,2441,349,New Haven,Army,2.5,2.5,-110.0,theScore Bet,4.78,2.28,1.76,yes,2026-11-10T02:31:27+00:00,,,,,,,,open,
 2026-11-10|401917979|total|over,2026-11-10,401917979,total,Over 159.5,over,2628,2433,TCU,UL Monroe,159.5,159.5,-110.0,Caesars,3.34,162.84,0.96,yes,2026-11-10T03:41:15+00:00,,,,,,,,open,
 2026-11-10|401917520|spread|home,2026-11-10,401917520,spread,Troy +1.5,home,2653,2351,Troy,Loyola Marymount,1.5,1.5,-110.0,theScore Bet,2.54,1.04,0.74,yes,2026-11-10T07:31:25+00:00,,,,,,,,open,
@@ -490,7 +490,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-10|401921774|total|under,2026-11-10,401921774,total,Under 158,under,222,2325,Villanova,La Salle,158.0,158.0,-110.0,Fanatics,4.77,153.23,1.4,yes,2026-11-10T23:11:10+00:00,,,,,,,,open,
 2026-11-10|401911011|total|over,2026-11-10,401911011,total,Over 151.5,over,2117,2754,Central Michigan,Youngstown State,151.5,151.5,-110.0,Fanatics,3.29,154.79,0.93,yes,2026-11-10T23:11:10+00:00,,,,,,,,open,
 2026-11-10|401909727|total|under,2026-11-10,401909727,total,Under 157.5,under,154,2127,Wake Forest,Charleston Southern,157.5,157.5,-105.0,FanDuel,6.32,151.18,1.86,yes,2026-11-10T23:11:10+00:00,,,,,,,,open,
-2026-11-10|401909533|total|under,2026-11-10,401909533,total,Under 149.5,under,2507,2803,Providence,Bryant,149.5,149.5,-108.0,DraftKings,4.06,145.44,1.4,yes,2026-11-10T23:11:10+00:00,,,,,,,,open,
+2026-11-10|401909533|total|under,2026-11-10,401909533,total,Under 149.5,under,2507,2803,Providence,Bryant,149.5,149.5,-108.0,DraftKings,4.06,145.44,1.4,yes,2026-11-10T23:11:10+00:00,149.5,0.0,0.0,78.0,55.0,W,1.296,settled,
 2026-11-10|401911196|total|over,2026-11-10,401911196,total,Over 141.5,over,2230,314,Fordham,Iona,141.5,141.5,-105.0,Fanatics,3.75,145.25,0.93,yes,2026-11-10T23:41:06+00:00,,,,,,,,open,
 2026-11-11|401926863|spread|home,2026-11-11,401926863,spread,UNC Wilmington -5.5,home,350,2309,UNC Wilmington,Kent State,-5.5,-5.5,-110.0,DraftKings,2.6,8.1,0.74,yes,2026-11-10T23:41:35+00:00,,,,,,,,open,
 2026-11-10|401925685|total|under,2026-11-10,401925685,total,Under 165.5,under,93,2016,Murray State,Alcorn State,165.5,165.5,100.0,theScore Bet,4.66,160.84,1.4,yes,2026-11-11T00:21:08+00:00,,,,,,,,open,
@@ -501,3 +501,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-11|401925717|spread|away|bandB,2026-11-11,401925717,spread,Bethune-Cookman +19.5,away,21,2065,San Diego State,Bethune-Cookman,19.5,19.5,-115.0,Fanatics,2.25,17.25,0.5,yes,2026-11-11T00:31:41+00:00,,,,,,,,open,bandB
 2026-11-11|401921286|spread|away,2026-11-11,401921286,spread,Furman -12,away,107,231,Holy Cross,Furman,-12.0,-12.0,-110.0,Fanatics,2.73,-14.73,0.74,yes,2026-11-11T00:51:58+00:00,,,,,,,,open,
 2026-11-11|401920202|spread|home,2026-11-11,401920202,spread,VCU -28.5,home,2670,2885,VCU,NJIT,-28.5,-28.5,-110.0,FanDuel,3.7,32.2,1.11,yes,2026-11-11T00:51:58+00:00,,,,,,,,open,
+2026-11-11|401921005|spread|home,2026-11-11,401921005,spread,Florida A&M +8,home,50,140,Florida A&M,Kansas City,8.0,8.0,-105.0,Fanatics,3.71,-4.29,1.03,yes,2026-11-11T02:01:31+00:00,,,,,,,,open,
