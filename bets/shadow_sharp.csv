@@ -343,8 +343,8 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-10|401927386|total|under,2026-11-10,total,Under 151.5,151.5,-110.0,3.04,0.62,,,True,0.5,2.54,True,,,,,151.0,0.5
 2026-11-09|401906849|total|over,2026-11-09,total,Over 153.5,153.5,-108.0,3.57,0.62,L,-0.62,True,0.0,3.57,True,153.5,0.0,153.5,0.0,153.5,0.0
 2026-11-10|401921733|spread|away,2026-11-10,spread,Hofstra +16.5,16.5,-115.0,2.61,1.0,,,True,0.5,2.11,True,,,,,-16.0,0.5
-2026-11-10|401909514|spread|home,2026-11-10,spread,Georgetown -27.5,-27.5,-110.0,2.61,1.0,,,False,,,False,,,,,,
-2026-11-10|401920866|spread|home,2026-11-10,spread,Rutgers -23.5,-23.5,-120.0,2.59,1.0,,,False,,,False,,,,,,
+2026-11-10|401909514|spread|home,2026-11-10,spread,Georgetown -27.5,-27.5,-110.0,2.61,1.0,L,-1.0,False,,,False,,,,,,
+2026-11-10|401920866|spread|home,2026-11-10,spread,Rutgers -23.5,-23.5,-120.0,2.59,1.0,W,0.833,False,,,False,,,,,,
 2026-11-10|401911011|spread|away,2026-11-10,spread,Youngstown State +4.5,4.5,-105.0,2.74,1.0,,,True,0.0,2.74,True,,,,,-4.5,0.0
 2026-11-10|401918957|total|over,2026-11-10,total,Over 145,145.0,-110.0,4.07,0.93,,,False,,,False,,,,,,
 2026-11-10|401912228|total|under,2026-11-10,total,Under 137.5,137.5,-110.0,3.49,0.62,,,False,,,False,,,,,,
