@@ -433,3 +433,10 @@ first_seen,date,game_id,market,side,book,number,price,median_others,books,reason
 2026-11-11T03:03:00+00:00,2026-11-11,401919734,total,-,theScore Bet,141.5,,145.5,3.0,off-market
 2026-11-11T03:11:14+00:00,2026-11-11,401928824,spread,away,DraftKings,32.5,-110.0,,,review: edge 9.4
 2026-11-11T03:11:14+00:00,2026-11-11,401928814,total,under,Caesars,162.5,-105.0,,,review: edge 12.0
+2026-11-11T03:31:07+00:00,2026-11-11,401921005,spread,-,DraftKings,-1.5,,5.75,3.0,off-market
+2026-11-11T03:31:07+00:00,2026-11-11,401921005,spread,-,Caesars,6.5,,1.75,3.0,off-market
+2026-11-11T03:31:07+00:00,2026-11-11,401926863,spread,-,BetRivers,-4.5,,-7.5,7.0,off-market
+2026-11-11T03:31:07+00:00,2026-11-11,401928824,spread,away,FanDuel,31.5,-106.0,,,review: edge 8.4
+2026-11-11T03:31:07+00:00,2026-11-11,401928814,total,under,Fanatics,163.0,-110.0,,,review: edge 12.5
+2026-11-11T03:31:07+00:00,2026-11-11,401919734,total,-,theScore Bet,142.5,,145.5,4.0,off-market
+2026-11-11T03:31:07+00:00,2026-11-11,401917521,spread,-,BetRivers,-12.5,,-15.5,7.0,off-market
