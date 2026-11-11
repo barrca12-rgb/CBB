@@ -527,3 +527,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-11|401925717|spread|away,2026-11-11,401925717,spread,Bethune-Cookman +19.5,away,21,2065,San Diego State,Bethune-Cookman,19.5,19.5,-115.0,theScore Bet,2.54,16.96,0.15,yes,2026-11-11T20:11:18+00:00,,,,,,,,open,
 2026-11-11|401925717|total|under,2026-11-11,401925717,total,Under 153.5,under,21,2065,San Diego State,Bethune-Cookman,153.5,153.5,-110.0,FanDuel,4.19,149.31,1.5,yes,2026-11-11T21:05:12+00:00,,,,,,,,open,
 2026-11-12|401916288|spread|away,2026-11-12,401916288,spread,Tennessee Tech +26.5,away,84,2635,Indiana,Tennessee Tech,26.5,26.5,-110.0,theScore Bet,2.84,23.66,0.15,yes,2026-11-11T21:52:02+00:00,,,,,,,,open,
+2026-11-12|401920135|total|under,2026-11-12,401920135,total,Under 150.5,under,2710,2934,Western Illinois,Cal State Bakersfield,150.5,150.5,-115.0,theScore Bet,4.18,146.32,1.5,yes,2026-11-11T22:02:07+00:00,,,,,,,,open,
