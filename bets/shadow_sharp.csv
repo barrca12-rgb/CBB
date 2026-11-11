@@ -392,3 +392,5 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-11|401920234|spread|home,2026-11-11,spread,UAlbany +2,2.0,-110.0,3.96,1.11,,,False,,,False,,,,,,
 2026-11-11|401920234|total|under,2026-11-11,total,Under 145.5,145.5,-110.0,6.65,1.86,,,False,,,False,,,,,,
 2026-11-11|401926202|total|under,2026-11-11,total,Under 151.5,151.5,-110.0,4.58,1.4,,,False,,,False,,,,,,
+2026-11-11|401921286|spread|away,2026-11-11,spread,Furman -12,-12.0,-110.0,2.73,0.74,,,False,,,False,,,,,,
+2026-11-11|401920202|spread|home,2026-11-11,spread,VCU -28.5,-28.5,-110.0,3.7,1.11,,,False,,,False,,,,,,
