@@ -1,1 +1,1 @@
-2026-11-11 22:50 UTC  events 0  book-game rows 306 (0 SGO, 306 The Odds API)  unmatched teams: Fort Wayne Mastodons, Sam Houston St Bearkats  SGO month: 95,156 of 100,000 entities  The Odds API credits left: 87887
+2026-11-11 23:00 UTC  events 0  book-game rows 302 (0 SGO, 302 The Odds API)  unmatched teams: Fort Wayne Mastodons, Sam Houston St Bearkats  SGO month: 95,156 of 100,000 entities  The Odds API credits left: 87876
