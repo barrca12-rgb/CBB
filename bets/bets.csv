@@ -475,7 +475,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-10|401909773|total|under,2026-11-10,401909773,total,Under 148,under,66,2582,Iowa State,Southern,148.0,148.0,-115.0,Fanatics,3.34,144.66,0.93,yes,2026-11-10T14:11:41+00:00,146.5,1.5,0.036217586696894344,84.0,47.0,W,0.809,settled,
 2026-11-11|401920740|spread|home,2026-11-11,401920740,spread,East Tennessee State -4.5,home,2193,2097,East Tennessee State,Campbell,-4.5,-4.5,-120.0,theScore Bet,3.05,7.55,0.74,yes,2026-11-10T21:33:58+00:00,,,,,,,,open,
 2026-11-11|401921821|spread|away|bandB,2026-11-11,401921821,spread,Saint Peter's +21.5,away,2579,2612,South Carolina,Saint Peter's,21.5,21.5,-105.0,theScore Bet,2.4,19.1,0.5,yes,2026-11-10T21:42:09+00:00,,,,,,,,open,bandB
-2026-11-11|401925858|spread|home,2026-11-11,401925858,spread,Temple +1,home,218,232,Temple,Charleston,1.0,1.0,-115.0,Fanatics,3.14,2.14,0.74,yes,2026-11-10T22:11:38+00:00,,,,,,,,open,
+2026-11-11|401925858|spread|home,2026-11-11,401925858,spread,Temple +1,home,218,232,Temple,Charleston,1.0,1.0,-115.0,Fanatics,3.14,2.14,0.74,yes,2026-11-10T22:11:38+00:00,1.5,-0.5,-0.01758434989146518,81.0,91.0,L,-0.74,settled,
 2026-11-11|401924735|total|over,2026-11-11,401924735,total,Over 137.5,over,163,2619,Princeton,Stony Brook,137.5,137.5,-110.0,theScore Bet,3.53,141.03,0.93,yes,2026-11-10T22:11:38+00:00,,,,,,,,open,
 2026-11-11|401921821|spread|away,2026-11-11,401921821,spread,Saint Peter's +22,away,2579,2612,South Carolina,Saint Peter's,22.0,22.0,-115.0,Fanatics,2.9,19.1,0.74,yes,2026-11-10T22:11:38+00:00,,,,,,,,open,
 2026-11-11|401928824|spread|away,2026-11-11,401928824,spread,Robert Morris +29.5,away,8,2523,Arkansas,Robert Morris,29.5,29.5,-105.0,DraftKings,6.41,23.09,1.48,yes,2026-11-10T22:11:38+00:00,,,,,,,,open,
@@ -516,7 +516,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-11|401925895|total|under,2026-11-11,401925895,total,Under 148.5,under,2450,295,Norfolk State,Old Dominion,148.5,148.5,-110.0,BetMGM,4.6,143.9,1.46,yes,2026-11-11T03:31:22+00:00,,,,,,,,open,
 2026-11-11|401921286|total|over,2026-11-11,401921286,total,Over 147.5,over,107,231,Holy Cross,Furman,147.5,147.5,-115.0,FanDuel,3.29,150.79,0.97,yes,2026-11-11T03:31:22+00:00,,,,,,,,open,
 2026-11-11|401911012|spread|away,2026-11-11,401911012,spread,UMass Lowell +11.5,away,113,2349,Massachusetts,UMass Lowell,11.5,11.5,-118.0,DraftKings,2.6,8.9,0.73,yes,2026-11-11T03:41:16+00:00,,,,,,,,open,
-2026-11-11|401925858|total|under,2026-11-11,401925858,total,Under 155.5,under,218,232,Temple,Charleston,155.5,155.5,-110.0,theScore Bet,3.71,151.79,1.0,yes,2026-11-11T04:01:16+00:00,,,,,,,,open,
+2026-11-11|401925858|total|under,2026-11-11,401925858,total,Under 155.5,under,218,232,Temple,Charleston,155.5,155.5,-110.0,theScore Bet,3.71,151.79,1.0,yes,2026-11-11T04:01:16+00:00,157.5,-2.0,-0.048238488214981334,81.0,91.0,L,-1.0,settled,
 2026-11-11|401918054|spread|home|bandB,2026-11-11,401918054,spread,California +8.5,home,25,30,California,USC,8.5,8.5,-105.0,DraftKings,2.27,-6.23,0.5,yes,2026-11-11T05:01:57+00:00,,,,,,,,open,bandB
 2026-11-11|401918452|total|under,2026-11-11,401918452,total,Under 165.5,under,2226,2729,Florida Atlantic,William & Mary,165.5,165.5,-110.0,theScore Bet,4.17,161.33,1.5,yes,2026-11-11T05:31:56+00:00,,,,,,,,open,
 2026-11-11|401925702|total|over,2026-11-11,401925702,total,Over 135.5,over,248,55,Houston,Jacksonville State,135.5,135.5,-110.0,DraftKings,4.53,140.03,1.5,yes,2026-11-11T05:31:56+00:00,,,,,,,,open,
