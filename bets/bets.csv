@@ -547,3 +547,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-12|401917524|total|under,2026-11-12,401917524,total,Under 143.5,under,6,2351,South Alabama,Loyola Marymount,143.5,143.5,-105.0,theScore Bet,3.26,140.24,1.0,yes,2026-11-11T23:12:10+00:00,,,,,,,,open,
 2026-11-11|401928824|total|under,2026-11-11,401928824,total,Under 156.5,under,8,2523,Arkansas,Robert Morris,156.5,156.5,-110.0,FanDuel,4.18,152.32,1.5,yes,2026-11-12T00:11:01+00:00,,,,,,,,open,
 2026-11-11|401928996|total|over,2026-11-11,401928996,total,Over 141.5,over,2571,2674,South Dakota State,Valparaiso,141.5,141.5,-105.0,theScore Bet,5.45,146.95,2.0,yes,2026-11-12T00:11:01+00:00,,,,,,,,open,
+2026-11-19|401911534|spread|home,2026-11-19,401911534,spread,New Mexico State +3.5,home,166,2638,New Mexico State,UTEP,3.5,3.5,-110.0,DraftKings,8.0,4.5,0.46,yes,2026-11-12T01:05:55+00:00,,,,,,,,open,
