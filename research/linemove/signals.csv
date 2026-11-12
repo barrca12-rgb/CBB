@@ -324,3 +324,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-12T03:11:02+00:00,2026-11-12,401911533,2026-11-13T02:00Z,2638,166,UTEP,New Mexico State,spread,away,bandB,New Mexico State +4.5,3.5,-110.0,BetMGM,2026-11-12T00:21:06+00:00,4.5,-102.0,FanDuel,1.0,169.9,1.35,2.35,2.15
 2026-11-12T04:40:55+00:00,2026-11-12,401924857,2026-11-13T00:00Z,2514,2405,Quinnipiac,Monmouth,total,over,v1,Over 144.5,145.5,-110.0,theScore Bet,2026-11-11T22:10:52+00:00,144.5,-115.0,DraftKings,1.0,390.1,2.51,3.51,148.01
 2026-11-12T05:01:17+00:00,2026-11-12,401911533,2026-11-13T02:00Z,2638,166,UTEP,New Mexico State,spread,away,v1,New Mexico State +5,3.5,-110.0,BetMGM,2026-11-12T00:21:06+00:00,5.0,-110.0,Fanatics,1.5,280.2,1.35,2.85,2.15
+2026-11-12T13:10:58+00:00,2026-11-12,401916306,2026-11-13T01:00Z,135,2582,Minnesota,Southern,total,under,v1,Under 142.5,140.5,-110.0,theScore Bet,2026-11-12T01:30:57+00:00,142.5,-108.0,DraftKings,2.0,700.0,1.29,3.29,139.21
