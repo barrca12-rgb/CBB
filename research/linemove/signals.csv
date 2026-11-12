@@ -345,3 +345,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-12T22:51:03+00:00,2026-11-12,401922239,2026-11-13T00:00Z,47,56,Howard,Stetson,spread,home,bandB,Howard -8.5,-10.5,-110.0,FanDuel,2026-11-11T23:20:49+00:00,-8.5,-105.0,theScore Bet,2.0,1410.2,0.46,2.46,10.96
 2026-11-12T23:01:58+00:00,2026-11-13,401909741,2026-11-14T02:00Z,2,12,Auburn,Arizona,spread,home,bandB,Auburn +2.5,-1.0,-105.0,Fanatics,2026-11-12T19:40:48+00:00,2.5,-115.0,DraftKings,3.5,201.2,-1.25,2.25,-0.25
 2026-11-12T23:11:48+00:00,2026-11-13,401902278,2026-11-13T23:30Z,2086,221,Butler,Pittsburgh,spread,away,v1,Pittsburgh +4.5,3.5,-118.0,DraftKings,2026-11-12T23:00:55+00:00,4.5,-115.0,theScore Bet,1.0,10.9,1.65,2.65,1.85
+2026-11-12T23:31:03+00:00,2026-11-12,401911533,2026-11-13T02:00Z,2638,166,UTEP,New Mexico State,total,under,v1,Under 145.5,143.5,-117.0,BetRivers,2026-11-12T04:20:42+00:00,145.5,-110.0,theScore Bet,2.0,1150.3,1.4,3.4,142.1
