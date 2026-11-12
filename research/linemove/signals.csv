@@ -320,3 +320,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-12T00:30:55+00:00,2026-11-11,401917963,2026-11-12T01:00Z,2000,2617,Abilene Christian,Stephen F. Austin,total,over,v1,Over 141.5,142.5,-110.0,Caesars,2026-11-11T04:10:54+00:00,141.5,-110.0,BetMGM,1.0,1220.0,2.4,3.4,144.9
 2026-11-12T02:20:51+00:00,2026-11-12,401922250,2026-11-13T01:00Z,2010,2697,Alabama A&M,West Florida,spread,home,v1,Alabama A&M -7.5,-8.5,-110.0,DraftKings,2026-11-12T01:00:55+00:00,-7.5,-110.0,Caesars,1.0,79.9,1.91,2.91,10.41
 2026-11-12T02:41:03+00:00,2026-11-12,401916288,2026-11-12T23:30Z,84,2635,Indiana,Tennessee Tech,total,under,v1,Under 167.5,166.5,-110.0,theScore Bet,2026-11-11T21:50:51+00:00,167.5,-105.0,FanDuel,1.0,290.2,2.83,3.83,163.67
+2026-11-12T02:50:50+00:00,2026-11-12,401911013,2026-11-13T00:00Z,189,315,Bowling Green,Niagara,total,over,v1,Over 145,147.5,-105.0,DraftKings,2026-11-11T23:50:50+00:00,145.0,-110.0,Caesars,2.5,180.0,0.54,3.04,148.04
