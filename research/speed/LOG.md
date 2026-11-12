@@ -253,3 +253,35 @@ a change is a freeze entry.
 **Which books SGO had first (2 of 31 openers):** FanDuel (128 minutes ahead of The Odds API) and theScore Bet (68
 minutes ahead), both on Notre Dame vs Villanova, Oct 28. The Odds API was polled every 10 minutes the whole time and
 did not have them.
+
+## Nov 12 read (in-season, alerts logged from Nov 1 ET; Chad's upper-bound lag)
+
+Command: `python -m research.speed.measure --since 2026-11-01T04:00:00Z` (out/measure.txt, out/openers.csv,
+out/alerts.csv); default window in out/measure_default_window.txt.
+
+- **Rule (Oct 29, verbatim):** "If the median first-quote-to-alert lag is over 5 minutes, or the 90th percentile over
+  20, propose 3-minute polling in the posting window with the credit cost in front of Chad."
+- **Upper-bound lag (the rule's measure), 351 opener alerts:** median 0.8 minutes, 90th percentile 153.9 minutes.
+  **The rule fires, on the 90th percentile, not the median.**
+  - Context (alert's own run): median 0.7, p90 153.9. Default window (415 alerts): upper median 0.9, upper p90 91.0.
+- **Split by cause:**
+  - Polling (no model or rule change between first quote and alert), 330 alerts: upper median 0.8, upper p90 10.8.
+  - Rule or model change in between, 21 alerts: upper median 493.9, upper p90 990.5. These qualified only after an
+    input changed, hours after the number posted; faster polling cannot shorten them.
+  - So the p90 that fires the rule comes from the 21 model-change alerts. On polling alone the rule would not fire.
+- **Effective opener latency (posting to the next poll that has it):** as polled now (either feed) median 4.8, p90 9.0
+  minutes; The Odds API every 3 minutes (proposal) median 1.4, p90 2.6. In the busiest window: 4.7 / 8.9 now.
+- **Posting window (first card run, ET hour, 2,911 uncensored game-books):** busiest contiguous three hours are
+  17:00-20:00 ET, 28% of openers. Day to day the busiest hours move (Nov 1: 11, 14, 8; Nov 9: 19, 16, 17).
+  Median 23.3 hours before tip at first sighting.
+- **Which feed saw each opener first (game-book-market rows):** The Odds API 4,603 (2,301 first, 2,302 only);
+  SGO 1,209 (770 first, 439 only). After SGO ends Nov 25, lines SGO had first are seen by The Odds API usually
+  10 minutes later, some by hours.
+- **Credits for 3-minute polling, 17:00-20:00 ET:** 60 calls a day vs about 20 now = +40 calls = +120 credits a day
+  at 3 credits a card call (+80 with the 2-credit call); about +3,600 a month. SGO cadence unchanged.
+- **Odds API balance:** 87,165 remaining (12,835 used) at Nov 12 18:50 UTC. Reserve: card and targeted polls stop
+  below 10,000, alert below 20,000; research floor 50,000 from the Nov 25 renewal. The proposal fits easily.
+- **Combined with the same-day run-frequency check (IMPROVEMENT_LOG, Nov 12):** none of the 243 plays the opener rule
+  stopped was lost to polling speed, and lines hold for about 92% of plays 5-10 minutes after an alert.
+- **Status:** proposal put to Chad; nothing changed. A change is made on cron-job.org (Chad's account; update.yml's
+  cron is the backup), and is a MODEL_FREEZE entry plus a Discord note.
