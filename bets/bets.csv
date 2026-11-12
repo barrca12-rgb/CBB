@@ -556,3 +556,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-19|401911534|total|under,2026-11-19,401911534,total,Under 144.5,under,166,2638,New Mexico State,UTEP,144.5,144.5,-115.0,DraftKings,3.27,141.23,1.0,yes,2026-11-12T17:56:28+00:00,,,,,,,,open,
 2026-11-13|401909503|spread|home|bandB,2026-11-13,401909503,spread,Northwestern +1.5,home,77,305,Northwestern,DePaul,1.5,1.5,-114.0,FanDuel,2.2,0.7,0.5,yes,2026-11-12T19:31:42+00:00,,,,,,,,open,bandB
 2026-11-13|401921721|spread|away|bandB,2026-11-13,401921721,spread,North Alabama +33.5,away,2390,2453,Miami,North Alabama,33.5,33.5,-110.0,FanDuel,2.29,31.21,0.5,yes,2026-11-12T21:21:40+00:00,,,,,,,,open,bandB
+2026-11-13|401921803|spread|away,2026-11-13,401921803,spread,Northern Arizona +33,away,96,2464,Kentucky,Northern Arizona,33.0,33.0,-110.0,Fanatics,2.64,30.36,0.51,yes,2026-11-12T21:31:30+00:00,,,,,,,,open,
