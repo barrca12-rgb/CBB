@@ -437,3 +437,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-11|401928824|total|under,2026-11-11,total,Under 156.5,156.5,-110.0,4.18,1.5,W,1.364,True,1.0,3.18,True,155.5,1.0,155.5,1.0,155.5,1.0
 2026-11-11|401928996|total|over,2026-11-11,total,Over 141.5,141.5,-105.0,5.45,2.0,W,1.905,True,0.0,5.45,True,141.5,0.0,141.0,-0.5,141.5,0.0
 2026-11-19|401911534|spread|home,2026-11-19,spread,New Mexico State +3.5,3.5,-110.0,8.0,0.46,,,False,,,False,,,,,,
+2026-11-12|401922250|spread|home,2026-11-12,spread,Alabama A&M -7.5,-7.5,-105.0,2.9,0.38,,,True,0.0,2.9,True,-7.5,0.0,,,-7.0,-0.5

@@ -549,3 +549,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-11|401928996|total|over,2026-11-11,401928996,total,Over 141.5,over,2571,2674,South Dakota State,Valparaiso,141.5,141.5,-105.0,theScore Bet,5.45,146.95,2.0,yes,2026-11-12T00:11:01+00:00,141.5,0.0,0.0,81.0,69.0,W,1.905,settled,
 2026-11-19|401911534|spread|home,2026-11-19,401911534,spread,New Mexico State +3.5,home,166,2638,New Mexico State,UTEP,3.5,3.5,-110.0,DraftKings,8.0,4.5,0.46,yes,2026-11-12T01:05:55+00:00,,,,,,,,open,
 2026-11-12|401920135|spread|home|bandB,2026-11-12,401920135,spread,Western Illinois +8.5,home,2710,2934,Western Illinois,Cal State Bakersfield,8.5,8.5,-106.0,BetRivers,2.41,-6.09,0.5,yes,2026-11-12T02:51:04+00:00,,,,,,,,open,bandB
+2026-11-12|401922250|spread|home,2026-11-12,401922250,spread,Alabama A&M -7.5,home,2010,2697,Alabama A&M,West Florida,-7.5,-7.5,-105.0,theScore Bet,2.9,10.4,0.38,yes,2026-11-12T03:47:14+00:00,,,,,,,,open,
