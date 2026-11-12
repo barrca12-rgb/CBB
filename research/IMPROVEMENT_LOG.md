@@ -118,3 +118,16 @@ Dated findings from each review, newest first. "Nothing new" is a valid entry.
 - **Correction:** Novig's feed includes empty exchange quotes at fake lines (prices around -9900). The Nov 9 step-1
   Novig numbers (22-31) used them. Clean read: flagged 30-38, -10.2u, CLV -3.6%; unflagged 138-110, +15.2u, CLV
   +3.0%. Forward read Nov 24.
+
+## 2026-11-12: card run frequency (scheduled check-in Chad asked for)
+
+- Plays the opener rule stopped (research/linemove/signals.csv, Nov 2-12): 243 main signals. Only 4 had the edge at the
+  book's opener, all first seen 166+ minutes after the open with the line unmoved, so none was lost to run speed. The
+  other 239 qualified only after the line moved; faster runs would not have made them plays.
+- Lines after an alert (audit/forward_eval delay windows): 5-10 minutes later the original book still had the same
+  number at the same or better price for 162 of 177 spreads and 171 of 185 totals (about 92%). Going from 10 to 5
+  minutes cuts the average wait by about 2.5 minutes, so it would save a better number on only a few percent of plays.
+- Main plays matched to lines/openers.csv: 130 of 208 were logged within 10 minutes of the card first seeing that
+  book's opener. first_seen is recorded by the card itself, so this file cannot show when a book really posted.
+- Cost: about 13,000 credits a month (daytime 10 to 5 minutes) and about 2,900 (overnight 30 to 10 minutes).
+- Read: no measurable gain for the credits. Recommend no change; it changes signal timing, so it is Chad's call.
