@@ -1,2 +1,2 @@
-# https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/injuries saved 2026-11-11T15:00:50+00:00
-{"timestamp":"2026-11-11T15:00:40Z","status":"success","season":{"year":2027,"type":2,"name":"Regular Season","displayName":"2026-27"},"injuries":[]}
+# https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/injuries saved 2026-11-12T15:00:50+00:00
+{"timestamp":"2026-11-12T15:00:46Z","status":"success","season":{"year":2027,"type":2,"name":"Regular Season","displayName":"2026-27"},"injuries":[]}
