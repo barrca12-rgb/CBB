@@ -531,7 +531,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-12|401919041|total|under,2026-11-12,401919041,total,Under 177.5,under,245,197,Texas A&M,Oklahoma State,177.5,177.5,-110.0,theScore Bet,3.09,174.41,1.0,yes,2026-11-11T22:17:56+00:00,,,,,,,,open,
 2026-11-12|401921741|spread|away,2026-11-12,401921741,spread,Montana State +25.5,away,252,147,BYU,Montana State,25.5,25.5,-110.0,theScore Bet,5.64,19.86,0.3,yes,2026-11-11T22:17:56+00:00,,,,,,,,open,
 2026-11-12|401921741|total|under,2026-11-12,401921741,total,Under 163.5,under,252,147,BYU,Montana State,163.5,163.5,-110.0,theScore Bet,4.03,159.47,1.5,yes,2026-11-11T22:17:56+00:00,,,,,,,,open,
-2026-11-12|401920073|spread|home,2026-11-12,401920073,spread,George Mason -12.5,home,2244,140,George Mason,Kansas City,-12.5,-12.5,-110.0,FanDuel,3.92,16.42,0.22,yes,2026-11-11T22:23:06+00:00,,,,,,,,open,
+2026-11-12|401920073|spread|home,2026-11-12,401920073,spread,George Mason -12.5,home,2244,140,George Mason,Kansas City,-12.5,-12.5,-110.0,FanDuel,3.92,16.42,0.22,yes,2026-11-11T22:23:06+00:00,-15.5,3.0,0.10432203080282465,76.0,68.0,L,-0.22,settled,
 2026-11-12|401921086|total|over,2026-11-12,401921086,total,Over 161.5,over,2378,2415,UMBC,Morgan State,161.5,161.5,-110.0,FanDuel,3.09,164.59,1.0,yes,2026-11-11T22:23:06+00:00,,,,,,,,open,
 2026-11-12|401925631|spread|away|bandB,2026-11-12,401925631,spread,Bradley -7.5,away,2154,71,Coppin State,Bradley,-7.5,-7.5,-110.0,FanDuel,2.24,-9.74,0.5,yes,2026-11-11T22:23:11+00:00,,,,,,,,open,bandB
 2026-11-12|401924876|spread|home,2026-11-12,401924876,spread,Sacred Heart -4.5,home,2529,2115,Sacred Heart,Central Connecticut,-4.5,-4.5,-110.0,FanDuel,3.43,7.93,0.15,yes,2026-11-11T22:41:33+00:00,,,,,,,,open,
@@ -550,7 +550,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-19|401911534|spread|home,2026-11-19,401911534,spread,New Mexico State +3.5,home,166,2638,New Mexico State,UTEP,3.5,3.5,-110.0,DraftKings,8.0,4.5,0.46,yes,2026-11-12T01:05:55+00:00,,,,,,,,open,
 2026-11-12|401920135|spread|home|bandB,2026-11-12,401920135,spread,Western Illinois +8.5,home,2710,2934,Western Illinois,Cal State Bakersfield,8.5,8.5,-106.0,BetRivers,2.41,-6.09,0.5,yes,2026-11-12T02:51:04+00:00,,,,,,,,open,bandB
 2026-11-12|401922250|spread|home,2026-11-12,401922250,spread,Alabama A&M -7.5,home,2010,2697,Alabama A&M,West Florida,-7.5,-7.5,-105.0,theScore Bet,2.9,10.4,0.38,yes,2026-11-12T03:47:14+00:00,,,,,,,,open,
-2026-11-12|401920073|total|over,2026-11-12,401920073,total,Over 140.5,over,2244,140,George Mason,Kansas City,140.5,140.5,-113.0,BetRivers,3.06,143.56,1.0,yes,2026-11-12T06:21:05+00:00,,,,,,,,open,
+2026-11-12|401920073|total|over,2026-11-12,401920073,total,Over 140.5,over,2244,140,George Mason,Kansas City,140.5,140.5,-113.0,BetRivers,3.06,143.56,1.0,yes,2026-11-12T06:21:05+00:00,141.5,1.0,0.024163526633169896,76.0,68.0,W,0.885,settled,
 2026-11-12|401916288|total|under,2026-11-12,401916288,total,Under 169.5,under,84,2635,Indiana,Tennessee Tech,169.5,169.5,-105.0,theScore Bet,6.71,162.79,2.0,yes,2026-11-12T06:21:05+00:00,,,,,,,,open,
 2026-11-12|401920135|spread|home,2026-11-12,401920135,spread,Western Illinois +9.5,home,2710,2934,Western Illinois,Cal State Bakersfield,9.5,9.5,-110.0,theScore Bet,3.51,-5.99,0.77,yes,2026-11-12T06:21:05+00:00,,,,,,,,open,
 2026-11-19|401911534|total|under,2026-11-19,401911534,total,Under 144.5,under,166,2638,New Mexico State,UTEP,144.5,144.5,-115.0,DraftKings,3.27,141.23,1.0,yes,2026-11-12T17:56:28+00:00,,,,,,,,open,
@@ -566,3 +566,8 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-13|401909565|spread|away,2026-11-13,401909565,spread,SIU Edwardsville +44.5,away,150,2565,Duke,SIU Edwardsville,44.5,44.5,-110.0,FanDuel,4.27,40.23,0.77,yes,2026-11-12T21:52:17+00:00,,,,,,,,open,
 2026-11-13|401917916|spread|away,2026-11-13,401917916,spread,Central Arkansas +26.5,away,8,2110,Arkansas,Central Arkansas,26.5,26.5,-110.0,FanDuel,6.9,19.6,1.02,yes,2026-11-12T21:52:17+00:00,,,,,,,,open,
 2026-11-13|401919049|total|under,2026-11-13,401919049,total,Under 157.5,under,2628,270,TCU,Milwaukee,157.5,157.5,-110.0,FanDuel,3.25,154.25,1.0,yes,2026-11-12T21:52:17+00:00,,,,,,,,open,
+2026-11-13|401917980|spread|away,2026-11-13,401917980,spread,UL Monroe +31.5,away,9,2433,Arizona State,UL Monroe,31.5,31.5,-110.0,FanDuel,2.59,28.91,0.43,yes,2026-11-12T22:01:04+00:00,,,,,,,,open,
+2026-11-13|401917525|spread|home,2026-11-13,401917525,spread,Saint Mary's -6,home,2608,82,Saint Mary's,UIC,-6.0,-6.0,-110.0,Fanatics,2.96,8.96,0.43,yes,2026-11-12T22:01:04+00:00,,,,,,,,open,
+2026-11-13|401926117|spread|away|bandB,2026-11-13,401926117,spread,Wright State -2,away,2535,2750,Samford,Wright State,-2.0,-2.0,-115.0,Fanatics,2.49,-4.49,0.5,yes,2026-11-12T22:01:11+00:00,,,,,,,,open,bandB
+2026-11-13|401921728|spread|home|bandB,2026-11-13,401921728,spread,UNLV +1.5,home,2439,24,UNLV,Stanford,1.5,1.5,-120.0,FanDuel,2.25,0.75,0.5,yes,2026-11-12T22:01:11+00:00,,,,,,,,open,bandB
+2026-11-13|401911014|spread|away|bandB,2026-11-13,401911014,spread,Ball State +22.5,away,2567,2050,SMU,Ball State,22.5,22.5,-110.0,FanDuel,2.38,20.12,0.5,yes,2026-11-12T22:01:11+00:00,,,,,,,,open,bandB
