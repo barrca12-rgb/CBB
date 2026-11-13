@@ -603,3 +603,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-14|401928804|total|over,2026-11-14,401928804,total,Over 153,over,2174,2649,Detroit Mercy,Toledo,153.0,153.0,-110.0,Fanatics,4.65,157.65,1.5,yes,2026-11-13T21:52:17+00:00,,,,,,,,open,
 2026-11-14|401917529|total|under,2026-11-14,401917529,total,Under 161.5,under,279,2005,Pacific,Air Force,161.5,161.5,-110.0,Fanatics,8.67,152.83,2.0,yes,2026-11-13T21:52:17+00:00,,,,,,,,open,
 2026-11-14|401927387|spread|away|bandB,2026-11-14,401927387,spread,Northern Iowa +1.5,away,2473,2460,Oakland,Northern Iowa,1.5,1.5,-115.0,FanDuel,2.41,-0.91,0.5,yes,2026-11-13T22:02:10+00:00,,,,,,,,open,bandB
+2026-11-14|401920750|spread|home,2026-11-14,401920750,spread,Youngstown State +1.5,home,2754,276,Youngstown State,Marshall,1.5,1.5,-115.0,FanDuel,3.31,1.81,0.31,yes,2026-11-13T22:11:29+00:00,,,,,,,,open,
