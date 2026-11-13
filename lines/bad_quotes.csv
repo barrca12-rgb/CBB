@@ -539,3 +539,4 @@ first_seen,date,game_id,market,side,book,number,price,median_others,books,reason
 2026-11-12T22:51:55+00:00,2026-11-13,401909741,spread,-,DraftKings,2.5,,-1.5,4,off-market
 2026-11-12T23:02:00+00:00,2026-11-13,401909741,spread,-,FanDuel,-1.5,,1.5,4,off-market
 2026-11-12T23:02:00+00:00,2026-11-13,401921728,spread,-,theScore Bet,-1.5,,1.5,5,off-market
+2026-11-13T00:02:01+00:00,2026-11-13,401921728,spread,-,BetMGM,-1.5,,1.5,6,off-market

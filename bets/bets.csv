@@ -575,3 +575,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-13|401926133|spread|away,2026-11-13,401926133,spread,Ohio +20.5,away,2509,195,Purdue,Ohio,20.5,20.5,-115.0,theScore Bet,2.63,17.87,0.43,yes,2026-11-12T22:52:05+00:00,,,,,,,,open,
 2026-11-13|401909515|spread|home|bandB,2026-11-13,401909515,spread,Clemson -3.5,home,228,46,Clemson,Georgetown,-3.5,-3.5,-110.0,DraftKings,2.2,5.7,0.5,yes,2026-11-12T22:52:14+00:00,,,,,,,,open,bandB
 2026-11-13|401926117|spread|away,2026-11-13,401926117,spread,Wright State -1.5,away,2535,2750,Samford,Wright State,-1.5,-1.5,-118.0,DraftKings,2.99,-4.49,0.43,yes,2026-11-12T23:21:47+00:00,,,,,,,,open,
+2026-11-13|401906760|spread|away,2026-11-13,401906760,spread,Seton Hall +16.5,away,333,2550,Alabama,Seton Hall,16.5,16.5,-110.0,DraftKings,2.84,13.66,0.43,yes,2026-11-13T00:02:13+00:00,,,,,,,,open,
