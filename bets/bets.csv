@@ -605,3 +605,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-14|401927387|spread|away|bandB,2026-11-14,401927387,spread,Northern Iowa +1.5,away,2473,2460,Oakland,Northern Iowa,1.5,1.5,-115.0,FanDuel,2.41,-0.91,0.5,yes,2026-11-13T22:02:10+00:00,,,,,,,,open,bandB
 2026-11-14|401920750|spread|home,2026-11-14,401920750,spread,Youngstown State +1.5,home,2754,276,Youngstown State,Marshall,1.5,1.5,-115.0,FanDuel,3.31,1.81,0.31,yes,2026-11-13T22:11:29+00:00,,,,,,,,open,
 2026-11-14|401921063|spread|away,2026-11-14,401921063,spread,Portland State +10,away,2539,2502,San Francisco,Portland State,10.0,10.0,-110.0,Fanatics,2.56,7.44,0.31,yes,2026-11-13T22:22:09+00:00,,,,,,,,open,
+2026-11-14|401921775|total|over,2026-11-14,401921775,total,Over 145.5,over,222,2520,Villanova,Rider,145.5,145.5,-110.0,FanDuel,4.54,150.04,1.5,yes,2026-11-13T22:32:24+00:00,,,,,,,,open,
+2026-11-14|401911308|total|under,2026-11-14,401911308,total,Under 155.5,under,2561,225,Siena,Brown,155.5,155.5,-105.0,FanDuel,4.51,150.99,1.5,yes,2026-11-13T22:32:24+00:00,,,,,,,,open,

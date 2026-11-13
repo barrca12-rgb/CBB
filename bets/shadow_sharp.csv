@@ -480,3 +480,5 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-14|401917529|total|under,2026-11-14,total,Under 161.5,161.5,-110.0,8.67,2.0,,,True,0.0,8.67,True,,,,,161.5,0.0
 2026-11-14|401920750|spread|home,2026-11-14,spread,Youngstown State +1.5,1.5,-115.0,3.31,0.31,,,True,1.5,1.81,False,,,,,0.0,1.5
 2026-11-14|401921063|spread|away,2026-11-14,spread,Portland State +10,10.0,-110.0,2.56,0.31,,,True,-0.5,3.06,True,,,,,-10.5,-0.5
+2026-11-14|401921775|total|over,2026-11-14,total,Over 145.5,145.5,-110.0,4.54,1.5,,,True,0.5,4.04,True,,,,,146.0,0.5
+2026-11-14|401911308|total|under,2026-11-14,total,Under 155.5,155.5,-105.0,4.51,1.5,,,True,-1.5,6.01,True,,,,,157.0,-1.5
