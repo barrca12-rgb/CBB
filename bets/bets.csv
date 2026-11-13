@@ -532,7 +532,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-12|401921741|spread|away,2026-11-12,401921741,spread,Montana State +25.5,away,252,147,BYU,Montana State,25.5,25.5,-110.0,theScore Bet,5.64,19.86,0.3,yes,2026-11-11T22:17:56+00:00,,,,,,,,open,
 2026-11-12|401921741|total|under,2026-11-12,401921741,total,Under 163.5,under,252,147,BYU,Montana State,163.5,163.5,-110.0,theScore Bet,4.03,159.47,1.5,yes,2026-11-11T22:17:56+00:00,,,,,,,,open,
 2026-11-12|401920073|spread|home,2026-11-12,401920073,spread,George Mason -12.5,home,2244,140,George Mason,Kansas City,-12.5,-12.5,-110.0,FanDuel,3.92,16.42,0.22,yes,2026-11-11T22:23:06+00:00,-15.5,3.0,0.10432203080282465,76.0,68.0,L,-0.22,settled,
-2026-11-12|401921086|total|over,2026-11-12,401921086,total,Over 161.5,over,2378,2415,UMBC,Morgan State,161.5,161.5,-110.0,FanDuel,3.09,164.59,1.0,yes,2026-11-11T22:23:06+00:00,,,,,,,,open,
+2026-11-12|401921086|total|over,2026-11-12,401921086,total,Over 161.5,over,2378,2415,UMBC,Morgan State,161.5,161.5,-110.0,FanDuel,3.09,164.59,1.0,yes,2026-11-11T22:23:06+00:00,159.5,-2.0,-0.048238488214981334,85.0,70.0,L,-1.0,settled,
 2026-11-12|401925631|spread|away|bandB,2026-11-12,401925631,spread,Bradley -7.5,away,2154,71,Coppin State,Bradley,-7.5,-7.5,-110.0,FanDuel,2.24,-9.74,0.5,yes,2026-11-11T22:23:11+00:00,,,,,,,,open,bandB
 2026-11-12|401924876|spread|home,2026-11-12,401924876,spread,Sacred Heart -4.5,home,2529,2115,Sacred Heart,Central Connecticut,-4.5,-4.5,-110.0,FanDuel,3.43,7.93,0.15,yes,2026-11-11T22:41:33+00:00,,,,,,,,open,
 2026-11-12|401924876|total|under,2026-11-12,401924876,total,Under 148,under,2529,2115,Sacred Heart,Central Connecticut,148.0,148.0,-110.0,Fanatics,3.38,144.62,1.0,yes,2026-11-11T22:41:33+00:00,,,,,,,,open,
