@@ -610,3 +610,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-14|401920961|total|under,2026-11-14,401920961,total,Under 161.5,under,2413,85,Morehead State,IU Indianapolis,161.5,161.5,-110.0,FanDuel,4.98,156.52,1.5,yes,2026-11-13T22:41:44+00:00,,,,,,,,open,
 2026-11-14|401911520|spread|home|bandB,2026-11-14,401911520,spread,Sacramento State -3.5,home,16,302,Sacramento State,UC Davis,-3.5,-3.5,-110.0,FanDuel,2.35,5.85,0.5,yes,2026-11-13T22:41:50+00:00,,,,,,,,open,bandB
 2026-11-14|401911347|spread|home|bandB,2026-11-14,401911347,spread,Grand Canyon -31.5,home,2253,2433,Grand Canyon,UL Monroe,-31.5,-31.5,-110.0,FanDuel,2.47,33.97,0.5,yes,2026-11-13T22:41:50+00:00,,,,,,,,open,bandB
+2026-11-14|401917530|spread|home,2026-11-14,401917530,spread,Santa Clara +2.5,home,2541,167,Santa Clara,New Mexico,2.5,2.5,-110.0,DraftKings,3.31,0.81,0.31,yes,2026-11-13T22:51:36+00:00,,,,,,,,open,
+2026-11-14|401911455|total|under,2026-11-14,401911455,total,Under 153,under,2440,3084,Nevada,Utah Valley,153.0,153.0,-110.0,Fanatics,3.01,149.99,1.0,yes,2026-11-13T22:51:36+00:00,,,,,,,,open,
+2026-11-14|401925889|spread|home|bandB,2026-11-14,401925889,spread,Northern Colorado +4.5,home,2458,2571,Northern Colorado,South Dakota State,4.5,4.5,-110.0,DraftKings,2.14,-2.36,0.5,yes,2026-11-13T22:51:42+00:00,,,,,,,,open,bandB

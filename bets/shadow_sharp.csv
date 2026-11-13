@@ -483,3 +483,5 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-14|401921775|total|over,2026-11-14,total,Over 145.5,145.5,-110.0,4.54,1.5,,,True,0.5,4.04,True,,,,,146.0,0.5
 2026-11-14|401911308|total|under,2026-11-14,total,Under 155.5,155.5,-105.0,4.51,1.5,,,True,-1.5,6.01,True,,,,,157.0,-1.5
 2026-11-14|401920961|total|under,2026-11-14,total,Under 161.5,161.5,-110.0,4.98,1.5,,,True,-1.0,5.98,True,,,,,162.5,-1.0
+2026-11-14|401917530|spread|home,2026-11-14,spread,Santa Clara +2.5,2.5,-110.0,3.31,0.31,,,True,0.0,3.31,True,,,,,2.5,0.0
+2026-11-14|401911455|total|under,2026-11-14,total,Under 153,153.0,-110.0,3.01,1.0,,,True,0.0,3.01,True,,,,,153.0,0.0
