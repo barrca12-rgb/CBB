@@ -596,3 +596,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-13|401921026|total|under,2026-11-13,401921026,total,Under 163.5,under,2116,290,UCF,Georgia Southern,163.5,163.5,-110.0,FanDuel,4.55,158.95,1.5,yes,2026-11-13T05:21:33+00:00,,,,,,,,open,
 2026-11-13|401909741|spread|home,2026-11-13,401909741,spread,Auburn +2.5,home,2,12,Auburn,Arizona,2.5,2.5,100.0,theScore Bet,2.58,0.08,0.39,yes,2026-11-13T05:21:33+00:00,,,,,,,,open,
 2026-11-13|401911014|total|under,2026-11-13,401911014,total,Under 153.5,under,2567,2050,SMU,Ball State,153.5,153.5,-105.0,theScore Bet,4.19,149.31,1.5,yes,2026-11-13T05:21:33+00:00,,,,,,,,open,
+2026-11-13|401909696|spread|away|bandB,2026-11-13,401909696,spread,Texas A&M-Corpus Christi +22.5,away,52,357,Florida State,Texas A&M-Corpus Christi,22.5,22.5,-110.0,Fanatics,2.07,20.43,0.5,yes,2026-11-13T06:11:33+00:00,,,,,,,,open,bandB
