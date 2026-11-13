@@ -598,3 +598,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-13|401911014|total|under,2026-11-13,401911014,total,Under 153.5,under,2567,2050,SMU,Ball State,153.5,153.5,-105.0,theScore Bet,4.19,149.31,1.5,yes,2026-11-13T05:21:33+00:00,,,,,,,,open,
 2026-11-13|401909696|spread|away|bandB,2026-11-13,401909696,spread,Texas A&M-Corpus Christi +22.5,away,52,357,Florida State,Texas A&M-Corpus Christi,22.5,22.5,-110.0,Fanatics,2.07,20.43,0.5,yes,2026-11-13T06:11:33+00:00,,,,,,,,open,bandB
 2026-11-13|401917527|total|under,2026-11-13,401917527,total,Under 151.5,under,2501,2837,Portland,East Texas A&M,151.5,151.5,-110.0,BetRivers,4.27,147.23,1.5,yes,2026-11-13T07:11:09+00:00,,,,,,,,open,
+2026-11-14|401921689|spread|home|bandB,2026-11-14,401921689,spread,Gonzaga -6.5,home,2250,99,Gonzaga,LSU,-6.5,-6.5,-115.0,DraftKings,2.21,8.71,0.5,yes,2026-11-13T21:02:05+00:00,,,,,,,,open,bandB
