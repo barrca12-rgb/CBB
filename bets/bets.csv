@@ -586,3 +586,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-13|401911014|spread|away,2026-11-13,401911014,spread,Ball State +23.5,away,2567,2050,SMU,Ball State,23.5,23.5,-108.0,DraftKings,3.41,20.09,0.32,yes,2026-11-13T03:45:58+00:00,,,,,,,,open,
 2026-11-13|401925739|total|over,2026-11-13,401925739,total,Over 153.5,over,204,2400,Oregon State,Mississippi Valley State,153.5,153.5,-110.0,DraftKings,3.04,156.54,1.0,yes,2026-11-13T03:52:19+00:00,,,,,,,,open,
 2026-11-13|401920345|spread|away,2026-11-13,401920345,spread,Arkansas-Pine Bluff +16.5,away,2856,2029,California Baptist,Arkansas-Pine Bluff,16.5,16.5,-102.0,DraftKings,3.22,13.28,0.32,yes,2026-11-13T03:52:19+00:00,,,,,,,,open,
+2026-11-13|401926794|spread|away,2026-11-13,401926794,spread,North Carolina Central +18.5,away,2335,2428,Liberty,North Carolina Central,18.5,18.5,-118.0,DraftKings,3.8,14.7,0.58,yes,2026-11-13T04:11:22+00:00,,,,,,,,open,
+2026-11-13|401920123|total|under,2026-11-13,401920123,total,Under 166.5,under,70,13,Idaho,Cal Poly,166.5,166.5,-105.0,BetMGM,3.95,162.55,1.0,yes,2026-11-13T04:11:22+00:00,,,,,,,,open,

@@ -464,3 +464,5 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-13|401911014|spread|away,2026-11-13,spread,Ball State +23.5,23.5,-108.0,3.41,0.32,,,True,1.0,2.41,True,-22.5,1.0,-23.0,0.5,-24.0,-0.5
 2026-11-13|401925739|total|over,2026-11-13,total,Over 153.5,153.5,-110.0,3.04,1.0,,,True,1.0,2.04,True,,,,,154.5,1.0
 2026-11-13|401920345|spread|away,2026-11-13,spread,Arkansas-Pine Bluff +16.5,16.5,-102.0,3.22,0.32,,,True,1.5,1.72,False,,,,,-15.0,1.5
+2026-11-13|401926794|spread|away,2026-11-13,spread,North Carolina Central +18.5,18.5,-118.0,3.8,0.58,,,True,2.5,1.3,False,,,,,-16.0,2.5
+2026-11-13|401920123|total|under,2026-11-13,total,Under 166.5,166.5,-105.0,3.95,1.0,,,True,0.0,3.95,True,166.5,0.0,166.5,0.0,167.0,-0.5
