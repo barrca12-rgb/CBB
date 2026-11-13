@@ -615,3 +615,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-14|401925889|spread|home|bandB,2026-11-14,401925889,spread,Northern Colorado +4.5,home,2458,2571,Northern Colorado,South Dakota State,4.5,4.5,-110.0,DraftKings,2.14,-2.36,0.5,yes,2026-11-13T22:51:42+00:00,,,,,,,,open,bandB
 2026-11-14|401927387|total|under,2026-11-14,401927387,total,Under 157.5,under,2473,2460,Oakland,Northern Iowa,157.5,157.5,-110.0,theScore Bet,3.39,154.11,1.0,yes,2026-11-13T23:02:27+00:00,,,,,,,,open,
 2026-11-14|401911455|spread|home|bandB,2026-11-14,401911455,spread,Nevada -9.5,home,2440,3084,Nevada,Utah Valley,-9.5,-9.5,-115.0,DraftKings,2.09,11.59,0.5,yes,2026-11-13T23:02:40+00:00,,,,,,,,open,bandB
+2026-11-14|401911015|spread|away,2026-11-14,401911015,spread,Miami (OH) -6.5,away,339,193,Evansville,Miami (OH),-6.5,-6.5,-113.0,BetRivers,2.72,-9.22,0.31,yes,2026-11-13T23:51:47+00:00,,,,,,,,open,
