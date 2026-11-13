@@ -1,1 +1,1 @@
-2026-11-13 10:40 UTC  events 0  book-game rows 369 (0 SGO, 369 The Odds API)  unmatched teams: Sam Houston St Bearkats  SGO month: 95,188 of 100,000 entities  The Odds API credits left: 86320
+2026-11-13 10:50 UTC  events 0  book-game rows 369 (0 SGO, 369 The Odds API)  unmatched teams: Sam Houston St Bearkats  SGO month: 95,188 of 100,000 entities  The Odds API credits left: 86317
