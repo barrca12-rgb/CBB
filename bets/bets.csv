@@ -607,3 +607,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-14|401921063|spread|away,2026-11-14,401921063,spread,Portland State +10,away,2539,2502,San Francisco,Portland State,10.0,10.0,-110.0,Fanatics,2.56,7.44,0.31,yes,2026-11-13T22:22:09+00:00,,,,,,,,open,
 2026-11-14|401921775|total|over,2026-11-14,401921775,total,Over 145.5,over,222,2520,Villanova,Rider,145.5,145.5,-110.0,FanDuel,4.54,150.04,1.5,yes,2026-11-13T22:32:24+00:00,,,,,,,,open,
 2026-11-14|401911308|total|under,2026-11-14,401911308,total,Under 155.5,under,2561,225,Siena,Brown,155.5,155.5,-105.0,FanDuel,4.51,150.99,1.5,yes,2026-11-13T22:32:24+00:00,,,,,,,,open,
+2026-11-14|401920961|total|under,2026-11-14,401920961,total,Under 161.5,under,2413,85,Morehead State,IU Indianapolis,161.5,161.5,-110.0,FanDuel,4.98,156.52,1.5,yes,2026-11-13T22:41:44+00:00,,,,,,,,open,
+2026-11-14|401911520|spread|home|bandB,2026-11-14,401911520,spread,Sacramento State -3.5,home,16,302,Sacramento State,UC Davis,-3.5,-3.5,-110.0,FanDuel,2.35,5.85,0.5,yes,2026-11-13T22:41:50+00:00,,,,,,,,open,bandB
+2026-11-14|401911347|spread|home|bandB,2026-11-14,401911347,spread,Grand Canyon -31.5,home,2253,2433,Grand Canyon,UL Monroe,-31.5,-31.5,-110.0,FanDuel,2.47,33.97,0.5,yes,2026-11-13T22:41:50+00:00,,,,,,,,open,bandB
