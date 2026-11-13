@@ -584,3 +584,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-13|401906804|spread|away,2026-11-13,401906804,spread,Fairleigh Dickinson +32,away,201,161,Oklahoma,Fairleigh Dickinson,32.0,32.0,-110.0,Fanatics,3.69,28.31,0.6,yes,2026-11-13T03:37:34+00:00,,,,,,,,open,
 2026-11-13|401917526|total|under,2026-11-13,401917526,total,Under 148,under,301,2130,San Diego,Chicago State,148.0,148.0,-110.0,Fanatics,3.56,144.44,1.0,yes,2026-11-13T03:37:34+00:00,,,,,,,,open,
 2026-11-13|401911014|spread|away,2026-11-13,401911014,spread,Ball State +23.5,away,2567,2050,SMU,Ball State,23.5,23.5,-108.0,DraftKings,3.41,20.09,0.32,yes,2026-11-13T03:45:58+00:00,,,,,,,,open,
+2026-11-13|401925739|total|over,2026-11-13,401925739,total,Over 153.5,over,204,2400,Oregon State,Mississippi Valley State,153.5,153.5,-110.0,DraftKings,3.04,156.54,1.0,yes,2026-11-13T03:52:19+00:00,,,,,,,,open,
+2026-11-13|401920345|spread|away,2026-11-13,401920345,spread,Arkansas-Pine Bluff +16.5,away,2856,2029,California Baptist,Arkansas-Pine Bluff,16.5,16.5,-102.0,DraftKings,3.22,13.28,0.32,yes,2026-11-13T03:52:19+00:00,,,,,,,,open,

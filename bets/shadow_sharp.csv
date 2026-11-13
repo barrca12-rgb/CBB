@@ -462,3 +462,5 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-13|401906804|spread|away,2026-11-13,spread,Fairleigh Dickinson +32,32.0,-110.0,3.69,0.6,,,True,0.0,3.69,True,,,,,-32.0,0.0
 2026-11-13|401917526|total|under,2026-11-13,total,Under 148,148.0,-110.0,3.56,1.0,,,True,0.0,3.56,True,,,,,148.0,0.0
 2026-11-13|401911014|spread|away,2026-11-13,spread,Ball State +23.5,23.5,-108.0,3.41,0.32,,,True,1.0,2.41,True,-22.5,1.0,-23.0,0.5,-24.0,-0.5
+2026-11-13|401925739|total|over,2026-11-13,total,Over 153.5,153.5,-110.0,3.04,1.0,,,True,1.0,2.04,True,,,,,154.5,1.0
+2026-11-13|401920345|spread|away,2026-11-13,spread,Arkansas-Pine Bluff +16.5,16.5,-102.0,3.22,0.32,,,True,1.5,1.72,False,,,,,-15.0,1.5
