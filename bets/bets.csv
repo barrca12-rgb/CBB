@@ -578,7 +578,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-13|401906760|spread|away,2026-11-13,401906760,spread,Seton Hall +16.5,away,333,2550,Alabama,Seton Hall,16.5,16.5,-110.0,DraftKings,2.84,13.66,0.43,yes,2026-11-13T00:02:13+00:00,,,,,,,,open,
 2026-11-13|401909741|spread|home|bandB,2026-11-13,401909741,spread,Auburn +2.5,home,2,12,Auburn,Arizona,2.5,2.5,-115.0,DraftKings,2.25,-0.25,0.5,yes,2026-11-13T01:21:04+00:00,,,,,,,,open,bandB
 2026-11-13|401920973|spread|home,2026-11-13,401920973,spread,Elon -2.5,home,2210,236,Elon,Chattanooga,-2.5,-2.5,-120.0,FanDuel,3.49,5.99,0.41,yes,2026-11-13T02:11:23+00:00,,,,,,,,open,
-2026-11-13|401921167|spread|home,2026-11-13,401921167,spread,Cleveland State -3.5,home,325,2697,Cleveland State,West Florida,-3.5,-3.5,-110.0,DraftKings,4.14,7.64,0.6,yes,2026-11-13T03:37:34+00:00,,,,,,,,open,
+2026-11-13|401921167|spread|home,2026-11-13,401921167,spread,Cleveland State -3.5,home,325,2697,Cleveland State,West Florida,-3.5,-3.5,-110.0,DraftKings,4.14,7.64,0.6,yes,2026-11-13T03:37:34+00:00,1.5,-5.0,-0.1703634959398136,69.0,67.0,L,-0.6,settled,
 2026-11-13|401921825|total|over,2026-11-13,401921825,total,Over 152,over,238,2504,Vanderbilt,Prairie View A&M,152.0,152.0,-110.0,Fanatics,5.54,157.54,2.0,yes,2026-11-13T03:37:34+00:00,,,,,,,,open,
 2026-11-13|401925686|spread|home,2026-11-13,401925686,spread,Tarleton State -12.5,home,2627,2016,Tarleton State,Alcorn State,-12.5,-12.5,-110.0,Fanatics,3.52,16.02,0.6,yes,2026-11-13T03:37:34+00:00,,,,,,,,open,
 2026-11-13|401906804|spread|away,2026-11-13,401906804,spread,Fairleigh Dickinson +32,away,201,161,Oklahoma,Fairleigh Dickinson,32.0,32.0,-110.0,Fanatics,3.69,28.31,0.6,yes,2026-11-13T03:37:34+00:00,,,,,,,,open,
@@ -600,3 +600,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-13|401917527|total|under,2026-11-13,401917527,total,Under 151.5,under,2501,2837,Portland,East Texas A&M,151.5,151.5,-110.0,BetRivers,4.27,147.23,1.5,yes,2026-11-13T07:11:09+00:00,,,,,,,,open,
 2026-11-14|401921689|spread|home|bandB,2026-11-14,401921689,spread,Gonzaga -6.5,home,2250,99,Gonzaga,LSU,-6.5,-6.5,-115.0,DraftKings,2.21,8.71,0.5,yes,2026-11-13T21:02:05+00:00,,,,,,,,open,bandB
 2026-11-14|401911016|total|under,2026-11-14,401911016,total,Under 163.5,under,94,2117,Northern Kentucky,Central Michigan,163.5,163.5,-110.0,FanDuel,5.53,157.97,2.0,yes,2026-11-13T21:44:03+00:00,,,,,,,,open,
+2026-11-14|401928804|total|over,2026-11-14,401928804,total,Over 153,over,2174,2649,Detroit Mercy,Toledo,153.0,153.0,-110.0,Fanatics,4.65,157.65,1.5,yes,2026-11-13T21:52:17+00:00,,,,,,,,open,
+2026-11-14|401917529|total|under,2026-11-14,401917529,total,Under 161.5,under,279,2005,Pacific,Air Force,161.5,161.5,-110.0,Fanatics,8.67,152.83,2.0,yes,2026-11-13T21:52:17+00:00,,,,,,,,open,
