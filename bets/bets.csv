@@ -631,7 +631,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-14|401920567|spread|away,2026-11-14,401920567,spread,Morgan State +1,away,2352,2415,Loyola Maryland,Morgan State,1.0,1.0,-110.0,Fanatics,3.57,-2.57,0.61,yes,2026-11-14T03:01:16+00:00,,,,,,,,open,
 2026-11-14|401920567|total|over,2026-11-14,401920567,total,Over 151,over,2352,2415,Loyola Maryland,Morgan State,151.0,151.0,-110.0,Fanatics,3.35,154.35,1.0,yes,2026-11-14T03:01:16+00:00,,,,,,,,open,
 2026-11-14|401911347|spread|home,2026-11-14,401911347,spread,Grand Canyon -31.5,home,2253,2433,Grand Canyon,UL Monroe,-31.5,-31.5,-110.0,FanDuel,2.62,34.12,0.57,yes,2026-11-14T04:11:25+00:00,,,,,,,,open,
-2026-11-14|401924921|spread|home|bandB,2026-11-14,401924921,spread,Denver +7.5,home,2172,2751,Denver,Wyoming,7.5,7.5,-105.0,Fanatics,2.38,-5.12,0.5,yes,2026-11-14T05:11:20+00:00,,,,,,,,open,bandB
+2026-11-14|401924921|spread|home|bandB,2026-11-14,401924921,spread,Denver +7.5,home,2172,2751,Denver,Wyoming,7.5,7.5,-105.0,Fanatics,2.38,-5.12,0.5,yes,2026-11-14T05:11:20+00:00,7.5,0.0,0.0,53.0,76.0,L,-0.5,settled,bandB
 2026-11-14|401928804|spread|home,2026-11-14,401928804,spread,Detroit Mercy +11.5,home,2174,2649,Detroit Mercy,Toledo,11.5,11.5,-110.0,Caesars,2.77,-8.73,0.6,yes,2026-11-14T05:41:29+00:00,,,,,,,,open,
 2026-11-14|401909728|total|under,2026-11-14,401909728,total,Under 156.5,under,154,253,Wake Forest,Southern Utah,156.5,156.5,-105.0,theScore Bet,4.13,152.37,1.5,yes,2026-11-14T05:51:04+00:00,,,,,,,,open,
 2026-11-14|401920705|spread|home,2026-11-14,401920705,spread,Western Carolina -3.5,home,2717,288,Western Carolina,Lipscomb,-3.5,-3.5,-110.0,DraftKings,2.57,6.07,0.6,yes,2026-11-14T05:51:04+00:00,,,,,,,,open,
