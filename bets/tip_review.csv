@@ -2085,3 +2085,5 @@ checked_at,bet_id,pick,tip_check,cutoff,cutoff_source,espn_start,start_gap_min,f
 2026-11-14T17:35:41+00:00,2026-11-14|401920750|spread|home,Youngstown State +1.5,conflict,2026-11-14T23:00:00+00:00,latest pregame report,2026-11-14T18:00:00+00:00,300.0,2026-11-14T18:00:00+00:00,300.0,False
 2026-11-14T17:35:41+00:00,2026-11-14|401919847|total|over,Over 142,conflict,2026-11-14T18:00:00+00:00,latest pregame report,2026-11-14T19:00:00+00:00,-60.0,2026-11-14T19:00:00+00:00,-60.0,False
 2026-11-14T17:35:41+00:00,2026-11-14|401922031|spread|away|bandB,Montana +1.5,conflict,2026-11-14T18:00:00+00:00,latest pregame report,2026-11-15T02:00:00+00:00,-480.0,2026-11-15T02:00:00+00:00,-480.0,False
+2026-11-14T17:48:03+00:00,2026-11-14|401919847|total|over,Over 142,conflict,2026-11-14T18:00:00+00:00,latest pregame report,2026-11-14T19:00:00+00:00,-60.0,2026-11-14T19:00:00+00:00,-60.0,False
+2026-11-14T17:48:03+00:00,2026-11-14|401922031|spread|away|bandB,Montana +1.5,conflict,2026-11-14T18:00:00+00:00,latest pregame report,2026-11-15T02:00:00+00:00,-480.0,2026-11-15T02:00:00+00:00,-480.0,False
