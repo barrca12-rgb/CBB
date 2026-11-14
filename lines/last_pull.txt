@@ -1,1 +1,1 @@
-2026-11-14 18:33 UTC  events 0  book-game rows 364 (0 SGO, 364 The Odds API)  unmatched teams: Gardner-Webb Bulldogs  SGO month: 95,220 of 100,000 entities  The Odds API credits left: 85076
+2026-11-14 18:40 UTC  events 0  book-game rows 365 (0 SGO, 365 The Odds API)  unmatched teams: Gardner-Webb Bulldogs  SGO month: 95,220 of 100,000 entities  The Odds API credits left: 85069
