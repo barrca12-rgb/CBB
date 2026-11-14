@@ -410,3 +410,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-14T04:50:58+00:00,2026-11-14,401911276,2026-11-15T00:30Z,2184,2066,Duquesne,Binghamton,total,under,v1,Under 146.5,145.5,-105.0,DraftKings,2026-11-14T04:10:54+00:00,146.5,-110.0,theScore Bet,1.0,40.1,2.48,3.48,143.02
 2026-11-14T05:01:03+00:00,2026-11-14,401911308,2026-11-15T00:00Z,2561,225,Siena,Brown,spread,away,v1,Brown +11,8.5,-110.0,theScore Bet,2026-11-13T23:10:59+00:00,11.0,-110.0,Fanatics,2.5,350.1,0.26,2.76,8.24
 2026-11-14T05:11:00+00:00,2026-11-14,401928804,2026-11-14T21:00Z,2174,2649,Detroit Mercy,Toledo,spread,home,v1,Detroit Mercy +11.5,9.5,-105.0,DraftKings,2026-11-13T23:00:57+00:00,11.5,-110.0,theScore Bet,2.0,370.1,0.77,2.77,-8.73
+2026-11-14T05:21:06+00:00,2026-11-14,401909534,2026-11-14T23:00Z,2507,38,Providence,Colorado,spread,away,v1,Colorado +12.5,10.0,-115.0,Fanatics,2026-11-13T22:20:49+00:00,12.5,-110.0,Caesars,2.5,420.3,0.15,2.65,9.85
