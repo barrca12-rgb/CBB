@@ -603,7 +603,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-14|401928804|total|over,2026-11-14,401928804,total,Over 153,over,2174,2649,Detroit Mercy,Toledo,153.0,153.0,-110.0,Fanatics,4.65,157.65,1.5,yes,2026-11-13T21:52:17+00:00,,,,,,,,open,
 2026-11-14|401917529|total|under,2026-11-14,401917529,total,Under 161.5,under,279,2005,Pacific,Air Force,161.5,161.5,-110.0,Fanatics,8.67,152.83,2.0,yes,2026-11-13T21:52:17+00:00,163.5,-2.0,-0.048238488214981334,0.0,0.0,W,1.818,settled,
 2026-11-14|401927387|spread|away|bandB,2026-11-14,401927387,spread,Northern Iowa +1.5,away,2473,2460,Oakland,Northern Iowa,1.5,1.5,-115.0,FanDuel,2.41,-0.91,0.5,yes,2026-11-13T22:02:10+00:00,,,,,,,,open,bandB
-2026-11-14|401920750|spread|home,2026-11-14,401920750,spread,Youngstown State +1.5,home,2754,276,Youngstown State,Marshall,1.5,1.5,-115.0,FanDuel,3.31,1.81,0.31,yes,2026-11-13T22:11:29+00:00,,,,,,,,open,
+2026-11-14|401920750|spread|home,2026-11-14,401920750,spread,Youngstown State +1.5,home,2754,276,Youngstown State,Marshall,1.5,1.5,-115.0,FanDuel,3.31,1.81,0.31,yes,2026-11-13T22:11:29+00:00,1.5,0.0,0.0,74.0,71.0,W,0.27,settled,
 2026-11-14|401921063|spread|away,2026-11-14,401921063,spread,Portland State +10,away,2539,2502,San Francisco,Portland State,10.0,10.0,-110.0,Fanatics,2.56,7.44,0.31,yes,2026-11-13T22:22:09+00:00,,,,,,,,open,
 2026-11-14|401921775|total|over,2026-11-14,401921775,total,Over 145.5,over,222,2520,Villanova,Rider,145.5,145.5,-110.0,FanDuel,4.54,150.04,1.5,yes,2026-11-13T22:32:24+00:00,,,,,,,,open,
 2026-11-14|401911308|total|under,2026-11-14,401911308,total,Under 155.5,under,2561,225,Siena,Brown,155.5,155.5,-105.0,FanDuel,4.51,150.99,1.5,yes,2026-11-13T22:32:24+00:00,,,,,,,,open,
@@ -660,3 +660,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-15|401917175|spread|away,2026-11-15,401917175,spread,New Haven +25.5,away,213,2441,Penn State,New Haven,25.5,25.5,-115.0,theScore Bet,4.14,21.36,0.9,yes,2026-11-14T20:17:03+00:00,,,,,,,,open,
 2026-11-15|401926772|spread|home,2026-11-15,401926772,spread,USC -41.5,home,30,2029,USC,Arkansas-Pine Bluff,-41.5,-41.5,-115.0,theScore Bet,3.44,44.94,0.6,yes,2026-11-14T20:17:03+00:00,,,,,,,,open,
 2026-11-15|401926772|total|over,2026-11-15,401926772,total,Over 156.5,over,30,2029,USC,Arkansas-Pine Bluff,156.5,156.5,-115.0,theScore Bet,8.77,165.27,2.0,yes,2026-11-14T20:17:03+00:00,,,,,,,,open,
+2026-11-15|401921168|total|under,2026-11-15,401921168,total,Under 150.5,under,2010,325,Alabama A&M,Cleveland State,150.5,150.5,-105.0,theScore Bet,4.52,145.98,1.5,yes,2026-11-14T20:22:56+00:00,,,,,,,,open,
+2026-11-15|401919825|spread|away,2026-11-15,401919825,spread,Mercyhurst +15.5,away,256,2385,James Madison,Mercyhurst,15.5,15.5,-115.0,theScore Bet,3.39,12.11,0.66,yes,2026-11-14T20:22:56+00:00,,,,,,,,open,
+2026-11-15|401917531|spread|away,2026-11-15,401917531,spread,Chicago State +17.5,away,2351,2130,Loyola Marymount,Chicago State,17.5,17.5,-105.0,theScore Bet,3.94,13.56,0.99,yes,2026-11-14T20:22:56+00:00,,,,,,,,open,
