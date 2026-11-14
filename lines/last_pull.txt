@@ -1,1 +1,1 @@
-2026-11-14 18:00 UTC  events 0  book-game rows 370 (0 SGO, 370 The Odds API)  unmatched teams: Gardner-Webb Bulldogs, Loyola (Chi) Ramblers  SGO month: 95,220 of 100,000 entities  The Odds API credits left: 85100
+2026-11-14 18:10 UTC  events 0  book-game rows 357 (0 SGO, 357 The Odds API)  unmatched teams: Gardner-Webb Bulldogs, Loyola (Chi) Ramblers  SGO month: 95,220 of 100,000 entities  The Odds API credits left: 85097
