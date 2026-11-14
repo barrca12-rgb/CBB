@@ -654,3 +654,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-15|401925896|total|under,2026-11-15,401925896,total,Under 151.5,under,2247,2450,Georgia State,Norfolk State,151.5,151.5,-110.0,theScore Bet,3.94,147.56,1.0,yes,2026-11-14T20:02:01+00:00,,,,,,,,open,
 2026-11-15|401920235|total|under,2026-11-15,401920235,total,Under 147.5,under,104,159,Boston University,Dartmouth,147.5,147.5,-110.0,theScore Bet,5.69,141.81,2.0,yes,2026-11-14T20:02:01+00:00,,,,,,,,open,
 2026-11-15|401920896|spread|away,2026-11-15,401920896,spread,Coastal Carolina +29.5,away,275,324,Wisconsin,Coastal Carolina,29.5,29.5,100.0,theScore Bet,5.08,24.42,1.2,yes,2026-11-14T20:02:01+00:00,,,,,,,,open,
+2026-11-14|401925889|total|over,2026-11-14,401925889,total,Over 150.5,over,2458,2571,Northern Colorado,South Dakota State,150.5,150.5,-105.0,BetMGM,4.44,154.94,1.5,yes,2026-11-14T20:07:57+00:00,,,,,,,,open,
+2026-11-15|401929419|spread|away,2026-11-15,401929419,spread,Florida A&M +17.5,away,2638,50,UTEP,Florida A&M,17.5,17.5,-110.0,theScore Bet,2.64,14.86,0.6,yes,2026-11-14T20:08:56+00:00,,,,,,,,open,
