@@ -636,3 +636,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-14|401909728|total|under,2026-11-14,401909728,total,Under 156.5,under,154,253,Wake Forest,Southern Utah,156.5,156.5,-105.0,theScore Bet,4.13,152.37,1.5,yes,2026-11-14T05:51:04+00:00,,,,,,,,open,
 2026-11-14|401920705|spread|home,2026-11-14,401920705,spread,Western Carolina -3.5,home,2717,288,Western Carolina,Lipscomb,-3.5,-3.5,-110.0,DraftKings,2.57,6.07,0.6,yes,2026-11-14T05:51:04+00:00,,,,,,,,open,
 2026-11-14|401923303|spread|home|bandB,2026-11-14,401923303,spread,Maine +4.5,home,311,2182,Maine,Drexel,4.5,4.5,-118.0,DraftKings,2.06,-2.44,0.5,yes,2026-11-14T05:51:10+00:00,,,,,,,,open,bandB
+2026-11-14|401911520|spread|home,2026-11-14,401911520,spread,Sacramento State -2.5,home,16,302,Sacramento State,UC Davis,-2.5,-2.5,-110.0,FanDuel,3.3,5.8,0.6,yes,2026-11-14T06:31:26+00:00,,,,,,,,open,
