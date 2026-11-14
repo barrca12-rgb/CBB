@@ -597,7 +597,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-13|401909741|spread|home,2026-11-13,401909741,spread,Auburn +2.5,home,2,12,Auburn,Arizona,2.5,2.5,100.0,theScore Bet,2.58,0.08,0.39,yes,2026-11-13T05:21:33+00:00,2.5,0.0,0.0,69.0,80.0,L,-0.39,settled,
 2026-11-13|401911014|total|under,2026-11-13,401911014,total,Under 153.5,under,2567,2050,SMU,Ball State,153.5,153.5,-105.0,theScore Bet,4.19,149.31,1.5,yes,2026-11-13T05:21:33+00:00,150.5,3.0,0.07213729233996413,90.0,65.0,L,-1.5,settled,
 2026-11-13|401909696|spread|away|bandB,2026-11-13,401909696,spread,Texas A&M-Corpus Christi +22.5,away,52,357,Florida State,Texas A&M-Corpus Christi,22.5,22.5,-110.0,Fanatics,2.07,20.43,0.5,yes,2026-11-13T06:11:33+00:00,24.5,-2.0,-0.06999712412436032,84.0,60.0,L,-0.5,settled,bandB
-2026-11-13|401917527|total|under,2026-11-13,401917527,total,Under 151.5,under,2501,2837,Portland,East Texas A&M,151.5,151.5,-110.0,BetRivers,4.27,147.23,1.5,yes,2026-11-13T07:11:09+00:00,,,,,,,,open,
+2026-11-13|401917527|total|under,2026-11-13,401917527,total,Under 151.5,under,2501,2837,Portland,East Texas A&M,151.5,151.5,-110.0,BetRivers,4.27,147.23,1.5,yes,2026-11-13T07:11:09+00:00,152.5,-1.0,-0.02416352663316984,88.0,94.0,L,-1.5,settled,
 2026-11-14|401921689|spread|home|bandB,2026-11-14,401921689,spread,Gonzaga -6.5,home,2250,99,Gonzaga,LSU,-6.5,-6.5,-115.0,DraftKings,2.21,8.71,0.5,yes,2026-11-13T21:02:05+00:00,,,,,,,,open,bandB
 2026-11-14|401911016|total|under,2026-11-14,401911016,total,Under 163.5,under,94,2117,Northern Kentucky,Central Michigan,163.5,163.5,-110.0,FanDuel,5.53,157.97,2.0,yes,2026-11-13T21:44:03+00:00,,,,,,,,open,
 2026-11-14|401928804|total|over,2026-11-14,401928804,total,Over 153,over,2174,2649,Detroit Mercy,Toledo,153.0,153.0,-110.0,Fanatics,4.65,157.65,1.5,yes,2026-11-13T21:52:17+00:00,,,,,,,,open,
@@ -633,3 +633,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-14|401911347|spread|home,2026-11-14,401911347,spread,Grand Canyon -31.5,home,2253,2433,Grand Canyon,UL Monroe,-31.5,-31.5,-110.0,FanDuel,2.62,34.12,0.57,yes,2026-11-14T04:11:25+00:00,,,,,,,,open,
 2026-11-14|401924921|spread|home|bandB,2026-11-14,401924921,spread,Denver +7.5,home,2172,2751,Denver,Wyoming,7.5,7.5,-105.0,Fanatics,2.38,-5.12,0.5,yes,2026-11-14T05:11:20+00:00,,,,,,,,open,bandB
 2026-11-14|401928804|spread|home,2026-11-14,401928804,spread,Detroit Mercy +11.5,home,2174,2649,Detroit Mercy,Toledo,11.5,11.5,-110.0,Caesars,2.77,-8.73,0.6,yes,2026-11-14T05:41:29+00:00,,,,,,,,open,
+2026-11-14|401909728|total|under,2026-11-14,401909728,total,Under 156.5,under,154,253,Wake Forest,Southern Utah,156.5,156.5,-105.0,theScore Bet,4.13,152.37,1.5,yes,2026-11-14T05:51:04+00:00,,,,,,,,open,
+2026-11-14|401920705|spread|home,2026-11-14,401920705,spread,Western Carolina -3.5,home,2717,288,Western Carolina,Lipscomb,-3.5,-3.5,-110.0,DraftKings,2.57,6.07,0.6,yes,2026-11-14T05:51:04+00:00,,,,,,,,open,
+2026-11-14|401923303|spread|home|bandB,2026-11-14,401923303,spread,Maine +4.5,home,311,2182,Maine,Drexel,4.5,4.5,-118.0,DraftKings,2.06,-2.44,0.5,yes,2026-11-14T05:51:10+00:00,,,,,,,,open,bandB
