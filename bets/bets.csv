@@ -635,7 +635,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-14|401928804|spread|home,2026-11-14,401928804,spread,Detroit Mercy +11.5,home,2174,2649,Detroit Mercy,Toledo,11.5,11.5,-110.0,Caesars,2.77,-8.73,0.6,yes,2026-11-14T05:41:29+00:00,,,,,,,,open,
 2026-11-14|401909728|total|under,2026-11-14,401909728,total,Under 156.5,under,154,253,Wake Forest,Southern Utah,156.5,156.5,-105.0,theScore Bet,4.13,152.37,1.5,yes,2026-11-14T05:51:04+00:00,,,,,,,,open,
 2026-11-14|401920705|spread|home,2026-11-14,401920705,spread,Western Carolina -3.5,home,2717,288,Western Carolina,Lipscomb,-3.5,-3.5,-110.0,DraftKings,2.57,6.07,0.6,yes,2026-11-14T05:51:04+00:00,,,,,,,,open,
-2026-11-14|401923303|spread|home|bandB,2026-11-14,401923303,spread,Maine +4.5,home,311,2182,Maine,Drexel,4.5,4.5,-118.0,DraftKings,2.06,-2.44,0.5,yes,2026-11-14T05:51:10+00:00,,,,,,,,open,bandB
+2026-11-14|401923303|spread|home|bandB,2026-11-14,401923303,spread,Maine +4.5,home,311,2182,Maine,Drexel,4.5,4.5,-118.0,DraftKings,2.06,-2.44,0.5,yes,2026-11-14T05:51:10+00:00,3.5,1.0,0.03513455315346392,64.0,66.0,W,0.424,settled,bandB
 2026-11-14|401911520|spread|home,2026-11-14,401911520,spread,Sacramento State -2.5,home,16,302,Sacramento State,UC Davis,-2.5,-2.5,-110.0,FanDuel,3.3,5.8,0.6,yes,2026-11-14T06:31:26+00:00,,,,,,,,open,
 2026-11-14|401911264|spread|home|bandB,2026-11-14,401911264,spread,St. Bonaventure -15.5,home,179,322,St. Bonaventure,Lafayette,-15.5,-15.5,-105.0,DraftKings,2.15,17.65,0.5,yes,2026-11-14T08:31:12+00:00,,,,,,,,open,bandB
 2026-11-14|401922046|total|over,2026-11-14,401922046,total,Over 138.5,over,295,2344,Old Dominion,Longwood,138.5,138.5,-105.0,BetMGM,6.08,144.58,2.0,yes,2026-11-14T11:51:13+00:00,,,,,,,,open,
@@ -651,3 +651,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-15|401926063|spread|home|bandB,2026-11-15,401926063,spread,Nebraska -7,home,158,68,Nebraska,Boise State,-7.0,-7.0,-110.0,Fanatics,2.03,9.03,0.5,yes,2026-11-14T18:34:36+00:00,,,,,,,,open,bandB
 2026-11-15|401909774|total|over,2026-11-15,401909774,total,Over 142.5,over,66,315,Iowa State,Niagara,142.5,142.5,-105.0,Fanatics,5.82,148.32,2.0,yes,2026-11-14T19:11:49+00:00,,,,,,,,open,
 2026-11-14|401921038|total|over,2026-11-14,401921038,total,Over 163.5,over,2737,2296,Winthrop,Jackson State,163.5,163.5,-110.0,DraftKings,5.91,169.41,2.0,yes,2026-11-14T19:21:23+00:00,,,,,,,,open,
+2026-11-15|401925896|total|under,2026-11-15,401925896,total,Under 151.5,under,2247,2450,Georgia State,Norfolk State,151.5,151.5,-110.0,theScore Bet,3.94,147.56,1.0,yes,2026-11-14T20:02:01+00:00,,,,,,,,open,
+2026-11-15|401920235|total|under,2026-11-15,401920235,total,Under 147.5,under,104,159,Boston University,Dartmouth,147.5,147.5,-110.0,theScore Bet,5.69,141.81,2.0,yes,2026-11-14T20:02:01+00:00,,,,,,,,open,
+2026-11-15|401920896|spread|away,2026-11-15,401920896,spread,Coastal Carolina +29.5,away,275,324,Wisconsin,Coastal Carolina,29.5,29.5,100.0,theScore Bet,5.08,24.42,1.2,yes,2026-11-14T20:02:01+00:00,,,,,,,,open,
