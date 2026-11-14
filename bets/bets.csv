@@ -631,3 +631,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-14|401920567|spread|away,2026-11-14,401920567,spread,Morgan State +1,away,2352,2415,Loyola Maryland,Morgan State,1.0,1.0,-110.0,Fanatics,3.57,-2.57,0.61,yes,2026-11-14T03:01:16+00:00,,,,,,,,open,
 2026-11-14|401920567|total|over,2026-11-14,401920567,total,Over 151,over,2352,2415,Loyola Maryland,Morgan State,151.0,151.0,-110.0,Fanatics,3.35,154.35,1.0,yes,2026-11-14T03:01:16+00:00,,,,,,,,open,
 2026-11-14|401911347|spread|home,2026-11-14,401911347,spread,Grand Canyon -31.5,home,2253,2433,Grand Canyon,UL Monroe,-31.5,-31.5,-110.0,FanDuel,2.62,34.12,0.57,yes,2026-11-14T04:11:25+00:00,,,,,,,,open,
+2026-11-14|401924921|spread|home|bandB,2026-11-14,401924921,spread,Denver +7.5,home,2172,2751,Denver,Wyoming,7.5,7.5,-105.0,Fanatics,2.38,-5.12,0.5,yes,2026-11-14T05:11:20+00:00,,,,,,,,open,bandB
