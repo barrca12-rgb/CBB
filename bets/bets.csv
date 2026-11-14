@@ -590,13 +590,13 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-13|401920123|total|under,2026-11-13,401920123,total,Under 166.5,under,70,13,Idaho,Cal Poly,166.5,166.5,-105.0,BetMGM,3.95,162.55,1.0,yes,2026-11-13T04:11:22+00:00,,,,,,,,open,
 2026-11-13|401926133|total|under,2026-11-13,401926133,total,Under 153.5,under,2509,195,Purdue,Ohio,153.5,153.5,-110.0,DraftKings,3.04,150.46,1.0,yes,2026-11-13T04:21:25+00:00,,,,,,,,open,
 2026-11-13|401917525|total|under,2026-11-13,401917525,total,Under 153,under,2608,82,Saint Mary's,UIC,153.0,153.0,-110.0,Fanatics,3.64,149.36,1.0,yes,2026-11-13T04:21:25+00:00,,,,,,,,open,
-2026-11-13|401909696|total|under,2026-11-13,401909696,total,Under 149.5,under,52,357,Florida State,Texas A&M-Corpus Christi,149.5,149.5,-115.0,BetMGM,3.28,146.22,1.0,yes,2026-11-13T05:01:43+00:00,,,,,,,,open,
+2026-11-13|401909696|total|under,2026-11-13,401909696,total,Under 149.5,under,52,357,Florida State,Texas A&M-Corpus Christi,149.5,149.5,-115.0,BetMGM,3.28,146.22,1.0,yes,2026-11-13T05:01:43+00:00,148.5,1.0,0.024163526633169896,84.0,60.0,W,0.87,settled,
 2026-11-13|401927363|total|under,2026-11-13,401927363,total,Under 162,under,2181,233,Drake,South Dakota,162.0,162.0,-110.0,Caesars,3.06,158.94,1.0,yes,2026-11-13T05:21:33+00:00,,,,,,,,open,
 2026-11-13|401917916|total|under,2026-11-13,401917916,total,Under 160.5,under,8,2110,Arkansas,Central Arkansas,160.5,160.5,-105.0,FanDuel,4.2,156.3,1.5,yes,2026-11-13T05:21:33+00:00,,,,,,,,open,
 2026-11-13|401921026|total|under,2026-11-13,401921026,total,Under 163.5,under,2116,290,UCF,Georgia Southern,163.5,163.5,-110.0,FanDuel,4.55,158.95,1.5,yes,2026-11-13T05:21:33+00:00,,,,,,,,open,
 2026-11-13|401909741|spread|home,2026-11-13,401909741,spread,Auburn +2.5,home,2,12,Auburn,Arizona,2.5,2.5,100.0,theScore Bet,2.58,0.08,0.39,yes,2026-11-13T05:21:33+00:00,,,,,,,,open,
 2026-11-13|401911014|total|under,2026-11-13,401911014,total,Under 153.5,under,2567,2050,SMU,Ball State,153.5,153.5,-105.0,theScore Bet,4.19,149.31,1.5,yes,2026-11-13T05:21:33+00:00,,,,,,,,open,
-2026-11-13|401909696|spread|away|bandB,2026-11-13,401909696,spread,Texas A&M-Corpus Christi +22.5,away,52,357,Florida State,Texas A&M-Corpus Christi,22.5,22.5,-110.0,Fanatics,2.07,20.43,0.5,yes,2026-11-13T06:11:33+00:00,,,,,,,,open,bandB
+2026-11-13|401909696|spread|away|bandB,2026-11-13,401909696,spread,Texas A&M-Corpus Christi +22.5,away,52,357,Florida State,Texas A&M-Corpus Christi,22.5,22.5,-110.0,Fanatics,2.07,20.43,0.5,yes,2026-11-13T06:11:33+00:00,24.5,-2.0,-0.06999712412436032,84.0,60.0,L,-0.5,settled,bandB
 2026-11-13|401917527|total|under,2026-11-13,401917527,total,Under 151.5,under,2501,2837,Portland,East Texas A&M,151.5,151.5,-110.0,BetRivers,4.27,147.23,1.5,yes,2026-11-13T07:11:09+00:00,,,,,,,,open,
 2026-11-14|401921689|spread|home|bandB,2026-11-14,401921689,spread,Gonzaga -6.5,home,2250,99,Gonzaga,LSU,-6.5,-6.5,-115.0,DraftKings,2.21,8.71,0.5,yes,2026-11-13T21:02:05+00:00,,,,,,,,open,bandB
 2026-11-14|401911016|total|under,2026-11-14,401911016,total,Under 163.5,under,94,2117,Northern Kentucky,Central Michigan,163.5,163.5,-110.0,FanDuel,5.53,157.97,2.0,yes,2026-11-13T21:44:03+00:00,,,,,,,,open,
@@ -617,3 +617,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-14|401911455|spread|home|bandB,2026-11-14,401911455,spread,Nevada -9.5,home,2440,3084,Nevada,Utah Valley,-9.5,-9.5,-115.0,DraftKings,2.09,11.59,0.5,yes,2026-11-13T23:02:40+00:00,,,,,,,,open,bandB
 2026-11-14|401911015|spread|away,2026-11-14,401911015,spread,Miami (OH) -6.5,away,339,193,Evansville,Miami (OH),-6.5,-6.5,-113.0,BetRivers,2.72,-9.22,0.31,yes,2026-11-13T23:51:47+00:00,,,,,,,,open,
 2026-11-13|401927374|total|over,2026-11-13,401927374,total,Over 145.5,over,2449,2287,North Dakota State,Illinois State,145.5,145.5,-105.0,theScore Bet,5.39,150.89,2.0,yes,2026-11-14T00:11:01+00:00,,,,,,,,open,
+2026-11-13|401929199|total|over,2026-11-13,401929199,total,Over 138.5,over,326,2572,Texas State,Southern Miss,138.5,138.5,-110.0,FanDuel,8.25,146.75,2.0,yes,2026-11-14T00:31:21+00:00,,,,,,,,open,

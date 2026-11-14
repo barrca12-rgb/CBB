@@ -396,3 +396,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-13T23:31:31+00:00,2026-11-14,401919004,2026-11-14T17:00Z,2006,2655,Akron,Tulane,spread,home,bandB,Akron -11.5,-11.5,-120.0,FanDuel,2026-11-13T21:20:45+00:00,-11.5,-110.0,Fanatics,0.0,130.8,2.11,2.11,13.61
 2026-11-13T23:31:31+00:00,2026-11-14,401919017,2026-11-15T00:00Z,55,5,Jacksonville State,UAB,spread,home,v1,Jacksonville State +4.5,3.5,-115.0,theScore Bet,2026-11-13T23:10:59+00:00,4.5,-110.0,Fanatics,1.0,20.5,1.54,2.54,-1.96
 2026-11-14T00:10:51+00:00,2026-11-13,401906804,2026-11-14T01:00Z,201,161,Oklahoma,Fairleigh Dickinson,total,over,v1,Over 145.5,146.5,-110.0,FanDuel,2026-11-13T07:40:49+00:00,145.5,-115.0,theScore Bet,1.0,990.0,2.31,3.31,148.81
+2026-11-14T00:31:52+00:00,2026-11-14,401917529,2026-11-14T21:00Z,279,2005,Pacific,Air Force,spread,home,bandB,Pacific -11.5,-12.5,-110.0,BetMGM,2026-11-14T00:01:10+00:00,-11.5,-104.0,FanDuel,1.0,30.7,1.4,2.4,13.9
