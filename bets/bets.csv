@@ -642,3 +642,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-14|401922031|spread|away|bandB,2026-11-14,401922031,spread,Montana +1.5,away,155,149,North Dakota,Montana,1.5,1.5,-110.0,theScore Bet,2.05,-0.55,0.5,yes,2026-11-14T12:21:39+00:00,,,,,,,,open,bandB
 2026-11-14|401921096|spread|away|bandB,2026-11-14,401921096,spread,Rice +11.5,away,2617,242,Stephen F. Austin,Rice,11.5,11.5,-105.0,theScore Bet,2.14,9.36,0.5,yes,2026-11-14T13:21:14+00:00,,,,,,,,open,bandB
 2026-11-14|401920915|total|over,2026-11-14,401920915,total,Over 150.5,over,91,2459,Bellarmine,Northern Illinois,150.5,150.5,-104.0,FanDuel,3.91,154.41,1.0,yes,2026-11-14T18:11:19+00:00,,,,,,,,open,
+2026-11-15|401909493|total|under,2026-11-15,401909493,total,Under 145.5,under,2294,156,Iowa,Creighton,145.5,145.5,-105.0,FanDuel,3.1,142.4,1.0,yes,2026-11-14T18:28:43+00:00,,,,,,,,open,
+2026-11-15|401909493|spread|away|bandB,2026-11-15,401909493,spread,Creighton +4.5,away,2294,156,Iowa,Creighton,4.5,4.5,-115.0,Fanatics,2.15,2.35,0.5,yes,2026-11-14T18:28:49+00:00,,,,,,,,open,bandB
