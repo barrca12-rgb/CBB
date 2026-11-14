@@ -463,7 +463,7 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-13|401917526|total|under,2026-11-13,total,Under 148,148.0,-110.0,3.56,1.0,L,-1.0,True,0.0,3.56,True,,,,,148.0,0.0
 2026-11-13|401911014|spread|away,2026-11-13,spread,Ball State +23.5,23.5,-108.0,3.41,0.32,L,-0.32,True,1.0,2.41,True,-22.5,1.0,-23.0,0.5,-24.0,-0.5
 2026-11-13|401925739|total|over,2026-11-13,total,Over 153.5,153.5,-110.0,3.04,1.0,L,-1.0,True,1.0,2.04,True,,,,,154.5,1.0
-2026-11-13|401920345|spread|away,2026-11-13,spread,Arkansas-Pine Bluff +16.5,16.5,-102.0,3.22,0.32,,,True,1.5,1.72,False,,,,,-15.0,1.5
+2026-11-13|401920345|spread|away,2026-11-13,spread,Arkansas-Pine Bluff +16.5,16.5,-102.0,3.22,0.32,W,0.314,True,1.5,1.72,False,,,,,-15.0,1.5
 2026-11-13|401926794|spread|away,2026-11-13,spread,North Carolina Central +18.5,18.5,-118.0,3.8,0.58,W,0.492,True,2.5,1.3,False,,,,,-16.0,2.5
 2026-11-13|401920123|total|under,2026-11-13,total,Under 166.5,166.5,-105.0,3.95,1.0,W,0.952,True,0.0,3.95,True,166.5,0.0,166.5,0.0,167.0,-0.5
 2026-11-13|401926133|total|under,2026-11-13,total,Under 153.5,153.5,-110.0,3.04,1.0,W,0.909,True,0.5,2.54,True,153.5,0.0,153.0,0.5,153.0,0.5
@@ -499,3 +499,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-14|401920567|spread|away,2026-11-14,spread,Morgan State +1,1.0,-110.0,3.57,0.61,,,True,0.0,3.57,True,,,,,-1.0,0.0
 2026-11-14|401920567|total|over,2026-11-14,total,Over 151,151.0,-110.0,3.35,1.0,,,True,0.0,3.35,True,,,,,151.0,0.0
 2026-11-14|401911347|spread|home,2026-11-14,spread,Grand Canyon -31.5,-31.5,-110.0,2.62,0.57,,,True,1.5,1.12,False,-31.5,0.0,,,-33.0,1.5
+2026-11-14|401928804|spread|home,2026-11-14,spread,Detroit Mercy +11.5,11.5,-110.0,2.77,0.6,,,True,1.5,1.27,False,11.5,0.0,11.5,0.0,10.0,1.5
