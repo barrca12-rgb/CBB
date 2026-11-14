@@ -425,3 +425,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-14T13:51:07+00:00,2026-11-14,401920915,2026-11-14T19:00Z,91,2459,Bellarmine,Northern Illinois,spread,home,v1,Bellarmine +1.5,-1.0,-110.0,Fanatics,2026-11-14T02:30:47+00:00,1.5,-120.0,theScore Bet,2.5,680.3,0.06,2.56,1.06
 2026-11-14T13:51:07+00:00,2026-11-14,401922046,2026-11-14T21:00Z,295,2344,Old Dominion,Longwood,spread,away,bandB,Longwood +8.5,7.5,-110.0,DraftKings,2026-11-14T03:30:46+00:00,8.5,-105.0,theScore Bet,1.0,620.4,1.12,2.12,6.38
 2026-11-14T13:51:07+00:00,2026-11-14,401918055,2026-11-14T22:00Z,25,3101,California,Utah Tech,total,under,v1,Under 159.5,158.0,-110.0,Fanatics,2026-11-13T22:01:04+00:00,159.5,-110.0,FanDuel,1.5,950.0,2.4,3.9,155.6
+2026-11-14T14:01:10+00:00,2026-11-14,401919782,2026-11-14T23:00Z,2330,2363,Le Moyne,Manhattan,spread,home,v1,Le Moyne -0.5,-3.5,-105.0,Fanatics,2026-11-14T02:50:42+00:00,-0.5,-122.0,BetRivers,3.0,670.5,0.1,3.1,3.6
