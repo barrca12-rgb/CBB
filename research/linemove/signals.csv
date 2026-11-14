@@ -406,3 +406,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-14T02:31:00+00:00,2026-11-14,401921063,2026-11-15T00:00Z,2539,2502,San Francisco,Portland State,total,under,v1,Under 144.5,143.5,-105.0,FanDuel,2026-11-13T22:20:49+00:00,144.5,-110.0,theScore Bet,1.0,250.2,2.42,3.42,141.08
 2026-11-14T02:40:55+00:00,2026-11-14,401911188,2026-11-15T00:30Z,2168,2132,Dayton,Cincinnati,total,under,v1,Under 148.5,147.5,-108.0,BetRivers,2026-11-14T00:40:52+00:00,148.5,-105.0,theScore Bet,1.0,120.0,2.58,3.58,144.92
 2026-11-14T03:13:08+00:00,2026-11-14,401924921,2026-11-14T20:00Z,2172,2751,Denver,Wyoming,spread,home,v1,Denver +8,5.5,-115.0,Caesars,2026-11-13T23:10:59+00:00,8.0,-110.0,Caesars,2.5,242.2,0.38,2.88,-5.12
+2026-11-14T04:41:04+00:00,2026-11-14,401911264,2026-11-14T21:00Z,179,322,St. Bonaventure,Lafayette,spread,home,bandB,St. Bonaventure -15,-15.5,-105.0,theScore Bet,2026-11-14T04:20:44+00:00,-15.0,-115.0,Fanatics,0.5,20.3,1.79,2.29,17.29
