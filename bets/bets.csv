@@ -638,3 +638,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-14|401923303|spread|home|bandB,2026-11-14,401923303,spread,Maine +4.5,home,311,2182,Maine,Drexel,4.5,4.5,-118.0,DraftKings,2.06,-2.44,0.5,yes,2026-11-14T05:51:10+00:00,,,,,,,,open,bandB
 2026-11-14|401911520|spread|home,2026-11-14,401911520,spread,Sacramento State -2.5,home,16,302,Sacramento State,UC Davis,-2.5,-2.5,-110.0,FanDuel,3.3,5.8,0.6,yes,2026-11-14T06:31:26+00:00,,,,,,,,open,
 2026-11-14|401911264|spread|home|bandB,2026-11-14,401911264,spread,St. Bonaventure -15.5,home,179,322,St. Bonaventure,Lafayette,-15.5,-15.5,-105.0,DraftKings,2.15,17.65,0.5,yes,2026-11-14T08:31:12+00:00,,,,,,,,open,bandB
+2026-11-14|401922046|total|over,2026-11-14,401922046,total,Over 138.5,over,295,2344,Old Dominion,Longwood,138.5,138.5,-105.0,BetMGM,6.08,144.58,2.0,yes,2026-11-14T11:51:13+00:00,,,,,,,,open,
