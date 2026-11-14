@@ -571,9 +571,9 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-13|401926117|spread|away|bandB,2026-11-13,401926117,spread,Wright State -2,away,2535,2750,Samford,Wright State,-2.0,-2.0,-115.0,Fanatics,2.49,-4.49,0.5,yes,2026-11-12T22:01:11+00:00,,,,,,,,open,bandB
 2026-11-13|401921728|spread|home|bandB,2026-11-13,401921728,spread,UNLV +1.5,home,2439,24,UNLV,Stanford,1.5,1.5,-120.0,FanDuel,2.25,0.75,0.5,yes,2026-11-12T22:01:11+00:00,,,,,,,,open,bandB
 2026-11-13|401911014|spread|away|bandB,2026-11-13,401911014,spread,Ball State +22.5,away,2567,2050,SMU,Ball State,22.5,22.5,-110.0,FanDuel,2.38,20.12,0.5,yes,2026-11-12T22:01:11+00:00,,,,,,,,open,bandB
-2026-11-13|401909515|total|under,2026-11-13,401909515,total,Under 149.5,under,228,46,Clemson,Georgetown,149.5,149.5,-110.0,DraftKings,3.33,146.17,1.0,yes,2026-11-12T22:52:05+00:00,,,,,,,,open,
+2026-11-13|401909515|total|under,2026-11-13,401909515,total,Under 149.5,under,228,46,Clemson,Georgetown,149.5,149.5,-110.0,DraftKings,3.33,146.17,1.0,yes,2026-11-12T22:52:05+00:00,147.5,2.0,0.048238488214981334,78.0,85.0,L,-1.0,settled,
 2026-11-13|401926133|spread|away,2026-11-13,401926133,spread,Ohio +20.5,away,2509,195,Purdue,Ohio,20.5,20.5,-115.0,theScore Bet,2.63,17.87,0.43,yes,2026-11-12T22:52:05+00:00,,,,,,,,open,
-2026-11-13|401909515|spread|home|bandB,2026-11-13,401909515,spread,Clemson -3.5,home,228,46,Clemson,Georgetown,-3.5,-3.5,-110.0,DraftKings,2.2,5.7,0.5,yes,2026-11-12T22:52:14+00:00,,,,,,,,open,bandB
+2026-11-13|401909515|spread|home|bandB,2026-11-13,401909515,spread,Clemson -3.5,home,228,46,Clemson,Georgetown,-3.5,-3.5,-110.0,DraftKings,2.2,5.7,0.5,yes,2026-11-12T22:52:14+00:00,-4.5,1.0,0.03513455315346392,78.0,85.0,L,-0.5,settled,bandB
 2026-11-13|401926117|spread|away,2026-11-13,401926117,spread,Wright State -1.5,away,2535,2750,Samford,Wright State,-1.5,-1.5,-118.0,DraftKings,2.99,-4.49,0.43,yes,2026-11-12T23:21:47+00:00,,,,,,,,open,
 2026-11-13|401906760|spread|away,2026-11-13,401906760,spread,Seton Hall +16.5,away,333,2550,Alabama,Seton Hall,16.5,16.5,-110.0,DraftKings,2.84,13.66,0.43,yes,2026-11-13T00:02:13+00:00,,,,,,,,open,
 2026-11-13|401909741|spread|home|bandB,2026-11-13,401909741,spread,Auburn +2.5,home,2,12,Auburn,Arizona,2.5,2.5,-115.0,DraftKings,2.25,-0.25,0.5,yes,2026-11-13T01:21:04+00:00,,,,,,,,open,bandB
