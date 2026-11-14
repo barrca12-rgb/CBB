@@ -640,3 +640,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-14|401911264|spread|home|bandB,2026-11-14,401911264,spread,St. Bonaventure -15.5,home,179,322,St. Bonaventure,Lafayette,-15.5,-15.5,-105.0,DraftKings,2.15,17.65,0.5,yes,2026-11-14T08:31:12+00:00,,,,,,,,open,bandB
 2026-11-14|401922046|total|over,2026-11-14,401922046,total,Over 138.5,over,295,2344,Old Dominion,Longwood,138.5,138.5,-105.0,BetMGM,6.08,144.58,2.0,yes,2026-11-14T11:51:13+00:00,,,,,,,,open,
 2026-11-14|401922031|spread|away|bandB,2026-11-14,401922031,spread,Montana +1.5,away,155,149,North Dakota,Montana,1.5,1.5,-110.0,theScore Bet,2.05,-0.55,0.5,yes,2026-11-14T12:21:39+00:00,,,,,,,,open,bandB
+2026-11-14|401921096|spread|away|bandB,2026-11-14,401921096,spread,Rice +11.5,away,2617,242,Stephen F. Austin,Rice,11.5,11.5,-105.0,theScore Bet,2.14,9.36,0.5,yes,2026-11-14T13:21:14+00:00,,,,,,,,open,bandB
