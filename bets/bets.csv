@@ -619,3 +619,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-13|401927374|total|over,2026-11-13,401927374,total,Over 145.5,over,2449,2287,North Dakota State,Illinois State,145.5,145.5,-105.0,theScore Bet,5.39,150.89,2.0,yes,2026-11-14T00:11:01+00:00,,,,,,,,open,
 2026-11-13|401929199|total|over,2026-11-13,401929199,total,Over 138.5,over,326,2572,Texas State,Southern Miss,138.5,138.5,-110.0,FanDuel,8.25,146.75,2.0,yes,2026-11-14T00:31:21+00:00,,,,,,,,open,
 2026-11-14|401909728|spread|away|bandB,2026-11-14,401909728,spread,Southern Utah +20.5,away,154,253,Wake Forest,Southern Utah,20.5,20.5,-121.0,BetRivers,2.37,18.13,0.5,yes,2026-11-14T00:42:00+00:00,,,,,,,,open,bandB
+2026-11-13|401927380|total|under,2026-11-13,401927380,total,Under 162.5,under,93,2640,Murray State,Texas Southern,162.5,162.5,-105.0,theScore Bet,3.29,159.21,1.0,yes,2026-11-14T00:51:26+00:00,,,,,,,,open,
