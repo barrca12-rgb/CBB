@@ -510,3 +510,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-15|401918949|total|over,2026-11-15,total,Over 160.5,160.5,-115.0,3.29,1.0,,,False,,,False,,,,,,
 2026-11-15|401926063|total|under,2026-11-15,total,Under 153.5,153.5,-110.0,3.45,1.0,,,False,,,False,,,,,,
 2026-11-15|401909525|spread|home,2026-11-15,spread,Marquette +1.5,1.5,-110.0,2.87,0.6,,,False,,,False,,,,,,
+2026-11-15|401909774|total|over,2026-11-15,total,Over 142.5,142.5,-105.0,5.82,2.0,,,True,-1.0,6.82,True,,,,,141.5,-1.0
