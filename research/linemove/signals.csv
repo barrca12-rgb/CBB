@@ -416,3 +416,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-14T05:50:51+00:00,2026-11-14,401925827,2026-11-14T23:00Z,249,6,North Texas,South Alabama,total,over,v1,Over 133.5,136.5,-115.0,FanDuel,2026-11-13T22:20:49+00:00,133.5,-110.0,Caesars,3.0,450.0,0.65,3.65,137.15
 2026-11-14T05:50:51+00:00,2026-11-14,401911347,2026-11-15T01:00Z,2253,2433,Grand Canyon,UL Monroe,total,under,v1,Under 167.5,164.5,-105.0,DraftKings,2026-11-13T23:00:57+00:00,167.5,-115.0,theScore Bet,3.0,409.9,1.22,4.22,163.28
 2026-11-14T08:41:04+00:00,2026-11-14,401922046,2026-11-14T21:00Z,295,2344,Old Dominion,Longwood,total,over,v1,Over 139.5,144.5,-110.0,DraftKings,2026-11-14T03:30:46+00:00,139.5,-105.0,DraftKings,5.0,310.3,0.08,5.08,144.58
+2026-11-14T11:10:55+00:00,2026-11-14,401921096,2026-11-14T19:00Z,2617,242,Stephen F. Austin,Rice,spread,away,v1,Rice +12.5,11.5,-110.0,theScore Bet,2026-11-14T04:20:44+00:00,12.5,-114.0,BetRivers,1.0,410.2,1.71,2.71,9.79
