@@ -591,7 +591,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-13|401926133|total|under,2026-11-13,401926133,total,Under 153.5,under,2509,195,Purdue,Ohio,153.5,153.5,-110.0,DraftKings,3.04,150.46,1.0,yes,2026-11-13T04:21:25+00:00,149.5,4.0,0.09577427411304962,80.0,62.0,W,0.909,settled,
 2026-11-13|401917525|total|under,2026-11-13,401917525,total,Under 153,under,2608,82,Saint Mary's,UIC,153.0,153.0,-110.0,Fanatics,3.64,149.36,1.0,yes,2026-11-13T04:21:25+00:00,,,,,,,,open,
 2026-11-13|401909696|total|under,2026-11-13,401909696,total,Under 149.5,under,52,357,Florida State,Texas A&M-Corpus Christi,149.5,149.5,-115.0,BetMGM,3.28,146.22,1.0,yes,2026-11-13T05:01:43+00:00,148.5,1.0,0.024163526633169896,84.0,60.0,W,0.87,settled,
-2026-11-13|401927363|total|under,2026-11-13,401927363,total,Under 162,under,2181,233,Drake,South Dakota,162.0,162.0,-110.0,Caesars,3.06,158.94,1.0,yes,2026-11-13T05:21:33+00:00,,,,,,,,open,
+2026-11-13|401927363|total|under,2026-11-13,401927363,total,Under 162,under,2181,233,Drake,South Dakota,162.0,162.0,-110.0,Caesars,3.06,158.94,1.0,yes,2026-11-13T05:21:33+00:00,159.0,3.0,0.07213729233996413,81.0,72.0,W,0.909,settled,
 2026-11-13|401917916|total|under,2026-11-13,401917916,total,Under 160.5,under,8,2110,Arkansas,Central Arkansas,160.5,160.5,-105.0,FanDuel,4.2,156.3,1.5,yes,2026-11-13T05:21:33+00:00,,,,,,,,open,
 2026-11-13|401921026|total|under,2026-11-13,401921026,total,Under 163.5,under,2116,290,UCF,Georgia Southern,163.5,163.5,-110.0,FanDuel,4.55,158.95,1.5,yes,2026-11-13T05:21:33+00:00,,,,,,,,open,
 2026-11-13|401909741|spread|home,2026-11-13,401909741,spread,Auburn +2.5,home,2,12,Auburn,Arizona,2.5,2.5,100.0,theScore Bet,2.58,0.08,0.39,yes,2026-11-13T05:21:33+00:00,,,,,,,,open,
@@ -624,3 +624,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-14|401922230|spread|home,2026-11-14,401922230,spread,Queens University -7.5,home,2511,2747,Queens University,Wofford,-7.5,-7.5,-110.0,Fanatics,5.3,12.8,0.7,yes,2026-11-14T02:31:09+00:00,,,,,,,,open,
 2026-11-14|401918993|spread|home,2026-11-14,401918993,spread,South Florida -24,home,58,2154,South Florida,Coppin State,-24.0,-24.0,-110.0,Fanatics,3.64,27.64,0.52,yes,2026-11-14T02:31:09+00:00,,,,,,,,open,
 2026-11-14|401918979|spread|away,2026-11-14,401918979,spread,Delaware State +16.5,away,151,2169,East Carolina,Delaware State,16.5,16.5,-110.0,Fanatics,2.79,13.71,0.35,yes,2026-11-14T02:31:09+00:00,,,,,,,,open,
+2026-11-14|401920741|total|under,2026-11-14,401920741,total,Under 148,under,2097,2908,Campbell,South Carolina Upstate,148.0,148.0,-110.0,Fanatics,3.76,144.24,1.0,yes,2026-11-14T02:51:05+00:00,,,,,,,,open,
+2026-11-14|401920705|total|over,2026-11-14,401920705,total,Over 154.5,over,2717,288,Western Carolina,Lipscomb,154.5,154.5,-110.0,Fanatics,3.23,157.73,1.0,yes,2026-11-14T02:51:05+00:00,,,,,,,,open,
+2026-11-14|401920705|spread|home|bandB,2026-11-14,401920705,spread,Western Carolina -3.5,home,2717,288,Western Carolina,Lipscomb,-3.5,-3.5,-110.0,Fanatics,2.46,5.96,0.5,yes,2026-11-14T02:51:11+00:00,,,,,,,,open,bandB
+2026-11-14|401925063|spread|home|bandB,2026-11-14,401925063,spread,Nicholls -2,home,2447,2348,Nicholls,Louisiana Tech,-2.0,-2.0,-110.0,Fanatics,2.01,4.01,0.5,yes,2026-11-14T02:51:11+00:00,,,,,,,,open,bandB
