@@ -644,3 +644,8 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-14|401920915|total|over,2026-11-14,401920915,total,Over 150.5,over,91,2459,Bellarmine,Northern Illinois,150.5,150.5,-104.0,FanDuel,3.91,154.41,1.0,yes,2026-11-14T18:11:19+00:00,,,,,,,,open,
 2026-11-15|401909493|total|under,2026-11-15,401909493,total,Under 145.5,under,2294,156,Iowa,Creighton,145.5,145.5,-105.0,FanDuel,3.1,142.4,1.0,yes,2026-11-14T18:28:43+00:00,,,,,,,,open,
 2026-11-15|401909493|spread|away|bandB,2026-11-15,401909493,spread,Creighton +4.5,away,2294,156,Iowa,Creighton,4.5,4.5,-115.0,Fanatics,2.15,2.35,0.5,yes,2026-11-14T18:28:49+00:00,,,,,,,,open,bandB
+2026-11-15|401918949|spread|away,2026-11-15,401918949,spread,Louisville -7,away,235,97,Memphis,Louisville,-7.0,-7.0,-110.0,Fanatics,2.86,-9.86,0.6,yes,2026-11-14T18:34:28+00:00,,,,,,,,open,
+2026-11-15|401918949|total|over,2026-11-15,401918949,total,Over 160.5,over,235,97,Memphis,Louisville,160.5,160.5,-115.0,FanDuel,3.29,163.79,1.0,yes,2026-11-14T18:34:28+00:00,,,,,,,,open,
+2026-11-15|401926063|total|under,2026-11-15,401926063,total,Under 153.5,under,158,68,Nebraska,Boise State,153.5,153.5,-110.0,FanDuel,3.45,150.05,1.0,yes,2026-11-14T18:34:28+00:00,,,,,,,,open,
+2026-11-15|401909525|spread|home,2026-11-15,401909525,spread,Marquette +1.5,home,269,142,Marquette,Missouri,1.5,1.5,-110.0,FanDuel,2.87,1.37,0.6,yes,2026-11-14T18:34:28+00:00,,,,,,,,open,
+2026-11-15|401926063|spread|home|bandB,2026-11-15,401926063,spread,Nebraska -7,home,158,68,Nebraska,Boise State,-7.0,-7.0,-110.0,Fanatics,2.03,9.03,0.5,yes,2026-11-14T18:34:36+00:00,,,,,,,,open,bandB
