@@ -537,3 +537,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-15|401926073|spread|home,2026-11-15,spread,Oregon -14.5,-14.5,-105.0,2.8,0.5,,,True,0.0,2.8,True,-14.5,0.0,,,-14.5,0.0
 2026-11-15|401925812|total|under,2026-11-15,total,Under 153.5,153.5,-110.0,4.16,1.5,,,True,1.0,3.16,True,152.5,1.0,,,153.5,0.0
 2026-11-15|401911017|total|over,2026-11-15,total,Over 149.5,149.5,-115.0,3.71,1.0,,,True,2.5,1.21,False,,,,,152.0,2.5
+2026-11-16|401929419|spread|away,2026-11-16,spread,Florida A&M +19.5,19.5,-110.0,4.64,1.08,,,False,,,False,,,,,,
