@@ -15991,3 +15991,7 @@ pulled_at,source,ok,rows,teams_matched,players_matched,unmatched_teams,error,sec
 2026-11-15T18:50:33+00:00,rotowire,True,5,1.0,1.0,,,0.5,1273.0
 2026-11-15T18:50:33+00:00,covers,True,108,0.935,0.0,Delaware Fightin' Blue Hens; Miami (FL) Hurricanes; San Jose State Spartans; UNLV Runnin' Rebels; Utah Runnin' Utes,,1.1,1921147.0
 2026-11-15T18:50:33+00:00,cbs,True,0,,,,,0.3,458098.0
+2026-11-15T18:50:45+00:00,espn,True,0,,,,,1.5,149.0
+2026-11-15T18:50:45+00:00,rotowire,True,5,1.0,1.0,,,0.5,1273.0
+2026-11-15T18:50:45+00:00,covers,True,108,0.935,0.0,Delaware Fightin' Blue Hens; Miami (FL) Hurricanes; San Jose State Spartans; UNLV Runnin' Rebels; Utah Runnin' Utes,,1.5,1921147.0
+2026-11-15T18:50:45+00:00,cbs,True,0,,,,,0.3,458098.0
