@@ -1,1 +1,1 @@
-2026-11-15 21:30 UTC  events 0  book-game rows 79 (0 SGO, 79 The Odds API)  unmatched teams: none  SGO month: 95,372 of 100,000 entities  The Odds API credits left: 83880
+2026-11-15 21:40 UTC  events 0  book-game rows 101 (0 SGO, 101 The Odds API)  unmatched teams: none  SGO month: 95,372 of 100,000 entities  The Odds API credits left: 83871
