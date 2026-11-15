@@ -439,8 +439,6 @@ game_id,actual_tip,quality,reason,source,fetched_at
 401926063,2026-11-15T18:02:26+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-15T18:03:13+00:00
 401920235,2026-11-15T18:03:13+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-15T18:04:06+00:00
 401920771,2026-11-15T18:02:53+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-15T18:04:06+00:00
-401917529,,missing,no play-by-play,"espn play-by-play, earliest period-1 play at 20:00",2026-11-15T18:21:47+00:00
-401926133,,ambiguous,wall clocks out of order (more than 5 s backwards),"espn play-by-play, earliest period-1 play at 20:00",2026-11-15T18:21:47+00:00
 401909554,2026-11-15T18:31:30+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-15T18:32:21+00:00
 401906848,,ambiguous,wall clocks out of order (more than 5 s backwards),"espn play-by-play, earliest period-1 play at 20:00",2026-11-15T19:02:01+00:00
 401916315,,ambiguous,wall clocks out of order (more than 5 s backwards),"espn play-by-play, earliest period-1 play at 20:00",2026-11-15T19:02:01+00:00
@@ -456,3 +454,5 @@ game_id,actual_tip,quality,reason,source,fetched_at
 401920065,2026-11-15T19:03:18+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-15T19:04:00+00:00
 401920136,2026-11-15T19:05:42+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-15T19:06:30+00:00
 401925812,2026-11-15T19:02:21+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-15T19:07:55+00:00
+401917529,,missing,no play-by-play,"espn play-by-play, earliest period-1 play at 20:00",2026-11-15T19:22:13+00:00
+401926133,,ambiguous,wall clocks out of order (more than 5 s backwards),"espn play-by-play, earliest period-1 play at 20:00",2026-11-15T19:22:13+00:00
