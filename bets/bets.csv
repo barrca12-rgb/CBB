@@ -683,3 +683,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-15|401911472|spread|away,2026-11-15,401911472,spread,Alabama State +11.5,away,23,2011,San José State,Alabama State,11.5,11.5,112.0,BetRivers,2.55,8.95,0.53,yes,2026-11-15T11:31:47+00:00,,,,,,,,open,
 2026-11-15|401920771|spread|away|bandB,2026-11-15,401920771,spread,Colgate +1.5,away,48,2142,Delaware,Colgate,1.5,1.5,-105.0,theScore Bet,2.07,-0.57,0.5,yes,2026-11-15T11:31:52+00:00,,,,,,,,open,bandB
 2026-11-15|401911251|total|under,2026-11-15,401911251,total,Under 164.5,under,139,2272,Saint Louis,High Point,164.5,164.5,-105.0,theScore Bet,3.68,160.82,1.0,yes,2026-11-15T19:08:22+00:00,,,,,,,,open,
+2026-11-15|401934396|spread|home,2026-11-15,401934396,spread,Pacific -10.5,home,279,2005,Pacific,Air Force,-10.5,-10.5,-118.0,DraftKings,2.63,13.13,0.53,yes,2026-11-15T19:40:57+00:00,,,,,,,,open,
