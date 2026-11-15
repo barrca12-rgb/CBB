@@ -651,7 +651,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-15|401926063|spread|home|bandB,2026-11-15,401926063,spread,Nebraska -7,home,158,68,Nebraska,Boise State,-7.0,-7.0,-110.0,Fanatics,2.03,9.03,0.5,yes,2026-11-14T18:34:36+00:00,,,,,,,,open,bandB
 2026-11-15|401909774|total|over,2026-11-15,401909774,total,Over 142.5,over,66,315,Iowa State,Niagara,142.5,142.5,-105.0,Fanatics,5.82,148.32,2.0,yes,2026-11-14T19:11:49+00:00,,,,,,,,open,
 2026-11-14|401921038|total|over,2026-11-14,401921038,total,Over 163.5,over,2737,2296,Winthrop,Jackson State,163.5,163.5,-110.0,DraftKings,5.91,169.41,2.0,yes,2026-11-14T19:21:23+00:00,163.5,0.0,0.0,72.0,76.0,L,-2.0,settled,
-2026-11-15|401925896|total|under,2026-11-15,401925896,total,Under 151.5,under,2247,2450,Georgia State,Norfolk State,151.5,151.5,-110.0,theScore Bet,3.94,147.56,1.0,yes,2026-11-14T20:02:01+00:00,,,,,,,,open,
+2026-11-15|401925896|total|under,2026-11-15,401925896,total,Under 151.5,under,2247,2450,Georgia State,Norfolk State,151.5,151.5,-110.0,theScore Bet,3.94,147.56,1.0,yes,2026-11-14T20:02:01+00:00,142.5,9.0,0.20727953271553645,78.0,53.0,W,0.909,settled,
 2026-11-15|401920235|total|under,2026-11-15,401920235,total,Under 147.5,under,104,159,Boston University,Dartmouth,147.5,147.5,-110.0,theScore Bet,5.69,141.81,2.0,yes,2026-11-14T20:02:01+00:00,,,,,,,,open,
 2026-11-15|401920896|spread|away,2026-11-15,401920896,spread,Coastal Carolina +29.5,away,275,324,Wisconsin,Coastal Carolina,29.5,29.5,100.0,theScore Bet,5.08,24.42,1.2,yes,2026-11-14T20:02:01+00:00,,,,,,,,open,
 2026-11-14|401925889|total|over,2026-11-14,401925889,total,Over 150.5,over,2458,2571,Northern Colorado,South Dakota State,150.5,150.5,-105.0,BetMGM,4.44,154.94,1.5,yes,2026-11-14T20:07:57+00:00,149.5,-1.0,-0.02416352663316984,46.0,71.0,L,-1.5,settled,
@@ -681,6 +681,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-16|401929419|spread|away,2026-11-16,401929419,spread,Florida A&M +19.5,away,2638,50,UTEP,Florida A&M,19.5,19.5,-110.0,theScore Bet,4.64,14.86,1.08,yes,2026-11-15T03:13:59+00:00,,,,,,,,open,
 2026-11-15|401921287|total|over,2026-11-15,401921287,total,Over 145.5,over,107,399,Holy Cross,UAlbany,145.5,145.5,-105.0,theScore Bet,3.06,148.56,1.0,yes,2026-11-15T05:41:28+00:00,,,,,,,,open,
 2026-11-15|401911472|spread|away,2026-11-15,401911472,spread,Alabama State +11.5,away,23,2011,San José State,Alabama State,11.5,11.5,112.0,BetRivers,2.55,8.95,0.53,yes,2026-11-15T11:31:47+00:00,,,,,,,,open,
-2026-11-15|401920771|spread|away|bandB,2026-11-15,401920771,spread,Colgate +1.5,away,48,2142,Delaware,Colgate,1.5,1.5,-105.0,theScore Bet,2.07,-0.57,0.5,yes,2026-11-15T11:31:52+00:00,,,,,,,,open,bandB
+2026-11-15|401920771|spread|away|bandB,2026-11-15,401920771,spread,Colgate +1.5,away,48,2142,Delaware,Colgate,1.5,1.5,-105.0,theScore Bet,2.07,-0.57,0.5,yes,2026-11-15T11:31:52+00:00,1.5,0.0,0.0,64.0,58.0,L,-0.5,settled,bandB
 2026-11-15|401911251|total|under,2026-11-15,401911251,total,Under 164.5,under,139,2272,Saint Louis,High Point,164.5,164.5,-105.0,theScore Bet,3.68,160.82,1.0,yes,2026-11-15T19:08:22+00:00,,,,,,,,open,
 2026-11-15|401934396|spread|home,2026-11-15,401934396,spread,Pacific -10.5,home,279,2005,Pacific,Air Force,-10.5,-10.5,-118.0,DraftKings,2.63,13.13,0.53,yes,2026-11-15T19:40:57+00:00,,,,,,,,open,
