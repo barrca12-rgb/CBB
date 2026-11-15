@@ -560,3 +560,6 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-16|401916298|total|over,2026-11-16,total,Over 152.5,152.5,-115.0,4.42,1.5,,,True,0.5,3.92,True,,,,,153.0,0.5
 2026-11-16|401921804|spread|away,2026-11-16,spread,Grambling +30.5,30.5,-108.0,3.6,0.35,,,True,0.5,3.1,True,,,,,-30.0,0.5
 2026-11-16|401906783|spread|away,2026-11-16,spread,Jacksonville +22.5,22.5,-105.0,3.11,0.23,,,True,-0.5,3.61,True,,,,,-23.0,-0.5
+2026-11-16|401920808|spread|away,2026-11-16,spread,SE Louisiana +33.5,33.5,-110.0,2.85,0.23,,,True,-0.5,3.35,True,,,,,-34.0,-0.5
+2026-11-16|401920808|total|over,2026-11-16,total,Over 158.5,158.5,-110.0,3.21,1.0,,,True,0.0,3.21,True,,,,,158.5,0.0
+2026-11-16|401929192|spread|away,2026-11-16,spread,East Texas A&M +17.5,17.5,-105.0,2.74,0.23,,,True,0.0,2.74,True,,,,,-17.5,0.0
