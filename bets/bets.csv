@@ -656,7 +656,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-15|401920896|spread|away,2026-11-15,401920896,spread,Coastal Carolina +29.5,away,275,324,Wisconsin,Coastal Carolina,29.5,29.5,100.0,theScore Bet,5.08,24.42,1.2,yes,2026-11-14T20:02:01+00:00,,,,,,,,open,
 2026-11-14|401925889|total|over,2026-11-14,401925889,total,Over 150.5,over,2458,2571,Northern Colorado,South Dakota State,150.5,150.5,-105.0,BetMGM,4.44,154.94,1.5,yes,2026-11-14T20:07:57+00:00,149.5,-1.0,-0.02416352663316984,46.0,71.0,L,-1.5,settled,
 2026-11-15|401929419|spread|away,2026-11-15,401929419,spread,Florida A&M +17.5,away,2638,50,UTEP,Florida A&M,17.5,17.5,-110.0,theScore Bet,2.64,14.86,0.6,yes,2026-11-14T20:08:56+00:00,,,,,,,,open,
-2026-11-15|401924858|total|under,2026-11-15,401924858,total,Under 142,under,2115,2514,Central Connecticut,Quinnipiac,142.0,142.0,-110.0,Fanatics,3.15,138.85,1.0,yes,2026-11-14T20:17:03+00:00,,,,,,,,open,
+2026-11-15|401924858|total|under,2026-11-15,401924858,total,Under 142,under,2115,2514,Central Connecticut,Quinnipiac,142.0,142.0,-110.0,Fanatics,3.15,138.85,1.0,yes,2026-11-14T20:17:03+00:00,140.5,1.5,0.036217586696894344,72.0,67.0,W,0.909,settled,
 2026-11-15|401917175|spread|away,2026-11-15,401917175,spread,New Haven +25.5,away,213,2441,Penn State,New Haven,25.5,25.5,-115.0,theScore Bet,4.14,21.36,0.9,yes,2026-11-14T20:17:03+00:00,,,,,,,,open,
 2026-11-15|401926772|spread|home,2026-11-15,401926772,spread,USC -41.5,home,30,2029,USC,Arkansas-Pine Bluff,-41.5,-41.5,-115.0,theScore Bet,3.44,44.94,0.6,yes,2026-11-14T20:17:03+00:00,,,,,,,,open,
 2026-11-15|401926772|total|over,2026-11-15,401926772,total,Over 156.5,over,30,2029,USC,Arkansas-Pine Bluff,156.5,156.5,-115.0,theScore Bet,8.77,165.27,2.0,yes,2026-11-14T20:17:03+00:00,,,,,,,,open,
@@ -682,3 +682,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-15|401921287|total|over,2026-11-15,401921287,total,Over 145.5,over,107,399,Holy Cross,UAlbany,145.5,145.5,-105.0,theScore Bet,3.06,148.56,1.0,yes,2026-11-15T05:41:28+00:00,,,,,,,,open,
 2026-11-15|401911472|spread|away,2026-11-15,401911472,spread,Alabama State +11.5,away,23,2011,San José State,Alabama State,11.5,11.5,112.0,BetRivers,2.55,8.95,0.53,yes,2026-11-15T11:31:47+00:00,,,,,,,,open,
 2026-11-15|401920771|spread|away|bandB,2026-11-15,401920771,spread,Colgate +1.5,away,48,2142,Delaware,Colgate,1.5,1.5,-105.0,theScore Bet,2.07,-0.57,0.5,yes,2026-11-15T11:31:52+00:00,,,,,,,,open,bandB
+2026-11-15|401911251|total|under,2026-11-15,401911251,total,Under 164.5,under,139,2272,Saint Louis,High Point,164.5,164.5,-105.0,theScore Bet,3.68,160.82,1.0,yes,2026-11-15T19:08:22+00:00,,,,,,,,open,
