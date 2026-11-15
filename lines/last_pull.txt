@@ -1,1 +1,1 @@
-2026-11-15 11:22 UTC  events 121  book-game rows 252 (179 SGO, 73 The Odds API)  unmatched teams: Citadel Bulldogs, Fisk University Bulldogs, Fort Wayne Mastodons, IUPUI Jaguars, Wilson Phoenix  The Odds API credits left: 84279
+2026-11-15 11:31 UTC  events 0  book-game rows 242 (0 SGO, 242 The Odds API)  unmatched teams: Fort Wayne Mastodons  The Odds API credits left: 84276

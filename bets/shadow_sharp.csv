@@ -539,3 +539,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-15|401911017|total|over,2026-11-15,total,Over 149.5,149.5,-115.0,3.71,1.0,,,True,2.5,1.21,False,,,,,152.0,2.5
 2026-11-16|401929419|spread|away,2026-11-16,spread,Florida A&M +19.5,19.5,-110.0,4.64,1.08,,,False,,,False,,,,,,
 2026-11-15|401921287|total|over,2026-11-15,total,Over 145.5,145.5,-105.0,3.06,1.0,,,True,-0.5,3.56,True,,,,,145.0,-0.5
+2026-11-15|401911472|spread|away,2026-11-15,spread,Alabama State +11.5,11.5,112.0,2.55,0.53,,,True,-1.0,3.55,True,-12.5,-1.0,,,-12.5,-1.0
