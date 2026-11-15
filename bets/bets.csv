@@ -675,7 +675,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-15|401912210|total|over,2026-11-15,401912210,total,Over 130.5,over,44,108,American University,Harvard,130.5,130.5,-110.0,FanDuel,3.89,134.39,1.0,yes,2026-11-15T01:19:07+00:00,129.5,-1.0,-0.02416352663316984,70.0,64.0,W,0.909,settled,
 2026-11-15|401909554|total|over,2026-11-15,401909554,total,Over 131.5,over,103,160,Boston College,New Hampshire,131.5,131.5,-105.0,DraftKings,3.2,134.7,1.0,yes,2026-11-15T01:28:05+00:00,131.5,0.0,0.0,67.0,55.0,L,-1.0,settled,
 2026-11-15|401925812|spread|home,2026-11-15,401925812,spread,La Salle +0.5,home,2325,218,La Salle,Temple,0.5,0.5,-109.0,BetRivers,2.51,2.01,0.5,yes,2026-11-15T01:28:05+00:00,,,,,,,,open,
-2026-11-15|401926073|spread|home,2026-11-15,401926073,spread,Oregon -14.5,home,2483,2492,Oregon,Pepperdine,-14.5,-14.5,-105.0,theScore Bet,2.8,17.3,0.5,yes,2026-11-15T02:11:21+00:00,,,,,,,,open,
+2026-11-15|401926073|spread|home,2026-11-15,401926073,spread,Oregon -14.5,home,2483,2492,Oregon,Pepperdine,-14.5,-14.5,-105.0,theScore Bet,2.8,17.3,0.5,yes,2026-11-15T02:11:21+00:00,-13.5,-1.0,-0.03513455315346398,0.0,0.0,L,-0.5,settled,
 2026-11-15|401925812|total|under,2026-11-15,401925812,total,Under 153.5,under,2325,218,La Salle,Temple,153.5,153.5,-110.0,theScore Bet,4.16,149.34,1.5,yes,2026-11-15T02:21:19+00:00,,,,,,,,open,
 2026-11-15|401911017|total|over,2026-11-15,401911017,total,Over 149.5,over,2084,2099,Buffalo,Canisius,149.5,149.5,-115.0,BetRivers,3.71,153.21,1.0,yes,2026-11-15T02:46:52+00:00,,,,,,,,open,
 2026-11-16|401929419|spread|away,2026-11-16,401929419,spread,Florida A&M +19.5,away,2638,50,UTEP,Florida A&M,19.5,19.5,-110.0,theScore Bet,4.64,14.86,1.08,yes,2026-11-15T03:13:59+00:00,,,,,,,,open,
@@ -695,3 +695,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-17|401926143|total|under,2026-11-17,401926143,total,Under 149.5,under,155,2565,North Dakota,SIU Edwardsville,149.5,149.5,-105.0,theScore Bet,3.62,145.88,1.0,yes,2026-11-15T20:12:24+00:00,,,,,,,,open,
 2026-11-15|401917531|total|over,2026-11-15,401917531,total,Over 139.5,over,2351,2130,Loyola Marymount,Chicago State,139.5,139.5,-110.0,theScore Bet,4.33,143.83,1.5,yes,2026-11-15T20:21:07+00:00,,,,,,,,open,
 2026-11-15|401934396|total|under,2026-11-15,401934396,total,Under 164.5,under,279,2005,Pacific,Air Force,164.5,164.5,-105.0,FanDuel,8.43,156.07,2.0,yes,2026-11-15T20:36:38+00:00,,,,,,,,open,
+2026-11-15|401923393|total|over,2026-11-15,401923393,total,Over 140.5,over,88,2711,Southern Indiana,Western Michigan,140.5,140.5,-105.0,BetMGM,4.88,145.38,1.5,yes,2026-11-15T20:55:13+00:00,,,,,,,,open,
