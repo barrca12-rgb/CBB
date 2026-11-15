@@ -700,3 +700,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-16|401911240|total|under,2026-11-16,401911240,total,Under 155,under,259,257,Virginia Tech,Richmond,155.0,155.0,-110.0,Fanatics,3.05,151.95,1.0,yes,2026-11-15T21:32:10+00:00,,,,,,,,open,
 2026-11-16|401916317|spread|away,2026-11-16,401916317,spread,Prairie View A&M +34.5,away,194,2504,Ohio State,Prairie View A&M,34.5,34.5,-110.0,theScore Bet,4.62,29.88,0.46,yes,2026-11-15T22:21:55+00:00,,,,,,,,open,
 2026-11-16|401916298|total|over,2026-11-16,401916298,total,Over 152.5,over,120,2016,Maryland,Alcorn State,152.5,152.5,-115.0,theScore Bet,4.42,156.92,1.5,yes,2026-11-15T22:32:14+00:00,,,,,,,,open,
+2026-11-16|401921804|spread|away,2026-11-16,401921804,spread,Grambling +30.5,away,96,2755,Kentucky,Grambling,30.5,30.5,-108.0,DraftKings,3.6,26.9,0.35,yes,2026-11-15T22:42:03+00:00,,,,,,,,open,
+2026-11-16|401906783|spread|away,2026-11-16,401906783,spread,Jacksonville +22.5,away,61,294,Georgia,Jacksonville,22.5,22.5,-105.0,theScore Bet,3.11,19.39,0.23,yes,2026-11-15T22:42:03+00:00,,,,,,,,open,
