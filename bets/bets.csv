@@ -607,7 +607,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-14|401921063|spread|away,2026-11-14,401921063,spread,Portland State +10,away,2539,2502,San Francisco,Portland State,10.0,10.0,-110.0,Fanatics,2.56,7.44,0.31,yes,2026-11-13T22:22:09+00:00,8.5,1.5,0.05261666195334003,68.0,84.0,W,0.282,settled,
 2026-11-14|401921775|total|over,2026-11-14,401921775,total,Over 145.5,over,222,2520,Villanova,Rider,145.5,145.5,-110.0,FanDuel,4.54,150.04,1.5,yes,2026-11-13T22:32:24+00:00,144.5,-1.0,-0.02416352663316984,99.0,62.0,W,1.364,settled,
 2026-11-14|401911308|total|under,2026-11-14,401911308,total,Under 155.5,under,2561,225,Siena,Brown,155.5,155.5,-105.0,FanDuel,4.51,150.99,1.5,yes,2026-11-13T22:32:24+00:00,158.5,-3.0,-0.07213729233996419,79.0,74.0,W,1.429,settled,
-2026-11-14|401920961|total|under,2026-11-14,401920961,total,Under 161.5,under,2413,85,Morehead State,IU Indianapolis,161.5,161.5,-110.0,FanDuel,4.98,156.52,1.5,yes,2026-11-13T22:41:44+00:00,,,,,,,,open,
+2026-11-14|401920961|total|under,2026-11-14,401920961,total,Under 161.5,under,2413,85,Morehead State,IU Indianapolis,161.5,161.5,-110.0,FanDuel,4.98,156.52,1.5,yes,2026-11-13T22:41:44+00:00,158.5,3.0,0.07213729233996413,79.0,75.0,W,1.364,settled,
 2026-11-14|401911520|spread|home|bandB,2026-11-14,401911520,spread,Sacramento State -3.5,home,16,302,Sacramento State,UC Davis,-3.5,-3.5,-110.0,FanDuel,2.35,5.85,0.5,yes,2026-11-13T22:41:50+00:00,,,,,,,,open,bandB
 2026-11-14|401911347|spread|home|bandB,2026-11-14,401911347,spread,Grand Canyon -31.5,home,2253,2433,Grand Canyon,UL Monroe,-31.5,-31.5,-110.0,FanDuel,2.47,33.97,0.5,yes,2026-11-13T22:41:50+00:00,,,,,,,,open,bandB
 2026-11-14|401917530|spread|home,2026-11-14,401917530,spread,Santa Clara +2.5,home,2541,167,Santa Clara,New Mexico,2.5,2.5,-110.0,DraftKings,3.31,0.81,0.31,yes,2026-11-13T22:51:36+00:00,,,,,,,,open,
@@ -677,3 +677,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-15|401925812|spread|home,2026-11-15,401925812,spread,La Salle +0.5,home,2325,218,La Salle,Temple,0.5,0.5,-109.0,BetRivers,2.51,2.01,0.5,yes,2026-11-15T01:28:05+00:00,,,,,,,,open,
 2026-11-15|401926073|spread|home,2026-11-15,401926073,spread,Oregon -14.5,home,2483,2492,Oregon,Pepperdine,-14.5,-14.5,-105.0,theScore Bet,2.8,17.3,0.5,yes,2026-11-15T02:11:21+00:00,,,,,,,,open,
 2026-11-15|401925812|total|under,2026-11-15,401925812,total,Under 153.5,under,2325,218,La Salle,Temple,153.5,153.5,-110.0,theScore Bet,4.16,149.34,1.5,yes,2026-11-15T02:21:19+00:00,,,,,,,,open,
+2026-11-15|401911017|total|over,2026-11-15,401911017,total,Over 149.5,over,2084,2099,Buffalo,Canisius,149.5,149.5,-115.0,BetRivers,3.71,153.21,1.0,yes,2026-11-15T02:46:52+00:00,,,,,,,,open,
