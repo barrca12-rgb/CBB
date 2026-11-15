@@ -557,3 +557,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-16|401918075|total|under,2026-11-16,total,Under 147.5,147.5,-110.0,4.86,1.5,,,True,1.0,3.86,True,,,,,146.5,1.0
 2026-11-16|401911240|total|under,2026-11-16,total,Under 155,155.0,-110.0,3.05,1.0,,,True,0.0,3.05,True,,,,,155.0,0.0
 2026-11-16|401916317|spread|away,2026-11-16,spread,Prairie View A&M +34.5,34.5,-110.0,4.62,0.46,,,True,1.0,3.62,True,,,,,-33.5,1.0
+2026-11-16|401916298|total|over,2026-11-16,total,Over 152.5,152.5,-115.0,4.42,1.5,,,True,0.5,3.92,True,,,,,153.0,0.5
