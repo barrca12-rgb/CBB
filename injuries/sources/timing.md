@@ -1,6 +1,6 @@
 # Injury sources: who reports first
 
-Updated 2026-11-15 21:00 UTC by `cbb/injury_sources.py`. Logging since 2026-10-26; 15 game day(s) so far. Model's injury input: **espn** (recommendation: **espn**, only 6 injuries matched to a line move after 14 game days; staying with ESPN; waiting for approval).
+Updated 2026-11-15 21:10 UTC by `cbb/injury_sources.py`. Logging since 2026-10-26; 15 game day(s) so far. Model's injury input: **espn** (recommendation: **espn**, only 6 injuries matched to a line move after 14 game days; staying with ESPN; waiting for approval).
 
 Material injuries: Out / Doubtful / Questionable, player with 10%+ of team minutes, first reported after logging began and before the team's next game. A line move is the spread moving 1+ point against the team at any book. Times are poll times (one run = 30 minutes).
 
@@ -19,5 +19,5 @@ Last pull per source:
 |---|---|---:|---:|---|---|
 | espn | yes | 0 |  |  |  |
 | rotowire | yes | 5 | 100% |  |  |
-| covers | yes | 107 | 94% | Delaware Fightin' Blue Hens; Miami (FL) Hurricanes; San Jose State Spartans; UNLV Runnin' Rebels; Utah Runnin' Utes |  |
+| covers | yes | 107 | 94% | Miami (FL) Hurricanes; San Jose State Spartans; UNLV Runnin' Rebels; Utah Runnin' Utes |  |
 | cbs | yes | 0 |  |  |  |
