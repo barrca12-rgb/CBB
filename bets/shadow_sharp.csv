@@ -509,7 +509,7 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-15|401918949|spread|away,2026-11-15,spread,Louisville -7,-7.0,-110.0,2.86,0.6,L,-0.6,False,,,False,,,,,,
 2026-11-15|401918949|total|over,2026-11-15,total,Over 160.5,160.5,-115.0,3.29,1.0,W,0.87,False,,,False,,,,,,
 2026-11-15|401926063|total|under,2026-11-15,total,Under 153.5,153.5,-110.0,3.45,1.0,L,-1.0,False,,,False,,,,,,
-2026-11-15|401909525|spread|home,2026-11-15,spread,Marquette +1.5,1.5,-110.0,2.87,0.6,,,False,,,False,,,,,,
+2026-11-15|401909525|spread|home,2026-11-15,spread,Marquette +1.5,1.5,-110.0,2.87,0.6,L,-0.6,False,,,False,,,,,,
 2026-11-15|401909774|total|over,2026-11-15,total,Over 142.5,142.5,-105.0,5.82,2.0,L,-2.0,True,-1.0,6.82,True,,,,,141.5,-1.0
 2026-11-14|401921038|total|over,2026-11-14,total,Over 163.5,163.5,-110.0,5.91,2.0,L,-2.0,True,1.0,4.91,True,163.5,0.0,164.0,0.5,164.5,1.0
 2026-11-15|401925896|total|under,2026-11-15,total,Under 151.5,151.5,-110.0,3.94,1.0,W,0.909,True,0.0,3.94,True,,,,,151.5,0.0
