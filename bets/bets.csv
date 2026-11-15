@@ -684,3 +684,9 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-15|401920771|spread|away|bandB,2026-11-15,401920771,spread,Colgate +1.5,away,48,2142,Delaware,Colgate,1.5,1.5,-105.0,theScore Bet,2.07,-0.57,0.5,yes,2026-11-15T11:31:52+00:00,1.5,0.0,0.0,64.0,58.0,L,-0.5,settled,bandB
 2026-11-15|401911251|total|under,2026-11-15,401911251,total,Under 164.5,under,139,2272,Saint Louis,High Point,164.5,164.5,-105.0,theScore Bet,3.68,160.82,1.0,yes,2026-11-15T19:08:22+00:00,,,,,,,,open,
 2026-11-15|401934396|spread|home,2026-11-15,401934396,spread,Pacific -10.5,home,279,2005,Pacific,Air Force,-10.5,-10.5,-118.0,DraftKings,2.63,13.13,0.53,yes,2026-11-15T19:40:57+00:00,,,,,,,,open,
+2026-11-16|401928841|total|under,2026-11-16,401928841,total,Under 160.5,under,2309,2198,Kent State,Eastern Kentucky,160.5,160.5,-105.0,theScore Bet,4.69,155.81,1.5,yes,2026-11-15T20:02:14+00:00,,,,,,,,open,
+2026-11-16|401927364|spread|away,2026-11-16,401927364,spread,Tarleton State +11.5,away,2181,2627,Drake,Tarleton State,11.5,11.5,-115.0,theScore Bet,4.5,7.0,1.06,yes,2026-11-15T20:02:14+00:00,,,,,,,,open,
+2026-11-16|401916307|spread|away,2026-11-16,401916307,spread,Western Illinois +36.5,away,135,2710,Minnesota,Western Illinois,36.5,36.5,-110.0,theScore Bet,3.34,33.16,0.53,yes,2026-11-15T20:02:14+00:00,,,,,,,,open,
+2026-11-16|401909798|spread|away,2026-11-16,401909798,spread,Montana +15.5,away,2306,149,Kansas State,Montana,15.5,15.5,-115.0,theScore Bet,2.76,12.74,0.53,yes,2026-11-15T20:02:14+00:00,,,,,,,,open,
+2026-11-16|401924265|spread|away,2026-11-16,401924265,spread,Long Beach State +33.5,away,26,299,UCLA,Long Beach State,33.5,33.5,-105.0,theScore Bet,5.12,28.38,1.06,yes,2026-11-15T20:02:14+00:00,,,,,,,,open,
+2026-11-16|401917532|spread|home,2026-11-16,401917532,spread,Saint Mary's -17.5,home,2608,2502,Saint Mary's,Portland State,-17.5,-17.5,-115.0,theScore Bet,4.7,22.2,1.06,yes,2026-11-15T20:02:14+00:00,,,,,,,,open,
