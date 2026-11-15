@@ -1,1 +1,1 @@
-2026-11-15 19:17 UTC  events 0  book-game rows 133 (0 SGO, 133 The Odds API)  unmatched teams: Fort Wayne Mastodons  SGO month: 95,341 of 100,000 entities  The Odds API credits left: 84019
+2026-11-15 19:23 UTC  events 0  book-game rows 133 (0 SGO, 133 The Odds API)  unmatched teams: Fort Wayne Mastodons  SGO month: 95,341 of 100,000 entities  The Odds API credits left: 84012
