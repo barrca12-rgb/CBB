@@ -694,3 +694,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-16|401917917|spread|away,2026-11-16,401917917,spread,Central Arkansas +21.5,away,197,2110,Oklahoma State,Central Arkansas,21.5,21.5,-110.0,theScore Bet,2.95,18.55,0.53,yes,2026-11-15T20:11:44+00:00,,,,,,,,open,
 2026-11-17|401926143|total|under,2026-11-17,401926143,total,Under 149.5,under,155,2565,North Dakota,SIU Edwardsville,149.5,149.5,-105.0,theScore Bet,3.62,145.88,1.0,yes,2026-11-15T20:12:24+00:00,,,,,,,,open,
 2026-11-15|401917531|total|over,2026-11-15,401917531,total,Over 139.5,over,2351,2130,Loyola Marymount,Chicago State,139.5,139.5,-110.0,theScore Bet,4.33,143.83,1.5,yes,2026-11-15T20:21:07+00:00,,,,,,,,open,
+2026-11-15|401934396|total|under,2026-11-15,401934396,total,Under 164.5,under,279,2005,Pacific,Air Force,164.5,164.5,-105.0,FanDuel,8.43,156.07,2.0,yes,2026-11-15T20:36:38+00:00,,,,,,,,open,

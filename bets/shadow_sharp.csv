@@ -552,3 +552,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-16|401917917|spread|away,2026-11-16,spread,Central Arkansas +21.5,21.5,-110.0,2.95,0.53,,,True,0.5,2.45,True,,,,,-21.0,0.5
 2026-11-17|401926143|total|under,2026-11-17,total,Under 149.5,149.5,-105.0,3.62,1.0,,,False,,,False,,,,,,
 2026-11-15|401917531|total|over,2026-11-15,total,Over 139.5,139.5,-110.0,4.33,1.5,,,True,1.0,3.33,True,138.5,-1.0,140.5,1.0,139.5,0.0
+2026-11-15|401934396|total|under,2026-11-15,total,Under 164.5,164.5,-105.0,8.43,2.0,,,True,0.0,8.43,True,164.5,0.0,164.5,0.0,,
