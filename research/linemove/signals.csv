@@ -460,3 +460,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-15T14:01:06+00:00,2026-11-15,401917531,2026-11-15T21:00Z,2351,2130,Loyola Marymount,Chicago State,total,over,v1,Over 139.5,140.5,-110.0,theScore Bet,2026-11-14T20:21:29+00:00,139.5,-115.0,BetMGM,1.0,1059.6,2.63,3.63,143.13
 2026-11-15T14:11:23+00:00,2026-11-16,401929419,2026-11-16T18:00Z,2638,50,UTEP,Florida A&M,total,over,v1,Over 141.5,142.0,-105.0,Fanatics,2026-11-15T14:10:41+00:00,141.5,-110.0,BetMGM,0.5,0.7,2.57,3.07,144.57
 2026-11-15T16:11:03+00:00,2026-11-15,401920065,2026-11-15T19:00Z,227,163,Rhode Island,Princeton,spread,home,bandB,Rhode Island -6.5,-8.5,-110.0,FanDuel,2026-11-14T23:50:44+00:00,-6.5,-118.0,DraftKings,2.0,980.3,0.19,2.19,8.69
+2026-11-15T17:01:16+00:00,2026-11-15,401906866,2026-11-15T20:00Z,251,239,Texas,Baylor,spread,home,bandB,Texas -2.5,-4.0,-110.0,Caesars,2026-11-14T19:50:52+00:00,-2.5,-107.0,BetRivers,1.5,1270.4,0.51,2.01,4.51
