@@ -15487,3 +15487,7 @@ pulled_at,source,ok,rows,teams_matched,players_matched,unmatched_teams,error,sec
 2026-11-15T02:30:30+00:00,rotowire,True,5,0.8,1.0,Texas-Arlington,,0.4,1294.0
 2026-11-15T02:30:30+00:00,covers,True,105,0.933,0.0,Delaware Fightin' Blue Hens; Miami (FL) Hurricanes; San Jose State Spartans; UNLV Runnin' Rebels; Utah Runnin' Utes,,1.0,1916546.0
 2026-11-15T02:30:30+00:00,cbs,True,0,,,,,0.7,458180.0
+2026-11-15T02:30:45+00:00,espn,True,0,,,,,0.7,149.0
+2026-11-15T02:30:45+00:00,rotowire,True,5,0.8,1.0,Texas-Arlington,,0.4,1294.0
+2026-11-15T02:30:45+00:00,covers,True,107,0.935,0.0,Delaware Fightin' Blue Hens; Miami (FL) Hurricanes; San Jose State Spartans; UNLV Runnin' Rebels; Utah Runnin' Utes,,0.7,1919642.0
+2026-11-15T02:30:45+00:00,cbs,True,0,,,,,0.1,458180.0
