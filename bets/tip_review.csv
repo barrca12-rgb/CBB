@@ -2316,3 +2316,5 @@ checked_at,bet_id,pick,tip_check,cutoff,cutoff_source,espn_start,start_gap_min,f
 2026-11-15T21:59:04+00:00,2026-11-16|401929419|spread|away,Florida A&M +19.5,conflict,2026-11-16T18:00:00+00:00,closing.csv start,2026-11-16T19:00:00+00:00,-60.0,2026-11-16T18:00:00+00:00,0.0,False
 2026-11-15T22:07:42+00:00,2026-11-15|401929419|spread|away,Florida A&M +17.5,conflict,2026-11-16T01:00:00+00:00,latest pregame report,2026-11-16T19:00:00+00:00,-1080.0,2026-11-16T01:00:00+00:00,0.0,False
 2026-11-15T22:07:42+00:00,2026-11-16|401929419|spread|away,Florida A&M +19.5,conflict,2026-11-16T18:00:00+00:00,closing.csv start,2026-11-16T19:00:00+00:00,-60.0,2026-11-16T18:00:00+00:00,0.0,False
+2026-11-15T22:14:35+00:00,2026-11-15|401929419|spread|away,Florida A&M +17.5,conflict,2026-11-16T01:00:00+00:00,latest pregame report,2026-11-16T19:00:00+00:00,-1080.0,2026-11-16T01:00:00+00:00,0.0,False
+2026-11-15T22:14:35+00:00,2026-11-16|401929419|spread|away,Florida A&M +19.5,conflict,2026-11-16T18:00:00+00:00,closing.csv start,2026-11-16T19:00:00+00:00,-60.0,2026-11-16T18:00:00+00:00,0.0,False
