@@ -673,7 +673,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-14|401925774|total|over,2026-11-14,401925774,total,Over 141.5,over,2166,47,Davidson,Howard,141.5,141.5,-110.0,DraftKings,3.15,144.65,1.0,yes,2026-11-14T23:21:28+00:00,141.5,0.0,0.0,58.0,64.0,L,-1.0,settled,
 2026-11-15|401920065|total|over,2026-11-15,401920065,total,Over 137.5,over,227,163,Rhode Island,Princeton,137.5,137.5,-115.0,FanDuel,3.51,141.01,1.0,yes,2026-11-14T23:51:30+00:00,,,,,,,,open,
 2026-11-15|401912210|total|over,2026-11-15,401912210,total,Over 130.5,over,44,108,American University,Harvard,130.5,130.5,-110.0,FanDuel,3.89,134.39,1.0,yes,2026-11-15T01:19:07+00:00,129.5,-1.0,-0.02416352663316984,70.0,64.0,W,0.909,settled,
-2026-11-15|401909554|total|over,2026-11-15,401909554,total,Over 131.5,over,103,160,Boston College,New Hampshire,131.5,131.5,-105.0,DraftKings,3.2,134.7,1.0,yes,2026-11-15T01:28:05+00:00,,,,,,,,open,
+2026-11-15|401909554|total|over,2026-11-15,401909554,total,Over 131.5,over,103,160,Boston College,New Hampshire,131.5,131.5,-105.0,DraftKings,3.2,134.7,1.0,yes,2026-11-15T01:28:05+00:00,131.5,0.0,0.0,67.0,55.0,L,-1.0,settled,
 2026-11-15|401925812|spread|home,2026-11-15,401925812,spread,La Salle +0.5,home,2325,218,La Salle,Temple,0.5,0.5,-109.0,BetRivers,2.51,2.01,0.5,yes,2026-11-15T01:28:05+00:00,,,,,,,,open,
 2026-11-15|401926073|spread|home,2026-11-15,401926073,spread,Oregon -14.5,home,2483,2492,Oregon,Pepperdine,-14.5,-14.5,-105.0,theScore Bet,2.8,17.3,0.5,yes,2026-11-15T02:11:21+00:00,,,,,,,,open,
 2026-11-15|401925812|total|under,2026-11-15,401925812,total,Under 153.5,under,2325,218,La Salle,Temple,153.5,153.5,-110.0,theScore Bet,4.16,149.34,1.5,yes,2026-11-15T02:21:19+00:00,,,,,,,,open,
