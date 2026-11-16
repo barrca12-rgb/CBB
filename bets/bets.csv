@@ -719,3 +719,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-17|401911019|spread|home,2026-11-17,401911019,spread,Dayton -7.5,home,2168,2117,Dayton,Central Michigan,-7.5,-7.5,-110.0,FanDuel,2.87,10.37,0.2,yes,2026-11-16T21:32:22+00:00,,,,,,,,open,
 2026-11-17|401909535|total|over,2026-11-17,401909535,total,Over 152,over,2507,2529,Providence,Sacred Heart,152.0,152.0,-105.0,Fanatics,5.66,157.66,2.0,yes,2026-11-16T21:32:22+00:00,,,,,,,,open,
 2026-11-17|401925775|spread|home|bandB,2026-11-17,401925775,spread,Davidson -2.5,home,2166,2429,Davidson,Charlotte,-2.5,-2.5,-110.0,theScore Bet,2.27,4.77,0.5,yes,2026-11-16T21:32:31+00:00,,,,,,,,open,bandB
+2026-11-17|401921756|spread|away,2026-11-17,401921756,spread,Mississippi State +1.5,away,2116,344,UCF,Mississippi State,1.5,1.5,-110.0,FanDuel,2.57,-1.07,0.2,yes,2026-11-16T21:52:25+00:00,,,,,,,,open,
+2026-11-17|401920308|spread|away,2026-11-17,401920308,spread,Norfolk State +23.5,away,59,2450,Georgia Tech,Norfolk State,23.5,23.5,-110.0,FanDuel,2.99,20.51,0.2,yes,2026-11-16T21:52:25+00:00,,,,,,,,open,
+2026-11-17|401909544|total|over,2026-11-17,401909544,total,Over 160.5,over,2752,325,Xavier,Cleveland State,160.5,160.5,-110.0,theScore Bet,3.39,163.89,1.0,yes,2026-11-16T21:52:25+00:00,,,,,,,,open,
