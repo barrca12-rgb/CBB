@@ -481,3 +481,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-16T22:02:00+00:00,2026-11-17,401920297,2026-11-18T00:00Z,2653,2463,Troy,Cal State Northridge,total,over,v1,Over 146.5,148.0,-110.0,Fanatics,2026-11-16T21:50:48+00:00,146.5,-115,FanDuel,1.5,11.2,2.92,4.42,150.92
 2026-11-16T22:30:00+00:00,2026-11-17,401921756,2026-11-18T00:00Z,2116,344,UCF,Mississippi State,total,over,v1,Over 152.5,152.5,-115.0,FanDuel,2026-11-16T21:50:48+00:00,152.5,-110.0,theScore Bet,0.0,39.2,3.19,3.19,155.69
 2026-11-16T23:01:39+00:00,2026-11-17,401911018,2026-11-18T00:00Z,2729,189,William & Mary,Bowling Green,total,over,v1,Over 168.5,168.5,-115.0,theScore Bet,2026-11-16T21:50:48+00:00,168.5,-112.0,DraftKings,0.0,70.8,3.11,3.11,171.61
+2026-11-16T23:51:53+00:00,2026-11-17,401920512,2026-11-18T04:59Z,2,277,Auburn,West Virginia,spread,home,bandB,Auburn +1.5,0.0,-110.0,Caesars,2026-11-16T17:40:48+00:00,1.5,-110.0,Caesars,1.5,371.1,0.56,2.06,0.56
