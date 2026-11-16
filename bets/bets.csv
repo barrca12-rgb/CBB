@@ -711,3 +711,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-17|401909566|total|over,2026-11-17,401909566,total,Over 161,over,150,356,Duke,Illinois,161.0,161.0,-110.0,Fanatics,3.57,164.57,1.0,yes,2026-11-16T16:52:41+00:00,,,,,,,,open,
 2026-11-17|401916289|spread|home,2026-11-17,401916289,spread,Indiana +2.5,home,84,8,Indiana,Arkansas,2.5,2.5,-110.0,FanDuel,3.52,1.02,0.39,yes,2026-11-16T16:52:41+00:00,,,,,,,,open,
 2026-11-17|401906851|total|under,2026-11-17,401906851,total,Under 150.5,under,2633,127,Tennessee,Michigan State,150.5,150.5,-110.0,FanDuel,3.82,146.68,1.0,yes,2026-11-16T17:03:35+00:00,,,,,,,,open,
+2026-11-17|401906773|spread|home,2026-11-17,401906773,spread,Florida -11.5,home,57,87,Florida,Notre Dame,-11.5,-11.5,-112.0,BetRivers,3.8,15.3,0.39,yes,2026-11-16T17:22:00+00:00,,,,,,,,open,
