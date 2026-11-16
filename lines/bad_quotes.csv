@@ -633,3 +633,4 @@ first_seen,date,game_id,market,side,book,number,price,median_others,books,reason
 2026-11-16T13:21:18+00:00,2026-11-16,401920808,total,-,BetRivers,157.5,,160.5,7,off-market
 2026-11-16T13:31:04+00:00,2026-11-16,401917964,total,-,BetRivers,144.5,,141.5,7,off-market
 2026-11-16T13:31:04+00:00,2026-11-16,401929192,total,-,BetRivers,151.5,,154.5,7,off-market
+2026-11-16T16:01:00+00:00,2026-11-16,401919807,spread,-,BetMGM,-1.5,,1.5,6,off-market
