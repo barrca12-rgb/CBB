@@ -589,3 +589,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-17|401917533|total|under,2026-11-17,total,Under 137,137.0,-110.0,3.16,1.0,,,True,2.0,1.16,False,,,,,135.0,2.0
 2026-11-17|401925879|spread|away,2026-11-17,spread,Montana State +23.5,23.5,-110.0,3.52,0.3,,,True,-1.0,4.52,True,,,,,-24.5,-1.0
 2026-11-17|401920297|total|over,2026-11-17,total,Over 146.5,146.5,-115.0,4.42,1.5,,,True,1.5,2.92,True,,,,,148.0,1.5
+2026-11-17|401909504|total|over,2026-11-17,total,Over 129.5,129.5,-115.0,3.37,1.0,,,True,1.0,2.37,True,,,,,130.5,1.0
