@@ -817,50 +817,50 @@ game_id,start,home_id,away_id,home,away,neutral,state,completed,winner_id,cancel
 401922031,2026-11-15T02:00Z,155,149,North Dakota,Montana,False,post,True,149.0,False,2026-11-14
 401917530,2026-11-15T03:00Z,2541,167,Santa Clara,New Mexico,False,post,True,2541.0,False,2026-11-14
 401911455,2026-11-15T03:00Z,2440,3084,Nevada,Utah Valley,False,post,True,3084.0,False,2026-11-14
-401929458,2026-11-15T17:00Z,526,134875,Florida Gulf Coast,Abraham Baldwin Agricultural,False,in,False,,False,2026-11-15
-401924858,2026-11-15T17:00Z,2115,2514,Central Connecticut,Quinnipiac,False,in,False,,False,2026-11-15
-401918949,2026-11-15T18:00Z,235,97,Memphis,Louisville,False,pre,False,,False,2026-11-15
-401926063,2026-11-15T18:00Z,158,68,Nebraska,Boise State,True,pre,False,,False,2026-11-15
-401925896,2026-11-15T18:00Z,2247,2450,Georgia State,Norfolk State,False,pre,False,,False,2026-11-15
-401920771,2026-11-15T18:00Z,48,2142,Delaware,Colgate,False,pre,False,,False,2026-11-15
-401920235,2026-11-15T18:00Z,104,159,Boston University,Dartmouth,False,pre,False,,False,2026-11-15
-401912210,2026-11-15T18:00Z,44,108,American University,Harvard,False,pre,False,,False,2026-11-15
-401909774,2026-11-15T18:00Z,66,315,Iowa State,Niagara,False,pre,False,,False,2026-11-15
-401909554,2026-11-15T18:30Z,103,160,Boston College,New Hampshire,False,pre,False,,False,2026-11-15
-401918453,2026-11-15T19:00Z,130,2729,Michigan,William & Mary,False,pre,False,,False,2026-11-15
-401928825,2026-11-15T19:00Z,2523,424,Robert Morris,Capital,False,pre,False,,False,2026-11-15
-401925926,2026-11-15T19:00Z,232,2569,Charleston,South Carolina State,False,pre,False,,False,2026-11-15
-401925812,2026-11-15T19:00Z,2325,218,La Salle,Temple,False,pre,False,,False,2026-11-15
-401924744,2026-11-15T19:00Z,43,2211,Yale,Emmanuel (MA),False,pre,False,,False,2026-11-15
-401921287,2026-11-15T19:00Z,107,399,Holy Cross,UAlbany,False,pre,False,,False,2026-11-15
-401920136,2026-11-15T19:00Z,2449,2934,North Dakota State,Cal State Bakersfield,False,pre,False,,False,2026-11-15
-401920065,2026-11-15T19:00Z,227,163,Rhode Island,Princeton,False,pre,False,,False,2026-11-15
-401909525,2026-11-15T19:30Z,269,142,Marquette,Missouri,True,pre,False,,False,2026-11-15
-401906866,2026-11-15T20:00Z,251,239,Texas,Baylor,True,pre,False,,False,2026-11-15
-401926216,2026-11-15T20:00Z,2635,134850,Tennessee Tech,Wright State-Lake,False,pre,False,,False,2026-11-15
-401926068,2026-11-15T20:00Z,2197,2870,Eastern Illinois,Purdue Fort Wayne,False,pre,False,,False,2026-11-15
-401921168,2026-11-15T20:00Z,2010,325,Alabama A&M,Cleveland State,False,pre,False,,False,2026-11-15
-401911251,2026-11-15T20:00Z,139,2272,Saint Louis,High Point,False,pre,False,,False,2026-11-15
-401909493,2026-11-15T20:00Z,2294,156,Iowa,Creighton,True,pre,False,,False,2026-11-15
-401934396,2026-11-15T21:00Z,279,2005,Pacific,Air Force,False,pre,False,,False,2026-11-15
-401928789,2026-11-15T21:00Z,21,166,San Diego State,New Mexico State,True,pre,False,,False,2026-11-15
-401928353,2026-11-15T21:00Z,2540,3185,UC Santa Barbara,UC Merced,False,pre,False,,False,2026-11-15
-401919825,2026-11-15T21:00Z,256,2385,James Madison,Mercyhurst,False,pre,False,,False,2026-11-15
-401917531,2026-11-15T21:00Z,2351,2130,Loyola Marymount,Chicago State,False,pre,False,,False,2026-11-15
-401917528,2026-11-15T21:00Z,2547,304,Seattle U,Idaho State,False,pre,False,,False,2026-11-15
-401929405,2026-11-15T21:30Z,233,2178,South Dakota,Doane,False,pre,False,,False,2026-11-15
-401923393,2026-11-15T21:30Z,88,2711,Southern Indiana,Western Michigan,False,pre,False,,False,2026-11-15
-401917175,2026-11-15T21:30Z,213,2441,Penn State,New Haven,False,pre,False,,False,2026-11-15
-401926073,2026-11-15T22:00Z,2483,2492,Oregon,Pepperdine,False,pre,False,,False,2026-11-15
-401911017,2026-11-15T22:30Z,2084,2099,Buffalo,Canisius,False,pre,False,,False,2026-11-15
-401926733,2026-11-15T23:00Z,2630,3120,UT Martin,Ecclesia,False,pre,False,,False,2026-11-15
-401920124,2026-11-15T23:00Z,147,13,Montana State,Cal Poly,False,pre,False,,False,2026-11-15
-401920681,2026-11-16T00:00Z,2599,183,St. John's,Syracuse,False,pre,False,,False,2026-11-15
-401926772,2026-11-16T00:00Z,30,2029,USC,Arkansas-Pine Bluff,False,pre,False,,False,2026-11-15
-401929200,2026-11-16T01:00Z,2636,326,UTSA,Texas State,False,pre,False,,False,2026-11-15
-401925718,2026-11-16T01:00Z,2065,2488,Bethune-Cookman,Paine,False,pre,False,,False,2026-11-15
-401920896,2026-11-16T01:00Z,275,324,Wisconsin,Coastal Carolina,False,pre,False,,False,2026-11-15
-401911472,2026-11-16T02:00Z,23,2011,San José State,Alabama State,False,pre,False,,False,2026-11-15
+401929458,2026-11-15T17:00Z,526,134875,Florida Gulf Coast,Abraham Baldwin Agricultural,False,post,True,526.0,False,2026-11-15
+401924858,2026-11-15T17:00Z,2115,2514,Central Connecticut,Quinnipiac,False,post,True,2115.0,False,2026-11-15
+401918949,2026-11-15T18:00Z,235,97,Memphis,Louisville,False,post,True,235.0,False,2026-11-15
+401926063,2026-11-15T18:00Z,158,68,Nebraska,Boise State,True,post,True,158.0,False,2026-11-15
+401925896,2026-11-15T18:00Z,2247,2450,Georgia State,Norfolk State,False,post,True,2247.0,False,2026-11-15
+401920771,2026-11-15T18:00Z,48,2142,Delaware,Colgate,False,post,True,48.0,False,2026-11-15
+401920235,2026-11-15T18:00Z,104,159,Boston University,Dartmouth,False,post,True,104.0,False,2026-11-15
+401912210,2026-11-15T18:00Z,44,108,American University,Harvard,False,post,True,44.0,False,2026-11-15
+401909774,2026-11-15T18:00Z,66,315,Iowa State,Niagara,False,post,True,66.0,False,2026-11-15
+401909554,2026-11-15T18:30Z,103,160,Boston College,New Hampshire,False,post,True,103.0,False,2026-11-15
+401918453,2026-11-15T19:00Z,130,2729,Michigan,William & Mary,False,post,True,130.0,False,2026-11-15
+401928825,2026-11-15T19:00Z,2523,424,Robert Morris,Capital,False,post,True,2523.0,False,2026-11-15
+401925926,2026-11-15T19:00Z,232,2569,Charleston,South Carolina State,False,post,True,232.0,False,2026-11-15
+401925812,2026-11-15T19:00Z,2325,218,La Salle,Temple,False,post,True,218.0,False,2026-11-15
+401924744,2026-11-15T19:00Z,43,2211,Yale,Emmanuel (MA),False,post,True,43.0,False,2026-11-15
+401921287,2026-11-15T19:00Z,107,399,Holy Cross,UAlbany,False,post,True,399.0,False,2026-11-15
+401920136,2026-11-15T19:00Z,2449,2934,North Dakota State,Cal State Bakersfield,False,post,True,2934.0,False,2026-11-15
+401920065,2026-11-15T19:00Z,227,163,Rhode Island,Princeton,False,post,True,227.0,False,2026-11-15
+401909525,2026-11-15T19:30Z,142,269,Missouri,Marquette,True,post,True,142.0,False,2026-11-15
+401906866,2026-11-15T20:00Z,251,239,Texas,Baylor,True,post,True,251.0,False,2026-11-15
+401926216,2026-11-15T20:00Z,2635,134850,Tennessee Tech,Wright State-Lake,False,post,True,2635.0,False,2026-11-15
+401926068,2026-11-15T20:00Z,2197,2870,Eastern Illinois,Purdue Fort Wayne,False,post,True,2870.0,False,2026-11-15
+401921168,2026-11-15T20:00Z,2010,325,Alabama A&M,Cleveland State,False,post,True,325.0,False,2026-11-15
+401911251,2026-11-15T20:00Z,139,2272,Saint Louis,High Point,False,post,True,2272.0,False,2026-11-15
+401909493,2026-11-15T20:00Z,2294,156,Iowa,Creighton,True,post,True,156.0,False,2026-11-15
+401934396,2026-11-15T21:00Z,279,2005,Pacific,Air Force,False,post,True,279.0,False,2026-11-15
+401928789,2026-11-15T21:00Z,21,166,San Diego State,New Mexico State,True,post,True,21.0,False,2026-11-15
+401928353,2026-11-15T21:00Z,2540,3185,UC Santa Barbara,UC Merced,False,post,True,2540.0,False,2026-11-15
+401919825,2026-11-15T21:00Z,256,2385,James Madison,Mercyhurst,False,post,True,256.0,False,2026-11-15
+401917531,2026-11-15T21:00Z,2351,2130,Loyola Marymount,Chicago State,False,post,True,2351.0,False,2026-11-15
+401917528,2026-11-15T21:00Z,2547,304,Seattle U,Idaho State,False,post,True,2547.0,False,2026-11-15
+401929405,2026-11-15T21:30Z,233,2178,South Dakota,Doane,False,post,True,233.0,False,2026-11-15
+401923393,2026-11-15T21:30Z,88,2711,Southern Indiana,Western Michigan,False,post,True,2711.0,False,2026-11-15
+401917175,2026-11-15T21:30Z,213,2441,Penn State,New Haven,False,post,True,213.0,False,2026-11-15
+401926073,2026-11-15T22:00Z,2483,2492,Oregon,Pepperdine,False,post,False,,True,2026-11-15
+401911017,2026-11-15T22:30Z,2084,2099,Buffalo,Canisius,False,post,True,2084.0,False,2026-11-15
+401926733,2026-11-15T23:00Z,2630,3120,UT Martin,Ecclesia,False,post,True,2630.0,False,2026-11-15
+401920124,2026-11-15T23:00Z,147,13,Montana State,Cal Poly,False,post,True,147.0,False,2026-11-15
+401920681,2026-11-16T00:00Z,2599,183,St. John's,Syracuse,False,post,True,2599.0,False,2026-11-15
+401926772,2026-11-16T00:00Z,30,2029,USC,Arkansas-Pine Bluff,False,post,True,30.0,False,2026-11-15
+401929200,2026-11-16T01:00Z,2636,326,UTSA,Texas State,False,in,False,,False,2026-11-15
+401925718,2026-11-16T01:00Z,2065,2948,Bethune-Cookman,Stillman,False,in,False,,False,2026-11-15
+401920896,2026-11-16T01:00Z,275,324,Wisconsin,Coastal Carolina,False,in,False,,False,2026-11-15
+401911472,2026-11-16T02:00Z,23,2011,San José State,Alabama State,False,in,False,,False,2026-11-15
 401920962,2026-11-16T16:00Z,2413,124809,Morehead State,Miami (OH) Hamilton,False,pre,False,,False,2026-11-16
 401929371,2026-11-16T17:00Z,2453,2225,North Alabama,Fisk,False,pre,False,,False,2026-11-16
 401911211,2026-11-16T17:00Z,45,366,George Washington,Ferrum,False,pre,False,,False,2026-11-16
@@ -1126,14 +1126,12 @@ game_id,start,home_id,away_id,home,away,neutral,state,completed,winner_id,cancel
 401912710,2026-11-21T02:00Z,153,276,North Carolina,Marshall,False,pre,False,,False,2026-11-20
 401925664,2026-11-21T03:00Z,278,2011,Fresno State,Alabama State,False,pre,False,,False,2026-11-20
 401911252,2026-11-21T04:00Z,2608,139,Saint Mary's,Saint Louis,False,pre,False,,False,2026-11-20
-401923312,2026-11-21T05:00Z,2441,160,New Haven,New Hampshire,False,pre,False,,False,2026-11-21
-401921811,2026-11-21T05:00Z,99,2511,LSU,Queens University,False,pre,False,,False,2026-11-21
-401917537,2026-11-21T05:00Z,279,71,Pacific,Bradley,False,pre,False,,False,2026-11-21
 401924884,2026-11-21T16:00Z,2083,2561,Bucknell,Siena,False,pre,False,,False,2026-11-21
 401922284,2026-11-21T16:00Z,2430,2908,UNC Greensboro,South Carolina Upstate,False,pre,False,,False,2026-11-21
 401925756,2026-11-21T17:00Z,127,2174,Michigan State,Detroit Mercy,False,pre,False,,False,2026-11-21
 401923402,2026-11-21T17:00Z,104,171,Boston University,Columbia,False,pre,False,,False,2026-11-21
 401911394,2026-11-21T17:00Z,2678,2241,VMI,Gardner-Webb,False,pre,False,,False,2026-11-21
+401923312,2026-11-21T18:00Z,2441,160,New Haven,New Hampshire,False,pre,False,,False,2026-11-21
 401921169,2026-11-21T18:00Z,325,2309,Cleveland State,Kent State,False,pre,False,,False,2026-11-21
 401920948,2026-11-21T18:00Z,2199,2172,Eastern Michigan,Denver,False,pre,False,,False,2026-11-21
 401919828,2026-11-21T18:30Z,2710,2385,Western Illinois,Mercyhurst,True,pre,False,,False,2026-11-21
@@ -1180,10 +1178,12 @@ game_id,start,home_id,away_id,home,away,neutral,state,completed,winner_id,cancel
 401926217,2026-11-22T00:30Z,2635,2506,Tennessee Tech,Presbyterian,False,pre,False,,False,2026-11-21
 401928998,2026-11-22T01:00Z,2674,2653,Valparaiso,Troy,True,pre,False,,False,2026-11-21
 401925099,2026-11-22T01:00Z,198,357,Oral Roberts,Texas A&M-Corpus Christi,False,pre,False,,False,2026-11-21
+401921811,2026-11-22T01:00Z,99,2511,LSU,Queens University,False,pre,False,,False,2026-11-21
 401917966,2026-11-22T01:00Z,2000,2903,Abilene Christian,Southwestern Adventist,False,pre,False,,False,2026-11-21
 401925049,2026-11-22T01:30Z,2640,2443,Texas Southern,LSU New Orleans,False,pre,False,,False,2026-11-21
+401917537,2026-11-22T03:00Z,279,71,Pacific,Bradley,False,pre,False,,False,2026-11-21
 401909567,2026-11-22T04:00Z,150,265,Duke,Washington State,True,pre,False,,False,2026-11-21
-401921088,2026-11-22T05:00Z,2378,123306,UMBC,Lancaster Bible,False,pre,False,,False,2026-11-22
+401921088,2026-11-22T17:00Z,2378,123306,UMBC,Lancaster Bible,False,pre,False,,False,2026-11-22
 401911024,2026-11-22T17:00Z,82,193,UIC,Miami (OH),True,pre,False,,False,2026-11-22
 401902281,2026-11-22T18:00Z,158,2086,Nebraska,Butler,True,pre,False,,False,2026-11-22
 401929023,2026-11-22T18:00Z,2099,2710,Canisius,Western Illinois,False,pre,False,,False,2026-11-22
