@@ -477,3 +477,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-16T15:21:02+00:00,2026-11-16,401916307,2026-11-17T01:00Z,135,2710,Minnesota,Western Illinois,total,over,v1,Over 135.5,138.5,-109.0,BetRivers,2026-11-16T00:40:42+00:00,135.5,-115.0,theScore Bet,3.0,880.3,0.54,3.54,139.04
 2026-11-16T16:06:19+00:00,2026-11-16,401919807,2026-11-17T00:00Z,112358,2900,Long Island University,St. Thomas,total,over,v1,Over 144.5,147.5,-115.0,FanDuel,2026-11-16T03:31:03+00:00,144.5,-110,Caesars,3.0,755.3,0.56,3.56,148.06
 2026-11-16T16:51:20+00:00,2026-11-16,401924265,2026-11-17T03:00Z,26,299,UCLA,Long Beach State,total,over,v1,Over 145,147.5,-113.0,BetRivers,2026-11-16T00:50:49+00:00,145.0,-110.0,Caesars,2.5,960.5,0.6,3.1,148.1
+2026-11-16T18:41:50+00:00,2026-11-16,401920373,2026-11-17T03:00Z,28,2640,UC San Diego,Texas Southern,total,under,v1,Under 158,156.5,-110.0,DraftKings,2026-11-15T22:40:47+00:00,158.0,-110.0,Fanatics,1.5,1201.0,1.96,3.46,154.54
