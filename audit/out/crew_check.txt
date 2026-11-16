@@ -1,28 +1,53 @@
 Referee crews, 2026-27 (audit/crew_check.py)
-  live: crew on the card before tip: 164 games; crew shift -3.4 to +3.5 (mean -0.01)
-    points: actual minus model-without-crew on the crew shift, slope 1.26 (se 0.96); 1 = right size, 0 = noise
-    low-scoring crews (shift <= -1): 38 games, predicted -1.89, actual vs model-without-crew +0.81
-    high-scoring crews (shift >= +1): 38 games, predicted +1.65, actual vs model-without-crew +5.38
-    accuracy: totals average miss 13.71 with the crew shift, 13.72 without
-    fouls: actual fouls vs average on the crew's foul tendency, slope 2.57 (se 0.55); the tendency is shrunk, so above 1 is expected if it is real
-  season backtest: actual crews, pre-season crew table, pre-tip model: 292 games; crew shift -3.6 to +3.3 (mean +0.20)
-    points: actual minus model-without-crew on the crew shift, slope 1.80 (se 0.82); 1 = right size, 0 = noise
-    low-scoring crews (shift <= -1): 46 games, predicted -1.78, actual vs model-without-crew -5.22
-    high-scoring crews (shift >= +1): 76 games, predicted +1.62, actual vs model-without-crew +3.47
-    accuracy: totals average miss 13.62 with the crew shift, 13.68 without
-    fouls: actual fouls vs average on the crew's foul tendency, slope 2.02 (se 0.46); the tendency is shrunk, so above 1 is expected if it is real
-    officials with history in the table: 864 of 874
-  main total plays logged with a crew posted: 11; made by the crew: 11, graded 11: 5-6, -1.15u
-      date        pick           home                     away  edge  edge_without_crew  opener_rule_before  crew_made_it  status result  profit
-2026-11-04 Under 156.5         Butler      Fairleigh Dickinson  8.63               6.55                True          True settled      L  -1.000
-2026-11-06  Over 150.5         Oregon       Eastern Washington  5.45               3.82                True          True settled      W   0.952
-2026-11-06 Under 151.5      Villanova               Holy Cross  4.09               2.52               False          True settled      L  -1.000
-2026-11-06  Over 130.5      Louisiana Texas A&M-Corpus Christi  3.78               1.74               False          True settled      L  -1.000
-2026-11-06 Under 154.5      Marquette            Detroit Mercy  4.10               1.74               False          True settled      W   0.952
-2026-11-07  Over 159.5       Winthrop             North Dakota  3.12               1.70               False          True settled      W   0.952
-2026-11-07  Over 145.5  Montana State         Long Beach State  6.14               3.28                True          True settled      W   0.952
-2026-11-08 Under 146.5         Bryant                Fairfield  4.75               2.65               False          True settled      W   0.755
-2026-11-08    Over 149     St. Thomas                Green Bay  3.26               0.22               False          True settled      L  -0.830
-2026-11-08 Under 158.5 William & Mary            Norfolk State  4.15               3.10                True          True settled      L  -0.940
-2026-11-08  Over 142.5           UTEP           Incarnate Word  3.18               1.77                True          True settled      L  -0.940
+  live: crew on the card before tip: 416 games; crew shift -4.0 to +5.1 (mean +0.19)
+    points: actual minus model-without-crew on the crew shift, slope 0.63 (se 0.55); 1 = right size, 0 = noise
+    low-scoring crews (shift <= -1): 88 games, predicted -1.84, actual vs model-without-crew -4.14
+    high-scoring crews (shift >= +1): 116 games, predicted +1.86, actual vs model-without-crew -0.16
+    accuracy: totals average miss 13.17 with the crew shift, 13.20 without
+    fouls: actual fouls vs average on the crew's foul tendency, slope 2.66 (se 0.37); the tendency is shrunk, so above 1 is expected if it is real
+  season backtest: actual crews, pre-season crew table, pre-tip model: 627 games; crew shift -4.0 to +5.1 (mean +0.31)
+    points: actual minus model-without-crew on the crew shift, slope 0.83 (se 0.49); 1 = right size, 0 = noise
+    low-scoring crews (shift <= -1): 110 games, predicted -1.80, actual vs model-without-crew -3.84
+    high-scoring crews (shift >= +1): 189 games, predicted +1.84, actual vs model-without-crew +0.27
+    accuracy: totals average miss 13.44 with the crew shift, 13.46 without
+    fouls: actual fouls vs average on the crew's foul tendency, slope 2.36 (se 0.31); the tendency is shrunk, so above 1 is expected if it is real
+    officials with history in the table: 1845 of 1878
+  main total plays logged with a crew posted: 36; made by the crew: 35, graded 35: 20-15, +9.20u
+      date        pick                home                     away  edge  edge_without_crew  opener_rule_before  crew_made_it  status result  profit
+2026-11-04 Under 156.5              Butler      Fairleigh Dickinson  8.63               6.46                True          True settled      L  -1.000
+2026-11-06  Over 150.5              Oregon       Eastern Washington  5.45               3.51                True          True settled      W   0.952
+2026-11-06 Under 151.5           Villanova               Holy Cross  4.09               2.65               False          True settled      L  -1.000
+2026-11-06  Over 130.5           Louisiana Texas A&M-Corpus Christi  3.78               1.31               False          True settled      L  -1.000
+2026-11-06 Under 154.5           Marquette            Detroit Mercy  4.10               1.66               False          True settled      W   0.952
+2026-11-07  Over 159.5            Winthrop             North Dakota  3.12               1.56               False          True settled      W   0.952
+2026-11-07  Over 145.5       Montana State         Long Beach State  6.14               2.94                True          True settled      W   0.952
+2026-11-08 Under 146.5              Bryant                Fairfield  4.75               2.75               False          True settled      W   0.755
+2026-11-08    Over 149          St. Thomas                Green Bay  3.26              -0.33               False          True settled      L  -0.830
+2026-11-08 Under 158.5      William & Mary            Norfolk State  4.15               3.10                True          True settled      L  -0.940
+2026-11-08  Over 142.5                UTEP           Incarnate Word  3.18               1.59                True          True settled      L  -0.940
+2026-11-09  Over 153.5           Tennessee                  Radford  3.57               1.56               False          True settled      L  -0.620
+2026-11-10   Under 158           Villanova                 La Salle  4.77               3.07                True          True settled      W   1.273
+2026-11-10  Over 151.5    Central Michigan         Youngstown State  3.29               0.19               False          True settled      W   0.845
+2026-11-10 Under 157.5         Wake Forest      Charleston Southern  6.32               4.13                True          True settled      W   1.771
+2026-11-10 Under 149.5          Providence                   Bryant  4.06               2.83                True          True settled      W   1.296
+2026-11-10  Over 141.5             Fordham                     Iona  3.75               1.20                True          True settled      W   0.886
+2026-11-10 Under 165.5        Murray State             Alcorn State  4.66               3.47                True          True settled      W   1.400
+2026-11-11  Over 137.5      East Texas A&M      Fairleigh Dickinson  4.51               2.56                True          True settled      W   1.364
+2026-11-11 Under 153.5     San Diego State          Bethune-Cookman  4.19               2.26               False          True settled      L  -1.500
+2026-11-11 Under 156.5            Arkansas            Robert Morris  4.18               3.26                True          True settled      W   1.364
+2026-11-11  Over 141.5  South Dakota State               Valparaiso  5.45               2.33               False          True settled      W   1.905
+2026-11-13  Over 145.5  North Dakota State           Illinois State  5.39               3.25                True          True settled      W   1.905
+2026-11-13  Over 138.5         Texas State            Southern Miss  8.25               6.51                True          True settled      W   1.818
+2026-11-13 Under 162.5        Murray State           Texas Southern  3.29               2.91                True          True settled      L  -1.000
+2026-11-14  Over 150.5          Bellarmine        Northern Illinois  3.91               1.54                True          True settled      L  -1.000
+2026-11-14  Over 163.5            Winthrop            Jackson State  5.91               0.81               False          True settled      L  -2.000
+2026-11-14  Over 150.5   Northern Colorado       South Dakota State  4.44               2.18                True          True settled      L  -1.500
+2026-11-14 Under 157.5        Georgia Tech            UNC Asheville  7.48               4.82                True          True settled      W   1.852
+2026-11-14 Under 160.5          California                Utah Tech  5.82               4.90                True          True settled      W   1.905
+2026-11-14  Over 148.5 Charleston Southern             West Georgia  4.81               1.53               False          True settled      W   1.429
+2026-11-14  Over 141.5            Davidson                   Howard  3.15               2.92               False          True settled      L  -1.000
+2026-11-15 Under 164.5         Saint Louis               High Point  3.68               2.50                True          True settled      W   0.952
+2026-11-15  Over 139.5    Loyola Marymount            Chicago State  4.33               3.63                True          True settled      L  -1.500
+2026-11-15 Under 164.5             Pacific                Air Force  8.43              11.59               False         False settled      W   1.905
+2026-11-15  Over 140.5    Southern Indiana         Western Michigan  4.88               3.63                True          True settled      L  -1.500
   Read: description only until there are a few hundred crew games; the shift is a model input, decided only at a pre-registered review.
