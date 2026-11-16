@@ -131,3 +131,15 @@ Dated findings from each review, newest first. "Nothing new" is a valid entry.
   book's opener. first_seen is recorded by the card itself, so this file cannot show when a book really posted.
 - Cost: about 13,000 credits a month (daytime 10 to 5 minutes) and about 2,900 (overnight 30 to 10 minutes).
 - Read: no measurable gain for the credits. Recommend no change; it changes signal timing, so it is Chad's call.
+
+## 2026-11-16: bet timing study and totals reads (two weeks of live data)
+
+- Books post openers at a median 4-6 PM ET, 19-26 hours before tip. The median opener-to-close spread move is 0% done
+  at 1-4 hours after posting, 25% at 8 and 67% at 12, so 10-minute card runs are fast enough.
+- 348 of 531 plays were logged within 10 minutes of the book posting (primary-close CLV +1.67 pts, 66% positive);
+  plays logged 1+ hours after posting (148) were weak (CLV -0.14 to +0.65, 30-36% positive). Those waited on model
+  inputs, not polling (Nov 12 speed read).
+- Totals by edge: 3-3.5 116 plays, 64-50-2, +8.36u flat, CLV +1.18; 3.5-4 59, 25-34, -11.08u, +1.36; 4+ 114, 77-37,
+  +34.00u, +1.48. 3-3.5 is not clearly below 3.5-4 on CLV: no cutoff proposal.
+- Opening-week totals (Nov 1-7): 127 plays, +11.16u, CLV +1.23 (backtest +0.97 to +1.12): keep. Days 8-15: 162 plays,
+  +20.12u, CLV +1.41; unders 100 of 162.
