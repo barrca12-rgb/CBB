@@ -722,3 +722,9 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-17|401921756|spread|away,2026-11-17,401921756,spread,Mississippi State +1.5,away,2116,344,UCF,Mississippi State,1.5,1.5,-110.0,FanDuel,2.57,-1.07,0.2,yes,2026-11-16T21:52:25+00:00,,,,,,,,open,
 2026-11-17|401920308|spread|away,2026-11-17,401920308,spread,Norfolk State +23.5,away,59,2450,Georgia Tech,Norfolk State,23.5,23.5,-110.0,FanDuel,2.99,20.51,0.2,yes,2026-11-16T21:52:25+00:00,,,,,,,,open,
 2026-11-17|401909544|total|over,2026-11-17,401909544,total,Over 160.5,over,2752,325,Xavier,Cleveland State,160.5,160.5,-110.0,theScore Bet,3.39,163.89,1.0,yes,2026-11-16T21:52:25+00:00,,,,,,,,open,
+2026-11-17|401925775|total|over,2026-11-17,401925775,total,Over 134,over,2166,2429,Davidson,Charlotte,134.0,134.0,-110.0,Fanatics,4.2,138.2,1.5,yes,2026-11-16T22:02:12+00:00,,,,,,,,open,
+2026-11-17|401921826|total|over,2026-11-17,401921826,total,Over 144.5,over,238,2197,Vanderbilt,Eastern Illinois,144.5,144.5,-110.0,FanDuel,7.41,151.91,2.0,yes,2026-11-16T22:02:12+00:00,,,,,,,,open,
+2026-11-17|401918970|spread|away,2026-11-17,401918970,spread,Oral Roberts +25.5,away,2567,198,SMU,Oral Roberts,25.5,25.5,-104.0,FanDuel,3.03,22.47,0.2,yes,2026-11-16T22:02:12+00:00,,,,,,,,open,
+2026-11-17|401920720|total|over,2026-11-17,401920720,total,Over 141.5,over,254,331,Utah,Eastern Washington,141.5,141.5,-115.0,FanDuel,6.84,148.34,2.0,yes,2026-11-16T22:02:12+00:00,,,,,,,,open,
+2026-11-17|401909504|spread|away|bandB,2026-11-17,401909504,spread,Maryland Eastern Shore +34.5,away,305,2379,DePaul,Maryland Eastern Shore,34.5,34.5,-110.0,FanDuel,2.01,32.49,0.5,yes,2026-11-16T22:02:26+00:00,,,,,,,,open,bandB
+2026-11-17|401925064|spread|away|bandB,2026-11-17,401925064,spread,Nicholls +30.5,away,145,2447,Ole Miss,Nicholls,30.5,30.5,-110.0,FanDuel,2.4,28.1,0.5,yes,2026-11-16T22:02:26+00:00,,,,,,,,open,bandB

@@ -577,3 +577,7 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-17|401921756|spread|away,2026-11-17,spread,Mississippi State +1.5,1.5,-110.0,2.57,0.2,,,True,0.5,2.07,True,,,,,-1.0,0.5
 2026-11-17|401920308|spread|away,2026-11-17,spread,Norfolk State +23.5,23.5,-110.0,2.99,0.2,,,False,,,False,,,,,,
 2026-11-17|401909544|total|over,2026-11-17,total,Over 160.5,160.5,-110.0,3.39,1.0,,,True,-1.0,4.39,True,,,,,159.5,-1.0
+2026-11-17|401925775|total|over,2026-11-17,total,Over 134,134.0,-110.0,4.2,1.5,,,True,0.5,3.7,True,,,,,134.5,0.5
+2026-11-17|401921826|total|over,2026-11-17,total,Over 144.5,144.5,-110.0,7.41,2.0,,,True,2.0,5.41,True,,,,,146.5,2.0
+2026-11-17|401918970|spread|away,2026-11-17,spread,Oral Roberts +25.5,25.5,-104.0,3.03,0.2,,,True,-0.5,3.53,True,,,,,-26.0,-0.5
+2026-11-17|401920720|total|over,2026-11-17,total,Over 141.5,141.5,-115.0,6.84,2.0,,,True,8.5,-1.66,False,,,,,150.0,8.5
