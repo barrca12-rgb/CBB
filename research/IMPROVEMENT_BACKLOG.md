@@ -3,7 +3,7 @@
 Ranked by expected gain and how soon it can be tested. Update after every weekly review. Closed items stay at the
 bottom with their verdict, so nothing is retested by accident.
 
-Last updated Nov 10, 2026 (sharp-market shadow).
+Last updated Nov 16, 2026 (weekly review; small-spread lead).
 
 ## Open
 
@@ -17,6 +17,7 @@ Last updated Nov 10, 2026 (sharp-market shadow).
 | 5 | **Early underdogs where Barttorvik agrees and KenPom doesn't** | ~42% on 50 historical plays; found after the fact (early_dogs) | Pre-register on 2027 live plays; read at Jan 15 |
 | 6 | **Novig as a sharp reference** | Novig prices logged since Oct 30 (lines/novig_log.csv) | Does Novig's price at our alert predict the close better than the books do? Jan 15 read |
 | 7 | **Totals in November** | Scoring-level tracking tested Nov 5 (research/totals_level): no historical level bias; recent-miss correction and a smooth environment both hurt opener totals. Live under-the-close run is a market effect. | Watch only; next totals idea must be game-specific (lineups, pace matchups at the opener) |
+| 8 | **Spreads under 7 points** | Live season 104 plays, 45.2%, -10.40u, line move +0.69 (15+: 187 plays, 55.1%, +1.22). Two weeks below range. Small sample: a lead, not a conclusion | Pre-register a backtest: opener spreads under 7 by edge band, 2015-17 and 2024-26; does a higher edge bar for small spreads hold up? Plan before results |
 
 ## Closed (verdicts)
 

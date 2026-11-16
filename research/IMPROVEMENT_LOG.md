@@ -2,6 +2,23 @@
 
 Dated findings from each review, newest first. "Nothing new" is a valid entry.
 
+## 2026-11-16: weekly review (Nov 9-15)
+
+- **Main 142-113, +28.41u staked (+16.25u flat), line move +1.38** (backtest +0.95; last week +1.18). Band B 28-32
+  (-3.36u, move +0.50) this week; 71-59 season.
+- **Outside the backtest range:**
+  - Spreads 49.5% for a second week (backtest 56.3%) even with line move +1.32: the numbers are good, results are not.
+    Favorites 43.8% (-8.30u, move +1.05); underdogs 52.1%.
+  - **Spreads under 7 points:** 43.1% this week, 45.2% season (104 plays, -10.40u) with the lowest line move of any
+    spread size (+0.69 season vs +1.22 at 15+). Second week below range. New lead (backlog #8).
+  - Totals 60.3%; Unders 68.9% (+36.81u) vs Overs 46.4%. Totals edge 4+ 70.0% vs 3-4 51.3% (season 67.9% vs 49.7%).
+  - Posted 6-18 hours before tip: 32.5% (move +0.44) this week; season 48.3%, move +0.32. Same lag pattern as last week
+    (plays that waited on a model input; Nov 16 timing study).
+  - BetRivers 3-8 and BetMGM 4-6: small samples, line move low; watch only.
+- **All games vs the close (295):** totals model miss 12.84 vs close 12.95 (gap -0.11; backtest +0.68): the totals model
+  beat the closing total this week. Margins 9.38 vs 9.11 (gap +0.27; backtest +0.18), slightly worse than backtest.
+- **Changed since last week:** spread underdogs recovered (52.1%, was 50.0%); Unders flipped from 50.0% to 68.9%.
+
 ## 2026-11-09: weekly review (Nov 2-8)
 
 - **Main 130-123, -2.72u (flat-unit staked), line move +1.18** (backtest +0.95). Band B 43-27.
