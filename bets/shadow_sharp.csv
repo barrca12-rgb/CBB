@@ -570,3 +570,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-17|401906851|total|under,2026-11-17,total,Under 150.5,150.5,-110.0,3.82,1.0,,,False,,,False,,,,,,
 2026-11-17|401906773|spread|home,2026-11-17,spread,Florida -11.5,-11.5,-112.0,3.8,0.39,,,False,,,False,,,,,,
 2026-11-17|401909787|spread|home,2026-11-17,spread,Kansas -15.5,-15.5,-110.0,4.01,0.39,,,False,,,False,,,,,,
+2026-11-17|401921722|total|over,2026-11-17,total,Over 150.5,150.5,-105.0,5.6,2.0,,,True,-1.0,6.6,True,,,,,149.5,-1.0
