@@ -605,3 +605,5 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-18|401909742|total|under,2026-11-18,total,Under 149.5,149.5,-105.0,3.27,1.0,,,True,0.5,2.77,True,,,,,149.0,0.5
 2026-11-18|401921064|spread|away,2026-11-18,spread,Louisiana +9.5,9.5,-115.0,3.27,0.06,,,True,1.5,1.77,False,,,,,-8.0,1.5
 2026-11-18|401920158|spread|away,2026-11-18,spread,Cal State Fullerton +34.5,34.5,-110.0,3.07,0.06,,,True,0.0,3.07,True,,,,,-34.5,0.0
+2026-11-18|401920947|total|over,2026-11-18,total,Over 143.5,143.5,-105.0,3.41,1.0,,,True,0.5,2.91,True,,,,,144.0,0.5
+2026-11-18|401920963|spread|away,2026-11-18,spread,Morehead State +17.5,17.5,-105.0,3.31,0.06,,,True,0.0,3.31,True,,,,,-17.5,0.0
