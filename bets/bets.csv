@@ -750,3 +750,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-17|401918994|total|under,2026-11-17,401918994,total,Under 164,under,58,2634,South Florida,Tennessee State,164.0,164.0,-110.0,Fanatics,4.36,159.64,1.5,yes,2026-11-17T05:32:05+00:00,,,,,,,,open,
 2026-11-17|401926143|spread|away,2026-11-17,401926143,spread,SIU Edwardsville +3.5,away,155,2565,North Dakota,SIU Edwardsville,3.5,3.5,-118.0,BetMGM,2.64,0.86,0.06,yes,2026-11-17T05:32:05+00:00,,,,,,,,open,
 2026-11-17|401923325|total|over,2026-11-17,401923325,total,Over 130.5,over,2349,2612,UMass Lowell,Saint Peter's,130.5,130.5,-110.0,theScore Bet,3.19,133.69,1.0,yes,2026-11-17T08:01:35+00:00,,,,,,,,open,
+2026-11-17|401925012|spread|home,2026-11-17,401925012,spread,Omaha +2.5,home,2437,2320,Omaha,Lamar,2.5,2.5,-120.0,FanDuel,3.49,0.99,0.06,yes,2026-11-17T08:29:30+00:00,,,,,,,,open,
