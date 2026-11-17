@@ -754,3 +754,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-17|401925012|total|under,2026-11-17,401925012,total,Under 155.5,under,2437,2320,Omaha,Lamar,155.5,155.5,-109.0,BetRivers,8.34,147.16,2.0,yes,2026-11-17T09:41:12+00:00,,,,,,,,open,
 2026-11-17|401925064|spread|away,2026-11-17,401925064,spread,Nicholls +30.5,away,145,2447,Ole Miss,Nicholls,30.5,30.5,-110.0,DraftKings,2.51,27.99,0.06,yes,2026-11-17T11:32:07+00:00,,,,,,,,open,
 2026-11-18|401909742|total|under,2026-11-18,401909742,total,Under 149.5,under,12,41,Arizona,UConn,149.5,149.5,-105.0,FanDuel,3.27,146.23,1.0,yes,2026-11-17T20:12:50+00:00,,,,,,,,open,
+2026-11-18|401921064|spread|away,2026-11-18,401921064,spread,Louisiana +9.5,away,2539,309,San Francisco,Louisiana,9.5,9.5,-115.0,theScore Bet,3.27,6.23,0.06,yes,2026-11-17T20:52:23+00:00,,,,,,,,open,
+2026-11-18|401920158|spread|away,2026-11-18,401920158,spread,Cal State Fullerton +34.5,away,26,2239,UCLA,Cal State Fullerton,34.5,34.5,-110.0,theScore Bet,3.07,31.43,0.06,yes,2026-11-17T20:52:23+00:00,,,,,,,,open,
