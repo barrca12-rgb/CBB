@@ -548,7 +548,7 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-16|401909798|spread|away,2026-11-16,spread,Montana +15.5,15.5,-115.0,2.76,0.53,L,-0.53,True,0.0,2.76,True,,,,,-15.5,0.0
 2026-11-16|401924265|spread|away,2026-11-16,spread,Long Beach State +33.5,33.5,-105.0,5.12,1.06,,,True,0.0,5.12,True,,,,,-33.5,0.0
 2026-11-16|401917532|spread|home,2026-11-16,spread,Saint Mary's -17.5,-17.5,-115.0,4.7,1.06,,,True,0.5,4.2,True,,,,,-18.0,0.5
-2026-11-16|401917964|spread|away,2026-11-16,spread,Abilene Christian +7.5,7.5,-105.0,4.27,0.8,,,True,0.0,4.27,True,,,,,-7.5,0.0
+2026-11-16|401917964|spread|away,2026-11-16,spread,Abilene Christian +7.5,7.5,-105.0,4.27,0.8,L,-0.8,True,0.0,4.27,True,,,,,-7.5,0.0
 2026-11-16|401917917|spread|away,2026-11-16,spread,Central Arkansas +21.5,21.5,-110.0,2.95,0.53,L,-0.53,True,0.5,2.45,True,,,,,-21.0,0.5
 2026-11-17|401926143|total|under,2026-11-17,total,Under 149.5,149.5,-105.0,3.62,1.0,,,False,,,False,,,,,,
 2026-11-15|401917531|total|over,2026-11-15,total,Over 139.5,139.5,-110.0,4.33,1.5,L,-1.5,True,1.0,3.33,True,138.5,-1.0,140.5,1.0,139.5,0.0
