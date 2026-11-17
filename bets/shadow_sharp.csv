@@ -595,3 +595,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-17|401924941|spread|away,2026-11-17,spread,Akron -14.5,-14.5,-105.0,2.57,0.24,,,True,-0.5,3.07,True,,,,,14.0,-0.5
 2026-11-17|401922251|spread|away,2026-11-17,spread,Green Bay -4.5,-4.5,-115.0,5.58,0.46,,,True,0.5,5.08,True,,,,,5.0,0.5
 2026-11-17|401921106|spread|away,2026-11-17,spread,Bellarmine +19,19.0,-110.0,2.57,0.22,,,True,0.0,2.57,True,,,,,-19.0,0.0
+2026-11-17|401922251|total|under,2026-11-17,total,Under 146.5,146.5,-108.0,3.94,1.0,,,True,2.0,1.94,False,144.5,2.0,,,146.5,0.0

@@ -746,3 +746,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-17|401926143|spread|away|bandB,2026-11-17,401926143,spread,SIU Edwardsville +3.5,away,155,2565,North Dakota,SIU Edwardsville,3.5,3.5,-112.0,BetRivers,2.48,1.02,0.5,yes,2026-11-17T03:41:31+00:00,,,,,,,,open,bandB
 2026-11-17|401921106|spread|away,2026-11-17,401921106,spread,Bellarmine +19,away,2287,91,Illinois State,Bellarmine,19.0,19.0,-110.0,Fanatics,2.57,16.43,0.22,yes,2026-11-17T03:51:30+00:00,,,,,,,,open,
 2026-11-17|401920194|spread|home|bandB,2026-11-17,401920194,spread,Saint Joseph's -16,home,2603,2681,Saint Joseph's,Wagner,-16.0,-16.0,-110.0,Fanatics,2.1,18.1,0.5,yes,2026-11-17T04:12:29+00:00,,,,,,,,open,bandB
+2026-11-17|401922251|total|under,2026-11-17,401922251,total,Under 146.5,under,2697,2739,West Florida,Green Bay,146.5,146.5,-108.0,DraftKings,3.94,142.56,1.0,yes,2026-11-17T05:21:34+00:00,,,,,,,,open,
