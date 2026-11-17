@@ -610,3 +610,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-18|401926838|total|under,2026-11-18,total,Under 141.5,141.5,-110.0,3.49,1.0,,,True,0.0,3.49,True,,,,,141.5,0.0
 2026-11-18|401929176|total|over,2026-11-18,total,Over 146.5,146.5,-110.0,3.67,1.0,,,True,1.0,2.67,True,,,,,147.5,1.0
 2026-11-18|401921734|spread|away,2026-11-18,spread,Oakland +24.5,24.5,-105.0,4.0,0.09,,,True,-0.5,4.5,True,,,,,-25.0,-0.5
+2026-11-18|401926064|spread|home,2026-11-18,spread,Nebraska -34.5,-34.5,-110.0,2.67,0.06,,,True,-0.5,3.17,True,,,,,-34.0,-0.5
