@@ -764,3 +764,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-18|401921734|spread|away,2026-11-18,401921734,spread,Oakland +24.5,away,9,2473,Arizona State,Oakland,24.5,24.5,-105.0,theScore Bet,4.0,20.5,0.09,yes,2026-11-17T21:12:03+00:00,,,,,,,,open,
 2026-11-18|401926064|spread|home,2026-11-18,401926064,spread,Nebraska -34.5,home,158,233,Nebraska,South Dakota,-34.5,-34.5,-110.0,theScore Bet,2.67,37.17,0.06,yes,2026-11-17T21:20:05+00:00,,,,,,,,open,
 2026-11-18|401906805|spread|away,2026-11-18,401906805,spread,Campbell +24.5,away,201,2097,Oklahoma,Campbell,24.5,24.5,-115.0,theScore Bet,6.44,18.06,0.12,yes,2026-11-17T21:29:55+00:00,,,,,,,,open,
+2026-11-18|401909526|spread|away,2026-11-18,401909526,spread,Northern Illinois +30.5,away,269,2459,Marquette,Northern Illinois,30.5,30.5,-110.0,theScore Bet,2.62,27.88,0.06,yes,2026-11-17T21:35:58+00:00,,,,,,,,open,
+2026-11-18|401917982|total|over,2026-11-18,401917982,total,Over 158.5,over,99,2433,LSU,UL Monroe,158.5,158.5,-115.0,theScore Bet,3.52,162.02,1.0,yes,2026-11-17T21:35:58+00:00,,,,,,,,open,
