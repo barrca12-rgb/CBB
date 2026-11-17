@@ -483,3 +483,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-16T23:01:39+00:00,2026-11-17,401911018,2026-11-18T00:00Z,2729,189,William & Mary,Bowling Green,total,over,v1,Over 168.5,168.5,-115.0,theScore Bet,2026-11-16T21:50:48+00:00,168.5,-112.0,DraftKings,0.0,70.8,3.11,3.11,171.61
 2026-11-16T23:51:53+00:00,2026-11-17,401920512,2026-11-18T04:59Z,2,277,Auburn,West Virginia,spread,home,bandB,Auburn +1.5,0.0,-110.0,Caesars,2026-11-16T17:40:48+00:00,1.5,-110.0,Caesars,1.5,371.1,0.56,2.06,0.56
 2026-11-17T02:11:20+00:00,2026-11-17,401927381,2026-11-17T17:00Z,93,2275,Murray State,Hofstra,spread,away,v1,Hofstra +12.5,11.5,-115.0,theScore Bet,2026-11-16T21:40:55+00:00,12.5,-110.0,Caesars,1.0,270.4,1.77,2.77,9.73
+2026-11-17T02:31:16+00:00,2026-11-17,401918994,2026-11-18T00:00Z,58,2634,South Florida,Tennessee State,total,under,v1,Under 165.5,163.5,-105.0,BetMGM,2026-11-17T01:20:56+00:00,165.5,-115.0,theScore Bet,2.0,70.3,1.65,3.65,161.85
