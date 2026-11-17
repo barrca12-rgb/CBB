@@ -699,7 +699,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-16|401918075|total|under,2026-11-16,401918075,total,Under 147.5,under,228,2643,Clemson,The Citadel,147.5,147.5,-110.0,FanDuel,4.86,142.64,1.5,yes,2026-11-15T21:21:31+00:00,,,,,,,,open,
 2026-11-16|401911240|total|under,2026-11-16,401911240,total,Under 155,under,259,257,Virginia Tech,Richmond,155.0,155.0,-110.0,Fanatics,3.05,151.95,1.0,yes,2026-11-15T21:32:10+00:00,,,,,,,,open,
 2026-11-16|401916317|spread|away,2026-11-16,401916317,spread,Prairie View A&M +34.5,away,194,2504,Ohio State,Prairie View A&M,34.5,34.5,-110.0,theScore Bet,4.62,29.88,0.46,yes,2026-11-15T22:21:55+00:00,,,,,,,,open,
-2026-11-16|401916298|total|over,2026-11-16,401916298,total,Over 152.5,over,120,2016,Maryland,Alcorn State,152.5,152.5,-115.0,theScore Bet,4.42,156.92,1.5,yes,2026-11-15T22:32:14+00:00,,,,,,,,open,
+2026-11-16|401916298|total|over,2026-11-16,401916298,total,Over 152.5,over,120,2016,Maryland,Alcorn State,152.5,152.5,-115.0,theScore Bet,4.42,156.92,1.5,yes,2026-11-15T22:32:14+00:00,154.5,2.0,0.048238488214981334,117.0,57.0,W,1.304,settled,
 2026-11-16|401921804|spread|away,2026-11-16,401921804,spread,Grambling +30.5,away,96,2755,Kentucky,Grambling,30.5,30.5,-108.0,DraftKings,3.6,26.9,0.35,yes,2026-11-15T22:42:03+00:00,,,,,,,,open,
 2026-11-16|401906783|spread|away,2026-11-16,401906783,spread,Jacksonville +22.5,away,61,294,Georgia,Jacksonville,22.5,22.5,-105.0,theScore Bet,3.11,19.39,0.23,yes,2026-11-15T22:42:03+00:00,,,,,,,,open,
 2026-11-16|401920808|spread|away,2026-11-16,401920808,spread,SE Louisiana +33.5,away,245,2545,Texas A&M,SE Louisiana,33.5,33.5,-110.0,Fanatics,2.85,30.65,0.23,yes,2026-11-15T22:51:56+00:00,,,,,,,,open,
@@ -738,3 +738,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-17|401920297|total|over,2026-11-17,401920297,total,Over 146.5,over,2653,2463,Troy,Cal State Northridge,146.5,146.5,-115.0,FanDuel,4.42,150.92,1.5,yes,2026-11-16T22:39:31+00:00,,,,,,,,open,
 2026-11-17|401909504|total|over,2026-11-17,401909504,total,Over 129.5,over,305,2379,DePaul,Maryland Eastern Shore,129.5,129.5,-115.0,theScore Bet,3.37,132.87,1.0,yes,2026-11-16T23:12:00+00:00,,,,,,,,open,
 2026-11-17|401920426|spread|away,2026-11-17,401920426,spread,Old Dominion +28.5,away,258,295,Virginia,Old Dominion,28.5,28.5,-115.0,BetMGM,2.65,25.85,0.2,yes,2026-11-17T01:01:18+00:00,,,,,,,,open,
+2026-11-17|401911018|total|over,2026-11-17,401911018,total,Over 168.5,over,2729,189,William & Mary,Bowling Green,168.5,168.5,-110.0,BetMGM,3.06,171.56,1.0,yes,2026-11-17T01:21:20+00:00,,,,,,,,open,
