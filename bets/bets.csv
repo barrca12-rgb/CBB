@@ -737,3 +737,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-17|401925879|spread|away,2026-11-17,401925879,spread,Montana State +23.5,away,2250,147,Gonzaga,Montana State,23.5,23.5,-110.0,FanDuel,3.52,19.98,0.3,yes,2026-11-16T22:11:41+00:00,,,,,,,,open,
 2026-11-17|401920297|total|over,2026-11-17,401920297,total,Over 146.5,over,2653,2463,Troy,Cal State Northridge,146.5,146.5,-115.0,FanDuel,4.42,150.92,1.5,yes,2026-11-16T22:39:31+00:00,,,,,,,,open,
 2026-11-17|401909504|total|over,2026-11-17,401909504,total,Over 129.5,over,305,2379,DePaul,Maryland Eastern Shore,129.5,129.5,-115.0,theScore Bet,3.37,132.87,1.0,yes,2026-11-16T23:12:00+00:00,,,,,,,,open,
+2026-11-17|401920426|spread|away,2026-11-17,401920426,spread,Old Dominion +28.5,away,258,295,Virginia,Old Dominion,28.5,28.5,-115.0,BetMGM,2.65,25.85,0.2,yes,2026-11-17T01:01:18+00:00,,,,,,,,open,
