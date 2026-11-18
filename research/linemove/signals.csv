@@ -517,3 +517,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-18T04:11:03+00:00,2026-11-18,401921141,2026-11-19T00:00Z,2579,2210,South Carolina,Elon,total,over,v1,Over 136.5,138.5,-110.0,theScore Bet,2026-11-17T21:00:52+00:00,136.5,-110.0,DraftKings,2.0,430.2,1.16,3.16,139.66
 2026-11-18T04:18:54+00:00,2026-11-18,401920974,2026-11-18T23:30Z,2737,236,Winthrop,Chattanooga,spread,home,bandB,Winthrop +2,1.5,-110.0,Caesars,2026-11-18T04:00:59+00:00,2.0,-110.0,Caesars,0.5,17.9,1.51,2.01,0.01
 2026-11-18T04:37:56+00:00,2026-11-18,401929420,2026-11-19T01:00Z,2636,50,UTSA,Florida A&M,spread,away,bandB,Florida A&M +16,15.5,-110.0,DraftKings,2026-11-18T03:51:34+00:00,16.0,-115.0,Fanatics,0.5,46.4,1.66,2.16,13.84
+2026-11-18T06:21:12+00:00,2026-11-18,401929004,2026-11-19T03:00Z,62,265,Hawai'i,Washington State,spread,away,v1,Washington State +2.5,1.5,-120.0,BetMGM,2026-11-18T01:01:06+00:00,2.5,-110.0,theScore Bet,1.0,320.1,1.78,2.78,-0.28
