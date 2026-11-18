@@ -711,7 +711,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-17|401909566|total|over,2026-11-17,401909566,total,Over 161,over,150,356,Duke,Illinois,161.0,161.0,-110.0,Fanatics,3.57,164.57,1.0,yes,2026-11-16T16:52:41+00:00,,,,,,,,open,
 2026-11-17|401916289|spread|home,2026-11-17,401916289,spread,Indiana +2.5,home,84,8,Indiana,Arkansas,2.5,2.5,-110.0,FanDuel,3.52,1.02,0.39,yes,2026-11-16T16:52:41+00:00,,,,,,,,open,
 2026-11-17|401906851|total|under,2026-11-17,401906851,total,Under 150.5,under,2633,127,Tennessee,Michigan State,150.5,150.5,-110.0,FanDuel,3.82,146.68,1.0,yes,2026-11-16T17:03:35+00:00,,,,,,,,open,
-2026-11-17|401906773|spread|home,2026-11-17,401906773,spread,Florida -11.5,home,57,87,Florida,Notre Dame,-11.5,-11.5,-112.0,BetRivers,3.8,15.3,0.39,yes,2026-11-16T17:22:00+00:00,,,,,,,,open,
+2026-11-17|401906773|spread|home,2026-11-17,401906773,spread,Florida -11.5,home,57,87,Florida,Notre Dame,-11.5,-11.5,-112.0,BetRivers,3.8,15.3,0.39,yes,2026-11-16T17:22:00+00:00,-15.5,4.0,0.1378559486309925,86.0,78.0,L,-0.39,settled,
 2026-11-17|401909787|spread|home,2026-11-17,401909787,spread,Kansas -15.5,home,2305,2439,Kansas,UNLV,-15.5,-15.5,-110.0,Caesars,4.01,19.51,0.39,yes,2026-11-16T17:42:02+00:00,,,,,,,,open,
 2026-11-17|401909566|spread|home|bandB,2026-11-17,401909566,spread,Duke -5.5,home,150,356,Duke,Illinois,-5.5,-5.5,-115.0,DraftKings,2.18,7.68,0.5,yes,2026-11-16T18:02:49+00:00,,,,,,,,open,bandB
 2026-11-17|401921722|total|over,2026-11-17,401921722,total,Over 150.5,over,2390,2520,Miami,Rider,150.5,150.5,-105.0,theScore Bet,5.6,156.1,2.0,yes,2026-11-16T21:22:13+00:00,,,,,,,,open,
