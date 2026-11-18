@@ -513,3 +513,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-18T01:11:52+00:00,2026-11-18,401929004,2026-11-19T03:00Z,62,265,Hawai'i,Washington State,total,over,v1,Over 142.5,143.5,-110.0,theScore Bet,2026-11-17T20:50:54+00:00,142.5,-110,Caesars,1.0,261.0,2.09,3.09,145.59
 2026-11-18T02:33:03+00:00,2026-11-18,401920158,2026-11-19T03:30Z,26,2239,UCLA,Cal State Fullerton,total,under,v1,Under 164.5,159.5,-110.0,DraftKings,2026-11-18T00:52:11+00:00,164.5,-110.0,FanDuel,5.0,100.9,-2.0,3.0,161.5
 2026-11-18T03:01:36+00:00,2026-11-18,401920513,2026-11-18T19:00Z,87,164,Notre Dame,Rutgers,spread,away,bandB,Rutgers +3.5,2.5,-105.0,FanDuel,2026-11-18T00:41:27+00:00,3.5,-110.0,Caesars,1.0,140.2,1.26,2.26,1.24
+2026-11-18T03:51:50+00:00,2026-11-18,401925782,2026-11-19T00:00Z,2184,47,Duquesne,Howard,total,over,v1,Over 140.5,141.5,-110.0,theScore Bet,2026-11-18T03:10:57+00:00,140.5,-105.0,DraftKings,1.0,40.9,2.55,3.55,144.05
