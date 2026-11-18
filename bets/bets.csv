@@ -798,3 +798,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-18|401929201|spread|home,2026-11-18,401929201,spread,Texas State -17.5,home,326,2916,Texas State,Incarnate Word,-17.5,-17.5,-118.0,DraftKings,2.78,20.28,0.07,yes,2026-11-18T03:52:15+00:00,,,,,,,,open,
 2026-11-18|401920514|spread|away,2026-11-18,401920514,spread,Houston +2.5,away,57,248,Florida,Houston,2.5,2.5,-120.0,FanDuel,2.57,-0.07,0.07,yes,2026-11-18T04:01:40+00:00,,,,,,,,open,
 2026-11-18|401920513|spread|away|bandB,2026-11-18,401920513,spread,Rutgers +3.5,away,87,164,Notre Dame,Rutgers,3.5,3.5,-105.0,theScore Bet,2.3,1.2,0.5,yes,2026-11-18T04:27:31+00:00,,,,,,,,open,bandB
+2026-11-18|401925632|spread|away,2026-11-18,401925632,spread,Coppin State +16.5,away,2325,2154,La Salle,Coppin State,16.5,16.5,-109.0,BetRivers,3.84,12.66,0.17,yes,2026-11-18T05:51:37+00:00,,,,,,,,open,
