@@ -615,3 +615,5 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-18|401909526|spread|away,2026-11-18,spread,Northern Illinois +30.5,30.5,-110.0,2.62,0.06,,,True,1.0,1.62,False,,,,,-29.5,1.0
 2026-11-18|401917982|total|over,2026-11-18,total,Over 158.5,158.5,-115.0,3.52,1.0,,,True,0.0,3.52,True,,,,,158.5,0.0
 2026-11-17|401902279|total|under,2026-11-17,total,Under 160.5,160.5,-117.0,3.96,1.0,,,True,2.0,1.96,False,158.5,2.0,159.0,1.5,159.0,1.5
+2026-11-18|401920514|total|under,2026-11-18,total,Under 152.5,152.5,-110.0,7.35,2.0,,,True,3.0,4.35,True,,,,,149.5,3.0
+2026-11-18|401920682|total|over,2026-11-18,total,Over 163.5,163.5,-110.0,3.96,1.0,,,True,0.0,3.96,True,,,,,163.5,0.0
