@@ -796,3 +796,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-18|401919735|spread|away,2026-11-18,401919735,spread,Chicago State +23.5,away,82,2130,UIC,Chicago State,23.5,23.5,-110.0,Fanatics,2.5,21.0,0.07,yes,2026-11-18T03:34:01+00:00,,,,,,,,open,
 2026-11-18|401928398|total|over,2026-11-18,401928398,total,Over 159.5,over,2032,2029,Arkansas State,Arkansas-Pine Bluff,159.5,159.5,-115.0,theScore Bet,3.42,162.92,1.0,yes,2026-11-18T03:34:01+00:00,,,,,,,,open,
 2026-11-18|401929201|spread|home,2026-11-18,401929201,spread,Texas State -17.5,home,326,2916,Texas State,Incarnate Word,-17.5,-17.5,-118.0,DraftKings,2.78,20.28,0.07,yes,2026-11-18T03:52:15+00:00,,,,,,,,open,
+2026-11-18|401920514|spread|away,2026-11-18,401920514,spread,Houston +2.5,away,57,248,Florida,Houston,2.5,2.5,-120.0,FanDuel,2.57,-0.07,0.07,yes,2026-11-18T04:01:40+00:00,,,,,,,,open,
