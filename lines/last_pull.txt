@@ -1,1 +1,1 @@
-2026-11-18 11:22 UTC  events 119  book-game rows 414 (289 SGO, 125 The Odds API)  unmatched teams: Fort Wayne Mastodons, Gardner-Webb Bulldogs, IUPUI Jaguars, Loyola (Chi) Ramblers, New Orleans Privateers, West Virginia Tech, Worcester State Lancers  The Odds API credits left: 81319
+2026-11-18 11:33 UTC  events 0  book-game rows 392 (0 SGO, 392 The Odds API)  unmatched teams: Fort Wayne Mastodons, Gardner-Webb Bulldogs, Loyola (Chi) Ramblers, New Orleans Privateers  The Odds API credits left: 81314
