@@ -534,3 +534,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-18T15:11:08+00:00,2026-11-18,401922047,2026-11-19T00:00Z,2344,2678,Longwood,VMI,spread,home,bandB,Longwood -6,-6.5,-109.0,BetRivers,2026-11-18T07:50:44+00:00,-6.0,-110.0,Caesars,0.5,440.4,1.73,2.23,8.23
 2026-11-18T15:42:06+00:00,2026-11-18,401920682,2026-11-19T00:00Z,2599,2561,St. John's,Siena,spread,away,bandB,Siena +31,30.5,-104.0,BetRivers,2026-11-18T01:20:52+00:00,31.0,-110.0,Caesars,0.5,861.2,1.68,2.18,28.82
 2026-11-18T15:42:06+00:00,2026-11-18,401929146,2026-11-19T03:00Z,21,2640,San Diego State,Texas Southern,spread,home,bandB,San Diego State -24.5,-26.5,-115.0,DraftKings,2026-11-18T03:51:34+00:00,-24.5,-105.0,theScore Bet,2.0,710.5,0.07,2.07,26.57
+2026-11-18T16:12:42+00:00,2026-11-18,401924721,2026-11-19T01:00Z,183,172,Syracuse,Cornell,spread,home,bandB,Syracuse -18.5,-20.5,-118.0,FanDuel,2026-11-18T02:01:20+00:00,-18.5,-120.0,theScore Bet,2.0,851.4,0.26,2.26,20.76
