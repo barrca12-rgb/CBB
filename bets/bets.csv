@@ -771,3 +771,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-18|401920682|total|over,2026-11-18,401920682,total,Over 163.5,over,2599,2561,St. John's,Siena,163.5,163.5,-110.0,DraftKings,3.96,167.46,1.0,yes,2026-11-18T00:53:24+00:00,,,,,,,,open,
 2026-11-18|401921734|total|under,2026-11-18,401921734,total,Under 154.5,under,9,2473,Arizona State,Oakland,154.5,154.5,-105.0,theScore Bet,5.96,148.54,2.0,yes,2026-11-18T01:01:39+00:00,,,,,,,,open,
 2026-11-18|401911473|spread|away|bandB,2026-11-18,401911473,spread,Fresno State +6.5,away,23,278,San José State,Fresno State,6.5,6.5,-115.0,theScore Bet,2.26,4.24,0.5,yes,2026-11-18T01:01:50+00:00,,,,,,,,open,bandB
+2026-11-18|401909753|spread|away,2026-11-18,401909753,spread,Jackson State +34.5,away,239,2296,Baylor,Jackson State,34.5,34.5,-110.0,Fanatics,3.33,31.17,0.01,yes,2026-11-18T01:51:32+00:00,,,,,,,,open,
+2026-11-18|401909753|total|over,2026-11-18,401909753,total,Over 153.5,over,239,2296,Baylor,Jackson State,153.5,153.5,-110.0,Fanatics,4.37,157.87,1.5,yes,2026-11-18T01:51:32+00:00,,,,,,,,open,

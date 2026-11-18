@@ -618,3 +618,5 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-18|401920514|total|under,2026-11-18,total,Under 152.5,152.5,-110.0,7.35,2.0,,,True,3.0,4.35,True,,,,,149.5,3.0
 2026-11-18|401920682|total|over,2026-11-18,total,Over 163.5,163.5,-110.0,3.96,1.0,,,True,0.0,3.96,True,,,,,163.5,0.0
 2026-11-18|401921734|total|under,2026-11-18,total,Under 154.5,154.5,-105.0,5.96,2.0,,,True,0.0,5.96,True,,,,,154.5,0.0
+2026-11-18|401909753|spread|away,2026-11-18,spread,Jackson State +34.5,34.5,-110.0,3.33,0.01,,,True,0.0,3.33,True,,,,,-34.5,0.0
+2026-11-18|401909753|total|over,2026-11-18,total,Over 153.5,153.5,-110.0,4.37,1.5,,,True,0.5,3.87,True,,,,,154.0,0.5
