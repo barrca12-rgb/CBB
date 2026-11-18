@@ -510,3 +510,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-17T23:08:52+00:00,2026-11-17,401909708,2026-11-18T00:00Z,221,222,Pittsburgh,Villanova,total,under,v1,Under 149,148.5,-110.0,Fanatics,2026-11-16T18:41:38+00:00,149.0,-110.0,Fanatics,0.5,1707.2,2.99,3.49,145.51
 2026-11-17T23:14:30+00:00,2026-11-17,401909544,2026-11-18T00:00Z,2752,325,Xavier,Cleveland State,spread,home,bandB,Xavier -31.5,-32.5,-118.0,FanDuel,2026-11-16T21:31:16+00:00,-31.5,-105.0,Fanatics,1.0,1543.2,1.41,2.41,33.91
 2026-11-18T00:53:10+00:00,2026-11-18,401911473,2026-11-19T02:00Z,23,278,San José State,Fresno State,spread,away,bandB,Fresno State +6.5,5.5,-102.0,DraftKings,2026-11-18T00:52:11+00:00,6.5,-115.0,theScore Bet,1.0,1.0,1.26,2.26,4.24
+2026-11-18T01:11:52+00:00,2026-11-18,401929004,2026-11-19T03:00Z,62,265,Hawai'i,Washington State,total,over,v1,Over 142.5,143.5,-110.0,theScore Bet,2026-11-17T20:50:54+00:00,142.5,-110,Caesars,1.0,261.0,2.09,3.09,145.59
