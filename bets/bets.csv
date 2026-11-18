@@ -814,3 +814,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-18|401919848|total|over,2026-11-18,401919848,total,Over 129.5,over,284,160,Stonehill,New Hampshire,129.5,129.5,-105.0,BetMGM,5.8,135.3,2.0,yes,2026-11-18T14:32:43+00:00,,,,,,,,open,
 2026-11-19|401918959|total|over,2026-11-19,401918959,total,Over 160,over,93,152,Murray State,NC State,160.0,160.0,-110.0,Fanatics,4.17,164.17,1.5,yes,2026-11-18T21:00:25+00:00,,,,,,,,open,
 2026-11-19|401930884|spread|home|bandB,2026-11-19,401930884,spread,Oregon -2.5,home,2483,204,Oregon,Oregon State,-2.5,-2.5,-115.0,Caesars,2.06,4.56,0.5,yes,2026-11-18T21:09:05+00:00,,,,,,,,open,bandB
+2026-11-19|401926814|total|under,2026-11-19,401926814,total,Under 158.5,under,2181,232,Drake,Charleston,158.5,158.5,-110.0,FanDuel,4.72,153.78,1.5,yes,2026-11-18T21:19:43+00:00,,,,,,,,open,
+2026-11-19|401920888|spread|away|bandB,2026-11-19,401920888,spread,Seton Hall +5.5,away,275,2550,Wisconsin,Seton Hall,5.5,5.5,-115.0,Fanatics,2.44,3.06,0.5,yes,2026-11-18T21:19:51+00:00,,,,,,,,open,bandB
