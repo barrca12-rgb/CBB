@@ -818,3 +818,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-19|401920888|spread|away|bandB,2026-11-19,401920888,spread,Seton Hall +5.5,away,275,2550,Wisconsin,Seton Hall,5.5,5.5,-115.0,Fanatics,2.44,3.06,0.5,yes,2026-11-18T21:19:51+00:00,,,,,,,,open,bandB
 2026-11-19|401906867|spread|away,2026-11-19,401906867,spread,Southern Utah +38.5,away,251,253,Texas,Southern Utah,38.5,38.5,-110.0,FanDuel,4.47,34.03,0.17,yes,2026-11-18T21:28:01+00:00,,,,,,,,open,
 2026-11-19|401902280|spread|home|bandB,2026-11-19,401902280,spread,Butler -14.5,home,2086,111,Butler,Northeastern,-14.5,-14.5,-112.0,FanDuel,2.32,16.82,0.5,yes,2026-11-18T21:28:12+00:00,,,,,,,,open,bandB
+2026-11-19|401925941|total|under,2026-11-19,401925941,total,Under 160,under,264,3101,Washington,Utah Tech,160.0,160.0,-105.0,Fanatics,3.42,156.58,1.0,yes,2026-11-18T21:47:13+00:00,,,,,,,,open,
