@@ -1,1 +1,1 @@
-2026-11-18 23:40 UTC  events 0  book-game rows 387 (0 SGO, 387 The Odds API)  unmatched teams: Fort Wayne Mastodons, Gardner-Webb Bulldogs, Loyola (Chi) Ramblers, New Orleans Privateers  SGO month: 95,565 of 100,000 entities  The Odds API credits left: 80826
+2026-11-18 23:50 UTC  events 0  book-game rows 401 (0 SGO, 401 The Odds API)  unmatched teams: Fort Wayne Mastodons, Gardner-Webb Bulldogs, Loyola (Chi) Ramblers, New Orleans Privateers  SGO month: 95,565 of 100,000 entities  The Odds API credits left: 80817
