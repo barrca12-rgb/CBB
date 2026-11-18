@@ -709,7 +709,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-16|401917917|total|under,2026-11-16,401917917,total,Under 160.5,under,197,2110,Oklahoma State,Central Arkansas,160.5,160.5,-105.0,theScore Bet,4.1,156.4,1.5,yes,2026-11-16T05:01:23+00:00,162.5,-2.0,-0.048238488214981334,99.0,66.0,L,-1.5,settled,
 2026-11-16|401909798|total|under,2026-11-16,401909798,total,Under 156.5,under,2306,149,Kansas State,Montana,156.5,156.5,-108.0,DraftKings,3.96,152.54,1.0,yes,2026-11-16T05:01:23+00:00,154.5,2.0,0.048238488214981334,86.0,45.0,W,0.926,settled,
 2026-11-17|401909566|total|over,2026-11-17,401909566,total,Over 161,over,150,356,Duke,Illinois,161.0,161.0,-110.0,Fanatics,3.57,164.57,1.0,yes,2026-11-16T16:52:41+00:00,167.0,6.0,0.14193521557221733,78.0,99.0,W,0.909,settled,
-2026-11-17|401916289|spread|home,2026-11-17,401916289,spread,Indiana +2.5,home,84,8,Indiana,Arkansas,2.5,2.5,-110.0,FanDuel,3.52,1.02,0.39,yes,2026-11-16T16:52:41+00:00,,,,,,,,open,
+2026-11-17|401916289|spread|home,2026-11-17,401916289,spread,Indiana +2.5,home,84,8,Indiana,Arkansas,2.5,2.5,-110.0,FanDuel,3.52,1.02,0.39,yes,2026-11-16T16:52:41+00:00,-1.5,4.0,0.1378559486309925,81.0,76.0,W,0.355,settled,
 2026-11-17|401906851|total|under,2026-11-17,401906851,total,Under 150.5,under,2633,127,Tennessee,Michigan State,150.5,150.5,-110.0,FanDuel,3.82,146.68,1.0,yes,2026-11-16T17:03:35+00:00,,,,,,,,open,
 2026-11-17|401906773|spread|home,2026-11-17,401906773,spread,Florida -11.5,home,57,87,Florida,Notre Dame,-11.5,-11.5,-112.0,BetRivers,3.8,15.3,0.39,yes,2026-11-16T17:22:00+00:00,-15.5,4.0,0.1378559486309925,86.0,78.0,L,-0.39,settled,
 2026-11-17|401909787|spread|home,2026-11-17,401909787,spread,Kansas -15.5,home,2305,2439,Kansas,UNLV,-15.5,-15.5,-110.0,Caesars,4.01,19.51,0.39,yes,2026-11-16T17:42:02+00:00,,,,,,,,open,
@@ -782,3 +782,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-18|401919808|spread|home,2026-11-18,401919808,spread,Long Island University +10.5,home,112358,350,Long Island University,UNC Wilmington,10.5,10.5,-110.0,Fanatics,2.74,-7.76,0.09,yes,2026-11-18T02:41:35+00:00,,,,,,,,open,
 2026-11-18|401920694|spread|home|bandB,2026-11-18,401920694,spread,Yale -1.5,home,43,261,Yale,Vermont,-1.5,-1.5,-115.0,Fanatics,2.14,3.64,0.5,yes,2026-11-18T02:41:48+00:00,,,,,,,,open,bandB
 2026-11-18|401919735|spread|away|bandB,2026-11-18,401919735,spread,Chicago State +23.5,away,82,2130,UIC,Chicago State,23.5,23.5,-110.0,Fanatics,2.5,21.0,0.5,yes,2026-11-18T02:41:48+00:00,,,,,,,,open,bandB
+2026-11-18|401925782|spread|away,2026-11-18,401925782,spread,Howard +6.5,away,2184,47,Duquesne,Howard,6.5,6.5,-110.0,Fanatics,3.72,2.78,0.2,yes,2026-11-18T02:52:11+00:00,,,,,,,,open,
