@@ -569,7 +569,7 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-17|401916289|spread|home,2026-11-17,spread,Indiana +2.5,2.5,-110.0,3.52,0.39,W,0.355,False,,,False,,,,,,
 2026-11-17|401906851|total|under,2026-11-17,total,Under 150.5,150.5,-110.0,3.82,1.0,W,0.909,False,,,False,,,,,,
 2026-11-17|401906773|spread|home,2026-11-17,spread,Florida -11.5,-11.5,-112.0,3.8,0.39,L,-0.39,False,,,False,,,,,,
-2026-11-17|401909787|spread|home,2026-11-17,spread,Kansas -15.5,-15.5,-110.0,4.01,0.39,,,False,,,False,,,,,,
+2026-11-17|401909787|spread|home,2026-11-17,spread,Kansas -15.5,-15.5,-110.0,4.01,0.39,W,0.355,False,,,False,,,,,,
 2026-11-17|401921722|total|over,2026-11-17,total,Over 150.5,150.5,-105.0,5.6,2.0,L,-2.0,True,-1.0,6.6,True,,,,,149.5,-1.0
 2026-11-17|401918994|spread|home,2026-11-17,spread,South Florida -10.5,-10.5,-115.0,3.05,0.2,W,0.174,True,0.5,2.55,True,,,,,-11.0,0.5
 2026-11-17|401911019|spread|home,2026-11-17,spread,Dayton -7.5,-7.5,-110.0,2.87,0.2,W,0.182,True,3.0,-0.13,False,,,,,-10.5,3.0
@@ -585,8 +585,8 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-17|401920426|total|under,2026-11-17,total,Under 153.5,153.5,-110.0,4.7,1.5,W,1.364,True,2.0,2.7,True,,,,,151.5,2.0
 2026-11-17|401911521|total|under,2026-11-17,total,Under 156.5,156.5,-105.0,7.29,2.0,W,1.905,False,,,False,,,,,,
 2026-11-17|401921729|total|under,2026-11-17,total,Under 148.5,148.5,-105.0,5.23,2.0,,,True,2.0,3.23,True,,,,,146.5,2.0
-2026-11-17|401917533|spread|home,2026-11-17,spread,California Baptist +9.5,9.5,-120.0,2.57,0.2,,,True,2.0,0.57,False,,,,,7.5,2.0
-2026-11-17|401917533|total|under,2026-11-17,total,Under 137,137.0,-110.0,3.16,1.0,,,True,2.0,1.16,False,,,,,135.0,2.0
+2026-11-17|401917533|spread|home,2026-11-17,spread,California Baptist +9.5,9.5,-120.0,2.57,0.2,L,-0.2,True,2.0,0.57,False,,,,,7.5,2.0
+2026-11-17|401917533|total|under,2026-11-17,total,Under 137,137.0,-110.0,3.16,1.0,P,0.0,True,2.0,1.16,False,,,,,135.0,2.0
 2026-11-17|401925879|spread|away,2026-11-17,spread,Montana State +23.5,23.5,-110.0,3.52,0.3,,,True,-1.0,4.52,True,,,,,-24.5,-1.0
 2026-11-17|401920297|total|over,2026-11-17,total,Over 146.5,146.5,-115.0,4.42,1.5,W,1.304,True,1.5,2.92,True,,,,,148.0,1.5
 2026-11-17|401909504|total|over,2026-11-17,total,Over 129.5,129.5,-115.0,3.37,1.0,L,-1.0,True,1.0,2.37,True,,,,,130.5,1.0
