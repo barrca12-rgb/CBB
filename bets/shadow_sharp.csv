@@ -579,7 +579,7 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-17|401909544|total|over,2026-11-17,total,Over 160.5,160.5,-110.0,3.39,1.0,L,-1.0,True,-1.0,4.39,True,,,,,159.5,-1.0
 2026-11-17|401925775|total|over,2026-11-17,total,Over 134,134.0,-110.0,4.2,1.5,W,1.364,True,0.5,3.7,True,,,,,134.5,0.5
 2026-11-17|401921826|total|over,2026-11-17,total,Over 144.5,144.5,-110.0,7.41,2.0,W,1.818,True,2.0,5.41,True,,,,,146.5,2.0
-2026-11-17|401918970|spread|away,2026-11-17,spread,Oral Roberts +25.5,25.5,-104.0,3.03,0.2,,,True,-0.5,3.53,True,,,,,-26.0,-0.5
+2026-11-17|401918970|spread|away,2026-11-17,spread,Oral Roberts +25.5,25.5,-104.0,3.03,0.2,W,0.192,True,-0.5,3.53,True,,,,,-26.0,-0.5
 2026-11-17|401920720|total|over,2026-11-17,total,Over 141.5,141.5,-115.0,6.84,2.0,,,True,8.5,-1.66,False,,,,,150.0,8.5
 2026-11-17|401920308|total|under,2026-11-17,total,Under 157.5,157.5,-110.0,9.11,2.0,L,-2.0,False,,,False,,,,,,
 2026-11-17|401920426|total|under,2026-11-17,total,Under 153.5,153.5,-110.0,4.7,1.5,,,True,2.0,2.7,True,,,,,151.5,2.0
@@ -633,3 +633,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-18|401921816|spread|away,2026-11-18,spread,Alcorn State +45.5,45.5,-118.0,7.05,0.36,,,True,0.5,6.55,True,,,,,-45.0,0.5
 2026-11-18|401921816|total|over,2026-11-18,total,Over 153.5,153.5,-110.0,5.47,2.0,,,True,0.0,5.47,True,,,,,153.5,0.0
 2026-11-18|401909494|spread|away,2026-11-18,spread,Bethune-Cookman +23.5,23.5,-110.0,3.08,0.18,,,True,0.0,3.08,True,,,,,-23.5,0.0
+2026-11-18|401929146|total|over,2026-11-18,total,Over 155.5,155.5,-105.0,3.64,1.0,,,True,-0.5,4.14,True,,,,,155.0,-0.5
