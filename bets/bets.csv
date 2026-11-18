@@ -800,3 +800,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-18|401920513|spread|away|bandB,2026-11-18,401920513,spread,Rutgers +3.5,away,87,164,Notre Dame,Rutgers,3.5,3.5,-105.0,theScore Bet,2.3,1.2,0.5,yes,2026-11-18T04:27:31+00:00,,,,,,,,open,bandB
 2026-11-18|401925632|spread|away,2026-11-18,401925632,spread,Coppin State +16.5,away,2325,2154,La Salle,Coppin State,16.5,16.5,-109.0,BetRivers,3.84,12.66,0.17,yes,2026-11-18T05:51:37+00:00,,,,,,,,open,
 2026-11-18|401922212|total|under,2026-11-18,401922212,total,Under 157.5,under,2226,526,Florida Atlantic,Florida Gulf Coast,157.5,157.5,-110.0,BetRivers,4.04,153.46,1.5,yes,2026-11-18T06:21:43+00:00,,,,,,,,open,
+2026-11-18|401920513|total|over,2026-11-18,401920513,total,Over 149.5,over,87,164,Notre Dame,Rutgers,149.5,149.5,-110.0,DraftKings,3.15,152.65,1.0,yes,2026-11-18T07:42:02+00:00,,,,,,,,open,
+2026-11-18|401917181|total|under,2026-11-18,401917181,total,Under 169.5,under,213,85,Penn State,IU Indianapolis,169.5,169.5,-110.0,theScore Bet,3.22,166.28,1.0,yes,2026-11-18T07:42:02+00:00,,,,,,,,open,
+2026-11-18|401917982|spread|away|bandB,2026-11-18,401917982,spread,UL Monroe +36.5,away,99,2433,LSU,UL Monroe,36.5,36.5,-110.0,theScore Bet,2.01,34.49,0.5,yes,2026-11-18T07:42:15+00:00,,,,,,,,open,bandB
