@@ -684,3 +684,4 @@ first_seen,date,game_id,market,side,book,number,price,median_others,books,reason
 2026-11-18T00:23:02+00:00,2026-11-17,401925012,total,under,BetMGM,158.5,-105,,,review: edge 10.9
 2026-11-18T01:01:26+00:00,2026-11-18,401929004,spread,-,BetMGM,-1.5,,1.5,4,off-market
 2026-11-18T01:51:14+00:00,2026-11-18,401920513,total,-,DraftKings,153.5,,150.0,3,off-market
+2026-11-18T02:22:02+00:00,2026-11-18,401929004,spread,-,FanDuel,-1.5,,1.5,6,off-market
