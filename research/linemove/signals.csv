@@ -523,3 +523,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-18T11:41:09+00:00,2026-11-18,401929004,2026-11-19T03:00Z,62,265,Hawai'i,Washington State,spread,away,bandB,Washington State +2.5,1.5,-120.0,BetMGM,2026-11-18T01:01:06+00:00,2.5,-115.0,theScore Bet,1.0,640.0,1.28,2.28,0.22
 2026-11-18T13:31:17+00:00,2026-11-18,401920974,2026-11-18T23:30Z,2737,236,Winthrop,Chattanooga,spread,home,v1,Winthrop +3.5,1.5,-108.0,BetRivers,2026-11-18T07:23:37+00:00,3.5,-105.0,DraftKings,2.0,367.7,1.27,3.27,-0.23
 2026-11-18T13:31:17+00:00,2026-11-18,401911277,2026-11-19T00:00Z,322,2066,Lafayette,Binghamton,total,over,v1,Over 132.5,133.0,-110.0,Fanatics,2026-11-18T02:51:31+00:00,132.5,-105.0,DraftKings,0.5,639.8,2.73,3.23,135.73
+2026-11-18T13:40:57+00:00,2026-11-18,401920974,2026-11-18T23:30Z,2737,236,Winthrop,Chattanooga,total,under,v1,Under 167.5,165.0,-110.0,Fanatics,2026-11-18T02:51:31+00:00,167.5,-110.0,theScore Bet,2.5,649.4,2.05,4.55,162.95
