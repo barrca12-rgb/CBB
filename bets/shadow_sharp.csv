@@ -648,3 +648,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-18|401921134|spread|away,2026-11-18,spread,LSU New Orleans +35.5,35.5,-105.0,2.74,0.16,,,False,,,False,,,,,,
 2026-11-18|401921134|total|over,2026-11-18,total,Over 153.5,153.5,-110.0,4.06,1.5,,,False,,,False,,,,,,
 2026-11-18|401927357|total|over,2026-11-18,total,Over 135.5,135.5,-105.0,3.71,1.0,,,False,,,False,,,,,,
+2026-11-18|401920515|total|under,2026-11-18,total,Under 150.5,150.5,-110.0,4.49,1.5,,,True,0.0,4.49,True,150.5,0.0,,,,
