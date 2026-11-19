@@ -865,3 +865,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-20|401913529|spread|home,2026-11-20,401913529,spread,Illinois -51.5,home,356,2197,Illinois,Eastern Illinois,-51.5,-51.5,-110.0,FanDuel,2.51,54.01,0.31,yes,2026-11-19T22:17:37+00:00,,,,,,,,open,
 2026-11-20|401920195|total|over,2026-11-20,401920195,total,Over 137.5,over,2182,2603,Drexel,Saint Joseph's,137.5,137.5,-105.0,theScore Bet,3.02,140.52,1.0,yes,2026-11-19T22:26:33+00:00,,,,,,,,open,
 2026-11-20|401916125|total|under,2026-11-20,401916125,total,Under 155.5,under,151,3084,East Carolina,Utah Valley,155.5,155.5,-105.0,FanDuel,4.43,151.07,1.5,yes,2026-11-19T22:26:33+00:00,,,,,,,,open,
+2026-11-19|401920878|total|over,2026-11-19,401920878,total,Over 144.5,over,294,2031,Jacksonville,Little Rock,144.5,144.5,-105.0,theScore Bet,3.09,147.59,1.0,yes,2026-11-19T23:28:23+00:00,,,,,,,,open,

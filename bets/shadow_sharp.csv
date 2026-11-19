@@ -692,3 +692,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-20|401913529|spread|home,2026-11-20,spread,Illinois -51.5,-51.5,-110.0,2.51,0.31,,,True,-0.5,3.01,True,,,,,-51.0,-0.5
 2026-11-20|401920195|total|over,2026-11-20,total,Over 137.5,137.5,-105.0,3.02,1.0,,,True,0.0,3.02,True,,,,,137.5,0.0
 2026-11-20|401916125|total|under,2026-11-20,total,Under 155.5,155.5,-105.0,4.43,1.5,,,False,,,False,,,,,,
+2026-11-19|401920878|total|over,2026-11-19,total,Over 144.5,144.5,-105.0,3.09,1.0,,,True,0.0,3.09,True,144.5,0.0,144.5,0.0,144.0,-0.5
