@@ -680,3 +680,5 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-20|401926134|total|under,2026-11-20,total,Under 148.5,148.5,-110.0,5.11,2.0,,,True,-0.5,5.61,True,,,,,149.0,-0.5
 2026-11-20|401906852|total|over,2026-11-20,total,Over 142.5,142.5,-110.0,3.14,1.0,,,True,0.5,2.64,True,,,,,143.0,0.5
 2026-11-20|401920922|total|over,2026-11-20,total,Over 143.5,143.5,-110.0,3.12,1.0,,,True,-0.5,3.62,True,,,,,143.0,-0.5
+2026-11-20|401916123|spread|home,2026-11-20,spread,Stephen F. Austin -2.5,-2.5,-110.0,3.37,0.31,,,True,0.5,2.87,True,,,,,-3.0,0.5
+2026-11-20|401920137|spread|home,2026-11-20,spread,Idaho -0.5,-0.5,-118.0,4.24,0.46,,,True,-0.5,4.74,True,,,,,0.0,-0.5
