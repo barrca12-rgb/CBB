@@ -835,3 +835,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-19|401928388|spread|home,2026-11-19,401928388,spread,Grambling +2.5,home,2755,2572,Grambling,Southern Miss,2.5,2.5,-122.0,BetRivers,2.61,0.11,0.35,yes,2026-11-19T05:51:34+00:00,,,,,,,,open,
 2026-11-19|401920519|spread|home|bandB,2026-11-19,401920519,spread,Auburn -3,home,2,87,Auburn,Notre Dame,-3.0,-3.0,-110.0,Fanatics,2.11,5.11,0.5,yes,2026-11-19T07:03:28+00:00,,,,,,,,open,bandB
 2026-11-19|401920517|spread|home,2026-11-19,401920517,spread,West Virginia +10.5,home,277,57,West Virginia,Florida,10.5,10.5,-110.0,theScore Bet,4.34,-6.16,0.52,yes,2026-11-19T12:11:55+00:00,,,,,,,,open,
+2026-11-19|401926773|spread|away|bandB,2026-11-19,401926773,spread,Tarleton State +27.5,away,30,2627,USC,Tarleton State,27.5,27.5,-115.0,BetMGM,2.02,25.48,0.5,yes,2026-11-19T12:24:09+00:00,,,,,,,,open,bandB
