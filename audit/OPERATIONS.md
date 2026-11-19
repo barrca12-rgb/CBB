@@ -320,3 +320,11 @@ The proposed 15-unit daily cap and any staking change are not part of this work.
   tests skip.
 - `update.yml` now retries the publish twice (after 45 s and 90 s). After that it logs a warning instead of
   failing the run.
+
+## 2026-11-19: duplicate play voided (Chad: "void the duplicate famu play")
+
+- UTEP vs Florida A&M (ESPN 401929419) was logged twice: Florida A&M +17.5 for Nov 15 (theScore Bet, logged Nov 14
+  20:08 UTC) and Florida A&M +19.5 for Nov 16 after the game moved to Monday Nov 16 (ESPN start 18:00 UTC vs the
+  feed's Nov 16 01:00 UTC). The Nov 15 row could not be graded and was the duplicate.
+- `2026-11-15|401929419|spread|away` set to status `void`, so it is out of every record and metric. The Nov 16 play
+  stands (graded L, -1.08u).
