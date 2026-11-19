@@ -829,12 +829,12 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-19|401906867|total|over,2026-11-19,401906867,total,Over 156.5,over,251,253,Texas,Southern Utah,156.5,156.5,-115.0,FanDuel,3.28,159.78,1.0,yes,2026-11-19T02:41:16+00:00,,,,,,,,open,
 2026-11-19|401921028|spread|home,2026-11-19,401921028,spread,Houston Christian -3.5,home,2277,290,Houston Christian,Georgia Southern,-3.5,-3.5,-118.0,BetMGM,2.63,6.13,0.3,yes,2026-11-19T02:41:16+00:00,,,,,,,,open,
 2026-11-19|401918950|spread|away,2026-11-19,401918950,spread,Stetson +35.5,away,97,56,Louisville,Stetson,35.5,35.5,-110.0,DraftKings,3.0,32.5,0.34,yes,2026-11-19T02:51:17+00:00,,,,,,,,open,
-2026-11-19|401920517|total|under,2026-11-19,401920517,total,Under 149.5,under,277,57,West Virginia,Florida,149.5,149.5,-108.0,DraftKings,4.46,145.04,1.5,yes,2026-11-19T04:31:34+00:00,,,,,,,,open,
+2026-11-19|401920517|total|under,2026-11-19,401920517,total,Under 149.5,under,277,57,West Virginia,Florida,149.5,149.5,-108.0,DraftKings,4.46,145.04,1.5,yes,2026-11-19T04:31:34+00:00,147.5,2.0,0.048238488214981334,72.0,85.0,L,-1.5,settled,
 2026-11-19|401920413|spread|away|bandB,2026-11-19,401920413,spread,Montana State +13.5,away,2272,147,High Point,Montana State,13.5,13.5,-110.0,DraftKings,2.38,11.12,0.5,yes,2026-11-19T04:31:46+00:00,,,,,,,,open,bandB
 2026-11-19|401920518|spread|home|bandB,2026-11-19,401920518,spread,Kansas +2.5,home,2305,248,Kansas,Houston,2.5,2.5,-115.0,DraftKings,2.15,-0.35,0.5,yes,2026-11-19T04:31:46+00:00,,,,,,,,open,bandB
 2026-11-19|401928388|spread|home,2026-11-19,401928388,spread,Grambling +2.5,home,2755,2572,Grambling,Southern Miss,2.5,2.5,-122.0,BetRivers,2.61,0.11,0.35,yes,2026-11-19T05:51:34+00:00,,,,,,,,open,
 2026-11-19|401920519|spread|home|bandB,2026-11-19,401920519,spread,Auburn -3,home,2,87,Auburn,Notre Dame,-3.0,-3.0,-110.0,Fanatics,2.11,5.11,0.5,yes,2026-11-19T07:03:28+00:00,,,,,,,,open,bandB
-2026-11-19|401920517|spread|home,2026-11-19,401920517,spread,West Virginia +10.5,home,277,57,West Virginia,Florida,10.5,10.5,-110.0,theScore Bet,4.34,-6.16,0.52,yes,2026-11-19T12:11:55+00:00,,,,,,,,open,
+2026-11-19|401920517|spread|home,2026-11-19,401920517,spread,West Virginia +10.5,home,277,57,West Virginia,Florida,10.5,10.5,-110.0,theScore Bet,4.34,-6.16,0.52,yes,2026-11-19T12:11:55+00:00,7.5,3.0,0.10432203080282465,72.0,85.0,L,-0.52,settled,
 2026-11-19|401926773|spread|away|bandB,2026-11-19,401926773,spread,Tarleton State +27.5,away,30,2627,USC,Tarleton State,27.5,27.5,-115.0,BetMGM,2.02,25.48,0.5,yes,2026-11-19T12:24:09+00:00,,,,,,,,open,bandB
 2026-11-20|401909698|spread|away,2026-11-20,401909698,spread,Green Bay +23.5,away,52,2739,Florida State,Green Bay,23.5,23.5,-110.0,FanDuel,3.44,20.06,0.35,yes,2026-11-19T21:07:43+00:00,,,,,,,,open,
 2026-11-20|401921418|spread|away,2026-11-20,401921418,spread,Oklahoma State +1,away,135,197,Minnesota,Oklahoma State,1.0,1.0,-115.0,Fanatics,3.05,-2.05,0.35,yes,2026-11-19T21:07:43+00:00,,,,,,,,open,
@@ -850,3 +850,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-20|401926782|total|over,2026-11-20,401926782,total,Over 136.5,over,55,2247,Jacksonville State,Georgia State,136.5,136.5,-110.0,FanDuel,3.16,139.66,1.0,yes,2026-11-19T21:32:35+00:00,,,,,,,,open,
 2026-11-20|401926134|spread|away,2026-11-20,401926134,spread,Oakland +24.5,away,2509,2473,Purdue,Oakland,24.5,24.5,-102.0,FanDuel,4.19,20.31,0.52,yes,2026-11-19T21:32:35+00:00,,,,,,,,open,
 2026-11-20|401926134|total|under,2026-11-20,401926134,total,Under 148.5,under,2509,2473,Purdue,Oakland,148.5,148.5,-110.0,FanDuel,5.11,143.39,2.0,yes,2026-11-19T21:32:35+00:00,,,,,,,,open,
+2026-11-20|401906852|total|over,2026-11-20,401906852,total,Over 142.5,over,2633,324,Tennessee,Coastal Carolina,142.5,142.5,-110.0,FanDuel,3.14,145.64,1.0,yes,2026-11-19T21:44:17+00:00,,,,,,,,open,
+2026-11-20|401920922|total|over,2026-11-20,401920922,total,Over 143.5,over,116,2711,Mount St. Mary's,Western Michigan,143.5,143.5,-110.0,FanDuel,3.12,146.62,1.0,yes,2026-11-19T21:44:17+00:00,,,,,,,,open,
