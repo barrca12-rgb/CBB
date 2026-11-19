@@ -530,10 +530,8 @@ game_id,actual_tip,quality,reason,source,fetched_at
 401921156,2026-11-19T00:04:53+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-19T00:05:29+00:00
 401919808,2026-11-19T00:05:22+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-19T00:06:13+00:00
 401920963,2026-11-19T00:05:52+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-19T00:06:57+00:00
-401917529,,missing,no play-by-play,"espn play-by-play, earliest period-1 play at 20:00",2026-11-19T00:10:53+00:00
 401920694,2026-11-19T00:08:29+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-19T00:10:53+00:00
 401925782,2026-11-19T00:02:49+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-19T00:10:53+00:00
-401926133,,ambiguous,wall clocks out of order (more than 5 s backwards),"espn play-by-play, earliest period-1 play at 20:00",2026-11-19T00:10:53+00:00
 401909526,2026-11-19T00:32:15+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-19T00:32:46+00:00
 401921134,2026-11-19T00:31:59+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-19T00:32:46+00:00
 401920515,2026-11-19T00:37:01+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-19T00:40:54+00:00
@@ -553,3 +551,5 @@ game_id,actual_tip,quality,reason,source,fetched_at
 401929201,2026-11-19T01:02:02+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-19T01:02:46+00:00
 401911232,2026-11-19T01:04:41+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-19T01:06:08+00:00
 401928398,2026-11-19T01:02:26+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-19T01:08:23+00:00
+401917529,,missing,no play-by-play,"espn play-by-play, earliest period-1 play at 20:00",2026-11-19T01:12:11+00:00
+401926133,,ambiguous,wall clocks out of order (more than 5 s backwards),"espn play-by-play, earliest period-1 play at 20:00",2026-11-19T01:12:11+00:00
