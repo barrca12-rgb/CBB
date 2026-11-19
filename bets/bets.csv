@@ -860,3 +860,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-20|401916124|spread|home,2026-11-20,401916124,spread,Southern Illinois -1.5,home,79,2630,Southern Illinois,UT Martin,-1.5,-1.5,-110.0,FanDuel,3.29,4.79,0.31,yes,2026-11-19T22:06:04+00:00,,,,,,,,open,
 2026-11-20|401916124|total|under,2026-11-20,401916124,total,Under 150.5,under,79,2630,Southern Illinois,UT Martin,150.5,150.5,-105.0,theScore Bet,6.43,144.07,2.0,yes,2026-11-19T22:06:04+00:00,,,,,,,,open,
 2026-11-20|401913529|total|over,2026-11-20,401913529,total,Over 162.5,over,356,2197,Illinois,Eastern Illinois,162.5,162.5,-110.0,FanDuel,5.71,168.21,2.0,yes,2026-11-19T22:06:04+00:00,,,,,,,,open,
+2026-11-20|401920298|spread|home,2026-11-20,401920298,spread,Cal State Northridge -5.5,home,2463,48,Cal State Northridge,Delaware,-5.5,-5.5,-120.0,theScore Bet,2.88,8.38,0.31,yes,2026-11-19T22:17:37+00:00,,,,,,,,open,
+2026-11-20|401924736|total|over,2026-11-20,401924736,total,Over 138.5,over,163,2405,Princeton,Monmouth,138.5,138.5,-115.0,theScore Bet,3.35,141.85,1.0,yes,2026-11-19T22:17:37+00:00,,,,,,,,open,
+2026-11-20|401913529|spread|home,2026-11-20,401913529,spread,Illinois -51.5,home,356,2197,Illinois,Eastern Illinois,-51.5,-51.5,-110.0,FanDuel,2.51,54.01,0.31,yes,2026-11-19T22:17:37+00:00,,,,,,,,open,
