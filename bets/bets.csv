@@ -846,3 +846,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-20|401909709|spread|away,2026-11-20,401909709,spread,Central Michigan +22.5,away,221,2117,Pittsburgh,Central Michigan,22.5,22.5,-102.0,FanDuel,2.78,19.72,0.35,yes,2026-11-19T21:24:10+00:00,,,,,,,,open,
 2026-11-20|401909709|total|under,2026-11-20,401909709,total,Under 145.5,under,221,2117,Pittsburgh,Central Michigan,145.5,145.5,-110.0,FanDuel,3.41,142.09,1.0,yes,2026-11-19T21:24:10+00:00,,,,,,,,open,
 2026-11-20|401906784|total|under,2026-11-20,401906784,total,Under 166.5,under,59,61,Georgia Tech,Georgia,166.5,166.5,-110.0,theScore Bet,3.79,162.71,1.0,yes,2026-11-19T21:24:10+00:00,,,,,,,,open,
+2026-11-20|401927396|spread|home,2026-11-20,401927396,spread,Western Kentucky +1.5,home,98,257,Western Kentucky,Richmond,1.5,1.5,-110.0,FanDuel,2.79,1.29,0.35,yes,2026-11-19T21:32:35+00:00,,,,,,,,open,
+2026-11-20|401926782|total|over,2026-11-20,401926782,total,Over 136.5,over,55,2247,Jacksonville State,Georgia State,136.5,136.5,-110.0,FanDuel,3.16,139.66,1.0,yes,2026-11-19T21:32:35+00:00,,,,,,,,open,
+2026-11-20|401926134|spread|away,2026-11-20,401926134,spread,Oakland +24.5,away,2509,2473,Purdue,Oakland,24.5,24.5,-102.0,FanDuel,4.19,20.31,0.52,yes,2026-11-19T21:32:35+00:00,,,,,,,,open,
+2026-11-20|401926134|total|under,2026-11-20,401926134,total,Under 148.5,under,2509,2473,Purdue,Oakland,148.5,148.5,-110.0,FanDuel,5.11,143.39,2.0,yes,2026-11-19T21:32:35+00:00,,,,,,,,open,
