@@ -756,7 +756,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-18|401909742|total|under,2026-11-18,401909742,total,Under 149.5,under,12,41,Arizona,UConn,149.5,149.5,-105.0,FanDuel,3.27,146.23,1.0,yes,2026-11-17T20:12:50+00:00,,,,,,,,open,
 2026-11-18|401921064|spread|away,2026-11-18,401921064,spread,Louisiana +9.5,away,2539,309,San Francisco,Louisiana,9.5,9.5,-115.0,theScore Bet,3.27,6.23,0.06,yes,2026-11-17T20:52:23+00:00,,,,,,,,open,
 2026-11-18|401920158|spread|away,2026-11-18,401920158,spread,Cal State Fullerton +34.5,away,26,2239,UCLA,Cal State Fullerton,34.5,34.5,-110.0,theScore Bet,3.07,31.43,0.06,yes,2026-11-17T20:52:23+00:00,,,,,,,,open,
-2026-11-18|401920947|total|over,2026-11-18,401920947,total,Over 143.5,over,2199,2174,Eastern Michigan,Detroit Mercy,143.5,143.5,-105.0,theScore Bet,3.41,146.91,1.0,yes,2026-11-17T21:01:48+00:00,,,,,,,,open,
+2026-11-18|401920947|total|over,2026-11-18,401920947,total,Over 143.5,over,2199,2174,Eastern Michigan,Detroit Mercy,143.5,143.5,-105.0,theScore Bet,3.41,146.91,1.0,yes,2026-11-17T21:01:48+00:00,141.5,-2.0,-0.048238488214981334,99.0,62.0,W,0.952,settled,
 2026-11-18|401920963|spread|away,2026-11-18,401920963,spread,Morehead State +17.5,away,195,2413,Ohio,Morehead State,17.5,17.5,-105.0,theScore Bet,3.31,14.19,0.06,yes,2026-11-17T21:01:48+00:00,,,,,,,,open,
 2026-11-18|401921141|spread|away|bandB,2026-11-18,401921141,spread,Elon +16.5,away,2579,2210,South Carolina,Elon,16.5,16.5,-115.0,theScore Bet,2.03,14.47,0.5,yes,2026-11-17T21:01:55+00:00,,,,,,,,open,bandB
 2026-11-18|401926838|total|under,2026-11-18,401926838,total,Under 141.5,under,119,256,Towson,James Madison,141.5,141.5,-110.0,theScore Bet,3.49,138.01,1.0,yes,2026-11-17T21:12:03+00:00,,,,,,,,open,
