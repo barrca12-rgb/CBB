@@ -666,3 +666,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-19|401918950|spread|away,2026-11-19,spread,Stetson +35.5,35.5,-110.0,3.0,0.34,,,True,1.0,2.0,True,,,,,-34.5,1.0
 2026-11-19|401920517|total|under,2026-11-19,total,Under 149.5,149.5,-108.0,4.46,1.5,,,True,-0.5,4.96,True,,,,,150.0,-0.5
 2026-11-19|401928388|spread|home,2026-11-19,spread,Grambling +2.5,2.5,-122.0,2.61,0.35,,,True,1.5,1.11,False,1.5,1.0,,,1.0,1.5
+2026-11-19|401920517|spread|home,2026-11-19,spread,West Virginia +10.5,10.5,-110.0,4.34,0.52,,,True,1.0,3.34,True,9.5,1.0,,,9.5,1.0
