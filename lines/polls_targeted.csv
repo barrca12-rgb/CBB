@@ -5230,3 +5230,5 @@ oddsapi-targeted-20261119T002139.256929,2026-11-19T00:21:39+00:00,oddsapi-target
 sgo-targeted-20261119T002140.445893,2026-11-19T00:21:40+00:00,sgo-targeted,error,"SGO monthly allowance nearly used (95,565 of 100,000 entities)",,,,,
 oddsapi-targeted-20261119T002450.628671,2026-11-19T00:24:50+00:00,oddsapi-targeted,ok,,76,1882,2,80788,192
 sgo-targeted-20261119T002452.044885,2026-11-19T00:24:52+00:00,sgo-targeted,error,"SGO monthly allowance nearly used (95,565 of 100,000 entities)",,,,,
+oddsapi-targeted-20261119T002742.501600,2026-11-19T00:27:42+00:00,oddsapi-targeted,ok,,76,1892,2,80786,173
+sgo-targeted-20261119T002744.181648,2026-11-19T00:27:44+00:00,sgo-targeted,error,"SGO monthly allowance nearly used (95,565 of 100,000 entities)",,,,,
