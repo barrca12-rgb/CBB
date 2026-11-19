@@ -555,3 +555,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-19T02:51:08+00:00,2026-11-19,401926773,2026-11-20T04:00Z,30,2627,USC,Tarleton State,spread,away,v1,Tarleton State +28.5,27.5,-105.0,BetMGM,2026-11-19T00:01:01+00:00,28.5,-110.0,theScore Bet,1.0,170.1,1.9,2.9,25.6
 2026-11-19T03:20:53+00:00,2026-11-19,401911021,2026-11-20T00:00Z,179,2084,St. Bonaventure,Buffalo,spread,away,bandB,Buffalo +11.5,9.5,-110.0,BetMGM,2026-11-19T00:01:01+00:00,11.5,-115.0,BetMGM,2.0,199.9,0.0,2.0,9.5
 2026-11-19T03:20:53+00:00,2026-11-19,401920349,2026-11-20T03:00Z,24,16,Stanford,Sacramento State,spread,away,bandB,Sacramento State +17.5,16.5,-108.0,BetRivers,2026-11-19T02:30:52+00:00,17.5,-115.0,theScore Bet,1.0,50.0,1.07,2.07,15.43
+2026-11-19T03:31:18+00:00,2026-11-19,401928826,2026-11-20T00:00Z,2649,2523,Toledo,Robert Morris,spread,home,v1,Toledo -6.5,-7.5,-112.0,DraftKings,2026-11-18T23:40:49+00:00,-6.5,-120.0,FanDuel,1.0,230.5,1.83,2.83,9.33
