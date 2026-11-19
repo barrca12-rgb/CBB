@@ -783,7 +783,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-18|401920694|spread|home|bandB,2026-11-18,401920694,spread,Yale -1.5,home,43,261,Yale,Vermont,-1.5,-1.5,-115.0,Fanatics,2.14,3.64,0.5,yes,2026-11-18T02:41:48+00:00,,,,,,,,open,bandB
 2026-11-18|401919735|spread|away|bandB,2026-11-18,401919735,spread,Chicago State +23.5,away,82,2130,UIC,Chicago State,23.5,23.5,-110.0,Fanatics,2.5,21.0,0.5,yes,2026-11-18T02:41:48+00:00,,,,,,,,open,bandB
 2026-11-18|401925782|spread|away,2026-11-18,401925782,spread,Howard +6.5,away,2184,47,Duquesne,Howard,6.5,6.5,-110.0,Fanatics,3.72,2.78,0.2,yes,2026-11-18T02:52:11+00:00,,,,,,,,open,
-2026-11-18|401923401|total|under,2026-11-18,401923401,total,Under 137.5,under,2771,104,Merrimack,Boston University,137.5,137.5,-110.0,Fanatics,5.22,132.28,2.0,yes,2026-11-18T03:02:02+00:00,,,,,,,,open,
+2026-11-18|401923401|total|under,2026-11-18,401923401,total,Under 137.5,under,2771,104,Merrimack,Boston University,137.5,137.5,-110.0,Fanatics,5.22,132.28,2.0,yes,2026-11-18T03:02:02+00:00,132.5,5.0,0.11906661590587608,60.0,65.0,W,1.818,settled,
 2026-11-18|401911377|spread|home,2026-11-18,401911377,spread,Charleston Southern +2.5,home,2127,2747,Charleston Southern,Wofford,2.5,2.5,-105.0,BetMGM,6.29,3.79,0.36,yes,2026-11-18T03:02:02+00:00,,,,,,,,open,
 2026-11-18|401921816|spread|away,2026-11-18,401921816,spread,Alcorn State +45.5,away,142,2016,Missouri,Alcorn State,45.5,45.5,-118.0,BetMGM,7.05,38.45,0.36,yes,2026-11-18T03:02:02+00:00,,,,,,,,open,
 2026-11-18|401921816|total|over,2026-11-18,401921816,total,Over 153.5,over,142,2016,Missouri,Alcorn State,153.5,153.5,-110.0,Fanatics,5.47,158.97,2.0,yes,2026-11-18T03:02:02+00:00,,,,,,,,open,
