@@ -838,3 +838,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-19|401926773|spread|away|bandB,2026-11-19,401926773,spread,Tarleton State +27.5,away,30,2627,USC,Tarleton State,27.5,27.5,-115.0,BetMGM,2.02,25.48,0.5,yes,2026-11-19T12:24:09+00:00,,,,,,,,open,bandB
 2026-11-20|401909698|spread|away,2026-11-20,401909698,spread,Green Bay +23.5,away,52,2739,Florida State,Green Bay,23.5,23.5,-110.0,FanDuel,3.44,20.06,0.35,yes,2026-11-19T21:07:43+00:00,,,,,,,,open,
 2026-11-20|401921418|spread|away,2026-11-20,401921418,spread,Oklahoma State +1,away,135,197,Minnesota,Oklahoma State,1.0,1.0,-115.0,Fanatics,3.05,-2.05,0.35,yes,2026-11-19T21:07:43+00:00,,,,,,,,open,
+2026-11-20|401921723|total|over,2026-11-20,401921723,total,Over 148,over,2390,2363,Miami,Manhattan,148.0,148.0,-110.0,Fanatics,5.98,153.98,2.0,yes,2026-11-19T21:15:56+00:00,,,,,,,,open,
+2026-11-20|401916122|spread|home|bandB,2026-11-20,401916122,spread,Middle Tennessee +4.5,home,2393,218,Middle Tennessee,Temple,4.5,4.5,-120.0,theScore Bet,2.48,-2.02,0.5,yes,2026-11-19T21:16:07+00:00,,,,,,,,open,bandB
+2026-11-20|401921723|spread|away|bandB,2026-11-20,401921723,spread,Manhattan +39.5,away,2390,2363,Miami,Manhattan,39.5,39.5,-110.0,FanDuel,2.16,37.34,0.5,yes,2026-11-19T21:16:07+00:00,,,,,,,,open,bandB
