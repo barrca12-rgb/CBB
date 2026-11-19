@@ -841,3 +841,8 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-20|401921723|total|over,2026-11-20,401921723,total,Over 148,over,2390,2363,Miami,Manhattan,148.0,148.0,-110.0,Fanatics,5.98,153.98,2.0,yes,2026-11-19T21:15:56+00:00,,,,,,,,open,
 2026-11-20|401916122|spread|home|bandB,2026-11-20,401916122,spread,Middle Tennessee +4.5,home,2393,218,Middle Tennessee,Temple,4.5,4.5,-120.0,theScore Bet,2.48,-2.02,0.5,yes,2026-11-19T21:16:07+00:00,,,,,,,,open,bandB
 2026-11-20|401921723|spread|away|bandB,2026-11-20,401921723,spread,Manhattan +39.5,away,2390,2363,Miami,Manhattan,39.5,39.5,-110.0,FanDuel,2.16,37.34,0.5,yes,2026-11-19T21:16:07+00:00,,,,,,,,open,bandB
+2026-11-20|401920298|total|over,2026-11-20,401920298,total,Over 147.5,over,2463,48,Cal State Northridge,Delaware,147.5,147.5,-110.0,FanDuel,3.39,150.89,1.0,yes,2026-11-19T21:24:10+00:00,,,,,,,,open,
+2026-11-20|401906852|spread|away,2026-11-20,401906852,spread,Coastal Carolina +28.5,away,2633,324,Tennessee,Coastal Carolina,28.5,28.5,-104.0,FanDuel,2.52,25.98,0.35,yes,2026-11-19T21:24:10+00:00,,,,,,,,open,
+2026-11-20|401909709|spread|away,2026-11-20,401909709,spread,Central Michigan +22.5,away,221,2117,Pittsburgh,Central Michigan,22.5,22.5,-102.0,FanDuel,2.78,19.72,0.35,yes,2026-11-19T21:24:10+00:00,,,,,,,,open,
+2026-11-20|401909709|total|under,2026-11-20,401909709,total,Under 145.5,under,221,2117,Pittsburgh,Central Michigan,145.5,145.5,-110.0,FanDuel,3.41,142.09,1.0,yes,2026-11-19T21:24:10+00:00,,,,,,,,open,
+2026-11-20|401906784|total|under,2026-11-20,401906784,total,Under 166.5,under,59,61,Georgia Tech,Georgia,166.5,166.5,-110.0,theScore Bet,3.79,162.71,1.0,yes,2026-11-19T21:24:10+00:00,,,,,,,,open,

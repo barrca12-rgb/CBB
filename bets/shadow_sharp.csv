@@ -669,3 +669,8 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-20|401909698|spread|away,2026-11-20,spread,Green Bay +23.5,23.5,-110.0,3.44,0.35,,,True,0.5,2.94,True,,,,,-23.0,0.5
 2026-11-20|401921418|spread|away,2026-11-20,spread,Oklahoma State +1,1.0,-115.0,3.05,0.35,,,True,2.0,1.05,False,,,,,1.0,2.0
 2026-11-20|401921723|total|over,2026-11-20,total,Over 148,148.0,-110.0,5.98,2.0,,,True,-0.5,6.48,True,,,,,147.5,-0.5
+2026-11-20|401920298|total|over,2026-11-20,total,Over 147.5,147.5,-110.0,3.39,1.0,,,True,0.0,3.39,True,,,,,147.5,0.0
+2026-11-20|401906852|spread|away,2026-11-20,spread,Coastal Carolina +28.5,28.5,-104.0,2.52,0.35,,,True,-0.5,3.02,True,,,,,-29.0,-0.5
+2026-11-20|401909709|spread|away,2026-11-20,spread,Central Michigan +22.5,22.5,-102.0,2.78,0.35,,,True,-0.5,3.28,True,,,,,-23.0,-0.5
+2026-11-20|401909709|total|under,2026-11-20,total,Under 145.5,145.5,-110.0,3.41,1.0,,,True,0.5,2.91,True,,,,,145.0,0.5
+2026-11-20|401906784|total|under,2026-11-20,total,Under 166.5,166.5,-110.0,3.79,1.0,,,True,1.0,2.79,True,,,,,165.5,1.0
