@@ -894,3 +894,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-21|401919031|total|under,2026-11-21,401919031,total,Under 160.5,under,2724,167,Wichita State,New Mexico,160.5,160.5,-110.0,DraftKings,3.6,156.9,1.0,yes,2026-11-20T21:02:52+00:00,,,,,,,,open,
 2026-11-21|401909730|total|under,2026-11-21,401909730,total,Under 149.5,under,154,2717,Wake Forest,Western Carolina,149.5,149.5,-115.0,DraftKings,4.25,145.25,1.5,yes,2026-11-20T21:12:07+00:00,,,,,,,,open,
 2026-11-21|401909567|spread|away|bandB,2026-11-21,401909567,spread,Washington State +27,away,150,265,Duke,Washington State,27.0,27.0,-115.0,Fanatics,2.47,24.53,0.5,yes,2026-11-20T21:12:14+00:00,,,,,,,,open,bandB
+2026-11-21|401917537|total|over,2026-11-21,401917537,total,Over 125.5,over,279,71,Pacific,Bradley,125.5,125.5,-110.0,Fanatics,3.7,129.2,1.0,yes,2026-11-20T21:22:39+00:00,,,,,,,,open,
