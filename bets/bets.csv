@@ -882,3 +882,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-20|401920427|total|over,2026-11-20,401920427,total,Over 149.5,over,258,2352,Virginia,Loyola Maryland,149.5,149.5,-110.0,DraftKings,5.84,155.34,2.0,yes,2026-11-20T03:25:36+00:00,,,,,,,,open,
 2026-11-20|401925927|spread|away|bandB,2026-11-20,401925927,spread,South Carolina State +2.5,away,2643,2569,The Citadel,South Carolina State,2.5,2.5,-105.0,theScore Bet,2.32,0.18,0.5,yes,2026-11-20T03:25:48+00:00,,,,,,,,open,bandB
 2026-11-20|401924844|spread|away|bandB,2026-11-20,401924844,spread,Niagara +2.5,away,2169,315,Delaware State,Niagara,2.5,2.5,-110.0,theScore Bet,2.06,0.44,0.5,yes,2026-11-20T03:37:22+00:00,,,,,,,,open,bandB
+2026-11-20|401916122|spread|home,2026-11-20,401916122,spread,Middle Tennessee +4.5,home,2393,218,Middle Tennessee,Temple,4.5,4.5,-120.0,theScore Bet,2.51,-1.99,0.29,yes,2026-11-20T05:21:18+00:00,,,,,,,,open,
