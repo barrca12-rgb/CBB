@@ -885,3 +885,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-20|401916122|spread|home,2026-11-20,401916122,spread,Middle Tennessee +4.5,home,2393,218,Middle Tennessee,Temple,4.5,4.5,-120.0,theScore Bet,2.51,-1.99,0.29,yes,2026-11-20T05:21:18+00:00,,,,,,,,open,
 2026-11-20|401919826|total|over,2026-11-20,401919826,total,Over 139.5,over,399,2710,UAlbany,Western Illinois,139.5,139.5,-110.0,DraftKings,3.8,143.3,1.0,yes,2026-11-20T06:46:38+00:00,,,,,,,,open,
 2026-11-20|401919827|spread|away|bandB,2026-11-20,401919827,spread,Mercyhurst -2.5,away,2099,2385,Canisius,Mercyhurst,-2.5,-2.5,-110.0,DraftKings,2.13,-4.63,0.5,yes,2026-11-20T06:46:46+00:00,,,,,,,,open,bandB
+2026-11-20|401919827|total|over,2026-11-20,401919827,total,Over 135.5,over,2099,2385,Canisius,Mercyhurst,135.5,135.5,-105.0,DraftKings,3.95,139.45,1.0,yes,2026-11-20T08:03:56+00:00,,,,,,,,open,

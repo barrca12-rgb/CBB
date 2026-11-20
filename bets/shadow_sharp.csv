@@ -707,3 +707,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-20|401920427|total|over,2026-11-20,total,Over 149.5,149.5,-110.0,5.84,2.0,,,True,-1.0,6.84,True,,,,,148.5,-1.0
 2026-11-20|401916122|spread|home,2026-11-20,spread,Middle Tennessee +4.5,4.5,-120.0,2.51,0.29,,,True,1.0,1.51,False,3.5,1.0,,,4.0,0.5
 2026-11-20|401919826|total|over,2026-11-20,total,Over 139.5,139.5,-110.0,3.8,1.0,,,True,0.0,3.8,True,,,,,139.5,0.0
+2026-11-20|401919827|total|over,2026-11-20,total,Over 135.5,135.5,-105.0,3.95,1.0,,,True,2.0,1.95,False,137.5,2.0,,,135.0,-0.5
