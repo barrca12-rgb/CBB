@@ -891,3 +891,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-20|401924736|spread|away|bandB,2026-11-20,401924736,spread,Monmouth +4.5,away,163,2405,Princeton,Monmouth,4.5,4.5,-110.0,Caesars,2.08,2.42,0.5,yes,2026-11-20T14:05:11+00:00,,,,,,,,open,bandB
 2026-11-20|401922022|total|over,2026-11-20,401922022,total,Over 142.5,over,304,2571,Idaho State,South Dakota State,142.5,142.5,-110.0,DraftKings,7.18,149.68,2.0,yes,2026-11-20T20:06:06+00:00,,,,,,,,open,
 2026-11-21|401925756|total|over,2026-11-21,401925756,total,Over 150.5,over,127,2174,Michigan State,Detroit Mercy,150.5,150.5,-110.0,Fanatics,4.02,154.52,1.5,yes,2026-11-20T20:54:34+00:00,,,,,,,,open,
+2026-11-21|401919031|total|under,2026-11-21,401919031,total,Under 160.5,under,2724,167,Wichita State,New Mexico,160.5,160.5,-110.0,DraftKings,3.6,156.9,1.0,yes,2026-11-20T21:02:52+00:00,,,,,,,,open,
