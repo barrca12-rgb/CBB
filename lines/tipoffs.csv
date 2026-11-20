@@ -582,3 +582,4 @@ game_id,actual_tip,quality,reason,source,fetched_at
 401928354,2026-11-20T02:02:16+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-20T02:03:21+00:00
 401911534,2026-11-20T02:03:27+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-20T02:03:53+00:00
 401921423,,ambiguous,wall clocks out of order (more than 5 s backwards),"espn play-by-play, earliest period-1 play at 20:00",2026-11-20T02:05:41+00:00
+401930884,2026-11-20T02:06:50+00:00,jump ball,,"espn play-by-play, earliest period-1 play at 20:00",2026-11-20T02:10:53+00:00
