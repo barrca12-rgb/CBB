@@ -897,3 +897,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-21|401917537|total|over,2026-11-21,401917537,total,Over 125.5,over,279,71,Pacific,Bradley,125.5,125.5,-110.0,Fanatics,3.7,129.2,1.0,yes,2026-11-20T21:22:39+00:00,,,,,,,,open,
 2026-11-21|401923402|total|under,2026-11-21,401923402,total,Under 145,under,104,171,Boston University,Columbia,145.0,145.0,-110.0,Fanatics,3.14,141.86,1.0,yes,2026-11-20T22:24:42+00:00,,,,,,,,open,
 2026-11-21|401920846|spread|away,2026-11-21,401920846,spread,St. Thomas +1.5,away,270,2900,Milwaukee,St. Thomas,1.5,1.5,-118.0,DraftKings,3.33,-1.83,0.15,yes,2026-11-20T22:24:42+00:00,,,,,,,,open,
+2026-11-21|401911199|total|under,2026-11-21,401911199,total,Under 151.5,under,2501,2230,Portland,Fordham,151.5,151.5,-105.0,DraftKings,3.43,148.07,1.0,yes,2026-11-20T22:33:34+00:00,,,,,,,,open,
+2026-11-21|401911337|total|under,2026-11-21,401911337,total,Under 172.5,under,2636,2005,UTSA,Air Force,172.5,172.5,-110.0,FanDuel,3.4,169.1,1.0,yes,2026-11-20T22:33:34+00:00,,,,,,,,open,
+2026-11-21|401920125|spread|home,2026-11-21,401920125,spread,Cal Poly -6.5,home,13,2464,Cal Poly,Northern Arizona,-6.5,-6.5,-115.0,DraftKings,2.69,9.19,0.15,yes,2026-11-20T22:33:34+00:00,,,,,,,,open,
