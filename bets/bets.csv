@@ -879,3 +879,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-20|401920818|total|under,2026-11-20,401920818,total,Under 155,under,338,2545,Kennesaw State,SE Louisiana,155.0,155.0,-110.0,Fanatics,3.27,151.73,1.0,yes,2026-11-20T03:15:17+00:00,,,,,,,,open,
 2026-11-20|401916299|total|over,2026-11-20,401916299,total,Over 146.5,over,120,2681,Maryland,Wagner,146.5,146.5,-110.0,DraftKings,3.74,150.24,1.0,yes,2026-11-20T03:15:17+00:00,,,,,,,,open,
 2026-11-20|401916299|spread|away|bandB,2026-11-20,401916299,spread,Wagner +34.5,away,120,2681,Maryland,Wagner,34.5,34.5,-110.0,Fanatics,2.11,32.39,0.5,yes,2026-11-20T03:15:28+00:00,,,,,,,,open,bandB
+2026-11-20|401920427|total|over,2026-11-20,401920427,total,Over 149.5,over,258,2352,Virginia,Loyola Maryland,149.5,149.5,-110.0,DraftKings,5.84,155.34,2.0,yes,2026-11-20T03:25:36+00:00,,,,,,,,open,
+2026-11-20|401925927|spread|away|bandB,2026-11-20,401925927,spread,South Carolina State +2.5,away,2643,2569,The Citadel,South Carolina State,2.5,2.5,-105.0,theScore Bet,2.32,0.18,0.5,yes,2026-11-20T03:25:48+00:00,,,,,,,,open,bandB

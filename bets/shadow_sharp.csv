@@ -704,3 +704,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-20|401925664|spread|away,2026-11-20,spread,Alabama State +10.5,10.5,-115.0,2.61,0.26,,,True,0.5,2.11,True,,,,,-10.0,0.5
 2026-11-20|401920818|total|under,2026-11-20,total,Under 155,155.0,-110.0,3.27,1.0,,,True,0.0,3.27,True,,,,,155.0,0.0
 2026-11-20|401916299|total|over,2026-11-20,total,Over 146.5,146.5,-110.0,3.74,1.0,,,True,0.0,3.74,True,,,,,146.5,0.0
+2026-11-20|401920427|total|over,2026-11-20,total,Over 149.5,149.5,-110.0,5.84,2.0,,,True,-1.0,6.84,True,,,,,148.5,-1.0
