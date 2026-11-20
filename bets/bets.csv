@@ -852,7 +852,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-20|401926134|total|under,2026-11-20,401926134,total,Under 148.5,under,2509,2473,Purdue,Oakland,148.5,148.5,-110.0,FanDuel,5.11,143.39,2.0,yes,2026-11-19T21:32:35+00:00,,,,,,,,open,
 2026-11-20|401906852|total|over,2026-11-20,401906852,total,Over 142.5,over,2633,324,Tennessee,Coastal Carolina,142.5,142.5,-110.0,FanDuel,3.14,145.64,1.0,yes,2026-11-19T21:44:17+00:00,,,,,,,,open,
 2026-11-20|401920922|total|over,2026-11-20,401920922,total,Over 143.5,over,116,2711,Mount St. Mary's,Western Michigan,143.5,143.5,-110.0,FanDuel,3.12,146.62,1.0,yes,2026-11-19T21:44:17+00:00,,,,,,,,open,
-2026-11-20|401916123|spread|home,2026-11-20,401916123,spread,Stephen F. Austin -2.5,home,2617,282,Stephen F. Austin,Indiana State,-2.5,-2.5,-110.0,theScore Bet,3.37,5.87,0.31,yes,2026-11-19T21:55:40+00:00,,,,,,,,open,
+2026-11-20|401916123|spread|home,2026-11-20,401916123,spread,Stephen F. Austin -2.5,home,2617,282,Stephen F. Austin,Indiana State,-2.5,-2.5,-110.0,theScore Bet,3.37,5.87,0.31,yes,2026-11-19T21:55:40+00:00,-3.5,1.0,0.03513455315346392,86.0,76.0,W,0.282,settled,
 2026-11-20|401920137|spread|home,2026-11-20,401920137,spread,Idaho -0.5,home,70,2934,Idaho,Cal State Bakersfield,-0.5,-0.5,-118.0,FanDuel,4.24,4.74,0.46,yes,2026-11-19T21:55:40+00:00,,,,,,,,open,
 2026-11-20|401912710|spread|away|bandB,2026-11-20,401912710,spread,Marshall +20.5,away,153,276,North Carolina,Marshall,20.5,20.5,-110.0,FanDuel,2.34,18.16,0.5,yes,2026-11-19T21:55:54+00:00,,,,,,,,open,bandB
 2026-11-20|401919019|total|over,2026-11-20,401919019,total,Over 149.5,over,45,5,George Washington,UAB,149.5,149.5,-110.0,theScore Bet,3.3,152.8,1.0,yes,2026-11-19T22:06:04+00:00,150.5,1.0,0.024163526633169896,76.0,81.0,W,0.909,settled,
@@ -895,3 +895,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-21|401909730|total|under,2026-11-21,401909730,total,Under 149.5,under,154,2717,Wake Forest,Western Carolina,149.5,149.5,-115.0,DraftKings,4.25,145.25,1.5,yes,2026-11-20T21:12:07+00:00,,,,,,,,open,
 2026-11-21|401909567|spread|away|bandB,2026-11-21,401909567,spread,Washington State +27,away,150,265,Duke,Washington State,27.0,27.0,-115.0,Fanatics,2.47,24.53,0.5,yes,2026-11-20T21:12:14+00:00,,,,,,,,open,bandB
 2026-11-21|401917537|total|over,2026-11-21,401917537,total,Over 125.5,over,279,71,Pacific,Bradley,125.5,125.5,-110.0,Fanatics,3.7,129.2,1.0,yes,2026-11-20T21:22:39+00:00,,,,,,,,open,
+2026-11-21|401923402|total|under,2026-11-21,401923402,total,Under 145,under,104,171,Boston University,Columbia,145.0,145.0,-110.0,Fanatics,3.14,141.86,1.0,yes,2026-11-20T22:24:42+00:00,,,,,,,,open,
+2026-11-21|401920846|spread|away,2026-11-21,401920846,spread,St. Thomas +1.5,away,270,2900,Milwaukee,St. Thomas,1.5,1.5,-118.0,DraftKings,3.33,-1.83,0.15,yes,2026-11-20T22:24:42+00:00,,,,,,,,open,
