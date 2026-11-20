@@ -25,7 +25,7 @@ come from the private snapshot and are not copied here.
 - **Market vs our model, first two games of the 8 teams with a material player out (11 team-games with a close and a
   verified tip):** market margin minus our projection -0.41 points on average (all other 449 opening-week team-games
   +0.01). Result minus close -10.73 (others +0.26): descriptive, 11 games.
-- **Our logged plays on those games:** 12 (8 main, 3 band B, 1 total listed twice by game), 5-7 overall.
+- **Our logged plays on those games:** 12 (9 main, 3 band B), 5-7 overall.
 - **Decision rule:** material players mostly absent from ESPN's report: yes. Close at least 1 point further against
   those teams than our projection: no (-0.41). **Result: not needed.** The market did not price these absences
   differently from our model in the opening week, so a preseason long-term-injury input is not built.
