@@ -833,7 +833,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-19|401920413|spread|away|bandB,2026-11-19,401920413,spread,Montana State +13.5,away,2272,147,High Point,Montana State,13.5,13.5,-110.0,DraftKings,2.38,11.12,0.5,yes,2026-11-19T04:31:46+00:00,,,,,,,,open,bandB
 2026-11-19|401920518|spread|home|bandB,2026-11-19,401920518,spread,Kansas +2.5,home,2305,248,Kansas,Houston,2.5,2.5,-115.0,DraftKings,2.15,-0.35,0.5,yes,2026-11-19T04:31:46+00:00,,,,,,,,open,bandB
 2026-11-19|401928388|spread|home,2026-11-19,401928388,spread,Grambling +2.5,home,2755,2572,Grambling,Southern Miss,2.5,2.5,-122.0,BetRivers,2.61,0.11,0.35,yes,2026-11-19T05:51:34+00:00,,,,,,,,open,
-2026-11-19|401920519|spread|home|bandB,2026-11-19,401920519,spread,Auburn -3,home,2,87,Auburn,Notre Dame,-3.0,-3.0,-110.0,Fanatics,2.11,5.11,0.5,yes,2026-11-19T07:03:28+00:00,,,,,,,,open,bandB
+2026-11-19|401920519|spread|home|bandB,2026-11-19,401920519,spread,Auburn -3,home,2,87,Auburn,Notre Dame,-3.0,-3.0,-110.0,Fanatics,2.11,5.11,0.5,yes,2026-11-19T07:03:28+00:00,-4.0,1.0,0.03513455315346392,73.0,78.0,L,-0.5,settled,bandB
 2026-11-19|401920517|spread|home,2026-11-19,401920517,spread,West Virginia +10.5,home,277,57,West Virginia,Florida,10.5,10.5,-110.0,theScore Bet,4.34,-6.16,0.52,yes,2026-11-19T12:11:55+00:00,7.5,3.0,0.10432203080282465,72.0,85.0,L,-0.52,settled,
 2026-11-19|401926773|spread|away|bandB,2026-11-19,401926773,spread,Tarleton State +27.5,away,30,2627,USC,Tarleton State,27.5,27.5,-115.0,BetMGM,2.02,25.48,0.5,yes,2026-11-19T12:24:09+00:00,,,,,,,,open,bandB
 2026-11-20|401909698|spread|away,2026-11-20,401909698,spread,Green Bay +23.5,away,52,2739,Florida State,Green Bay,23.5,23.5,-110.0,FanDuel,3.44,20.06,0.35,yes,2026-11-19T21:07:43+00:00,,,,,,,,open,
