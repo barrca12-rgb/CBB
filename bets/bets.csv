@@ -870,3 +870,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-19|401919050|total|under,2026-11-19,401919050,total,Under 163.5,under,2628,245,TCU,Texas A&M,163.5,163.5,-110.0,theScore Bet,3.42,160.08,1.0,yes,2026-11-20T00:11:08+00:00,,,,,,,,open,
 2026-11-20|401921757|total|under,2026-11-20,401921757,total,Under 157.5,under,238,2116,Vanderbilt,UCF,157.5,157.5,-110.0,Caesars,3.29,154.21,1.0,yes,2026-11-20T00:11:59+00:00,,,,,,,,open,
 2026-11-20|401906784|spread|away,2026-11-20,401906784,spread,Georgia -6.5,away,59,61,Georgia Tech,Georgia,-6.5,-6.5,-115.0,BetRivers,3.68,-10.18,0.46,yes,2026-11-20T01:34:55+00:00,,,,,,,,open,
+2026-11-20|401924844|total|over,2026-11-20,401924844,total,Over 135,over,2169,315,Delaware State,Niagara,135.0,135.0,-110.0,Fanatics,3.12,138.12,1.0,yes,2026-11-20T02:54:30+00:00,,,,,,,,open,
+2026-11-20|401920357|total|over,2026-11-20,401920357,total,Over 135.5,over,107,108,Holy Cross,Harvard,135.5,135.5,-115.0,DraftKings,3.69,139.19,1.0,yes,2026-11-20T02:54:30+00:00,,,,,,,,open,
+2026-11-20|401921107|spread|away|bandB,2026-11-20,401921107,spread,Bellarmine +7.5,away,2198,91,Eastern Kentucky,Bellarmine,7.5,7.5,-110.0,DraftKings,2.05,5.45,0.5,yes,2026-11-20T02:54:39+00:00,,,,,,,,open,bandB
