@@ -926,3 +926,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-22|401911024|spread|away|bandB,2026-11-22,401911024,spread,Miami (OH) +1.5,away,82,193,UIC,Miami (OH),1.5,1.5,-115.0,theScore Bet,2.28,-0.78,0.5,yes,2026-11-21T21:28:09+00:00,,,,,,,,open,bandB
 2026-11-22|401918988|spread|away|bandB,2026-11-22,401918988,spread,Evansville +21.5,away,235,339,Memphis,Evansville,21.5,21.5,-105.0,theScore Bet,2.2,19.3,0.5,yes,2026-11-21T21:28:09+00:00,,,,,,,,open,bandB
 2026-11-22|401926774|spread|away|bandB,2026-11-22,401926774,spread,Louisiana +32.5,away,30,309,USC,Louisiana,32.5,32.5,-105.0,theScore Bet,2.33,30.17,0.5,yes,2026-11-21T21:28:09+00:00,,,,,,,,open,bandB
+2026-11-22|401928802|total|over,2026-11-22,401928802,total,Over 146.5,over,98,45,Western Kentucky,George Washington,146.5,146.5,-115.0,theScore Bet,3.58,150.08,1.0,yes,2026-11-21T21:50:28+00:00,,,,,,,,open,
+2026-11-22|401917540|total|over,2026-11-22,401917540,total,Over 139.5,over,2351,300,Loyola Marymount,UC Irvine,139.5,139.5,-110.0,theScore Bet,4.58,144.08,1.5,yes,2026-11-21T21:50:28+00:00,,,,,,,,open,
+2026-11-22|401919020|total|over,2026-11-22,401919020,total,Over 148.5,over,5,227,UAB,Rhode Island,148.5,148.5,-115.0,theScore Bet,4.23,152.73,1.5,yes,2026-11-21T21:50:28+00:00,,,,,,,,open,
+2026-11-22|401928802|spread|home|bandB,2026-11-22,401928802,spread,Western Kentucky +5.5,home,98,45,Western Kentucky,George Washington,5.5,5.5,-110.0,theScore Bet,2.29,-3.21,0.5,yes,2026-11-21T21:50:42+00:00,,,,,,,,open,bandB
