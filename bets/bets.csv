@@ -908,3 +908,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-21|401909517|spread|away,2026-11-21,401909517,spread,Coppin State +32.5,away,46,2154,Georgetown,Coppin State,32.5,32.5,-110.0,BetMGM,3.72,28.78,0.03,yes,2026-11-21T01:31:39+00:00,,,,,,,,open,
 2026-11-21|401919849|spread|away|bandB,2026-11-21,401919849,spread,Northeastern -6.5,away,284,111,Stonehill,Northeastern,-6.5,-6.5,-118.0,BetMGM,2.44,-8.94,0.5,yes,2026-11-21T01:31:49+00:00,,,,,,,,open,bandB
 2026-11-21|401911310|spread|home|bandB,2026-11-21,401911310,spread,Vermont -4.5,home,261,225,Vermont,Brown,-4.5,-4.5,-105.0,BetMGM,2.25,6.75,0.5,yes,2026-11-21T01:31:49+00:00,,,,,,,,open,bandB
+2026-11-21|401926217|total|under,2026-11-21,401926217,total,Under 163.5,under,2635,2506,Tennessee Tech,Presbyterian,163.5,163.5,-105.0,BetMGM,4.0,159.5,1.0,yes,2026-11-21T01:41:29+00:00,,,,,,,,open,

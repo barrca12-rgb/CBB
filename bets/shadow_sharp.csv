@@ -725,3 +725,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-21|401919828|total|under,2026-11-21,total,Under 135.5,135.5,-110.0,3.42,1.0,,,False,,,False,,,,,,
 2026-11-21|401921811|spread|away,2026-11-21,spread,Queens University +27.5,27.5,-110.0,4.3,0.03,,,True,0.5,3.8,True,,,,,-27.0,0.5
 2026-11-21|401909517|spread|away,2026-11-21,spread,Coppin State +32.5,32.5,-110.0,3.72,0.03,,,True,0.5,3.22,True,,,,,-32.0,0.5
+2026-11-21|401926217|total|under,2026-11-21,total,Under 163.5,163.5,-105.0,4.0,1.0,,,True,-0.5,4.5,True,,,,,164.0,-0.5
