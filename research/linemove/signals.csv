@@ -632,3 +632,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-21T14:35:59+00:00,2026-11-21,401923312,2026-11-21T18:00Z,2441,160,New Haven,New Hampshire,spread,home,bandB,New Haven +3.5,2.5,-114.0,FanDuel,2026-11-21T05:54:54+00:00,3.5,-118.0,FanDuel,1.0,521.1,1.44,2.44,-1.06
 2026-11-21T14:46:08+00:00,2026-11-21,401924884,2026-11-21T16:00Z,2083,2561,Bucknell,Siena,total,under,v1,Under 157.5,153.5,-105.0,theScore Bet,2026-11-20T22:44:07+00:00,157.5,-110.0,Caesars,4.0,962.0,-0.77,3.23,154.27
 2026-11-21T14:59:10+00:00,2026-11-21,401923402,2026-11-21T17:00Z,104,171,Boston University,Columbia,spread,away,v1,Columbia +1.5,-1.5,-114.0,BetRivers,2026-11-21T00:20:50+00:00,1.5,-120.0,BetMGM,3.0,878.3,0.3,3.3,-1.8
+2026-11-21T15:28:30+00:00,2026-11-21,401920570,2026-11-21T22:30Z,151,79,East Carolina,Southern Illinois,spread,home,bandB,East Carolina +1.5,-1.5,102.0,DraftKings,2026-11-21T06:13:02+00:00,1.5,-115.0,BetMGM,3.0,555.5,-1.0,2.0,0.5
