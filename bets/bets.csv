@@ -914,3 +914,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-21|401917953|total|under,2026-11-21,401917953,total,Under 145.5,under,2046,292,Austin Peay,UT Rio Grande Valley,145.5,145.5,-110.0,FanDuel,3.4,142.1,1.0,yes,2026-11-21T03:31:32+00:00,,,,,,,,open,
 2026-11-21|401911378|spread|home|bandB,2026-11-21,401911378,spread,Mercer -8.5,home,2382,2127,Mercer,Charleston Southern,-8.5,-8.5,-110.0,DraftKings,2.04,10.54,0.5,yes,2026-11-21T03:41:49+00:00,,,,,,,,open,bandB
 2026-11-21|401911310|spread|home,2026-11-21,401911310,spread,Vermont -3.5,home,261,225,Vermont,Brown,-3.5,-3.5,-110.0,BetMGM,3.24,6.74,0.16,yes,2026-11-21T04:36:10+00:00,,,,,,,,open,
+2026-11-21|401920948|total|over,2026-11-21,401920948,total,Over 138.5,over,2199,2172,Eastern Michigan,Denver,138.5,138.5,-114.0,BetRivers,3.41,141.91,1.0,yes,2026-11-21T06:23:41+00:00,,,,,,,,open,
