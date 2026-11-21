@@ -930,3 +930,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-22|401917540|total|over,2026-11-22,401917540,total,Over 139.5,over,2351,300,Loyola Marymount,UC Irvine,139.5,139.5,-110.0,theScore Bet,4.58,144.08,1.5,yes,2026-11-21T21:50:28+00:00,,,,,,,,open,
 2026-11-22|401919020|total|over,2026-11-22,401919020,total,Over 148.5,over,5,227,UAB,Rhode Island,148.5,148.5,-115.0,theScore Bet,4.23,152.73,1.5,yes,2026-11-21T21:50:28+00:00,,,,,,,,open,
 2026-11-22|401928802|spread|home|bandB,2026-11-22,401928802,spread,Western Kentucky +5.5,home,98,45,Western Kentucky,George Washington,5.5,5.5,-110.0,theScore Bet,2.29,-3.21,0.5,yes,2026-11-21T21:50:42+00:00,,,,,,,,open,bandB
+2026-11-22|401928802|spread|home,2026-11-22,401928802,spread,Western Kentucky +6,home,98,45,Western Kentucky,George Washington,6.0,6.0,-110.0,Fanatics,2.79,-3.21,0.03,yes,2026-11-21T22:55:24+00:00,,,,,,,,open,
+2026-11-22|401925942|spread|home,2026-11-22,401925942,spread,Utah Tech +1,home,3101,233,Utah Tech,South Dakota,1.0,1.0,-115.0,Fanatics,3.03,2.03,0.03,yes,2026-11-21T22:55:24+00:00,,,,,,,,open,
+2026-11-22|401925942|total|over,2026-11-22,401925942,total,Over 156.5,over,3101,233,Utah Tech,South Dakota,156.5,156.5,-110.0,theScore Bet,3.09,159.59,1.0,yes,2026-11-21T22:55:24+00:00,,,,,,,,open,
+2026-11-22|401918988|spread|away,2026-11-22,401918988,spread,Evansville +22,away,235,339,Memphis,Evansville,22.0,22.0,-110.0,Fanatics,2.71,19.29,0.03,yes,2026-11-21T22:55:24+00:00,,,,,,,,open,
