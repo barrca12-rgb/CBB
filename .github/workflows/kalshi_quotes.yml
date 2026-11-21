@@ -3,11 +3,9 @@
 # or stakes; never touches the card, bets/, lines/ or any frozen file.
 name: Kalshi quotes
 
+# Stopped Nov 21, 2026 (Chad: "stop the kalshi pulls", failed-run emails). Manual runs only; data kept in
+# research/kalshi/data/. Kalshi was too sparse to use anyway (up at posting for 17% of plays; pinnacle_agree/STEP1.md).
 on:
-  workflow_run:
-    workflows: ["Update CBB card"]
-    types: [completed]
-    branches: [claude/college-basketball-model-nmztcl]
   workflow_dispatch:
 
 permissions:
