@@ -629,3 +629,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-21T13:44:47+00:00,2026-11-21,401911378,2026-11-22T00:00Z,2382,2127,Mercer,Charleston Southern,total,under,v1,Under 162.5,160.5,-110.0,theScore Bet,2026-11-21T03:01:03+00:00,162.5,-110.0,Caesars,2.0,643.7,1.5,3.5,159.0
 2026-11-21T14:10:09+00:00,2026-11-21,401924722,2026-11-21T19:00Z,2415,172,Morgan State,Cornell,total,under,v1,Under 162.5,160.5,-110.0,Fanatics,2026-11-20T22:56:18+00:00,162.5,-105.0,FanDuel,2.0,913.9,1.78,3.78,158.72
 2026-11-21T14:10:09+00:00,2026-11-21,401917538,2026-11-21T21:30Z,301,300,San Diego,UC Irvine,spread,home,v1,San Diego +6.5,4.5,-105.0,theScore Bet,2026-11-20T23:14:37+00:00,6.5,-115.0,theScore Bet,2.0,895.5,1.04,3.04,-3.46
+2026-11-21T14:35:59+00:00,2026-11-21,401923312,2026-11-21T18:00Z,2441,160,New Haven,New Hampshire,spread,home,bandB,New Haven +3.5,2.5,-114.0,FanDuel,2026-11-21T05:54:54+00:00,3.5,-118.0,FanDuel,1.0,521.1,1.44,2.44,-1.06
