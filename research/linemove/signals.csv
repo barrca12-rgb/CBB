@@ -641,3 +641,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-21T19:46:49+00:00,2026-11-21,401925709,2026-11-21T22:00Z,2747,2737,Wofford,Winthrop,spread,away,v1,Winthrop +7.5,5.5,-110.0,FanDuel,2026-11-21T04:18:40+00:00,7.5,-121.0,BetRivers,2.0,928.1,1.23,3.23,4.27
 2026-11-21T19:46:49+00:00,2026-11-21,401925709,2026-11-21T22:00Z,2747,2737,Wofford,Winthrop,total,over,v1,Over 161.5,164.5,-114.0,FanDuel,2026-11-21T04:18:40+00:00,161.5,-110.0,BetMGM,3.0,928.1,0.37,3.37,164.87
 2026-11-21T22:15:43+00:00,2026-11-22,401925942,2026-11-22T19:00Z,3101,233,Utah Tech,South Dakota,total,over,v1,Over 156.5,156.5,-115.0,theScore Bet,2026-11-21T21:48:36+00:00,156.5,-110,theScore Bet,0.0,27.1,3.09,3.09,159.59
+2026-11-21T22:39:02+00:00,2026-11-22,401925942,2026-11-22T19:00Z,3101,233,Utah Tech,South Dakota,spread,home,v1,Utah Tech +1.5,-1.5,100.0,theScore Bet,2026-11-21T21:48:36+00:00,1.5,-125.0,theScore Bet,3.0,50.4,0.53,3.53,2.03
