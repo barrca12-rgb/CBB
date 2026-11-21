@@ -914,7 +914,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-21|401917953|total|under,2026-11-21,401917953,total,Under 145.5,under,2046,292,Austin Peay,UT Rio Grande Valley,145.5,145.5,-110.0,FanDuel,3.4,142.1,1.0,yes,2026-11-21T03:31:32+00:00,,,,,,,,open,
 2026-11-21|401911378|spread|home|bandB,2026-11-21,401911378,spread,Mercer -8.5,home,2382,2127,Mercer,Charleston Southern,-8.5,-8.5,-110.0,DraftKings,2.04,10.54,0.5,yes,2026-11-21T03:41:49+00:00,,,,,,,,open,bandB
 2026-11-21|401911310|spread|home,2026-11-21,401911310,spread,Vermont -3.5,home,261,225,Vermont,Brown,-3.5,-3.5,-110.0,BetMGM,3.24,6.74,0.16,yes,2026-11-21T04:36:10+00:00,,,,,,,,open,
-2026-11-21|401920948|total|over,2026-11-21,401920948,total,Over 138.5,over,2199,2172,Eastern Michigan,Denver,138.5,138.5,-114.0,BetRivers,3.41,141.91,1.0,yes,2026-11-21T06:23:41+00:00,,,,,,,,open,
-2026-11-21|401921169|total|over,2026-11-21,401921169,total,Over 146.5,over,325,2309,Cleveland State,Kent State,146.5,146.5,-105.0,DraftKings,4.77,151.27,1.5,yes,2026-11-21T17:06:35+00:00,,,,,,,,open,
+2026-11-21|401920948|total|over,2026-11-21,401920948,total,Over 138.5,over,2199,2172,Eastern Michigan,Denver,138.5,138.5,-114.0,BetRivers,3.41,141.91,1.0,yes,2026-11-21T06:23:41+00:00,139.5,1.0,0.024163526633169896,70.0,68.0,L,-1.0,settled,
+2026-11-21|401921169|total|over,2026-11-21,401921169,total,Over 146.5,over,325,2309,Cleveland State,Kent State,146.5,146.5,-105.0,DraftKings,4.77,151.27,1.5,yes,2026-11-21T17:06:35+00:00,145.5,-1.0,-0.02416352663316984,62.0,69.0,L,-1.5,settled,
 2026-11-21|401924722|total|under,2026-11-21,401924722,total,Under 161.5,under,2415,172,Morgan State,Cornell,161.5,161.5,-105.0,theScore Bet,5.87,155.63,2.0,yes,2026-11-21T18:14:53+00:00,,,,,,,,open,
 2026-11-21|401911022|total|over,2026-11-21,401911022,total,Over 147.5,over,189,2459,Bowling Green,Northern Illinois,147.5,147.5,-110.0,FanDuel,5.02,152.52,2.0,yes,2026-11-21T18:14:53+00:00,,,,,,,,open,
