@@ -1,1 +1,1 @@
-2026-11-21 13:44 UTC  events 0  book-game rows 328 (0 SGO, 328 The Odds API)  unmatched teams: Army Knights, Gardner-Webb Bulldogs, New Orleans Privateers  SGO month: 95,626 of 100,000 entities  The Odds API credits left: 78181
+2026-11-21 13:57 UTC  events 0  book-game rows 329 (0 SGO, 329 The Odds API)  unmatched teams: Army Knights, Gardner-Webb Bulldogs, New Orleans Privateers  SGO month: 95,626 of 100,000 entities  The Odds API credits left: 78178
