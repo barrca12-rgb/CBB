@@ -634,3 +634,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-21T14:59:10+00:00,2026-11-21,401923402,2026-11-21T17:00Z,104,171,Boston University,Columbia,spread,away,v1,Columbia +1.5,-1.5,-114.0,BetRivers,2026-11-21T00:20:50+00:00,1.5,-120.0,BetMGM,3.0,878.3,0.3,3.3,-1.8
 2026-11-21T15:28:30+00:00,2026-11-21,401920570,2026-11-21T22:30Z,151,79,East Carolina,Southern Illinois,spread,home,bandB,East Carolina +1.5,-1.5,102.0,DraftKings,2026-11-21T06:13:02+00:00,1.5,-115.0,BetMGM,3.0,555.5,-1.0,2.0,0.5
 2026-11-21T16:34:02+00:00,2026-11-21,401919031,2026-11-21T19:00Z,2724,167,Wichita State,New Mexico,spread,home,bandB,Wichita State +2,1.5,-110.0,Fanatics,2026-11-20T21:10:53+00:00,2.0,-110.0,Fanatics,0.5,1163.2,1.66,2.16,0.16
+2026-11-21T16:41:25+00:00,2026-11-21,401911337,2026-11-21T22:00Z,2636,2005,UTSA,Air Force,spread,home,bandB,UTSA -4.5,-6.5,-110.0,FanDuel,2026-11-20T21:32:54+00:00,-4.5,-120.0,BetRivers,2.0,1148.5,0.29,2.29,6.79
