@@ -760,3 +760,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-22|401909556|total|over,2026-11-22,total,Over 135.5,135.5,-110.0,3.02,1.0,,,True,0.5,2.52,True,,,,,136.0,0.5
 2026-11-22|401926774|spread|away,2026-11-22,spread,Louisiana +33.5,33.5,-110.0,3.45,0.07,,,True,1.0,2.45,True,-32.5,1.0,,,-33.0,0.5
 2026-11-22|401925013|total|under,2026-11-22,total,Under 161.5,161.5,-110.0,3.95,1.0,,,False,,,False,,,,,,
+2026-11-22|401928999|total|over,2026-11-22,total,Over 143.5,143.5,-105.0,3.47,1.0,,,False,,,False,,,,,,
