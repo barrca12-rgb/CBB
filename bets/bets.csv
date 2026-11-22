@@ -981,3 +981,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-23|401920721|total|under,2026-11-23,401920721,total,Under 161.5,under,2439,331,UNLV,Eastern Washington,161.5,161.5,-110.0,DraftKings,3.1,158.4,1.0,yes,2026-11-22T23:14:00+00:00,,,,,,,,open,
 2026-11-23|401911457|total|over,2026-11-23,401911457,total,Over 136.5,over,2539,2440,San Francisco,Nevada,136.5,136.5,-112.0,DraftKings,4.26,140.76,1.5,yes,2026-11-22T23:23:59+00:00,,,,,,,,open,
 2026-11-23|401926183|spread|away,2026-11-23,401926183,spread,UNC Greensboro +11.5,away,2492,2430,Pepperdine,UNC Greensboro,11.5,11.5,-115.0,DraftKings,2.65,8.85,0.24,yes,2026-11-22T23:23:59+00:00,,,,,,,,open,
+2026-11-23|401929286|total|over,2026-11-23,401929286,total,Over 142.5,over,2057,43,Belmont,Yale,142.5,142.5,-105.0,DraftKings,3.94,146.44,1.0,yes,2026-11-22T23:43:41+00:00,,,,,,,,open,
