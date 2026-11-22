@@ -1,1 +1,1 @@
-2026-11-22 06:34 UTC  events 0  book-game rows 250 (0 SGO, 250 The Odds API)  unmatched teams: Loyola (Chi) Ramblers  SGO month: 95,626 of 100,000 entities  The Odds API credits left: 77472
+2026-11-22 06:43 UTC  events 0  book-game rows 250 (0 SGO, 250 The Odds API)  unmatched teams: Loyola (Chi) Ramblers  SGO month: 95,626 of 100,000 entities  The Odds API credits left: 77469
