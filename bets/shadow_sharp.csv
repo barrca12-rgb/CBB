@@ -764,4 +764,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-22|401925066|total|over,2026-11-22,total,Over 134.5,134.5,-110.0,3.29,1.0,,,False,,,False,,,,,,
 2026-11-22|401926795|spread|away,2026-11-22,spread,Richmond +2.5,2.5,-120.0,2.73,0.06,,,False,,,False,,,,,,
 2026-11-22|401920736|total|over,2026-11-22,total,Over 135.5,135.5,-105.0,3.38,1.0,L,-1.0,True,0.5,2.88,True,135.5,0.0,136.0,0.5,135.0,-0.5
-2026-11-22|401921706|total|over,2026-11-22,total,Over 139.5,139.5,-105.0,3.61,1.0,,,False,,,False,,,,,,
+2026-11-22|401921706|total|over,2026-11-22,total,Over 139.5,139.5,-105.0,3.61,1.0,W,0.952,False,,,False,,,,,,
