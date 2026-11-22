@@ -944,7 +944,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-22|401922293|spread|home|bandB,2026-11-22,401922293,spread,Samford -6.5,home,2535,2427,Samford,UNC Asheville,-6.5,-6.5,-118.0,BetMGM,2.4,8.9,0.5,yes,2026-11-21T23:15:09+00:00,,,,,,,,open,bandB
 2026-11-22|401921748|total|over,2026-11-22,401921748,total,Over 148.5,over,2132,2349,Cincinnati,UMass Lowell,148.5,148.5,-115.0,BetMGM,3.4,151.9,1.0,yes,2026-11-21T23:24:14+00:00,,,,,,,,open,
 2026-11-22|401926795|spread|away|bandB,2026-11-22,401926795,spread,Richmond +2,away,2335,257,Liberty,Richmond,2.0,2.0,-110.0,Fanatics,2.23,-0.23,0.5,yes,2026-11-21T23:24:26+00:00,,,,,,,,open,bandB
-2026-11-22|401929023|total|over,2026-11-22,401929023,total,Over 139,over,2099,2710,Canisius,Western Illinois,139.0,139.0,-110.0,Fanatics,3.58,142.58,1.0,yes,2026-11-21T23:37:05+00:00,,,,,,,,open,
+2026-11-22|401929023|total|over,2026-11-22,401929023,total,Over 139,over,2099,2710,Canisius,Western Illinois,139.0,139.0,-110.0,Fanatics,3.58,142.58,1.0,yes,2026-11-21T23:37:05+00:00,139.5,0.5,0.012087310074144986,46.0,66.0,L,-1.0,settled,
 2026-11-22|401923323|total|over,2026-11-22,401923323,total,Over 128.5,over,399,2385,UAlbany,Mercyhurst,128.5,128.5,-115.0,BetMGM,4.17,132.67,1.5,yes,2026-11-21T23:50:29+00:00,,,,,,,,open,
 2026-11-22|401922293|total|under,2026-11-22,401922293,total,Under 156.5,under,2535,2427,Samford,UNC Asheville,156.5,156.5,-105.0,BetMGM,3.44,153.06,1.0,yes,2026-11-21T23:50:29+00:00,,,,,,,,open,
 2026-11-22|401909556|total|over,2026-11-22,401909556,total,Over 135.5,over,103,2885,Boston College,NJIT,135.5,135.5,-110.0,Caesars,3.02,138.52,1.0,yes,2026-11-22T00:02:14+00:00,,,,,,,,open,
