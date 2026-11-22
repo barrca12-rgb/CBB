@@ -965,3 +965,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-23|401921658|spread|away,2026-11-23,401921658,spread,Tulsa +6.5,away,204,202,Oregon State,Tulsa,6.5,6.5,-105.0,DraftKings,3.4,3.1,0.13,yes,2026-11-22T21:55:03+00:00,,,,,,,,open,
 2026-11-23|401921658|total|over,2026-11-23,401921658,total,Over 151.5,over,204,202,Oregon State,Tulsa,151.5,151.5,-110.0,DraftKings,5.32,156.82,2.0,yes,2026-11-22T21:55:03+00:00,,,,,,,,open,
 2026-11-23|401913102|spread|away,2026-11-23,401913102,spread,Monmouth +20.5,away,153,2405,North Carolina,Monmouth,20.5,20.5,-110.0,DraftKings,2.84,17.66,0.2,yes,2026-11-22T22:05:24+00:00,,,,,,,,open,
+2026-11-24|401906853|spread|home,2026-11-24,401906853,spread,Maryland +5.5,home,120,2633,Maryland,Tennessee,5.5,5.5,-105.0,DraftKings,3.76,-1.74,0.3,yes,2026-11-22T22:31:47+00:00,,,,,,,,open,
+2026-11-24|401906853|total|under,2026-11-24,401906853,total,Under 148.5,under,120,2633,Maryland,Tennessee,148.5,148.5,-115.0,DraftKings,4.81,143.69,1.5,yes,2026-11-22T22:31:47+00:00,,,,,,,,open,
+2026-11-24|401909495|spread|home,2026-11-24,401909495,spread,Michigan -4.5,home,130,156,Michigan,Creighton,-4.5,-4.5,-110.0,DraftKings,2.73,7.23,0.2,yes,2026-11-22T22:31:47+00:00,,,,,,,,open,
