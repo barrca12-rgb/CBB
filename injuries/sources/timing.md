@@ -1,17 +1,17 @@
 # Injury sources: who reports first
 
-Updated 2026-11-22 11:41 UTC by `cbb/injury_sources.py`. Logging since 2026-10-26; 21 game day(s) so far. Model's injury input: **espn** (recommendation: **espn**, only 6 injuries matched to a line move after 14 game days; staying with ESPN; waiting for approval).
+Updated 2026-11-22 11:50 UTC by `cbb/injury_sources.py`. Logging since 2026-10-26; 21 game day(s) so far. Model's injury input: **espn** (recommendation: **espn**, only 6 injuries matched to a line move after 14 game days; staying with ESPN; waiting for approval).
 
 Material injuries: Out / Doubtful / Questionable, player with 10%+ of team minutes, first reported after logging began and before the team's next game. A line move is the spread moving 1+ point against the team at any book. Times are poll times (one run = 30 minutes).
 
 | Source | Injuries | Coverage | First (or same run) | Median min behind first | Before the move | Median lead on move (min) | Players matched to ESPN ids |
 |---|---:|---:|---:|---:|---:|---:|---:|
 | espn | 0 | 0% |  |  | 0% |  |  |
-| rotowire | 28 | 100% | 100% | 0 | 36% | 653 | 100% |
+| rotowire | 26 | 100% | 100% | 0 | 33% | 670 | 100% |
 | covers | 0 | 0% |  |  | 0% |  | 0% |
 | cbs | 0 | 0% |  |  | 0% |  |  |
 
-28 material injuries; 14 matched to a line move.
+26 material injuries; 12 matched to a line move.
 
 Last pull per source:
 
