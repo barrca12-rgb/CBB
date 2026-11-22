@@ -769,3 +769,5 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-23|401921708|total|under,2026-11-23,total,Under 166.5,166.5,-110.0,5.1,1.98,,,True,1.5,3.6,True,,,,,165.0,1.5
 2026-11-23|401909536|total|under,2026-11-23,total,Under 152.5,152.5,-105.0,5.95,1.98,,,True,0.5,5.45,True,,,,,152.0,0.5
 2026-11-23|401909743|total|under,2026-11-23,total,Under 158.5,158.5,-110.0,4.16,1.48,,,True,2.0,2.16,True,,,,,156.5,2.0
+2026-11-23|401921658|spread|away,2026-11-23,spread,Tulsa +6.5,6.5,-105.0,3.4,0.13,,,True,0.0,3.4,True,,,,,-6.5,0.0
+2026-11-23|401921658|total|over,2026-11-23,total,Over 151.5,151.5,-110.0,5.32,2.0,,,True,0.0,5.32,True,,,,,151.5,0.0

@@ -962,3 +962,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-23|401909536|total|under,2026-11-23,401909536,total,Under 152.5,under,2507,2670,Providence,VCU,152.5,152.5,-105.0,DraftKings,5.95,146.55,1.98,yes,2026-11-22T21:02:25+00:00,,,,,,,,open,
 2026-11-23|401909743|total|under,2026-11-23,401909743,total,Under 158.5,under,12,36,Arizona,Colorado State,158.5,158.5,-110.0,DraftKings,4.16,154.34,1.48,yes,2026-11-22T21:02:25+00:00,,,,,,,,open,
 2026-11-23|401909743|spread|away|bandB,2026-11-23,401909743,spread,Colorado State +18,away,12,36,Arizona,Colorado State,18.0,18.0,-110.0,Fanatics,2.01,15.99,0.5,yes,2026-11-22T21:12:17+00:00,,,,,,,,open,bandB
+2026-11-23|401921658|spread|away,2026-11-23,401921658,spread,Tulsa +6.5,away,204,202,Oregon State,Tulsa,6.5,6.5,-105.0,DraftKings,3.4,3.1,0.13,yes,2026-11-22T21:55:03+00:00,,,,,,,,open,
+2026-11-23|401921658|total|over,2026-11-23,401921658,total,Over 151.5,over,204,202,Oregon State,Tulsa,151.5,151.5,-110.0,DraftKings,5.32,156.82,2.0,yes,2026-11-22T21:55:03+00:00,,,,,,,,open,
