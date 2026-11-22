@@ -745,7 +745,7 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-22|401928802|spread|home,2026-11-22,spread,Western Kentucky +6,6.0,-110.0,2.79,0.03,,,False,,,False,,,,,,
 2026-11-22|401925942|spread|home,2026-11-22,spread,Utah Tech +1,1.0,-115.0,3.03,0.03,P,0.0,False,,,False,,,,,,
 2026-11-22|401925942|total|over,2026-11-22,total,Over 156.5,156.5,-110.0,3.09,1.0,L,-1.0,False,,,False,,,,,,
-2026-11-22|401918988|spread|away,2026-11-22,spread,Evansville +22,22.0,-110.0,2.71,0.03,,,True,0.5,2.21,True,,,,,-21.5,0.5
+2026-11-22|401918988|spread|away,2026-11-22,spread,Evansville +22,22.0,-110.0,2.71,0.03,W,0.027,True,0.5,2.21,True,,,,,-21.5,0.5
 2026-11-22|401922252|spread|home,2026-11-22,spread,South Alabama -7.5,-7.5,-105.0,2.92,0.03,,,True,0.0,2.92,True,,,,,-7.5,0.0
 2026-11-22|401922252|total|under,2026-11-22,total,Under 145.5,145.5,-110.0,5.58,2.0,,,True,0.0,5.58,True,,,,,145.5,0.0
 2026-11-22|401929202|total|under,2026-11-22,total,Under 144.5,144.5,-105.0,3.82,1.0,,,True,-0.5,4.32,True,,,,,145.0,-0.5

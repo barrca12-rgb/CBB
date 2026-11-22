@@ -924,7 +924,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-22|401921420|spread|away,2026-11-22,401921420,spread,Utah +11.5,away,135,254,Minnesota,Utah,11.5,11.5,-120.0,FanDuel,2.54,8.96,0.04,yes,2026-11-21T21:27:58+00:00,,,,,,,,open,
 2026-11-22|401917542|total|over,2026-11-22,401917542,total,Over 144,over,28,2547,UC San Diego,Seattle U,144.0,144.0,-110.0,Fanatics,5.53,149.53,2.0,yes,2026-11-21T21:27:58+00:00,,,,,,,,open,
 2026-11-22|401911024|spread|away|bandB,2026-11-22,401911024,spread,Miami (OH) +1.5,away,82,193,UIC,Miami (OH),1.5,1.5,-115.0,theScore Bet,2.28,-0.78,0.5,yes,2026-11-21T21:28:09+00:00,1.5,0.0,0.0,60.0,70.0,W,0.435,settled,bandB
-2026-11-22|401918988|spread|away|bandB,2026-11-22,401918988,spread,Evansville +21.5,away,235,339,Memphis,Evansville,21.5,21.5,-105.0,theScore Bet,2.2,19.3,0.5,yes,2026-11-21T21:28:09+00:00,,,,,,,,open,bandB
+2026-11-22|401918988|spread|away|bandB,2026-11-22,401918988,spread,Evansville +21.5,away,235,339,Memphis,Evansville,21.5,21.5,-105.0,theScore Bet,2.2,19.3,0.5,yes,2026-11-21T21:28:09+00:00,19.5,2.0,0.06999712412436032,82.0,62.0,W,0.476,settled,bandB
 2026-11-22|401926774|spread|away|bandB,2026-11-22,401926774,spread,Louisiana +32.5,away,30,309,USC,Louisiana,32.5,32.5,-105.0,theScore Bet,2.33,30.17,0.5,yes,2026-11-21T21:28:09+00:00,,,,,,,,open,bandB
 2026-11-22|401928802|total|over,2026-11-22,401928802,total,Over 146.5,over,98,45,Western Kentucky,George Washington,146.5,146.5,-115.0,theScore Bet,3.58,150.08,1.0,yes,2026-11-21T21:50:28+00:00,,,,,,,,open,
 2026-11-22|401917540|total|over,2026-11-22,401917540,total,Over 139.5,over,2351,300,Loyola Marymount,UC Irvine,139.5,139.5,-110.0,theScore Bet,4.58,144.08,1.5,yes,2026-11-21T21:50:28+00:00,,,,,,,,open,
@@ -933,7 +933,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-22|401928802|spread|home,2026-11-22,401928802,spread,Western Kentucky +6,home,98,45,Western Kentucky,George Washington,6.0,6.0,-110.0,Fanatics,2.79,-3.21,0.03,yes,2026-11-21T22:55:24+00:00,,,,,,,,open,
 2026-11-22|401925942|spread|home,2026-11-22,401925942,spread,Utah Tech +1,home,3101,233,Utah Tech,South Dakota,1.0,1.0,-115.0,Fanatics,3.03,2.03,0.03,yes,2026-11-21T22:55:24+00:00,-1.5,2.5,0.08724297620558874,73.0,74.0,P,0.0,settled,
 2026-11-22|401925942|total|over,2026-11-22,401925942,total,Over 156.5,over,3101,233,Utah Tech,South Dakota,156.5,156.5,-110.0,theScore Bet,3.09,159.59,1.0,yes,2026-11-21T22:55:24+00:00,153.5,-3.0,-0.07213729233996419,73.0,74.0,L,-1.0,settled,
-2026-11-22|401918988|spread|away,2026-11-22,401918988,spread,Evansville +22,away,235,339,Memphis,Evansville,22.0,22.0,-110.0,Fanatics,2.71,19.29,0.03,yes,2026-11-21T22:55:24+00:00,,,,,,,,open,
+2026-11-22|401918988|spread|away,2026-11-22,401918988,spread,Evansville +22,away,235,339,Memphis,Evansville,22.0,22.0,-110.0,Fanatics,2.71,19.29,0.03,yes,2026-11-21T22:55:24+00:00,19.5,2.5,0.08724297620558874,82.0,62.0,W,0.027,settled,
 2026-11-22|401922252|spread|home,2026-11-22,401922252,spread,South Alabama -7.5,home,6,2697,South Alabama,West Florida,-7.5,-7.5,-105.0,Caesars,2.92,10.42,0.03,yes,2026-11-21T23:03:01+00:00,,,,,,,,open,
 2026-11-22|401922252|total|under,2026-11-22,401922252,total,Under 145.5,under,6,2697,South Alabama,West Florida,145.5,145.5,-110.0,Caesars,5.58,139.92,2.0,yes,2026-11-21T23:03:01+00:00,,,,,,,,open,
 2026-11-22|401929202|total|under,2026-11-22,401929202,total,Under 144.5,under,326,2377,Texas State,McNeese,144.5,144.5,-105.0,BetMGM,3.82,140.68,1.0,yes,2026-11-21T23:03:01+00:00,,,,,,,,open,
@@ -961,3 +961,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-23|401921708|total|under,2026-11-23,401921708,total,Under 166.5,under,252,264,BYU,Washington,166.5,166.5,-110.0,DraftKings,5.1,161.4,1.98,yes,2026-11-22T21:02:25+00:00,,,,,,,,open,
 2026-11-23|401909536|total|under,2026-11-23,401909536,total,Under 152.5,under,2507,2670,Providence,VCU,152.5,152.5,-105.0,DraftKings,5.95,146.55,1.98,yes,2026-11-22T21:02:25+00:00,,,,,,,,open,
 2026-11-23|401909743|total|under,2026-11-23,401909743,total,Under 158.5,under,12,36,Arizona,Colorado State,158.5,158.5,-110.0,DraftKings,4.16,154.34,1.48,yes,2026-11-22T21:02:25+00:00,,,,,,,,open,
+2026-11-23|401909743|spread|away|bandB,2026-11-23,401909743,spread,Colorado State +18,away,12,36,Arizona,Colorado State,18.0,18.0,-110.0,Fanatics,2.01,15.99,0.5,yes,2026-11-22T21:12:17+00:00,,,,,,,,open,bandB
