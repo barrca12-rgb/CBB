@@ -748,7 +748,7 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-22|401918988|spread|away,2026-11-22,spread,Evansville +22,22.0,-110.0,2.71,0.03,W,0.027,True,0.5,2.21,True,,,,,-21.5,0.5
 2026-11-22|401922252|spread|home,2026-11-22,spread,South Alabama -7.5,-7.5,-105.0,2.92,0.03,W,0.029,True,0.0,2.92,True,,,,,-7.5,0.0
 2026-11-22|401922252|total|under,2026-11-22,total,Under 145.5,145.5,-110.0,5.58,2.0,W,1.818,True,0.0,5.58,True,,,,,145.5,0.0
-2026-11-22|401929202|total|under,2026-11-22,total,Under 144.5,144.5,-105.0,3.82,1.0,,,True,-0.5,4.32,True,,,,,145.0,-0.5
+2026-11-22|401929202|total|under,2026-11-22,total,Under 144.5,144.5,-105.0,3.82,1.0,L,-1.0,True,-0.5,4.32,True,,,,,145.0,-0.5
 2026-11-22|401923323|spread|away,2026-11-22,spread,Mercyhurst +1.5,1.5,-110.0,4.37,0.04,W,0.036,True,0.5,3.87,True,,,,,-1.0,0.5
 2026-11-22|401917541|spread|away,2026-11-22,spread,California Baptist +13.5,13.5,-110.0,4.78,0.06,,,True,3.0,1.78,False,,,,,-10.5,3.0
 2026-11-22|401917541|total|over,2026-11-22,total,Over 135.5,135.5,-105.0,8.93,2.0,,,True,10.5,-1.57,False,,,,,146.0,10.5
@@ -780,3 +780,6 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-24|401906762|total|under,2026-11-24,total,Under 178,178.0,-110.0,5.08,2.0,,,False,,,False,,,,,,
 2026-11-23|401911457|spread|away,2026-11-23,spread,Nevada -7,-7.0,-110.0,3.22,0.24,,,True,0.0,3.22,True,,,,,7.0,0.0
 2026-11-23|401921029|total|under,2026-11-23,total,Under 164.5,164.5,-110.0,3.51,1.0,,,True,1.0,2.51,True,,,,,163.5,1.0
+2026-11-23|401917543|spread|away,2026-11-23,spread,Illinois State +5.5,5.5,-110.0,2.58,0.24,,,True,0.5,2.08,True,,,,,-5.0,0.5
+2026-11-23|401909788|spread|away,2026-11-23,spread,Denver +37.5,37.5,-110.0,3.8,0.36,,,True,0.5,3.3,True,,,,,-37.0,0.5
+2026-11-23|401909788|total|over,2026-11-23,total,Over 157.5,157.5,-110.0,3.33,1.0,,,True,-1.0,4.33,True,,,,,156.5,-1.0
