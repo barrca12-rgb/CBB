@@ -1,1 +1,1 @@
-2026-11-23 17:43 UTC  events 169  book-game rows 259 (174 SGO, 85 The Odds API)  unmatched teams: Citadel Bulldogs, IUPUI Jaguars, Loyola (Chi) Ramblers, Warner Royals  SGO month: 5,149 of 100,000 entities  The Odds API credits left: 76275
+2026-11-23 17:57 UTC  events 0  book-game rows 245 (0 SGO, 245 The Odds API)  unmatched teams: Loyola (Chi) Ramblers  The Odds API credits left: 76272

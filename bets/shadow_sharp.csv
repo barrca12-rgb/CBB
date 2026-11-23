@@ -775,7 +775,7 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-24|401906853|spread|home,2026-11-24,spread,Maryland +5.5,5.5,-105.0,3.76,0.3,,,False,,,False,,,,,,
 2026-11-24|401906853|total|under,2026-11-24,total,Under 148.5,148.5,-115.0,4.81,1.5,,,False,,,False,,,,,,
 2026-11-24|401909495|spread|home,2026-11-24,spread,Michigan -4.5,-4.5,-110.0,2.73,0.2,,,False,,,False,,,,,,
-2026-11-23|401921700|total|over,2026-11-23,total,Over 141.5,141.5,-110.0,4.04,1.5,,,True,1.0,3.04,True,,,,,142.5,1.0
+2026-11-23|401921700|total|over,2026-11-23,total,Over 141.5,141.5,-110.0,4.04,1.5,L,-1.5,True,1.0,3.04,True,,,,,142.5,1.0
 2026-11-23|401928830|total|under,2026-11-23,total,Under 147.5,147.5,-110.0,3.67,1.0,,,True,-0.5,4.17,True,,,,,148.0,-0.5
 2026-11-24|401906762|total|under,2026-11-24,total,Under 178,178.0,-110.0,5.08,2.0,,,False,,,False,,,,,,
 2026-11-23|401911457|spread|away,2026-11-23,spread,Nevada -7,-7.0,-110.0,3.22,0.24,,,True,0.0,3.22,True,,,,,7.0,0.0
