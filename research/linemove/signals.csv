@@ -675,3 +675,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-23T07:21:28+00:00,2026-11-23,401929445,2026-11-23T20:30Z,253,2032,Southern Utah,Arkansas State,total,under,v1,Under 162.5,160.0,-110.0,Fanatics,2026-11-22T23:35:07+00:00,162.5,-110.0,DraftKings,2.5,466.4,0.84,3.34,159.16
 2026-11-23T13:21:42+00:00,2026-11-23,401921701,2026-11-23T18:30Z,526,2429,Florida Gulf Coast,Charlotte,total,over,v1,Over 143,145.0,-110.0,Fanatics,2026-11-23T01:45:37+00:00,143.0,-110.0,Caesars,2.0,696.1,1.53,3.53,146.53
 2026-11-23T13:31:11+00:00,2026-11-23,401921177,2026-11-23T20:30Z,85,2729,IU Indianapolis,William & Mary,total,under,v1,Under 169.5,166.5,-110.0,FanDuel,2026-11-23T08:12:58+00:00,169.5,-115.0,theScore Bet,3.0,318.2,0.38,3.38,166.12
+2026-11-23T14:30:15+00:00,2026-11-23,401929286,2026-11-23T21:00Z,2057,43,Belmont,Yale,spread,home,bandB,Belmont -1.5,-2.5,-115.0,FanDuel,2026-11-23T08:46:02+00:00,-1.5,-120.0,BetRivers,1.0,344.2,1.33,2.33,3.83
