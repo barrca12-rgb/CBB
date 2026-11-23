@@ -1003,3 +1003,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-24|401920819|total|over,2026-11-24,401920819,total,Over 141.5,over,2458,2545,Northern Colorado,SE Louisiana,141.5,141.5,-110.0,theScore Bet,6.04,147.54,1.94,yes,2026-11-23T21:48:25+00:00,,,,,,,,open,
 2026-11-24|401927398|spread|away|bandB,2026-11-24,401927398,spread,Wright State -1.5,away,179,2750,St. Bonaventure,Wright State,-1.5,-1.5,100.0,theScore Bet,2.46,-3.96,0.5,yes,2026-11-23T21:48:36+00:00,,,,,,,,open,bandB
 2026-11-24|401928791|spread|home|bandB,2026-11-24,401928791,spread,New Mexico State +4.5,home,166,195,New Mexico State,Ohio,4.5,4.5,-105.0,theScore Bet,2.12,-2.38,0.5,yes,2026-11-23T21:48:36+00:00,,,,,,,,open,bandB
+2026-11-23|401919761|spread|home|bandB,2026-11-23,401919761,spread,Iona -8.5,home,314,161,Iona,Fairleigh Dickinson,-8.5,-8.5,-112.0,BetRivers,2.27,10.77,0.5,yes,2026-11-23T21:57:52+00:00,,,,,,,,open,bandB
+2026-11-24|401920546|total|over,2026-11-24,401920546,total,Over 153.5,over,2174,155,Detroit Mercy,North Dakota,153.5,153.5,-115.0,theScore Bet,3.96,157.46,0.97,yes,2026-11-23T21:59:11+00:00,,,,,,,,open,
