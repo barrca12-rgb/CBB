@@ -1006,3 +1006,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-23|401919761|spread|home|bandB,2026-11-23,401919761,spread,Iona -8.5,home,314,161,Iona,Fairleigh Dickinson,-8.5,-8.5,-112.0,BetRivers,2.27,10.77,0.5,yes,2026-11-23T21:57:52+00:00,,,,,,,,open,bandB
 2026-11-24|401920546|total|over,2026-11-24,401920546,total,Over 153.5,over,2174,155,Detroit Mercy,North Dakota,153.5,153.5,-115.0,theScore Bet,3.96,157.46,0.97,yes,2026-11-23T21:59:11+00:00,,,,,,,,open,
 2026-11-24|401924877|total|over,2026-11-24,401924877,total,Over 156.5,over,164,2529,Rutgers,Sacred Heart,156.5,156.5,-105.0,theScore Bet,6.21,162.71,1.94,yes,2026-11-23T22:12:55+00:00,,,,,,,,open,
+2026-11-24|401926827|total|over,2026-11-24,401926827,total,Over 129.5,over,295,2261,Old Dominion,Hampton,129.5,129.5,-115.0,theScore Bet,5.65,135.15,1.94,yes,2026-11-23T22:37:00+00:00,,,,,,,,open,
+2026-11-24|401917904|spread|away,2026-11-24,401917904,spread,West Georgia +16.5,away,2635,2698,Tennessee Tech,West Georgia,16.5,16.5,-105.0,theScore Bet,2.65,13.85,0.33,yes,2026-11-23T22:37:00+00:00,,,,,,,,open,
