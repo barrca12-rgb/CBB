@@ -1,1 +1,1 @@
-2026-11-23 20:52 UTC  events 168  book-game rows 203 (139 SGO, 64 The Odds API)  unmatched teams: Auburn-Montgomery Warhawks, Bryant & Stratton Bobcats, Citadel Bulldogs, Clarke Pride, Loyola (Chi) Ramblers, Warner Royals  SGO month: 6,181 of 100,000 entities  The Odds API credits left: 76127
+2026-11-23 21:01 UTC  events 0  book-game rows 176 (0 SGO, 176 The Odds API)  unmatched teams: Fort Wayne Mastodons, Loyola (Chi) Ramblers  The Odds API credits left: 76120
