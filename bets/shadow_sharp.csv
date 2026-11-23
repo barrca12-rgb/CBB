@@ -813,3 +813,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-24|401927398|spread|away,2026-11-24,spread,Wright State +1,1.0,-115.0,4.96,0.66,,,True,2.5,2.46,True,1.5,2.5,,,0.0,1.0
 2026-11-24|401921184|spread|home,2026-11-24,spread,Pennsylvania -5.5,-5.5,-120.0,4.57,0.66,,,True,0.5,4.07,True,,,,,-6.0,0.5
 2026-11-24|401921184|total|over,2026-11-24,total,Over 144.5,144.5,-110.0,4.28,1.46,,,True,0.0,4.28,True,,,,,144.5,0.0
+2026-11-24|401920949|spread|away,2026-11-24,spread,Eastern Michigan +4.5,4.5,-118.0,2.56,0.33,,,True,0.5,2.06,True,,,,,-4.0,0.5
