@@ -1018,3 +1018,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-24|401921817|spread|away,2026-11-24,401921817,spread,Evansville +31.5,away,142,339,Missouri,Evansville,31.5,31.5,-110.0,theScore Bet,3.86,27.64,0.49,yes,2026-11-23T23:11:44+00:00,,,,,,,,open,
 2026-11-24|401928796|spread|away|bandB,2026-11-24,401928796,spread,Sam Houston +4.5,away,265,2534,Washington State,Sam Houston,4.5,4.5,-110.0,theScore Bet,2.29,2.21,0.5,yes,2026-11-23T23:12:00+00:00,,,,,,,,open,bandB
 2026-11-24|401911253|spread|home|bandB,2026-11-24,401911253,spread,Saint Louis +2.5,home,139,2253,Saint Louis,Grand Canyon,2.5,2.5,-115.0,theScore Bet,2.04,-0.46,0.5,yes,2026-11-23T23:12:00+00:00,,,,,,,,open,bandB
+2026-11-24|401925950|spread|away|bandB,2026-11-24,401925950,spread,Tarleton State +1.5,away,2692,2627,Weber State,Tarleton State,1.5,1.5,-120.0,DraftKings,2.49,-0.99,0.5,yes,2026-11-23T23:39:55+00:00,,,,,,,,open,bandB
+2026-11-24|401921008|spread|away|bandB,2026-11-24,401921008,spread,Green Bay +1,away,140,2739,Kansas City,Green Bay,1.0,1.0,-115.0,Fanatics,2.07,-1.07,0.5,yes,2026-11-23T23:39:55+00:00,,,,,,,,open,bandB
+2026-11-24|401911535|spread|away|bandB,2026-11-24,401911535,spread,Charleston +1.5,away,2638,232,UTEP,Charleston,1.5,1.5,-115.0,BetMGM,2.06,-0.56,0.5,yes,2026-11-23T23:39:55+00:00,,,,,,,,open,bandB
