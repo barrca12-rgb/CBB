@@ -2,6 +2,24 @@
 
 Dated findings from each review, newest first. "Nothing new" is a valid entry.
 
+## 2026-11-23: weekly review (Nov 16-22)
+
+- **Main 121-100, +16.68u staked (+10.22u flat), line move +1.78** (backtest +0.95; last week +1.38), the best week
+  yet on line move. Band B 27-22 (+1.20u, move +1.21).
+- **Outside the backtest range:**
+  - **Plays posted 6-18 hours before tip: 9-24 (27.3%), -10.44u.** Third week in a row this window is the weak one
+    (Nov 9-15 32.5%; season through Nov 15 48.3%). The Nov 16 timing study ties late plays to model-input changes
+    after the open. New backlog lead #9.
+  - Spread favorites 46.2% (18-21) for a second week; underdogs 57.7% (60-44).
+  - Totals edge 3-4: 48.0% (-6.12u) vs 4+ 65.4% (+26.99u); season 3-4 is about 50% and 4+ about 67%. The Nov 16 CLV
+    split (3-3.5 +1.18, 3.5-4 +1.36, 4+ +1.48) does not show the 3-4 band as clearly worse on the close.
+  - Totals flipped: Overs 61.6% (+23.60u), Unders 46.3% (-2.72u), the reverse of last week.
+  - BetRivers 3-9 (move +1.00), small sample.
+- **Recovered:** spreads 54.3% (was 49.5%); spreads under 7 points 50.0% (was 43.1%).
+- **All games vs the close (268):** totals gap +0.37 (backtest +0.68); margins +0.17 (backtest +0.18). In line.
+- **Stake shutoff:** spread stakes have fallen to 0.03-0.36u (Sunday 0.04u) while spreads since the Nov 9 model change
+  have Pinnacle CLV +4.35% (61% beat the close) on a 100-92 record. The shutoff reads win rate, not CLV. Backlog #10.
+
 ## 2026-11-16: weekly review (Nov 9-15)
 
 - **Main 142-113, +28.41u staked (+16.25u flat), line move +1.38** (backtest +0.95; last week +1.18). Band B 28-32

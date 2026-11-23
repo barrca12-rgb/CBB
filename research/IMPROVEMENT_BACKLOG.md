@@ -3,7 +3,7 @@
 Ranked by expected gain and how soon it can be tested. Update after every weekly review. Closed items stay at the
 bottom with their verdict, so nothing is retested by accident.
 
-Last updated Nov 16, 2026 (weekly review; small-spread lead).
+Last updated Nov 23, 2026 (weekly review; late-posted plays and stake shutoff leads).
 
 ## Open
 
@@ -18,6 +18,8 @@ Last updated Nov 16, 2026 (weekly review; small-spread lead).
 | 6 | **Novig as a sharp reference** | Novig prices logged since Oct 30 (lines/novig_log.csv) | Does Novig's price at our alert predict the close better than the books do? Jan 15 read |
 | 7 | **Totals in November** | Scoring-level tracking tested Nov 5 (research/totals_level): no historical level bias; recent-miss correction and a smooth environment both hurt opener totals. Live under-the-close run is a market effect. | Watch only; next totals idea must be game-specific (lineups, pace matchups at the opener) |
 | 8 | **Spreads under 7 points** | Live season 104 plays, 45.2%, -10.40u, line move +0.69 (15+: 187 plays, 55.1%, +1.22). Two weeks below range. Small sample: a lead, not a conclusion | Pre-register a backtest: opener spreads under 7 by edge band, 2015-17 and 2024-26; does a higher edge bar for small spreads hold up? Plan before results |
+| 9 | **Plays posted 6-18 hours before tip** | Three weeks weak: Nov 9-15 32.5%, Nov 16-22 27.3% (9-24, -10.44u). Nov 16 timing study: plays logged 1+ hours after the book posted had CLV -0.14 to +0.65 vs +1.67 within 10 minutes; these waited on a model input change | Pre-register a check: CLV and record of plays that first qualified after an input change (Barttorvik/KenPom update, injury, crew) vs at the open; does a minimum edge bump for late plays hold up in the 2024-26 backtest? |
+| 10 | **Stake shutoff reads win rate, not CLV** | Spreads since Nov 9: 100-92, -1.88u flat, Pinnacle CLV +4.35%, 61% beat the close; stakes fell to 0.03-0.36u. A results-based shutoff cuts stakes on variance when the closing-line edge is strong | Backtest a CLV-based shutoff (cap only when trailing CLV < 0) vs the win-rate posterior on 2024-26 openers; proposal to Chad (live staking change) |
 
 ## Closed (verdicts)
 
