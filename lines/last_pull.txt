@@ -1,1 +1,1 @@
-2026-11-23 11:22 UTC  events 163  book-game rows 251 (171 SGO, 80 The Odds API)  unmatched teams: Citadel Bulldogs, IUPUI Jaguars, Warner Royals  SGO month: 3,168 of 100,000 entities  The Odds API credits left: 76452
+2026-11-23 11:36 UTC  events 0  book-game rows 256 (0 SGO, 256 The Odds API)  unmatched teams: none  The Odds API credits left: 76449
