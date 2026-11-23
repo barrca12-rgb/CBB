@@ -807,3 +807,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-24|401928835|total|under,2026-11-24,total,Under 147.5,147.5,-105.0,7.16,1.94,,,True,-0.5,7.66,True,,,,,148.0,-0.5
 2026-11-24|401920819|total|over,2026-11-24,total,Over 141.5,141.5,-110.0,6.04,1.94,,,True,0.5,5.54,True,,,,,142.0,0.5
 2026-11-24|401920546|total|over,2026-11-24,total,Over 153.5,153.5,-115.0,3.96,0.97,,,True,0.5,3.46,True,,,,,154.0,0.5
+2026-11-24|401924877|total|over,2026-11-24,total,Over 156.5,156.5,-105.0,6.21,1.94,,,True,0.0,6.21,True,,,,,156.5,0.0
