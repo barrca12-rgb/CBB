@@ -1,0 +1,964 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Off The Glass · College Basketball · Mon Nov 30</title>
+<meta property="og:title" content="Off The Glass · College Basketball · Mon Nov 30">
+<meta name="otg-built" content="2026-11-23T01:15:01+00:00">
+<meta name="description" content="Off The Glass: a college basketball betting model. Every play logged at the posted number, graded in public.">
+<meta name="theme-color" content="#0A2C49">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:site_name" content="Off The Glass">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://barrca12-rgb.github.io/CBB/assets/otg-social.jpg">
+<meta property="og:description" content="College basketball model: every play logged at the posted number, graded in public.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@OffTheGlassHQ">
+<meta name="twitter:image" content="https://barrca12-rgb.github.io/CBB/assets/otg-social.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Graduate&family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+:root {
+  --bg: #fbf6ea; --surface: #ffffff; --sunken: #f7f0e1; --line: #ebe1cd; --line-strong: #d9cbb0;
+  --text: #0a2c49; --muted: #56627a; --faint: #8a93a3;
+  --accent: #b84a08; --pos: #0f7b4b; --pos-bg: #e6f4ed; --neg: #c2352b; --warn: #8a5a00; --warn-bg: #fbf0d9;
+  --brand: #fd6c0f; --bar: #0a2c49; --bar-text: #fbf6ea; --bar-muted: #b7c3d3;
+  --font: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --display: "Graduate", "Rockwell", Georgia, serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #08090b; --surface: #12151a; --sunken: #181c22; --line: #242a33; --line-strong: #333b46;
+    --text: #f6eedd; --muted: #a8b0bc; --faint: #6f7886;
+    --accent: #ff8a3d; --pos: #3ccf8e; --pos-bg: #12301f; --neg: #ff6b5e; --warn: #f0b44a; --warn-bg: #33270f;
+    --brand: #fd6c0f; --bar: #000000; --bar-text: #f6eedd; --bar-muted: #9aa2ae;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box }
+.show-sm { display: none }
+body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.45 var(--font); font-feature-settings: "tnum" 1, "cv11" 1; -webkit-font-smoothing: antialiased }
+a { color: var(--accent); text-decoration: none } a:hover { text-decoration: underline }
+.wrap { max-width: 1320px; margin: 0 auto; padding: 0 16px }
+
+/* Top bar */
+.top { background: var(--bar); border-bottom: 3px solid var(--brand); position: sticky; top: 0; z-index: 5 }
+.top .wrap { display: flex; align-items: center; gap: 22px; height: 58px }
+.brand { display: flex; align-items: center; gap: 10px; white-space: nowrap; color: var(--bar-text); text-decoration: none }
+.brand:hover { text-decoration: none }
+.brand img { width: 34px; height: 34px; border-radius: 7px; display: block }
+.wordmark { font-family: var(--display); font-size: 19px; letter-spacing: .02em; text-transform: uppercase; color: var(--bar-text); line-height: 1 }
+.tabs { display: flex; gap: 2px; height: 100% }
+.tabs a { display: flex; align-items: center; padding: 0 12px; color: var(--bar-muted); font-weight: 600; font-size: 13px; letter-spacing: .04em;
+  text-transform: uppercase; border-bottom: 3px solid transparent; margin-bottom: -3px; text-decoration: none }
+.tabs a[hidden] { display: none }
+.tabs a:hover { color: var(--bar-text); text-decoration: none }
+.tabs a[aria-current="page"] { color: var(--bar-text); border-bottom-color: var(--brand) }
+.status { margin-left: auto; display: flex; align-items: center; gap: 12px; color: var(--bar-muted); font-size: 13px; min-width: 0 }
+.status a { color: var(--bar-text) }
+#upd-btn { background: transparent; color: var(--bar-text); border-color: rgba(251,246,234,.35) } #upd-btn:hover { background: rgba(251,246,234,.1) }
+.status span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+button { font: inherit; font-weight: 600; font-size: 13px; color: var(--text); background: var(--surface); border: 1px solid var(--line-strong);
+  border-radius: 6px; padding: 6px 12px; cursor: pointer } button:hover { background: var(--sunken) } button:disabled { opacity: .5; cursor: progress }
+
+/* Page head */
+.head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px; padding: 24px 0 16px }
+h1 { font-family: var(--display); font-weight: 400; font-size: 26px; letter-spacing: .01em; margin: 0; line-height: 1.15 }
+.sub { color: var(--muted); margin-top: 2px }
+.days { display: flex; gap: 4px; flex-wrap: wrap; margin: -4px 0 20px }
+/* other pages: plain links beside the title, so they never read as days */
+.pagelinks { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; padding-bottom: 4px }
+.pagelinks a { color: var(--muted); font-weight: 600; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; text-decoration: none;
+  border-bottom: 2px solid transparent; padding: 2px 0 }
+.pagelinks a::after { content: " \2192"; opacity: .6 }
+.pagelinks a:hover { color: var(--text); border-bottom-color: var(--brand); text-decoration: none }
+.days a, .pagebtn { padding: 5px 12px; border-radius: 6px; color: var(--text); font-weight: 600; font-size: 13px; text-decoration: none;
+  border: 1px solid var(--line-strong); background: var(--surface); white-space: nowrap }
+.days a:hover, .pagebtn:hover { background: var(--sunken); text-decoration: none }
+.days a[aria-current="page"] { color: var(--surface); border-color: var(--text); background: var(--text) }
+.notice { border: 1px solid var(--line); background: var(--warn-bg); color: var(--warn); border-radius: 8px; padding: 10px 12px; margin-bottom: 16px; font-size: 13px }
+
+/* KPI strip */
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); border: 1px solid var(--line); border-top: 3px solid var(--text); border-radius: 10px; background: var(--surface); margin-bottom: 24px; overflow: hidden; box-shadow: 0 1px 2px rgba(10,44,73,.06) }
+.kpi { padding: 12px 16px; border-right: 1px solid var(--line) } .kpi:last-child { border-right: 0 }
+.kpi .k { color: var(--muted); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em } .kpi .v { font-size: 21px; font-weight: 800; margin-top: 3px; letter-spacing: -.01em }
+.nw { white-space: nowrap }
+.kpi .v small { font-size: 12px; color: var(--muted); font-weight: 500; margin-left: 4px }
+.kpi .v small.blk { display: block; margin: 2px 0 0; line-height: 1.3 }
+
+/* Panels and tables */
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; margin-bottom: 24px; overflow: hidden; box-shadow: 0 1px 2px rgba(10,44,73,.06) }
+.panel-h { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--line) }
+.panel-h h2 { font-size: 13px; font-weight: 800; margin: 0; text-transform: uppercase; letter-spacing: .07em; display: flex; align-items: center; gap: 8px }
+.panel-h h2::before { content: ""; width: 4px; height: 14px; background: var(--brand); border-radius: 2px } .panel-h .note { color: var(--muted); font-size: 12px }
+.scroll { overflow-x: auto }
+/* long notes wrap instead of widening the table (no sideways scrolling) */
+#t-plays td:first-child { white-space: normal; min-width: 240px }
+#t-rec td { white-space: normal }
+table { width: 100%; border-collapse: collapse; font-size: 13px }
+th { text-align: left; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); padding: 8px 12px; border-bottom: 1px solid var(--line); background: var(--sunken); white-space: nowrap }
+td { padding: 9px 12px; border-bottom: 1px solid var(--line); white-space: nowrap; vertical-align: middle }
+tr.rephead th { border-top: 1px solid var(--line) }
+tbody tr:last-child td { border-bottom: 0 }
+.r { text-align: right } .c { text-align: center } .m { color: var(--muted) } .f { color: var(--faint) }
+.pos { color: var(--pos) } .neg { color: var(--neg) } .b { font-weight: 600 }
+.empty { padding: 28px 16px; color: var(--muted); text-align: center }
+.betlink { font-weight: 600; font-size: 12px; border: 1px solid var(--line-strong); border-radius: 6px; padding: 4px 10px; color: var(--text); display: inline-block }
+.betlink:hover { background: var(--sunken); text-decoration: none }
+.tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 6px; border-radius: 4px; border: 1px solid var(--line-strong); color: var(--muted) }
+.tag.bet { color: #fff; border-color: var(--brand); background: var(--brand) }
+.tag.logged { color: var(--brand); border-color: var(--brand); background: transparent }
+
+/* Segmented control */
+.seg { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 6px; overflow: hidden }
+.seg button { border: 0; border-radius: 0; padding: 5px 12px; color: var(--muted); font-weight: 500; background: transparent }
+.seg button + button { border-left: 1px solid var(--line-strong) }
+.seg button[aria-pressed="true"] { background: var(--text); color: var(--surface) }
+.ctrls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center }
+/* Plays header: a count chip and a Rules toggle, so it reads as a control bar like the odds board's */
+.chip { display: inline-flex; align-items: center; padding: 5px 12px; border-radius: 6px; font-size: 13px; font-weight: 700;
+  background: var(--brand); color: #fff; white-space: nowrap }
+.chip.zero { background: var(--sunken); color: var(--muted); border: 1px solid var(--line-strong) }
+.chipbtn { padding: 5px 12px; font-weight: 500; color: var(--muted) }
+.chipbtn[aria-expanded="true"] { background: var(--text); color: var(--surface); border-color: var(--text) }
+.rules { padding: 10px 16px; border-bottom: 1px solid var(--line); background: var(--sunken); color: var(--muted); font-size: 12px }
+label.chk { display: inline-flex; gap: 6px; align-items: center; color: var(--muted); font-size: 13px; cursor: pointer }
+
+/* Odds board: two rows per game (away, home) */
+.board td { padding-top: 6px; padding-bottom: 6px }
+.board tbody.g tr:first-child td { padding-top: 10px } .board tbody.g tr:last-child td { padding-bottom: 10px; border-bottom: 1px solid var(--line) }
+.board tbody.g tr:first-child td { border-bottom: 0 }
+.board tbody.g:last-child tr:last-child td { border-bottom: 0 }
+.board .team { font-weight: 500 }
+.score { font-size: 12px; font-weight: 600; margin-top: 2px } .score .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #d64545; margin-right: 5px; vertical-align: 1px }
+.score .res { display: inline-block; margin-left: 6px; padding: 0 6px; border-radius: 4px; font-weight: 800 } .score .res.W { background: #e3f3e8; color: #1d7a3e } .score .res.L { background: #fbe4e4; color: #b42318 } .score .res.P { background: var(--line) }
+.inj { color: var(--warn); font-size: 11px; font-weight: 500; white-space: normal; max-width: 340px; margin-top: 1px } .board .tm { width: 72px; color: var(--muted); font-size: 12px }
+.board .pts { color: var(--muted); width: 40px }
+.odd { display: inline-flex; flex-direction: column; align-items: flex-end; min-width: 56px; padding: 3px 6px; border-radius: 6px; line-height: 1.25; color: var(--text); text-decoration: none }
+.odd small { color: var(--faint); font-size: 11px }
+a.odd:hover { background: var(--sunken); text-decoration: none }
+.odd.best { background: var(--pos-bg); color: var(--pos) } .odd.best small { color: var(--pos) }
+.na { color: var(--faint) }
+.board th.bk, .board td.bk { text-align: right; width: 84px; padding-left: 6px; padding-right: 6px }
+.board td.edge { white-space: normal; min-width: 110px; max-width: 170px } .tag { white-space: normal }
+.bestc { display: none; text-align: right } .tm-sm { display: none; color: var(--faint); font-size: 11px }
+@media (max-width: 1100px) { .bk-minor, .hide-md { display: none } .board .bestc { display: table-cell } }
+.bestc small { display: block; color: var(--faint); font-size: 11px }
+.board tbody.g.has-bet { background: linear-gradient(90deg, var(--brand) 0 3px, transparent 3px) }
+
+details.panel > summary { list-style: none; cursor: pointer; padding: 12px 16px; font-weight: 600; font-size: 15px; display: flex; justify-content: space-between }
+details.panel > summary::after { content: "Show"; color: var(--accent); font-size: 13px; font-weight: 500 }
+details.panel[open] > summary::after { content: "Hide" }
+details.panel[open] > summary { border-bottom: 1px solid var(--line) }
+footer { color: var(--muted); font-size: 12px; padding: 8px 0 40px; max-width: 80ch }
+.follow { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; font-weight: 700; color: var(--text) }
+.follow img { width: 22px; height: 22px; border-radius: 5px }
+.tl img { width: auto; vertical-align: -3px; margin-right: 5px; object-fit: contain }
+.pick .tl img { vertical-align: -5px; margin-right: 6px }
+.hero { display: block; height: 120px; width: auto; max-width: 100%; object-fit: contain; border-radius: 10px; margin-top: 18px; border: 1px solid var(--line) }
+@media (max-width: 720px) { .hero { height: auto; width: 100% } }
+
+@media (max-width: 380px) { #t-rat th:nth-child(6), #t-rat td:nth-child(6) { display: none } }
+@media (max-width: 860px) {
+  .top .wrap { gap: 10px } .status span { display: none }
+  .wordmark { display: none } .tabs a { padding: 0 8px; font-size: 12px }
+  h1 { font-size: 21px }
+  .kpi { border-right: 0; border-bottom: 1px solid var(--line) } .kpi:last-child { border-bottom: 0 }
+  .kpi.wide { grid-column: 1 / -1 }
+  .hide-sm { display: none } .show-sm { display: inline }
+  td, th { padding-left: 10px; padding-right: 10px }
+  #t-plays td:first-child { white-space: normal; min-width: 150px }
+  #t-rat td, #t-rat th { padding-left: 4px; padding-right: 4px; font-size: 12px } #t-rat th { letter-spacing: 0 } #t-rat td { white-space: normal }
+  .board .bk, .board .pts { display: none } .bestc { display: table-cell }
+  .board .tm { width: 52px; font-size: 11px } .board td.edge { min-width: 0; max-width: 104px }
+  .board td, .board th { padding-left: 6px; padding-right: 6px } .board .team { white-space: normal; min-width: 0 }
+  .board .tag { font-size: 10px; padding: 1px 4px } .board .tl img { width: 14px; height: 14px; margin-right: 4px }
+  .board .tm { display: none } .tm-sm { display: block } .board td.edge { max-width: 104px }
+  table.stack thead { display: none }
+  table.stack tbody tr { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 12px; padding: 12px; border-bottom: 1px solid var(--line) }
+  table.stack tbody tr.rephead { display: none }
+  table.stack tbody tr:last-child { border-bottom: 0 }
+  table.stack td { display: block; border: 0; padding: 0; white-space: normal; text-align: left; min-width: 0 }
+  table.stack td:first-child { grid-column: 1 / -1; min-width: 0 }
+  table.stack td[data-l]::before { content: attr(data-l); display: block; font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .05em; color: var(--faint); margin-bottom: 1px }
+  table.stack td:first-child::before { display: none }
+  table.stack td.hide-sm, table.stack td:empty { display: none }
+  table.stack td.empty { grid-column: 1 / -1; text-align: center }
+}
+</style>
+
+<header class="top"><div class="wrap">
+  <a class="brand" href="./" aria-label="Off The Glass home"><img src="assets/otg-logo-512.png" alt="" width="34" height="34"><span class="wordmark">Off The Glass</span></a>
+  <nav class="tabs" aria-label="Sport"><a id="nfl-link" href="#">NFL</a><a id="nba-link" href="https://barrca12-rgb.github.io/NBA/" hidden>NBA</a><script>fetch("https://barrca12-rgb.github.io/NBA/", {method: "HEAD", cache: "no-store"}).then((r) => { if (r.ok) document.getElementById("nba-link").hidden = false; }).catch(() => {});</script><a href="./" aria-current="page"><span class="hide-sm">College Basketball</span><span class="show-sm">CBB</span></a></nav>
+  <div class="status"><span id="upd-status"></span><button id="upd-btn" type="button">Update</button></div>
+</div></header>
+
+<main class="wrap">
+  <div class="head">
+    <div><h1 id="h1"></h1><div class="sub" id="sub"></div></div>
+    <nav class="pagelinks" aria-label="Pages"><a href="record.html">Record</a><a href="record/charts.html">Charts</a><a href="record/survivor.html">Survivor</a></nav>
+  </div>
+  <nav class="days" id="days" aria-label="Days"></nav>
+  <div class="notice" id="replay" hidden>Replay of a past day using ESPN's stored closing lines. Prices and bet links appear on live cards only.</div>
+
+  <div class="kpis" id="kpis"></div>
+
+  <section class="panel" aria-labelledby="plays-h">
+    <div class="panel-h"><h2 id="plays-h">Plays</h2>
+      <div class="ctrls"><label class="chk" style="font-size:12px">Sort <select id="play-sort" style="font:inherit;font-size:12px;padding:2px 4px;border:1px solid var(--line-strong);border-radius:6px;background:var(--surface);color:var(--text)"><option value="bet">Tip time</option><option value="at">Newest play</option><option value="edge">Edge</option><option value="ev">EV</option><option value="moved">Line moved our way</option><option value="book">Book</option></select></label><span class="chip" id="plays-count"></span><button type="button" class="chipbtn" id="rules-btn" aria-expanded="false" aria-controls="plays-rules">Rules</button></div>
+    </div>
+    <div class="rules" id="plays-rules" hidden>Spread edge 2.5+ pts · total edge 3+ pts · +2% EV at the price · 1 unit each. Win % = backtest rate for that edge. A logged play stays a play: its edge, win % and EV are as they were when it was logged (plays logged before the Oct 26 model update show them against today's model at your number); the line under it says where the line and the model are now.</div>
+    <div class="scroll"><table id="t-plays"></table></div>
+  </section>
+
+  <section class="panel" aria-labelledby="bandb-h" id="bandb-sec" hidden>
+    <div class="panel-h"><h2 id="bandb-h">Band B (spreads, edge 2-2.5, 0.5 u)</h2><span class="note" id="bandb-rec">A separate bet type on spreads only, never counted in the record above: v1's edge of 2-2.49 points with v1's +2% EV rule, 0.5 unit flat.</span></div>
+    <div class="scroll"><table id="t-bandb"></table></div>
+  </section>
+
+  <section class="panel" aria-labelledby="watch-h" id="watch-sec">
+    <div class="panel-h"><h2 id="watch-h">Watch list</h2><span class="note">Becomes a play if the line reaches the number shown. Follows the Spread / Total tab on the odds board.</span></div>
+    <div class="scroll"><table class="board" id="t-watch"></table></div>
+  </section>
+
+  <section class="panel" aria-labelledby="lm-h" id="lm-sec" hidden>
+    <div class="panel-h"><h2 id="lm-h">Line-move plays (before the opener rule)</h2><span class="note">Logged before Nov 2 under the old rule: they qualified only after the line moved, not at the opener. Kept as logged and graded, in their own record, never counted with the plays above.</span></div>
+    <div class="scroll"><table id="t-lm"></table></div>
+  </section>
+
+  <section class="panel" aria-labelledby="board-h">
+    <div class="panel-h"><h2 id="board-h">Odds board</h2>
+      <div class="ctrls">
+        <div class="seg" role="group" aria-label="Market"><button data-m="spread" aria-pressed="true">Spread</button><button data-m="total">Total</button><button data-m="ml">Moneyline</button></div>
+        <label class="chk"><input type="checkbox" id="only-plays"> Plays only</label>
+      </div>
+    </div>
+    <div class="scroll"><table class="board" id="t-board"></table></div>
+  </section>
+
+  <section class="panel" aria-labelledby="rec-h" id="rec-sec" hidden>
+    <div class="panel-h"><h2 id="rec-h">Record</h2><span class="note">Every play graded at the number it first appeared. CLV = expected ROI against Pinnacle's no-vig close.</span></div>
+    <div class="scroll"><table id="t-rec"></table></div>
+  </section>
+
+  <section class="panel" id="review-sec" hidden>
+    <div class="panel-h"><h2>Loss review</h2><span class="note">Why bets lost. "Market disagreed" (the line moved against us with no news) are the real model misses; the rest is variance or late information.</span></div>
+    <div class="scroll"><table id="t-review"></table></div>
+    <div class="scroll"><table id="t-review2"></table></div>
+    <div class="scroll"><table id="t-misses"></table></div>
+  </section>
+
+  <details class="panel" id="recent-sec" hidden><summary>Recent results</summary><div class="scroll"><table id="t-recent"></table></div></details>
+  <details class="panel"><summary>Power ratings</summary><div class="scroll"><table id="t-rat"></table></div></details>
+
+  <footer>
+    <div><a class="follow" href="https://x.com/OffTheGlassHQ" target="_blank" rel="noopener"><img src="assets/otg-logo-512.png" alt="">Follow @OffTheGlassHQ on X for every play</a></div>
+  </footer>
+</main>
+
+<script id="data" type="application/json">{"date": "2026-11-30", "season": 2027, "replay": false, "repo": "barrca12-rgb/CBB", "nfl": "https://barrca12-rgb.github.io/NFL/", "prerule": [], "prerule_res": {}, "generated_at": "2026-11-23T01:15:01+00:00", "games": [{"game_id": 401920687, "start": "2026-11-30T23:30Z", "home": "UConn", "away": "Rider", "home_id": 41, "away_id": 2520, "neutral": false, "state": "pre", "home_score": 0, "away_score": 0, "note": "", "home_injuries": "", "away_injuries": "", "home_injury_missing": 0.0, "away_injury_missing": 0.0, "crew": null, "model_margin": 43.005, "model_total": 146.882, "model_home_spread": -43.005, "model_home_pts": 94.943, "model_away_pts": 51.938, "kp_margin": 34.7, "raw_margin": 36.637, "home_missing": 0.048, "away_missing": 0.099, "raw_total": 141.664, "kp_total": 145.354, "bt_margin": 31.945, "bt_total": 143.214, "p_home_win": 1.0, "n_books": 0, "total_shift": 0.0, "book_lines": [], "news_url": "https://x.com/search?q=%28%22Rider+Broncs%22+OR+%22UConn+Huskies%22%29+%28injury+OR+injured+OR+out+OR+questionable+OR+%22will+not+play%22+OR+status%29&f=live", "spread_warn": "", "total_warn": "", "news_flag": "", "spread_logged_pick": null, "spread_logged_side": null, "spread_logged_line": null, "spread_logged_book": null, "spread_logged_odds": null, "spread_logged_edge": null, "spread_logged_stake": null, "spread_logged_placed": null, "spread_now_edge": null, "spread_now_p": null, "spread_now_ev": null, "total_logged_pick": null, "total_logged_side": null, "total_logged_line": null, "total_logged_book": null, "total_logged_odds": null, "total_logged_edge": null, "total_logged_stake": null, "total_logged_placed": null, "total_now_edge": null, "total_now_p": null, "total_now_ev": null, "spread_bandb_bet_id": null, "spread_bandb_pick": null, "spread_bandb_line": null, "spread_bandb_book": null, "spread_bandb_odds": null, "spread_bandb_edge": null, "spread_bandb_stake": null, "spread_bandb_placed": null, "spread_bandb_status": null, "spread_bandb_result": null, "spread_bandb_profit": null, "total_bandb_bet_id": null, "total_bandb_pick": null, "total_bandb_line": null, "total_bandb_book": null, "total_bandb_odds": null, "total_bandb_edge": null, "total_bandb_stake": null, "total_bandb_placed": null, "total_bandb_status": null, "total_bandb_result": null, "total_bandb_profit": null, "fresh_run_at": "2026-11-23T01:14:01+00:00", "fresh_kenpom_data_through": "Sunday, November 22", "fresh_barttorvik_snapshot": "2026-11-21", "fresh_kenpom_at": "2026-11-23T01:14:00+00:00", "fresh_barttorvik_at": "2026-11-23T01:14:00+00:00", "fresh_injuries_at": "2026-11-23T01:14:00+00:00", "fresh_schedule_at": "2026-11-23T01:04:31+00:00", "fresh_referees_at": null, "spread_line_book": null, "spread_line_at": null, "spread_fresh": "unknown", "spread_stale_inputs": "line time not recorded", "total_line_book": null, "total_line_at": null, "total_fresh": "unknown", "total_stale_inputs": "line time not recorded", "spread_logged_model": null, "total_logged_model": null, "spread_logged_p": null, "spread_logged_ev": null, "spread_logged_pre": false, "spread_logged_at": null, "total_logged_p": null, "total_logged_ev": null, "total_logged_pre": false, "total_logged_at": null, "first_open_spread": null, "first_open_total": null, "venue_state": "confirmed", "venue_venue": "M&T Bank Center at Gampel Pavilion", "venue_city": "Storrs", "venue_reason": "home team's arena", "venue_edge": "", "venue_event": ""}, {"game_id": 401926789, "start": "2026-12-01T00:00Z", "home": "Kennesaw State", "away": "Florida A&M", "home_id": 338, "away_id": 50, "neutral": false, "state": "pre", "home_score": 0, "away_score": 0, "note": "", "home_injuries": "", "away_injuries": "", "home_injury_missing": 0.0, "away_injury_missing": 0.0, "crew": null, "model_margin": 24.028, "model_total": 160.648, "model_home_spread": -24.028, "model_home_pts": 92.338, "model_away_pts": 68.31, "kp_margin": 19.882, "raw_margin": 21.989, "home_missing": 0.079, "away_missing": 0.0, "raw_total": 157.584, "kp_total": 159.914, "bt_margin": 15.826, "bt_total": 157.802, "p_home_win": 0.986, "n_books": 0, "total_shift": 0.0, "book_lines": [], "news_url": "https://x.com/search?q=%28%22Florida+A%26M+Rattlers%22+OR+%22Kennesaw+State+Owls%22%29+%28injury+OR+injured+OR+out+OR+questionable+OR+%22will+not+play%22+OR+status%29&f=live", "spread_warn": "", "total_warn": "", "news_flag": "", "spread_logged_pick": null, "spread_logged_side": null, "spread_logged_line": null, "spread_logged_book": null, "spread_logged_odds": null, "spread_logged_edge": null, "spread_logged_stake": null, "spread_logged_placed": null, "spread_now_edge": null, "spread_now_p": null, "spread_now_ev": null, "total_logged_pick": null, "total_logged_side": null, "total_logged_line": null, "total_logged_book": null, "total_logged_odds": null, "total_logged_edge": null, "total_logged_stake": null, "total_logged_placed": null, "total_now_edge": null, "total_now_p": null, "total_now_ev": null, "spread_bandb_bet_id": null, "spread_bandb_pick": null, "spread_bandb_line": null, "spread_bandb_book": null, "spread_bandb_odds": null, "spread_bandb_edge": null, "spread_bandb_stake": null, "spread_bandb_placed": null, "spread_bandb_status": null, "spread_bandb_result": null, "spread_bandb_profit": null, "total_bandb_bet_id": null, "total_bandb_pick": null, "total_bandb_line": null, "total_bandb_book": null, "total_bandb_odds": null, "total_bandb_edge": null, "total_bandb_stake": null, "total_bandb_placed": null, "total_bandb_status": null, "total_bandb_result": null, "total_bandb_profit": null, "fresh_run_at": "2026-11-23T01:14:01+00:00", "fresh_kenpom_data_through": "Sunday, November 22", "fresh_barttorvik_snapshot": "2026-11-21", "fresh_kenpom_at": "2026-11-23T01:14:00+00:00", "fresh_barttorvik_at": "2026-11-23T01:14:00+00:00", "fresh_injuries_at": "2026-11-23T01:14:00+00:00", "fresh_schedule_at": "2026-11-23T01:04:31+00:00", "fresh_referees_at": null, "spread_line_book": null, "spread_line_at": null, "spread_fresh": "unknown", "spread_stale_inputs": "line time not recorded", "total_line_book": null, "total_line_at": null, "total_fresh": "unknown", "total_stale_inputs": "line time not recorded", "spread_logged_model": null, "total_logged_model": null, "spread_logged_p": null, "spread_logged_ev": null, "spread_logged_pre": false, "spread_logged_at": null, "total_logged_p": null, "total_logged_ev": null, "total_logged_pre": false, "total_logged_at": null, "first_open_spread": null, "first_open_total": null, "venue_state": "confirmed", "venue_venue": "VyStar Arena", "venue_city": "Kennesaw", "venue_reason": "home team's arena", "venue_edge": "", "venue_event": ""}, {"game_id": 401911280, "start": "2026-12-01T00:00Z", "home": "Fairleigh Dickinson", "away": "Binghamton", "home_id": 161, "away_id": 2066, "neutral": false, "state": "pre", "home_score": 0, "away_score": 0, "note": "", "home_injuries": "", "away_injuries": "", "home_injury_missing": 0.0, "away_injury_missing": 0.0, "crew": null, "model_margin": 2.067, "model_total": 136.834, "model_home_spread": -2.067, "model_home_pts": 69.45, "model_away_pts": 67.383, "kp_margin": 3.355, "raw_margin": 2.099, "home_missing": 0.0, "away_missing": 0.02, "raw_total": 140.205, "kp_total": 134.323, "bt_margin": -0.776, "bt_total": 137.322, "p_home_win": 0.575, "n_books": 0, "total_shift": 0.0, "book_lines": [], "news_url": "https://x.com/search?q=%28%22Binghamton+Bearcats%22+OR+%22Fairleigh+Dickinson+Knights%22%29+%28injury+OR+injured+OR+out+OR+questionable+OR+%22will+not+play%22+OR+status%29&f=live", "spread_warn": "", "total_warn": "", "news_flag": "", "spread_logged_pick": null, "spread_logged_side": null, "spread_logged_line": null, "spread_logged_book": null, "spread_logged_odds": null, "spread_logged_edge": null, "spread_logged_stake": null, "spread_logged_placed": null, "spread_now_edge": null, "spread_now_p": null, "spread_now_ev": null, "total_logged_pick": null, "total_logged_side": null, "total_logged_line": null, "total_logged_book": null, "total_logged_odds": null, "total_logged_edge": null, "total_logged_stake": null, "total_logged_placed": null, "total_now_edge": null, "total_now_p": null, "total_now_ev": null, "spread_bandb_bet_id": null, "spread_bandb_pick": null, "spread_bandb_line": null, "spread_bandb_book": null, "spread_bandb_odds": null, "spread_bandb_edge": null, "spread_bandb_stake": null, "spread_bandb_placed": null, "spread_bandb_status": null, "spread_bandb_result": null, "spread_bandb_profit": null, "total_bandb_bet_id": null, "total_bandb_pick": null, "total_bandb_line": null, "total_bandb_book": null, "total_bandb_odds": null, "total_bandb_edge": null, "total_bandb_stake": null, "total_bandb_placed": null, "total_bandb_status": null, "total_bandb_result": null, "total_bandb_profit": null, "fresh_run_at": "2026-11-23T01:14:01+00:00", "fresh_kenpom_data_through": "Sunday, November 22", "fresh_barttorvik_snapshot": "2026-11-21", "fresh_kenpom_at": "2026-11-23T01:14:00+00:00", "fresh_barttorvik_at": "2026-11-23T01:14:00+00:00", "fresh_injuries_at": "2026-11-23T01:14:00+00:00", "fresh_schedule_at": "2026-11-23T01:04:31+00:00", "fresh_referees_at": null, "spread_line_book": null, "spread_line_at": null, "spread_fresh": "unknown", "spread_stale_inputs": "line time not recorded", "total_line_book": null, "total_line_at": null, "total_fresh": "unknown", "total_stale_inputs": "line time not recorded", "spread_logged_model": null, "total_logged_model": null, "spread_logged_p": null, "spread_logged_ev": null, "spread_logged_pre": false, "spread_logged_at": null, "total_logged_p": null, "total_logged_ev": null, "total_logged_pre": false, "total_logged_at": null, "first_open_spread": null, "first_open_total": null, "venue_state": "confirmed", "venue_venue": "Bogota Savings Bank Center", "venue_city": "Hackensack", "venue_reason": "home team's arena", "venue_edge": "", "venue_event": ""}, {"game_id": 401919034, "start": "2026-12-01T00:30Z", "home": "Wichita State", "away": "Southeast Missouri State", "home_id": 2724, "away_id": 2546, "neutral": false, "state": "pre", "home_score": 0, "away_score": 0, "note": "", "home_injuries": "", "away_injuries": "", "home_injury_missing": 0.0, "away_injury_missing": 0.0, "crew": null, "model_margin": 21.391, "model_total": 152.26, "model_home_spread": -21.391, "model_home_pts": 86.826, "model_away_pts": 65.435, "kp_margin": 21.886, "raw_margin": 19.476, "home_missing": 0.031, "away_missing": 0.074, "raw_total": 150.753, "kp_total": 154.263, "bt_margin": 15.955, "bt_total": 152.204, "p_home_win": 0.974, "n_books": 0, "total_shift": 0.0, "book_lines": [], "news_url": "https://x.com/search?q=%28%22Southeast+Missouri+State+Redhawks%22+OR+%22Wichita+State+Shockers%22%29+%28injury+OR+injured+OR+out+OR+questionable+OR+%22will+not+play%22+OR+status%29&f=live", "spread_warn": "", "total_warn": "", "news_flag": "", "spread_logged_pick": null, "spread_logged_side": null, "spread_logged_line": null, "spread_logged_book": null, "spread_logged_odds": null, "spread_logged_edge": null, "spread_logged_stake": null, "spread_logged_placed": null, "spread_now_edge": null, "spread_now_p": null, "spread_now_ev": null, "total_logged_pick": null, "total_logged_side": null, "total_logged_line": null, "total_logged_book": null, "total_logged_odds": null, "total_logged_edge": null, "total_logged_stake": null, "total_logged_placed": null, "total_now_edge": null, "total_now_p": null, "total_now_ev": null, "spread_bandb_bet_id": null, "spread_bandb_pick": null, "spread_bandb_line": null, "spread_bandb_book": null, "spread_bandb_odds": null, "spread_bandb_edge": null, "spread_bandb_stake": null, "spread_bandb_placed": null, "spread_bandb_status": null, "spread_bandb_result": null, "spread_bandb_profit": null, "total_bandb_bet_id": null, "total_bandb_pick": null, "total_bandb_line": null, "total_bandb_book": null, "total_bandb_odds": null, "total_bandb_edge": null, "total_bandb_stake": null, "total_bandb_placed": null, "total_bandb_status": null, "total_bandb_result": null, "total_bandb_profit": null, "fresh_run_at": "2026-11-23T01:14:01+00:00", "fresh_kenpom_data_through": "Sunday, November 22", "fresh_barttorvik_snapshot": "2026-11-21", "fresh_kenpom_at": "2026-11-23T01:14:00+00:00", "fresh_barttorvik_at": "2026-11-23T01:14:00+00:00", "fresh_injuries_at": "2026-11-23T01:14:00+00:00", "fresh_schedule_at": "2026-11-23T01:04:31+00:00", "fresh_referees_at": null, "spread_line_book": null, "spread_line_at": null, "spread_fresh": "unknown", "spread_stale_inputs": "line time not recorded", "total_line_book": null, "total_line_at": null, "total_fresh": "unknown", "total_stale_inputs": "line time not recorded", "spread_logged_model": null, "total_logged_model": null, "spread_logged_p": null, "spread_logged_ev": null, "spread_logged_pre": false, "spread_logged_at": null, "total_logged_p": null, "total_logged_ev": null, "total_logged_pre": false, "total_logged_at": null, "first_open_spread": null, "first_open_total": null, "venue_state": "confirmed", "venue_venue": "Charles Koch Arena", "venue_city": "Wichita", "venue_reason": "home team's arena", "venue_edge": "", "venue_event": ""}, {"game_id": 401928625, "start": "2026-12-01T01:00Z", "home": "Missouri State", "away": "Lindenwood", "home_id": 2623, "away_id": 2815, "neutral": false, "state": "pre", "home_score": 0, "away_score": 0, "note": "", "home_injuries": "", "away_injuries": "", "home_injury_missing": 0.0, "away_injury_missing": 0.0, "crew": null, "model_margin": 7.908, "model_total": 142.196, "model_home_spread": -7.908, "model_home_pts": 75.052, "model_away_pts": 67.144, "kp_margin": 8.243, "raw_margin": 8.091, "home_missing": 0.027, "away_missing": 0.066, "raw_total": 143.432, "kp_total": 141.63, "bt_margin": 2.337, "bt_total": 143.046, "p_home_win": 0.764, "n_books": 0, "total_shift": 0.0, "book_lines": [], "news_url": "https://x.com/search?q=%28%22Lindenwood+Lions%22+OR+%22Missouri+State+Bears%22%29+%28injury+OR+injured+OR+out+OR+questionable+OR+%22will+not+play%22+OR+status%29&f=live", "spread_warn": "", "total_warn": "", "news_flag": "", "spread_logged_pick": null, "spread_logged_side": null, "spread_logged_line": null, "spread_logged_book": null, "spread_logged_odds": null, "spread_logged_edge": null, "spread_logged_stake": null, "spread_logged_placed": null, "spread_now_edge": null, "spread_now_p": null, "spread_now_ev": null, "total_logged_pick": null, "total_logged_side": null, "total_logged_line": null, "total_logged_book": null, "total_logged_odds": null, "total_logged_edge": null, "total_logged_stake": null, "total_logged_placed": null, "total_now_edge": null, "total_now_p": null, "total_now_ev": null, "spread_bandb_bet_id": null, "spread_bandb_pick": null, "spread_bandb_line": null, "spread_bandb_book": null, "spread_bandb_odds": null, "spread_bandb_edge": null, "spread_bandb_stake": null, "spread_bandb_placed": null, "spread_bandb_status": null, "spread_bandb_result": null, "spread_bandb_profit": null, "total_bandb_bet_id": null, "total_bandb_pick": null, "total_bandb_line": null, "total_bandb_book": null, "total_bandb_odds": null, "total_bandb_edge": null, "total_bandb_stake": null, "total_bandb_placed": null, "total_bandb_status": null, "total_bandb_result": null, "total_bandb_profit": null, "fresh_run_at": "2026-11-23T01:14:01+00:00", "fresh_kenpom_data_through": "Sunday, November 22", "fresh_barttorvik_snapshot": "2026-11-21", "fresh_kenpom_at": "2026-11-23T01:14:00+00:00", "fresh_barttorvik_at": "2026-11-23T01:14:00+00:00", "fresh_injuries_at": "2026-11-23T01:14:00+00:00", "fresh_schedule_at": "2026-11-23T01:04:31+00:00", "fresh_referees_at": null, "spread_line_book": null, "spread_line_at": null, "spread_fresh": "unknown", "spread_stale_inputs": "line time not recorded", "total_line_book": null, "total_line_at": null, "total_fresh": "unknown", "total_stale_inputs": "line time not recorded", "spread_logged_model": null, "total_logged_model": null, "spread_logged_p": null, "spread_logged_ev": null, "spread_logged_pre": false, "spread_logged_at": null, "total_logged_p": null, "total_logged_ev": null, "total_logged_pre": false, "total_logged_at": null, "first_open_spread": null, "first_open_total": null, "venue_state": "confirmed", "venue_venue": "Great Southern Bank Arena", "venue_city": "Springfield", "venue_reason": "home team's arena", "venue_edge": "", "venue_event": ""}, {"game_id": 401927383, "start": "2026-12-01T01:00Z", "home": "Murray State", "away": "Washington State", "home_id": 93, "away_id": 265, "neutral": false, "state": "pre", "home_score": 0, "away_score": 0, "note": "", "home_injuries": "", "away_injuries": "", "home_injury_missing": 0.0, "away_injury_missing": 0.0, "crew": null, "model_margin": 11.451, "model_total": 155.626, "model_home_spread": -11.451, "model_home_pts": 83.539, "model_away_pts": 72.087, "kp_margin": 9.036, "raw_margin": 10.423, "home_missing": 0.012, "away_missing": 0.023, "raw_total": 158.427, "kp_total": 157.357, "bt_margin": 7.18, "bt_total": 156.948, "p_home_win": 0.851, "n_books": 0, "total_shift": 0.0, "book_lines": [], "news_url": "https://x.com/search?q=%28%22Washington+State+Cougars%22+OR+%22Murray+State+Racers%22%29+%28injury+OR+injured+OR+out+OR+questionable+OR+%22will+not+play%22+OR+status%29&f=live", "spread_warn": "", "total_warn": "", "news_flag": "", "spread_logged_pick": null, "spread_logged_side": null, "spread_logged_line": null, "spread_logged_book": null, "spread_logged_odds": null, "spread_logged_edge": null, "spread_logged_stake": null, "spread_logged_placed": null, "spread_now_edge": null, "spread_now_p": null, "spread_now_ev": null, "total_logged_pick": null, "total_logged_side": null, "total_logged_line": null, "total_logged_book": null, "total_logged_odds": null, "total_logged_edge": null, "total_logged_stake": null, "total_logged_placed": null, "total_now_edge": null, "total_now_p": null, "total_now_ev": null, "spread_bandb_bet_id": null, "spread_bandb_pick": null, "spread_bandb_line": null, "spread_bandb_book": null, "spread_bandb_odds": null, "spread_bandb_edge": null, "spread_bandb_stake": null, "spread_bandb_placed": null, "spread_bandb_status": null, "spread_bandb_result": null, "spread_bandb_profit": null, "total_bandb_bet_id": null, "total_bandb_pick": null, "total_bandb_line": null, "total_bandb_book": null, "total_bandb_odds": null, "total_bandb_edge": null, "total_bandb_stake": null, "total_bandb_placed": null, "total_bandb_status": null, "total_bandb_result": null, "total_bandb_profit": null, "fresh_run_at": "2026-11-23T01:14:01+00:00", "fresh_kenpom_data_through": "Sunday, November 22", "fresh_barttorvik_snapshot": "2026-11-21", "fresh_kenpom_at": "2026-11-23T01:14:00+00:00", "fresh_barttorvik_at": "2026-11-23T01:14:00+00:00", "fresh_injuries_at": "2026-11-23T01:14:00+00:00", "fresh_schedule_at": "2026-11-23T01:04:31+00:00", "fresh_referees_at": null, "spread_line_book": null, "spread_line_at": null, "spread_fresh": "unknown", "spread_stale_inputs": "line time not recorded", "total_line_book": null, "total_line_at": null, "total_fresh": "unknown", "total_stale_inputs": "line time not recorded", "spread_logged_model": null, "total_logged_model": null, "spread_logged_p": null, "spread_logged_ev": null, "spread_logged_pre": false, "spread_logged_at": null, "total_logged_p": null, "total_logged_ev": null, "total_logged_pre": false, "total_logged_at": null, "first_open_spread": null, "first_open_total": null, "venue_state": "confirmed", "venue_venue": "CFSB Center", "venue_city": "Murray", "venue_reason": "home team's arena", "venue_edge": "", "venue_event": ""}, {"game_id": 401925881, "start": "2026-12-01T01:00Z", "home": "South Dakota", "away": "Montana State", "home_id": 233, "away_id": 147, "neutral": false, "state": "pre", "home_score": 0, "away_score": 0, "note": "", "home_injuries": "", "away_injuries": "", "home_injury_missing": 0.0, "away_injury_missing": 0.0, "crew": null, "model_margin": -8.514, "model_total": 149.574, "model_home_spread": 8.514, "model_home_pts": 70.53, "model_away_pts": 79.044, "kp_margin": -8.512, "raw_margin": -7.346, "home_missing": 0.0, "away_missing": -0.015, "raw_total": 152.967, "kp_total": 152.492, "bt_margin": -11.993, "bt_total": 151.935, "p_home_win": 0.219, "n_books": 0, "total_shift": 0.0, "book_lines": [], "news_url": "https://x.com/search?q=%28%22Montana+State+Bobcats%22+OR+%22South+Dakota+Coyotes%22%29+%28injury+OR+injured+OR+out+OR+questionable+OR+%22will+not+play%22+OR+status%29&f=live", "spread_warn": "", "total_warn": "", "news_flag": "", "spread_logged_pick": null, "spread_logged_side": null, "spread_logged_line": null, "spread_logged_book": null, "spread_logged_odds": null, "spread_logged_edge": null, "spread_logged_stake": null, "spread_logged_placed": null, "spread_now_edge": null, "spread_now_p": null, "spread_now_ev": null, "total_logged_pick": null, "total_logged_side": null, "total_logged_line": null, "total_logged_book": null, "total_logged_odds": null, "total_logged_edge": null, "total_logged_stake": null, "total_logged_placed": null, "total_now_edge": null, "total_now_p": null, "total_now_ev": null, "spread_bandb_bet_id": null, "spread_bandb_pick": null, "spread_bandb_line": null, "spread_bandb_book": null, "spread_bandb_odds": null, "spread_bandb_edge": null, "spread_bandb_stake": null, "spread_bandb_placed": null, "spread_bandb_status": null, "spread_bandb_result": null, "spread_bandb_profit": null, "total_bandb_bet_id": null, "total_bandb_pick": null, "total_bandb_line": null, "total_bandb_book": null, "total_bandb_odds": null, "total_bandb_edge": null, "total_bandb_stake": null, "total_bandb_placed": null, "total_bandb_status": null, "total_bandb_result": null, "total_bandb_profit": null, "fresh_run_at": "2026-11-23T01:14:01+00:00", "fresh_kenpom_data_through": "Sunday, November 22", "fresh_barttorvik_snapshot": "2026-11-21", "fresh_kenpom_at": "2026-11-23T01:14:00+00:00", "fresh_barttorvik_at": "2026-11-23T01:14:00+00:00", "fresh_injuries_at": "2026-11-23T01:14:00+00:00", "fresh_schedule_at": "2026-11-23T01:04:31+00:00", "fresh_referees_at": null, "spread_line_book": null, "spread_line_at": null, "spread_fresh": "unknown", "spread_stale_inputs": "line time not recorded", "total_line_book": null, "total_line_at": null, "total_fresh": "unknown", "total_stale_inputs": "line time not recorded", "spread_logged_model": null, "total_logged_model": null, "spread_logged_p": null, "spread_logged_ev": null, "spread_logged_pre": false, "spread_logged_at": null, "total_logged_p": null, "total_logged_ev": null, "total_logged_pre": false, "total_logged_at": null, "first_open_spread": null, "first_open_total": null, "venue_state": "confirmed", "venue_venue": "Sanford Coyote Sports Center", "venue_city": "Vermillion", "venue_reason": "home team's arena", "venue_edge": "", "venue_event": ""}, {"game_id": 401924954, "start": "2026-12-01T01:00Z", "home": "Houston Christian", "away": "Western Illinois", "home_id": 2277, "away_id": 2710, "neutral": false, "state": "pre", "home_score": 0, "away_score": 0, "note": "", "home_injuries": "", "away_injuries": "", "home_injury_missing": 0.0, "away_injury_missing": 0.0, "crew": null, "model_margin": 12.196, "model_total": 138.064, "model_home_spread": -12.196, "model_home_pts": 75.13, "model_away_pts": 62.934, "kp_margin": 11.576, "raw_margin": 12.521, "home_missing": 0.067, "away_missing": 0.094, "raw_total": 143.293, "kp_total": 138.318, "bt_margin": 6.824, "bt_total": 138.645, "p_home_win": 0.866, "n_books": 0, "total_shift": 0.0, "book_lines": [], "news_url": "https://x.com/search?q=%28%22Western+Illinois+Leathernecks%22+OR+%22Houston+Christian+Huskies%22%29+%28injury+OR+injured+OR+out+OR+questionable+OR+%22will+not+play%22+OR+status%29&f=live", "spread_warn": "", "total_warn": "", "news_flag": "", "spread_logged_pick": null, "spread_logged_side": null, "spread_logged_line": null, "spread_logged_book": null, "spread_logged_odds": null, "spread_logged_edge": null, "spread_logged_stake": null, "spread_logged_placed": null, "spread_now_edge": null, "spread_now_p": null, "spread_now_ev": null, "total_logged_pick": null, "total_logged_side": null, "total_logged_line": null, "total_logged_book": null, "total_logged_odds": null, "total_logged_edge": null, "total_logged_stake": null, "total_logged_placed": null, "total_now_edge": null, "total_now_p": null, "total_now_ev": null, "spread_bandb_bet_id": null, "spread_bandb_pick": null, "spread_bandb_line": null, "spread_bandb_book": null, "spread_bandb_odds": null, "spread_bandb_edge": null, "spread_bandb_stake": null, "spread_bandb_placed": null, "spread_bandb_status": null, "spread_bandb_result": null, "spread_bandb_profit": null, "total_bandb_bet_id": null, "total_bandb_pick": null, "total_bandb_line": null, "total_bandb_book": null, "total_bandb_odds": null, "total_bandb_edge": null, "total_bandb_stake": null, "total_bandb_placed": null, "total_bandb_status": null, "total_bandb_result": null, "total_bandb_profit": null, "fresh_run_at": "2026-11-23T01:14:01+00:00", "fresh_kenpom_data_through": "Sunday, November 22", "fresh_barttorvik_snapshot": "2026-11-21", "fresh_kenpom_at": "2026-11-23T01:14:00+00:00", "fresh_barttorvik_at": "2026-11-23T01:14:00+00:00", "fresh_injuries_at": "2026-11-23T01:14:00+00:00", "fresh_schedule_at": "2026-11-23T01:04:31+00:00", "fresh_referees_at": null, "spread_line_book": null, "spread_line_at": null, "spread_fresh": "unknown", "spread_stale_inputs": "line time not recorded", "total_line_book": null, "total_line_at": null, "total_fresh": "unknown", "total_stale_inputs": "line time not recorded", "spread_logged_model": null, "total_logged_model": null, "spread_logged_p": null, "spread_logged_ev": null, "spread_logged_pre": false, "spread_logged_at": null, "total_logged_p": null, "total_logged_ev": null, "total_logged_pre": false, "total_logged_at": null, "first_open_spread": null, "first_open_total": null, "venue_state": "confirmed", "venue_venue": "Sharp Gymnasium", "venue_city": "Houston", "venue_reason": "home team's arena", "venue_edge": "", "venue_event": ""}, {"game_id": 401919737, "start": "2026-12-01T01:00Z", "home": "Evansville", "away": "Chicago State", "home_id": 339, "away_id": 2130, "neutral": false, "state": "pre", "home_score": 0, "away_score": 0, "note": "", "home_injuries": "", "away_injuries": "", "home_injury_missing": 0.0, "away_injury_missing": 0.0, "crew": null, "model_margin": 8.555, "model_total": 135.084, "model_home_spread": -8.555, "model_home_pts": 71.819, "model_away_pts": 63.265, "kp_margin": 8.066, "raw_margin": 9.134, "home_missing": 0.129, "away_missing": 0.133, "raw_total": 139.336, "kp_total": 136.26, "bt_margin": 4.793, "bt_total": 135.785, "p_home_win": 0.782, "n_books": 0, "total_shift": 0.0, "book_lines": [], "news_url": "https://x.com/search?q=%28%22Chicago+State+Cougars%22+OR+%22Evansville+Purple+Aces%22%29+%28injury+OR+injured+OR+out+OR+questionable+OR+%22will+not+play%22+OR+status%29&f=live", "spread_warn": "", "total_warn": "", "news_flag": "", "spread_logged_pick": null, "spread_logged_side": null, "spread_logged_line": null, "spread_logged_book": null, "spread_logged_odds": null, "spread_logged_edge": null, "spread_logged_stake": null, "spread_logged_placed": null, "spread_now_edge": null, "spread_now_p": null, "spread_now_ev": null, "total_logged_pick": null, "total_logged_side": null, "total_logged_line": null, "total_logged_book": null, "total_logged_odds": null, "total_logged_edge": null, "total_logged_stake": null, "total_logged_placed": null, "total_now_edge": null, "total_now_p": null, "total_now_ev": null, "spread_bandb_bet_id": null, "spread_bandb_pick": null, "spread_bandb_line": null, "spread_bandb_book": null, "spread_bandb_odds": null, "spread_bandb_edge": null, "spread_bandb_stake": null, "spread_bandb_placed": null, "spread_bandb_status": null, "spread_bandb_result": null, "spread_bandb_profit": null, "total_bandb_bet_id": null, "total_bandb_pick": null, "total_bandb_line": null, "total_bandb_book": null, "total_bandb_odds": null, "total_bandb_edge": null, "total_bandb_stake": null, "total_bandb_placed": null, "total_bandb_status": null, "total_bandb_result": null, "total_bandb_profit": null, "fresh_run_at": "2026-11-23T01:14:01+00:00", "fresh_kenpom_data_through": "Sunday, November 22", "fresh_barttorvik_snapshot": "2026-11-21", "fresh_kenpom_at": "2026-11-23T01:14:00+00:00", "fresh_barttorvik_at": "2026-11-23T01:14:00+00:00", "fresh_injuries_at": "2026-11-23T01:14:00+00:00", "fresh_schedule_at": "2026-11-23T01:04:31+00:00", "fresh_referees_at": null, "spread_line_book": null, "spread_line_at": null, "spread_fresh": "unknown", "spread_stale_inputs": "line time not recorded", "total_line_book": null, "total_line_at": null, "total_fresh": "unknown", "total_stale_inputs": "line time not recorded", "spread_logged_model": null, "total_logged_model": null, "spread_logged_p": null, "spread_logged_ev": null, "spread_logged_pre": false, "spread_logged_at": null, "total_logged_p": null, "total_logged_ev": null, "total_logged_pre": false, "total_logged_at": null, "first_open_spread": null, "first_open_total": null, "venue_state": "confirmed", "venue_venue": "Ford Center", "venue_city": "Evansville", "venue_reason": "home team's arena", "venue_edge": "", "venue_event": ""}, {"game_id": 401921735, "start": "2026-12-01T02:00Z", "home": "Arizona State", "away": "Montana", "home_id": 9, "away_id": 149, "neutral": false, "state": "pre", "home_score": 0, "away_score": 0, "note": "", "home_injuries": "", "away_injuries": "", "home_injury_missing": 0.0, "away_injury_missing": 0.0, "crew": null, "model_margin": 20.784, "model_total": 142.57, "model_home_spread": -20.784, "model_home_pts": 81.677, "model_away_pts": 60.893, "kp_margin": 16.907, "raw_margin": 18.293, "home_missing": 0.05, "away_missing": 0.0, "raw_total": 142.084, "kp_total": 140.578, "bt_margin": 13.271, "bt_total": 141.421, "p_home_win": 0.971, "n_books": 0, "total_shift": 0.0, "book_lines": [], "news_url": "https://x.com/search?q=%28%22Montana+Grizzlies%22+OR+%22Arizona+State+Sun+Devils%22%29+%28injury+OR+injured+OR+out+OR+questionable+OR+%22will+not+play%22+OR+status%29&f=live", "spread_warn": "", "total_warn": "", "news_flag": "", "spread_logged_pick": null, "spread_logged_side": null, "spread_logged_line": null, "spread_logged_book": null, "spread_logged_odds": null, "spread_logged_edge": null, "spread_logged_stake": null, "spread_logged_placed": null, "spread_now_edge": null, "spread_now_p": null, "spread_now_ev": null, "total_logged_pick": null, "total_logged_side": null, "total_logged_line": null, "total_logged_book": null, "total_logged_odds": null, "total_logged_edge": null, "total_logged_stake": null, "total_logged_placed": null, "total_now_edge": null, "total_now_p": null, "total_now_ev": null, "spread_bandb_bet_id": null, "spread_bandb_pick": null, "spread_bandb_line": null, "spread_bandb_book": null, "spread_bandb_odds": null, "spread_bandb_edge": null, "spread_bandb_stake": null, "spread_bandb_placed": null, "spread_bandb_status": null, "spread_bandb_result": null, "spread_bandb_profit": null, "total_bandb_bet_id": null, "total_bandb_pick": null, "total_bandb_line": null, "total_bandb_book": null, "total_bandb_odds": null, "total_bandb_edge": null, "total_bandb_stake": null, "total_bandb_placed": null, "total_bandb_status": null, "total_bandb_result": null, "total_bandb_profit": null, "fresh_run_at": "2026-11-23T01:14:01+00:00", "fresh_kenpom_data_through": "Sunday, November 22", "fresh_barttorvik_snapshot": "2026-11-21", "fresh_kenpom_at": "2026-11-23T01:14:00+00:00", "fresh_barttorvik_at": "2026-11-23T01:14:00+00:00", "fresh_injuries_at": "2026-11-23T01:14:00+00:00", "fresh_schedule_at": "2026-11-23T01:04:31+00:00", "fresh_referees_at": null, "spread_line_book": null, "spread_line_at": null, "spread_fresh": "unknown", "spread_stale_inputs": "line time not recorded", "total_line_book": null, "total_line_at": null, "total_fresh": "unknown", "total_stale_inputs": "line time not recorded", "spread_logged_model": null, "total_logged_model": null, "spread_logged_p": null, "spread_logged_ev": null, "spread_logged_pre": false, "spread_logged_at": null, "total_logged_p": null, "total_logged_ev": null, "total_logged_pre": false, "total_logged_at": null, "first_open_spread": null, "first_open_total": null, "venue_state": "confirmed", "venue_venue": "Desert Financial Arena", "venue_city": "Tempe", "venue_reason": "home team's arena", "venue_edge": "", "venue_event": ""}], "ratings": [{"rank": 1, "team": "Illinois", "net": 36.36, "adj_oe": 130.377, "adj_de": 94.017, "adj_tempo": 73.656}, {"rank": 2, "team": "Houston", "net": 35.304, "adj_oe": 124.955, "adj_de": 89.651, "adj_tempo": 68.196}, {"rank": 3, "team": "Kansas", "net": 30.557, "adj_oe": 123.064, "adj_de": 92.507, "adj_tempo": 73.275}, {"rank": 4, "team": "UConn", "net": 29.014, "adj_oe": 120.296, "adj_de": 91.282, "adj_tempo": 68.017}, {"rank": 5, "team": "Florida", "net": 28.829, "adj_oe": 124.425, "adj_de": 95.596, "adj_tempo": 70.205}, {"rank": 6, "team": "Duke", "net": 28.804, "adj_oe": 120.346, "adj_de": 91.542, "adj_tempo": 71.806}, {"rank": 7, "team": "Texas Tech", "net": 28.753, "adj_oe": 117.637, "adj_de": 88.884, "adj_tempo": 69.001}, {"rank": 8, "team": "Arizona", "net": 28.156, "adj_oe": 121.866, "adj_de": 93.71, "adj_tempo": 72.634}, {"rank": 9, "team": "Vanderbilt", "net": 27.894, "adj_oe": 120.703, "adj_de": 92.809, "adj_tempo": 70.491}, {"rank": 10, "team": "Virginia", "net": 27.771, "adj_oe": 123.825, "adj_de": 96.054, "adj_tempo": 70.196}, {"rank": 11, "team": "Texas", "net": 27.465, "adj_oe": 122.604, "adj_de": 95.139, "adj_tempo": 70.353}, {"rank": 12, "team": "Miami", "net": 27.372, "adj_oe": 117.33, "adj_de": 89.958, "adj_tempo": 72.25}, {"rank": 13, "team": "Gonzaga", "net": 26.567, "adj_oe": 123.263, "adj_de": 96.696, "adj_tempo": 70.909}, {"rank": 14, "team": "UCLA", "net": 26.432, "adj_oe": 120.88, "adj_de": 94.448, "adj_tempo": 69.23}, {"rank": 15, "team": "St. John's", "net": 26.321, "adj_oe": 119.142, "adj_de": 92.821, "adj_tempo": 73.216}, {"rank": 16, "team": "USC", "net": 25.908, "adj_oe": 119.806, "adj_de": 93.898, "adj_tempo": 72.368}, {"rank": 17, "team": "Nebraska", "net": 25.741, "adj_oe": 118.853, "adj_de": 93.112, "adj_tempo": 69.984}, {"rank": 18, "team": "Missouri", "net": 25.382, "adj_oe": 121.148, "adj_de": 95.766, "adj_tempo": 69.949}, {"rank": 19, "team": "Michigan", "net": 24.291, "adj_oe": 119.442, "adj_de": 95.151, "adj_tempo": 73.314}, {"rank": 20, "team": "Iowa State", "net": 24.223, "adj_oe": 113.497, "adj_de": 89.274, "adj_tempo": 69.778}, {"rank": 21, "team": "Michigan State", "net": 24.129, "adj_oe": 118.072, "adj_de": 93.943, "adj_tempo": 69.501}, {"rank": 22, "team": "Texas A&M", "net": 23.967, "adj_oe": 119.917, "adj_de": 95.95, "adj_tempo": 74.416}, {"rank": 23, "team": "Marquette", "net": 23.612, "adj_oe": 114.836, "adj_de": 91.224, "adj_tempo": 70.44}, {"rank": 24, "team": "Ole Miss", "net": 23.254, "adj_oe": 114.794, "adj_de": 91.54, "adj_tempo": 70.303}, {"rank": 25, "team": "Alabama", "net": 23.189, "adj_oe": 122.337, "adj_de": 99.149, "adj_tempo": 75.916}, {"rank": 26, "team": "BYU", "net": 23.092, "adj_oe": 121.673, "adj_de": 98.581, "adj_tempo": 72.041}, {"rank": 27, "team": "Baylor", "net": 23.076, "adj_oe": 119.229, "adj_de": 96.153, "adj_tempo": 71.102}, {"rank": 28, "team": "Cincinnati", "net": 22.436, "adj_oe": 116.525, "adj_de": 94.089, "adj_tempo": 70.569}, {"rank": 29, "team": "Tennessee", "net": 22.166, "adj_oe": 114.162, "adj_de": 91.996, "adj_tempo": 68.758}, {"rank": 30, "team": "Louisville", "net": 21.547, "adj_oe": 119.156, "adj_de": 97.609, "adj_tempo": 71.69}, {"rank": 31, "team": "West Virginia", "net": 21.269, "adj_oe": 117.464, "adj_de": 96.195, "adj_tempo": 67.166}, {"rank": 32, "team": "Indiana", "net": 21.267, "adj_oe": 120.371, "adj_de": 99.104, "adj_tempo": 69.337}, {"rank": 33, "team": "Iowa", "net": 20.888, "adj_oe": 119.789, "adj_de": 98.901, "adj_tempo": 64.528}, {"rank": 34, "team": "LSU", "net": 20.878, "adj_oe": 116.671, "adj_de": 95.794, "adj_tempo": 71.516}, {"rank": 35, "team": "Ohio State", "net": 20.285, "adj_oe": 120.201, "adj_de": 99.915, "adj_tempo": 69.507}, {"rank": 36, "team": "Purdue", "net": 20.247, "adj_oe": 119.339, "adj_de": 99.093, "adj_tempo": 66.307}, {"rank": 37, "team": "Utah State", "net": 19.495, "adj_oe": 120.584, "adj_de": 101.089, "adj_tempo": 70.747}, {"rank": 38, "team": "Maryland", "net": 19.282, "adj_oe": 118.419, "adj_de": 99.137, "adj_tempo": 69.768}, {"rank": 39, "team": "Arkansas", "net": 19.278, "adj_oe": 117.682, "adj_de": 98.403, "adj_tempo": 70.398}, {"rank": 40, "team": "Minnesota", "net": 18.921, "adj_oe": 116.175, "adj_de": 97.254, "adj_tempo": 66.626}, {"rank": 41, "team": "Auburn", "net": 18.844, "adj_oe": 117.288, "adj_de": 98.445, "adj_tempo": 69.77}, {"rank": 42, "team": "Oklahoma State", "net": 18.528, "adj_oe": 117.453, "adj_de": 98.925, "adj_tempo": 73.179}, {"rank": 43, "team": "DePaul", "net": 18.409, "adj_oe": 111.739, "adj_de": 93.331, "adj_tempo": 68.97}, {"rank": 44, "team": "Florida State", "net": 18.285, "adj_oe": 117.648, "adj_de": 99.363, "adj_tempo": 72.564}, {"rank": 45, "team": "Virginia Tech", "net": 18.257, "adj_oe": 117.596, "adj_de": 99.339, "adj_tempo": 70.129}, {"rank": 46, "team": "Grand Canyon", "net": 18.183, "adj_oe": 116.485, "adj_de": 98.303, "adj_tempo": 72.629}, {"rank": 47, "team": "Mississippi State", "net": 17.656, "adj_oe": 116.876, "adj_de": 99.219, "adj_tempo": 70.71}, {"rank": 48, "team": "Creighton", "net": 17.037, "adj_oe": 114.678, "adj_de": 97.641, "adj_tempo": 70.948}, {"rank": 49, "team": "Providence", "net": 16.916, "adj_oe": 112.343, "adj_de": 95.427, "adj_tempo": 71.767}, {"rank": 50, "team": "Saint Mary's", "net": 16.91, "adj_oe": 117.002, "adj_de": 100.092, "adj_tempo": 70.361}, {"rank": 51, "team": "Georgia", "net": 16.902, "adj_oe": 118.678, "adj_de": 101.776, "adj_tempo": 71.978}, {"rank": 52, "team": "Pittsburgh", "net": 16.742, "adj_oe": 113.73, "adj_de": 96.988, "adj_tempo": 69.874}, {"rank": 53, "team": "Xavier", "net": 16.709, "adj_oe": 112.3, "adj_de": 95.591, "adj_tempo": 73.762}, {"rank": 54, "team": "NC State", "net": 16.536, "adj_oe": 119.194, "adj_de": 102.658, "adj_tempo": 69.705}, {"rank": 55, "team": "North Carolina", "net": 16.49, "adj_oe": 114.45, "adj_de": 97.96, "adj_tempo": 71.063}, {"rank": 56, "team": "Villanova", "net": 16.459, "adj_oe": 115.623, "adj_de": 99.164, "adj_tempo": 69.822}, {"rank": 57, "team": "San Diego State", "net": 16.458, "adj_oe": 115.147, "adj_de": 98.69, "adj_tempo": 70.267}, {"rank": 58, "team": "VCU", "net": 16.302, "adj_oe": 114.556, "adj_de": 98.253, "adj_tempo": 70.313}, {"rank": 59, "team": "TCU", "net": 16.22, "adj_oe": 114.597, "adj_de": 98.377, "adj_tempo": 70.534}, {"rank": 60, "team": "Saint Louis", "net": 16.17, "adj_oe": 117.027, "adj_de": 100.857, "adj_tempo": 72.813}, {"rank": 61, "team": "High Point", "net": 16.012, "adj_oe": 113.708, "adj_de": 97.696, "adj_tempo": 70.531}, {"rank": 62, "team": "SMU", "net": 15.646, "adj_oe": 114.659, "adj_de": 99.013, "adj_tempo": 72.271}, {"rank": 63, "team": "Oregon", "net": 14.523, "adj_oe": 117.415, "adj_de": 102.892, "adj_tempo": 69.952}, {"rank": 64, "team": "Notre Dame", "net": 14.491, "adj_oe": 115.908, "adj_de": 101.417, "adj_tempo": 69.331}, {"rank": 65, "team": "Kentucky", "net": 14.369, "adj_oe": 117.492, "adj_de": 103.123, "adj_tempo": 69.877}, {"rank": 66, "team": "Arizona State", "net": 14.229, "adj_oe": 116.104, "adj_de": 101.875, "adj_tempo": 66.863}, {"rank": 67, "team": "Rutgers", "net": 13.991, "adj_oe": 117.657, "adj_de": 103.666, "adj_tempo": 70.234}, {"rank": 68, "team": "Murray State", "net": 13.753, "adj_oe": 111.941, "adj_de": 98.188, "adj_tempo": 74.655}, {"rank": 69, "team": "New Mexico", "net": 13.681, "adj_oe": 114.464, "adj_de": 100.783, "adj_tempo": 71.336}, {"rank": 70, "team": "Seton Hall", "net": 13.608, "adj_oe": 110.682, "adj_de": 97.074, "adj_tempo": 67.312}, {"rank": 71, "team": "Memphis", "net": 13.194, "adj_oe": 119.237, "adj_de": 106.043, "adj_tempo": 72.209}, {"rank": 72, "team": "Georgetown", "net": 13.037, "adj_oe": 115.018, "adj_de": 101.982, "adj_tempo": 69.5}, {"rank": 73, "team": "Wake Forest", "net": 13.031, "adj_oe": 112.234, "adj_de": 99.203, "adj_tempo": 69.713}, {"rank": 74, "team": "George Washington", "net": 13.014, "adj_oe": 111.544, "adj_de": 98.529, "adj_tempo": 70.12}, {"rank": 75, "team": "Clemson", "net": 12.919, "adj_oe": 117.063, "adj_de": 104.144, "adj_tempo": 67.668}, {"rank": 76, "team": "Wichita State", "net": 12.758, "adj_oe": 111.998, "adj_de": 99.24, "adj_tempo": 70.848}, {"rank": 77, "team": "Syracuse", "net": 12.613, "adj_oe": 114.552, "adj_de": 101.939, "adj_tempo": 69.8}, {"rank": 78, "team": "Oregon State", "net": 12.396, "adj_oe": 116.004, "adj_de": 103.608, "adj_tempo": 71.406}, {"rank": 79, "team": "Nevada", "net": 12.252, "adj_oe": 113.146, "adj_de": 100.894, "adj_tempo": 69.142}, {"rank": 80, "team": "Wisconsin", "net": 11.983, "adj_oe": 111.125, "adj_de": 99.141, "adj_tempo": 70.245}, {"rank": 81, "team": "Oklahoma", "net": 11.29, "adj_oe": 115.505, "adj_de": 104.214, "adj_tempo": 68.238}, {"rank": 82, "team": "Boston College", "net": 11.018, "adj_oe": 114.596, "adj_de": 103.578, "adj_tempo": 67.021}, {"rank": 83, "team": "Stanford", "net": 10.496, "adj_oe": 111.142, "adj_de": 100.646, "adj_tempo": 68.209}, {"rank": 84, "team": "UCF", "net": 10.355, "adj_oe": 114.866, "adj_de": 104.51, "adj_tempo": 71.189}, {"rank": 85, "team": "UC Santa Barbara", "net": 10.24, "adj_oe": 114.211, "adj_de": 103.971, "adj_tempo": 67.579}, {"rank": 86, "team": "Texas State", "net": 9.879, "adj_oe": 112.568, "adj_de": 102.689, "adj_tempo": 67.397}, {"rank": 87, "team": "Boise State", "net": 9.709, "adj_oe": 110.817, "adj_de": 101.108, "adj_tempo": 73.004}, {"rank": 88, "team": "George Mason", "net": 9.702, "adj_oe": 108.596, "adj_de": 98.894, "adj_tempo": 67.508}, {"rank": 89, "team": "South Carolina", "net": 9.654, "adj_oe": 111.914, "adj_de": 102.259, "adj_tempo": 67.689}, {"rank": 90, "team": "Wyoming", "net": 9.443, "adj_oe": 112.174, "adj_de": 102.731, "adj_tempo": 68.331}, {"rank": 91, "team": "Butler", "net": 8.99, "adj_oe": 111.943, "adj_de": 102.953, "adj_tempo": 72.21}, {"rank": 92, "team": "South Florida", "net": 8.651, "adj_oe": 113.298, "adj_de": 104.647, "adj_tempo": 71.813}, {"rank": 93, "team": "Kansas State", "net": 8.54, "adj_oe": 110.573, "adj_de": 102.033, "adj_tempo": 71.939}, {"rank": 94, "team": "Wright State", "net": 8.491, "adj_oe": 112.839, "adj_de": 104.348, "adj_tempo": 69.88}, {"rank": 95, "team": "Dayton", "net": 8.432, "adj_oe": 110.36, "adj_de": 101.929, "adj_tempo": 69.262}, {"rank": 96, "team": "Washington", "net": 8.361, "adj_oe": 113.193, "adj_de": 104.832, "adj_tempo": 69.307}, {"rank": 97, "team": "California", "net": 8.336, "adj_oe": 111.041, "adj_de": 102.705, "adj_tempo": 69.886}, {"rank": 98, "team": "Penn State", "net": 7.962, "adj_oe": 113.742, "adj_de": 105.78, "adj_tempo": 71.249}, {"rank": 99, "team": "McNeese", "net": 7.943, "adj_oe": 111.355, "adj_de": 103.412, "adj_tempo": 68.947}, {"rank": 100, "team": "Colorado", "net": 7.835, "adj_oe": 108.347, "adj_de": 100.512, "adj_tempo": 70.832}, {"rank": 101, "team": "Santa Clara", "net": 7.793, "adj_oe": 111.626, "adj_de": 103.834, "adj_tempo": 73.056}, {"rank": 102, "team": "Western Kentucky", "net": 7.752, "adj_oe": 108.382, "adj_de": 100.63, "adj_tempo": 72.691}, {"rank": 103, "team": "Tulsa", "net": 7.414, "adj_oe": 110.53, "adj_de": 103.116, "adj_tempo": 69.91}, {"rank": 104, "team": "Colorado State", "net": 6.773, "adj_oe": 109.199, "adj_de": 102.426, "adj_tempo": 68.976}, {"rank": 105, "team": "Illinois State", "net": 6.344, "adj_oe": 111.619, "adj_de": 105.274, "adj_tempo": 67.23}, {"rank": 106, "team": "St. Bonaventure", "net": 5.985, "adj_oe": 109.176, "adj_de": 103.191, "adj_tempo": 68.727}, {"rank": 107, "team": "UC Irvine", "net": 5.941, "adj_oe": 104.079, "adj_de": 98.138, "adj_tempo": 70.738}, {"rank": 108, "team": "Utah Valley", "net": 5.577, "adj_oe": 109.994, "adj_de": 104.417, "adj_tempo": 71.72}, {"rank": 109, "team": "Miami (OH)", "net": 5.564, "adj_oe": 111.22, "adj_de": 105.656, "adj_tempo": 71.963}, {"rank": 110, "team": "UNC Wilmington", "net": 5.407, "adj_oe": 114.699, "adj_de": 109.291, "adj_tempo": 69.622}, {"rank": 111, "team": "UNLV", "net": 5.249, "adj_oe": 110.388, "adj_de": 105.139, "adj_tempo": 72.18}, {"rank": 112, "team": "Fordham", "net": 5.05, "adj_oe": 108.12, "adj_de": 103.07, "adj_tempo": 69.471}, {"rank": 113, "team": "Montana State", "net": 5.048, "adj_oe": 109.04, "adj_de": 103.992, "adj_tempo": 68.467}, {"rank": 114, "team": "Utah", "net": 4.752, "adj_oe": 105.031, "adj_de": 100.278, "adj_tempo": 67.946}, {"rank": 115, "team": "UIC", "net": 4.734, "adj_oe": 108.416, "adj_de": 103.681, "adj_tempo": 68.028}, {"rank": 116, "team": "Akron", "net": 4.508, "adj_oe": 104.55, "adj_de": 100.042, "adj_tempo": 69.61}, {"rank": 117, "team": "Washington State", "net": 4.32, "adj_oe": 111.567, "adj_de": 107.246, "adj_tempo": 68.776}, {"rank": 118, "team": "Charlotte", "net": 4.258, "adj_oe": 109.085, "adj_de": 104.826, "adj_tempo": 68.407}, {"rank": 119, "team": "Loyola Chicago", "net": 4.164, "adj_oe": 107.614, "adj_de": 103.45, "adj_tempo": 70.012}, {"rank": 120, "team": "Davidson", "net": 4.021, "adj_oe": 106.522, "adj_de": 102.501, "adj_tempo": 67.229}, {"rank": 121, "team": "North Texas", "net": 3.77, "adj_oe": 108.181, "adj_de": 104.411, "adj_tempo": 68.305}, {"rank": 122, "team": "Sam Houston", "net": 3.766, "adj_oe": 107.573, "adj_de": 103.807, "adj_tempo": 73.183}, {"rank": 123, "team": "Duquesne", "net": 3.666, "adj_oe": 108.342, "adj_de": 104.676, "adj_tempo": 68.737}, {"rank": 124, "team": "Rhode Island", "net": 3.477, "adj_oe": 109.271, "adj_de": 105.794, "adj_tempo": 69.188}, {"rank": 125, "team": "Valparaiso", "net": 3.415, "adj_oe": 108.155, "adj_de": 104.741, "adj_tempo": 68.927}, {"rank": 126, "team": "Richmond", "net": 3.268, "adj_oe": 107.961, "adj_de": 104.693, "adj_tempo": 69.915}, {"rank": 127, "team": "Charleston", "net": 3.159, "adj_oe": 112.342, "adj_de": 109.183, "adj_tempo": 70.895}, {"rank": 128, "team": "Northwestern", "net": 3.053, "adj_oe": 108.103, "adj_de": 105.049, "adj_tempo": 67.001}, {"rank": 129, "team": "St. Thomas", "net": 2.982, "adj_oe": 113.952, "adj_de": 110.97, "adj_tempo": 68.242}, {"rank": 130, "team": "Georgia Tech", "net": 2.876, "adj_oe": 108.295, "adj_de": 105.418, "adj_tempo": 72.278}, {"rank": 131, "team": "James Madison", "net": 2.559, "adj_oe": 109.554, "adj_de": 106.995, "adj_tempo": 69.244}, {"rank": 132, "team": "Pennsylvania", "net": 2.483, "adj_oe": 107.226, "adj_de": 104.743, "adj_tempo": 73.355}, {"rank": 133, "team": "Kennesaw State", "net": 2.467, "adj_oe": 106.538, "adj_de": 104.071, "adj_tempo": 74.49}, {"rank": 134, "team": "UC San Diego", "net": 2.45, "adj_oe": 111.101, "adj_de": 108.651, "adj_tempo": 70.931}, {"rank": 135, "team": "Saint Joseph's", "net": 2.4, "adj_oe": 103.312, "adj_de": 100.913, "adj_tempo": 71.942}, {"rank": 136, "team": "Liberty", "net": 2.326, "adj_oe": 109.789, "adj_de": 107.464, "adj_tempo": 66.466}, {"rank": 137, "team": "Pacific", "net": 1.828, "adj_oe": 104.765, "adj_de": 102.937, "adj_tempo": 68.126}, {"rank": 138, "team": "Western Michigan", "net": 1.798, "adj_oe": 108.906, "adj_de": 107.108, "adj_tempo": 68.215}, {"rank": 139, "team": "Seattle U", "net": 1.761, "adj_oe": 103.669, "adj_de": 101.908, "adj_tempo": 70.097}, {"rank": 140, "team": "San Diego", "net": 1.564, "adj_oe": 109.31, "adj_de": 107.747, "adj_tempo": 68.979}, {"rank": 141, "team": "Furman", "net": 1.437, "adj_oe": 107.956, "adj_de": 106.519, "adj_tempo": 69.623}, {"rank": 142, "team": "Belmont", "net": 1.425, "adj_oe": 106.37, "adj_de": 104.945, "adj_tempo": 70.606}, {"rank": 143, "team": "UTEP", "net": 1.423, "adj_oe": 105.386, "adj_de": 103.963, "adj_tempo": 68.403}, {"rank": 144, "team": "Toledo", "net": 1.24, "adj_oe": 108.264, "adj_de": 107.024, "adj_tempo": 71.039}, {"rank": 145, "team": "Temple", "net": 1.144, "adj_oe": 108.034, "adj_de": 106.89, "adj_tempo": 69.296}, {"rank": 146, "team": "Loyola Marymount", "net": 0.865, "adj_oe": 109.743, "adj_de": 108.878, "adj_tempo": 68.526}, {"rank": 147, "team": "UAB", "net": 0.859, "adj_oe": 109.916, "adj_de": 109.057, "adj_tempo": 71.144}, {"rank": 148, "team": "Tennessee Tech", "net": 0.729, "adj_oe": 110.144, "adj_de": 109.414, "adj_tempo": 73.421}, {"rank": 149, "team": "Central Arkansas", "net": 0.54, "adj_oe": 106.797, "adj_de": 106.256, "adj_tempo": 70.321}, {"rank": 150, "team": "Columbia", "net": 0.538, "adj_oe": 105.132, "adj_de": 104.594, "adj_tempo": 69.085}, {"rank": 151, "team": "Stephen F. Austin", "net": 0.239, "adj_oe": 106.374, "adj_de": 106.135, "adj_tempo": 68.807}, {"rank": 152, "team": "Drake", "net": 0.237, "adj_oe": 107.396, "adj_de": 107.159, "adj_tempo": 69.36}, {"rank": 153, "team": "Florida Atlantic", "net": 0.145, "adj_oe": 109.149, "adj_de": 109.004, "adj_tempo": 71.012}, {"rank": 154, "team": "Old Dominion", "net": 0.014, "adj_oe": 106.089, "adj_de": 106.076, "adj_tempo": 68.091}, {"rank": 155, "team": "Saint Francis", "net": 0.0, "adj_oe": 106.591, "adj_de": 106.591, "adj_tempo": 70.003}, {"rank": 156, "team": "San Jos\u00e9 State", "net": -0.173, "adj_oe": 111.244, "adj_de": 111.417, "adj_tempo": 68.923}, {"rank": 157, "team": "Pepperdine", "net": -0.436, "adj_oe": 110.101, "adj_de": 110.537, "adj_tempo": 70.299}, {"rank": 158, "team": "Eastern Washington", "net": -0.548, "adj_oe": 108.708, "adj_de": 109.256, "adj_tempo": 70.967}, {"rank": 159, "team": "Hawai'i", "net": -0.893, "adj_oe": 103.691, "adj_de": 104.584, "adj_tempo": 70.223}, {"rank": 160, "team": "American University", "net": -1.176, "adj_oe": 105.289, "adj_de": 106.465, "adj_tempo": 68.018}, {"rank": 161, "team": "Towson", "net": -1.315, "adj_oe": 100.994, "adj_de": 102.309, "adj_tempo": 66.902}, {"rank": 162, "team": "Howard", "net": -1.387, "adj_oe": 103.762, "adj_de": 105.148, "adj_tempo": 70.272}, {"rank": 163, "team": "Ohio", "net": -1.435, "adj_oe": 108.569, "adj_de": 110.003, "adj_tempo": 71.687}, {"rank": 164, "team": "Princeton", "net": -1.436, "adj_oe": 105.535, "adj_de": 106.971, "adj_tempo": 67.695}, {"rank": 165, "team": "Southern Illinois", "net": -1.514, "adj_oe": 105.866, "adj_de": 107.38, "adj_tempo": 72.057}, {"rank": 166, "team": "Florida International", "net": -1.607, "adj_oe": 106.744, "adj_de": 108.35, "adj_tempo": 72.755}, {"rank": 167, "team": "Eastern Michigan", "net": -1.72, "adj_oe": 105.871, "adj_de": 107.591, "adj_tempo": 67.15}, {"rank": 168, "team": "Northern Iowa", "net": -1.729, "adj_oe": 109.688, "adj_de": 111.417, "adj_tempo": 69.538}, {"rank": 169, "team": "East Tennessee State", "net": -1.789, "adj_oe": 103.994, "adj_de": 105.784, "adj_tempo": 66.869}, {"rank": 170, "team": "Marshall", "net": -1.922, "adj_oe": 103.133, "adj_de": 105.055, "adj_tempo": 72.819}, {"rank": 171, "team": "William & Mary", "net": -1.963, "adj_oe": 107.738, "adj_de": 109.701, "adj_tempo": 74.803}, {"rank": 172, "team": "San Francisco", "net": -2.123, "adj_oe": 103.267, "adj_de": 105.39, "adj_tempo": 69.127}, {"rank": 173, "team": "Massachusetts", "net": -2.265, "adj_oe": 102.585, "adj_de": 104.851, "adj_tempo": 70.88}, {"rank": 174, "team": "Bethune-Cookman", "net": -2.28, "adj_oe": 105.265, "adj_de": 107.545, "adj_tempo": 71.55}, {"rank": 175, "team": "App State", "net": -2.417, "adj_oe": 103.504, "adj_de": 105.921, "adj_tempo": 65.906}, {"rank": 176, "team": "Vermont", "net": -2.438, "adj_oe": 107.771, "adj_de": 110.208, "adj_tempo": 65.809}, {"rank": 177, "team": "Harvard", "net": -2.598, "adj_oe": 104.803, "adj_de": 107.401, "adj_tempo": 66.507}, {"rank": 178, "team": "Fresno State", "net": -2.703, "adj_oe": 106.221, "adj_de": 108.924, "adj_tempo": 71.582}, {"rank": 179, "team": "Austin Peay", "net": -2.803, "adj_oe": 102.401, "adj_de": 105.204, "adj_tempo": 70.56}, {"rank": 180, "team": "Lamar", "net": -2.808, "adj_oe": 105.103, "adj_de": 107.911, "adj_tempo": 71.271}, {"rank": 181, "team": "Monmouth", "net": -2.828, "adj_oe": 103.51, "adj_de": 106.338, "adj_tempo": 70.266}, {"rank": 182, "team": "Yale", "net": -2.862, "adj_oe": 107.47, "adj_de": 110.332, "adj_tempo": 67.207}, {"rank": 183, "team": "South Dakota State", "net": -2.887, "adj_oe": 105.083, "adj_de": 107.97, "adj_tempo": 68.427}, {"rank": 184, "team": "Northern Illinois", "net": -2.988, "adj_oe": 111.001, "adj_de": 113.989, "adj_tempo": 67.624}, {"rank": 185, "team": "Stony Brook", "net": -3.088, "adj_oe": 105.945, "adj_de": 109.033, "adj_tempo": 67.565}, {"rank": 186, "team": "Cal State Fullerton", "net": -3.225, "adj_oe": 104.726, "adj_de": 107.951, "adj_tempo": 73.706}, {"rank": 187, "team": "Campbell", "net": -3.382, "adj_oe": 108.379, "adj_de": 111.761, "adj_tempo": 68.758}, {"rank": 188, "team": "Tennessee State", "net": -3.382, "adj_oe": 103.732, "adj_de": 107.114, "adj_tempo": 74.048}, {"rank": 189, "team": "Hofstra", "net": -3.386, "adj_oe": 101.102, "adj_de": 104.488, "adj_tempo": 67.135}, {"rank": 190, "team": "Portland State", "net": -3.402, "adj_oe": 105.488, "adj_de": 108.89, "adj_tempo": 71.184}, {"rank": 191, "team": "Middle Tennessee", "net": -3.435, "adj_oe": 104.879, "adj_de": 108.314, "adj_tempo": 68.448}, {"rank": 192, "team": "Portland", "net": -3.468, "adj_oe": 105.742, "adj_de": 109.211, "adj_tempo": 71.365}, {"rank": 193, "team": "Kent State", "net": -3.496, "adj_oe": 104.146, "adj_de": 107.642, "adj_tempo": 70.159}, {"rank": 194, "team": "UT Arlington", "net": -3.545, "adj_oe": 102.426, "adj_de": 105.971, "adj_tempo": 71.061}, {"rank": 195, "team": "Lipscomb", "net": -3.632, "adj_oe": 106.285, "adj_de": 109.917, "adj_tempo": 72.121}, {"rank": 196, "team": "Cal Poly", "net": -3.706, "adj_oe": 106.453, "adj_de": 110.158, "adj_tempo": 74.109}, {"rank": 197, "team": "Bowling Green", "net": -3.767, "adj_oe": 108.583, "adj_de": 112.35, "adj_tempo": 69.402}, {"rank": 198, "team": "La Salle", "net": -3.851, "adj_oe": 106.189, "adj_de": 110.04, "adj_tempo": 69.437}, {"rank": 199, "team": "Elon", "net": -3.962, "adj_oe": 105.076, "adj_de": 109.039, "adj_tempo": 68.847}, {"rank": 200, "team": "Tulane", "net": -4.036, "adj_oe": 107.095, "adj_de": 111.131, "adj_tempo": 70.073}, {"rank": 201, "team": "UTSA", "net": -4.066, "adj_oe": 106.088, "adj_de": 110.154, "adj_tempo": 71.798}, {"rank": 202, "team": "Queens University", "net": -4.068, "adj_oe": 112.112, "adj_de": 116.18, "adj_tempo": 72.993}, {"rank": 203, "team": "Arkansas State", "net": -4.234, "adj_oe": 103.506, "adj_de": 107.74, "adj_tempo": 74.073}, {"rank": 204, "team": "Siena", "net": -4.255, "adj_oe": 106.919, "adj_de": 111.174, "adj_tempo": 73.744}, {"rank": 205, "team": "Green Bay", "net": -4.265, "adj_oe": 105.984, "adj_de": 110.248, "adj_tempo": 68.479}, {"rank": 206, "team": "East Carolina", "net": -4.305, "adj_oe": 102.35, "adj_de": 106.655, "adj_tempo": 71.114}, {"rank": 207, "team": "UC Davis", "net": -4.355, "adj_oe": 100.779, "adj_de": 105.135, "adj_tempo": 71.809}, {"rank": 208, "team": "Sacramento State", "net": -4.419, "adj_oe": 102.577, "adj_de": 106.996, "adj_tempo": 73.741}, {"rank": 209, "team": "UT Rio Grande Valley", "net": -4.448, "adj_oe": 103.864, "adj_de": 108.312, "adj_tempo": 68.607}, {"rank": 210, "team": "Cal State Northridge", "net": -4.505, "adj_oe": 104.549, "adj_de": 109.054, "adj_tempo": 75.09}, {"rank": 211, "team": "Georgia State", "net": -4.513, "adj_oe": 106.4, "adj_de": 110.913, "adj_tempo": 68.819}, {"rank": 212, "team": "Mercer", "net": -4.551, "adj_oe": 105.857, "adj_de": 110.408, "adj_tempo": 71.793}, {"rank": 213, "team": "New Mexico State", "net": -4.563, "adj_oe": 104.266, "adj_de": 108.829, "adj_tempo": 68.318}, {"rank": 214, "team": "Western Carolina", "net": -4.569, "adj_oe": 105.715, "adj_de": 110.284, "adj_tempo": 70.171}, {"rank": 215, "team": "Chattanooga", "net": -4.727, "adj_oe": 107.671, "adj_de": 112.398, "adj_tempo": 69.178}, {"rank": 216, "team": "UC Riverside", "net": -4.854, "adj_oe": 101.223, "adj_de": 106.077, "adj_tempo": 71.392}, {"rank": 217, "team": "Cornell", "net": -4.958, "adj_oe": 105.83, "adj_de": 110.789, "adj_tempo": 72.76}, {"rank": 218, "team": "Buffalo", "net": -4.966, "adj_oe": 104.87, "adj_de": 109.836, "adj_tempo": 70.061}, {"rank": 219, "team": "Troy", "net": -5.018, "adj_oe": 104.815, "adj_de": 109.833, "adj_tempo": 67.644}, {"rank": 220, "team": "Tarleton State", "net": -5.12, "adj_oe": 103.226, "adj_de": 108.346, "adj_tempo": 71.118}, {"rank": 221, "team": "Rice", "net": -5.122, "adj_oe": 105.132, "adj_de": 110.254, "adj_tempo": 69.917}, {"rank": 222, "team": "Texas A&M-Corpus Christi", "net": -5.154, "adj_oe": 100.093, "adj_de": 105.247, "adj_tempo": 69.437}, {"rank": 223, "team": "North Dakota State", "net": -5.208, "adj_oe": 105.192, "adj_de": 110.4, "adj_tempo": 68.647}, {"rank": 224, "team": "Central Michigan", "net": -5.297, "adj_oe": 105.683, "adj_de": 110.98, "adj_tempo": 70.086}, {"rank": 225, "team": "Colgate", "net": -5.358, "adj_oe": 104.627, "adj_de": 109.985, "adj_tempo": 69.535}, {"rank": 226, "team": "Bradley", "net": -5.393, "adj_oe": 99.374, "adj_de": 104.768, "adj_tempo": 67.236}, {"rank": 227, "team": "Drexel", "net": -5.402, "adj_oe": 101.857, "adj_de": 107.259, "adj_tempo": 67.443}, {"rank": 228, "team": "Longwood", "net": -5.527, "adj_oe": 103.905, "adj_de": 109.432, "adj_tempo": 71.563}, {"rank": 229, "team": "Samford", "net": -5.909, "adj_oe": 106.021, "adj_de": 111.93, "adj_tempo": 70.15}, {"rank": 230, "team": "Florida Gulf Coast", "net": -6.109, "adj_oe": 105.421, "adj_de": 111.53, "adj_tempo": 68.792}, {"rank": 231, "team": "Denver", "net": -6.311, "adj_oe": 104.243, "adj_de": 110.555, "adj_tempo": 69.142}, {"rank": 232, "team": "South Alabama", "net": -6.341, "adj_oe": 106.345, "adj_de": 112.686, "adj_tempo": 65.467}, {"rank": 233, "team": "Iona", "net": -6.342, "adj_oe": 100.817, "adj_de": 107.159, "adj_tempo": 68.212}, {"rank": 234, "team": "Oral Roberts", "net": -6.434, "adj_oe": 103.802, "adj_de": 110.236, "adj_tempo": 70.137}, {"rank": 235, "team": "Northeastern", "net": -6.481, "adj_oe": 106.571, "adj_de": 113.052, "adj_tempo": 71.565}, {"rank": 236, "team": "Southern Miss", "net": -6.602, "adj_oe": 102.721, "adj_de": 109.323, "adj_tempo": 72.052}, {"rank": 237, "team": "Lehigh", "net": -6.615, "adj_oe": 101.615, "adj_de": 108.23, "adj_tempo": 68.977}, {"rank": 238, "team": "Jacksonville State", "net": -6.625, "adj_oe": 103.695, "adj_de": 110.32, "adj_tempo": 66.888}, {"rank": 239, "team": "Oakland", "net": -6.76, "adj_oe": 106.021, "adj_de": 112.78, "adj_tempo": 69.207}, {"rank": 240, "team": "Missouri State", "net": -6.862, "adj_oe": 101.536, "adj_de": 108.397, "adj_tempo": 67.805}, {"rank": 241, "team": "Louisiana Tech", "net": -6.984, "adj_oe": 100.032, "adj_de": 107.015, "adj_tempo": 68.299}, {"rank": 242, "team": "Youngstown State", "net": -7.006, "adj_oe": 102.6, "adj_de": 109.606, "adj_tempo": 71.156}, {"rank": 243, "team": "Radford", "net": -7.009, "adj_oe": 101.887, "adj_de": 108.897, "adj_tempo": 70.679}, {"rank": 244, "team": "Idaho", "net": -7.097, "adj_oe": 103.87, "adj_de": 110.967, "adj_tempo": 69.736}, {"rank": 245, "team": "Cal State Bakersfield", "net": -7.421, "adj_oe": 105.666, "adj_de": 113.087, "adj_tempo": 71.044}, {"rank": 246, "team": "UT Martin", "net": -7.614, "adj_oe": 100.17, "adj_de": 107.785, "adj_tempo": 68.072}, {"rank": 247, "team": "Ball State", "net": -7.636, "adj_oe": 101.756, "adj_de": 109.392, "adj_tempo": 67.833}, {"rank": 248, "team": "Little Rock", "net": -7.653, "adj_oe": 106.029, "adj_de": 113.682, "adj_tempo": 70.604}, {"rank": 249, "team": "Delaware", "net": -7.676, "adj_oe": 102.508, "adj_de": 110.184, "adj_tempo": 67.496}, {"rank": 250, "team": "Robert Morris", "net": -7.768, "adj_oe": 100.7, "adj_de": 108.468, "adj_tempo": 68.583}, {"rank": 251, "team": "Alabama State", "net": -7.82, "adj_oe": 103.527, "adj_de": 111.347, "adj_tempo": 69.585}, {"rank": 252, "team": "Milwaukee", "net": -7.888, "adj_oe": 102.43, "adj_de": 110.318, "adj_tempo": 71.843}, {"rank": 253, "team": "Evansville", "net": -7.977, "adj_oe": 101.544, "adj_de": 109.52, "adj_tempo": 69.254}, {"rank": 254, "team": "Long Beach State", "net": -7.988, "adj_oe": 103.302, "adj_de": 111.29, "adj_tempo": 69.861}, {"rank": 255, "team": "Coastal Carolina", "net": -8.029, "adj_oe": 101.022, "adj_de": 109.052, "adj_tempo": 70.746}, {"rank": 256, "team": "Boston University", "net": -8.038, "adj_oe": 103.268, "adj_de": 111.306, "adj_tempo": 67.715}, {"rank": 257, "team": "Hampton", "net": -8.053, "adj_oe": 99.863, "adj_de": 107.916, "adj_tempo": 68.325}, {"rank": 258, "team": "Houston Christian", "net": -8.426, "adj_oe": 102.068, "adj_de": 110.494, "adj_tempo": 69.333}, {"rank": 259, "team": "Montana", "net": -8.51, "adj_oe": 100.15, "adj_de": 108.66, "adj_tempo": 69.657}, {"rank": 260, "team": "Brown", "net": -8.529, "adj_oe": 98.787, "adj_de": 107.315, "adj_tempo": 69.482}, {"rank": 261, "team": "Indiana State", "net": -8.57, "adj_oe": 100.589, "adj_de": 109.159, "adj_tempo": 71.149}, {"rank": 262, "team": "Northern Kentucky", "net": -8.604, "adj_oe": 102.586, "adj_de": 111.19, "adj_tempo": 72.406}, {"rank": 263, "team": "Kansas City", "net": -8.718, "adj_oe": 103.589, "adj_de": 112.307, "adj_tempo": 68.373}, {"rank": 264, "team": "Purdue Fort Wayne", "net": -8.755, "adj_oe": 103.981, "adj_de": 112.736, "adj_tempo": 70.155}, {"rank": 265, "team": "Merrimack", "net": -8.79, "adj_oe": 99.881, "adj_de": 108.671, "adj_tempo": 65.34}, {"rank": 266, "team": "Long Island University", "net": -8.944, "adj_oe": 99.128, "adj_de": 108.072, "adj_tempo": 71.053}, {"rank": 267, "team": "North Carolina A&T", "net": -8.971, "adj_oe": 101.595, "adj_de": 110.566, "adj_tempo": 70.629}, {"rank": 268, "team": "Abilene Christian", "net": -9.24, "adj_oe": 101.75, "adj_de": 110.99, "adj_tempo": 70.241}, {"rank": 269, "team": "UNC Greensboro", "net": -9.257, "adj_oe": 104.57, "adj_de": 113.827, "adj_tempo": 69.129}, {"rank": 270, "team": "Southeast Missouri State", "net": -9.271, "adj_oe": 100.031, "adj_de": 109.302, "adj_tempo": 71.846}, {"rank": 271, "team": "Eastern Kentucky", "net": -9.295, "adj_oe": 101.177, "adj_de": 110.472, "adj_tempo": 69.814}, {"rank": 272, "team": "Presbyterian", "net": -9.395, "adj_oe": 104.212, "adj_de": 113.606, "adj_tempo": 68.644}, {"rank": 273, "team": "Utah Tech", "net": -9.6, "adj_oe": 102.698, "adj_de": 112.298, "adj_tempo": 70.724}, {"rank": 274, "team": "North Alabama", "net": -9.68, "adj_oe": 100.687, "adj_de": 110.367, "adj_tempo": 69.669}, {"rank": 275, "team": "IU Indianapolis", "net": -9.715, "adj_oe": 105.535, "adj_de": 115.25, "adj_tempo": 72.176}, {"rank": 276, "team": "UMass Lowell", "net": -9.931, "adj_oe": 99.428, "adj_de": 109.359, "adj_tempo": 70.815}, {"rank": 277, "team": "Wofford", "net": -9.939, "adj_oe": 105.86, "adj_de": 115.799, "adj_tempo": 70.766}, {"rank": 278, "team": "Louisiana", "net": -10.031, "adj_oe": 99.224, "adj_de": 109.255, "adj_tempo": 67.206}, {"rank": 279, "team": "South Dakota", "net": -10.092, "adj_oe": 103.077, "adj_de": 113.169, "adj_tempo": 72.322}, {"rank": 280, "team": "Marist", "net": -10.097, "adj_oe": 97.069, "adj_de": 107.166, "adj_tempo": 68.432}, {"rank": 281, "team": "Northern Arizona", "net": -10.106, "adj_oe": 107.73, "adj_de": 117.836, "adj_tempo": 65.926}, {"rank": 282, "team": "Grambling", "net": -10.214, "adj_oe": 100.358, "adj_de": 110.572, "adj_tempo": 71.221}, {"rank": 283, "team": "Georgia Southern", "net": -10.402, "adj_oe": 102.119, "adj_de": 112.521, "adj_tempo": 72.685}, {"rank": 284, "team": "Quinnipiac", "net": -10.403, "adj_oe": 100.243, "adj_de": 110.646, "adj_tempo": 70.912}, {"rank": 285, "team": "Stetson", "net": -10.463, "adj_oe": 103.321, "adj_de": 113.783, "adj_tempo": 68.413}, {"rank": 286, "team": "LSU New Orleans", "net": -10.476, "adj_oe": 98.957, "adj_de": 109.433, "adj_tempo": 72.414}, {"rank": 287, "team": "Winthrop", "net": -10.646, "adj_oe": 103.692, "adj_de": 114.338, "adj_tempo": 74.016}, {"rank": 288, "team": "New Hampshire", "net": -10.722, "adj_oe": 94.717, "adj_de": 105.439, "adj_tempo": 69.514}, {"rank": 289, "team": "SIU Edwardsville", "net": -10.735, "adj_oe": 98.649, "adj_de": 109.384, "adj_tempo": 68.402}, {"rank": 290, "team": "Jacksonville", "net": -10.762, "adj_oe": 103.516, "adj_de": 114.278, "adj_tempo": 67.258}, {"rank": 291, "team": "Bryant", "net": -10.886, "adj_oe": 96.631, "adj_de": 107.517, "adj_tempo": 68.533}, {"rank": 292, "team": "Air Force", "net": -11.063, "adj_oe": 103.842, "adj_de": 114.905, "adj_tempo": 72.43}, {"rank": 293, "team": "Prairie View A&M", "net": -11.075, "adj_oe": 100.704, "adj_de": 111.78, "adj_tempo": 71.133}, {"rank": 294, "team": "Dartmouth", "net": -11.176, "adj_oe": 100.344, "adj_de": 111.519, "adj_tempo": 70.294}, {"rank": 295, "team": "Fairfield", "net": -11.434, "adj_oe": 96.78, "adj_de": 108.214, "adj_tempo": 70.183}, {"rank": 296, "team": "Charleston Southern", "net": -11.639, "adj_oe": 98.61, "adj_de": 110.249, "adj_tempo": 72.301}, {"rank": 297, "team": "Northwestern State", "net": -11.811, "adj_oe": 98.872, "adj_de": 110.683, "adj_tempo": 67.696}, {"rank": 298, "team": "Northern Colorado", "net": -11.873, "adj_oe": 97.803, "adj_de": 109.676, "adj_tempo": 71.607}, {"rank": 299, "team": "Southern Utah", "net": -11.882, "adj_oe": 100.647, "adj_de": 112.529, "adj_tempo": 71.849}, {"rank": 300, "team": "Lafayette", "net": -11.954, "adj_oe": 97.561, "adj_de": 109.515, "adj_tempo": 69.603}, {"rank": 301, "team": "Sacred Heart", "net": -12.014, "adj_oe": 103.497, "adj_de": 115.512, "adj_tempo": 70.613}, {"rank": 302, "team": "Bellarmine", "net": -12.266, "adj_oe": 105.775, "adj_de": 118.042, "adj_tempo": 66.495}, {"rank": 303, "team": "Alabama A&M", "net": -12.276, "adj_oe": 99.119, "adj_de": 111.395, "adj_tempo": 68.313}, {"rank": 304, "team": "Idaho State", "net": -12.296, "adj_oe": 101.832, "adj_de": 114.128, "adj_tempo": 69.511}, {"rank": 305, "team": "UNC Asheville", "net": -12.339, "adj_oe": 100.289, "adj_de": 112.628, "adj_tempo": 70.22}, {"rank": 306, "team": "Mercyhurst", "net": -12.365, "adj_oe": 97.354, "adj_de": 109.718, "adj_tempo": 66.161}, {"rank": 307, "team": "SE Louisiana", "net": -12.378, "adj_oe": 100.592, "adj_de": 112.97, "adj_tempo": 68.997}, {"rank": 308, "team": "Cleveland State", "net": -12.383, "adj_oe": 102.585, "adj_de": 114.968, "adj_tempo": 68.865}, {"rank": 309, "team": "Nicholls", "net": -12.386, "adj_oe": 96.236, "adj_de": 108.622, "adj_tempo": 70.186}, {"rank": 310, "team": "Jackson State", "net": -12.484, "adj_oe": 98.332, "adj_de": 110.816, "adj_tempo": 71.469}, {"rank": 311, "team": "VMI", "net": -12.64, "adj_oe": 98.286, "adj_de": 110.926, "adj_tempo": 70.922}, {"rank": 312, "team": "Weber State", "net": -12.656, "adj_oe": 101.918, "adj_de": 114.574, "adj_tempo": 71.901}, {"rank": 313, "team": "UL Monroe", "net": -12.92, "adj_oe": 100.245, "adj_de": 113.165, "adj_tempo": 71.242}, {"rank": 314, "team": "North Dakota", "net": -13.254, "adj_oe": 102.065, "adj_de": 115.319, "adj_tempo": 70.298}, {"rank": 315, "team": "Southern", "net": -13.26, "adj_oe": 96.32, "adj_de": 109.58, "adj_tempo": 72.349}, {"rank": 316, "team": "UMBC", "net": -13.292, "adj_oe": 98.348, "adj_de": 111.64, "adj_tempo": 72.682}, {"rank": 317, "team": "East Texas A&M", "net": -13.295, "adj_oe": 97.943, "adj_de": 111.239, "adj_tempo": 69.228}, {"rank": 318, "team": "Lindenwood", "net": -13.575, "adj_oe": 96.555, "adj_de": 110.13, "adj_tempo": 72.703}, {"rank": 319, "team": "Omaha", "net": -13.752, "adj_oe": 98.956, "adj_de": 112.708, "adj_tempo": 70.293}, {"rank": 320, "team": "Navy", "net": -13.945, "adj_oe": 96.206, "adj_de": 110.151, "adj_tempo": 67.173}, {"rank": 321, "team": "North Florida", "net": -14.035, "adj_oe": 98.775, "adj_de": 112.81, "adj_tempo": 75.373}, {"rank": 322, "team": "Southern Indiana", "net": -14.241, "adj_oe": 95.197, "adj_de": 109.438, "adj_tempo": 70.06}, {"rank": 323, "team": "Le Moyne", "net": -14.336, "adj_oe": 99.273, "adj_de": 113.609, "adj_tempo": 70.727}, {"rank": 324, "team": "Texas Southern", "net": -14.932, "adj_oe": 97.894, "adj_de": 112.826, "adj_tempo": 72.625}, {"rank": 325, "team": "West Georgia", "net": -15.229, "adj_oe": 95.245, "adj_de": 110.473, "adj_tempo": 72.19}, {"rank": 326, "team": "Niagara", "net": -15.454, "adj_oe": 96.788, "adj_de": 112.243, "adj_tempo": 68.887}, {"rank": 327, "team": "North Carolina Central", "net": -15.463, "adj_oe": 95.948, "adj_de": 111.411, "adj_tempo": 68.149}, {"rank": 328, "team": "Binghamton", "net": -15.566, "adj_oe": 99.605, "adj_de": 115.17, "adj_tempo": 66.642}, {"rank": 329, "team": "West Florida", "net": -15.616, "adj_oe": 98.145, "adj_de": 113.761, "adj_tempo": 70.685}, {"rank": 330, "team": "Wagner", "net": -15.721, "adj_oe": 93.343, "adj_de": 109.064, "adj_tempo": 68.4}, {"rank": 331, "team": "UAlbany", "net": -15.76, "adj_oe": 97.476, "adj_de": 113.236, "adj_tempo": 69.916}, {"rank": 332, "team": "Norfolk State", "net": -15.918, "adj_oe": 99.915, "adj_de": 115.833, "adj_tempo": 68.515}, {"rank": 333, "team": "California Baptist", "net": -16.063, "adj_oe": 98.726, "adj_de": 114.789, "adj_tempo": 67.798}, {"rank": 334, "team": "South Carolina State", "net": -16.064, "adj_oe": 96.219, "adj_de": 112.283, "adj_tempo": 72.346}, {"rank": 335, "team": "Mount St. Mary's", "net": -16.243, "adj_oe": 96.091, "adj_de": 112.334, "adj_tempo": 70.272}, {"rank": 336, "team": "Central Connecticut", "net": -16.349, "adj_oe": 97.323, "adj_de": 113.671, "adj_tempo": 66.456}, {"rank": 337, "team": "Maine", "net": -16.52, "adj_oe": 91.573, "adj_de": 108.092, "adj_tempo": 68.897}, {"rank": 338, "team": "Bucknell", "net": -16.762, "adj_oe": 96.937, "adj_de": 113.7, "adj_tempo": 69.096}, {"rank": 339, "team": "The Citadel", "net": -16.772, "adj_oe": 97.392, "adj_de": 114.164, "adj_tempo": 67.365}, {"rank": 340, "team": "Incarnate Word", "net": -16.824, "adj_oe": 96.114, "adj_de": 112.938, "adj_tempo": 69.72}, {"rank": 341, "team": "Chicago State", "net": -16.946, "adj_oe": 97.319, "adj_de": 114.265, "adj_tempo": 67.268}, {"rank": 342, "team": "New Haven", "net": -16.997, "adj_oe": 92.816, "adj_de": 109.813, "adj_tempo": 65.812}, {"rank": 343, "team": "Fairleigh Dickinson", "net": -17.11, "adj_oe": 98.165, "adj_de": 115.275, "adj_tempo": 68.563}, {"rank": 344, "team": "Gardner-Webb", "net": -17.343, "adj_oe": 96.458, "adj_de": 113.801, "adj_tempo": 70.179}, {"rank": 345, "team": "Army", "net": -17.517, "adj_oe": 96.733, "adj_de": 114.251, "adj_tempo": 67.836}, {"rank": 346, "team": "Saint Peter's", "net": -17.619, "adj_oe": 90.506, "adj_de": 108.125, "adj_tempo": 65.646}, {"rank": 347, "team": "Morehead State", "net": -17.643, "adj_oe": 100.012, "adj_de": 117.654, "adj_tempo": 67.922}, {"rank": 348, "team": "Coppin State", "net": -17.781, "adj_oe": 92.639, "adj_de": 110.419, "adj_tempo": 69.859}, {"rank": 349, "team": "Manhattan", "net": -17.937, "adj_oe": 97.436, "adj_de": 115.373, "adj_tempo": 69.869}, {"rank": 350, "team": "South Carolina Upstate", "net": -18.03, "adj_oe": 96.05, "adj_de": 114.08, "adj_tempo": 69.918}, {"rank": 351, "team": "Detroit Mercy", "net": -18.037, "adj_oe": 99.459, "adj_de": 117.497, "adj_tempo": 70.591}, {"rank": 352, "team": "Morgan State", "net": -18.059, "adj_oe": 94.57, "adj_de": 112.629, "adj_tempo": 72.105}, {"rank": 353, "team": "Stonehill", "net": -18.555, "adj_oe": 96.543, "adj_de": 115.099, "adj_tempo": 69.814}, {"rank": 354, "team": "Delaware State", "net": -18.767, "adj_oe": 95.299, "adj_de": 114.065, "adj_tempo": 69.642}, {"rank": 355, "team": "NJIT", "net": -18.941, "adj_oe": 94.397, "adj_de": 113.338, "adj_tempo": 69.414}, {"rank": 356, "team": "Canisius", "net": -19.55, "adj_oe": 98.387, "adj_de": 117.937, "adj_tempo": 69.053}, {"rank": 357, "team": "Rider", "net": -21.235, "adj_oe": 96.541, "adj_de": 117.776, "adj_tempo": 68.585}, {"rank": 358, "team": "Loyola Maryland", "net": -21.277, "adj_oe": 94.855, "adj_de": 116.133, "adj_tempo": 69.152}, {"rank": 359, "team": "Florida A&M", "net": -21.488, "adj_oe": 93.446, "adj_de": 114.934, "adj_tempo": 72.082}, {"rank": 360, "team": "Western Illinois", "net": -21.899, "adj_oe": 93.713, "adj_de": 115.612, "adj_tempo": 69.328}, {"rank": 361, "team": "Mississippi Valley State", "net": -21.908, "adj_oe": 92.379, "adj_de": 114.287, "adj_tempo": 69.361}, {"rank": 362, "team": "Eastern Illinois", "net": -21.959, "adj_oe": 95.195, "adj_de": 117.154, "adj_tempo": 68.581}, {"rank": 363, "team": "Alcorn State", "net": -22.498, "adj_oe": 95.301, "adj_de": 117.799, "adj_tempo": 71.879}, {"rank": 364, "team": "Maryland Eastern Shore", "net": -22.853, "adj_oe": 89.383, "adj_de": 112.236, "adj_tempo": 66.92}, {"rank": 365, "team": "Holy Cross", "net": -23.368, "adj_oe": 92.846, "adj_de": 116.215, "adj_tempo": 70.786}, {"rank": 366, "team": "Arkansas-Pine Bluff", "net": -31.704, "adj_oe": 89.192, "adj_de": 120.896, "adj_tempo": 73.5}], "record": {"status": {"spread": {"bets": 333, "w": 168, "l": 164, "p": 1, "win": 0.5060240963855421, "units": -14.28, "roi": -0.0778, "clv_same_book": 1.38, "clv_prob_same_book": 0.0478, "cap": {"on": false, "state": "off", "clv": 1.41, "n": 327, "settled": 333, "missing": 6, "reason": "", "refreshed_at": "2026-11-23T01:15:00+00:00"}, "multiplier": 0.23, "open": 10}, "total": {"bets": 395, "w": 221, "l": 170, "p": 4, "win": 0.5652173913043478, "units": 55.77, "roi": 0.1215, "clv_same_book": 1.44, "clv_prob_same_book": 0.034, "cap": {"on": false, "state": "off", "clv": 1.47, "n": 389, "settled": 395, "missing": 6, "reason": "", "refreshed_at": "2026-11-23T01:15:00+00:00"}, "multiplier": 1.0, "open": 19}}, "tripwire": {"model": {"n": 150, "clv": 1.61, "with_close": 716, "missing": 12, "min": 150, "source": "primary", "state": "ok"}, "execution": {"n": 50, "slip": 0.0, "state": "ok"}}, "clv": {"spread": {"decided": 332, "with_close": 326, "missing": 6, "one_book": 0, "two_plus": 326, "clv_two_plus": 1.4026073619631902, "pregame_verified": 308, "share": 0.9819277108433735, "clv": 1.4026073619631902, "beat": 0.7116564417177914}, "total": {"decided": 391, "with_close": 385, "missing": 6, "one_book": 0, "two_plus": 385, "clv_two_plus": 1.4454545454545455, "pregame_verified": 361, "share": 0.9846547314578005, "clv": 1.4454545454545455, "beat": 0.6181818181818182}, "all": {"decided": 723, "with_close": 711, "missing": 12, "one_book": 0, "two_plus": 711, "clv_two_plus": 1.4258087201125176, "pregame_verified": 669, "share": 0.983402489626556, "clv": 1.4258087201125176, "beat": 0.6610407876230661, "text": "primary close for 711 of 723 decided plays (98%); 2+ books: 711 (+1.43), 1 book: 0; pregame verified: 669 of 711"}, "status": "verified", "pin": {"spread": {"decided": 332, "with_close": 312, "clv": 3.63, "beat": 0.5961538461538461, "points": 1.41}, "total": {"decided": 391, "with_close": 375, "clv": 2.3, "beat": 0.512, "points": 1.42}, "all": {"decided": 723, "with_close": 687, "clv": 2.9, "beat": 0.5502183406113537, "points": 1.42}}, "pin_bandb": {"decided": 178, "with_close": 169, "clv": 0.39, "beat": 0.47337278106508873, "points": 0.82}}, "recent": [{"date": "2026-11-22", "home": "Northwestern", "away": "Dayton", "market": "total", "pick": "Over 135.5", "book": "theScore Bet", "odds": -105.0, "close_line": 135.5, "clv_pts": 0.0, "home_score": 79.0, "away_score": 55.0, "result": "L", "profit": -1.0, "books_primary": 5, "clv_reason": "5 book(s)", "clv_same_book": 0.0, "pregame_check": "verified", "pin_status": "ok", "pin_clv": -6.01, "pin_points": -0.5, "pin_close": 135.0, "pin_price": -107.0}, {"date": "2026-11-22", "home": "Duquesne", "away": "Wyoming", "market": "total", "pick": "Over 139.5", "book": "DraftKings", "odds": -105.0, "close_line": 136.5, "clv_pts": -3.0, "home_score": 61.0, "away_score": 79.0, "result": "W", "profit": 0.952, "books_primary": 6, "clv_reason": "6 book(s)", "clv_same_book": -3.0, "pregame_check": "verified", "pin_status": "ok", "pin_clv": -18.54, "pin_points": -3.0, "pin_close": 136.5, "pin_price": -105.0}, {"date": "2026-11-22", "home": "Liberty", "away": "Richmond", "market": "spread", "pick": "Richmond +2.5", "book": "FanDuel", "odds": -120.0, "close_line": -1.5, "clv_pts": 4.0, "home_score": 88.0, "away_score": 92.0, "result": "W", "profit": 0.05, "books_primary": 6, "clv_reason": "6 book(s); tip time resolved: the scheduled cutoff (the feed's reported start) is 18 min after ESPN's scheduled start", "clv_same_book": 1.0, "pregame_check": "verified", "pin_status": "ok", "pin_clv": 12.23, "pin_points": 3.5, "pin_close": -1.0, "pin_price": -101.0}, {"date": "2026-11-22", "home": "Nicholls", "away": "Troy", "market": "total", "pick": "Over 134.5", "book": "DraftKings", "odds": -110.0, "close_line": 136.5, "clv_pts": 2.0, "home_score": 77.0, "away_score": 78.0, "result": "W", "profit": 0.909, "books_primary": 6, "clv_reason": "6 book(s)", "clv_same_book": 2.0, "pregame_check": "verified", "pin_status": "ok", "pin_clv": 6.5, "pin_points": 2.0, "pin_close": 136.5, "pin_price": -115.0}, {"date": "2026-11-22", "home": "Lamar", "away": "Rice", "market": "total", "pick": "Under 161.5", "book": "FanDuel", "odds": -110.0, "close_line": 162.5, "clv_pts": -1.0, "home_score": 81.0, "away_score": 85.0, "result": "L", "profit": -1.0, "books_primary": 6, "clv_reason": "6 book(s); tip time resolved: the scheduled cutoff (the feed's reported start) is 30 min after ESPN's scheduled start", "clv_same_book": -1.0, "pregame_check": "verified", "pin_status": "ok", "pin_clv": -8.09, "pin_points": -0.5, "pin_close": 162.0, "pin_price": -107.0}, {"date": "2026-11-22", "home": "Boston College", "away": "NJIT", "market": "total", "pick": "Over 135.5", "book": "Caesars", "odds": -110.0, "close_line": 137.5, "clv_pts": 2.0, "home_score": 79.0, "away_score": 59.0, "result": "W", "profit": 0.909, "books_primary": 6, "clv_reason": "6 book(s)", "clv_same_book": 2.0, "pregame_check": "verified", "pin_status": "ok", "pin_clv": 3.43, "pin_points": 2.0, "pin_close": 137.5, "pin_price": -107.0}, {"date": "2026-11-22", "home": "UAlbany", "away": "Mercyhurst", "market": "total", "pick": "Over 128.5", "book": "BetMGM", "odds": -115.0, "close_line": 132.5, "clv_pts": 4.0, "home_score": 75.0, "away_score": 78.0, "result": "W", "profit": 1.304, "books_primary": 6, "clv_reason": "6 book(s)", "clv_same_book": 4.0, "pregame_check": "verified", "pin_status": "ok", "pin_clv": 9.18, "pin_points": 3.5, "pin_close": 132.0, "pin_price": -110.0}, {"date": "2026-11-22", "home": "Samford", "away": "UNC Asheville", "market": "total", "pick": "Under 156.5", "book": "BetMGM", "odds": -105.0, "close_line": 154.75, "clv_pts": 1.75, "home_score": 80.0, "away_score": 77.0, "result": "L", "profit": -1.0, "books_primary": 6, "clv_reason": "6 book(s)", "clv_same_book": 2.0, "pregame_check": "verified", "pin_status": "ok", "pin_clv": 2.76, "pin_points": 1.0, "pin_close": 155.5, "pin_price": -111.0}, {"date": "2026-11-22", "home": "Canisius", "away": "Western Illinois", "market": "total", "pick": "Over 139", "book": "Fanatics", "odds": -110.0, "close_line": 139.5, "clv_pts": 0.5, "home_score": 46.0, "away_score": 66.0, "result": "L", "profit": -1.0, "books_primary": 5, "clv_reason": "5 book(s)", "clv_same_book": 0.5, "pregame_check": "verified", "pin_status": "ok", "pin_clv": -3.89, "pin_points": 0.5, "pin_close": 139.5, "pin_price": -106.0}, {"date": "2026-11-22", "home": "Cincinnati", "away": "UMass Lowell", "market": "total", "pick": "Over 148.5", "book": "BetMGM", "odds": -115.0, "close_line": 150.5, "clv_pts": 2.0, "home_score": 78.0, "away_score": 68.0, "result": "L", "profit": -1.0, "books_primary": 6, "clv_reason": "6 book(s)", "clv_same_book": 2.0, "pregame_check": "verified", "pin_status": "ok", "pin_clv": 0.65, "pin_points": 1.5, "pin_close": 150.0, "pin_price": -111.0}, {"date": "2026-11-22", "home": "South Alabama", "away": "West Florida", "market": "spread", "pick": "South Alabama -7.5", "book": "Caesars", "odds": -105.0, "close_line": -5.5, "clv_pts": -2.0, "home_score": 79.0, "away_score": 66.0, "result": "W", "profit": 0.029, "books_primary": 6, "clv_reason": "6 book(s)", "clv_same_book": -2.0, "pregame_check": "verified", "pin_status": "ok", "pin_clv": -14.58, "pin_points": -2.0, "pin_close": -5.5, "pin_price": -113.0}, {"date": "2026-11-22", "home": "South Alabama", "away": "West Florida", "market": "total", "pick": "Under 145.5", "book": "Caesars", "odds": -110.0, "close_line": 139.25, "clv_pts": 6.25, "home_score": 79.0, "away_score": 66.0, "result": "W", "profit": 1.818, "books_primary": 6, "clv_reason": "6 book(s)", "clv_same_book": 6.5, "pregame_check": "verified", "pin_status": "ok", "pin_clv": 23.71, "pin_points": 6.0, "pin_close": 139.5, "pin_price": -113.0}, {"date": "2026-11-22", "home": "Texas State", "away": "McNeese", "market": "total", "pick": "Under 144.5", "book": "BetMGM", "odds": -105.0, "close_line": 141.5, "clv_pts": 3.0, "home_score": 95.0, "away_score": 69.0, "result": "L", "profit": -1.0, "books_primary": 6, "clv_reason": "6 book(s)", "clv_same_book": 3.0, "pregame_check": "verified", "pin_status": "ok", "pin_clv": 12.53, "pin_points": 3.0, "pin_close": 141.5, "pin_price": -112.0}, {"date": "2026-11-22", "home": "UAlbany", "away": "Mercyhurst", "market": "spread", "pick": "Mercyhurst +1.5", "book": "BetMGM", "odds": -110.0, "close_line": -1.5, "clv_pts": 3.0, "home_score": 75.0, "away_score": 78.0, "result": "W", "profit": 0.036, "books_primary": 6, "clv_reason": "6 book(s)", "clv_same_book": 3.0, "pregame_check": "verified", "pin_status": "ok", "pin_clv": 18.97, "pin_points": 3.0, "pin_close": -1.5, "pin_price": -115.0}, {"date": "2026-11-22", "home": "Western Kentucky", "away": "George Washington", "market": "spread", "pick": "Western Kentucky +6", "book": "Fanatics", "odds": -110.0, "close_line": 3.5, "clv_pts": 2.5, "home_score": 86.0, "away_score": 78.0, "result": "W", "profit": 0.027, "books_primary": 6, "clv_reason": "6 book(s)", "clv_same_book": 2.5, "pregame_check": "verified", "pin_status": "ok", "pin_clv": 12.44, "pin_points": 3.0, "pin_close": 3.0, "pin_price": 101.0}, {"date": "2026-11-22", "home": "Utah Tech", "away": "South Dakota", "market": "spread", "pick": "Utah Tech +1", "book": "Fanatics", "odds": -115.0, "close_line": -1.5, "clv_pts": 2.5, "home_score": 73.0, "away_score": 74.0, "result": "P", "profit": 0.0, "books_primary": 6, "clv_reason": "6 book(s)", "clv_same_book": 2.5, "pregame_check": "verified", "pin_status": "ok", "pin_clv": 9.44, "pin_points": 2.0, "pin_close": -1.0, "pin_price": -114.0}, {"date": "2026-11-22", "home": "Utah Tech", "away": "South Dakota", "market": "total", "pick": "Over 156.5", "book": "theScore Bet", "odds": -110.0, "close_line": 153.25, "clv_pts": -3.25, "home_score": 73.0, "away_score": 74.0, "result": "L", "profit": -1.0, "books_primary": 6, "clv_reason": "6 book(s)", "clv_same_book": -3.0, "pregame_check": "verified", "pin_status": "ok", "pin_clv": -21.79, "pin_points": -3.5, "pin_close": 153.0, "pin_price": -107.0}, {"date": "2026-11-22", "home": "Memphis", "away": "Evansville", "market": "spread", "pick": "Evansville +22", "book": "Fanatics", "odds": -110.0, "close_line": 19.5, "clv_pts": 2.5, "home_score": 82.0, "away_score": 62.0, "result": "W", "profit": 0.027, "books_primary": 6, "clv_reason": "6 book(s)", "clv_same_book": 2.5, "pregame_check": "verified", "pin_status": "ok", "pin_clv": 6.78, "pin_points": 1.5, "pin_close": 20.5, "pin_price": -117.0}, {"date": "2026-11-22", "home": "Western Kentucky", "away": "George Washington", "market": "total", "pick": "Over 146.5", "book": "theScore Bet", "odds": -115.0, "close_line": 148.25, "clv_pts": 1.75, "home_score": 86.0, "away_score": 78.0, "result": "W", "profit": 0.87, "books_primary": 6, "clv_reason": "6 book(s)", "clv_same_book": 2.0, "pregame_check": "verified", "pin_status": "ok", "pin_clv": -0.6, "pin_points": 1.0, "pin_close": 147.5, "pin_price": -114.0}, {"date": "2026-11-22", "home": "Loyola Marymount", "away": "UC Irvine", "market": "total", "pick": "Over 139.5", "book": "theScore Bet", "odds": -110.0, "close_line": 136.5, "clv_pts": -3.0, "home_score": 72.0, "away_score": 68.0, "result": "W", "profit": 1.364, "books_primary": 6, "clv_reason": "6 book(s)", "clv_same_book": -3.0, "pregame_check": "verified", "pin_status": "ok", "pin_clv": -18.04, "pin_points": -2.0, "pin_close": 137.5, "pin_price": 100.0}, {"date": "2026-11-22", "home": "UIC", "away": "Miami (OH)", "market": "total", "pick": "Over 147.5", "book": "theScore Bet", "odds": -110.0, "close_line": 148.5, "clv_pts": 1.0, "home_score": 60.0, "away_score": 70.0, "result": "L", "profit": -1.0, "books_primary": 5, "clv_reason": "5 book(s)", "clv_same_book": 1.0, "pregame_check": "verified", "pin_status": "ok", "pin_clv": 0.07, "pin_points": 1.0, "pin_close": 148.5, "pin_price": -110.0}, {"date": "2026-11-22", "home": "Texas", "away": "Southern Indiana", "market": "spread", "pick": "Southern Indiana +39.5", "book": "theScore Bet", "odds": -105.0, "close_line": 38.5, "clv_pts": 1.0, "home_score": 97.0, "away_score": 61.0, "result": "W", "profit": 0.057, "books_primary": 6, "clv_reason": "6 book(s)", "clv_same_book": 2.0, "pregame_check": "verified", "pin_status": "ok", "pin_clv": 5.71, "pin_points": 1.0, "pin_close": 38.5, "pin_price": -115.0}, {"date": "2026-11-22", "home": "Portland State", "away": "Cal State Fullerton", "market": "total", "pick": "Under 162.5", "book": "theScore Bet", "odds": -110.0, "close_line": 163.5, "clv_pts": -1.0, "home_score": 75.0, "away_score": 92.0, "result": "L", "profit": -1.0, "books_primary": 6, "clv_reason": "6 book(s)", "clv_same_book": -1.0, "pregame_check": "verified", "pin_status": "ok", "pin_clv": -7.09, "pin_points": -1.0, "pin_close": 163.5, "pin_price": -115.0}, {"date": "2026-11-22", "home": "Minnesota", "away": "Utah", "market": "spread", "pick": "Utah +11.5", "book": "FanDuel", "odds": -120.0, "close_line": 9.5, "clv_pts": 2.0, "home_score": 77.0, "away_score": 62.0, "result": "L", "profit": -0.04, "books_primary": 6, "clv_reason": "6 book(s)", "clv_same_book": 2.0, "pregame_check": "verified", "pin_status": "ok", "pin_clv": 6.27, "pin_points": 2.5, "pin_close": 9.0, "pin_price": -103.0}, {"date": "2026-11-21", "home": "Morgan State", "away": "Cornell", "market": "total", "pick": "Under 161.5", "book": "theScore Bet", "odds": -105.0, "close_line": 161.5, "clv_pts": 0.0, "home_score": 63.0, "away_score": 84.0, "result": "W", "profit": 1.905, "books_primary": 6, "clv_reason": "6 book(s)", "clv_same_book": 0.0, "pregame_check": "verified", "pin_status": "ok", "pin_clv": -2.38, "pin_points": 0.0, "pin_close": 161.5, "pin_price": -110.0}, {"date": "2026-11-21", "home": "Bowling Green", "away": "Northern Illinois", "market": "total", "pick": "Over 147.5", "book": "FanDuel", "odds": -110.0, "close_line": 147.5, "clv_pts": 0.0, "home_score": 68.0, "away_score": 86.0, "result": "W", "profit": 1.818, "books_primary": 5, "clv_reason": "5 book(s)", "clv_same_book": 0.0, "pregame_check": "verified", "pin_status": "ok", "pin_clv": -4.72, "pin_points": 0.5, "pin_close": 148.0, "pin_price": -104.0}, {"date": "2026-11-21", "home": "Cleveland State", "away": "Kent State", "market": "total", "pick": "Over 146.5", "book": "DraftKings", "odds": -105.0, "close_line": 145.5, "clv_pts": -1.0, "home_score": 62.0, "away_score": 69.0, "result": "L", "profit": -1.5, "books_primary": 6, "clv_reason": "6 book(s)", "clv_same_book": -1.0, "pregame_check": "verified", "pin_status": "ok", "pin_clv": -8.74, "pin_points": -0.5, "pin_close": 146.0, "pin_price": -101.0}, {"date": "2026-11-21", "home": "Eastern Michigan", "away": "Denver", "market": "total", "pick": "Over 138.5", "book": "BetRivers", "odds": -114.0, "close_line": 139.75, "clv_pts": 1.25, "home_score": 70.0, "away_score": 68.0, "result": "L", "profit": -1.0, "books_primary": 6, "clv_reason": "6 book(s)", "clv_same_book": 1.0, "pregame_check": "verified", "pin_status": "ok", "pin_clv": 1.06, "pin_points": 1.5, "pin_close": 140.0, "pin_price": -111.0}, {"date": "2026-11-21", "home": "Vermont", "away": "Brown", "market": "spread", "pick": "Vermont -3.5", "book": "BetMGM", "odds": -110.0, "close_line": -4.5, "clv_pts": 1.0, "home_score": 84.0, "away_score": 71.0, "result": "W", "profit": 0.145, "books_primary": 6, "clv_reason": "6 book(s)", "clv_same_book": 1.0, "pregame_check": "verified", "pin_status": "ok", "pin_clv": 2.5, "pin_points": 1.0, "pin_close": -4.5, "pin_price": -108.0}, {"date": "2026-11-21", "home": "Austin Peay", "away": "UT Rio Grande Valley", "market": "spread", "pick": "Austin Peay -1.5", "book": "FanDuel", "odds": -110.0, "close_line": -5.5, "clv_pts": 4.0, "home_score": 73.0, "away_score": 79.0, "result": "L", "profit": -0.1, "books_primary": 6, "clv_reason": "6 book(s)", "clv_same_book": 4.0, "pregame_check": "verified", "pin_status": "ok", "pin_clv": 24.22, "pin_points": 4.0, "pin_close": -5.5, "pin_price": -111.0}], "review": {"losses_by_reason": {"Beat the close": 195, "Shooting luck": 57, "Market disagreed": 52, "Closed at our number": 25, "No primary close": 5}, "total_losses": 334, "by_reason": {"Beat the close": {"bets": 475, "w": 275, "l": 195, "win": 0.5851063829787234, "units": 59.5, "roi": 0.147, "clv": 2.77}, "Closed at our number": {"bets": 66, "w": 41, "l": 25, "win": 0.6212121212121212, "units": 14.48, "roi": 0.2298, "clv": 0.0}, "Market disagreed": {"bets": 103, "w": 51, "l": 52, "win": 0.49514563106796117, "units": 3.03, "roi": 0.0301, "clv": -1.92}, "No primary close": {"bets": 12, "w": 7, "l": 5, "win": 0.5833333333333334, "units": 2.66, "roi": 0.2323, "clv": null}, "Shooting luck": {"bets": 72, "w": 15, "l": 57, "win": 0.20833333333333334, "units": -38.18, "roi": -0.611, "clv": -1.19}}, "by_market": {"spread": {"bets": 333, "w": 168, "l": 164, "win": 0.5060240963855421, "units": -14.28, "roi": -0.0778, "clv": 1.41}, "total": {"bets": 395, "w": 221, "l": 170, "win": 0.5652173913043478, "units": 55.77, "roi": 0.1215, "clv": 1.47}}, "by_edge": {"3-3.5": {"bets": 375, "w": 191, "l": 179, "win": 0.5162162162162162, "units": -6.76, "roi": -0.0261, "clv": 1.17}, "3.5-4.5": {"bets": 203, "w": 98, "l": 105, "win": 0.4827586206896552, "units": -19.44, "roi": -0.1034, "clv": 1.54}, "4.5-6": {"bets": 101, "w": 67, "l": 34, "win": 0.6633663366336634, "units": 43.14, "roi": 0.3351, "clv": 1.65}, "6+": {"bets": 49, "w": 33, "l": 16, "win": 0.673469387755102, "units": 24.54, "roi": 0.3668, "clv": 2.67}}, "by_month": {"Nov": {"bets": 728, "w": 389, "l": 334, "win": 0.5380359612724758, "units": 41.49, "roi": 0.0646, "clv": 1.44}}, "by_venue": {"Bet away team": {"bets": 141, "w": 76, "l": 65, "win": 0.5390070921985816, "units": -4.74, "roi": -0.0687, "clv": 1.31}, "Bet home team": {"bets": 159, "w": 77, "l": 82, "win": 0.48427672955974843, "units": -5.38, "roi": -0.0535, "clv": 1.63}, "Neutral site": {"bets": 33, "w": 15, "l": 17, "win": 0.46875, "units": -4.16, "roi": -0.2989, "clv": 0.77}, "Total (n/a)": {"bets": 395, "w": 221, "l": 170, "win": 0.5652173913043478, "units": 55.77, "roi": 0.1215, "clv": 1.47}}, "home_court": {"home": {"games": 815, "resid": -0.18, "resid_se": 0.43, "vs_close": 0.32}, "neutral": {"games": 92, "resid": -2.56, "resid_se": 1.31, "vs_close": 0.35}, "teams_low": [["Oklahoma", -17.1, 5], ["Northwestern", -10.8, 5], ["Dayton", -10.0, 5], ["UCF", -9.6, 5], ["Colorado State", -8.4, 5]], "teams_high": [["Saint Mary's", 8.5, 5], ["Utah State", 7.9, 5], ["Oregon State", 7.2, 5], ["LSU", 6.7, 5], ["Texas A&M", 6.6, 5]]}, "model_misses": [{"date": "2026-11-08", "away": "Butler", "home": "Boise State", "pick": "Under 152", "line": 152.0, "close_line": 159.0, "clv_pts": -7.0, "model": 148.82, "away_score": 81.0, "home_score": 100.0}, {"date": "2026-11-10", "away": "Illinois", "home": "Texas Tech", "pick": "Under 160", "line": 160.0, "close_line": 166.5, "clv_pts": -6.5, "model": 156.66, "away_score": 78.0, "home_score": 84.0}, {"date": "2026-11-02", "away": "Air Force", "home": "Wright State", "pick": "Under 157", "line": 157.0, "close_line": 162.5, "clv_pts": -5.5, "model": 151.09, "away_score": 71.0, "home_score": 102.0}, {"date": "2026-11-06", "away": "Arkansas State", "home": "Alabama", "pick": "Under 173.5", "line": 173.5, "close_line": 178.5, "clv_pts": -5.0, "model": 170.25, "away_score": 86.0, "home_score": 101.0}, {"date": "2026-11-06", "away": "West Florida", "home": "Florida International", "pick": "Under 158.5", "line": 158.5, "close_line": 163.5, "clv_pts": -5.0, "model": 151.59, "away_score": 75.0, "home_score": 85.0}, {"date": "2026-11-06", "away": "Central Arkansas", "home": "Ole Miss", "pick": "Under 150.5", "line": 150.5, "close_line": 154.5, "clv_pts": -4.0, "model": 147.13, "away_score": 60.0, "home_score": 92.0}, {"date": "2026-11-02", "away": "Florida A&M", "home": "Florida State", "pick": "Florida A&M +25", "line": 25.0, "close_line": 28.5, "clv_pts": -3.5, "model": 20.51, "away_score": 69.0, "home_score": 112.0}, {"date": "2026-11-22", "away": "South Dakota", "home": "Utah Tech", "pick": "Over 156.5", "line": 156.5, "close_line": 153.25, "clv_pts": -3.25, "model": 159.59, "away_score": 74.0, "home_score": 73.0}, {"date": "2026-11-11", "away": "Charleston", "home": "Temple", "pick": "Under 155.5", "line": 155.5, "close_line": 158.5, "clv_pts": -3.0, "model": 151.79, "away_score": 91.0, "home_score": 81.0}, {"date": "2026-11-07", "away": "Northern Arizona", "home": "New Mexico", "pick": "Under 154.5", "line": 154.5, "close_line": 157.5, "clv_pts": -3.0, "model": 151.0, "away_score": 65.0, "home_score": 94.0}]}, "band_b": {"bets": 179, "w": 97, "l": 81, "p": 1, "win": 0.545, "units": 3.17, "roi": 0.035, "clv": 0.97, "clv_n": 177, "clv_trailing100": 1.0, "trailing_n": 100, "open": 4}}}</script>
+<script>
+(() => {
+  const D = JSON.parse(document.getElementById("data").textContent);
+  const $ = (id) => document.getElementById(id);
+  const loggedSide = (g, mk) => g[mk + "_logged_pick"] ? String(g[mk + "_logged_side"] || "").toLowerCase() : null;
+  // a side already held (v1 or band B, not void): the other side of that market is never a new play or watch
+  // (cbb/tracker.log, Chad Nov 1: "we didn't play both spots")
+  const bbSide = (g, mk) => g[mk + "_bandb_bet_id"] ? String(g[mk + "_bandb_bet_id"]).split("|")[3] || null : null;
+  const heldOther = (g, mk, sd) => { const a = loggedSide(g, mk), b = bbSide(g, mk); return !!((a && a !== sd) || (b && b !== sd)); };
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
+  const sgn = (x, d = 1) => x == null ? "–" : (x > 0 ? "+" : x < 0 ? "−" : "") + Math.abs(x).toFixed(d).replace(/\.0+$/, "");
+  // stake cap (cbb/tracker.py): held at 50% when primary-close CLV averages below 0 after 25 bets with a close
+  const capText = (c) => !c ? "" : "<small>" + (c.state === "held" ? "cap held (closes unreadable)"
+    : "cap " + c.state + " (primary CLV " + clvf(c.clv) + " on " + c.n + " of " + c.settled + " plays)") +
+    (c.refreshed_at ? " · refreshed " + new Date(c.refreshed_at).toLocaleString("en-US", {timeZone: "America/New_York", month: "short", day: "numeric", hour: "numeric", minute: "2-digit"}) + " ET" : "") + "</small>";
+  // CLV: always 2 decimals, the same figure Discord, the record page and the charts show (cbb/clv_primary.py)
+  const clvf = (x) => x == null ? "–" : (x > 0 ? "+" : x < 0 ? "−" : "") + Math.abs(x).toFixed(2);
+  const ln = (x) => x == null ? "–" : Math.abs(x) < 0.05 ? "PK" : sgn(x);
+  const num = (x, d = 1) => x == null ? "–" : Number(x).toFixed(d).replace(/\.0$/, "");
+  // The half-point line a WATCH becomes a BET at (good_to is the exact number; books post halves).
+  const gp = (o) => o == null ? "" : ", " + odds(o) + " or better";   // price a WATCH needs at that number
+  // complete-ratings rule (protocol v2.6, Appendix D): qualifies now, but not a play until the overnight ratings
+  // update has the previous day's games (from 6 am ET on game day); never alerted or logged before that
+  const heldTag = (e) => "<span class='tag' title='Qualifies, but held: an input failed to load (box scores), so it is not logged or alerted. Do not bet it until the hold clears.'>HELD " + sgn(e) + "</span>";
+  const pendTag = (e) => "<span class='tag' title='Qualifies now. It becomes a play only if it still qualifies after the overnight ratings update (from 6 am ET on game day); nothing is alerted or logged before then.'>PENDING " + sgn(e) + "</span>";
+  const playAt = (v, higherBetter) => v == null ? null : (higherBetter ? Math.ceil(v * 2 - 1e-9) : Math.floor(v * 2 + 1e-9)) / 2;
+  const watchTag = (text) => "<span class='tag'>Watch · " + text + "</span>";
+  const odds = (x) => x == null ? "" : (x > 0 ? "+" : "−") + Math.abs(Math.round(x));
+  const pct = (x) => x == null ? "–" : (100 * x).toFixed(1) + "%";
+  const day = new Date(D.date + "T12:00:00");
+  const tip = (g) => g.start ? new Date(g.start).toLocaleTimeString("en-US", {hour: "numeric", minute: "2-digit", timeZone: "America/New_York"}) : "";
+  // live and final scores (Chad, Nov 2: "can you add live scores"); the clock comes from the results refresh
+  // (cbb/live_refresh.py, every ~3 minutes during games)
+  const started = (g) => (g.state === "in" || g.state === "post") && g.home_score != null && g.away_score != null;
+  // ESPN's short status ("15:48 - 2nd", "0:42 - OT", "Halftime") read as "2nd half · 15:48 left" (Chad, Nov 2)
+  const clock = (g) => {
+    if (g.state === "post") return /final/i.test(g.clock || "") ? g.clock : "Final";
+    const c = String(g.clock || ""), m = /^(\d{1,2}:\d{2}(?:\.\d)?) - (1st|2nd|\d*OT)$/i.exec(c);
+    if (m) return (/OT/i.test(m[2]) ? m[2] : m[2] + " half") + " · " + m[1] + " left";
+    if (/^half/i.test(c)) return "Halftime";
+    const e = /^end of (1st|2nd)/i.exec(c);
+    if (e) return "End of " + e[1] + " half";
+    return c || "Live"; };
+  // a play's result at its own number from the final score, graded the way the bet log grades it (tracker.settle)
+  const cover = (g, kind, side, line) => {
+    if (g.state !== "post" || !started(g) || line == null || !side) return null;
+    const hs = Number(g.home_score), as = Number(g.away_score), l = Number(line);
+    const r = kind === "Spread" ? (side === "home" ? hs - as : as - hs) + l : (hs + as - l) * (side === "over" ? 1 : -1);
+    return r > 0 ? "W" : r < 0 ? "L" : "P"; };
+  const scoreInner = (g, res) => started(g) ? (g.state === "in" ? "<span class='dot'></span>" : "") +
+    esc(clock(g)) + " · " + esc(g.away) + " " + esc(g.away_score) + ", " + esc(g.home) + " " + esc(g.home_score) +
+    (res ? "<span class='res " + res + "'>" + res + "</span>" : "") : "";
+  // every score line carries its game and play, so the in-page live updater (bottom of this script) can repaint it
+  const scoreTag = (g, kind, side, line, grade) => "<div class='score' data-g='" + esc(g.game_id) + "' data-k='" + esc(kind || "") +
+    "' data-s='" + esc(side || "") + "' data-l='" + esc(line ?? "") + "' data-r='" + (grade ? 1 : 0) + "'" + (started(g) ? "" : " hidden") + ">" +
+    scoreInner(g, grade ? cover(g, kind, side, line) : null) + "</div>";
+  const matchup = (g) => g.away + (g.neutral ? " vs " : " @ ") + g.home;
+  // phones: each row of these tables becomes a small card; each cell is labeled with its column header
+  const stack = (id) => { const t = $(id); if (!t) return; const hs = [...t.querySelectorAll("thead th")].map((h) => h.textContent.trim());
+    t.classList.add("stack"); t.querySelectorAll("tbody tr").forEach((r) => [...r.children].forEach((c, k) => { if (hs[k]) c.dataset.l = hs[k]; })); };
+  const logo = (id, px) => id == null ? "" : "<picture class='tl'><source media='(prefers-color-scheme: dark)' srcset='https://a.espncdn.com/i/teamlogos/ncaa/500-dark/" + Number(id) +
+    ".png'><img src='https://a.espncdn.com/i/teamlogos/ncaa/500/" + Number(id) + ".png' alt='' loading='lazy' width='" + px + "' height='" + px +
+    "' onerror=\"this.closest('picture').remove()\"></picture>";
+  const matchupL = (g) => logo(g.away_id, 14) + esc(g.away) + (g.neutral ? " vs " : " @ ") + logo(g.home_id, 14) + esc(g.home);
+  const pickId = (g, kind, side) => kind === "Spread" ? (side === "home" ? g.home_id : side === "away" ? g.away_id : null) : null;
+  const BOOKS = ["FanDuel", "DraftKings", "BetMGM", "Caesars", "Fanatics", "theScore Bet", "BetRivers"];
+  const bl = (g, bk) => (g.book_lines || []).find((x) => x.book === bk);
+
+  $("nfl-link").href = D.nfl;
+  $("h1").textContent = day.toLocaleDateString("en-US", {weekday: "long", month: "long", day: "numeric"});
+  const withLines = D.games.filter((g) => g.n_books > 0).length;
+  $("sub").textContent = D.games.length + " games · " + withLines + " with lines · " + (D.season - 1) + "–" + String(D.season).slice(2) + " season";
+  $("replay").hidden = !D.replay;
+
+  const navDays = (list, cur) => {
+    // yesterday and today, then the coming week (the card builds the next 7 days every run)
+    const i = list.indexOf(cur || D.date), shown = i < 0 ? list.slice(-9) : list.slice(Math.max(0, i - 1), i + 8);
+    $("days").innerHTML = shown.map((d) => '<a href="cbb_' + d + '.html"' + (d === D.date ? ' aria-current="page"' : "") + ">" +
+      new Date(d + "T12:00:00").toLocaleDateString("en-US", {weekday: "short", month: "short", day: "numeric"}) + "</a>").join("");
+  };
+  navDays([D.date]);
+  fetch("days.json", {cache: "no-store"}).then((r) => r.json()).then((j) => navDays(j.days, j.current)).catch(() => {});
+
+  // Plays
+  const P = [];
+  // the current market number on a play's side: the median across books (line_home_spread / line_total), like Opened
+  const firstOpen = (g, mk, side, book) => {
+    const f = g["first_open_" + mk];
+    if (!f || !f.length) return mk === "spread" ? (g.open_home_spread == null ? null : ln(side === "home" ? g.open_home_spread : -g.open_home_spread))
+      : (g.open_total == null ? null : num(g.open_total));
+    const own = f.find((x) => x.book === book);
+    const vs = f.map((x) => x.value).sort((p, q) => p - q), mid = vs.length % 2 ? vs[(vs.length - 1) / 2] : (vs[vs.length / 2 - 1] + vs[vs.length / 2]) / 2;
+    const v = own ? own.value : mid;
+    return mk === "spread" ? ln(side === "home" ? v : -v) : num(v);
+  };
+  const nowLine = (g, mk, side) => mk === "spread" ? (g.line_home_spread == null ? null : ln(side === "home" ? g.line_home_spread : -g.line_home_spread))
+    : (g.line_total == null ? null : num(g.line_total));
+  // A logged bet stays listed at the number it was logged at, with where the game stands now underneath.
+  const logged = (g, mk) => {
+    const pick = g[mk + "_logged_pick"];
+    if (!pick) return false;
+    const side = String(g[mk + "_logged_side"] || "").toLowerCase();
+    const curSide = mk === "spread" ? g.spread_side : String(g.total_pick || "").toLowerCase();
+    const still = g[mk + "_verdict"] === "BET" && curSide === side;
+    // best current number on the bet's own side across books (the card's pick may now be the other side)
+    const sideBest = (g.book_lines || []).map((x) => mk === "spread"
+      ? (x.home_spread == null ? null : {book: x.book, key: side === "home" ? x.home_spread : -x.home_spread})
+      : (x.total == null ? null : {book: x.book, key: side === "over" ? -x.total : x.total}))
+      .filter(Boolean).sort((p, q) => q.key - p.key)[0];
+    const cur = still ? (mk === "spread" ? ln(g.spread_line) : num(g.total_line))
+      : sideBest ? (mk === "spread" ? ln(sideBest.key) : (side === "over" ? "o" : "u") + num(Math.abs(sideBest.key))) + " (" + sideBest.book + ")" : null;
+    const pre = !!g[mk + "_logged_pre"];
+    // a logged play stays a play at its logged number; this only says where the market is now
+    // today's model number from the bet's side, in the same form as the bet (spread: the team's line; total: points)
+    const mnow = mk === "spread" ? (g.model_margin == null ? null : "model now " + (side === "home" ? g.home : g.away) + " " + ln(-(side === "home" ? g.model_margin : -g.model_margin)))
+      : (g.model_total == null ? null : "model now " + num(g.model_total));
+    // the model's number when the play was logged (bets.csv "model": a total, or the bet side's margin for a favorite /
+    // its line for an underdog), shown in the Model column beside the logged edge (Chad, Nov 3: the column showed
+    // today's model next to the logged edge, so an Over at +3 sat beside a model total below the line)
+    const lm = g[mk + "_logged_model"], ll = Number(g[mk + "_logged_line"]);
+    const modelAt = lm == null ? null : mk === "spread" ? ln(ll > 0 ? lm : -lm) : num(lm);
+    const edgeNow = !pre && modelAt != null && g[mk + "_now_edge"] != null ? " (edge now " + sgn(g[mk + "_now_edge"]) + ")" : "";
+    const now = (still ? "still available at " + cur + " (" + g[mk + "_book"] + ")" : "line now " + (cur ?? "–")) + (mnow ? " · " + mnow + edgeNow : "");
+    P.push({g, kind: mk === "spread" ? "Spread" : "Total", side, bet: pick, price: g[mk + "_logged_odds"], book: g[mk + "_logged_book"],
+      link: still ? g[mk + "_link"] : null, warn: g[mk + "_warn"],
+      // plays logged before the Oct 26 revision show the edge vs today's model at the placed number; others as logged
+      edge: pre ? g[mk + "_now_edge"] : g[mk + "_logged_edge"] ?? g[mk + "_now_edge"],
+      p: pre ? g[mk + "_now_p"] : g[mk + "_logged_p"] ?? g[mk + "_now_p"], ev: pre ? g[mk + "_now_ev"] : g[mk + "_logged_ev"] ?? g[mk + "_now_ev"],
+      model: !pre && modelAt != null ? modelAt : mk === "spread" ? (side === "home" ? ln(-g.model_margin) : ln(g.model_margin)) : num(g.model_total),
+      to: still ? (mk === "spread" ? ln(g.spread_good_to) : num(g.total_good_to)) : "–",
+      now: nowLine(g, mk, side), at: g[mk + "_logged_at"] || null,
+      open: firstOpen(g, mk, side, g[mk + "_logged_book"]),
+      units: g[mk + "_logged_stake"], line: g[mk + "_logged_line"],
+      bid: D.date + "|" + g.game_id + "|" + mk + "|" + (g[mk + "_logged_bid_side"] || side),
+      fill: {book: g[mk + "_logged_book"], line: g[mk + "_logged_line"], odds: g[mk + "_logged_odds"], stake: g[mk + "_logged_stake"]},
+      status: (pre ? "Logged at edge " + sgn(g[mk + "_logged_edge"]) + " (before the Oct 26 update) · edge now vs today's model"
+        : "Logged at edge " + sgn(g[mk + "_logged_edge"])) + " · " + now});
+    return true;
+  };
+  // Line shopping: every other book on the play's side, best number first, then best price.
+  const others = (g, mk, side, used) => {
+    const pay = (o) => o == null ? -1 : (o > 0 ? o / 100 : 100 / -o);
+    const L = (g.book_lines || []).filter((x) => x.book !== used).map((x) => {
+      if (mk === "spread") {
+        if (x.home_spread == null) return null;
+        const v = side === "home" ? x.home_spread : -x.home_spread;
+        return {book: x.book, key: v, price: x[side + "_spread_odds"], txt: ln(v)};
+      }
+      if (x.total == null) return null;
+      return {book: x.book, key: side === "over" ? -x.total : x.total, price: x[side + "_odds"], txt: (side === "over" ? "o" : "u") + num(x.total)};
+    }).filter(Boolean).sort((p, q) => q.key - p.key || pay(q.price) - pay(p.price));
+    return L.length ? "Also: " + L.map((x) => x.book + " " + x.txt + (x.price != null ? " (" + odds(x.price) + ")" : "")).join(" · ") : "";
+  };
+  // Venue check of the neutral flag (cbb/venue.py): shown only when the listed arena contradicts the flag; display only
+  const venueTag = (g) => {
+    if ((g.venue_state || "unknown") !== "conflict") return "";
+    const where = [g.venue_venue, g.venue_city].filter(Boolean).join(", ");
+    return "<div class='inj'>&#9888; Venue conflict: " + esc(g.venue_reason || "") + (where ? " (" + esc(where) + ")" : "") + ". The model used the " + (g.neutral ? "neutral" : "home") + " flag.</div>";
+  };
+  // Input freshness (cbb/freshness.py): nothing when every input is current; otherwise one line naming the input, with
+  // every input's time on hover; display only
+  const freshTag = (g, kind) => {
+    const mk = kind === "Spread" ? "spread" : "total", s = g[mk + "_fresh"];
+    if (!s || s === "fresh") return "";
+    // books take lines down at tip: once a game starts there is no current line to time, and a logged play keeps
+    // its own logged number and time (Chad, Nov 2: "why are they all saying line time not recorded")
+    if (g.state === "in" || g.state === "post") return "";
+    const ts = (k, lab) => g["fresh_" + k] ? lab + " " + new Date(g["fresh_" + k]).toLocaleString("en-US", {timeZone: "America/New_York", month: "short", day: "numeric", hour: "numeric", minute: "2-digit"}) : lab + " –";
+    const ttl = "Inputs used: " + [ts("kenpom_at", "KenPom"), ts("barttorvik_at", "Barttorvik"), ts("injuries_at", "injuries"), ts("schedule_at", "schedule"),
+      g[mk + "_line_at"] ? "line (" + (g[mk + "_line_book"] || "") + ") " + new Date(g[mk + "_line_at"]).toLocaleTimeString("en-US", {timeZone: "America/New_York", hour: "numeric", minute: "2-digit"}) : "line –"].join(" · ");
+    const bk = g[mk + "_line_book"] || g[mk + "_logged_book"] || g[mk + "_book"];
+    const why = String(g[mk + "_stale_inputs"] || "an input has no timestamp").replace("line time not recorded",
+      !g.n_books ? "no book has a line up right now" : "no current line at " + (bk || "the play's book"));
+    return s === "stale" ? "<div class='inj' title='" + esc(ttl) + "'>&#9888; Old input: " + esc(why) + "</div>"
+      : "<div class='f' style='font-size:12px' title='" + esc(ttl) + "'>" + esc(why.charAt(0).toUpperCase() + why.slice(1)) + "</div>";
+  };
+  D.games.forEach((g) => {
+    const ls = logged(g, "spread"), lt = logged(g, "total");
+    if (!ls && g.spread_verdict === "BET" && !heldOther(g, "spread", g.spread_side)) P.push({g, kind: "Spread", side: g.spread_side, bet: g.spread_pick + " " + ln(g.spread_line), price: g.spread_odds, book: g.spread_book,
+      link: g.spread_link, warn: g.spread_warn, edge: g.spread_edge, p: g.spread_p, ev: g.spread_ev, model: g.spread_side === "home" ? ln(-g.model_margin) : ln(g.model_margin), to: ln(g.spread_good_to),
+      open: firstOpen(g, "spread", g.spread_side, g.spread_book), units: g.spread_units,
+      now: nowLine(g, "spread", g.spread_side),
+      also: others(g, "spread", g.spread_side, g.spread_book), line: g.spread_line});
+    if (!lt && g.total_verdict === "BET" && !heldOther(g, "total", String(g.total_pick || "").toLowerCase())) P.push({g, kind: "Total", bet: g.total_pick + " " + num(g.total_line), price: g.total_odds, book: g.total_book,
+      link: g.total_link, warn: g.total_warn, edge: g.total_edge, p: g.total_p, ev: g.total_ev, model: num(g.model_total), to: num(g.total_good_to), open: firstOpen(g, "total", null, g.total_book), now: nowLine(g, "total"), units: g.total_units,
+      also: others(g, "total", String(g.total_pick || "").toLowerCase(), g.total_book), side: String(g.total_pick || "").toLowerCase(), line: g.total_line});
+  });
+  // line-move plays logged before the Nov 2 opener rule: their own block, never listed or counted with v1's plays
+  const PRE = new Set(D.prerule || []);
+  const LM = P.filter((p) => PRE.has(p.bid)).map((p) => Object.assign({type: "v1"}, p));
+  for (let i = P.length - 1; i >= 0; i--) if (PRE.has(P[i].bid)) P.splice(i, 1);
+  // points the market moved our way since the play: our number vs the median across books now (+ = toward us;
+  // Chad, Nov 6: "sort by biggest line movement in our direction"); blank once no book has a line up
+  const moved = (p) => {
+    const now = numOf(p.now), ours = Number(p.line);
+    if (now == null || p.line == null || !isFinite(ours)) return null;
+    return p.kind === "Spread" || p.side !== "over" ? ours - now : now - ours;
+  };
+  // sortable columns: click a header to sort by it, again to reverse; the default is tip time, then edge
+  const byTime = (a, b) => String(a.g.start).localeCompare(String(b.g.start)) || b.edge - a.edge;
+  const numOf = (v) => { if (v == null) return null; const m = String(v).replace(/\u2212/g, "-").match(/[-+]?\d+(\.\d+)?/); return m ? Number(m[0]) : null; };
+  const SORT = {bet: (p) => String(p.g.start || ""), book: (p) => String(p.book || "").toLowerCase(), model: (p) => numOf(p.model),
+    edge: (p) => p.edge, p: (p) => p.p, ev: (p) => p.ev, to: (p) => numOf(p.to), open: (p) => numOf(p.open), now: (p) => numOf(p.now), units: (p) => p.units,
+    at: (p) => p.at ? Date.parse(p.at) : null, moved: (p) => moved(p)};
+  let playSort = {key: "bet", dir: 1};
+  try { const v = JSON.parse(localStorage.getItem("cbb-play-sort") || "null"); if (v && SORT[v.key]) playSort = v; } catch (e) {}
+  const sortPlays = () => P.sort((a, b) => {
+    if (playSort.key === "bet") return playSort.dir * byTime(a, b) || 0;
+    const x = SORT[playSort.key](a), y = SORT[playSort.key](b);
+    if (x == null || x === "") return (y == null || y === "") ? byTime(a, b) : 1;   // blanks last, either direction
+    if (y == null || y === "") return -1;
+    return (x < y ? -1 : x > y ? 1 : 0) * playSort.dir || byTime(a, b);
+  });
+  sortPlays();
+  const pc = $("plays-count"), pUnits = P.reduce((s, p) => s + (p.units || 0), 0);
+  pc.textContent = P.length ? P.length + (P.length === 1 ? " play" : " plays") + " · " + pUnits.toFixed(1).replace(/\.0$/, "") + "u" : "No plays";
+  pc.classList.toggle("zero", !P.length);
+  $("rules-btn").onclick = () => { const r = $("plays-rules"), open = r.hidden; r.hidden = !open; $("rules-btn").setAttribute("aria-expanded", open); };
+  const renderPlays = () => {
+  const th = (k, label, cls) => "<th" + (cls ? " class='" + cls + "'" : "") + " data-sort='" + k + "' style='cursor:pointer;user-select:none' title='Sort'>" +
+    label + (playSort.key === k ? (playSort.dir > 0 ? " &#9650;" : " &#9660;") : "") + "</th>";
+  // the column bar, repeated above every play after the first (Chad, Nov 1: "easier to follow"); hidden on phones,
+  // where each play is a card with its own labels
+  const bar = th("bet", "Bet") + th("book", "Book") + th("model", "Model", "r hide-sm hide-md") + th("edge", "Edge", "r") +
+    th("p", "Win %", "r hide-sm") + th("ev", "EV", "r") + th("to", "Bet to", "r") + th("open", "Opened", "r hide-sm hide-md") + th("now", "Now", "r") + th("moved", "Moved", "r") + th("units", "Units", "r hide-sm hide-md") + th("at", "Logged", "r hide-sm") +
+    "<th></th>";
+  $("t-plays").innerHTML = P.length ? "<thead><tr>" + bar + "</tr></thead><tbody>" +
+    P.map((p, i) => (i ? "<tr class='rephead'>" + bar + "</tr>" : "") + "<tr data-gid='" + p.g.game_id + "' data-mk='" + p.kind.toLowerCase() + "'><td><div class='b pick'>" + logo(pickId(p.g, p.kind, p.side), 20) + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" +
+      scoreTag(p.g, p.kind, p.side, p.line, true) +
+      (p.kind === "Total" && p.g.crew ? "<div class='f' style='font-size:11px'>Refs: " + esc(p.g.crew) + "</div>" : "") +
+      (D.replay ? "" : venueTag(p.g) + freshTag(p.g, p.kind)) +
+      (p.status ? "<div class='f' style='font-size:12px'>" + esc(p.status) + "</div>" : "") +
+      (p.also ? "<div class='f' style='font-size:12px'>" + esc(p.also) + "</div>" : "") +
+      (p.g.news_flag ? "<div class='inj'>&#9888; " + esc(p.g.news_flag) + "</div>" : "") +
+      (p.warn ? "<div class='inj'>&#9888; " + esc(p.warn) + "</div>" : "") +
+      [["away", p.g.away], ["home", p.g.home]].filter(([sd]) => p.g[sd + "_injuries"]).map(([sd, nm]) => "<div class='inj'>" + esc(nm) + ": " + esc(p.g[sd + "_injuries"]) + "</div>").join("") + "</td><td>" +
+      esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r m hide-sm hide-md'>" + esc(p.model) + "</td><td class='r " + (p.edge >= (p.kind === "Spread" ? 2.5 : 3) ? "pos b" : p.edge < 0 ? "neg" : "m") + "'>" + sgn(p.edge) +
+      "</td><td class='r m hide-sm'>" + pct(p.p) + "</td><td class='r'>" + (p.ev == null ? "–" : sgn(100 * p.ev) + "%") +
+      "</td><td class='r'>" + esc(p.to) + "</td><td class='r m hide-sm hide-md' title='First number posted (the play&#39;s book if it was among the first)'>" + esc(p.open ?? "–") + "</td><td class='r m' title='Median across books now'>" + esc(p.now ?? "–") + "</td><td class='r " + (moved(p) > 0 ? "pos b" : moved(p) < 0 ? "neg" : "m") + "' title='Points the market moved our way since the play (our number vs the median across books now)'>" +
+      (moved(p) == null ? "–" : moved(p) === 0 ? "0" : sgn(moved(p))) + "</td><td class='r hide-sm hide-md'>" + num(p.units, 2) + "</td><td class='r m hide-sm' style='white-space:nowrap'>" +
+      (p.at ? esc(new Date(p.at).toLocaleString("en-US", {timeZone: "America/New_York", month: "short", day: "numeric", hour: "numeric", minute: "2-digit"})) : "–") + "</td><td class='r'>" +
+      (p.g.news_url ? "<a class='f' style='font-size:12px;margin-right:8px' href='" + esc(p.g.news_url) + "' target='_blank' rel='noopener'>News</a>" : "") +
+      "</td></tr>").join("") + "</tbody>"
+    : "<tbody><tr><td class='empty'>" + (withLines ? "No plays. No line is far enough from the model." : "No lines posted yet. Openers usually post the night before.") + "</td></tr></tbody>";
+  stack("t-plays");
+  };
+  renderPlays();
+  const sel = $("play-sort");
+  const syncSel = () => { if ([...sel.options].some((o) => o.value === playSort.key)) sel.value = playSort.key; };
+  syncSel();
+  sel.onchange = () => {
+    const k = sel.value;
+    playSort = {key: k, dir: ["edge", "p", "ev", "units", "at", "moved"].includes(k) ? -1 : 1};
+    try { localStorage.setItem("cbb-play-sort", JSON.stringify(playSort)); } catch (e) {}
+    sortPlays();
+    renderPlays();
+  };
+  $("t-plays").addEventListener("click", (ev) => {
+    const h = ev.target.closest("th[data-sort]");
+    if (!h) return;
+    const k = h.dataset.sort;
+    playSort = playSort.key === k ? {key: k, dir: -playSort.dir} : {key: k, dir: ["edge", "p", "ev", "units", "at", "moved"].includes(k) ? -1 : 1};
+    try { localStorage.setItem("cbb-play-sort", JSON.stringify(playSort)); } catch (e) {}
+    sortPlays();
+    renderPlays();
+    syncSel();
+  });
+
+  // Band B (cbb/tracker.py BAND_B): logged band B plays, in their own block; never in P, the KPIs or the record
+  const BB = [];
+  D.games.forEach((g) => ["spread", "total"].forEach((mk) => {
+    if (!g[mk + "_bandb_pick"]) return;
+    BB.push({g, kind: mk === "spread" ? "Spread" : "Total", bet: g[mk + "_bandb_pick"], book: g[mk + "_bandb_book"], price: g[mk + "_bandb_odds"],
+      edge: g[mk + "_bandb_edge"], units: g[mk + "_bandb_stake"], res: g[mk + "_bandb_result"], profit: g[mk + "_bandb_profit"],
+      bid: g[mk + "_bandb_bet_id"],
+      side: String(g[mk + "_bandb_bet_id"] || "").split("|")[3], line: g[mk + "_bandb_line"],
+      fill: {book: g[mk + "_bandb_book"], line: g[mk + "_bandb_line"], odds: g[mk + "_bandb_odds"], stake: g[mk + "_bandb_stake"]}});
+  }));
+  for (let i = BB.length - 1; i >= 0; i--) if (PRE.has(BB[i].bid)) LM.push(Object.assign({type: "Band B"}, BB.splice(i, 1)[0]));
+  BB.sort((a, b) => String(a.g.start).localeCompare(String(b.g.start)) || b.edge - a.edge);
+  $("lm-sec").hidden = D.replay || !LM.length;
+  const LMR = D.prerule_res || {};
+  // sortable like the Plays table: click a header to sort by it, again to reverse (kept in this browser)
+  const lmRes = (p) => LMR[p.bid] ? {W: 0, L: 1, P: 2}[LMR[p.bid].res] ?? 3 : 4;
+  const LMSORT = {bet: (p) => String(p.g.start || ""), book: (p) => String(p.book || "").toLowerCase(), edge: (p) => p.edge,
+    units: (p) => p.units, now: (p) => numOf(p.now), res: lmRes};
+  let lmSort = {key: "bet", dir: 1};
+  try { const v = JSON.parse(localStorage.getItem("cbb-lm-sort") || "null"); if (v && LMSORT[v.key]) lmSort = v; } catch (e) {}
+  const renderLM = () => {
+    LM.sort((a, b) => {
+      const x = LMSORT[lmSort.key](a), y = LMSORT[lmSort.key](b);
+      if (x == null || x === "") return (y == null || y === "") ? 0 : 1;   // blanks last, either direction
+      if (y == null || y === "") return -1;
+      return (x < y ? -1 : x > y ? 1 : 0) * lmSort.dir || String(a.g.start).localeCompare(String(b.g.start));
+    });
+    const th = (k, label, cls) => "<th" + (cls ? " class='" + cls + "'" : "") + " data-lmsort='" + k + "' style='cursor:pointer;user-select:none' title='Sort'>" +
+      label + (lmSort.key === k ? (lmSort.dir > 0 ? " &#9650;" : " &#9660;") : "") + "</th>";
+    $("t-lm").innerHTML = LM.length ? "<thead><tr>" + th("bet", "Bet") + th("book", "Book") + th("edge", "Edge", "r") + th("units", "Units", "r") +
+      th("now", "Now", "r") + th("res", "Result", "r") + "</tr></thead><tbody>" +
+      LM.map((p) => "<tr data-lm='" + esc(p.bid) + "'><td><div class='b pick'><span class='tag'>Line move</span> " + esc(p.bet) + (p.type === "Band B" ? " <span class='m'>(band B)</span>" : "") +
+        "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div></td><td>" +
+        esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r'>" + sgn(p.edge) + "</td><td class='r'>" + num(p.units, 2) +
+        "</td><td class='r m' title='Median across books now'>" + esc(p.now ?? "–") + "</td><td class='r'>" + (LMR[p.bid] ? esc(LMR[p.bid].res === "W" ? "Win" : LMR[p.bid].res === "L" ? "Loss" : "Push") +
+          " <span class='" + (LMR[p.bid].profit > 0 ? "pos" : LMR[p.bid].profit < 0 ? "neg" : "m") + "'>" + sgn(LMR[p.bid].profit, 2) + "</span>"
+          : "<span class='m'>Open</span>") + "</td></tr>").join("") + "</tbody>" : "";
+    stack("t-lm");
+  };
+  renderLM();
+  $("t-lm").addEventListener("click", (ev) => {
+    const h = ev.target.closest("th[data-lmsort]");
+    if (!h) return;
+    const k = h.dataset.lmsort;
+    lmSort = lmSort.key === k ? {key: k, dir: -lmSort.dir} : {key: k, dir: ["edge", "units"].includes(k) ? -1 : 1};
+    try { localStorage.setItem("cbb-lm-sort", JSON.stringify(lmSort)); } catch (e) {}
+    renderLM();
+  });
+  $("bandb-sec").hidden = D.replay;
+  const bbr = D.record && D.record.band_b;   // band B's own season record (tracker.band_b_status), never pooled
+  if (bbr) $("bandb-rec").textContent = "Season: " + bbr.w + "–" + bbr.l + (bbr.p ? "–" + bbr.p : "") + " · " + sgn(bbr.units, 2) + "u" +
+    ((D.record.clv && D.record.clv.pin_bandb && D.record.clv.pin_bandb.clv != null) ? " · Pinnacle CLV " + sgn(D.record.clv.pin_bandb.clv, 2) + "% on " + D.record.clv.pin_bandb.with_close : "") + (bbr.open ? " · " + bbr.open + " open" : "") +
+    ". A separate bet type on spreads only, never counted in the record above: v1's edge of 2-2.49 points with v1's +2% EV rule, 0.5 unit flat.";
+  $("t-bandb").innerHTML = BB.length ? "<thead><tr><th>Bet</th><th>Book</th><th class='r'>Edge</th><th class='r'>Units</th><th class='r'>Result</th><th></th></tr></thead><tbody>" +
+    BB.map((p) => "<tr><td><div class='b pick'><span class='tag'>Band B</span> " + esc(p.bet) + "</div><div class='f' style='font-size:12px'>" + matchupL(p.g) + " · " + esc(tip(p.g)) + " · " + p.kind + "</div>" + scoreTag(p.g, p.kind, p.side, p.line, false) +
+      venueTag(p.g) + freshTag(p.g, p.kind) +
+      "</td><td>" +
+      esc(p.book || "–") + (p.price != null ? " <span class='m'>" + esc(odds(p.price)) + "</span>" : "") + "</td><td class='r'>" + sgn(p.edge) + "</td><td class='r'>" + num(p.units, 2) +
+      "</td><td class='r'>" + (p.res ? esc(p.res) + (p.profit != null ? " <span class='" + (p.profit > 0 ? "pos" : p.profit < 0 ? "neg" : "m") + "'>" + sgn(p.profit, 2) + "</span>" : "") : "–") + "</td><td class='r'>" +
+      "</td></tr>").join("") + "</tbody>"
+    : "<tbody><tr><td class='empty'>No band B plays.</td></tr></tbody>";
+
+  // KPIs
+  const st = D.record ? D.record.status : null;
+  // a W-L-P record never breaks across lines (Chad, Nov 6: "69–53–" then "1" on the next line)
+  const nw = (t) => "<span class='nw'>" + t + "</span>";
+  const rec = (s) => nw(s && s.bets ? s.w + "–" + s.l + (s.p ? "–" + s.p : "") : "0–0");
+  const units = st ? (st.spread.units || 0) + (st.total.units || 0) : 0;
+  // the official record, both markets together (Chad, Nov 2: "show the total record up top")
+  const all = st ? ["w", "l", "p"].reduce((o, k) => (o[k] = (st.spread[k] || 0) + (st.total[k] || 0), o), {}) : null;
+  const allRec = nw(all && all.w + all.l + all.p ? all.w + "–" + all.l + (all.p ? "–" + all.p : "") : "0–0");
+  // this date's own record: the day's logged main plays, graded from the final scores (Chad, Nov 4: "add today's
+  // record to each date tab"); units at each play's logged price and stake, the plays still to finish counted apart
+  const dayRec = (() => { const L = P.filter((p) => p.bid); const r = {w: 0, l: 0, p: 0, u: 0, open: 0};
+    L.forEach((p) => { const x = cover(p.g, p.kind, p.side, p.line); const st = Number(p.units) || 1, o = Number(p.price) || -110;
+      if (x === "W") { r.w++; r.u += st * (o > 0 ? o / 100 : 100 / -o); } else if (x === "L") { r.l++; r.u -= st; }
+      else if (x === "P") r.p++; else r.open++; });
+    return {n: L.length, ...r}; })();
+  const etToday = new Date().toLocaleDateString("en-CA", {timeZone: "America/New_York"});
+  const dayLab = D.date === etToday ? "Today's record" : new Date(D.date + "T12:00:00").toLocaleDateString("en-US", {month: "short", day: "numeric"}) + " record";
+  const dayVal = !dayRec.n ? "–<small>no plays</small>" : nw(dayRec.w + "–" + dayRec.l + (dayRec.p ? "–" + dayRec.p : "")) +
+    "<small>" + (dayRec.w + dayRec.l + dayRec.p ? "<span class='" + (dayRec.u > 0 ? "pos" : dayRec.u < 0 ? "neg" : "") + "'>" + sgn(dayRec.u, 2) + "u</span>" : "") +
+    "</small>" + (dayRec.open ? "<small class='blk'>" + dayRec.open + " to go</small>" : "");
+  const kp = [["Season record", allRec + "<small>" + (all && all.w + all.l ? pct(all.w / (all.w + all.l)) : "") + "</small>", "wide"],
+    [dayLab, dayVal],
+    ["Plays today", P.length + "<small>" + P.reduce((s, p) => s + (p.units || 0), 0).toFixed(1).replace(/\.0$/, "") + "u</small>"],
+    ["Spreads", rec(st && st.spread) + "<small>" + (st && st.spread.win != null ? pct(st.spread.win) : "") + "</small>"],
+    ["Totals", rec(st && st.total) + "<small>" + (st && st.total.win != null ? pct(st.total.win) : "") + "</small>"],
+    ["Units", "<span class='" + (units > 0 ? "pos" : units < 0 ? "neg" : "") + "'>" + sgn(units, 2) + "</span>"],
+    ["Model check", (() => { const t = D.record && D.record.tripwire; if (!t) return "–";
+      const m = t.model, e = t.execution;
+      // primary-close CLV; bets without a close are excluded and counted (cbb/tracker.py, Oct 28)
+      const miss = m.missing ? " · " + m.missing + " without a close" : "";
+      const lab = m.state === "unavailable" ? "Unavailable<small>closes could not be read</small>"
+        : m.state === "collecting" ? "Collecting<small class='blk'>" + (m.with_close != null ? m.with_close : m.n) + "/" + (m.min || 150) + " closes" + miss + "</small>"
+        : "<span class='" + (m.state === "ok" ? "pos" : "neg") + "'>" + {ok: "OK", review: "Review", pause: "Pause"}[m.state] + "</span><small>CLV " + clvf(m.clv) + " · last " + m.n + miss + "</small>";
+      return lab + (e.state === "review" ? "<small class='neg'> · slippage " + sgn(e.slip, 2) + "</small>" : ""); })()],
+    ["Pinnacle CLV", (() => { const c = D.record && D.record.clv && D.record.clv.pin; if (!c || c.error || !c.all) return "–<small>CLV unavailable</small>";
+      // expected ROI at our price against Pinnacle's no-vig close (Chad, Nov 6); points vs Pinnacle's number on hover
+      const x = c.all, short = x.decided ? x.with_close + "/" + x.decided + " with a Pinnacle close" : "no graded plays yet";
+      return "<span title='Expected ROI at our price against Pinnacle&#39;s no-vig closing line (last quote in the 15 minutes before tip); " +
+        (x.points != null ? "mean " + sgn(x.points, 2) + " points vs Pinnacle&#39;s number; " : "") + (x.beat != null ? Math.round(100 * x.beat) + "% beat the no-vig close" : "") + "'>" +
+        (x.clv != null ? sgn(x.clv, 2) + "<small>%</small>" : "–") + "<small class='blk'>" + esc(short) + "</small></span>"; })()]];
+  $("kpis").innerHTML = kp.map(([k, v, c]) => "<div class='kpi" + (c ? " " + c : "") + "'><div class='k'>" + k + "</div><div class='v'>" + v + "</div></div>").join("");
+
+  // Odds board
+  let market = "spread";
+  const cell = (val, price, link, best) => val == null ? "<span class='na'>–</span>" :
+    "<" + (link ? "a href='" + esc(link) + "' target='_blank' rel='noopener'" : "span") + " class='odd" + (best ? " best" : "") + "'>" + esc(val) +
+    (price != null ? "<small>" + esc(odds(price)) + "</small>" : "") + "</" + (link ? "a" : "span") + ">";
+  // best number (then price) across books for one side, for the phone layout's single column
+  const best = (g, sd, i) => {
+    const pay = (o) => o == null ? -1 : (o > 0 ? o / 100 : 100 / -o);
+    let top = null;
+    for (const x of (g.book_lines || [])) {
+      let v, pr, txt;
+      if (market === "spread") { if (x.home_spread == null) continue; v = sd === "home" ? x.home_spread : -x.home_spread; pr = x[sd + "_spread_odds"]; txt = ln(v); }
+      else if (market === "total") { if (x.total == null) continue; const ou = i === 0 ? "over" : "under"; v = ou === "over" ? -x.total : x.total; pr = x[ou + "_odds"]; txt = ou[0] + num(x.total); }
+      else { pr = x[sd + "_ml"]; if (pr == null) continue; v = pay(pr); txt = odds(pr); }
+      const key = [v, pay(pr)];
+      if (!top || key[0] > top.key[0] || (key[0] === top.key[0] && key[1] > top.key[1])) top = {key, txt, pr, book: x.book};
+    }
+    return top ? esc(top.txt) + (market !== "ml" && top.pr != null ? " <span class='m'>" + esc(odds(top.pr)) + "</span>" : "") + "<small>" + esc(top.book) + "</small>" : "<span class='na'>–</span>";
+  };
+  // the side of a market already logged as a play ("home"/"away"/"over"/"under"), or null; a logged side is shown
+  // as logged everywhere (Plays, board), never again as a new BET or a WATCH
+  const loggedTag = (g, mk) => "<span class='tag logged'>Logged " + esc(g[mk + "_logged_pick"]) + "</span>";
+  const board = () => {
+    const only = $("only-plays").checked;
+    boardInto($("t-board"), D.games.filter((g) => !only || g.spread_verdict === "BET" || g.total_verdict === "BET" ||
+      loggedSide(g, "spread") || loggedSide(g, "total")), "No games.");
+  };
+  // one odds-board tile per game (logos, every book, best, edge), into any table: the board and the watch list
+  const boardInto = (table, games, empty) => {
+    const G = games.slice().sort((a, b) => String(a.start).localeCompare(String(b.start)) || a.home.localeCompare(b.home));
+    const mh = {spread: "Model", total: "Model", ml: "Win %"}[market];
+    let h = "<thead><tr><th class='tm'>Time</th><th>Team</th><th class='r pts'>Proj</th><th class='r'>" + mh + "</th>" +
+      BOOKS.map((b, j) => "<th class='bk" + (j >= 4 ? " bk-minor" : "") + "'>" + b + "</th>").join("") +
+      "<th class='bestc'>Best</th><th class='r edge'>Edge</th></tr></thead>";
+    if (!G.length) { table.innerHTML = h + "<tbody><tr><td class='empty' colspan='" + (BOOKS.length + 5) + "'>" + esc(empty) + "</td></tr></tbody>"; return; }
+    h += G.map((g) => {
+      const sides = ["away", "home"];
+      const hasBet = (market === "spread" && (g.spread_verdict === "BET" || loggedSide(g, "spread"))) ||
+        (market === "total" && (g.total_verdict === "BET" || loggedSide(g, "total")));
+      const rows = sides.map((sd, i) => {
+        const team = g[sd], pts = Math.round(g["model_" + sd + "_pts"]);
+        let model, bookCells, edge = "";
+        if (market === "spread") {
+          model = ln(sd === "home" ? g.model_home_spread : -g.model_home_spread);
+          const pick = g.spread_side === sd && ["BET", "WATCH", "REVIEW"].includes(g.spread_verdict) && loggedSide(g, "spread") !== sd && !heldOther(g, "spread", sd);
+          bookCells = BOOKS.map((bk) => { const x = bl(g, bk); if (!x || x.home_spread == null) return cell(null);
+            const v = sd === "home" ? x.home_spread : -x.home_spread;
+            return cell(ln(v), x[sd + "_spread_odds"], x[sd + "_spread_link"], pick && g.spread_book === bk && v === g.spread_line); });
+          if (loggedSide(g, "spread") === sd) edge = loggedTag(g, "spread");
+          else if (pick && g.spread_verdict === "BET") edge = "<span class='tag bet'>BET " + sgn(g.spread_edge) + "</span>";
+          else if (pick && g.spread_gate === "ratings update") edge = pendTag(g.spread_edge);
+          else if (pick && g.spread_gate === "input failure") edge = heldTag(g.spread_edge);
+          else if (pick && g.spread_verdict === "REVIEW") edge = "<span class='tag' title='Edge above the maximum: likely a bad quote. Never a play.'>REVIEW " + sgn(g.spread_edge) + "</span>";
+          else if (pick) { const at = playAt(g.spread_good_to, true);
+            edge = watchTag(g.spread_line >= at ? "better price" : "bet at " + ln(at) + gp(g.spread_good_price)); }
+        } else if (market === "total") {
+          const ou = i === 0 ? "over" : "under";
+          model = i === 0 ? num(g.model_total) : "";
+          const pick = (g.total_pick || "").toLowerCase() === ou && ["BET", "WATCH", "REVIEW"].includes(g.total_verdict) && loggedSide(g, "total") !== ou && !heldOther(g, "total", ou);
+          bookCells = BOOKS.map((bk) => { const x = bl(g, bk); if (!x || x.total == null) return cell(null);
+            return cell((i === 0 ? "o" : "u") + num(x.total), x[ou + "_odds"], x[ou + "_link"], pick && g.total_book === bk && x.total === g.total_line); });
+          if (loggedSide(g, "total") === ou) edge = loggedTag(g, "total");
+          else if (pick && g.total_verdict === "BET") edge = "<span class='tag bet'>BET " + sgn(g.total_edge) + "</span>";
+          else if (pick && g.total_gate === "ratings update") edge = pendTag(g.total_edge);
+          else if (pick && g.total_gate === "input failure") edge = heldTag(g.total_edge);
+          else if (pick && g.total_verdict === "REVIEW") edge = "<span class='tag' title='Edge above the maximum: likely a bad quote. Never a play.'>REVIEW " + sgn(g.total_edge) + "</span>";
+          else if (pick) { const at = playAt(g.total_good_to, ou === "under");
+            edge = watchTag((ou === "under" ? g.total_line >= at : g.total_line <= at) ? "better price" : "bet at " + ou[0] + num(at) + gp(g.total_good_price)); }
+        } else {
+          const p = sd === "home" ? g.p_home_win : 1 - g.p_home_win;
+          model = Math.round(100 * p) + "%";
+          const prices = BOOKS.map((bk) => (bl(g, bk) || {})[sd + "_ml"]);
+          const top = Math.max(...prices.filter((v) => v != null));
+          bookCells = BOOKS.map((bk, j) => { const x = bl(g, bk); return x && x[sd + "_ml"] != null ? cell(odds(x[sd + "_ml"]), null, x[sd + "_ml_link"], prices[j] === top && prices.filter((v) => v != null).length > 1) : cell(null); });
+        }
+        return "<tr>" + (i === 0 ? "<td class='tm' rowspan='2'>" + esc(tip(g)) + "<div class='f clk' data-g='" + esc(g.game_id) + "'>" + (started(g) ? esc(clock(g)) : "") + "</div></td>" : "") +
+          "<td class='team'>" + (i === 0 ? "<div class='tm-sm'>" + esc(tip(g)) + "<span class='clk2' data-g='" + esc(g.game_id) + "'>" + (started(g) ? " · " + esc(clock(g)) : "") + "</span></div>" : "") +
+          (i === 1 && !g.neutral ? "<span class='f'>@ </span>" : "") + logo(g[sd + "_id"], 18) + esc(team) +
+          " <span class='sc " + (g.state === "in" ? "b" : "m") + "' data-g='" + esc(g.game_id) + "' data-sd='" + sd + "'>" + (started(g) ? esc(g[sd + "_score"]) : "") + "</span>" +
+          (g[sd + "_injuries"] ? "<div class='inj'>" + esc(g[sd + "_injuries"]) + "</div>" : "") + "</td><td class='r pts'>" + pts + "</td><td class='r b'>" + model + "</td>" +
+          bookCells.map((c, j) => "<td class='bk" + (j >= 4 ? " bk-minor" : "") + "'>" + c + "</td>").join("") +
+          "<td class='bestc'>" + best(g, sd, i) + "</td><td class='r edge'>" + edge + "</td></tr>";
+      }).join("");
+      return "<tbody class='g" + (hasBet ? " has-bet" : "") + "' data-gid='" + g.game_id + "'>" + rows + "</tbody>";
+    }).join("");
+    table.innerHTML = h;
+  };
+  document.querySelectorAll(".seg button").forEach((b) => b.onclick = () => {
+    market = b.dataset.m; document.querySelectorAll(".seg button").forEach((x) => x.setAttribute("aria-pressed", x === b)); board(); watch(); });
+  $("only-plays").onchange = board;
+  board();
+  // auto refresh hooks (cbb/autorefresh.py): keep the odds-board tab and "Plays only" across a reload
+  window.otgState = () => ({market, only: $("only-plays").checked});
+  window.otgRestore = (s) => {
+    if (s.only) $("only-plays").checked = true;
+    const b = document.querySelector(".seg button[data-m='" + s.market + "']");
+    if (b && s.market !== market) b.onclick(); else board();
+  };
+
+  // Watch list: the odds-board tile of every game whose pick on the current tab is WATCH (becomes a play if the line
+  // reaches the number shown) or REVIEW (edge above run_day.MAX_EDGE: never a play); a side already logged is under Plays
+  const onWatch = (g, mk) => {
+    const sd = mk === "spread" ? g.spread_side : String(g.total_pick || "").toLowerCase();
+    return ["WATCH", "REVIEW"].includes(g[mk + "_verdict"]) && loggedSide(g, mk) !== sd && !heldOther(g, mk, sd);
+  };
+  const watch = () => {
+    const mk = market === "total" ? "total" : "spread";
+    $("watch-sec").hidden = market === "ml" || !D.games.some((g) => onWatch(g, "spread") || onWatch(g, "total"));
+    boardInto($("t-watch"), D.games.filter((g) => onWatch(g, mk)), "No " + (mk === "total" ? "totals" : "spreads") + " on the watch list.");
+  };
+  watch();
+
+  // Record
+  if (st) {
+    $("rec-sec").hidden = false;
+    $("t-rec").innerHTML = "<thead><tr><th>Market</th><th class='r'>Record</th><th class='r'>Win %</th><th class='r'>Units</th><th class='r'>ROI</th><th class='r'>Pinnacle CLV</th><th class='r'>Beat no-vig close</th><th class='r'>Pinnacle closes</th><th class='r'>Stake</th><th class='r'>Open</th></tr></thead><tbody>" +
+      Object.entries(st).map(([mk, s]) => { const c = (D.record.clv && D.record.clv.pin && D.record.clv.pin[mk]) || {};
+        return "<tr><td>" + mk[0].toUpperCase() + mk.slice(1) + "</td><td class='r'>" + rec(s) + "</td><td class='r'>" + pct(s.win) + "</td><td class='r " +
+        (s.units > 0 ? "pos" : s.units < 0 ? "neg" : "") + "'>" + sgn(s.units, 2) + "</td><td class='r'>" + pct(s.roi) + "</td><td class='r'>" + (c.clv == null ? "–" : sgn(c.clv, 2) + "%") +
+        "</td><td class='r'>" + pct(c.beat) + "</td><td class='r'>" + (c.decided ? c.with_close + "/" + c.decided : "–") +
+        "</td><td class='r'>" + Math.round(100 * s.multiplier) + "%" + capText(s.cap) + "</td><td class='r m'>" + s.open + "</td></tr>"; }).join("") + "</tbody>" +
+      "<caption class='f' style='caption-side:bottom;text-align:left;padding:8px 12px;font-size:12px'>Pinnacle CLV: expected ROI at our number and price against Pinnacle's no-vig closing line (its last quote in the 15 minutes before tip), decided plays with a Pinnacle close; Pinnacle does not price every game.</caption>";
+    const R = D.record.recent || [];
+    if (R.length) {
+      $("recent-sec").hidden = false;
+      $("t-recent").innerHTML = "<thead><tr><th>Date</th><th>Game</th><th>Bet</th><th>Book</th><th class='r'>Pinnacle close</th><th class='r'>Pinnacle CLV</th><th class='r'>Final</th><th class='r'>Result</th><th class='r'>Units</th></tr></thead><tbody>" +
+        R.map((x) => "<tr><td class='m'>" + esc(x.date) + "</td><td>" + esc(x.away + " @ " + x.home) + "</td><td class='b'>" + esc(x.pick) + "</td><td>" + esc(x.book || "–") +
+          "</td><td class='r'>" + (x.pin_close == null ? "<span title='" + esc(x.pin_status || "") + "'>n/a</span>" : num(x.pin_close) + (x.pin_price != null ? "<small> (" + odds(x.pin_price) + ")</small>" : "")) +
+          "</td><td class='r'>" + (x.pin_clv == null ? "<span title='" + esc(x.pin_status || "") + "'>n/a</span>" : sgn(x.pin_clv, 2) + "%" + (x.pin_points != null ? "<small> " + sgn(x.pin_points, 1) + " pts</small>" : "")) +
+          "</td><td class='r m'>" + esc(x.away_score) + "–" + esc(x.home_score) +
+          "</td><td class='r b " + (x.result === "W" ? "pos" : x.result === "L" ? "neg" : "") + "'>" + esc(x.result) + "</td><td class='r'>" + sgn(x.profit, 2) + "</td></tr>").join("") + "</tbody>";
+    }
+  }
+
+  // Loss review (review.py)
+  const RV = D.record && D.record.review;
+  if (RV && RV.by_reason) {
+    $("review-sec").hidden = false;
+    const rows = (obj, label) => Object.entries(obj || {}).map(([k, a]) => "<tr><td>" + esc(k) + "</td><td class='r'>" + a.bets + "</td><td class='r'>" + a.w + "–" + a.l +
+      "</td><td class='r'>" + pct(a.win) + "</td><td class='r " + (a.units > 0 ? "pos" : a.units < 0 ? "neg" : "") + "'>" + sgn(a.units, 2) + "</td><td class='r'>" + (a.clv == null ? "–" : sgn(a.clv, 2)) +
+      "</td>" + (label ? "<td class='r m'>" + ((RV.losses_by_reason || {})[k] || 0) + "</td>" : "") + "</tr>").join("");
+    const head = (first, extra) => "<thead><tr><th>" + first + "</th><th class='r'>Bets</th><th class='r'>Record</th><th class='r'>Win %</th><th class='r'>Units</th><th class='r'>Avg CLV</th>" + (extra ? "<th class='r'>Losses</th>" : "") + "</tr></thead>";
+    $("t-review").innerHTML = head("Reason", true) + "<tbody>" + rows(RV.by_reason, true) + "</tbody>";
+    $("t-review2").innerHTML = head("Split", false) + "<tbody>" + rows(Object.fromEntries([
+      ...Object.entries(RV.by_market || {}).map(([k, v]) => [k[0].toUpperCase() + k.slice(1), v]),
+      ...Object.entries(RV.by_edge || {}).map(([k, v]) => ["Edge " + k, v]),
+      ...Object.entries(RV.by_month || {}),
+      ...Object.entries(RV.by_venue || {}).filter(([k]) => !k.startsWith("Total"))]), false) + "</tbody>";
+    const HC = RV.home_court || {};
+    if (HC.home) {
+      const h = HC.home, nn = HC.neutral || {};
+      const verdict = h.resid_se && Math.abs(h.resid) > 2 * h.resid_se ? (h.resid > 0 ? "home edge looks too low" : "home edge looks too high") : "no evidence our home edge is off";
+      $("t-review2").insertAdjacentHTML("afterend", "<div class='scroll'><table><thead><tr><th>Home court check</th><th class='r'>Games</th><th class='r'>Result vs model</th><th class='r'>Close vs model</th></tr></thead><tbody>" +
+        "<tr><td>Home games <span class='m'>(" + verdict + ")</span></td><td class='r'>" + h.games + "</td><td class='r'>" + sgn(h.resid, 2) + (h.resid_se ? " <span class='f'>± " + num(2 * h.resid_se, 2) + "</span>" : "") +
+        "</td><td class='r'>" + (h.vs_close == null ? "–" : sgn(h.vs_close, 2)) + "</td></tr>" +
+        (nn.games ? "<tr><td>Neutral sites</td><td class='r'>" + nn.games + "</td><td class='r'>" + sgn(nn.resid, 2) + "</td><td class='r'>" + (nn.vs_close == null ? "–" : sgn(nn.vs_close, 2)) + "</td></tr>" : "") +
+        "</tbody></table></div><p class='note' style='padding:8px 16px 12px'>+ = home teams did better than our projection (or the closing line gave them more than we did). Biggest team misses at home: " +
+        esc((HC.teams_high || []).map((t) => t[0] + " " + sgn(t[1])).join(", ")) + " · " + esc((HC.teams_low || []).map((t) => t[0] + " " + sgn(t[1])).join(", ")) + "</p>");
+    }
+    const MM = RV.model_misses || [];
+    if (MM.length) $("t-misses").innerHTML = "<thead><tr><th>Market disagreed: biggest misses</th><th class='r'>Bet</th><th class='r'>Close</th><th class='r'>CLV</th><th class='r'>Model (home margin)</th><th class='r'>Final</th></tr></thead><tbody>" +
+      MM.map((x) => "<tr><td>" + esc(x.date + " · " + x.away + " @ " + x.home) + "</td><td class='r b'>" + esc(x.pick) + "</td><td class='r'>" + num(x.close_line) + "</td><td class='r neg'>" + clvf(x.clv_pts) +
+        "</td><td class='r m'>" + num(x.model) + "</td><td class='r m'>" + esc(x.away_score) + "–" + esc(x.home_score) + "</td></tr>").join("") + "</tbody>";
+  }
+
+  ["t-bandb", "t-rec", "t-recent", "t-review", "t-review2", "t-misses"].forEach(stack);   // t-plays, t-lm: their renders stack themselves   // t-plays: renderPlays() stacks itself
+
+  // Ratings
+  $("t-rat").innerHTML = "<thead><tr><th class='r'>#</th><th>Team</th><th class='r'>Net</th><th class='r'>Offense</th><th class='r'>Defense</th><th class='r'>Tempo</th></tr></thead><tbody>" +
+    D.ratings.map((r) => "<tr><td class='r m'>" + r.rank + "</td><td>" + esc(r.team) + "</td><td class='r b'>" + sgn(r.net) + "</td><td class='r'>" + num(r.adj_oe) +
+      "</td><td class='r'>" + num(r.adj_de) + "</td><td class='r'>" + num(r.adj_tempo) + "</td></tr>").join("") + "</tbody>";
+
+  // Update: starts the "Update CBB card" workflow (token for this repo kept only in this browser)
+  const REPO = D.repo, WF = "update.yml", API = "https://api.github.com/repos/" + REPO + "/actions";
+  const RUNS_URL = "https://github.com/" + REPO + "/actions/workflows/" + WF;
+  const store = { get: () => { try { return localStorage.getItem("gh_token_cbb") || ""; } catch (e) { return ""; } },
+                  set: (v) => { try { v ? localStorage.setItem("gh_token_cbb", v) : localStorage.removeItem("gh_token_cbb"); } catch (e) {} } };
+  const gen = new Date(D.generated_at);
+  const ago = (d) => { const m = Math.round((Date.now() - d) / 60000);
+    return m < 1 ? "just now" : m < 60 ? m + " min ago" : m < 1440 ? Math.round(m / 60) + " hr ago" : Math.round(m / 1440) + " days ago"; };
+  const say = (t) => { $("upd-status").innerHTML = t; };
+  const stamp = () => say("Updated " + gen.toLocaleString("en-US", {weekday: "short", hour: "numeric", minute: "2-digit"}) + " · " + ago(gen));
+  stamp();
+  setInterval(() => { if (!$("upd-btn").disabled && /^Updated /.test($("upd-status").textContent)) stamp(); }, 60000);
+  const askKey = () => { const t = prompt("Paste a GitHub fine-grained token for " + REPO + " with Actions: Read and write.\nIt is saved only in this browser. Leave blank to remove it.", store.get());
+    if (t !== null) store.set(t.trim()); return store.get(); };
+  const gh = (path, opts) => fetch(API + path, Object.assign({ headers: { Accept: "application/vnd.github+json",
+    Authorization: "Bearer " + store.get(), "X-GitHub-Api-Version": "2022-11-28" } }, opts || {}));
+  const followRun = (since) => {
+    const btn = $("upd-btn"); btn.disabled = true; const t0 = Date.now();
+    const tick = async () => {
+      try {
+        const run = (await (await gh("/workflows/" + WF + "/runs?per_page=1")).json()).workflow_runs?.[0];
+        const mins = Math.floor((Date.now() - t0) / 60000);
+        if (!run || new Date(run.created_at) < since) say("Starting…");
+        else if (run.status !== "completed") say("Updating… " + mins + " min · <a href='" + run.html_url + "' target='_blank' rel='noopener'>details</a>");
+        else if (run.conclusion === "success") { say("Done. Reloading…"); setTimeout(() => location.replace(location.pathname + "?t=" + Date.now()), 4000); return; }
+        else { say("Update failed · <a href='" + run.html_url + "' target='_blank' rel='noopener'>details</a>"); btn.disabled = false; return; }
+      } catch (e) { say("Reconnecting…"); }
+      setTimeout(tick, 10000);
+    };
+    tick();
+  };
+  $("upd-btn").onclick = async () => {
+    if (!store.get() && !askKey()) { window.open(RUNS_URL, "_blank", "noopener"); say("No token: use Run workflow on GitHub"); return; }
+    const since = new Date(Date.now() - 5000);
+    say("Starting…");
+    const branch = (await (await fetch("https://api.github.com/repos/" + REPO)).json().catch(() => ({}))).default_branch || "main";
+    const r = await gh("/workflows/" + WF + "/dispatches", { method: "POST", body: JSON.stringify({ ref: branch }) }).catch(() => null);
+    if (r && r.status === 204) followRun(since);
+    else if (r && [401, 403, 404].includes(r.status)) { store.set(""); say("Token refused (" + r.status + "). Click Update to enter a new one."); }
+    else say("Couldn't reach GitHub");
+  };
+  if (store.get()) gh("/workflows/" + WF + "/runs?per_page=1").then((r) => r.json()).then((j) => {
+    const run = j.workflow_runs?.[0]; if (run && run.status !== "completed") followRun(new Date(run.created_at)); }).catch(() => {});
+
+  // Live scores in the page itself (Chad, Nov 2: "time not updating"): while a game on this card is on, read ESPN's
+  // free scoreboard every 30 seconds and repaint scores, clocks and final W/L in place. Display only; the published
+  // card, the record and the bet log are unchanged (they update through the card run and cbb/live_refresh.py).
+  if (!D.replay) {
+    const SB = "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard?groups=50&limit=500&dates=";
+    const GI = {};
+    D.games.forEach((g) => { GI[String(g.game_id)] = g; });
+    const paint = () => {
+      document.querySelectorAll(".score[data-g]").forEach((el) => {
+        const g = GI[el.dataset.g]; if (!g) return;
+        el.hidden = !started(g);
+        el.innerHTML = scoreInner(g, el.dataset.r === "1" ? cover(g, el.dataset.k, el.dataset.s, el.dataset.l === "" ? null : el.dataset.l) : null);
+      });
+      document.querySelectorAll(".clk[data-g], .clk2[data-g]").forEach((el) => {
+        const g = GI[el.dataset.g]; if (!g) return;
+        el.textContent = started(g) ? (el.classList.contains("clk2") ? " · " : "") + clock(g) : "";
+      });
+      document.querySelectorAll(".sc[data-g]").forEach((el) => {
+        const g = GI[el.dataset.g]; if (!g) return;
+        el.textContent = started(g) ? String(g[el.dataset.sd + "_score"] ?? "") : "";
+        el.className = "sc " + (g.state === "in" ? "b" : "m");
+      });
+    };
+    const active = () => { const now = Date.now();
+      return D.games.some((g) => g.state === "in" || (g.state !== "post" && g.start && Date.parse(g.start) <= now + 300000 && Date.parse(g.start) > now - 14400000)); };
+    const liveTick = async () => {
+      if (document.hidden || !active()) return;
+      try {
+        const d = await (await fetch(SB + String(D.date).replace(/-/g, ""), {cache: "no-store"})).json();
+        (d.events || []).forEach((ev) => {
+          const g = GI[String(ev.id)]; if (!g) return;
+          const st = ((ev.status || {}).type) || {}, c = (ev.competitions || [{}])[0] || {}, side = {};
+          // by team, not by ESPN's home/away label (a game relisted with the other team at home; Nov 2)
+          (c.competitors || []).forEach((t) => { const id = Number((t.team || {}).id);
+            side[id === Number(g.home_id) ? "home" : id === Number(g.away_id) ? "away" : t.homeAway] = t; });
+          if (st.state) g.state = st.state;
+          ["home", "away"].forEach((sd) => { const v = side[sd] && side[sd].score; if (v != null && v !== "") g[sd + "_score"] = Number(v); });
+          if (st.shortDetail) g.clock = st.shortDetail;
+        });
+        paint();
+      } catch (e) {}
+    };
+    window.otgLiveTick = liveTick;
+    setTimeout(liveTick, 1500);
+    setInterval(liveTick, 30000);
+    document.addEventListener("visibilitychange", () => { if (!document.hidden) liveTick(); });
+  }
+
+})();
+</script>
+<script>
+(() => {
+  const el = document.querySelector('meta[name="otg-built"]');
+  if (!el || !window.fetch) return;
+  const built = new Date(el.content), path = location.pathname, KEY = "otg-keep:" + path, EVERY = 60000;
+  let waitUntil = 0, busy = false;
+  // a reload this script started: drop the cache-busting query, put the page back the way it was
+  try {
+    const k = JSON.parse(sessionStorage.getItem(KEY) || "null");
+    sessionStorage.removeItem(KEY);
+    if (/[?&]t=\d+/.test(location.search)) history.replaceState(null, "", path + location.hash);
+    if (k) {
+      if (k.want && built < new Date(k.want)) waitUntil = Date.now() + 600000;   // landed on an older copy: back off
+      if (k.state && window.otgRestore) { try { window.otgRestore(k.state); } catch (e) {} }
+      let moved = false;
+      const mark = () => { moved = true; };
+      ["wheel", "touchstart", "keydown"].forEach((ev) => addEventListener(ev, mark, {once: true, passive: true}));
+      const put = () => { if (!moved) scrollTo(0, k.y || 0); };
+      requestAnimationFrame(put);
+      addEventListener("load", put, {once: true});
+      setTimeout(put, 800);
+    }
+  } catch (e) {}
+  const typing = () => { const a = document.activeElement;
+    return a && (a.tagName === "TEXTAREA" || (a.tagName === "INPUT" && /^(text|search|number|email|password)$/.test(a.type))); };
+  const check = async () => {
+    if (busy || document.hidden || Date.now() < waitUntil) return;
+    busy = true;
+    try {
+      const r = await fetch(path + "?fresh=" + Date.now(), {cache: "no-store"});
+      const m = r.ok ? (await r.text()).match(/<meta name="otg-built" content="([^"]+)">/) : null;
+      if (m && new Date(m[1]) > built && !typing()) {
+        let state = null;
+        try { state = window.otgState ? window.otgState() : null; } catch (e) {}
+        try { sessionStorage.setItem(KEY, JSON.stringify({y: scrollY, want: m[1], state})); } catch (e) {}
+        location.replace(path + "?t=" + Date.now() + location.hash);
+        return;
+      }
+    } catch (e) {}
+    busy = false;
+  };
+  // links between the site's pages open the newest copy, never one the browser kept from minutes ago (Chad, Nov 2:
+  // "records aren't matching on all tabs": a tab opened from the browser's cache showed an older record). The query
+  // is dropped again on arrival (above).
+  document.addEventListener("click", (e) => {
+    const a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a || a.target === "_blank" || e.defaultPrevented) return;
+    try {
+      const u = new URL(a.getAttribute("href"), location.href);
+      if (u.origin !== location.origin || !/(\.html|\/)$/.test(u.pathname)) return;
+      u.searchParams.set("t", String(Date.now()));
+      a.href = u.toString();
+    } catch (err) {}
+  }, true);
+  setTimeout(check, 3000);
+  setInterval(check, EVERY);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) check(); });
+  addEventListener("pageshow", (e) => { if (e.persisted) check(); });
+  addEventListener("online", check);
+})();
+</script>
