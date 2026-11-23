@@ -969,7 +969,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-24|401906853|total|under,2026-11-24,401906853,total,Under 148.5,under,120,2633,Maryland,Tennessee,148.5,148.5,-115.0,DraftKings,4.81,143.69,1.5,yes,2026-11-22T22:31:47+00:00,,,,,,,,open,
 2026-11-24|401909495|spread|home,2026-11-24,401909495,spread,Michigan -4.5,home,130,156,Michigan,Creighton,-4.5,-4.5,-110.0,DraftKings,2.73,7.23,0.2,yes,2026-11-22T22:31:47+00:00,,,,,,,,open,
 2026-11-23|401921700|total|over,2026-11-23,401921700,total,Over 141.5,over,2166,2460,Davidson,Northern Iowa,141.5,141.5,-110.0,FanDuel,4.04,145.54,1.5,yes,2026-11-22T22:41:23+00:00,144.5,3.0,0.07213729233996413,79.0,48.0,L,-1.5,settled,
-2026-11-23|401928830|total|under,2026-11-23,401928830,total,Under 147.5,under,2750,2006,Wright State,Akron,147.5,147.5,-110.0,FanDuel,3.67,143.83,1.0,yes,2026-11-22T22:41:23+00:00,,,,,,,,open,
+2026-11-23|401928830|total|under,2026-11-23,401928830,total,Under 147.5,under,2750,2006,Wright State,Akron,147.5,147.5,-110.0,FanDuel,3.67,143.83,1.0,yes,2026-11-22T22:41:23+00:00,149.5,-2.0,-0.048238488214981334,66.0,64.0,W,0.909,settled,
 2026-11-24|401906762|total|under,2026-11-24,401906762,total,Under 178,under,333,239,Alabama,Baylor,178.0,178.0,-110.0,Fanatics,5.08,172.92,2.0,yes,2026-11-22T22:42:25+00:00,,,,,,,,open,
 2026-11-23|401911457|spread|away,2026-11-23,401911457,spread,Nevada -7,away,2539,2440,San Francisco,Nevada,-7.0,-7.0,-110.0,Fanatics,3.22,-10.22,0.24,yes,2026-11-22T22:51:42+00:00,,,,,,,,open,
 2026-11-23|401921029|total|under,2026-11-23,401921029,total,Under 164.5,under,94,290,Northern Kentucky,Georgia Southern,164.5,164.5,-110.0,FanDuel,3.51,160.99,1.0,yes,2026-11-22T22:51:42+00:00,,,,,,,,open,
