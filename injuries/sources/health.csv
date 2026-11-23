@@ -22639,3 +22639,7 @@ pulled_at,source,ok,rows,teams_matched,players_matched,unmatched_teams,error,sec
 2026-11-23T08:55:07+00:00,rotowire,True,5,1.0,1.0,,,0.5,1336.0
 2026-11-23T08:55:07+00:00,covers,True,120,0.95,0.0,Miami (FL) Hurricanes; San Jose State Spartans; UNLV Runnin' Rebels; Utah Runnin' Utes,,1.2,1940606.0
 2026-11-23T08:55:07+00:00,cbs,True,0,,,,,0.7,459252.0
+2026-11-23T09:02:17+00:00,espn,True,0,,,,,1.1,149.0
+2026-11-23T09:02:17+00:00,rotowire,True,5,1.0,1.0,,,0.5,1336.0
+2026-11-23T09:02:17+00:00,covers,True,120,0.95,0.0,Miami (FL) Hurricanes; San Jose State Spartans; UNLV Runnin' Rebels; Utah Runnin' Utes,,1.0,1940606.0
+2026-11-23T09:02:17+00:00,cbs,True,0,,,,,0.7,459252.0
