@@ -735,3 +735,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-24T19:27:01+00:00,2026-11-24,401911338,2026-11-25T01:00Z,2005,349,Air Force,Army,spread,away,v1,Army +5.5,4.5,-102.0,FanDuel,2026-11-24T01:52:03+00:00,5.5,-121.0,BetRivers,1.0,1055.0,1.77,2.77,2.73
 2026-11-24T20:25:03+00:00,2026-11-24,401924267,2026-11-24T20:45Z,299,2032,Long Beach State,Arkansas State,spread,home,bandB,Long Beach State +5.5,3.5,100.0,theScore Bet,2026-11-24T01:21:40+00:00,5.5,-113.0,BetRivers,2.0,1143.4,0.06,2.06,-3.44
 2026-11-24T20:41:24+00:00,2026-11-25,401909568,2026-11-26T00:00Z,150,41,Duke,UConn,spread,home,bandB,Duke +1.5,1.0,-115.0,Fanatics,2026-11-24T20:39:43+00:00,1.5,-114.0,FanDuel,0.5,1.7,1.79,2.29,0.79
+2026-11-24T21:08:59+00:00,2026-11-25,401909568,2026-11-26T00:00Z,150,41,Duke,UConn,total,under,v1,Under 151.5,149.5,-108.0,BetRivers,2026-11-24T20:51:59+00:00,151.5,-115.0,DraftKings,2.0,17.0,2.9,4.9,146.6
