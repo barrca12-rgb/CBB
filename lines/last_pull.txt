@@ -1,1 +1,1 @@
-2026-11-24 15:36 UTC  events 161  book-game rows 539 (381 SGO, 158 The Odds API)  unmatched teams: Bloomsburg Huskies, Citadel Bulldogs, Warner Royals  SGO month: 11,840 of 100,000 entities  The Odds API credits left: 75155
+2026-11-24 15:46 UTC  events 0  book-game rows 531 (0 SGO, 531 The Odds API)  unmatched teams: none  The Odds API credits left: 75144
