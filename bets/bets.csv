@@ -1029,3 +1029,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-24|401921709|total|under,2026-11-24,401921709,total,Under 160.5,under,252,145,BYU,Ole Miss,160.5,160.5,-110.0,DraftKings,3.67,156.83,0.93,yes,2026-11-24T00:47:46+00:00,,,,,,,,open,
 2026-11-24|401921008|total|over,2026-11-24,401921008,total,Over 141.5,over,140,2739,Kansas City,Green Bay,141.5,141.5,-115.0,FanDuel,3.51,145.01,0.93,yes,2026-11-24T00:58:49+00:00,,,,,,,,open,
 2026-11-24|401925687|spread|away|bandB,2026-11-24,401925687,spread,Alcorn State +15.5,away,2348,2016,Louisiana Tech,Alcorn State,15.5,15.5,-102.0,FanDuel,2.18,13.32,0.5,yes,2026-11-24T00:59:02+00:00,,,,,,,,open,bandB
+2026-11-24|401916291|total|over,2026-11-24,401916291,total,Over 144.5,over,84,294,Indiana,Jacksonville,144.5,144.5,-115.0,FanDuel,4.17,148.67,1.4,yes,2026-11-24T01:10:53+00:00,,,,,,,,open,
+2026-11-24|401925687|spread|away,2026-11-24,401925687,spread,Alcorn State +16.5,away,2348,2016,Louisiana Tech,Alcorn State,16.5,16.5,-115.0,Fanatics,3.18,13.32,0.4,yes,2026-11-24T01:10:53+00:00,,,,,,,,open,
+2026-11-24|401929421|spread|away|bandB,2026-11-24,401929421,spread,Florida A&M +16.5,away,6,50,South Alabama,Florida A&M,16.5,16.5,-115.0,DraftKings,2.14,14.36,0.5,yes,2026-11-24T01:11:05+00:00,,,,,,,,open,bandB
