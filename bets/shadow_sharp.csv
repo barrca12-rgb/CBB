@@ -824,3 +824,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-24|401920709|total|over,2026-11-24,total,Over 153.5,153.5,-115.0,6.46,1.82,,,False,,,False,,,,,,
 2026-11-24|401917676|spread|home,2026-11-24,spread,San Francisco +10.5,10.5,-110.0,3.3,0.4,,,False,,,False,,,,,,
 2026-11-24|401921709|total|under,2026-11-24,total,Under 160.5,160.5,-110.0,3.67,0.93,,,False,,,False,,,,,,
+2026-11-24|401921008|total|over,2026-11-24,total,Over 141.5,141.5,-115.0,3.51,0.93,,,True,1.5,2.01,True,,,,,143.0,1.5

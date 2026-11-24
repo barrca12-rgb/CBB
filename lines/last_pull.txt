@@ -1,1 +1,1 @@
-2026-11-24 00:46 UTC  events 160  book-game rows 352 (259 SGO, 93 The Odds API)  unmatched teams: Citadel Bulldogs, Fort Wayne Mastodons, Loyola (Chi) Ramblers, Sam Houston St Bearkats, Warner Royals  SGO month: 7,361 of 100,000 entities  The Odds API credits left: 75909
+2026-11-24 00:56 UTC  events 0  book-game rows 332 (0 SGO, 332 The Odds API)  unmatched teams: Fort Wayne Mastodons, Loyola (Chi) Ramblers, Sam Houston St Bearkats  The Odds API credits left: 75898
