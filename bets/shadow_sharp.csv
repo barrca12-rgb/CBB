@@ -828,3 +828,6 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-24|401916291|total|over,2026-11-24,total,Over 144.5,144.5,-115.0,4.17,1.4,,,False,,,False,,,,,,
 2026-11-24|401925687|spread|away,2026-11-24,spread,Alcorn State +16.5,16.5,-115.0,3.18,0.4,,,False,,,False,,,,,,
 2026-11-24|401906774|total|over,2026-11-24,total,Over 156.5,156.5,-115.0,4.24,1.36,,,True,2.5,1.74,False,,,,,159.0,2.5
+2026-11-24|401920889|total|over,2026-11-24,total,Over 126.5,126.5,-115.0,4.1,1.36,,,True,1.5,2.6,True,,,,,128.0,1.5
+2026-11-24|401924723|spread|home,2026-11-24,spread,Cornell -10.5,-10.5,-110.0,3.49,0.4,,,False,,,False,,,,,,
+2026-11-24|401921711|total|under,2026-11-24,total,Under 154.5,154.5,-105.0,4.93,1.36,,,False,,,False,,,,,,

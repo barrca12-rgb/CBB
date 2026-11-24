@@ -1033,3 +1033,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-24|401925687|spread|away,2026-11-24,401925687,spread,Alcorn State +16.5,away,2348,2016,Louisiana Tech,Alcorn State,16.5,16.5,-115.0,Fanatics,3.18,13.32,0.4,yes,2026-11-24T01:10:53+00:00,,,,,,,,open,
 2026-11-24|401929421|spread|away|bandB,2026-11-24,401929421,spread,Florida A&M +16.5,away,6,50,South Alabama,Florida A&M,16.5,16.5,-115.0,DraftKings,2.14,14.36,0.5,yes,2026-11-24T01:11:05+00:00,,,,,,,,open,bandB
 2026-11-24|401906774|total|over,2026-11-24,401906774,total,Over 156.5,over,57,270,Florida,Milwaukee,156.5,156.5,-115.0,FanDuel,4.24,160.74,1.36,yes,2026-11-24T01:22:37+00:00,,,,,,,,open,
+2026-11-24|401920889|total|over,2026-11-24,401920889,total,Over 126.5,over,2550,160,Seton Hall,New Hampshire,126.5,126.5,-115.0,DraftKings,4.1,130.6,1.36,yes,2026-11-24T01:38:06+00:00,,,,,,,,open,
+2026-11-24|401924723|spread|home,2026-11-24,401924723,spread,Cornell -10.5,home,172,2083,Cornell,Bucknell,-10.5,-10.5,-110.0,FanDuel,3.49,13.99,0.4,yes,2026-11-24T01:38:06+00:00,,,,,,,,open,
+2026-11-24|401921711|total|under,2026-11-24,401921711,total,Under 154.5,under,264,228,Washington,Clemson,154.5,154.5,-105.0,DraftKings,4.93,149.57,1.36,yes,2026-11-24T01:38:06+00:00,,,,,,,,open,
