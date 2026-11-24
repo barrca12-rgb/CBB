@@ -1,1 +1,1 @@
-2026-11-24 22:19 UTC  events 190  book-game rows 474 (326 SGO, 148 The Odds API)  unmatched teams: Citadel Bulldogs, Warner Royals  SGO month: 13,857 of 100,000 entities  The Odds API credits left: 74911
+2026-11-24 22:34 UTC  events 0  book-game rows 396 (0 SGO, 396 The Odds API)  unmatched teams: none  The Odds API credits left: 74898

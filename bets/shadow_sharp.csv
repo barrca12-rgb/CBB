@@ -772,8 +772,8 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-23|401921658|spread|away,2026-11-23,spread,Tulsa +6.5,6.5,-105.0,3.4,0.13,W,0.124,True,0.0,3.4,True,,,,,-6.5,0.0
 2026-11-23|401921658|total|over,2026-11-23,total,Over 151.5,151.5,-110.0,5.32,2.0,L,-2.0,True,0.0,5.32,True,,,,,151.5,0.0
 2026-11-23|401913102|spread|away,2026-11-23,spread,Monmouth +20.5,20.5,-110.0,2.84,0.2,L,-0.2,True,0.0,2.84,True,,,,,-20.5,0.0
-2026-11-24|401906853|spread|home,2026-11-24,spread,Maryland +5.5,5.5,-105.0,3.76,0.3,,,False,,,False,,,,,,
-2026-11-24|401906853|total|under,2026-11-24,total,Under 148.5,148.5,-115.0,4.81,1.5,,,False,,,False,,,,,,
+2026-11-24|401906853|spread|home,2026-11-24,spread,Maryland +5.5,5.5,-105.0,3.76,0.3,L,-0.3,False,,,False,,,,,,
+2026-11-24|401906853|total|under,2026-11-24,total,Under 148.5,148.5,-115.0,4.81,1.5,W,1.304,False,,,False,,,,,,
 2026-11-24|401909495|spread|home,2026-11-24,spread,Michigan -4.5,-4.5,-110.0,2.73,0.2,,,False,,,False,,,,,,
 2026-11-23|401921700|total|over,2026-11-23,total,Over 141.5,141.5,-110.0,4.04,1.5,L,-1.5,True,1.0,3.04,True,,,,,142.5,1.0
 2026-11-23|401928830|total|under,2026-11-23,total,Under 147.5,147.5,-110.0,3.67,1.0,W,0.909,True,-0.5,4.17,True,,,,,148.0,-0.5
@@ -863,3 +863,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-25|401921702|total|over,2026-11-25,total,Over 143,143.0,-110.0,3.47,0.98,,,True,0.5,2.97,True,,,,,143.5,0.5
 2026-11-25|401920916|spread|home,2026-11-25,spread,SIU Edwardsville +4.5,4.5,-110.0,2.87,0.3,,,True,0.0,2.87,True,,,,,4.5,0.0
 2026-11-25|401911028|spread|away,2026-11-25,spread,Northeastern +21.5,21.5,-110.0,2.84,0.3,,,True,0.0,2.84,True,-21.5,0.0,,,-21.5,0.0
+2026-11-24|401923395|total|over,2026-11-24,total,Over 143,143.0,-110.0,5.44,1.94,,,True,0.5,4.94,True,143.5,0.5,143.5,0.5,142.5,-0.5
