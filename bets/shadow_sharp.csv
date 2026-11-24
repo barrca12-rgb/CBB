@@ -823,3 +823,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-24|401920709|spread|home,2026-11-24,spread,Auburn -19.5,-19.5,-120.0,3.29,0.4,,,False,,,False,,,,,,
 2026-11-24|401920709|total|over,2026-11-24,total,Over 153.5,153.5,-115.0,6.46,1.82,,,False,,,False,,,,,,
 2026-11-24|401917676|spread|home,2026-11-24,spread,San Francisco +10.5,10.5,-110.0,3.3,0.4,,,False,,,False,,,,,,
+2026-11-24|401921709|total|under,2026-11-24,total,Under 160.5,160.5,-110.0,3.67,0.93,,,False,,,False,,,,,,

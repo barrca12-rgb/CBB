@@ -1026,3 +1026,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-24|401920709|spread|home,2026-11-24,401920709,spread,Auburn -19.5,home,2,288,Auburn,Lipscomb,-19.5,-19.5,-120.0,FanDuel,3.29,22.79,0.4,yes,2026-11-24T00:24:10+00:00,,,,,,,,open,
 2026-11-24|401920709|total|over,2026-11-24,401920709,total,Over 153.5,over,2,288,Auburn,Lipscomb,153.5,153.5,-115.0,FanDuel,6.46,159.96,1.82,yes,2026-11-24T00:24:10+00:00,,,,,,,,open,
 2026-11-24|401917676|spread|home,2026-11-24,401917676,spread,San Francisco +10.5,home,2539,204,San Francisco,Oregon State,10.5,10.5,-110.0,FanDuel,3.3,-7.2,0.4,yes,2026-11-24T00:33:26+00:00,,,,,,,,open,
+2026-11-24|401921709|total|under,2026-11-24,401921709,total,Under 160.5,under,252,145,BYU,Ole Miss,160.5,160.5,-110.0,DraftKings,3.67,156.83,0.93,yes,2026-11-24T00:47:46+00:00,,,,,,,,open,

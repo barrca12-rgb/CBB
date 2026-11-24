@@ -803,3 +803,8 @@ first_seen,date,game_id,market,side,book,number,price,median_others,books,reason
 2026-11-23T23:50:23+00:00,2026-11-24,401911535,spread,-,DraftKings,-1.5,,1.5,5,off-market
 2026-11-24T00:23:54+00:00,2026-11-24,401928859,spread,-,FanDuel,7.5,,-7.5,5,off-market
 2026-11-24T00:33:03+00:00,2026-11-24,401926184,total,-,FanDuel,146.5,,149.5,6,off-market
+2026-11-24T00:46:26+00:00,2026-11-23,401921157,spread,-,BetMGM,1.5,,-1.5,4.0,off-market
+2026-11-24T00:46:26+00:00,2026-11-23,401921157,spread,-,DraftKings,-1.5,,1.5,4.0,off-market
+2026-11-24T00:46:26+00:00,2026-11-23,401921157,spread,-,theScore Bet,-1.5,,1.5,4.0,off-market
+2026-11-24T00:46:26+00:00,2026-11-23,401921157,spread,-,FanDuel,1.5,,-1.5,4.0,off-market
+2026-11-24T00:46:26+00:00,2026-11-23,401921157,total,over,BetMGM,140.5,105.0,,,review: edge 11.2
