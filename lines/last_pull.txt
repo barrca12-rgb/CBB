@@ -1,1 +1,1 @@
-2026-11-24 08:55 UTC  events 157  book-game rows 515 (364 SGO, 151 The Odds API)  unmatched teams: Army Knights, Bloomsburg Huskies, Citadel Bulldogs, Fort Wayne Mastodons, Gardner-Webb Bulldogs, Sam Houston St Bearkats, Warner Royals  SGO month: 9,750 of 100,000 entities  The Odds API credits left: 75468
+2026-11-24 09:04 UTC  events 0  book-game rows 461 (0 SGO, 461 The Odds API)  unmatched teams: Army Knights, Fort Wayne Mastodons, Gardner-Webb Bulldogs, Sam Houston St Bearkats  The Odds API credits left: 75465
