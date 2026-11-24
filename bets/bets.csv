@@ -1055,3 +1055,8 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-24|401921008|spread|away,2026-11-24,401921008,spread,Green Bay +1.5,away,140,2739,Kansas City,Green Bay,1.5,1.5,-115.0,BetMGM,2.59,-1.09,0.34,yes,2026-11-24T05:39:08+00:00,,,,,,,,open,
 2026-11-24|401921712|total|under,2026-11-24,401921712,total,Under 149.5,under,36,2670,Colorado State,VCU,149.5,149.5,-110.0,DraftKings,4.31,145.19,1.48,yes,2026-11-24T07:10:09+00:00,,,,,,,,open,
 2026-11-24|401925950|total|over,2026-11-24,401925950,total,Over 157.5,over,2692,2627,Weber State,Tarleton State,157.5,157.5,-110.0,theScore Bet,4.51,162.01,1.48,yes,2026-11-24T09:28:12+00:00,,,,,,,,open,
+2026-11-24|401921666|total|over,2026-11-24,401921666,total,Over 141.5,over,2287,202,Illinois State,Tulsa,141.5,141.5,-110.0,Caesars,3.37,144.87,0.99,yes,2026-11-24T10:07:10+00:00,,,,,,,,open,
+2026-11-24|401922231|total|under,2026-11-24,401922231,total,Under 174,under,2747,2511,Wofford,Queens University,174.0,174.0,-110.0,Fanatics,3.67,170.33,0.99,yes,2026-11-24T10:07:10+00:00,,,,,,,,open,
+2026-11-24|401921266|total|over,2026-11-24,401921266,total,Over 139.5,over,2352,2520,Loyola Maryland,Rider,139.5,139.5,-105.0,BetMGM,3.57,143.07,0.99,yes,2026-11-24T10:07:10+00:00,,,,,,,,open,
+2026-11-24|401917904|total|under,2026-11-24,401917904,total,Under 163.5,under,2635,2698,Tennessee Tech,West Georgia,163.5,163.5,-105.0,FanDuel,3.0,160.5,0.99,yes,2026-11-24T10:07:10+00:00,,,,,,,,open,
+2026-11-24|401920923|spread|away|bandB,2026-11-24,401920923,spread,Mount St. Mary's +1.5,away,2415,116,Morgan State,Mount St. Mary's,1.5,1.5,-110.0,FanDuel,2.18,-0.68,0.5,yes,2026-11-24T10:07:26+00:00,,,,,,,,open,bandB
