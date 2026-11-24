@@ -1080,3 +1080,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-24|401923395|total|over,2026-11-24,401923395,total,Over 143,over,2678,88,VMI,Southern Indiana,143.0,143.0,-110.0,Fanatics,5.44,148.44,1.94,yes,2026-11-24T22:35:03+00:00,,,,,,,,open,
 2026-11-24|401909495|total|under,2026-11-24,401909495,total,Under 162.5,under,130,156,Michigan,Creighton,162.5,162.5,-110.0,Caesars,3.07,159.43,0.97,yes,2026-11-24T22:50:32+00:00,,,,,,,,open,
 2026-11-24|401909505|total|over,2026-11-24,401909505,total,Over 132.5,over,2509,305,Purdue,DePaul,132.5,132.5,-109.0,BetRivers,5.84,138.34,1.94,yes,2026-11-24T22:50:32+00:00,,,,,,,,open,
+2026-11-25|401920428|spread|home,2026-11-25,401920428,spread,Marquette +5.5,home,269,258,Marquette,Virginia,5.5,5.5,-110.0,DraftKings,2.59,-2.91,0.26,yes,2026-11-24T23:18:02+00:00,,,,,,,,open,
+2026-11-25|401911029|total|under,2026-11-25,401911029,total,Under 157.5,under,193,2198,Miami (OH),Eastern Kentucky,157.5,157.5,-105.0,theScore Bet,3.85,153.65,0.97,yes,2026-11-24T23:18:02+00:00,,,,,,,,open,
+2026-11-25|401909568|total|under,2026-11-25,401909568,total,Under 151.5,under,150,41,Duke,UConn,151.5,151.5,-115.0,DraftKings,4.85,146.65,1.46,yes,2026-11-24T23:18:02+00:00,,,,,,,,open,
