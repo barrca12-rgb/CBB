@@ -1067,3 +1067,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-24|401926184|spread|home|bandB,2026-11-24,401926184,spread,UC Santa Barbara -17.5,home,2540,2430,UC Santa Barbara,UNC Greensboro,-17.5,-17.5,-120.0,theScore Bet,2.23,19.73,0.5,yes,2026-11-24T12:34:35+00:00,,,,,,,,open,bandB
 2026-11-24|401920309|total|under,2026-11-24,401920309,total,Under 161.5,under,59,2535,Georgia Tech,Samford,161.5,161.5,-110.0,FanDuel,3.4,158.1,0.99,yes,2026-11-24T13:25:52+00:00,,,,,,,,open,
 2026-11-24|401909699|total|under,2026-11-24,401909699,total,Under 160.5,under,52,2427,Florida State,UNC Asheville,160.5,160.5,-110.0,theScore Bet,3.1,157.4,0.99,yes,2026-11-24T13:25:52+00:00,,,,,,,,open,
+2026-11-24|401920727|total|over,2026-11-24,401920727,total,Over 144.5,over,2294,2378,Iowa,UMBC,144.5,144.5,-110.0,Caesars,3.07,147.57,0.99,yes,2026-11-24T14:13:58+00:00,,,,,,,,open,
+2026-11-24|401926154|total|over,2026-11-24,401926154,total,Over 148.5,over,2546,2870,Southeast Missouri State,Purdue Fort Wayne,148.5,148.5,-110.0,Caesars,3.93,152.43,0.99,yes,2026-11-24T14:13:58+00:00,,,,,,,,open,
+2026-11-24|401921707|spread|away|bandB,2026-11-24,401921707,spread,Wyoming -7.5,away,2309,2751,Kent State,Wyoming,-7.5,-7.5,-115.0,BetRivers,2.15,-9.65,0.5,yes,2026-11-24T14:14:12+00:00,,,,,,,,open,bandB
