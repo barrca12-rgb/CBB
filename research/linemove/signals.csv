@@ -722,3 +722,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-24T14:02:37+00:00,2026-11-24,401921710,2026-11-24T22:00Z,12,2507,Arizona,Providence,total,under,v1,Under 156.5,154.5,-110.0,DraftKings,2026-11-24T07:09:17+00:00,156.5,-110.0,FanDuel,2.0,413.3,1.9,3.9,152.6
 2026-11-24T14:02:37+00:00,2026-11-24,401920695,2026-11-25T00:00Z,2561,261,Siena,Vermont,spread,away,v1,Vermont +5.5,3.5,-110.0,DraftKings,2026-11-24T02:58:43+00:00,5.5,-115.0,DraftKings,2.0,663.9,1.49,3.49,2.01
 2026-11-24T14:02:37+00:00,2026-11-24,401911027,2026-11-25T00:00Z,189,2241,Bowling Green,Gardner-Webb,total,over,v1,Over 145.5,147.5,-110.0,DraftKings,2026-11-24T02:58:43+00:00,145.5,-108.0,DraftKings,2.0,663.9,1.2,3.2,148.7
+2026-11-24T14:26:04+00:00,2026-11-24,401917983,2026-11-25T00:30Z,2433,2277,UL Monroe,Houston Christian,spread,away,bandB,Houston Christian -0.5,-1.5,-115.0,BetMGM,2026-11-24T02:12:08+00:00,-0.5,-118.0,BetRivers,1.0,733.9,1.38,2.38,-2.88
