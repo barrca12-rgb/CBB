@@ -328,3 +328,15 @@ The proposed 15-unit daily cap and any staking change are not part of this work.
   feed's Nov 16 01:00 UTC). The Nov 15 row could not be graded and was the duplicate.
 - `2026-11-15|401929419|spread|away` set to status `void`, so it is out of every record and metric. The Nov 16 play
   stands (graded L, -1.08u).
+
+## 2026-11-24: ready for SGO's end (after Nov 25)
+
+- **Card without SGO:** `odds.pull()` already falls back to The Odds API when SGO errors (The Odds API is due on every
+  run: `ODDS_API_EVERY_RUN` in update.yml), and `poll_targets` skips the SGO close poll on error.
+  `audit/test_sgo_shutoff.py` simulates an expired SGO key: the pull returns The Odds API lines alone, writes
+  closing.csv and openers.csv, and logs the SGO poll as an error. Passes.
+- **Credits:** about 400-450 a day for card pulls plus 400-690 for targeted polls (Nov 15-23), about 1,000 a day or
+  30,000 a month, against the 100,000-a-month plan (75,248 left on Nov 24). December-March fits with room for the
+  3-minute evening window (+3,600 a month) if Chad approves it.
+- **Books:** all seven play books came through Nov 20-24 (240-254 game-rows each).
+- **Team names:** four Odds API names added (MODEL_FREEZE.md, Nov 24).

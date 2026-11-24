@@ -188,5 +188,10 @@
   "id": "2026-11-09-spread-stakes",
   "date": "2026-11-09",
   "text": "Staking update, Nov 9: our spread model changed today (roster-based ratings), so the automatic spread stake reduction, which was based on the old model's spread record, now starts fresh with the new model. Spread plays go back to full stakes, still sized by edge, and still cut in half automatically if the new model's plays stop beating the closing line."
+ },
+ {
+  "id": "2026-11-24-team-names",
+  "date": "2026-11-24",
+  "text": "Data update, Nov 24: our previous odds feed ends after Nov 25, so all lines now come from our main odds feed. We matched four more team names in that feed (Army, Purdue Fort Wayne, Gardner-Webb, Sam Houston) so their games keep every sportsbook. The model, thresholds and stakes are unchanged."
  }
 ]

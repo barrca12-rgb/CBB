@@ -1520,3 +1520,18 @@ c1d0b039ceb88d7c5a343ff01847e0e4256788ac7b9f1846256243764084b206  cbb/tracker.py
 ```
 bf289706fa894d4f8f8a713c4c5ee8d95476ab5f28dd4e8639e52457a5843245  cbb/odds_api.py
 ```
+
+## 2026-11-24: four more Odds API team names (scheduled SGO-shutoff check)
+
+- **Why:** SGO ends after Nov 25, so The Odds API becomes the only line feed. lines/last_pull.txt listed four Odds API
+  names that matched no team (Army Knights, Fort Wayne Mastodons, Gardner-Webb Bulldogs, Sam Houston St Bearkats),
+  so those games would have had no lines at all once SGO stops.
+- **Change (`data/team_aliases.csv`):** 4 rows, source oddsapi, each checked to map to its ESPN id through
+  `odds_api._lookup()` (349, 2870, 2241, 2534).
+- **Effect:** those games keep all seven play books after SGO ends. Model, thresholds, stakes unchanged.
+  Discord note: `2026-11-24-team-names`.
+- **New fingerprint:**
+
+```
+99e6124bd8d4c2112fce1fff29a3f3e14b1074fe181749b3a6c5a95858cc91e9  data/team_aliases.csv
+```
