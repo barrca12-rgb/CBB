@@ -1063,3 +1063,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-24|401920819|spread|away,2026-11-24,401920819,spread,SE Louisiana +4,away,2458,2545,Northern Colorado,SE Louisiana,4.0,4.0,-110.0,Caesars,2.84,1.16,0.34,yes,2026-11-24T12:18:54+00:00,,,,,,,,open,
 2026-11-24|401911026|spread|away,2026-11-24,401911026,spread,Central Michigan +21.5,away,87,2117,Notre Dame,Central Michigan,21.5,21.5,-115.0,DraftKings,2.84,18.66,0.34,yes,2026-11-24T12:18:54+00:00,,,,,,,,open,
 2026-11-24|401920976|spread|away|bandB,2026-11-24,401920976,spread,Delaware State +16.5,away,236,2169,Chattanooga,Delaware State,16.5,16.5,-110.0,theScore Bet,2.07,14.43,0.5,yes,2026-11-24T12:19:10+00:00,,,,,,,,open,bandB
+2026-11-24|401929285|spread|home|bandB,2026-11-24,401929285,spread,Yale +1.5,home,43,2026,Yale,App State,1.5,1.5,-115.0,BetMGM,2.19,0.69,0.5,yes,2026-11-24T12:34:35+00:00,,,,,,,,open,bandB
+2026-11-24|401926184|spread|home|bandB,2026-11-24,401926184,spread,UC Santa Barbara -17.5,home,2540,2430,UC Santa Barbara,UNC Greensboro,-17.5,-17.5,-120.0,theScore Bet,2.23,19.73,0.5,yes,2026-11-24T12:34:35+00:00,,,,,,,,open,bandB
