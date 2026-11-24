@@ -831,3 +831,8 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-24|401920889|total|over,2026-11-24,total,Over 126.5,126.5,-115.0,4.1,1.36,,,True,1.5,2.6,True,,,,,128.0,1.5
 2026-11-24|401924723|spread|home,2026-11-24,spread,Cornell -10.5,-10.5,-110.0,3.49,0.4,,,False,,,False,,,,,,
 2026-11-24|401921711|total|under,2026-11-24,total,Under 154.5,154.5,-105.0,4.93,1.36,,,False,,,False,,,,,,
+2026-11-24|401921777|spread|home,2026-11-24,spread,Villanova -28.5,-28.5,-118.0,5.64,0.8,,,False,,,False,,,,,,
+2026-11-24|401921777|total|over,2026-11-24,total,Over 140.5,140.5,-115.0,5.04,1.82,,,False,,,False,,,,,,
+2026-11-24|401921030|spread|away,2026-11-24,spread,Bellarmine +2.5,2.5,-120.0,2.95,0.4,,,False,,,False,,,,,,
+2026-11-24|401911027|spread|home,2026-11-24,spread,Bowling Green -11.5,-11.5,-120.0,2.62,0.4,,,False,,,False,,,,,,
+2026-11-24|401929421|spread|away,2026-11-24,spread,Florida A&M +18.5,18.5,-110.0,4.14,0.6,,,True,2.0,2.14,True,-16.5,2.0,,,-19.0,-0.5
