@@ -845,3 +845,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-24|401920976|total|under,2026-11-24,total,Under 148.5,148.5,-110.0,3.22,0.94,,,True,0.0,3.22,True,,,,,148.5,0.0
 2026-11-24|401911279|total|under,2026-11-24,total,Under 138.5,138.5,-110.0,3.81,0.96,,,True,0.5,3.31,True,138.5,0.0,,,138.0,0.5
 2026-11-24|401921008|spread|away,2026-11-24,spread,Green Bay +1.5,1.5,-115.0,2.59,0.34,,,True,0.5,2.09,True,-1.5,0.0,-1.0,0.5,-1.0,0.5
+2026-11-24|401921712|total|under,2026-11-24,total,Under 149.5,149.5,-110.0,4.31,1.48,,,False,,,False,,,,,,

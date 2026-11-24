@@ -1053,3 +1053,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-24|401925014|spread|away|bandB,2026-11-24,401925014,spread,Robert Morris +4,away,2320,2523,Lamar,Robert Morris,4.0,4.0,-110.0,Fanatics,2.04,1.96,0.5,yes,2026-11-24T03:10:36+00:00,,,,,,,,open,bandB
 2026-11-24|401911279|total|under,2026-11-24,401911279,total,Under 138.5,under,2329,2066,Lehigh,Binghamton,138.5,138.5,-110.0,BetMGM,3.81,134.69,0.96,yes,2026-11-24T04:10:10+00:00,,,,,,,,open,
 2026-11-24|401921008|spread|away,2026-11-24,401921008,spread,Green Bay +1.5,away,140,2739,Kansas City,Green Bay,1.5,1.5,-115.0,BetMGM,2.59,-1.09,0.34,yes,2026-11-24T05:39:08+00:00,,,,,,,,open,
+2026-11-24|401921712|total|under,2026-11-24,401921712,total,Under 149.5,under,36,2670,Colorado State,VCU,149.5,149.5,-110.0,DraftKings,4.31,145.19,1.48,yes,2026-11-24T07:10:09+00:00,,,,,,,,open,
