@@ -1022,3 +1022,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-24|401921008|spread|away|bandB,2026-11-24,401921008,spread,Green Bay +1,away,140,2739,Kansas City,Green Bay,1.0,1.0,-115.0,Fanatics,2.07,-1.07,0.5,yes,2026-11-23T23:39:55+00:00,,,,,,,,open,bandB
 2026-11-24|401911535|spread|away|bandB,2026-11-24,401911535,spread,Charleston +1.5,away,2638,232,UTEP,Charleston,1.5,1.5,-115.0,BetMGM,2.06,-0.56,0.5,yes,2026-11-23T23:39:55+00:00,,,,,,,,open,bandB
 2026-11-24|401909699|spread|home,2026-11-24,401909699,spread,Florida State -24.5,home,52,2427,Florida State,UNC Asheville,-24.5,-24.5,-120.0,FanDuel,2.94,27.44,0.4,yes,2026-11-24T00:14:12+00:00,,,,,,,,open,
+2026-11-24|401920414|total|over,2026-11-24,401920414,total,Over 138.5,over,2184,2272,Duquesne,High Point,138.5,138.5,-115.0,FanDuel,5.26,143.76,1.82,yes,2026-11-24T00:24:10+00:00,,,,,,,,open,
+2026-11-24|401920709|spread|home,2026-11-24,401920709,spread,Auburn -19.5,home,2,288,Auburn,Lipscomb,-19.5,-19.5,-120.0,FanDuel,3.29,22.79,0.4,yes,2026-11-24T00:24:10+00:00,,,,,,,,open,
+2026-11-24|401920709|total|over,2026-11-24,401920709,total,Over 153.5,over,2,288,Auburn,Lipscomb,153.5,153.5,-115.0,FanDuel,6.46,159.96,1.82,yes,2026-11-24T00:24:10+00:00,,,,,,,,open,
