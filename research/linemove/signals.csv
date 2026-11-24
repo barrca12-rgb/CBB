@@ -710,3 +710,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-24T06:49:50+00:00,2026-11-24,401921707,2026-11-24T22:30Z,2309,2751,Kent State,Wyoming,total,under,v1,Under 146.5,145.5,-110.0,theScore Bet,2026-11-23T22:11:26+00:00,146.5,-105.0,FanDuel,1.0,518.4,2.2,3.2,143.3
 2026-11-24T06:59:30+00:00,2026-11-24,401911458,2026-11-25T00:00Z,2541,2440,Santa Clara,Nevada,spread,away,v1,Nevada +1.5,0.5,-120.0,FanDuel,2026-11-24T01:21:40+00:00,1.5,-130.0,theScore Bet,1.0,337.8,2.1,3.1,-1.6
 2026-11-24T08:18:35+00:00,2026-11-24,401911379,2026-11-25T00:00Z,256,2127,James Madison,Charleston Southern,total,under,v1,Under 156.5,151.5,-115.0,BetMGM,2026-11-24T03:09:48+00:00,156.5,-110.0,theScore Bet,5.0,308.8,-1.16,3.84,152.66
+2026-11-24T08:31:30+00:00,2026-11-24,401923271,2026-11-25T00:00Z,2368,2803,Marist,Bryant,total,under,v1,Under 133.5,131.5,-115.0,theScore Bet,2026-11-24T02:58:43+00:00,133.5,-110.0,theScore Bet,2.0,332.8,1.1,3.1,130.4
