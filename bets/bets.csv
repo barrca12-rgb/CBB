@@ -1048,3 +1048,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-24|401925014|total|under,2026-11-24,401925014,total,Under 156.5,under,2320,2523,Lamar,Robert Morris,156.5,156.5,-115.0,theScore Bet,5.54,150.96,1.88,yes,2026-11-24T02:32:58+00:00,,,,,,,,open,
 2026-11-24|401921030|total|under,2026-11-24,401921030,total,Under 155,under,290,91,Georgia Southern,Bellarmine,155.0,155.0,-110.0,Fanatics,3.06,151.94,0.94,yes,2026-11-24T02:32:58+00:00,,,,,,,,open,
 2026-11-24|401921709|spread|away|bandB,2026-11-24,401921709,spread,Ole Miss +1.5,away,252,145,BYU,Ole Miss,1.5,1.5,-110.0,FanDuel,2.0,-0.5,0.5,yes,2026-11-24T02:33:13+00:00,,,,,,,,open,bandB
+2026-11-24|401911458|total|over,2026-11-24,401911458,total,Over 155,over,2541,2440,Santa Clara,Nevada,155.0,155.0,-110.0,Caesars,3.41,158.41,0.94,yes,2026-11-24T02:45:48+00:00,,,,,,,,open,

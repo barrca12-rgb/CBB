@@ -1,1 +1,1 @@
-2026-11-24 02:32 UTC  events 0  book-game rows 394 (0 SGO, 394 The Odds API)  unmatched teams: Army Knights, Fort Wayne Mastodons, Gardner-Webb Bulldogs, Sam Houston St Bearkats  The Odds API credits left: 75810
+2026-11-24 02:44 UTC  events 0  book-game rows 404 (0 SGO, 404 The Odds API)  unmatched teams: Army Knights, Fort Wayne Mastodons, Gardner-Webb Bulldogs, Sam Houston St Bearkats  The Odds API credits left: 75799

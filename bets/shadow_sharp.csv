@@ -841,3 +841,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-24|401922231|spread|away,2026-11-24,spread,Queens University +1.5,1.5,-120.0,4.32,0.65,,,True,1.5,2.82,True,,,,,0.0,1.5
 2026-11-24|401925014|total|under,2026-11-24,total,Under 156.5,156.5,-115.0,5.54,1.88,,,False,,,False,,,,,,
 2026-11-24|401921030|total|under,2026-11-24,total,Under 155,155.0,-110.0,3.06,0.94,,,False,,,False,,,,,,
+2026-11-24|401911458|total|over,2026-11-24,total,Over 155,155.0,-110.0,3.41,0.94,,,True,0.0,3.41,True,,,,,155.0,0.0
