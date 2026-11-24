@@ -738,3 +738,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-24T21:08:59+00:00,2026-11-25,401909568,2026-11-26T00:00Z,150,41,Duke,UConn,total,under,v1,Under 151.5,149.5,-108.0,BetRivers,2026-11-24T20:51:59+00:00,151.5,-115.0,DraftKings,2.0,17.0,2.9,4.9,146.6
 2026-11-24T21:22:48+00:00,2026-11-25,401920428,2026-11-25T17:00Z,269,258,Marquette,Virginia,spread,home,bandB,Marquette +5,4.5,-102.0,DraftKings,2026-11-24T21:06:51+00:00,5.0,-110.0,Fanatics,0.5,15.9,1.6,2.1,-2.9
 2026-11-24T21:22:48+00:00,2026-11-25,401921670,2026-11-25T21:30Z,30,2579,USC,South Carolina,total,under,v1,Under 151.5,149.5,-110.0,FanDuel,2026-11-24T20:39:43+00:00,151.5,-110.0,FanDuel,2.0,43.1,2.91,4.91,146.59
+2026-11-24T21:33:45+00:00,2026-11-25,401911028,2026-11-26T00:00Z,275,111,Wisconsin,Northeastern,spread,away,v1,Northeastern +21.5,20.5,-110.0,FanDuel,2026-11-24T20:51:59+00:00,21.5,-110.0,FanDuel,1.0,41.8,1.83,2.83,18.67
