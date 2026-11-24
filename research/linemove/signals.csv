@@ -713,3 +713,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-24T08:31:30+00:00,2026-11-24,401923271,2026-11-25T00:00Z,2368,2803,Marist,Bryant,total,under,v1,Under 133.5,131.5,-115.0,theScore Bet,2026-11-24T02:58:43+00:00,133.5,-110.0,theScore Bet,2.0,332.8,1.1,3.1,130.4
 2026-11-24T09:04:35+00:00,2026-11-24,401909763,2026-11-25T04:59Z,38,24,Colorado,Stanford,spread,home,v1,Colorado +5.5,3.5,-105.0,BetRivers,2026-11-24T05:48:46+00:00,5.5,-120.0,theScore Bet,2.0,195.8,1.3,3.3,-2.2
 2026-11-24T10:06:33+00:00,2026-11-24,401928358,2026-11-24T18:00Z,2229,253,Florida International,Southern Utah,total,under,v1,Under 167.5,163.5,-110.0,FanDuel,2026-11-24T00:22:58+00:00,167.5,-110.0,theScore Bet,4.0,583.6,-0.53,3.47,164.03
+2026-11-24T11:35:27+00:00,2026-11-24,401923271,2026-11-25T00:00Z,2368,2803,Marist,Bryant,spread,home,bandB,Marist -3.5,-4.5,-110.0,theScore Bet,2026-11-24T02:58:43+00:00,-3.5,-110.0,theScore Bet,1.0,516.7,1.15,2.15,5.65
