@@ -862,3 +862,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-25|401918971|total|under,2026-11-25,total,Under 169.5,169.5,-110.0,4.75,1.44,,,False,,,False,,,,,,
 2026-11-25|401921702|total|over,2026-11-25,total,Over 143,143.0,-110.0,3.47,0.98,,,True,0.5,2.97,True,,,,,143.5,0.5
 2026-11-25|401920916|spread|home,2026-11-25,spread,SIU Edwardsville +4.5,4.5,-110.0,2.87,0.3,,,True,0.0,2.87,True,,,,,4.5,0.0
+2026-11-25|401911028|spread|away,2026-11-25,spread,Northeastern +21.5,21.5,-110.0,2.84,0.3,,,True,0.0,2.84,True,-21.5,0.0,,,-21.5,0.0
