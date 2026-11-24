@@ -3,13 +3,13 @@
 Ranked by expected gain and how soon it can be tested. Update after every weekly review. Closed items stay at the
 bottom with their verdict, so nothing is retested by accident.
 
-Last updated Nov 23, 2026 (weekly review; late-posted plays and stake shutoff leads).
+Last updated Nov 24, 2026 (sharp-market shadow read).
 
 ## Open
 
 | # | Idea | Evidence so far | First step |
 |---|---|---|---|
-| 0 | **Sharp market already up and disagreeing** | Clean read (empty Novig quotes dropped, Nov 10): sharp line up and model 2+ off it: 30-38, -10.2u flat, Pinnacle CLV -3.6%, 28% beat close (68 plays). All others: 138-110, +15.2u, CLV +3.0% | **Shadowing** (Chad, Nov 10): cbb/shadow_sharp.py, forward read Nov 24 per research/sharp_shadow/PLAN.md; Chad's call on going live |
+| 0 | **Sharp market already up and disagreeing** | Forward read Nov 24 (research/sharp_shadow/REPORT.md): flagged 321 plays, 189-131-1, +41.71u, Pinnacle CLV +2.58%; not flagged 106, 46-58-2, -16.58u, CLV +8.01%. Fails conditions 1 and 3 | Keep shadowing; re-read Dec 15 with the same conditions; close if flagged CLV is still above 0 |
 | 1b | **Absences valued by learned player weights** | Tested Nov 6 (research/absence_values): margin miss 8.7699 -> 8.7666 (top-10% absences -0.023) but opener spreads -0.17/-0.19; does not pass | Closed unless a new absence source (injury reports before tip) appears |
 | 2 | **Speed to the opener** | Measured Nov 5 (research/speed/LIVE_REPORT.md): alerts ~5 min after a book posts; 97% of numbers last 10 min, 88% 30 min, 63% 4 hours; afternoon/evening alerts decay fastest. Polling is not the bottleneck; placing the bet is. No placement times recorded (accepted.csv empty). | Record real fills (Placed button or Pikkit export); then decide on a 3-5 min opener cadence |
 | 3 | **Opening-day scoring level** (stage-1 intercept shrunk toward last season) | Ready: live opening week 15.9 -> 13.5, history unchanged (own_ratings Study A) | Proposal to Chad for next season's opener |

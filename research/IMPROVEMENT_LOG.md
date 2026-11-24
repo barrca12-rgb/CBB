@@ -2,6 +2,14 @@
 
 Dated findings from each review, newest first. "Nothing new" is a valid entry.
 
+## 2026-11-24: sharp-market shadow forward read (does not pass)
+
+- Flagged (sharp line up, model 2+ off it): 321 plays, 189-131-1, +41.71u flat, Pinnacle CLV +2.58%, 53% beat the
+  close. Not flagged: 106, 46-58-2, -16.58u, CLV +8.01%, 68%. Conditions 1 (flagged CLV below 0) and 3 (flagged worse
+  per play) fail; condition 2 (CLV gap of 3+ points) holds. Keep shadowing to Dec 15. research/sharp_shadow/REPORT.md.
+- **Correction:** the Nov 10 back-read (flagged CLV -3.6%) overstated the case; on the forward sample flagged plays
+  beat the close on average.
+
 ## 2026-11-23: weekly review (Nov 16-22)
 
 - **Main 121-100, +16.68u staked (+10.22u flat), line move +1.78** (backtest +0.95; last week +1.38), the best week
