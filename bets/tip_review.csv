@@ -2476,3 +2476,4 @@ checked_at,bet_id,pick,tip_check,cutoff,cutoff_source,espn_start,start_gap_min,f
 2026-11-23T00:28:52+00:00,2026-11-22|401919020|total|over,Over 148.5,conflict,2026-11-23T00:30:00+00:00,latest pregame report,2026-11-23T00:00:00+00:00,30,2026-11-23T00:30:00+00:00,0,True
 2026-11-24T04:48:26+00:00,2026-11-23|401909743|total|under,Under 158.5,review,2026-11-24T04:55:00+00:00,latest pregame report,2026-11-24T04:30:00+00:00,25,2026-11-24T04:55:00+00:00,0,True
 2026-11-24T04:48:26+00:00,2026-11-23|401909743|spread|away|bandB,Colorado State +18,review,2026-11-24T04:55:00+00:00,latest pregame report,2026-11-24T04:30:00+00:00,25,2026-11-24T04:55:00+00:00,0,False
+2026-11-24T19:05:07+00:00,2026-11-24|401920414|total|over,Over 138.5,conflict,2026-11-25T00:30:39+00:00,latest pregame report,2026-11-25T00:30:00+00:00,1,2026-11-25T01:15:00+00:00,-44,True
