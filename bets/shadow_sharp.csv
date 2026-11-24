@@ -766,7 +766,7 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-22|401920736|total|over,2026-11-22,total,Over 135.5,135.5,-105.0,3.38,1.0,L,-1.0,True,0.5,2.88,True,135.5,0.0,136.0,0.5,135.0,-0.5
 2026-11-22|401921706|total|over,2026-11-22,total,Over 139.5,139.5,-105.0,3.61,1.0,W,0.952,False,,,False,,,,,,
 2026-11-23|401918076|total|under,2026-11-23,total,Under 150.5,150.5,-110.0,4.23,1.48,W,1.345,True,1.5,2.73,True,,,,,149.0,1.5
-2026-11-23|401921708|total|under,2026-11-23,total,Under 166.5,166.5,-110.0,5.1,1.98,,,True,1.5,3.6,True,,,,,165.0,1.5
+2026-11-23|401921708|total|under,2026-11-23,total,Under 166.5,166.5,-110.0,5.1,1.98,W,1.8,True,1.5,3.6,True,,,,,165.0,1.5
 2026-11-23|401909536|total|under,2026-11-23,total,Under 152.5,152.5,-105.0,5.95,1.98,,,True,0.5,5.45,True,,,,,152.0,0.5
 2026-11-23|401909743|total|under,2026-11-23,total,Under 158.5,158.5,-110.0,4.16,1.48,,,True,2.0,2.16,True,,,,,156.5,2.0
 2026-11-23|401921658|spread|away,2026-11-23,spread,Tulsa +6.5,6.5,-105.0,3.4,0.13,W,0.124,True,0.0,3.4,True,,,,,-6.5,0.0
@@ -822,3 +822,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-24|401920414|total|over,2026-11-24,total,Over 138.5,138.5,-115.0,5.26,1.82,,,False,,,False,,,,,,
 2026-11-24|401920709|spread|home,2026-11-24,spread,Auburn -19.5,-19.5,-120.0,3.29,0.4,,,False,,,False,,,,,,
 2026-11-24|401920709|total|over,2026-11-24,total,Over 153.5,153.5,-115.0,6.46,1.82,,,False,,,False,,,,,,
+2026-11-24|401917676|spread|home,2026-11-24,spread,San Francisco +10.5,10.5,-110.0,3.3,0.4,,,False,,,False,,,,,,

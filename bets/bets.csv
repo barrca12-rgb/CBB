@@ -958,7 +958,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-22|401921706|total|over,2026-11-22,401921706,total,Over 139.5,over,2184,2751,Duquesne,Wyoming,139.5,139.5,-105.0,DraftKings,3.61,143.11,1.0,yes,2026-11-22T06:44:10+00:00,136.5,-3.0,-0.07213729233996419,61.0,79.0,W,0.952,settled,
 2026-11-22|401909556|spread|home|bandB,2026-11-22,401909556,spread,Boston College -22.5,home,103,2885,Boston College,NJIT,-22.5,-22.5,-118.0,BetRivers,2.1,24.6,0.5,yes,2026-11-22T16:17:03+00:00,-23.5,1.0,0.03513455315346392,79.0,59.0,L,-0.5,settled,bandB
 2026-11-23|401918076|total|under,2026-11-23,401918076,total,Under 150.5,under,228,145,Clemson,Ole Miss,150.5,150.5,-110.0,DraftKings,4.23,146.27,1.48,yes,2026-11-22T21:02:25+00:00,147.5,3.0,0.07213729233996413,62.0,82.0,W,1.345,settled,
-2026-11-23|401921708|total|under,2026-11-23,401921708,total,Under 166.5,under,252,264,BYU,Washington,166.5,166.5,-110.0,DraftKings,5.1,161.4,1.98,yes,2026-11-22T21:02:25+00:00,,,,,,,,open,
+2026-11-23|401921708|total|under,2026-11-23,401921708,total,Under 166.5,under,252,264,BYU,Washington,166.5,166.5,-110.0,DraftKings,5.1,161.4,1.98,yes,2026-11-22T21:02:25+00:00,163.5,3.0,0.07213729233996413,83.0,77.0,W,1.8,settled,
 2026-11-23|401909536|total|under,2026-11-23,401909536,total,Under 152.5,under,2507,2670,Providence,VCU,152.5,152.5,-105.0,DraftKings,5.95,146.55,1.98,yes,2026-11-22T21:02:25+00:00,,,,,,,,open,
 2026-11-23|401909743|total|under,2026-11-23,401909743,total,Under 158.5,under,12,36,Arizona,Colorado State,158.5,158.5,-110.0,DraftKings,4.16,154.34,1.48,yes,2026-11-22T21:02:25+00:00,,,,,,,,open,
 2026-11-23|401909743|spread|away|bandB,2026-11-23,401909743,spread,Colorado State +18,away,12,36,Arizona,Colorado State,18.0,18.0,-110.0,Fanatics,2.01,15.99,0.5,yes,2026-11-22T21:12:17+00:00,,,,,,,,open,bandB
@@ -1025,3 +1025,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-24|401920414|total|over,2026-11-24,401920414,total,Over 138.5,over,2184,2272,Duquesne,High Point,138.5,138.5,-115.0,FanDuel,5.26,143.76,1.82,yes,2026-11-24T00:24:10+00:00,,,,,,,,open,
 2026-11-24|401920709|spread|home,2026-11-24,401920709,spread,Auburn -19.5,home,2,288,Auburn,Lipscomb,-19.5,-19.5,-120.0,FanDuel,3.29,22.79,0.4,yes,2026-11-24T00:24:10+00:00,,,,,,,,open,
 2026-11-24|401920709|total|over,2026-11-24,401920709,total,Over 153.5,over,2,288,Auburn,Lipscomb,153.5,153.5,-115.0,FanDuel,6.46,159.96,1.82,yes,2026-11-24T00:24:10+00:00,,,,,,,,open,
+2026-11-24|401917676|spread|home,2026-11-24,401917676,spread,San Francisco +10.5,home,2539,204,San Francisco,Oregon State,10.5,10.5,-110.0,FanDuel,3.3,-7.2,0.4,yes,2026-11-24T00:33:26+00:00,,,,,,,,open,
