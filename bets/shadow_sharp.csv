@@ -787,8 +787,8 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-23|401911457|total|over,2026-11-23,total,Over 136.5,136.5,-112.0,4.26,1.5,L,-1.5,True,1.0,3.26,True,137.5,1.0,,,137.0,0.5
 2026-11-23|401926183|spread|away,2026-11-23,spread,UNC Greensboro +11.5,11.5,-115.0,2.65,0.24,,,True,0.5,2.15,True,,,,,-11.0,0.5
 2026-11-23|401929286|total|over,2026-11-23,total,Over 142.5,142.5,-105.0,3.94,1.0,L,-1.0,True,0.5,3.44,True,,,,,143.0,0.5
-2026-11-23|401919032|spread|away,2026-11-23,spread,Texas A&M-Corpus Christi +21.5,21.5,-115.0,2.8,0.23,,,True,1.0,1.8,False,,,,,-20.5,1.0
-2026-11-23|401919032|total|under,2026-11-23,total,Under 145.5,145.5,-115.0,3.3,1.0,,,True,0.5,2.8,True,,,,,145.0,0.5
+2026-11-23|401919032|spread|away,2026-11-23,spread,Texas A&M-Corpus Christi +21.5,21.5,-115.0,2.8,0.23,W,0.2,True,1.0,1.8,False,,,,,-20.5,1.0
+2026-11-23|401919032|total|under,2026-11-23,total,Under 145.5,145.5,-115.0,3.3,1.0,L,-1.0,True,0.5,2.8,True,,,,,145.0,0.5
 2026-11-23|401913530|total|over,2026-11-23,total,Over 178.5,178.5,-110.0,6.02,2.0,,,True,0.0,6.02,True,,,,,178.5,0.0
 2026-11-23|401918057|spread|away,2026-11-23,spread,Alabama State +19.5,19.5,-110.0,4.11,0.35,,,True,0.5,3.61,True,,,,,-19.0,0.5
 2026-11-23|401921210|total|under,2026-11-23,total,Under 145.5,145.5,-110.0,5.62,2.0,L,-2.0,False,,,False,,,,,,
@@ -838,3 +838,6 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-24|401929421|spread|away,2026-11-24,spread,Florida A&M +18.5,18.5,-110.0,4.14,0.6,,,True,2.0,2.14,True,-16.5,2.0,,,-19.0,-0.5
 2026-11-24|401920358|spread|home,2026-11-24,spread,Harvard -4.5,-4.5,-120.0,4.84,0.8,,,False,,,False,,,,,,
 2026-11-24|401920358|total|under,2026-11-24,total,Under 139.5,139.5,-110.0,4.06,1.36,,,False,,,False,,,,,,
+2026-11-24|401922231|spread|away,2026-11-24,spread,Queens University +1.5,1.5,-120.0,4.32,0.65,,,True,1.5,2.82,True,,,,,0.0,1.5
+2026-11-24|401925014|total|under,2026-11-24,total,Under 156.5,156.5,-115.0,5.54,1.88,,,False,,,False,,,,,,
+2026-11-24|401921030|total|under,2026-11-24,total,Under 155,155.0,-110.0,3.06,0.94,,,False,,,False,,,,,,
