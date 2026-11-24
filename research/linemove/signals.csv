@@ -703,3 +703,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-24T04:50:27+00:00,2026-11-24,401909763,2026-11-25T04:59Z,38,24,Colorado,Stanford,spread,home,bandB,Colorado +4.5,2.5,-110.0,BetMGM,2026-11-23T23:38:15+00:00,4.5,-110.0,DraftKings,2.0,312.2,0.29,2.29,-2.21
 2026-11-24T05:13:38+00:00,2026-11-24,401911338,2026-11-25T01:00Z,2005,349,Air Force,Army,total,under,v1,Under 158.5,152.5,-105.0,FanDuel,2026-11-24T01:52:03+00:00,158.5,-115.0,theScore Bet,6.0,201.6,-1.57,4.43,154.07
 2026-11-24T05:13:38+00:00,2026-11-24,401906762,2026-11-25T03:00Z,333,239,Alabama,Baylor,spread,away,bandB,Baylor +2,1.5,-110.0,Caesars,2026-11-23T05:34:14+00:00,2.0,-110.0,Fanatics,0.5,1419.4,1.68,2.18,-0.18
+2026-11-24T05:28:32+00:00,2026-11-24,401911279,2026-11-25T00:00Z,2329,2066,Lehigh,Binghamton,spread,away,bandB,Binghamton +9.5,8.5,-110.0,theScore Bet,2026-11-24T02:32:01+00:00,9.5,-115.0,theScore Bet,1.0,176.5,1.02,2.02,7.48
