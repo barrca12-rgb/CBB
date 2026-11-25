@@ -1117,3 +1117,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-25|401929406|total|over,2026-11-25,401929406,total,Over 156.5,over,233,2029,South Dakota,Arkansas-Pine Bluff,156.5,156.5,-105.0,BetMGM,4.14,160.64,1.47,yes,2026-11-25T03:34:18+00:00,,,,,,,,open,
 2026-11-25|401920547|total|over,2026-11-25,401920547,total,Over 147.5,over,2174,2458,Detroit Mercy,Northern Colorado,147.5,147.5,-110.0,DraftKings,6.44,153.94,2.0,yes,2026-11-25T03:53:58+00:00,,,,,,,,open,
 2026-11-25|401920547|spread|home|bandB,2026-11-25,401920547,spread,Detroit Mercy +5.5,home,2174,2458,Detroit Mercy,Northern Colorado,5.5,5.5,-102.0,DraftKings,2.26,-3.24,0.5,yes,2026-11-25T03:54:08+00:00,,,,,,,,open,bandB
+2026-11-25|401921715|spread|away|bandB,2026-11-25,401921715,spread,Ole Miss +5.5,away,12,145,Arizona,Ole Miss,5.5,5.5,-110.0,FanDuel,2.25,3.25,0.5,yes,2026-11-25T04:48:14+00:00,,,,,,,,open,bandB
