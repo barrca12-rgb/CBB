@@ -1,1 +1,1 @@
-2026-11-25 19:29 UTC  events 186  book-game rows 342 (234 SGO, 108 The Odds API)  unmatched teams: Citadel Bulldogs, McNeese State Cowboys  SGO month: 21,415 of 100,000 entities  The Odds API credits left: 73834
+2026-11-25 19:44 UTC  events 0  book-game rows 330 (0 SGO, 330 The Odds API)  unmatched teams: none  The Odds API credits left: 73829
