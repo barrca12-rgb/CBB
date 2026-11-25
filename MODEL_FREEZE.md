@@ -1535,3 +1535,14 @@ bf289706fa894d4f8f8a713c4c5ee8d95476ab5f28dd4e8639e52457a5843245  cbb/odds_api.p
 ```
 99e6124bd8d4c2112fce1fff29a3f3e14b1074fe181749b3a6c5a95858cc91e9  data/team_aliases.csv
 ```
+
+## 2026-11-25: one more Odds API team name
+
+- **Why:** first card runs on The Odds API alone (SGO ended) listed "New Orleans Privateers" as unmatched.
+- **Change (`data/team_aliases.csv`):** 1 row, source oddsapi, ESPN id 2443 (checked through `odds_api._lookup()`).
+- **Effect:** that team's games get lines again. Model, thresholds, stakes unchanged. Covered by the Nov 24 Discord note.
+- **New fingerprint:**
+
+```
+f6788be4a6f10c477f9d383688173547c4247c8ca2706d75bf69428ba559da94  data/team_aliases.csv
+```
