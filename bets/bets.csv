@@ -1121,3 +1121,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-25|401920547|spread|home,2026-11-25,401920547,spread,Detroit Mercy +6.5,home,2174,2458,Detroit Mercy,Northern Colorado,6.5,6.5,-120.0,Caesars,3.25,-3.25,0.32,yes,2026-11-25T04:59:38+00:00,,,,,,,,open,
 2026-11-26|401920529|total|under,2026-11-26,401920529,total,Under 140,under,66,2633,Iowa State,Tennessee,140.0,140.0,-110.0,Fanatics,3.15,136.85,1.0,yes,2026-11-25T05:42:39+00:00,,,,,,,,open,
 2026-11-26|401920529|spread|home|bandB,2026-11-26,401920529,spread,Iowa State -1,home,66,2633,Iowa State,Tennessee,-1.0,-1.0,-105.0,Fanatics,2.24,3.24,0.5,yes,2026-11-25T05:42:54+00:00,,,,,,,,open,bandB
+2026-11-25|401921714|total|under,2026-11-25,401921714,total,Under 153.5,under,36,228,Colorado State,Clemson,153.5,153.5,-110.0,DraftKings,4.88,148.62,1.5,yes,2026-11-25T06:07:04+00:00,,,,,,,,open,
