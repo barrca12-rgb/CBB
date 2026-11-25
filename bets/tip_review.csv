@@ -2531,3 +2531,4 @@ checked_at,bet_id,pick,tip_check,cutoff,cutoff_source,espn_start,start_gap_min,f
 2026-11-25T21:10:19+00:00,2026-11-25|401917182|spread|away,Memphis -1.5,conflict,2026-11-25T22:00:00+00:00,latest pregame report,2026-11-25T22:00:00+00:00,0,2026-11-25T23:45:00+00:00,-105.0,False
 2026-11-25T21:23:25+00:00,2026-11-25|401917182|spread|away,Memphis -1.5,conflict,2026-11-25T22:00:00+00:00,latest pregame report,2026-11-25T22:00:00+00:00,0,2026-11-25T23:45:00+00:00,-105.0,False
 2026-11-25T21:39:33+00:00,2026-11-25|401917182|spread|away,Memphis -1.5,conflict,2026-11-25T22:00:00+00:00,latest pregame report,2026-11-25T22:00:00+00:00,0,2026-11-25T23:45:00+00:00,-105.0,False
+2026-11-25T21:55:32+00:00,2026-11-25|401917182|spread|away,Memphis -1.5,conflict,2026-11-25T23:45:00+00:00,latest pregame report,2026-11-25T22:00:00+00:00,105,2026-11-25T23:45:00+00:00,0.0,True
