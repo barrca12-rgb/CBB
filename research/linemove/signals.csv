@@ -770,3 +770,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-25T17:03:22+00:00,2026-11-25,401924268,2026-11-25T18:00Z,299,253,Long Beach State,Southern Utah,spread,home,v1,Long Beach State +1.5,-1.5,-110.0,theScore Bet,2026-11-24T23:44:00+00:00,1.5,-120.0,theScore Bet,3.0,1039.4,0.08,3.08,1.58
 2026-11-25T17:18:01+00:00,2026-11-25,401928831,2026-11-25T17:31Z,2750,43,Wright State,Yale,spread,home,v1,Wright State -3.5,-5.5,-120.0,FanDuel,2026-11-25T00:46:24+00:00,-3.5,-105.0,theScore Bet,2.0,991.6,0.89,2.89,6.39
 2026-11-25T17:37:42+00:00,2026-11-25,401921670,2026-11-25T21:30Z,30,2579,USC,South Carolina,total,over,v1,Over 144.5,147.5,-110.0,BetMGM,2026-11-25T02:55:42+00:00,144.5,-113.0,BetRivers,3.0,882.0,0.01,3.01,147.51
+2026-11-25T18:48:34+00:00,2026-11-26,401920537,2026-11-26T20:30Z,130,2390,Michigan,Miami,total,over,v1,Over 158.5,162.5,-115.0,theScore Bet,2026-11-25T09:56:05+00:00,158.5,-115,theScore Bet,4.0,532.5,0.86,4.86,163.36
