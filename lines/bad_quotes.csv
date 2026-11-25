@@ -885,3 +885,4 @@ first_seen,date,game_id,market,side,book,number,price,median_others,books,reason
 2026-11-25T04:23:41+00:00,2026-11-25,401925688,total,-,FanDuel,148.5,,144.5,6,off-market
 2026-11-25T04:59:17+00:00,2026-11-25,401925688,total,-,Caesars,144.5,,147.5,6,off-market
 2026-11-25T04:59:17+00:00,2026-11-25,401925688,total,-,theScore Bet,144.5,,147.5,6,off-market
+2026-11-25T05:40:48+00:00,2026-11-25,401911028,total,-,BetRivers,159.5,,156.5,7,off-market
