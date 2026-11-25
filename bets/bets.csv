@@ -1131,3 +1131,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-25|401924737|total|over,2026-11-25,401924737,total,Over 134.5,over,2335,163,Liberty,Princeton,134.5,134.5,-115.0,BetRivers,3.57,138.07,1.0,yes,2026-11-25T08:09:06+00:00,,,,,,,,open,
 2026-11-25|401920916|total|over,2026-11-25,401920916,total,Over 138.5,over,2565,2459,SIU Edwardsville,Northern Illinois,138.5,138.5,-110.0,DraftKings,3.25,141.75,1.0,yes,2026-11-25T08:09:06+00:00,,,,,,,,open,
 2026-11-26|401920529|spread|home,2026-11-26,401920529,spread,Iowa State +1.5,home,66,2633,Iowa State,Tennessee,1.5,1.5,-125.0,DraftKings,4.74,3.24,0.7,yes,2026-11-25T09:58:40+00:00,,,,,,,,open,
+2026-11-26|401920528|spread|home,2026-11-26,401920528,spread,Maryland -0.5,home,120,21,Maryland,San Diego State,-0.5,-0.5,-122.0,BetRivers,2.92,3.42,0.35,yes,2026-11-25T10:41:58+00:00,,,,,,,,open,
