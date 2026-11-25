@@ -1151,3 +1151,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-26|401911523|total|over,2026-11-26,401911523,total,Over 137.5,over,302,55,UC Davis,Jacksonville State,137.5,137.5,-115.0,theScore Bet,3.57,141.07,1.0,yes,2026-11-25T21:28:14+00:00,,,,,,,,open,
 2026-11-26|401911523|spread|home|bandB,2026-11-26,401911523,spread,UC Davis +1.5,home,302,55,UC Davis,Jacksonville State,1.5,1.5,-110.0,theScore Bet,2.41,0.91,0.5,yes,2026-11-25T21:28:30+00:00,,,,,,,,open,bandB
 2026-11-25|401911241|total|over,2026-11-25,401911241,total,Over 147,over,257,2065,Richmond,Bethune-Cookman,147.0,147.0,-110.0,Fanatics,5.82,152.82,2.0,yes,2026-11-25T22:13:41+00:00,,,,,,,,open,
+2026-11-26|401921673|total|under,2026-11-26,401921673,total,Under 164.5,under,30,328,USC,Utah State,164.5,164.5,-110.0,DraftKings,4.23,160.27,1.5,yes,2026-11-25T22:50:19+00:00,,,,,,,,open,
+2026-11-26|401918972|total|under,2026-11-26,401918972,total,Under 162.5,under,99,2567,LSU,SMU,162.5,162.5,-110.0,BetMGM,3.59,158.91,1.0,yes,2026-11-25T22:50:19+00:00,,,,,,,,open,
