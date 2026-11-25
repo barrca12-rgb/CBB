@@ -754,3 +754,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-25T04:47:44+00:00,2026-11-25,401929005,2026-11-26T04:59Z,62,2916,Hawai'i,Incarnate Word,total,over,v1,Over 138.5,142.5,-110.0,BetMGM,2026-11-25T02:01:11+00:00,138.5,-105.0,BetMGM,4.0,166.6,0.51,4.51,143.01
 2026-11-25T13:22:48+00:00,2026-11-25,401921669,2026-11-25T19:00Z,99,9,LSU,Arizona State,spread,home,bandB,LSU -3.5,-4.5,-104.0,BetRivers,2026-11-24T23:59:09+00:00,-3.5,-115.0,DraftKings,1.0,803.6,1.14,2.14,5.64
 2026-11-25T13:22:48+00:00,2026-11-25,401922285,2026-11-26T00:00Z,2643,2908,The Citadel,South Carolina Upstate,total,over,v1,Over 136.5,137.5,-110.0,FanDuel,2026-11-25T11:08:17+00:00,136.5,-110.0,DraftKings,1.0,134.5,2.69,3.69,140.19
+2026-11-25T13:38:07+00:00,2026-11-25,401911241,2026-11-25T23:00Z,257,2065,Richmond,Bethune-Cookman,total,over,v1,Over 146.5,148.5,-110.0,theScore Bet,2026-11-25T04:04:23+00:00,146.5,-110.0,DraftKings,2.0,573.7,1.16,3.16,149.66
