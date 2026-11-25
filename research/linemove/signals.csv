@@ -749,3 +749,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-25T02:28:02+00:00,2026-11-25,401921715,2026-11-25T19:30Z,12,145,Arizona,Ole Miss,spread,away,bandB,Ole Miss +5.5,5.0,-110.0,Fanatics,2026-11-25T02:01:11+00:00,5.5,-105.0,Fanatics,0.5,26.9,1.81,2.31,3.19
 2026-11-25T02:56:03+00:00,2026-11-25,401917182,2026-11-25T22:00Z,213,235,Penn State,Memphis,total,over,v1,Over 163.5,165.5,-109.0,BetRivers,2026-11-24T23:05:18+00:00,163.5,-110.0,Caesars,2.0,230.8,1.14,3.14,166.64
 2026-11-25T03:23:26+00:00,2026-11-25,401929406,2026-11-25T19:00Z,233,2029,South Dakota,Arkansas-Pine Bluff,total,over,v1,Over 156.5,158.0,-110.0,Fanatics,2026-11-25T01:30:56+00:00,156.5,-110.0,Caesars,1.5,112.5,2.66,4.16,160.66
+2026-11-25T04:04:42+00:00,2026-11-25,401920428,2026-11-25T17:00Z,269,258,Marquette,Virginia,total,under,v1,Under 154.5,153.5,-110.0,theScore Bet,2026-11-24T23:16:06+00:00,154.5,-112.0,DraftKings,1.0,288.6,2.57,3.57,150.93
