@@ -1,1 +1,1 @@
-2026-11-25 01:21 UTC  events 0  book-game rows 237 (0 SGO, 237 The Odds API)  unmatched teams: New Orleans Privateers  The Odds API credits left: 74745
+2026-11-25 01:30 UTC  events 0  book-game rows 244 (0 SGO, 244 The Odds API)  unmatched teams: New Orleans Privateers  The Odds API credits left: 74734

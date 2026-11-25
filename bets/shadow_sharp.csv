@@ -813,7 +813,7 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-24|401927398|spread|away,2026-11-24,spread,Wright State +1,1.0,-115.0,4.96,0.66,L,-0.66,True,2.5,2.46,True,1.5,2.5,,,0.0,1.0
 2026-11-24|401921184|spread|home,2026-11-24,spread,Pennsylvania -5.5,-5.5,-120.0,4.57,0.66,,,True,0.5,4.07,True,,,,,-6.0,0.5
 2026-11-24|401921184|total|over,2026-11-24,total,Over 144.5,144.5,-110.0,4.28,1.46,,,True,0.0,4.28,True,,,,,144.5,0.0
-2026-11-24|401920949|spread|away,2026-11-24,spread,Eastern Michigan +4.5,4.5,-118.0,2.56,0.33,,,True,0.5,2.06,True,,,,,-4.0,0.5
+2026-11-24|401920949|spread|away,2026-11-24,spread,Eastern Michigan +4.5,4.5,-118.0,2.56,0.33,W,0.28,True,0.5,2.06,True,,,,,-4.0,0.5
 2026-11-23|401919761|total|under,2026-11-23,total,Under 136.5,136.5,-105.0,4.47,1.41,W,1.343,True,0.5,3.97,True,136.5,0.0,136.0,0.5,136.5,0.0
 2026-11-24|401922023|spread|home,2026-11-24,spread,Boise State -19.5,-19.5,-110.0,3.38,0.33,,,True,0.0,3.38,True,,,,,-19.5,0.0
 2026-11-24|401922023|total|under,2026-11-24,total,Under 163.5,163.5,-110.0,6.5,1.88,,,True,0.0,6.5,True,,,,,163.5,0.0
@@ -883,3 +883,6 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-25|401909720|total|over,2026-11-25,total,Over 147.5,147.5,-115.0,5.39,2.0,,,False,,,False,,,,,,
 2026-11-25|401918960|total|over,2026-11-25,total,Over 148.5,148.5,-110.0,5.17,2.0,,,False,,,False,,,,,,
 2026-11-25|401924897|total|over,2026-11-25,total,Over 150,150.0,-110.0,4.03,1.47,,,False,,,False,,,,,,
+2026-11-25|401928845|total|over,2026-11-25,total,Over 154.5,154.5,-115.0,3.26,0.98,,,True,0.5,2.76,True,154.5,0.0,,,155.0,0.5
+2026-11-25|401919042|total|over,2026-11-25,total,Over 158.5,158.5,-105.0,4.19,1.47,,,True,-0.5,4.69,True,,,,,158.0,-0.5
+2026-11-25|401920858|spread|away,2026-11-25,spread,Prairie View A&M +18,18.0,-110.0,6.18,0.5,,,True,0.5,5.68,True,,,,,-17.5,0.5
