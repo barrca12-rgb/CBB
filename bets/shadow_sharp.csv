@@ -927,3 +927,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-26|401918972|total|under,2026-11-26,total,Under 162.5,162.5,-110.0,3.59,1.0,,,True,3.0,0.59,False,,,,,159.5,3.0
 2026-11-26|401906807|total|under,2026-11-26,total,Under 143,143.0,-110.0,3.35,1.0,,,True,1.5,1.85,False,,,,,141.5,1.5
 2026-11-26|401917546|total|under,2026-11-26,total,Under 142.5,142.5,-105.0,3.07,1.0,,,False,,,False,,,,,,
+2026-11-26|401912231|spread|away,2026-11-26,spread,Army +14.5,14.5,-115.0,2.55,0.24,,,False,,,False,,,,,,

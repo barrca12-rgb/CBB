@@ -1156,3 +1156,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-26|401906807|total|under,2026-11-26,401906807,total,Under 143,under,2509,201,Purdue,Oklahoma,143.0,143.0,-110.0,Fanatics,3.35,139.65,1.0,yes,2026-11-25T23:04:52+00:00,,,,,,,,open,
 2026-11-26|401912231|spread|away|bandB,2026-11-26,401912231,spread,Army +14,away,2636,349,UTSA,Army,14.0,14.0,-110.0,Fanatics,2.05,11.95,0.5,yes,2026-11-25T23:16:02+00:00,,,,,,,,open,bandB
 2026-11-26|401917546|total|under,2026-11-26,401917546,total,Under 142.5,under,2437,279,Omaha,Pacific,142.5,142.5,-105.0,FanDuel,3.07,139.43,1.0,yes,2026-11-25T23:28:43+00:00,,,,,,,,open,
+2026-11-26|401912231|spread|away,2026-11-26,401912231,spread,Army +14.5,away,2636,349,UTSA,Army,14.5,14.5,-115.0,theScore Bet,2.55,11.95,0.24,yes,2026-11-25T23:49:12+00:00,,,,,,,,open,
