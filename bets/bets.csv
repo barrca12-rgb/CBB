@@ -1090,3 +1090,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-25|401917545|spread|away,2026-11-25,401917545,spread,Eastern Washington +7.5,away,2351,331,Loyola Marymount,Eastern Washington,7.5,7.5,-110.0,theScore Bet,2.5,5.0,0.26,yes,2026-11-24T23:46:19+00:00,,,,,,,,open,
 2026-11-25|401928836|total|under,2026-11-25,401928836,total,Under 135.5,under,2026,2006,App State,Akron,135.5,135.5,-110.0,DraftKings,5.69,129.81,1.98,yes,2026-11-25T00:13:37+00:00,,,,,,,,open,
 2026-11-25|401928359|spread|home,2026-11-25,401928359,spread,Florida International +1.5,home,2229,2032,Florida International,Arkansas State,1.5,1.5,-120.0,theScore Bet,5.05,3.55,0.52,yes,2026-11-25T00:13:37+00:00,,,,,,,,open,
+2026-11-25|401924705|total|over,2026-11-25,401924705,total,Over 124,over,171,2612,Columbia,Saint Peter's,124.0,124.0,-110.0,Fanatics,3.05,127.05,0.99,yes,2026-11-25T00:25:45+00:00,,,,,,,,open,

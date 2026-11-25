@@ -876,3 +876,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-25|401917545|spread|away,2026-11-25,spread,Eastern Washington +7.5,7.5,-110.0,2.5,0.26,,,True,0.5,2.0,True,,,,,-7.0,0.5
 2026-11-25|401928836|total|under,2026-11-25,total,Under 135.5,135.5,-110.0,5.69,1.98,,,True,0.0,5.69,True,,,,,135.5,0.0
 2026-11-25|401928359|spread|home,2026-11-25,spread,Florida International +1.5,1.5,-120.0,5.05,0.52,,,True,1.5,3.55,True,,,,,0.0,1.5
+2026-11-25|401924705|total|over,2026-11-25,total,Over 124,124.0,-110.0,3.05,0.99,,,True,0.0,3.05,True,,,,,124.0,0.0
