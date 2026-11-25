@@ -1127,7 +1127,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-26|401920531|spread|away|bandB,2026-11-26,401920531,spread,Texas Tech -8.5,away,2483,2641,Oregon,Texas Tech,-8.5,-8.5,-115.0,DraftKings,2.19,-10.69,0.5,yes,2026-11-25T07:07:39+00:00,,,,,,,,open,bandB
 2026-11-26|401920539|total|under,2026-11-26,401920539,total,Under 177.5,under,333,2306,Alabama,Kansas State,177.5,177.5,-110.0,DraftKings,7.32,170.18,2.0,yes,2026-11-25T07:56:31+00:00,,,,,,,,open,
 2026-11-26|401920540|total|under,2026-11-26,401920540,total,Under 160.5,under,239,2250,Baylor,Gonzaga,160.5,160.5,-110.0,DraftKings,4.1,156.4,1.5,yes,2026-11-25T07:56:31+00:00,,,,,,,,open,
-2026-11-25|401927399|total|over,2026-11-25,401927399,total,Over 138.5,over,2057,179,Belmont,St. Bonaventure,138.5,138.5,105.0,BetRivers,3.24,141.74,1.0,yes,2026-11-25T08:09:06+00:00,,,,,,,,open,
+2026-11-25|401927399|total|over,2026-11-25,401927399,total,Over 138.5,over,2057,179,Belmont,St. Bonaventure,138.5,138.5,105.0,BetRivers,3.24,141.74,1.0,yes,2026-11-25T08:09:06+00:00,135.5,-3.0,-0.07213729233996419,68.0,71.0,W,1.05,settled,
 2026-11-25|401924737|total|over,2026-11-25,401924737,total,Over 134.5,over,2335,163,Liberty,Princeton,134.5,134.5,-115.0,BetRivers,3.57,138.07,1.0,yes,2026-11-25T08:09:06+00:00,,,,,,,,open,
 2026-11-25|401920916|total|over,2026-11-25,401920916,total,Over 138.5,over,2565,2459,SIU Edwardsville,Northern Illinois,138.5,138.5,-110.0,DraftKings,3.25,141.75,1.0,yes,2026-11-25T08:09:06+00:00,,,,,,,,open,
 2026-11-26|401920529|spread|home,2026-11-26,401920529,spread,Iowa State +1.5,home,66,2633,Iowa State,Tennessee,1.5,1.5,-125.0,DraftKings,4.74,3.24,0.7,yes,2026-11-25T09:58:40+00:00,,,,,,,,open,
