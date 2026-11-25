@@ -1,1 +1,1 @@
-2026-11-25 04:04 UTC  events 163  book-game rows 339 (236 SGO, 103 The Odds API)  unmatched teams: Citadel Bulldogs, McNeese State Cowboys, New Orleans Privateers, Warner Royals  SGO month: 16,250 of 100,000 entities  The Odds API credits left: 74584
+2026-11-25 04:14 UTC  events 0  book-game rows 328 (0 SGO, 328 The Odds API)  unmatched teams: New Orleans Privateers  The Odds API credits left: 74575
