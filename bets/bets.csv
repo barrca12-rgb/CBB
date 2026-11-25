@@ -1141,3 +1141,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-25|401921671|spread|home,2026-11-25,401921671,spread,Colorado +9.5,home,38,2253,Colorado,Grand Canyon,9.5,9.5,-105.0,DraftKings,2.67,-6.83,0.35,yes,2026-11-25T15:04:38+00:00,,,,,,,,open,
 2026-11-25|401925688|total|over,2026-11-25,401925688,total,Over 146.5,over,326,2016,Texas State,Alcorn State,146.5,146.5,-115.0,FanDuel,3.47,149.97,1.0,yes,2026-11-25T15:50:19+00:00,,,,,,,,open,
 2026-11-25|401917967|total|over,2026-11-25,401917967,total,Over 139.5,over,2571,2000,South Dakota State,Abilene Christian,139.5,139.5,-105.0,theScore Bet,8.03,147.53,2.0,yes,2026-11-25T18:04:42+00:00,,,,,,,,open,
+2026-11-26|401925757|total|under,2026-11-26,401925757,total,Under 151.5,under,127,8,Michigan State,Arkansas,151.5,151.5,-110.0,FanDuel,4.99,146.51,1.5,yes,2026-11-25T19:31:32+00:00,,,,,,,,open,
