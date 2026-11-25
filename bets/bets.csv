@@ -1098,7 +1098,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-25|401918960|total|over,2026-11-25,401918960,total,Over 148.5,over,152,2450,NC State,Norfolk State,148.5,148.5,-110.0,FanDuel,5.17,153.67,2.0,yes,2026-11-25T01:13:20+00:00,,,,,,,,open,
 2026-11-25|401918960|spread|home|bandB,2026-11-25,401918960,spread,NC State -26.5,home,152,2450,NC State,Norfolk State,-26.5,-26.5,-110.0,FanDuel,2.05,28.55,0.5,yes,2026-11-25T01:13:31+00:00,,,,,,,,open,bandB
 2026-11-25|401924897|total|over,2026-11-25,401924897,total,Over 150,over,167,2400,New Mexico,Mississippi Valley State,150.0,150.0,-110.0,Fanatics,4.03,154.03,1.47,yes,2026-11-25T01:22:02+00:00,,,,,,,,open,
-2026-11-25|401928845|total|over,2026-11-25,401928845,total,Over 154.5,over,195,242,Ohio,Rice,154.5,154.5,-115.0,DraftKings,3.26,157.76,0.98,yes,2026-11-25T01:31:44+00:00,,,,,,,,open,
+2026-11-25|401928845|total|over,2026-11-25,401928845,total,Over 154.5,over,195,242,Ohio,Rice,154.5,154.5,-115.0,DraftKings,3.26,157.76,0.98,yes,2026-11-25T01:31:44+00:00,154.5,0.0,0.0,74.0,82.0,W,0.852,settled,
 2026-11-25|401919042|total|over,2026-11-25,401919042,total,Over 158.5,over,197,2296,Oklahoma State,Jackson State,158.5,158.5,-105.0,BetMGM,4.19,162.69,1.47,yes,2026-11-25T01:31:44+00:00,,,,,,,,open,
 2026-11-25|401920858|spread|away,2026-11-25,401920858,spread,Prairie View A&M +18,away,276,2504,Marshall,Prairie View A&M,18.0,18.0,-110.0,Fanatics,6.18,11.82,0.5,yes,2026-11-25T01:31:44+00:00,,,,,,,,open,
 2026-11-25|401919042|spread|away|bandB,2026-11-25,401919042,spread,Jackson State +35.5,away,197,2296,Oklahoma State,Jackson State,35.5,35.5,-110.0,BetMGM,2.11,33.39,0.5,yes,2026-11-25T01:32:01+00:00,,,,,,,,open,bandB
@@ -1136,7 +1136,8 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-26|401920530|spread|home,2026-11-26,401920530,spread,Louisville +4.5,home,97,2599,Louisville,St. John's,4.5,4.5,-118.0,DraftKings,2.72,-1.78,0.35,yes,2026-11-25T11:42:23+00:00,,,,,,,,open,
 2026-11-26|401920539|spread|home|bandB,2026-11-26,401920539,spread,Alabama -13.5,home,333,2306,Alabama,Kansas State,-13.5,-13.5,-102.0,DraftKings,2.21,15.71,0.5,yes,2026-11-25T11:42:39+00:00,,,,,,,,open,bandB
 2026-11-26|401920540|spread|home|bandB,2026-11-26,401920540,spread,Baylor +4.5,home,239,2250,Baylor,Gonzaga,4.5,4.5,-112.0,DraftKings,2.46,-2.04,0.5,yes,2026-11-25T11:42:39+00:00,,,,,,,,open,bandB
-2026-11-25|401928845|spread|away|bandB,2026-11-25,401928845,spread,Rice +5,away,195,242,Ohio,Rice,5.0,5.0,-110.0,Fanatics,2.25,2.75,0.5,yes,2026-11-25T12:10:00+00:00,,,,,,,,open,bandB
+2026-11-25|401928845|spread|away|bandB,2026-11-25,401928845,spread,Rice +5,away,195,242,Ohio,Rice,5.0,5.0,-110.0,Fanatics,2.25,2.75,0.5,yes,2026-11-25T12:10:00+00:00,3.5,1.5,0.05261666195334003,74.0,82.0,W,0.455,settled,bandB
 2026-11-26|401920539|spread|home,2026-11-26,401920539,spread,Alabama -13,home,333,2306,Alabama,Kansas State,-13.0,-13.0,-110.0,Fanatics,2.71,15.71,0.35,yes,2026-11-25T14:41:43+00:00,,,,,,,,open,
 2026-11-25|401921671|spread|home,2026-11-25,401921671,spread,Colorado +9.5,home,38,2253,Colorado,Grand Canyon,9.5,9.5,-105.0,DraftKings,2.67,-6.83,0.35,yes,2026-11-25T15:04:38+00:00,,,,,,,,open,
 2026-11-25|401925688|total|over,2026-11-25,401925688,total,Over 146.5,over,326,2016,Texas State,Alcorn State,146.5,146.5,-115.0,FanDuel,3.47,149.97,1.0,yes,2026-11-25T15:50:19+00:00,,,,,,,,open,
+2026-11-25|401917967|total|over,2026-11-25,401917967,total,Over 139.5,over,2571,2000,South Dakota State,Abilene Christian,139.5,139.5,-105.0,theScore Bet,8.03,147.53,2.0,yes,2026-11-25T18:04:42+00:00,,,,,,,,open,
