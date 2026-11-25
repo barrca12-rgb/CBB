@@ -1115,3 +1115,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-25|401921669|total|over,2026-11-25,401921669,total,Over 146.5,over,99,9,LSU,Arizona State,146.5,146.5,-110.0,Caesars,3.09,149.59,0.93,yes,2026-11-25T02:28:22+00:00,,,,,,,,open,
 2026-11-25|401928831|total|over,2026-11-25,401928831,total,Over 136.5,over,2750,43,Wright State,Yale,136.5,136.5,-110.0,DraftKings,3.9,140.4,0.93,yes,2026-11-25T02:40:16+00:00,,,,,,,,open,
 2026-11-25|401929406|total|over,2026-11-25,401929406,total,Over 156.5,over,233,2029,South Dakota,Arkansas-Pine Bluff,156.5,156.5,-105.0,BetMGM,4.14,160.64,1.47,yes,2026-11-25T03:34:18+00:00,,,,,,,,open,
+2026-11-25|401920547|total|over,2026-11-25,401920547,total,Over 147.5,over,2174,2458,Detroit Mercy,Northern Colorado,147.5,147.5,-110.0,DraftKings,6.44,153.94,2.0,yes,2026-11-25T03:53:58+00:00,,,,,,,,open,
+2026-11-25|401920547|spread|home|bandB,2026-11-25,401920547,spread,Detroit Mercy +5.5,home,2174,2458,Detroit Mercy,Northern Colorado,5.5,5.5,-102.0,DraftKings,2.26,-3.24,0.5,yes,2026-11-25T03:54:08+00:00,,,,,,,,open,bandB
