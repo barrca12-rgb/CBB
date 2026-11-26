@@ -892,7 +892,7 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-26|401920538|spread|home,2026-11-26,spread,Creighton +1.5,1.5,-120.0,2.97,0.22,,,False,,,False,,,,,,
 2026-11-26|401920538|total|under,2026-11-26,total,Under 156.5,156.5,-110.0,3.29,0.97,,,False,,,False,,,,,,
 2026-11-25|401921108|total|under,2026-11-25,total,Under 153.5,153.5,-110.0,3.99,0.95,W,0.864,True,0.5,3.49,True,,,,,153.0,0.5
-2026-11-25|401929005|spread|away,2026-11-25,spread,Incarnate Word +16.5,16.5,-105.0,2.52,0.22,,,True,0.0,2.52,True,,,,,-16.5,0.0
+2026-11-25|401929005|spread|away,2026-11-25,spread,Incarnate Word +16.5,16.5,-105.0,2.52,0.22,W,0.21,True,0.0,2.52,True,,,,,-16.5,0.0
 2026-11-26|401920528|total|under,2026-11-26,total,Under 153.5,153.5,-110.0,3.46,0.95,,,False,,,False,,,,,,
 2026-11-25|401921669|total|over,2026-11-25,total,Over 146.5,146.5,-110.0,3.09,0.93,W,0.845,False,,,False,,,,,,
 2026-11-25|401928831|total|over,2026-11-25,total,Over 136.5,136.5,-110.0,3.9,0.93,W,0.845,True,0.5,3.4,True,,,,,137.0,0.5
@@ -928,4 +928,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-26|401906807|total|under,2026-11-26,total,Under 143,143.0,-110.0,3.35,1.0,,,True,1.5,1.85,False,,,,,141.5,1.5
 2026-11-26|401917546|total|under,2026-11-26,total,Under 142.5,142.5,-105.0,3.07,1.0,,,False,,,False,,,,,,
 2026-11-26|401912231|spread|away,2026-11-26,spread,Army +14.5,14.5,-115.0,2.55,0.24,,,False,,,False,,,,,,
-2026-11-25|401929005|total|over,2026-11-25,total,Over 139.5,139.5,-110.0,3.36,1.0,,,True,0.0,3.36,True,139.5,0.0,139.5,0.0,139.0,-0.5
+2026-11-25|401929005|total|over,2026-11-25,total,Over 139.5,139.5,-110.0,3.36,1.0,W,0.909,True,0.0,3.36,True,139.5,0.0,139.5,0.0,139.0,-0.5
