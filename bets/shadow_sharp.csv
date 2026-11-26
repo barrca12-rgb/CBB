@@ -893,7 +893,7 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-26|401920538|total|under,2026-11-26,total,Under 156.5,156.5,-110.0,3.29,0.97,,,False,,,False,,,,,,
 2026-11-25|401921108|total|under,2026-11-25,total,Under 153.5,153.5,-110.0,3.99,0.95,W,0.864,True,0.5,3.49,True,,,,,153.0,0.5
 2026-11-25|401929005|spread|away,2026-11-25,spread,Incarnate Word +16.5,16.5,-105.0,2.52,0.22,W,0.21,True,0.0,2.52,True,,,,,-16.5,0.0
-2026-11-26|401920528|total|under,2026-11-26,total,Under 153.5,153.5,-110.0,3.46,0.95,,,False,,,False,,,,,,
+2026-11-26|401920528|total|under,2026-11-26,total,Under 153.5,153.5,-110.0,3.46,0.95,W,0.864,False,,,False,,,,,,
 2026-11-25|401921669|total|over,2026-11-25,total,Over 146.5,146.5,-110.0,3.09,0.93,W,0.845,False,,,False,,,,,,
 2026-11-25|401928831|total|over,2026-11-25,total,Over 136.5,136.5,-110.0,3.9,0.93,W,0.845,True,0.5,3.4,True,,,,,137.0,0.5
 2026-11-25|401929406|total|over,2026-11-25,total,Over 156.5,156.5,-105.0,4.14,1.47,L,-1.47,True,0.0,4.14,True,156.5,0.0,,,156.0,-0.5
@@ -909,7 +909,7 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-25|401924737|total|over,2026-11-25,total,Over 134.5,134.5,-115.0,3.57,1.0,W,0.87,True,1.0,2.57,True,135.5,1.0,,,135.0,0.5
 2026-11-25|401920916|total|over,2026-11-25,total,Over 138.5,138.5,-110.0,3.25,1.0,L,-1.0,True,0.5,2.75,True,138.5,0.0,139.0,0.5,139.0,0.5
 2026-11-26|401920529|spread|home,2026-11-26,spread,Iowa State +1.5,1.5,-125.0,4.74,0.7,,,False,,,False,,,,,,
-2026-11-26|401920528|spread|home,2026-11-26,spread,Maryland -0.5,-0.5,-122.0,2.92,0.35,,,False,,,False,,,,,,
+2026-11-26|401920528|spread|home,2026-11-26,spread,Maryland -0.5,-0.5,-122.0,2.92,0.35,L,-0.35,False,,,False,,,,,,
 2026-11-26|401920530|spread|home,2026-11-26,spread,Louisville +4.5,4.5,-118.0,2.72,0.35,,,False,,,False,,,,,,
 2026-11-26|401920539|spread|home,2026-11-26,spread,Alabama -13,-13.0,-110.0,2.71,0.35,,,False,,,False,,,,,,
 2026-11-25|401921671|spread|home,2026-11-25,spread,Colorado +9.5,9.5,-105.0,2.67,0.35,W,0.333,False,,,False,,,,,,
@@ -931,3 +931,6 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-25|401929005|total|over,2026-11-25,total,Over 139.5,139.5,-110.0,3.36,1.0,W,0.909,True,0.0,3.36,True,139.5,0.0,139.5,0.0,139.0,-0.5
 2026-11-26|401921673|spread|away,2026-11-26,spread,Utah State +3.5,3.5,-110.0,2.53,0.37,,,True,1.0,1.53,False,-2.5,1.0,-3.0,0.5,-3.0,0.5
 2026-11-26|401911523|spread|home,2026-11-26,spread,UC Davis +1.5,1.5,-105.0,2.5,0.37,,,True,0.0,2.5,True,1.5,0.0,2.0,-0.5,1.5,0.0
+2026-11-27|401929283|spread|home,2026-11-27,spread,Boston College +10.5,10.5,-110.0,3.32,0.37,,,True,1.5,1.82,False,,,,,9.0,1.5
+2026-11-27|401920810|spread|away,2026-11-27,spread,Marquette +4.5,4.5,-120.0,5.86,0.74,,,False,,,False,,,,,,
+2026-11-27|401913531|spread|home,2026-11-27,spread,Illinois -25.5,-25.5,-110.0,2.87,0.37,,,True,2.0,0.87,False,,,,,-27.5,2.0
