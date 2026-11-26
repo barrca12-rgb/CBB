@@ -1170,3 +1170,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-27|401925829|total|under,2026-11-27,401925829,total,Under 145.5,under,249,2449,North Texas,North Dakota State,145.5,145.5,-110.0,FanDuel,3.16,142.34,1.0,yes,2026-11-26T21:41:47+00:00,,,,,,,,open,
 2026-11-27|401928468|spread|home|bandB,2026-11-27,401928468,spread,Louisiana Tech +9.5,home,2348,326,Louisiana Tech,Texas State,9.5,9.5,-110.0,FanDuel,2.27,-7.23,0.5,yes,2026-11-26T21:42:03+00:00,,,,,,,,open,bandB
 2026-12-02|401928469|spread|home,2026-12-02,401928469,spread,Texas State -9.5,home,326,2348,Texas State,Louisiana Tech,-9.5,-9.5,-110.0,FanDuel,4.52,14.02,0.8,yes,2026-11-26T21:50:06+00:00,,,,,,,,open,
+2026-11-27|401920848|spread|home|bandB,2026-11-27,401920848,spread,St. Thomas +1.5,home,2900,2335,St. Thomas,Liberty,1.5,1.5,-110.0,Caesars,2.27,0.77,0.5,yes,2026-11-26T22:34:33+00:00,,,,,,,,open,bandB

@@ -785,3 +785,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-26T16:22:24+00:00,2026-11-26,401909506,2026-11-27T00:00Z,221,305,Pittsburgh,DePaul,total,over,v1,Over 137.5,138.5,-115.0,theScore Bet,2026-11-25T21:25:50+00:00,137.5,-105.0,theScore Bet,1.0,1136.6,2.36,3.36,140.86
 2026-11-26T21:57:37+00:00,2026-11-27,401920848,2026-11-27T17:00Z,2900,2335,St. Thomas,Liberty,spread,home,bandB,St. Thomas +1.5,-1.0,-105.0,Fanatics,2026-11-26T20:33:06+00:00,1.5,-115.0,DraftKings,2.5,84.5,-0.23,2.27,0.77
 2026-11-26T22:13:02+00:00,2026-11-27,401925703,2026-11-28T00:30Z,248,2473,Houston,Oakland,spread,away,bandB,Oakland +39.5,37.0,-115.0,Fanatics,2026-11-26T20:43:53+00:00,39.5,-110.0,theScore Bet,2.5,89.2,-0.44,2.06,37.44
+2026-11-26T22:34:11+00:00,2026-11-27,401920382,2026-11-27T22:00Z,259,295,Virginia Tech,Old Dominion,spread,away,bandB,Old Dominion +18.5,18.0,-110.0,Fanatics,2026-11-26T21:28:18+00:00,18.5,-110.0,FanDuel,0.5,65.9,1.87,2.37,16.13
