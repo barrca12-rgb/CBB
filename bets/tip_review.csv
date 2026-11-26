@@ -2535,3 +2535,4 @@ checked_at,bet_id,pick,tip_check,cutoff,cutoff_source,espn_start,start_gap_min,f
 2026-11-25T22:11:31+00:00,2026-11-25|401917182|spread|away,Memphis -1.5,conflict,2026-11-25T23:45:00+00:00,latest pregame report,2026-11-25T22:00:00+00:00,105,2026-11-25T23:45:00+00:00,0.0,False
 2026-11-25T23:46:21+00:00,2026-11-25|401917182|spread|away,Memphis -1.5,review,2026-11-26T00:00:00+00:00,latest pregame report,2026-11-25T23:35:00+00:00,25,2026-11-26T00:00:00+00:00,0.0,True
 2026-11-25T23:54:49+00:00,2026-11-25|401917182|spread|away,Memphis -1.5,review,2026-11-26T00:00:00+00:00,latest pregame report,2026-11-25T23:35:00+00:00,25,2026-11-26T00:00:00+00:00,0.0,False
+2026-11-26T02:54:35+00:00,2026-11-25|401921671|spread|home,Colorado +9.5,conflict,2026-11-26T03:00:00+00:00,latest pregame report,2026-11-26T02:30:00+00:00,30,2026-11-26T03:00:00+00:00,0.0,True
