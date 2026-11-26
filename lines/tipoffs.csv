@@ -801,5 +801,5 @@ game_id,actual_tip,quality,reason,source,fetched_at
 401928791,,missing,no play-by-play,"espn play-by-play, earliest period-1 play at 20:00",2026-11-26T21:00:56+00:00
 401917529,,missing,no play-by-play,"espn play-by-play, earliest period-1 play at 20:00",2026-11-26T21:21:36+00:00
 401926133,,ambiguous,wall clocks out of order (more than 5 s backwards),"espn play-by-play, earliest period-1 play at 20:00",2026-11-26T21:21:36+00:00
-401920529,,ambiguous,wall clocks out of order (more than 5 s backwards),"espn play-by-play, earliest period-1 play at 20:00",2026-11-26T21:24:53+00:00
 401921423,,ambiguous,wall clocks out of order (more than 5 s backwards),"espn play-by-play, earliest period-1 play at 20:00",2026-11-26T21:24:53+00:00
+401920529,,ambiguous,wall clocks out of order (more than 5 s backwards),"espn play-by-play, earliest period-1 play at 20:00",2026-11-26T21:35:26+00:00

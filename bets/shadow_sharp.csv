@@ -936,3 +936,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-27|401913531|spread|home,2026-11-27,spread,Illinois -25.5,-25.5,-110.0,2.87,0.37,,,True,2.0,0.87,False,,,,,-27.5,2.0
 2026-11-27|401929288|spread|away,2026-11-27,spread,Wake Forest +3.5,3.5,-120.0,2.93,0.37,,,False,,,False,,,,,,
 2026-11-27|401929289|total|under,2026-11-27,total,Under 158.5,158.5,-110.0,3.64,1.0,,,True,1.5,2.14,True,,,,,157.0,1.5
+2026-11-27|401926783|spread|home,2026-11-27,spread,Omaha +7.5,7.5,-110.0,3.67,0.6,,,True,0.5,3.17,True,,,,,7.0,0.5
