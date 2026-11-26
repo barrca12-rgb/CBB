@@ -929,3 +929,4 @@ first_seen,date,game_id,market,side,book,number,price,median_others,books,reason
 2026-11-26T21:57:38+00:00,2026-11-27,401925703,spread,-,theScore Bet,-40.5,,-37.0,3,off-market
 2026-11-26T21:57:38+00:00,2026-11-27,401925829,total,-,theScore Bet,142.5,,145.5,3,off-market
 2026-11-26T22:34:12+00:00,2026-11-27,401920848,spread,-,FanDuel,-1.5,,1.5,5,off-market
+2026-11-26T23:38:21+00:00,2026-11-27,401929181,spread,-,FanDuel,-1.5,,1.5,4,off-market
