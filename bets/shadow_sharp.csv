@@ -963,6 +963,7 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-27|401920541|total|over,2026-11-27,total,Over 163.5,163.5,-110.0,5.31,2.0,,,False,,,False,,,,,,
 2026-11-27|401920534|spread|home,2026-11-27,spread,Louisville +1.5,1.5,100.0,3.4,0.44,,,False,,,False,,,,,,
 2026-12-02|401906763|spread|home,2026-12-02,spread,Miami -1.5,-1.5,-118.0,4.86,0.88,,,False,,,False,,,,,,
-2026-11-27|401920533|spread|home,2026-11-27,spread,Iowa State +2.5,2.5,104.0,2.61,0.44,,,False,,,False,,,,,,
-2026-11-27|401920533|total|over,2026-11-27,total,Over 149.5,149.5,-110.0,3.72,1.0,,,False,,,False,,,,,,
+2026-11-27|401920533|spread|home,2026-11-27,spread,Iowa State +2.5,2.5,104.0,2.61,0.44,L,-0.44,False,,,False,,,,,,
+2026-11-27|401920533|total|over,2026-11-27,total,Over 149.5,149.5,-110.0,3.72,1.0,W,0.909,False,,,False,,,,,,
 2026-11-27|401920542|total|under,2026-11-27,total,Under 154.5,154.5,-115.0,3.99,1.0,,,True,1.5,2.49,True,,,,,153.0,1.5
+2026-11-27|401912213|total|over,2026-11-27,total,Over 142.5,142.5,-105.0,7.1,2.0,,,True,0.0,7.1,True,141.5,-1.0,142.5,0.0,142.0,-0.5

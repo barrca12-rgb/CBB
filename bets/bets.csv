@@ -1199,7 +1199,9 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-27|401920541|total|over,2026-11-27,401920541,total,Over 163.5,over,2306,130,Kansas State,Michigan,163.5,163.5,-110.0,DraftKings,5.31,168.81,2.0,yes,2026-11-27T05:19:38+00:00,,,,,,,,open,
 2026-11-27|401920534|spread|home,2026-11-27,401920534,spread,Louisville +1.5,home,97,2633,Louisville,Tennessee,1.5,1.5,100.0,DraftKings,3.4,1.9,0.44,yes,2026-11-27T05:19:38+00:00,,,,,,,,open,
 2026-12-02|401906763|spread|home,2026-12-02,401906763,spread,Miami -1.5,home,2390,333,Miami,Alabama,-1.5,-1.5,-118.0,DraftKings,4.86,6.36,0.88,yes,2026-11-27T05:42:35+00:00,,,,,,,,open,
-2026-11-27|401920533|spread|home,2026-11-27,401920533,spread,Iowa State +2.5,home,66,2599,Iowa State,St. John's,2.5,2.5,104.0,BetRivers,2.61,0.11,0.44,yes,2026-11-27T06:48:33+00:00,,,,,,,,open,
-2026-11-27|401920533|total|over,2026-11-27,401920533,total,Over 149.5,over,66,2599,Iowa State,St. John's,149.5,149.5,-110.0,Caesars,3.72,153.22,1.0,yes,2026-11-27T07:18:41+00:00,,,,,,,,open,
+2026-11-27|401920533|spread|home,2026-11-27,401920533,spread,Iowa State +2.5,home,66,2599,Iowa State,St. John's,2.5,2.5,104.0,BetRivers,2.61,0.11,0.44,yes,2026-11-27T06:48:33+00:00,1.5,1.0,0.03513455315346392,75.0,80.0,L,-0.44,settled,
+2026-11-27|401920533|total|over,2026-11-27,401920533,total,Over 149.5,over,66,2599,Iowa State,St. John's,149.5,149.5,-110.0,Caesars,3.72,153.22,1.0,yes,2026-11-27T07:18:41+00:00,151.5,2.0,0.048238488214981334,75.0,80.0,W,0.909,settled,
 2026-11-27|401920542|total|under,2026-11-27,401920542,total,Under 154.5,under,239,2628,Baylor,TCU,154.5,154.5,-115.0,DraftKings,3.99,150.51,1.0,yes,2026-11-27T11:26:58+00:00,,,,,,,,open,
 2026-11-27|401921416|spread|home|bandB,2026-11-27,401921416,spread,Hampton +2.5,home,2261,2349,Hampton,UMass Lowell,2.5,2.5,-117.0,BetRivers,2.17,-0.33,0.5,yes,2026-11-27T17:45:00+00:00,1.5,1.0,0.03513455315346392,55.0,72.0,L,-0.5,settled,bandB
+2026-11-27|401912213|total|over,2026-11-27,401912213,total,Over 142.5,over,44,2515,American University,Radford,142.5,142.5,-105.0,theScore Bet,7.1,149.6,2.0,yes,2026-11-27T20:25:15+00:00,,,,,,,,open,
+2026-11-28|401918961|spread|away|bandB,2026-11-28,401918961,spread,Elon +22.5,away,152,2210,NC State,Elon,22.5,22.5,-110.0,DraftKings,2.39,20.11,0.5,yes,2026-11-27T20:27:00+00:00,,,,,,,,open,bandB
