@@ -1180,7 +1180,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-27|401921224|total|under,2026-11-27,401921224,total,Under 139.5,under,2217,2426,Fairfield,Navy,139.5,139.5,-110.0,FanDuel,3.97,135.53,1.0,yes,2026-11-27T00:12:47+00:00,133.5,6.0,0.14193521557221733,75.0,59.0,W,0.909,settled,
 2026-11-27|401921416|total|under,2026-11-27,401921416,total,Under 143.5,under,2349,2261,UMass Lowell,Hampton,143.5,143.5,-110.0,FanDuel,3.31,140.19,1.0,yes,2026-11-27T00:22:32+00:00,138.5,5.0,0.11906661590587608,72.0,55.0,W,0.909,settled,
 2026-11-27|401902282|total|under,2026-11-27,401902282,total,Under 153.5,under,2086,91,Butler,Bellarmine,153.5,153.5,-110.0,FanDuel,3.21,150.29,1.0,yes,2026-11-27T00:22:32+00:00,,,,,,,,open,
-2026-11-27|401919786|spread|home,2026-11-27,401919786,spread,Le Moyne +1,home,2330,311,Le Moyne,Maine,1.0,1.0,-115.0,Fanatics,3.23,2.23,0.39,yes,2026-11-27T00:33:27+00:00,,,,,,,,open,
+2026-11-27|401919786|spread|home,2026-11-27,401919786,spread,Le Moyne +1,home,2330,311,Le Moyne,Maine,1.0,1.0,-115.0,Fanatics,3.23,2.23,0.39,yes,2026-11-27T00:33:27+00:00,-1.5,2.5,0.08724297620558874,86.0,90.0,L,-0.39,settled,
 2026-11-27|401921417|total|under,2026-11-27,401921417,total,Under 149.5,under,2083,2325,Bucknell,La Salle,149.5,149.5,-110.0,FanDuel,3.47,146.03,1.0,yes,2026-11-27T00:33:27+00:00,,,,,,,,open,
 2026-11-27|401920774|total|under,2026-11-27,401920774,total,Under 143.5,under,2275,2142,Hofstra,Colgate,143.5,143.5,-110.0,FanDuel,3.9,139.6,1.0,yes,2026-11-27T00:33:27+00:00,,,,,,,,open,
 2026-11-27|401921818|spread|home,2026-11-27,401921818,spread,Missouri -46.5,home,142,2029,Missouri,Arkansas-Pine Bluff,-46.5,-46.5,-110.0,Fanatics,3.79,50.29,0.58,yes,2026-11-27T00:33:27+00:00,,,,,,,,open,
@@ -1215,3 +1215,9 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-28|401917549|spread|home,2026-11-28,401917549,spread,San Diego -12.5,home,301,2458,San Diego,Northern Colorado,-12.5,-12.5,-115.0,theScore Bet,2.99,15.49,0.46,yes,2026-11-27T21:24:34+00:00,,,,,,,,open,
 2026-11-28|401917954|spread|away|bandB,2026-11-28,401917954,spread,Austin Peay +9.5,away,231,2046,Furman,Austin Peay,9.5,9.5,-110.0,theScore Bet,2.43,7.07,0.5,yes,2026-11-27T21:24:45+00:00,,,,,,,,open,bandB
 2026-11-28|401920197|spread|home|bandB,2026-11-28,401920197,spread,Monmouth +2,home,2405,2603,Monmouth,Saint Joseph's,2.0,2.0,-110.0,Fanatics,2.17,0.17,0.5,yes,2026-11-27T21:24:45+00:00,,,,,,,,open,bandB
+2026-11-28|401929048|total|over,2026-11-28,401929048,total,Over 137.5,over,324,2710,Coastal Carolina,Western Illinois,137.5,137.5,-110.0,theScore Bet,4.9,142.4,1.5,yes,2026-11-27T21:36:30+00:00,,,,,,,,open,
+2026-11-28|401926229|spread|away,2026-11-28,401926229,spread,Denver +5.5,away,166,2172,New Mexico State,Denver,5.5,5.5,-103.0,DraftKings,2.53,2.97,0.43,yes,2026-11-27T21:36:30+00:00,,,,,,,,open,
+2026-11-28|401926229|total|under,2026-11-28,401926229,total,Under 144.5,under,166,2172,New Mexico State,Denver,144.5,144.5,-110.0,DraftKings,3.25,141.25,1.0,yes,2026-11-27T21:36:30+00:00,,,,,,,,open,
+2026-11-28|401911032|spread|away,2026-11-28,401911032,spread,Buffalo +4.5,away,119,2084,Towson,Buffalo,4.5,4.5,-116.0,DraftKings,3.96,0.54,0.65,yes,2026-11-27T21:36:30+00:00,,,,,,,,open,
+2026-11-28|401926218|total|under,2026-11-28,401926218,total,Under 170.5,under,2198,2635,Eastern Kentucky,Tennessee Tech,170.5,170.5,-110.0,theScore Bet,5.36,165.14,2.0,yes,2026-11-27T21:36:30+00:00,,,,,,,,open,
+2026-11-28|401920924|total|over,2026-11-28,401920924,total,Over 137,over,116,2182,Mount St. Mary's,Drexel,137.0,137.0,-110.0,Fanatics,3.04,140.04,1.0,yes,2026-11-27T21:36:30+00:00,,,,,,,,open,
