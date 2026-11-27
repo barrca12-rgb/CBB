@@ -1178,3 +1178,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-27|401921827|spread|home,2026-11-27,401921827,spread,Vanderbilt -33.5,home,238,2582,Vanderbilt,Southern,-33.5,-33.5,-118.0,FanDuel,5.67,39.17,0.78,yes,2026-11-27T00:12:47+00:00,,,,,,,,open,
 2026-11-27|401921827|total|over,2026-11-27,401921827,total,Over 149.5,over,238,2582,Vanderbilt,Southern,149.5,149.5,-110.0,FanDuel,5.25,154.75,2.0,yes,2026-11-27T00:12:47+00:00,,,,,,,,open,
 2026-11-27|401921224|total|under,2026-11-27,401921224,total,Under 139.5,under,2217,2426,Fairfield,Navy,139.5,139.5,-110.0,FanDuel,3.97,135.53,1.0,yes,2026-11-27T00:12:47+00:00,,,,,,,,open,
+2026-11-27|401921416|total|under,2026-11-27,401921416,total,Under 143.5,under,2349,2261,UMass Lowell,Hampton,143.5,143.5,-110.0,FanDuel,3.31,140.19,1.0,yes,2026-11-27T00:22:32+00:00,,,,,,,,open,
+2026-11-27|401902282|total|under,2026-11-27,401902282,total,Under 153.5,under,2086,91,Butler,Bellarmine,153.5,153.5,-110.0,FanDuel,3.21,150.29,1.0,yes,2026-11-27T00:22:32+00:00,,,,,,,,open,

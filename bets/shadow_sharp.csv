@@ -944,3 +944,5 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-27|401921827|spread|home,2026-11-27,spread,Vanderbilt -33.5,-33.5,-118.0,5.67,0.78,,,False,,,False,,,,,,
 2026-11-27|401921827|total|over,2026-11-27,total,Over 149.5,149.5,-110.0,5.25,2.0,,,False,,,False,,,,,,
 2026-11-27|401921224|total|under,2026-11-27,total,Under 139.5,139.5,-110.0,3.97,1.0,,,False,,,False,,,,,,
+2026-11-27|401921416|total|under,2026-11-27,total,Under 143.5,143.5,-110.0,3.31,1.0,,,False,,,False,,,,,,
+2026-11-27|401902282|total|under,2026-11-27,total,Under 153.5,153.5,-110.0,3.21,1.0,,,False,,,False,,,,,,
