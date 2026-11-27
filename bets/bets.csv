@@ -1192,3 +1192,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-27|401911380|total|under,2026-11-27,401911380,total,Under 145.5,under,2193,2127,East Tennessee State,Charleston Southern,145.5,145.5,-105.0,FanDuel,4.3,141.2,1.5,yes,2026-11-27T01:01:35+00:00,,,,,,,,open,
 2026-11-27|401926756|total|under,2026-11-27,401926756,total,Under 147,under,2540,2329,UC Santa Barbara,Lehigh,147.0,147.0,-110.0,Fanatics,3.13,143.87,1.0,yes,2026-11-27T01:16:14+00:00,,,,,,,,open,
 2026-11-27|401926756|spread|away|bandB,2026-11-27,401926756,spread,Lehigh +15.5,away,2540,2329,UC Santa Barbara,Lehigh,15.5,15.5,-105.0,theScore Bet,2.23,13.27,0.5,yes,2026-11-27T01:16:30+00:00,,,,,,,,open,bandB
+2026-11-27|401902282|spread|away,2026-11-27,401902282,spread,Bellarmine +19.5,away,2086,91,Butler,Bellarmine,19.5,19.5,-110.0,theScore Bet,2.53,16.97,0.42,yes,2026-11-27T02:19:11+00:00,,,,,,,,open,
