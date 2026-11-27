@@ -1,1 +1,1 @@
-2026-11-27 19:35 UTC  events 0  book-game rows 263 (0 SGO, 263 The Odds API)  unmatched teams: none  The Odds API credits left: 72131
+2026-11-27 19:51 UTC  events 0  book-game rows 263 (0 SGO, 263 The Odds API)  unmatched teams: none  The Odds API credits left: 72120
