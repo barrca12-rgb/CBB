@@ -1178,7 +1178,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-27|401921827|spread|home,2026-11-27,401921827,spread,Vanderbilt -33.5,home,238,2582,Vanderbilt,Southern,-33.5,-33.5,-118.0,FanDuel,5.67,39.17,0.78,yes,2026-11-27T00:12:47+00:00,,,,,,,,open,
 2026-11-27|401921827|total|over,2026-11-27,401921827,total,Over 149.5,over,238,2582,Vanderbilt,Southern,149.5,149.5,-110.0,FanDuel,5.25,154.75,2.0,yes,2026-11-27T00:12:47+00:00,,,,,,,,open,
 2026-11-27|401921224|total|under,2026-11-27,401921224,total,Under 139.5,under,2217,2426,Fairfield,Navy,139.5,139.5,-110.0,FanDuel,3.97,135.53,1.0,yes,2026-11-27T00:12:47+00:00,,,,,,,,open,
-2026-11-27|401921416|total|under,2026-11-27,401921416,total,Under 143.5,under,2349,2261,UMass Lowell,Hampton,143.5,143.5,-110.0,FanDuel,3.31,140.19,1.0,yes,2026-11-27T00:22:32+00:00,,,,,,,,open,
+2026-11-27|401921416|total|under,2026-11-27,401921416,total,Under 143.5,under,2349,2261,UMass Lowell,Hampton,143.5,143.5,-110.0,FanDuel,3.31,140.19,1.0,yes,2026-11-27T00:22:32+00:00,138.5,5.0,0.11906661590587608,72.0,55.0,W,0.909,settled,
 2026-11-27|401902282|total|under,2026-11-27,401902282,total,Under 153.5,under,2086,91,Butler,Bellarmine,153.5,153.5,-110.0,FanDuel,3.21,150.29,1.0,yes,2026-11-27T00:22:32+00:00,,,,,,,,open,
 2026-11-27|401919786|spread|home,2026-11-27,401919786,spread,Le Moyne +1,home,2330,311,Le Moyne,Maine,1.0,1.0,-115.0,Fanatics,3.23,2.23,0.39,yes,2026-11-27T00:33:27+00:00,,,,,,,,open,
 2026-11-27|401921417|total|under,2026-11-27,401921417,total,Under 149.5,under,2083,2325,Bucknell,La Salle,149.5,149.5,-110.0,FanDuel,3.47,146.03,1.0,yes,2026-11-27T00:33:27+00:00,,,,,,,,open,
@@ -1202,4 +1202,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-27|401920533|spread|home,2026-11-27,401920533,spread,Iowa State +2.5,home,66,2599,Iowa State,St. John's,2.5,2.5,104.0,BetRivers,2.61,0.11,0.44,yes,2026-11-27T06:48:33+00:00,,,,,,,,open,
 2026-11-27|401920533|total|over,2026-11-27,401920533,total,Over 149.5,over,66,2599,Iowa State,St. John's,149.5,149.5,-110.0,Caesars,3.72,153.22,1.0,yes,2026-11-27T07:18:41+00:00,,,,,,,,open,
 2026-11-27|401920542|total|under,2026-11-27,401920542,total,Under 154.5,under,239,2628,Baylor,TCU,154.5,154.5,-115.0,DraftKings,3.99,150.51,1.0,yes,2026-11-27T11:26:58+00:00,,,,,,,,open,
-2026-11-27|401921416|spread|home|bandB,2026-11-27,401921416,spread,Hampton +2.5,home,2261,2349,Hampton,UMass Lowell,2.5,2.5,-117.0,BetRivers,2.17,-0.33,0.5,yes,2026-11-27T17:45:00+00:00,,,,,,,,open,bandB
+2026-11-27|401921416|spread|home|bandB,2026-11-27,401921416,spread,Hampton +2.5,home,2261,2349,Hampton,UMass Lowell,2.5,2.5,-117.0,BetRivers,2.17,-0.33,0.5,yes,2026-11-27T17:45:00+00:00,1.5,1.0,0.03513455315346392,55.0,72.0,L,-0.5,settled,bandB
