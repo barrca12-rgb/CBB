@@ -943,7 +943,7 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-27|401911030|total|over,2026-11-27,total,Over 152.5,152.5,-110.0,3.28,1.0,,,True,0.0,3.28,True,,,,,152.5,0.0
 2026-11-27|401921827|spread|home,2026-11-27,spread,Vanderbilt -33.5,-33.5,-118.0,5.67,0.78,,,False,,,False,,,,,,
 2026-11-27|401921827|total|over,2026-11-27,total,Over 149.5,149.5,-110.0,5.25,2.0,,,False,,,False,,,,,,
-2026-11-27|401921224|total|under,2026-11-27,total,Under 139.5,139.5,-110.0,3.97,1.0,,,False,,,False,,,,,,
+2026-11-27|401921224|total|under,2026-11-27,total,Under 139.5,139.5,-110.0,3.97,1.0,W,0.909,False,,,False,,,,,,
 2026-11-27|401921416|total|under,2026-11-27,total,Under 143.5,143.5,-110.0,3.31,1.0,W,0.909,False,,,False,,,,,,
 2026-11-27|401902282|total|under,2026-11-27,total,Under 153.5,153.5,-110.0,3.21,1.0,,,False,,,False,,,,,,
 2026-11-27|401919786|spread|home,2026-11-27,spread,Le Moyne +1,1.0,-115.0,3.23,0.39,,,False,,,False,,,,,,
@@ -968,3 +968,6 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-27|401920542|total|under,2026-11-27,total,Under 154.5,154.5,-115.0,3.99,1.0,,,True,1.5,2.49,True,,,,,153.0,1.5
 2026-11-27|401912213|total|over,2026-11-27,total,Over 142.5,142.5,-105.0,7.1,2.0,,,True,0.0,7.1,True,141.5,-1.0,142.5,0.0,142.0,-0.5
 2026-11-28|401926212|spread|home,2026-11-28,spread,Purdue Fort Wayne -1.5,-1.5,-122.0,2.87,0.41,,,True,0.0,2.87,True,,,,,-1.5,0.0
+2026-11-28|401929172|total|under,2026-11-28,total,Under 155.5,155.5,-111.0,4.81,1.5,,,True,1.0,3.81,True,,,,,154.5,1.0
+2026-11-28|401916308|spread|away,2026-11-28,spread,California +9.5,9.5,-117.0,3.42,0.41,,,True,-0.5,3.92,True,,,,,-10.0,-0.5
+2026-11-28|401916308|total|over,2026-11-28,total,Over 140.5,140.5,-111.0,3.1,1.0,,,True,1.0,2.1,True,,,,,141.5,1.0

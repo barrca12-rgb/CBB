@@ -1177,7 +1177,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-26|401909506|spread|away|bandB,2026-11-26,401909506,spread,DePaul +0.5,away,221,305,Pittsburgh,DePaul,0.5,0.5,-114.0,BetRivers,2.07,-1.57,0.5,yes,2026-11-27T00:11:55+00:00,0.5,0.0,0.0,71.0,64.0,L,-0.5,settled,bandB
 2026-11-27|401921827|spread|home,2026-11-27,401921827,spread,Vanderbilt -33.5,home,238,2582,Vanderbilt,Southern,-33.5,-33.5,-118.0,FanDuel,5.67,39.17,0.78,yes,2026-11-27T00:12:47+00:00,,,,,,,,open,
 2026-11-27|401921827|total|over,2026-11-27,401921827,total,Over 149.5,over,238,2582,Vanderbilt,Southern,149.5,149.5,-110.0,FanDuel,5.25,154.75,2.0,yes,2026-11-27T00:12:47+00:00,,,,,,,,open,
-2026-11-27|401921224|total|under,2026-11-27,401921224,total,Under 139.5,under,2217,2426,Fairfield,Navy,139.5,139.5,-110.0,FanDuel,3.97,135.53,1.0,yes,2026-11-27T00:12:47+00:00,,,,,,,,open,
+2026-11-27|401921224|total|under,2026-11-27,401921224,total,Under 139.5,under,2217,2426,Fairfield,Navy,139.5,139.5,-110.0,FanDuel,3.97,135.53,1.0,yes,2026-11-27T00:12:47+00:00,133.5,6.0,0.14193521557221733,75.0,59.0,W,0.909,settled,
 2026-11-27|401921416|total|under,2026-11-27,401921416,total,Under 143.5,under,2349,2261,UMass Lowell,Hampton,143.5,143.5,-110.0,FanDuel,3.31,140.19,1.0,yes,2026-11-27T00:22:32+00:00,138.5,5.0,0.11906661590587608,72.0,55.0,W,0.909,settled,
 2026-11-27|401902282|total|under,2026-11-27,401902282,total,Under 153.5,under,2086,91,Butler,Bellarmine,153.5,153.5,-110.0,FanDuel,3.21,150.29,1.0,yes,2026-11-27T00:22:32+00:00,,,,,,,,open,
 2026-11-27|401919786|spread|home,2026-11-27,401919786,spread,Le Moyne +1,home,2330,311,Le Moyne,Maine,1.0,1.0,-115.0,Fanatics,3.23,2.23,0.39,yes,2026-11-27T00:33:27+00:00,,,,,,,,open,
@@ -1207,3 +1207,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-28|401918961|spread|away|bandB,2026-11-28,401918961,spread,Elon +22.5,away,152,2210,NC State,Elon,22.5,22.5,-110.0,DraftKings,2.39,20.11,0.5,yes,2026-11-27T20:27:00+00:00,,,,,,,,open,bandB
 2026-11-28|401926212|spread|home,2026-11-28,401926212,spread,Purdue Fort Wayne -1.5,home,2870,2747,Purdue Fort Wayne,Wofford,-1.5,-1.5,-122.0,DraftKings,2.87,4.37,0.41,yes,2026-11-27T20:40:19+00:00,,,,,,,,open,
 2026-11-28|401920977|spread|home|bandB,2026-11-28,401920977,spread,Chattanooga -3,home,236,2653,Chattanooga,Troy,-3.0,-3.0,-110.0,Fanatics,2.19,5.19,0.5,yes,2026-11-27T20:51:15+00:00,,,,,,,,open,bandB
+2026-11-28|401929172|total|under,2026-11-28,401929172,total,Under 155.5,under,68,249,Boise State,North Texas,155.5,155.5,-111.0,DraftKings,4.81,150.69,1.5,yes,2026-11-27T21:01:49+00:00,,,,,,,,open,
+2026-11-28|401916308|spread|away,2026-11-28,401916308,spread,California +9.5,away,135,25,Minnesota,California,9.5,9.5,-117.0,DraftKings,3.42,6.08,0.41,yes,2026-11-27T21:01:49+00:00,,,,,,,,open,
+2026-11-28|401916308|total|over,2026-11-28,401916308,total,Over 140.5,over,135,25,Minnesota,California,140.5,140.5,-111.0,DraftKings,3.1,143.6,1.0,yes,2026-11-27T21:01:49+00:00,,,,,,,,open,
