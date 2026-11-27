@@ -793,3 +793,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-27T04:27:31+00:00,2026-11-27,401924738,2026-11-27T20:00Z,350,163,UNC Wilmington,Princeton,total,under,v1,Under 152.5,151.5,-109.0,BetRivers,2026-11-27T00:10:54+00:00,152.5,-105.0,FanDuel,1.0,256.6,2.76,3.76,148.74
 2026-11-27T04:49:29+00:00,2026-11-27,401928624,2026-11-28T01:00Z,198,2623,Oral Roberts,Missouri State,total,over,v1,Over 140.5,143.5,-110.0,theScore Bet,2026-11-26T21:39:17+00:00,140.5,-110.0,theScore Bet,3.0,430.2,0.61,3.61,144.11
 2026-11-27T05:19:00+00:00,2026-11-27,401920533,2026-11-27T18:00Z,2599,66,St. John's,Iowa State,spread,away,bandB,Iowa State +2.5,1.5,100.0,DraftKings,2026-11-27T04:49:09+00:00,2.5,100.0,DraftKings,1.0,29.9,1.04,2.04,0.46
+2026-11-27T05:35:13+00:00,2026-11-27,401920533,2026-11-27T18:00Z,2599,66,St. John's,Iowa State,spread,away,v1,Iowa State +3.5,1.5,100.0,DraftKings,2026-11-27T04:49:09+00:00,3.5,-112.0,DraftKings,2.0,46.1,1.04,3.04,0.46

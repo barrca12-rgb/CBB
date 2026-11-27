@@ -962,3 +962,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-27|401920541|spread|away,2026-11-27,spread,Michigan -7.5,-7.5,-112.0,5.2,0.88,,,False,,,False,,,,,,
 2026-11-27|401920541|total|over,2026-11-27,total,Over 163.5,163.5,-110.0,5.31,2.0,,,False,,,False,,,,,,
 2026-11-27|401920534|spread|home,2026-11-27,spread,Louisville +1.5,1.5,100.0,3.4,0.44,,,False,,,False,,,,,,
+2026-12-02|401906763|spread|home,2026-12-02,spread,Miami -1.5,-1.5,-118.0,4.86,0.88,,,False,,,False,,,,,,

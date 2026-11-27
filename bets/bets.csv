@@ -1198,3 +1198,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-27|401920541|spread|away,2026-11-27,401920541,spread,Michigan -7.5,away,2306,130,Kansas State,Michigan,-7.5,-7.5,-112.0,DraftKings,5.2,-12.7,0.88,yes,2026-11-27T05:19:38+00:00,,,,,,,,open,
 2026-11-27|401920541|total|over,2026-11-27,401920541,total,Over 163.5,over,2306,130,Kansas State,Michigan,163.5,163.5,-110.0,DraftKings,5.31,168.81,2.0,yes,2026-11-27T05:19:38+00:00,,,,,,,,open,
 2026-11-27|401920534|spread|home,2026-11-27,401920534,spread,Louisville +1.5,home,97,2633,Louisville,Tennessee,1.5,1.5,100.0,DraftKings,3.4,1.9,0.44,yes,2026-11-27T05:19:38+00:00,,,,,,,,open,
+2026-12-02|401906763|spread|home,2026-12-02,401906763,spread,Miami -1.5,home,2390,333,Miami,Alabama,-1.5,-1.5,-118.0,DraftKings,4.86,6.36,0.88,yes,2026-11-27T05:42:35+00:00,,,,,,,,open,
