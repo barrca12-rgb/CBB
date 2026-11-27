@@ -1182,7 +1182,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-27|401902282|total|under,2026-11-27,401902282,total,Under 153.5,under,2086,91,Butler,Bellarmine,153.5,153.5,-110.0,FanDuel,3.21,150.29,1.0,yes,2026-11-27T00:22:32+00:00,149.5,4.0,0.09577427411304962,92.0,56.0,W,0.909,settled,
 2026-11-27|401919786|spread|home,2026-11-27,401919786,spread,Le Moyne +1,home,2330,311,Le Moyne,Maine,1.0,1.0,-115.0,Fanatics,3.23,2.23,0.39,yes,2026-11-27T00:33:27+00:00,-1.5,2.5,0.08724297620558874,86.0,90.0,L,-0.39,settled,
 2026-11-27|401921417|total|under,2026-11-27,401921417,total,Under 149.5,under,2083,2325,Bucknell,La Salle,149.5,149.5,-110.0,FanDuel,3.47,146.03,1.0,yes,2026-11-27T00:33:27+00:00,,,,,,,,open,
-2026-11-27|401920774|total|under,2026-11-27,401920774,total,Under 143.5,under,2275,2142,Hofstra,Colgate,143.5,143.5,-110.0,FanDuel,3.9,139.6,1.0,yes,2026-11-27T00:33:27+00:00,,,,,,,,open,
+2026-11-27|401920774|total|under,2026-11-27,401920774,total,Under 143.5,under,2275,2142,Hofstra,Colgate,143.5,143.5,-110.0,FanDuel,3.9,139.6,1.0,yes,2026-11-27T00:33:27+00:00,138.5,5.0,0.11906661590587608,49.0,75.0,W,0.909,settled,
 2026-11-27|401921818|spread|home,2026-11-27,401921818,spread,Missouri -46.5,home,142,2029,Missouri,Arkansas-Pine Bluff,-46.5,-46.5,-110.0,Fanatics,3.79,50.29,0.58,yes,2026-11-27T00:33:27+00:00,,,,,,,,open,
 2026-11-27|401921818|total|over,2026-11-27,401921818,total,Over 156.5,over,142,2029,Missouri,Arkansas-Pine Bluff,156.5,156.5,-110.0,FanDuel,5.56,162.06,2.0,yes,2026-11-27T00:33:27+00:00,,,,,,,,open,
 2026-11-27|401911212|total|over,2026-11-27,401911212,total,Over 153,over,45,2378,George Washington,UMBC,153.0,153.0,-110.0,Fanatics,3.76,156.76,1.0,yes,2026-11-27T00:33:27+00:00,,,,,,,,open,
@@ -1201,7 +1201,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-12-02|401906763|spread|home,2026-12-02,401906763,spread,Miami -1.5,home,2390,333,Miami,Alabama,-1.5,-1.5,-118.0,DraftKings,4.86,6.36,0.88,yes,2026-11-27T05:42:35+00:00,,,,,,,,open,
 2026-11-27|401920533|spread|home,2026-11-27,401920533,spread,Iowa State +2.5,home,66,2599,Iowa State,St. John's,2.5,2.5,104.0,BetRivers,2.61,0.11,0.44,yes,2026-11-27T06:48:33+00:00,1.5,1.0,0.03513455315346392,75.0,80.0,L,-0.44,settled,
 2026-11-27|401920533|total|over,2026-11-27,401920533,total,Over 149.5,over,66,2599,Iowa State,St. John's,149.5,149.5,-110.0,Caesars,3.72,153.22,1.0,yes,2026-11-27T07:18:41+00:00,151.5,2.0,0.048238488214981334,75.0,80.0,W,0.909,settled,
-2026-11-27|401920542|total|under,2026-11-27,401920542,total,Under 154.5,under,239,2628,Baylor,TCU,154.5,154.5,-115.0,DraftKings,3.99,150.51,1.0,yes,2026-11-27T11:26:58+00:00,,,,,,,,open,
+2026-11-27|401920542|total|under,2026-11-27,401920542,total,Under 154.5,under,239,2628,Baylor,TCU,154.5,154.5,-115.0,DraftKings,3.99,150.51,1.0,yes,2026-11-27T11:26:58+00:00,148.5,6.0,0.14193521557221733,69.0,88.0,L,-1.0,settled,
 2026-11-27|401921416|spread|home|bandB,2026-11-27,401921416,spread,Hampton +2.5,home,2261,2349,Hampton,UMass Lowell,2.5,2.5,-117.0,BetRivers,2.17,-0.33,0.5,yes,2026-11-27T17:45:00+00:00,1.5,1.0,0.03513455315346392,55.0,72.0,L,-0.5,settled,bandB
 2026-11-27|401912213|total|over,2026-11-27,401912213,total,Over 142.5,over,44,2515,American University,Radford,142.5,142.5,-105.0,theScore Bet,7.1,149.6,2.0,yes,2026-11-27T20:25:15+00:00,,,,,,,,open,
 2026-11-28|401918961|spread|away|bandB,2026-11-28,401918961,spread,Elon +22.5,away,152,2210,NC State,Elon,22.5,22.5,-110.0,DraftKings,2.39,20.11,0.5,yes,2026-11-27T20:27:00+00:00,,,,,,,,open,bandB
@@ -1222,3 +1222,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-28|401926218|total|under,2026-11-28,401926218,total,Under 170.5,under,2198,2635,Eastern Kentucky,Tennessee Tech,170.5,170.5,-110.0,theScore Bet,5.36,165.14,2.0,yes,2026-11-27T21:36:30+00:00,,,,,,,,open,
 2026-11-28|401920924|total|over,2026-11-28,401920924,total,Over 137,over,116,2182,Mount St. Mary's,Drexel,137.0,137.0,-110.0,Fanatics,3.04,140.04,1.0,yes,2026-11-27T21:36:30+00:00,,,,,,,,open,
 2026-11-28|401920160|spread|home|bandB,2026-11-28,401920160,spread,Cal State Fullerton -11.5,home,2239,2692,Cal State Fullerton,Weber State,-11.5,-11.5,-115.0,theScore Bet,2.0,13.5,0.5,yes,2026-11-27T22:06:00+00:00,,,,,,,,open,bandB
+2026-11-28|401926218|spread|away|bandB,2026-11-28,401926218,spread,Tennessee Tech -3.5,away,2198,2635,Eastern Kentucky,Tennessee Tech,-3.5,-3.5,-110.0,DraftKings,2.35,-5.85,0.5,yes,2026-11-27T22:36:18+00:00,,,,,,,,open,bandB

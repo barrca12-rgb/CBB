@@ -948,7 +948,7 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-27|401902282|total|under,2026-11-27,total,Under 153.5,153.5,-110.0,3.21,1.0,W,0.909,False,,,False,,,,,,
 2026-11-27|401919786|spread|home,2026-11-27,spread,Le Moyne +1,1.0,-115.0,3.23,0.39,L,-0.39,False,,,False,,,,,,
 2026-11-27|401921417|total|under,2026-11-27,total,Under 149.5,149.5,-110.0,3.47,1.0,,,False,,,False,,,,,,
-2026-11-27|401920774|total|under,2026-11-27,total,Under 143.5,143.5,-110.0,3.9,1.0,,,False,,,False,,,,,,
+2026-11-27|401920774|total|under,2026-11-27,total,Under 143.5,143.5,-110.0,3.9,1.0,W,0.909,False,,,False,,,,,,
 2026-11-27|401921818|spread|home,2026-11-27,spread,Missouri -46.5,-46.5,-110.0,3.79,0.58,,,False,,,False,,,,,,
 2026-11-27|401921818|total|over,2026-11-27,total,Over 156.5,156.5,-110.0,5.56,2.0,,,False,,,False,,,,,,
 2026-11-27|401911212|total|over,2026-11-27,total,Over 153,153.0,-110.0,3.76,1.0,,,False,,,False,,,,,,
@@ -965,7 +965,7 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-12-02|401906763|spread|home,2026-12-02,spread,Miami -1.5,-1.5,-118.0,4.86,0.88,,,False,,,False,,,,,,
 2026-11-27|401920533|spread|home,2026-11-27,spread,Iowa State +2.5,2.5,104.0,2.61,0.44,L,-0.44,False,,,False,,,,,,
 2026-11-27|401920533|total|over,2026-11-27,total,Over 149.5,149.5,-110.0,3.72,1.0,W,0.909,False,,,False,,,,,,
-2026-11-27|401920542|total|under,2026-11-27,total,Under 154.5,154.5,-115.0,3.99,1.0,,,True,1.5,2.49,True,,,,,153.0,1.5
+2026-11-27|401920542|total|under,2026-11-27,total,Under 154.5,154.5,-115.0,3.99,1.0,L,-1.0,True,1.5,2.49,True,,,,,153.0,1.5
 2026-11-27|401912213|total|over,2026-11-27,total,Over 142.5,142.5,-105.0,7.1,2.0,,,True,0.0,7.1,True,141.5,-1.0,142.5,0.0,142.0,-0.5
 2026-11-28|401926212|spread|home,2026-11-28,spread,Purdue Fort Wayne -1.5,-1.5,-122.0,2.87,0.41,,,True,0.0,2.87,True,,,,,-1.5,0.0
 2026-11-28|401929172|total|under,2026-11-28,total,Under 155.5,155.5,-111.0,4.81,1.5,,,True,1.0,3.81,True,,,,,154.5,1.0
