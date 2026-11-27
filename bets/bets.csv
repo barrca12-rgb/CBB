@@ -1190,3 +1190,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-27|401929284|spread|home|bandB,2026-11-27,401929284,spread,Georgia -4.5,home,61,2116,Georgia,UCF,-4.5,-4.5,-110.0,Caesars,2.05,6.55,0.5,yes,2026-11-27T00:33:46+00:00,,,,,,,,open,bandB
 2026-11-27|401921185|spread|home,2026-11-27,401921185,spread,Pennsylvania -4.5,home,219,119,Pennsylvania,Towson,-4.5,-4.5,-110.0,DraftKings,2.6,7.1,0.39,yes,2026-11-27T00:45:45+00:00,,,,,,,,open,
 2026-11-27|401911380|total|under,2026-11-27,401911380,total,Under 145.5,under,2193,2127,East Tennessee State,Charleston Southern,145.5,145.5,-105.0,FanDuel,4.3,141.2,1.5,yes,2026-11-27T01:01:35+00:00,,,,,,,,open,
+2026-11-27|401926756|total|under,2026-11-27,401926756,total,Under 147,under,2540,2329,UC Santa Barbara,Lehigh,147.0,147.0,-110.0,Fanatics,3.13,143.87,1.0,yes,2026-11-27T01:16:14+00:00,,,,,,,,open,
+2026-11-27|401926756|spread|away|bandB,2026-11-27,401926756,spread,Lehigh +15.5,away,2540,2329,UC Santa Barbara,Lehigh,15.5,15.5,-105.0,theScore Bet,2.23,13.27,0.5,yes,2026-11-27T01:16:30+00:00,,,,,,,,open,bandB
