@@ -1164,7 +1164,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-27|401920810|spread|away,2026-11-27,401920810,spread,Marquette +4.5,away,245,269,Texas A&M,Marquette,4.5,4.5,-120.0,FanDuel,5.86,-1.36,0.74,yes,2026-11-26T20:34:45+00:00,,,,,,,,open,
 2026-11-27|401913531|spread|home,2026-11-27,401913531,spread,Illinois -25.5,home,356,98,Illinois,Western Kentucky,-25.5,-25.5,-110.0,FanDuel,2.87,28.37,0.37,yes,2026-11-26T20:34:45+00:00,,,,,,,,open,
 2026-11-27|401920429|spread|home|bandB,2026-11-27,401920429,spread,Xavier +9.5,home,2752,258,Xavier,Virginia,9.5,9.5,-120.0,FanDuel,2.4,-7.1,0.5,yes,2026-11-26T20:34:59+00:00,6.5,3.0,0.10432203080282465,71.0,83.0,L,-0.5,settled,bandB
-2026-11-27|401929288|spread|away,2026-11-27,401929288,spread,Wake Forest +3.5,away,235,154,Memphis,Wake Forest,3.5,3.5,-120.0,FanDuel,2.93,0.57,0.37,yes,2026-11-26T20:46:20+00:00,,,,,,,,open,
+2026-11-27|401929288|spread|away,2026-11-27,401929288,spread,Wake Forest +3.5,away,235,154,Memphis,Wake Forest,3.5,3.5,-120.0,FanDuel,2.93,0.57,0.37,yes,2026-11-26T20:46:20+00:00,1.5,2.0,0.06999712412436032,88.0,85.0,W,0.308,settled,
 2026-11-27|401929289|total|under,2026-11-27,401929289,total,Under 158.5,under,344,213,Mississippi State,Penn State,158.5,158.5,-110.0,FanDuel,3.64,154.86,1.0,yes,2026-11-26T20:46:20+00:00,,,,,,,,open,
 2026-11-27|401926783|spread|home,2026-11-27,401926783,spread,Omaha +7.5,home,2437,55,Omaha,Jacksonville State,7.5,7.5,-110.0,FanDuel,3.67,-3.83,0.6,yes,2026-11-26T21:30:01+00:00,,,,,,,,open,
 2026-11-27|401925829|total|under,2026-11-27,401925829,total,Under 145.5,under,249,2449,North Texas,North Dakota State,145.5,145.5,-110.0,FanDuel,3.16,142.34,1.0,yes,2026-11-26T21:41:47+00:00,,,,,,,,open,
@@ -1210,3 +1210,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-28|401929172|total|under,2026-11-28,401929172,total,Under 155.5,under,68,249,Boise State,North Texas,155.5,155.5,-111.0,DraftKings,4.81,150.69,1.5,yes,2026-11-27T21:01:49+00:00,,,,,,,,open,
 2026-11-28|401916308|spread|away,2026-11-28,401916308,spread,California +9.5,away,135,25,Minnesota,California,9.5,9.5,-117.0,DraftKings,3.42,6.08,0.41,yes,2026-11-27T21:01:49+00:00,,,,,,,,open,
 2026-11-28|401916308|total|over,2026-11-28,401916308,total,Over 140.5,over,135,25,Minnesota,California,140.5,140.5,-111.0,DraftKings,3.1,143.6,1.0,yes,2026-11-27T21:01:49+00:00,,,,,,,,open,
+2026-11-28|401917954|total|under,2026-11-28,401917954,total,Under 151.5,under,231,2046,Furman,Austin Peay,151.5,151.5,-107.0,DraftKings,3.05,148.45,1.0,yes,2026-11-27T21:12:57+00:00,,,,,,,,open,
