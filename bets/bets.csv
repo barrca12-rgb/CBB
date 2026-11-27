@@ -1221,3 +1221,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-28|401911032|spread|away,2026-11-28,401911032,spread,Buffalo +4.5,away,119,2084,Towson,Buffalo,4.5,4.5,-116.0,DraftKings,3.96,0.54,0.65,yes,2026-11-27T21:36:30+00:00,,,,,,,,open,
 2026-11-28|401926218|total|under,2026-11-28,401926218,total,Under 170.5,under,2198,2635,Eastern Kentucky,Tennessee Tech,170.5,170.5,-110.0,theScore Bet,5.36,165.14,2.0,yes,2026-11-27T21:36:30+00:00,,,,,,,,open,
 2026-11-28|401920924|total|over,2026-11-28,401920924,total,Over 137,over,116,2182,Mount St. Mary's,Drexel,137.0,137.0,-110.0,Fanatics,3.04,140.04,1.0,yes,2026-11-27T21:36:30+00:00,,,,,,,,open,
+2026-11-28|401920160|spread|home|bandB,2026-11-28,401920160,spread,Cal State Fullerton -11.5,home,2239,2692,Cal State Fullerton,Weber State,-11.5,-11.5,-115.0,theScore Bet,2.0,13.5,0.5,yes,2026-11-27T22:06:00+00:00,,,,,,,,open,bandB
