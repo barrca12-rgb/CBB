@@ -1185,7 +1185,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-27|401920774|total|under,2026-11-27,401920774,total,Under 143.5,under,2275,2142,Hofstra,Colgate,143.5,143.5,-110.0,FanDuel,3.9,139.6,1.0,yes,2026-11-27T00:33:27+00:00,138.5,5.0,0.11906661590587608,49.0,75.0,W,0.909,settled,
 2026-11-27|401921818|spread|home,2026-11-27,401921818,spread,Missouri -46.5,home,142,2029,Missouri,Arkansas-Pine Bluff,-46.5,-46.5,-110.0,Fanatics,3.79,50.29,0.58,yes,2026-11-27T00:33:27+00:00,,,,,,,,open,
 2026-11-27|401921818|total|over,2026-11-27,401921818,total,Over 156.5,over,142,2029,Missouri,Arkansas-Pine Bluff,156.5,156.5,-110.0,FanDuel,5.56,162.06,2.0,yes,2026-11-27T00:33:27+00:00,,,,,,,,open,
-2026-11-27|401911212|total|over,2026-11-27,401911212,total,Over 153,over,45,2378,George Washington,UMBC,153.0,153.0,-110.0,Fanatics,3.76,156.76,1.0,yes,2026-11-27T00:33:27+00:00,,,,,,,,open,
+2026-11-27|401911212|total|over,2026-11-27,401911212,total,Over 153,over,45,2378,George Washington,UMBC,153.0,153.0,-110.0,Fanatics,3.76,156.76,1.0,yes,2026-11-27T00:33:27+00:00,151.0,-2.0,-0.048238488214981334,91.0,51.0,L,-1.0,settled,
 2026-11-27|401927366|total|under,2026-11-27,401927366,total,Under 157.5,under,68,2181,Boise State,Drake,157.5,157.5,-115.0,BetRivers,3.33,154.17,1.0,yes,2026-11-27T00:33:27+00:00,,,,,,,,open,
 2026-11-27|401929284|spread|home|bandB,2026-11-27,401929284,spread,Georgia -4.5,home,61,2116,Georgia,UCF,-4.5,-4.5,-110.0,Caesars,2.05,6.55,0.5,yes,2026-11-27T00:33:46+00:00,,,,,,,,open,bandB
 2026-11-27|401921185|spread|home,2026-11-27,401921185,spread,Pennsylvania -4.5,home,219,119,Pennsylvania,Towson,-4.5,-4.5,-110.0,DraftKings,2.6,7.1,0.39,yes,2026-11-27T00:45:45+00:00,,,,,,,,open,
