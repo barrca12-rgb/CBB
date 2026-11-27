@@ -1201,3 +1201,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-12-02|401906763|spread|home,2026-12-02,401906763,spread,Miami -1.5,home,2390,333,Miami,Alabama,-1.5,-1.5,-118.0,DraftKings,4.86,6.36,0.88,yes,2026-11-27T05:42:35+00:00,,,,,,,,open,
 2026-11-27|401920533|spread|home,2026-11-27,401920533,spread,Iowa State +2.5,home,66,2599,Iowa State,St. John's,2.5,2.5,104.0,BetRivers,2.61,0.11,0.44,yes,2026-11-27T06:48:33+00:00,,,,,,,,open,
 2026-11-27|401920533|total|over,2026-11-27,401920533,total,Over 149.5,over,66,2599,Iowa State,St. John's,149.5,149.5,-110.0,Caesars,3.72,153.22,1.0,yes,2026-11-27T07:18:41+00:00,,,,,,,,open,
+2026-11-27|401920542|total|under,2026-11-27,401920542,total,Under 154.5,under,239,2628,Baylor,TCU,154.5,154.5,-115.0,DraftKings,3.99,150.51,1.0,yes,2026-11-27T11:26:58+00:00,,,,,,,,open,
