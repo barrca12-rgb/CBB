@@ -1206,3 +1206,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-27|401912213|total|over,2026-11-27,401912213,total,Over 142.5,over,44,2515,American University,Radford,142.5,142.5,-105.0,theScore Bet,7.1,149.6,2.0,yes,2026-11-27T20:25:15+00:00,,,,,,,,open,
 2026-11-28|401918961|spread|away|bandB,2026-11-28,401918961,spread,Elon +22.5,away,152,2210,NC State,Elon,22.5,22.5,-110.0,DraftKings,2.39,20.11,0.5,yes,2026-11-27T20:27:00+00:00,,,,,,,,open,bandB
 2026-11-28|401926212|spread|home,2026-11-28,401926212,spread,Purdue Fort Wayne -1.5,home,2870,2747,Purdue Fort Wayne,Wofford,-1.5,-1.5,-122.0,DraftKings,2.87,4.37,0.41,yes,2026-11-27T20:40:19+00:00,,,,,,,,open,
+2026-11-28|401920977|spread|home|bandB,2026-11-28,401920977,spread,Chattanooga -3,home,236,2653,Chattanooga,Troy,-3.0,-3.0,-110.0,Fanatics,2.19,5.19,0.5,yes,2026-11-27T20:51:15+00:00,,,,,,,,open,bandB
