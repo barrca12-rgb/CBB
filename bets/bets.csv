@@ -1175,8 +1175,8 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-27|401911030|total|over,2026-11-27,401911030,total,Over 152.5,over,84,189,Indiana,Bowling Green,152.5,152.5,-110.0,DraftKings,3.28,155.78,1.0,yes,2026-11-26T23:17:14+00:00,,,,,,,,open,
 2026-11-27|401920382|spread|away|bandB,2026-11-27,401920382,spread,Old Dominion +18.5,away,259,295,Virginia Tech,Old Dominion,18.5,18.5,-110.0,FanDuel,2.37,16.13,0.5,yes,2026-11-26T23:49:32+00:00,,,,,,,,open,bandB
 2026-11-26|401909506|spread|away|bandB,2026-11-26,401909506,spread,DePaul +0.5,away,221,305,Pittsburgh,DePaul,0.5,0.5,-114.0,BetRivers,2.07,-1.57,0.5,yes,2026-11-27T00:11:55+00:00,0.5,0.0,0.0,71.0,64.0,L,-0.5,settled,bandB
-2026-11-27|401921827|spread|home,2026-11-27,401921827,spread,Vanderbilt -33.5,home,238,2582,Vanderbilt,Southern,-33.5,-33.5,-118.0,FanDuel,5.67,39.17,0.78,yes,2026-11-27T00:12:47+00:00,,,,,,,,open,
-2026-11-27|401921827|total|over,2026-11-27,401921827,total,Over 149.5,over,238,2582,Vanderbilt,Southern,149.5,149.5,-110.0,FanDuel,5.25,154.75,2.0,yes,2026-11-27T00:12:47+00:00,,,,,,,,open,
+2026-11-27|401921827|spread|home,2026-11-27,401921827,spread,Vanderbilt -33.5,home,238,2582,Vanderbilt,Southern,-33.5,-33.5,-118.0,FanDuel,5.67,39.17,0.78,yes,2026-11-27T00:12:47+00:00,-37.5,4.0,0.1378559486309925,111.0,56.0,W,0.661,settled,
+2026-11-27|401921827|total|over,2026-11-27,401921827,total,Over 149.5,over,238,2582,Vanderbilt,Southern,149.5,149.5,-110.0,FanDuel,5.25,154.75,2.0,yes,2026-11-27T00:12:47+00:00,152.5,3.0,0.07213729233996413,111.0,56.0,W,1.818,settled,
 2026-11-27|401921224|total|under,2026-11-27,401921224,total,Under 139.5,under,2217,2426,Fairfield,Navy,139.5,139.5,-110.0,FanDuel,3.97,135.53,1.0,yes,2026-11-27T00:12:47+00:00,133.5,6.0,0.14193521557221733,75.0,59.0,W,0.909,settled,
 2026-11-27|401921416|total|under,2026-11-27,401921416,total,Under 143.5,under,2349,2261,UMass Lowell,Hampton,143.5,143.5,-110.0,FanDuel,3.31,140.19,1.0,yes,2026-11-27T00:22:32+00:00,138.5,5.0,0.11906661590587608,72.0,55.0,W,0.909,settled,
 2026-11-27|401902282|total|under,2026-11-27,401902282,total,Under 153.5,under,2086,91,Butler,Bellarmine,153.5,153.5,-110.0,FanDuel,3.21,150.29,1.0,yes,2026-11-27T00:22:32+00:00,,,,,,,,open,
@@ -1211,3 +1211,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-28|401916308|spread|away,2026-11-28,401916308,spread,California +9.5,away,135,25,Minnesota,California,9.5,9.5,-117.0,DraftKings,3.42,6.08,0.41,yes,2026-11-27T21:01:49+00:00,,,,,,,,open,
 2026-11-28|401916308|total|over,2026-11-28,401916308,total,Over 140.5,over,135,25,Minnesota,California,140.5,140.5,-111.0,DraftKings,3.1,143.6,1.0,yes,2026-11-27T21:01:49+00:00,,,,,,,,open,
 2026-11-28|401917954|total|under,2026-11-28,401917954,total,Under 151.5,under,231,2046,Furman,Austin Peay,151.5,151.5,-107.0,DraftKings,3.05,148.45,1.0,yes,2026-11-27T21:12:57+00:00,,,,,,,,open,
+2026-11-28|401920906|spread|home,2026-11-28,401920906,spread,Stony Brook -5.5,home,2619,48,Stony Brook,Delaware,-5.5,-5.5,-111.0,DraftKings,2.58,8.08,0.46,yes,2026-11-27T21:24:34+00:00,,,,,,,,open,
+2026-11-28|401917549|spread|home,2026-11-28,401917549,spread,San Diego -12.5,home,301,2458,San Diego,Northern Colorado,-12.5,-12.5,-115.0,theScore Bet,2.99,15.49,0.46,yes,2026-11-27T21:24:34+00:00,,,,,,,,open,
+2026-11-28|401917954|spread|away|bandB,2026-11-28,401917954,spread,Austin Peay +9.5,away,231,2046,Furman,Austin Peay,9.5,9.5,-110.0,theScore Bet,2.43,7.07,0.5,yes,2026-11-27T21:24:45+00:00,,,,,,,,open,bandB
+2026-11-28|401920197|spread|home|bandB,2026-11-28,401920197,spread,Monmouth +2,home,2405,2603,Monmouth,Saint Joseph's,2.0,2.0,-110.0,Fanatics,2.17,0.17,0.5,yes,2026-11-27T21:24:45+00:00,,,,,,,,open,bandB
