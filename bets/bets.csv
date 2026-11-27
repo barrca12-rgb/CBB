@@ -1223,3 +1223,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-28|401920924|total|over,2026-11-28,401920924,total,Over 137,over,116,2182,Mount St. Mary's,Drexel,137.0,137.0,-110.0,Fanatics,3.04,140.04,1.0,yes,2026-11-27T21:36:30+00:00,,,,,,,,open,
 2026-11-28|401920160|spread|home|bandB,2026-11-28,401920160,spread,Cal State Fullerton -11.5,home,2239,2692,Cal State Fullerton,Weber State,-11.5,-11.5,-115.0,theScore Bet,2.0,13.5,0.5,yes,2026-11-27T22:06:00+00:00,,,,,,,,open,bandB
 2026-11-28|401926218|spread|away|bandB,2026-11-28,401926218,spread,Tennessee Tech -3.5,away,2198,2635,Eastern Kentucky,Tennessee Tech,-3.5,-3.5,-110.0,DraftKings,2.35,-5.85,0.5,yes,2026-11-27T22:36:18+00:00,,,,,,,,open,bandB
+2026-11-28|401920310|spread|away,2026-11-28,401920310,spread,Alcorn State +28,away,59,2016,Georgia Tech,Alcorn State,28.0,28.0,-110.0,Fanatics,2.7,25.3,0.33,yes,2026-11-27T23:46:03+00:00,,,,,,,,open,
+2026-11-28|401920728|spread|away,2026-11-28,401920728,spread,Prairie View A&M +30.5,away,2294,2504,Iowa,Prairie View A&M,30.5,30.5,-110.0,DraftKings,3.4,27.1,0.33,yes,2026-11-27T23:46:03+00:00,,,,,,,,open,
+2026-11-28|401920775|spread|away|bandB,2026-11-28,401920775,spread,Vermont +1.5,away,2142,261,Colgate,Vermont,1.5,1.5,-117.0,DraftKings,2.31,-0.81,0.5,yes,2026-11-27T23:46:23+00:00,,,,,,,,open,bandB

@@ -980,3 +980,5 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-28|401911032|spread|away,2026-11-28,spread,Buffalo +4.5,4.5,-116.0,3.96,0.65,,,True,1.5,2.46,True,,,,,-3.0,1.5
 2026-11-28|401926218|total|under,2026-11-28,total,Under 170.5,170.5,-110.0,5.36,2.0,,,True,0.5,4.86,True,,,,,170.0,0.5
 2026-11-28|401920924|total|over,2026-11-28,total,Over 137,137.0,-110.0,3.04,1.0,,,True,0.5,2.54,True,,,,,137.5,0.5
+2026-11-28|401920310|spread|away,2026-11-28,spread,Alcorn State +28,28.0,-110.0,2.7,0.33,,,True,0.5,2.2,True,,,,,-27.5,0.5
+2026-11-28|401920728|spread|away,2026-11-28,spread,Prairie View A&M +30.5,30.5,-110.0,3.4,0.33,,,True,-0.5,3.9,True,,,,,-31.0,-0.5
