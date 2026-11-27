@@ -889,8 +889,8 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-25|401921715|total|under,2026-11-25,total,Under 157.5,157.5,-110.0,4.41,1.46,W,1.327,False,,,False,,,,,,
 2026-11-25|401922253|spread|home,2026-11-25,spread,Northwestern State -1.5,-1.5,-105.0,5.03,0.44,W,0.419,True,0.0,5.03,True,,,,,-1.5,0.0
 2026-11-25|401911241|spread|away,2026-11-25,spread,Bethune-Cookman +11.5,11.5,-110.0,3.27,0.22,W,0.2,True,0.0,3.27,True,,,,,-11.5,0.0
-2026-11-26|401920538|spread|home,2026-11-26,spread,Creighton +1.5,1.5,-120.0,2.97,0.22,,,False,,,False,,,,,,
-2026-11-26|401920538|total|under,2026-11-26,total,Under 156.5,156.5,-110.0,3.29,0.97,,,False,,,False,,,,,,
+2026-11-26|401920538|spread|home,2026-11-26,spread,Creighton +1.5,1.5,-120.0,2.97,0.22,W,0.183,False,,,False,,,,,,
+2026-11-26|401920538|total|under,2026-11-26,total,Under 156.5,156.5,-110.0,3.29,0.97,L,-0.97,False,,,False,,,,,,
 2026-11-25|401921108|total|under,2026-11-25,total,Under 153.5,153.5,-110.0,3.99,0.95,W,0.864,True,0.5,3.49,True,,,,,153.0,0.5
 2026-11-25|401929005|spread|away,2026-11-25,spread,Incarnate Word +16.5,16.5,-105.0,2.52,0.22,W,0.21,True,0.0,2.52,True,,,,,-16.5,0.0
 2026-11-26|401920528|total|under,2026-11-26,total,Under 153.5,153.5,-110.0,3.46,0.95,W,0.864,False,,,False,,,,,,
