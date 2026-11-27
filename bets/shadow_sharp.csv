@@ -939,7 +939,7 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-27|401926783|spread|home,2026-11-27,spread,Omaha +7.5,7.5,-110.0,3.67,0.6,,,True,0.5,3.17,True,,,,,7.0,0.5
 2026-11-27|401925829|total|under,2026-11-27,total,Under 145.5,145.5,-110.0,3.16,1.0,,,False,,,False,,,,,,
 2026-12-02|401928469|spread|home,2026-12-02,spread,Texas State -9.5,-9.5,-110.0,4.52,0.8,,,False,,,False,,,,,,
-2026-11-27|401920429|total|over,2026-11-27,total,Over 156.5,156.5,-110.0,3.12,1.0,,,True,0.0,3.12,True,156.5,0.0,,,156.5,0.0
+2026-11-27|401920429|total|over,2026-11-27,total,Over 156.5,156.5,-110.0,3.12,1.0,L,-1.0,True,0.0,3.12,True,156.5,0.0,,,156.5,0.0
 2026-11-27|401911030|total|over,2026-11-27,total,Over 152.5,152.5,-110.0,3.28,1.0,,,True,0.0,3.28,True,,,,,152.5,0.0
 2026-11-27|401921827|spread|home,2026-11-27,spread,Vanderbilt -33.5,-33.5,-118.0,5.67,0.78,,,False,,,False,,,,,,
 2026-11-27|401921827|total|over,2026-11-27,total,Over 149.5,149.5,-110.0,5.25,2.0,,,False,,,False,,,,,,
