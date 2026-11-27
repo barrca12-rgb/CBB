@@ -1144,7 +1144,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-26|401925757|total|under,2026-11-26,401925757,total,Under 151.5,under,127,8,Michigan State,Arkansas,151.5,151.5,-110.0,FanDuel,4.99,146.51,1.5,yes,2026-11-25T19:31:32+00:00,148.5,3.0,0.07213729233996413,70.0,67.0,W,1.364,settled,
 2026-11-26|401906869|spread|home|bandB,2026-11-26,401906869,spread,Texas -8.5,home,251,46,Texas,Georgetown,-8.5,-8.5,-110.0,DraftKings,2.09,10.59,0.5,yes,2026-11-25T19:46:02+00:00,-8.5,0.0,0.0,92.0,83.0,W,0.455,settled,bandB
 2026-11-25|401920858|total|over,2026-11-25,401920858,total,Over 150.5,over,276,2504,Marshall,Prairie View A&M,150.5,150.5,-105.0,BetMGM,4.07,154.57,1.5,yes,2026-11-25T20:14:53+00:00,149.5,-1.0,-0.02416352663316984,64.0,58.0,L,-1.5,settled,
-2026-11-26|401917547|total|under,2026-11-26,401917547,total,Under 155.5,under,26,2608,UCLA,Saint Mary's,155.5,155.5,-110.0,FanDuel,4.3,151.2,1.5,yes,2026-11-25T20:16:03+00:00,,,,,,,,open,
+2026-11-26|401917547|total|under,2026-11-26,401917547,total,Under 155.5,under,26,2608,UCLA,Saint Mary's,155.5,155.5,-110.0,FanDuel,4.3,151.2,1.5,yes,2026-11-25T20:16:03+00:00,152.5,3.0,0.07213729233996413,70.0,85.0,W,1.364,settled,
 2026-11-26|401918972|spread|away,2026-11-26,401918972,spread,SMU +7.5,away,99,2567,LSU,SMU,7.5,7.5,-110.0,Fanatics,2.83,4.67,0.28,yes,2026-11-25T20:16:03+00:00,,,,,,,,open,
 2026-11-26|401929282|spread|away,2026-11-26,401929282,spread,Boston College +2.5,away,2116,103,UCF,Boston College,2.5,2.5,-105.0,theScore Bet,2.94,-0.44,0.24,yes,2026-11-25T21:28:14+00:00,1.5,1.0,0.03513455315346392,73.0,75.0,W,0.229,settled,
 2026-11-26|401929282|total|over,2026-11-26,401929282,total,Over 144.5,over,2116,103,UCF,Boston College,144.5,144.5,-110.0,theScore Bet,3.2,147.7,1.0,yes,2026-11-25T21:28:14+00:00,149.5,5.0,0.11906661590587608,73.0,75.0,W,0.909,settled,
@@ -1188,3 +1188,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-27|401911212|total|over,2026-11-27,401911212,total,Over 153,over,45,2378,George Washington,UMBC,153.0,153.0,-110.0,Fanatics,3.76,156.76,1.0,yes,2026-11-27T00:33:27+00:00,,,,,,,,open,
 2026-11-27|401927366|total|under,2026-11-27,401927366,total,Under 157.5,under,68,2181,Boise State,Drake,157.5,157.5,-115.0,BetRivers,3.33,154.17,1.0,yes,2026-11-27T00:33:27+00:00,,,,,,,,open,
 2026-11-27|401929284|spread|home|bandB,2026-11-27,401929284,spread,Georgia -4.5,home,61,2116,Georgia,UCF,-4.5,-4.5,-110.0,Caesars,2.05,6.55,0.5,yes,2026-11-27T00:33:46+00:00,,,,,,,,open,bandB
+2026-11-27|401921185|spread|home,2026-11-27,401921185,spread,Pennsylvania -4.5,home,219,119,Pennsylvania,Towson,-4.5,-4.5,-110.0,DraftKings,2.6,7.1,0.39,yes,2026-11-27T00:45:45+00:00,,,,,,,,open,
