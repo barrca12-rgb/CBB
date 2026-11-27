@@ -800,3 +800,4 @@ seen_at,date,game_id,start,home_id,away_id,home,away,market,side,bet_type,pick,o
 2026-11-27T07:18:15+00:00,2026-11-27,401919033,2026-11-28T02:00Z,96,2724,Kentucky,Wichita State,total,over,v1,Over 156.5,158.5,-115.0,theScore Bet,2026-11-26T21:39:17+00:00,156.5,-110.0,DraftKings,2.0,579.0,1.05,3.05,159.55
 2026-11-27T07:41:39+00:00,2026-11-27,401920810,2026-11-27T22:00Z,245,269,Texas A&M,Marquette,total,under,v1,Under 158.5,157.5,-110.0,FanDuel,2026-11-26T20:33:06+00:00,158.5,-110.0,theScore Bet,1.0,668.5,2.07,3.07,155.43
 2026-11-27T11:26:31+00:00,2026-11-27,401924845,2026-11-27T21:30Z,322,315,Lafayette,Niagara,spread,home,bandB,Lafayette -3.5,-4.0,-115.0,Fanatics,2026-11-27T00:31:43+00:00,-3.5,-115.0,theScore Bet,0.5,654.8,1.73,2.23,5.73
+2026-11-27T12:54:08+00:00,2026-11-27,401912213,2026-11-27T21:00Z,44,2515,American University,Radford,total,over,v1,Over 143.5,146.5,-110.0,DraftKings,2026-11-27T02:29:27+00:00,143.5,-105.0,theScore Bet,3.0,624.7,0.6,3.6,147.1
