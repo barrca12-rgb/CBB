@@ -932,7 +932,7 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-26|401921673|spread|away,2026-11-26,spread,Utah State +3.5,3.5,-110.0,2.53,0.37,W,0.336,True,1.0,1.53,False,-2.5,1.0,-3.0,0.5,-3.0,0.5
 2026-11-26|401911523|spread|home,2026-11-26,spread,UC Davis +1.5,1.5,-105.0,2.5,0.37,W,0.352,True,0.0,2.5,True,1.5,0.0,2.0,-0.5,1.5,0.0
 2026-11-27|401929283|spread|home,2026-11-27,spread,Boston College +10.5,10.5,-110.0,3.32,0.37,L,-0.37,True,1.5,1.82,False,,,,,9.0,1.5
-2026-11-27|401920810|spread|away,2026-11-27,spread,Marquette +4.5,4.5,-120.0,5.86,0.74,,,False,,,False,,,,,,
+2026-11-27|401920810|spread|away,2026-11-27,spread,Marquette +4.5,4.5,-120.0,5.86,0.74,W,0.617,False,,,False,,,,,,
 2026-11-27|401913531|spread|home,2026-11-27,spread,Illinois -25.5,-25.5,-110.0,2.87,0.37,,,True,2.0,0.87,False,,,,,-27.5,2.0
 2026-11-27|401929288|spread|away,2026-11-27,spread,Wake Forest +3.5,3.5,-120.0,2.93,0.37,W,0.308,False,,,False,,,,,,
 2026-11-27|401929289|total|under,2026-11-27,total,Under 158.5,158.5,-110.0,3.64,1.0,,,True,1.5,2.14,True,,,,,157.0,1.5
@@ -989,3 +989,7 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-27|401922264|total|over,2026-11-27,total,Over 148.5,148.5,-111.0,4.06,1.5,,,True,1.0,3.06,True,149.5,1.0,148.5,0.0,149.0,0.5
 2026-11-28|401925033|spread|home,2026-11-28,spread,Louisiana +10.5,10.5,-115.0,2.78,0.33,,,True,1.5,1.28,False,,,,,9.0,1.5
 2026-11-28|401925033|total|under,2026-11-28,total,Under 141.5,141.5,-115.0,3.57,1.0,,,True,1.5,2.07,True,,,,,140.0,1.5
+2026-11-28|401920859|total|under,2026-11-28,total,Under 149.5,149.5,-114.0,3.38,1.0,,,True,1.5,1.88,False,,,,,148.0,1.5
+2026-11-28|401912214|total|over,2026-11-28,total,Over 141,141.0,-110.0,3.32,1.0,,,True,0.5,2.82,True,,,,,141.5,0.5
+2026-11-28|401921065|spread|away,2026-11-28,spread,Bethune-Cookman +9.5,9.5,-116.0,5.87,0.72,,,True,0.0,5.87,True,,,,,-9.5,0.0
+2026-11-28|401925783|spread|away,2026-11-28,spread,South Carolina State +20.5,20.5,-117.0,3.83,0.54,,,True,0.0,3.83,True,,,,,-20.5,0.0
