@@ -1251,3 +1251,6 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-28|401920436|spread|home,2026-11-28,401920436,spread,Utah Valley -5.5,home,3084,23,Utah Valley,San José State,-5.5,-5.5,105.0,Fanatics,2.92,8.42,0.42,yes,2026-11-28T01:05:13+00:00,,,,,,,,open,
 2026-11-28|401926757|spread|away,2026-11-28,401926757,spread,Lehigh +10.5,away,2492,2329,Pepperdine,Lehigh,10.5,10.5,-118.0,BetMGM,3.37,7.13,0.42,yes,2026-11-28T01:22:11+00:00,,,,,,,,open,
 2026-11-28|401921245|spread|home|bandB,2026-11-28,401921245,spread,Navy +1.5,home,2426,2115,Navy,Central Connecticut,1.5,1.5,-115.0,Caesars,2.13,0.63,0.5,yes,2026-11-28T01:22:28+00:00,,,,,,,,open,bandB
+2026-11-28|401921414|spread|home,2026-11-28,401921414,spread,Radford +1.5,home,2515,2261,Radford,Hampton,1.5,1.5,-115.0,theScore Bet,4.34,2.84,0.63,yes,2026-11-28T01:39:36+00:00,,,,,,,,open,
+2026-11-28|401921031|spread|home,2026-11-28,401921031,spread,UNC Asheville +1.5,home,2427,290,UNC Asheville,Georgia Southern,1.5,1.5,100.0,theScore Bet,2.74,1.24,0.42,yes,2026-11-28T01:39:36+00:00,,,,,,,,open,
+2026-11-28|401921186|spread|home,2026-11-28,401921186,spread,Pennsylvania -15.5,home,219,2083,Pennsylvania,Bucknell,-15.5,-15.5,-110.0,DraftKings,2.59,18.09,0.42,yes,2026-11-28T01:39:36+00:00,,,,,,,,open,

@@ -1000,3 +1000,6 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-28|401919851|total|over,2026-11-28,total,Over 151,151.0,-110.0,3.23,1.0,,,True,-0.5,3.73,True,,,,,150.5,-0.5
 2026-11-28|401920436|spread|home,2026-11-28,spread,Utah Valley -5.5,-5.5,105.0,2.92,0.42,,,True,0.0,2.92,True,-5.5,0.0,,,-5.5,0.0
 2026-11-28|401926757|spread|away,2026-11-28,spread,Lehigh +10.5,10.5,-118.0,3.37,0.42,,,True,0.5,2.87,True,,,,,-10.0,0.5
+2026-11-28|401921414|spread|home,2026-11-28,spread,Radford +1.5,1.5,-115.0,4.34,0.63,,,False,,,False,,,,,,
+2026-11-28|401921031|spread|home,2026-11-28,spread,UNC Asheville +1.5,1.5,100.0,2.74,0.42,,,True,-0.5,3.24,True,,,,,2.0,-0.5
+2026-11-28|401921186|spread|home,2026-11-28,spread,Pennsylvania -15.5,-15.5,-110.0,2.59,0.42,,,True,0.0,2.59,True,,,,,-15.5,0.0
