@@ -1249,3 +1249,5 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-28|401920197|spread|home,2026-11-28,401920197,spread,Monmouth +2.5,home,2405,2603,Monmouth,Saint Joseph's,2.5,2.5,-110.0,FanDuel,2.62,0.12,0.39,yes,2026-11-28T00:50:08+00:00,,,,,,,,open,
 2026-11-28|401919851|total|over,2026-11-28,401919851,total,Over 151,over,87,284,Notre Dame,Stonehill,151.0,151.0,-110.0,Fanatics,3.23,154.23,1.0,yes,2026-11-28T00:50:08+00:00,,,,,,,,open,
 2026-11-28|401920436|spread|home,2026-11-28,401920436,spread,Utah Valley -5.5,home,3084,23,Utah Valley,San José State,-5.5,-5.5,105.0,Fanatics,2.92,8.42,0.42,yes,2026-11-28T01:05:13+00:00,,,,,,,,open,
+2026-11-28|401926757|spread|away,2026-11-28,401926757,spread,Lehigh +10.5,away,2492,2329,Pepperdine,Lehigh,10.5,10.5,-118.0,BetMGM,3.37,7.13,0.42,yes,2026-11-28T01:22:11+00:00,,,,,,,,open,
+2026-11-28|401921245|spread|home|bandB,2026-11-28,401921245,spread,Navy +1.5,home,2426,2115,Navy,Central Connecticut,1.5,1.5,-115.0,Caesars,2.13,0.63,0.5,yes,2026-11-28T01:22:28+00:00,,,,,,,,open,bandB
