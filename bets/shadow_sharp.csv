@@ -982,3 +982,7 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-28|401920924|total|over,2026-11-28,total,Over 137,137.0,-110.0,3.04,1.0,,,True,0.5,2.54,True,,,,,137.5,0.5
 2026-11-28|401920310|spread|away,2026-11-28,spread,Alcorn State +28,28.0,-110.0,2.7,0.33,,,True,0.5,2.2,True,,,,,-27.5,0.5
 2026-11-28|401920728|spread|away,2026-11-28,spread,Prairie View A&M +30.5,30.5,-110.0,3.4,0.33,,,True,-0.5,3.9,True,,,,,-31.0,-0.5
+2026-11-28|401924779|total|under,2026-11-28,total,Under 151.5,151.5,-115.0,3.3,1.0,,,True,2.5,0.8,False,,,,,149.0,2.5
+2026-11-28|401921031|total|under,2026-11-28,total,Under 158.5,158.5,-105.0,4.87,1.5,,,True,-0.5,5.37,True,,,,,159.0,-0.5
+2026-11-28|401919787|total|over,2026-11-28,total,Over 144.5,144.5,-110.0,3.3,1.0,,,True,-1.5,4.8,True,,,,,143.0,-1.5
+2026-11-28|401919736|spread|away,2026-11-28,spread,Chicago State +14,14.0,-110.0,3.2,0.33,,,True,-1.5,4.7,True,,,,,-15.5,-1.5
