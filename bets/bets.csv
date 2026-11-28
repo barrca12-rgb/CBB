@@ -1231,3 +1231,8 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-28|401919787|total|over,2026-11-28,401919787,total,Over 144.5,over,315,2330,Niagara,Le Moyne,144.5,144.5,-110.0,DraftKings,3.3,147.8,1.0,yes,2026-11-28T00:01:50+00:00,,,,,,,,open,
 2026-11-28|401919736|spread|away,2026-11-28,401919736,spread,Chicago State +14,away,71,2130,Bradley,Chicago State,14.0,14.0,-110.0,Fanatics,3.2,10.8,0.33,yes,2026-11-28T00:01:50+00:00,,,,,,,,open,
 2026-11-28|401926757|spread|away|bandB,2026-11-28,401926757,spread,Lehigh +9.5,away,2492,2329,Pepperdine,Lehigh,9.5,9.5,-110.0,DraftKings,2.37,7.13,0.5,yes,2026-11-28T00:02:05+00:00,,,,,,,,open,bandB
+2026-11-27|401922264|total|over,2026-11-27,401922264,total,Over 148.5,over,265,70,Washington State,Idaho,148.5,148.5,-111.0,DraftKings,4.06,152.56,1.5,yes,2026-11-28T00:11:56+00:00,,,,,,,,open,
+2026-11-28|401925033|spread|home,2026-11-28,401925033,spread,Louisiana +10.5,home,309,2377,Louisiana,McNeese,10.5,10.5,-115.0,DraftKings,2.78,-7.72,0.33,yes,2026-11-28T00:13:17+00:00,,,,,,,,open,
+2026-11-28|401925033|total|under,2026-11-28,401925033,total,Under 141.5,under,309,2377,Louisiana,McNeese,141.5,141.5,-115.0,DraftKings,3.57,137.93,1.0,yes,2026-11-28T00:13:17+00:00,,,,,,,,open,
+2026-11-28|401924913|spread|home|bandB,2026-11-28,401924913,spread,UNLV -9.5,home,2439,292,UNLV,UT Rio Grande Valley,-9.5,-9.5,-117.0,DraftKings,2.01,11.51,0.5,yes,2026-11-28T00:13:28+00:00,,,,,,,,open,bandB
+2026-11-28|401912214|spread|away|bandB,2026-11-28,401912214,spread,UMass Lowell +9.5,away,44,2349,American University,UMass Lowell,9.5,9.5,-115.0,DraftKings,2.16,7.34,0.5,yes,2026-11-28T00:13:28+00:00,,,,,,,,open,bandB
