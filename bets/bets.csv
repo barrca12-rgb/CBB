@@ -1231,7 +1231,7 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-28|401919787|total|over,2026-11-28,401919787,total,Over 144.5,over,315,2330,Niagara,Le Moyne,144.5,144.5,-110.0,DraftKings,3.3,147.8,1.0,yes,2026-11-28T00:01:50+00:00,,,,,,,,open,
 2026-11-28|401919736|spread|away,2026-11-28,401919736,spread,Chicago State +14,away,71,2130,Bradley,Chicago State,14.0,14.0,-110.0,Fanatics,3.2,10.8,0.33,yes,2026-11-28T00:01:50+00:00,,,,,,,,open,
 2026-11-28|401926757|spread|away|bandB,2026-11-28,401926757,spread,Lehigh +9.5,away,2492,2329,Pepperdine,Lehigh,9.5,9.5,-110.0,DraftKings,2.37,7.13,0.5,yes,2026-11-28T00:02:05+00:00,,,,,,,,open,bandB
-2026-11-27|401922264|total|over,2026-11-27,401922264,total,Over 148.5,over,265,70,Washington State,Idaho,148.5,148.5,-111.0,DraftKings,4.06,152.56,1.5,yes,2026-11-28T00:11:56+00:00,,,,,,,,open,
+2026-11-27|401922264|total|over,2026-11-27,401922264,total,Over 148.5,over,265,70,Washington State,Idaho,148.5,148.5,-111.0,DraftKings,4.06,152.56,1.5,yes,2026-11-28T00:11:56+00:00,148.5,0.0,0.0,69.0,61.0,L,-1.5,settled,
 2026-11-28|401925033|spread|home,2026-11-28,401925033,spread,Louisiana +10.5,home,309,2377,Louisiana,McNeese,10.5,10.5,-115.0,DraftKings,2.78,-7.72,0.33,yes,2026-11-28T00:13:17+00:00,,,,,,,,open,
 2026-11-28|401925033|total|under,2026-11-28,401925033,total,Under 141.5,under,309,2377,Louisiana,McNeese,141.5,141.5,-115.0,DraftKings,3.57,137.93,1.0,yes,2026-11-28T00:13:17+00:00,,,,,,,,open,
 2026-11-28|401924913|spread|home|bandB,2026-11-28,401924913,spread,UNLV -9.5,home,2439,292,UNLV,UT Rio Grande Valley,-9.5,-9.5,-117.0,DraftKings,2.01,11.51,0.5,yes,2026-11-28T00:13:28+00:00,,,,,,,,open,bandB
@@ -1254,3 +1254,4 @@ bet_id,date,game_id,market,pick,side,home_id,away_id,home,away,line,alert_line,o
 2026-11-28|401921414|spread|home,2026-11-28,401921414,spread,Radford +1.5,home,2515,2261,Radford,Hampton,1.5,1.5,-115.0,theScore Bet,4.34,2.84,0.63,yes,2026-11-28T01:39:36+00:00,,,,,,,,open,
 2026-11-28|401921031|spread|home,2026-11-28,401921031,spread,UNC Asheville +1.5,home,2427,290,UNC Asheville,Georgia Southern,1.5,1.5,100.0,theScore Bet,2.74,1.24,0.42,yes,2026-11-28T01:39:36+00:00,,,,,,,,open,
 2026-11-28|401921186|spread|home,2026-11-28,401921186,spread,Pennsylvania -15.5,home,219,2083,Pennsylvania,Bucknell,-15.5,-15.5,-110.0,DraftKings,2.59,18.09,0.42,yes,2026-11-28T01:39:36+00:00,,,,,,,,open,
+2026-11-28|401920859|spread|home,2026-11-28,401920859,spread,Marshall -7.5,home,276,2837,Marshall,East Texas A&M,-7.5,-7.5,-110.0,Fanatics,2.78,10.28,0.38,yes,2026-11-28T03:14:46+00:00,,,,,,,,open,

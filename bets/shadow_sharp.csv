@@ -986,7 +986,7 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-28|401921031|total|under,2026-11-28,total,Under 158.5,158.5,-105.0,4.87,1.5,,,True,-0.5,5.37,True,,,,,159.0,-0.5
 2026-11-28|401919787|total|over,2026-11-28,total,Over 144.5,144.5,-110.0,3.3,1.0,,,True,-1.5,4.8,True,,,,,143.0,-1.5
 2026-11-28|401919736|spread|away,2026-11-28,spread,Chicago State +14,14.0,-110.0,3.2,0.33,,,True,-1.5,4.7,True,,,,,-15.5,-1.5
-2026-11-27|401922264|total|over,2026-11-27,total,Over 148.5,148.5,-111.0,4.06,1.5,,,True,1.0,3.06,True,149.5,1.0,148.5,0.0,149.0,0.5
+2026-11-27|401922264|total|over,2026-11-27,total,Over 148.5,148.5,-111.0,4.06,1.5,L,-1.5,True,1.0,3.06,True,149.5,1.0,148.5,0.0,149.0,0.5
 2026-11-28|401925033|spread|home,2026-11-28,spread,Louisiana +10.5,10.5,-115.0,2.78,0.33,,,True,1.5,1.28,False,,,,,9.0,1.5
 2026-11-28|401925033|total|under,2026-11-28,total,Under 141.5,141.5,-115.0,3.57,1.0,,,True,1.5,2.07,True,,,,,140.0,1.5
 2026-11-28|401920859|total|under,2026-11-28,total,Under 149.5,149.5,-114.0,3.38,1.0,,,True,1.5,1.88,False,,,,,148.0,1.5
@@ -1003,3 +1003,4 @@ bet_id,date,market,pick,line,odds,edge,stake,result,profit,sharp_up,max_gap,shar
 2026-11-28|401921414|spread|home,2026-11-28,spread,Radford +1.5,1.5,-115.0,4.34,0.63,,,False,,,False,,,,,,
 2026-11-28|401921031|spread|home,2026-11-28,spread,UNC Asheville +1.5,1.5,100.0,2.74,0.42,,,True,-0.5,3.24,True,,,,,2.0,-0.5
 2026-11-28|401921186|spread|home,2026-11-28,spread,Pennsylvania -15.5,-15.5,-110.0,2.59,0.42,,,True,0.0,2.59,True,,,,,-15.5,0.0
+2026-11-28|401920859|spread|home,2026-11-28,spread,Marshall -7.5,-7.5,-110.0,2.78,0.38,,,True,0.5,2.28,True,-7.5,0.0,,,-8.0,0.5
