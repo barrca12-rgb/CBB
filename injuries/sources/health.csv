@@ -26687,3 +26687,7 @@ pulled_at,source,ok,rows,teams_matched,players_matched,unmatched_teams,error,sec
 2026-11-28T05:11:20+00:00,rotowire,True,5,1.0,1.0,,,0.5,1308.0
 2026-11-28T05:11:20+00:00,covers,True,114,0.956,0.0,Miami (FL) Hurricanes; San Jose State Spartans; Utah Runnin' Utes,,1.7,1930623.0
 2026-11-28T05:11:20+00:00,cbs,True,0,,,,,0.3,467079.0
+2026-11-28T05:28:35+00:00,espn,True,0,,,,,1.1,149.0
+2026-11-28T05:28:35+00:00,rotowire,True,5,1.0,1.0,,,0.5,1308.0
+2026-11-28T05:28:35+00:00,covers,True,113,0.956,0.0,Miami (FL) Hurricanes; San Jose State Spartans; Utah Runnin' Utes,,1.4,1929092.0
+2026-11-28T05:28:35+00:00,cbs,True,0,,,,,0.7,467031.0
